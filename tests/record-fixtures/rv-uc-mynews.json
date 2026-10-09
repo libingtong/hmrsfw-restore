@@ -1,0 +1,6 @@
+[
+  {"fill":["请输入消息关键词","测试"]},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"clickSel":".ant-pagination-next","optional":true}
+]

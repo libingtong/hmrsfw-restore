@@ -1,0 +1,6 @@
+[
+  {"fill":["可输入招聘会名称进行搜索","招聘"]},
+  {"click":"搜索"},
+  {"click":"重置"},
+  {"clickSel":".ant-pagination-item-2","optional":true}
+]
