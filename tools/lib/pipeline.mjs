@@ -495,9 +495,18 @@ export class Pipeline {
   // is not part of it because processing a failure changes fixRound.
   advKey(meta) { return `${meta.attempt || 1}.g${meta.gateSeq || 0}`; }
 
-  // Per-page results of a (possibly packed) order: gate may report {pages:{wo:{pass,...}}}; otherwise one verdict for all.
+  // gate.mjs prints `pages` as an array [{wo, pass, stage, failed, …}] (docs/gate.md); older verdicts used {wo: {pass, …}}.
+  // Both → {wo: result}, or null when the verdict has no per-page part.
+  pagesOf(gate) {
+    const p = gate?.pages;
+    if (!p || typeof p !== "object") return null;
+    return Array.isArray(p) ? Object.fromEntries(p.filter((x) => x?.wo).map((x) => [x.wo, x])) : p;
+  }
+
+  // Per-page results of a (possibly packed) order; without per-page results one verdict for all.
   pageResults(gate, wos) {
-    if (gate && gate.pages && typeof gate.pages === "object") return Object.fromEntries(wos.map((w) => [w, gate.pages[w] || { pass: false, failed: ["no per-page result"] }]));
+    const pages = this.pagesOf(gate);
+    if (pages) return Object.fromEntries(wos.map((w) => [w, pages[w] || { pass: false, failed: ["no per-page result"] }]));
     return Object.fromEntries(wos.map((w) => [w, gate]));
   }
 
@@ -961,7 +970,8 @@ export class Pipeline {
   }
 
   failedWos(gate, wos) {
-    if (gate?.pages) return wos.filter((w) => !gate.pages[w]?.pass);
+    const pages = this.pagesOf(gate);
+    if (pages) return wos.filter((w) => !pages[w]?.pass);
     return (gate?.failed || []).map((f) => (typeof f === "string" ? f : f.wo || f.id || f.workOrder)).filter((w) => wos.includes(w));
   }
 
@@ -973,6 +983,7 @@ export class Pipeline {
     if (gate.error) return { ok: false, summary: "gate error", anomalies: [{ issue: taskId, what: `integration gate error: ${String(gate.error).slice(0, 200)}`, suggestedAction: "建排障单交给裁定员" }] };
     const wos = meta.workOrders || [];
     const failed = gate.pass ? [] : this.failedWos(gate, wos);
+    this.gateGlobal = gate.global ?? null; // app-wide failures by layer / owner (integration mode), for the reports below
     let out;
     switch (meta.purpose) {
       case "regression": out = this.onRegression(taskId, meta, gate.pass, failed); break;
@@ -1104,10 +1115,13 @@ export class Pipeline {
     const total = meta.workOrders.length || 1;
     const rate = pass ? 0 : failed.length / total;
     this.ledger.tx((L) => { L.tick.integrationGate = { ...(L.tick.integrationGate || {}), state: pass ? "passed" : "failed", failRate: rate, failed }; L.newEvents.push({ type: "integration-gate", pass, failRate: rate, failed: failed.length }); });
-    this.closeIntegration(taskId, `[GATE] 集成门槛：${pass ? "全部通过" : `${failed.length}/${total} 页失败（${(rate * 100).toFixed(1)}%）`}`);
+    const g = this.gateGlobal;
+    const wide = g?.total ? `；另有 ${g.total} 处不属于页面的失败（${Object.entries(g.byLayer || {}).map(([k, n]) => `${k} ${n}`).join("、")}）` : "";
+    this.closeIntegration(taskId, `[GATE] 集成门槛：${pass ? "全部通过" : `${failed.length}/${total} 页失败（${(rate * 100).toFixed(1)}%）${wide}`}`);
     if (pass) return { ok: true, summary: "integration gate passed", anomalies: [] };
-    if (rate > this.cfg.stop.integrationFailRate) return this.stop(`集成门槛失败率 ${(rate * 100).toFixed(1)}% > ${this.cfg.stop.integrationFailRate * 100}%`, { failed });
-    return this.openIncident(`集成门槛 ${failed.length} 页失败，按共享组件或入口包追溯`, { failed });
+    const details = { failed, ...(g ? { global: g } : {}) };
+    if (rate > this.cfg.stop.integrationFailRate) return this.stop(`集成门槛失败率 ${(rate * 100).toFixed(1)}% > ${this.cfg.stop.integrationFailRate * 100}%`, details);
+    return this.openIncident(failed.length ? `集成门槛 ${failed.length} 页失败，按共享组件或入口包追溯` : `集成门槛页面全部通过，${g?.total ?? 0} 处公共库或外壳失败，按 owner 追溯`, details);
   }
 
   // ---- rule changes -------------------------------------------------------------------------------------------------

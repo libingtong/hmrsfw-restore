@@ -29,7 +29,7 @@ export const BASELINE_VERSION = 1;
 export async function recordOriginal({ browser, wo, harFile, assets, shotDir, rules }) {
   const site = SITES[wo.site];
   const har = loadHar(harFile);
-  const storage = authStorage(wo, assets);
+  const storage = authStorage(wo, assets, har);
   const steps = await interactScript(wo.id);
   const srv = await serveStatic(path.join(ROOT, "legacy-dist", wo.site));
   try {
