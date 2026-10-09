@@ -6,8 +6,8 @@
 
 两个应用各一份，内容可以相同：
 
-- `skeleton/apps/portal/src/utils/crypto-adapter.ts`（门户）
-- `skeleton/apps/uc/src/utils/crypto-adapter.ts`（用户中心）
+- `hmrsfw-vue` 的 `apps/portal/src/utils/crypto-adapter.ts`（门户）
+- `hmrsfw-vue` 的 `apps/uc/src/utils/crypto-adapter.ts`（用户中心）
 
 | 函数 | 签名 | 何时被调用 | 要求 |
 |---|---|---|---|
@@ -40,9 +40,9 @@
 
 ## 5. 实现说明（2026-10-09 已实现）
 
-- 实现文件：`skeleton/apps/portal/src/utils/crypto-adapter.ts` 与 `skeleton/apps/uc/src/utils/crypto-adapter.ts`，内容相同。类型声明在各应用的 `src/env.d.ts`（`ImportMetaEnv` 与 `sm-crypto` 模块声明）。依赖 `sm-crypto@0.3.13` 已加入 `skeleton/package.json`。
+- 实现文件：`hmrsfw-vue` 的 `apps/portal/src/utils/crypto-adapter.ts` 与 `apps/uc/src/utils/crypto-adapter.ts`，内容相同。类型声明在各应用的 `src/env.d.ts`（`ImportMetaEnv` 与 `sm-crypto` 模块声明）。依赖 `sm-crypto@0.3.13` 已加入 `hmrsfw-vue` 的 `package.json`。
 - 算法对齐后端：请求体 SM2 公钥加密、C1C3C2、十六进制密文去掉开头 `04`（`Sm2Util.encrypt`）；响应体 SM4/ECB/PKCS5Padding、十六进制密钥与密文（`Sm4Utils.encryptEcbP`）；存储项为 SM4/ECB 加密的 JSON 文本，与原前端 `JSON.parse(sm4.decrypt(text, KEY))` 互通。
-- 密钥通过 Vite 环境变量注入，两个应用共用 `skeleton/.env.local`（两份 vite 配置已设 `envDir` 指向 `skeleton/`；样例见 `skeleton/.env.example`，`.env.local` 已加入 `.gitignore`）：
+- 密钥通过 Vite 环境变量注入，两个应用共用 `hmrsfw-vue/.env.local`（两份 vite 配置已设 `envDir` 指向工程根目录；样例见 `hmrsfw-vue/.env.example`，`.env.local` 已加入 `.gitignore`）：
   - `VITE_HMRSFW_SM2_PUBLIC_KEY`：SM2 公钥（压缩 66 位或非压缩 130 位十六进制），对应 `Sm2Util.PRIVATE_KEY` 的公钥
   - `VITE_HMRSFW_SM4_KEY`：响应解密密钥（32 位十六进制），对应 `Sm4Utils.KEY`
   - `VITE_HMRSFW_SM4_STORAGE_KEY`：存储加解密密钥，留空沿用 `VITE_HMRSFW_SM4_KEY`

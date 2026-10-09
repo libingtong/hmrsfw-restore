@@ -1,23 +1,24 @@
-# Vue 反编译多 Agent 编排：Multica 创建说明（v3）
+# Vue 反编译多 Agent 编排：Multica 创建说明（v3.1）
 
 Oct 9, 2026 · @Dylan Lee · 修订：Mika
 
-v3 的目标是**尽可能并行、尽快完成**。和 v2 相比的改动见文末「修订记录」。第十二节「接口约定」是几个并行工程子任务共同遵守的契约，改动它要先在父任务里说明。
+v3 的目标是**尽可能并行、尽快完成**。v3.1 按《哈密公共就业服务网前端还原：全局说明》对齐：还原产物落到 `hmrsfw-vue` 工程，模型分工按全局说明第四节，新增第十三节「公共库统一」和第十四节「全局约束」。和 v2 相比的改动见文末「修订记录」。第十二节「接口约定」是几个并行工程子任务共同遵守的契约，改动它要先在父任务里说明。
 
 ## 一、已定项
 
 | 项 | 取值 |
 | --- | --- |
-| 仓库 | `https://github.com/libingtong/hmrsfw-restore`（私有） |
+| 产物工程 | `/Users/dylan/Projects/hmrsfw-vue`：最终交付的 Vue 工程，已有 30 页、入口层、共享层、接口模块。还原员只往这里写 |
+| 仓库 | 两个 GitHub 私有仓库（2026-10-09 已定）：`libingtong/hmrsfw-vue`（产物，只放干净源码，分支 `main` / `integration` / `restore/*`）+ `libingtong/hmrsfw-restore`（工具、`legacy-dist`、映射、工单、回执、`registry`） |
 | 分支 | `main`（人工合并）、`integration`（门槛通过后自动合并）、`restore/<工单id>-a<attempt>`（每次尝试） |
 | Mac mini（`DylandeMac-mini.local`） | 调度员、门槛员、录制员、修正员、少量还原员。持有 HAR、登录态、SM2 私钥 |
 | Office-Server（`Dylan-Office-Server`） | 主力还原员、审计员。**不放**任何 HAR、登录态、私钥 |
 | `RESTORE_ASSETS`（仅 Mac mini） | `/Users/dylan/Projects/hmrsfw-restore-poc` |
 | `RESTORE_STATE`（仅 Mac mini） | `/Users/dylan/Projects/hmrsfw-restore-state`：账本、能力表、锁、门槛产物、原版基线、修正 diff |
-| 模型 | Sonnet 5.5、Opus 5.5（修正）、DeepSeek `deepseek-official/deepseek-flash`、GLM `zhipuai-coding-plan/glm-5.3-flash`、Codex（审计）。**不用 Haiku** |
+| 模型 | 页面默认 Sonnet 5.5；入口包、共享组件、修正用 Opus 5.5；DeepSeek `deepseek-official/deepseek-flash`、GLM `zhipuai-coding-plan/glm-5.3-flash` 作为便宜档，**小样本重测通过后**才启用，且只接 < 30KB 的页面；Codex 审计。**不用 Haiku** |
 | 交互比对 | 写请求不发出，返回 HAR 里录制的响应；按解密后的请求体匹配 |
 | 白名单 | 取消 |
-| 范围 | 哈密：门户 161 页 + 用户中心 128 页 + 16 段大页分段 + 共享组件 90 + 入口包 ≤ 48 |
+| 范围 | 哈密：门户 161 页 + 用户中心 133 页 + 共享组件 90 + 入口包 ≤ 48；**≥ 30KB 的页面一律分段**；`hmrsfw-vue` 里已验收的 30 页不再派还原单，只做回归 |
 | 【裁定人】 | 李炳通 |
 | 【漏检率阈值】 | 10% |
 | 【预算上限】 | 暂不设，前 50 页跑完后按实际用量定 |
@@ -31,9 +32,9 @@ v3 的目标是**尽可能并行、尽快完成**。和 v2 相比的改动见文
 | 1 | S1 仓库初始化 | 仓库主干、`integration` 分支、`.gitignore`、`tools/setup-workdir.mjs`、本文档入库为 `docs/pipeline.md` |
 | 2 | A 门槛 | `gate.mjs`（并发安全、只跑还原版一侧、先快后慢、单页构建、解密体匹配 HAR、共享组件顶替、集成模式）、`baseline.mjs`（原版基线） |
 | 2 | B 调度 | `tick.mjs`、`route.mjs`、`ledger.mjs`、`handoff.mjs`、自动合并到 `integration` |
-| 2 | C 工单与自检 | `work-orders.mjs`、`scan-shared-gaps.mjs`、大页分段、`self-check.mjs`（还原员交付前跑的静态检查，含 `check-text-nodes`、`check-directives`） |
+| 2 | C 工单、公共库清单与自检 | `work-orders.mjs`、`scan-shared-gaps.mjs`、公共库清单 `registry`（第十三节）、≥ 30KB 分段、`self-check.mjs`（含 `check-imports`）（还原员交付前跑的静态检查，含 `check-text-nodes`、`check-directives`） |
 | 2 | D 录制 | `record-page.mjs`：交互脚本格式、HAR 录制，录完调用 `baseline.mjs` |
-| 2 | E 样式与加密 | `css-by-scope.mjs`、`har-decrypt.mjs`、E5 用的密文 HAR 回放比对 |
+| 2 | E 样式与加密 | `css-by-scope.mjs`、`har-decrypt.mjs`、E5 用的密文 HAR 回放比对；后处理抽取 base64 图片、展开压缩 CSS |
 | 3 | F 联调 | 用 20 张确认页把整条脚本链端到端跑通，给出门槛耗时和内存数据 |
 
 阶段 2 的 5 个子任务同时进行，彼此只通过第十二节的接口约定衔接。
@@ -71,7 +72,7 @@ flowchart LR
 
 ## 四、智能体清单
 
-共 11 个。一个智能体只能绑一台机器的运行时，所以两台机器上的还原员各建一个。权限全部设为「仅自己」。
+共 12 个（v3.1 新增还原-Opus@Office）。一个智能体只能绑一台机器的运行时，所以两台机器上的还原员各建一个。权限全部设为「仅自己」。
 
 | 名称 | 机器 | 运行时 | 模型 | 思考强度 | 并发 | 职责 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -79,15 +80,16 @@ flowchart LR
 | 门槛员 | Mac mini | Claude Code | Sonnet 5.5 | 低 | 3 → 5–6 | 跑门槛，调用 `advance`。联调测完内存后再提 |
 | 录制员 | Mac mini | Claude Code | Sonnet 5.5 | 中 | 2 | 写交互脚本、录 HAR、算原版基线 |
 | 修正员 | Mac mini | Claude Code | Opus 5.5 | 高 | 2 | 读门槛 diff 修复。diff 可能含测试数据，所以留在 Mac mini |
-| 还原-Sonnet@Mac | Mac mini | Claude Code | Sonnet 5.5 | 中 | 1 | 复杂页、入口包、共享组件、重做 |
+| 还原-Sonnet@Mac | Mac mini | Claude Code | Sonnet 5.5 | 中 | 1 | 页面（默认）、重做 |
+| 还原-Opus@Office | Office-Server | Claude Code | Opus 5.5 | 高 | 3 | 入口包、共享组件、公共库升级单 |
 | 还原-DeepSeek@Mac | Mac mini | dsh | `deepseek-official/deepseek-flash` | 默认 | 1 | 普通页面 |
 | 还原-GLM@Mac | Mac mini | Opencode | `zhipuai-coding-plan/glm-5.3-flash` | 默认 | 1 | 普通页面 |
-| 还原-Sonnet@Office | Office-Server | Claude Code | Sonnet 5.5 | 中 | 3 | 同上 |
+| 还原-Sonnet@Office | Office-Server | Claude Code | Sonnet 5.5 | 中 | 4 | 同上 |
 | 还原-DeepSeek@Office | Office-Server | dsh | 同上，创建时核对 profile | 默认 | 3 | 同上 |
 | 还原-GLM@Office | Office-Server | Opencode | 同上，创建时核对 provider 前缀 | 默认 | 3 | 同上 |
 | 审计员 | Office-Server | Codex | 运行时默认，创建时记下模型 ID | 高 | 3 | 抽检，只读 |
 
-并发合计：还原 12（v2 是 6），门槛 3 起步，联调后提到 5–6。Mac mini 的 16GB 留给门槛和录制，所以 Mac mini 上的还原员各只开 1。Office-Server 的内存余量在联调时确认，够的话还原员提到 4–5。
+并发合计：还原 16（Opus 3、Sonnet 5、DeepSeek 4、GLM 4；便宜档启用前 DeepSeek 和 GLM 闲置），门槛 3 起步，联调后提到 5–6。Mac mini 的 16GB 留给门槛和录制，所以 Mac mini 上的还原员各只开 1。Office-Server 的内存余量在联调时确认，够的话还原员提到 4–5。
 
 **家族与路由**：`route.mjs` 按家族路由，同家族的两台机器的智能体共享能力数据，各自计算空闲并发。
 
@@ -102,6 +104,10 @@ flowchart LR
 ## 五、还原员统一指令
 
 主体原样使用 `tools/prompt-template-confirm.md`，只追加 Multica 段。
+
+**样式**：按全局说明第六节，还原员不写 `<style>`，样式由 `css-by-scope.mjs` 按 scopeId 写入。这个脚本是页面派单的前置条件。模板里如有「自己写样式」的内容，以本条为准。
+
+**公共库**：只按工单 `maps` 给出的路径导入公共代码，见第十三节。
 
 ```markdown
 <此处原样粘贴 tools/prompt-template-confirm.md 全文，不做任何删改>
@@ -235,7 +241,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 
 与 v2 相同，补充以下几点：
 
-- **冷启动期两个便宜模型同做一页**：普通页面同时派给 DeepSeek 和 GLM 各一次（两张任务，同一工单，分支后缀分别为 `-d`、`-g`）。先通过门槛的那个合入 `integration`，另一个跑完门槛只记账、不合并；还没开始的直接取消。冷启动期结束后恢复单派。
+- **便宜档（全局说明 D1）**：先做小样本重测（POC 中 Haiku 失败过的 5 页 + 若干留出页，DeepSeek、GLM 各跑一次，按金额和首通率判断）。通过前页面一律派 Sonnet。启用后只接 < 30KB 的页面，冷启动期 DeepSeek 和 GLM 双派（分支后缀 `-d`、`-g`），先通过者合并，另一个只记账。
 - **大页先派**：同一优先级内按 chunk 大小降序派单。
 - **小页打包**：< 5KB 的页面 3–5 张打成一单（`workOrders` 数组），同一还原员一次做完。门槛逐页判定，失败的页拆成单页工单重做，通过的页照常合并。
 - **预排队**：每个还原员保持「正在跑的 + 1 张排队」。
@@ -296,7 +302,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 
 前置工程阶段 3（F 联调）完成后，Mika 再创建智能体和自动化，然后按下面的步骤自检：
 
-- [ ] 11 个智能体都在指定机器上在线，模型 ID 与第四节一致，还原员指令逐字相同。
+- [ ] 12 个智能体都在指定机器上在线，模型 ID 与第四节一致，还原员指令逐字相同。
 - [ ] 自定义状态 `audit`、`human_check` 已创建。
 - [ ] 每台机器的每个还原员各做一张最小的页面工单：`self-check` 跑了、分支推了、回执合规、`handoff` 把任务交给了门槛员。
 - [ ] 门槛员同时跑 3 张，无冲突；记录单张耗时和 Mac mini 内存峰值，据此把门槛员并发提到 5–6。
@@ -314,6 +320,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | 路径 | 内容 | 谁写 |
 | --- | --- | --- |
 | `queue/<工单id>.json` | 工单，字段见 `batch-plan.md` 第 3 节，另加 `type`（entry/shared/page/segment）、`kb`、`deps`（依赖的共享组件和入口导出）、`recordPath`、`site` | C |
+| `registry/<app>.json` | 公共库清单，见第十三节 | C 生成，之后只由入口包、共享组件工单更新 |
 | `tests/interact/<工单id>.json` | 交互脚本：`[{"fill":[placeholder,value]} \| {"click":text} \| {"clickSel":css,"optional":bool} \| {"wait":ms}]`，与 POC 的 `interact-scripts.mjs` 同义 | 录制员 |
 | `receipts/<工单id>.json` | 回执 | 还原员、修正员 |
 | `$RESTORE_ASSETS/har/pages/<工单id>.har` | 页面 HAR | `record-page.mjs` |
@@ -346,7 +353,9 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | `route.mjs <工单id>` | `{candidates:[{family, agents:[...], expectedCost, reason}], features, dual:bool}` |
 | `record-page.mjs <工单id>` | `{ok, steps, unstable:[...], blocked?}` |
 | `baseline.mjs <工单id> [--har <path>]` | 用 HAR 回放原版两次，写基线；两次不一致的步骤列入 `unstable` |
-| `setup-workdir.mjs` | 依赖就绪；有 `RESTORE_DEPS_CACHE` 时软链，否则首次在缓存目录 `npm ci`（加锁） |
+| `setup-workdir.mjs --app <dir>` | 本仓库和 `hmrsfw-vue` 检出的依赖就绪；有 `RESTORE_DEPS_CACHE` 时软链到缓存（`hmrsfw-vue` 的缓存项按它自己的 `package-lock.json` 建），缓存项不存在时首次在缓存目录 `npm ci`（加锁）；没有该变量时原地 `npm ci` |
+
+**定位产物工程**：需要读写 `hmrsfw-vue` 的工具，一律通过参数 `--app <hmrsfw-vue 检出目录>` 或环境变量 `HMRSFW_APP_DIR` 定位产物工程，参数优先；两者都没有就报错退出，不猜默认路径。上表中用到产物工程的命令（`self-check`、`gate`、`baseline`、`record-page`、`setup-workdir` 等）都接受 `--app`。共用实现在 `tools/app-dir.mjs`（`appDir()`）。
 
 ## 修订记录（相对 v2）
 
@@ -362,3 +371,78 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | 第三、五、九节 | 交付后 `handoff.mjs` 直接送门槛；调度 15 → 5 分钟；预排队；大页先派；小页打包 | 去掉轮询等待和空闲槽位 |
 | 第五节 | 还原员交付前跑 `self-check.mjs` | 静态问题在本地修掉，减少门槛来回 |
 | 第二节 | 前置工程拆成 3 个阶段、7 个子任务，阶段 2 的 5 个并行 | 前置工程本身也要并行 |
+
+
+## 十三、公共库统一（所有页面用同一套公共库）
+
+`hmrsfw-vue` 每个应用的以下部分，加上锁定版本的 npm 依赖，构成该应用**唯一的公共库**：
+- `src/legacy`：入口导出；
+- `src/shared`：共享组件；
+- `src/api`：接口模块；
+- `src/utils`；
+- 全局组件与指令。
+
+门户和用户中心的 Vue、ant-design-vue 版本不同，各自一套，不跨应用共用。
+
+### 1. 公共库清单是唯一事实来源
+
+`registry/<app>.json` 把原包里的每个公共符号映射到一个固定的源码位置：
+
+```json
+{
+  "shared":  { "<原 chunk 文件名>": { "path": "@/shared/DictCode.vue", "export": "default", "status": "restored|reserved", "owner": "<工单id>" } },
+  "entry":   { "<混淆导出名>": { "path": "@/legacy/utils.ts", "export": "formatDate" } },
+  "api":     { "<原 chunk>#<导出名>": { "path": "@/api/job.ts", "export": "getJobList", "url": "/xf-api/..." } },
+  "globals": { "components": ["..."], "directives": ["trim", "click-outside"] },
+  "npm":     { "qrcodejs2": "npm:qrcodejs2-fix@0.0.1", "echarts": "5.5.0" }
+}
+```
+
+- **先占位再还原**：还没还原的共享组件和入口导出，也在清单里先分配好路径和名字（`status: reserved`）。页面一律按清单上的路径导入，不用等公共库还原完。跑门槛时，`reserved` 的模块由脚本临时用原编译 chunk 顶替，顶替文件不进仓库。
+- **每页的 `maps` 由清单生成**：同一个原符号，在所有页面工单里拿到的都是同一个路径和导出名。还原员不自己起路径、不自己起组件名（全局说明第六节第 3 条）。
+- **同名不同接口**：入口导出里有同名但接口不同的情况（如 `L` 和 `bb`），清单按 URL 逐个核对后再分配。
+- **种子**：清单从 `hmrsfw-vue` 现有的 `legacy/`、`shared/`、`api/` 反推生成，接口文件的注释里写了原导出名。生成时顺带清理现状里的问题：
+  - 同一组件出现多份：例如门户的 `legacy/SlideCaptcha.vue` 和用户中心的 `shared/SlideCaptcha.vue`，要核对清楚，每个应用内只保留一份；
+  - `shared/` 里的第三方库包装（`vue3-seamless-scroll.ts`、`echarts.ts`）改为直接用 npm 依赖；
+  - 按哈希命名的接口文件（如 `api-178332063620017.ts`）按业务改名，清单记录新旧名的对应关系。
+
+### 2. 机器检查（还原员自检和门槛都跑）
+
+新增 `check-imports`，以下任一条不满足即失败：
+
+1. **导入来源受限**：页面文件只能导入三类东西：本页目录内的相对路径、清单里的路径、清单里的 npm 包。
+2. **不准抄公共代码**：页面不得在本地重新定义清单里已有的组件、函数或常量，按名字和 AST 相似度判断。
+3. **全局组件和指令必须登记**：模板里用到的全局组件和指令必须在 `globals` 里。这一条与已有的「未解析组件检查」合并。
+4. **页面单不准改公共库**：页面工单的提交只能改本页目录和回执。改到 `legacy/`、`shared/`、`api/`、`utils/`、`package.json` 或锁文件，合并时直接拒绝。
+
+### 3. 公共库只有一个修改入口
+
+- 公共库文件只由入口包、共享组件工单修改，用 Opus 做。
+- 还原员发现公共库缺东西或有错，写进回执的 `needsFromSkeleton`，不自己补。调度员据此建一张「公共库升级单」，该页先挂起，等升级单合并后自动重派。
+- 每个公共库文件在清单里有 `owner`，同一时间只有一张工单能改它，工单锁按文件加。
+
+### 4. 公共库变更后的回归
+
+- 工单的 `deps` 建成反向索引。某个公共库文件合入 `integration` 后，依赖它的所有已通过页面自动重跑门槛，对应全局说明第三节「共享层改动后全量回归」。
+- 回归失败就回退这次公共库提交，不改页面。
+- 清单、比对规则、归一化规则的变更都要人审批，并触发全量回归。
+
+### 5. 依赖版本
+
+每个应用一份 `package.json`：现在两个应用共用一份，由 E7 拆开。版本按原包指纹锁定，页面工单不能新增依赖。
+
+## 十四、全局约束（来自全局说明第十节，所有智能体遵守）
+
+1. **仓库位置（已定）**：只推送到 `libingtong/hmrsfw-vue` 和 `libingtong/hmrsfw-restore` 两个 GitHub 私有仓库，不推送到其他任何外部仓库。全局说明第十节相应修改。
+2. **只访问测试环境**：门户 `hamiwebportaltest.rencaidanao.com`，用户中心 `hamiusercentertest.rencaidanao.com`。
+3. **登录由人完成**：人在有界面的浏览器里登录，智能体不输入账号密码，也不调用登录接口。
+4. **密钥**：只从环境变量读取，不写入仓库、日志、评论、报告，**也不从旧前端包里提取**。`hmrsfw-vue/.env.local` 永不提交。
+5. **个人信息**：账号、手机号、证件号、显示名不得写入仓库或任务评论。HAR 的副本用完即删。
+6. **不准为通过而改规则**：不得修改门槛脚本、白名单、归一化规则或公共库清单来让某一页通过。
+7. **`done` 只能由人设置**，不公开部署。
+8. **文档冲突**时，以日期最新的实测报告为准。
+
+**与全局说明不一致、需要同步修改全局说明的地方**：
+
+- 全局说明第三节写的是「入口包 → 共享组件 → 页面，严格按序」。v3 已确认改为三条线并行，正确性由第十三节的「先占位再还原」、门槛顶替和公共库变更回归来保证。
+- 全局说明第四节把 Haiku 列为待定。按你的决定，Haiku 不再参加。
