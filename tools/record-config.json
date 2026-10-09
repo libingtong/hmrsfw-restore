@@ -1,0 +1,10 @@
+{
+  "interactCoverage": {
+    "_doc": "D4 待定前的默认规则（docs/pipeline.md 第十五节第 4 小节）：表单页和操作页必须有交互脚本，其余页面按 sampleRate 抽检。工单里显式的 interactRequired（true/false）优先。改这里不需要改代码。",
+    "requiredKinds": ["form", "action"],
+    "formPattern": "placeholder:|rules:|\\\"a-form\\\"|\\\"a-input\\\"",
+    "actionWords": ["提交", "保存", "删除", "申请", "报名", "投递", "确认", "确定", "发布", "新增", "添加", "上传", "修改", "取消报名", "收藏", "关注", "撤回"],
+    "sampleRate": 0.2,
+    "seed": "hm-d4"
+  }
+}
