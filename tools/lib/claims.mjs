@@ -8,6 +8,7 @@
 //   wo/<key>.json        {key, machine, at, by}          owner of a work order (the machine whose tick drives it)
 //   leader.json          {machine, until, at, by}        lease for the global steps (records, regression, rule reviews…)
 //   stats/<machine>.json capability / audits / cooldowns / recent events of one machine, and its heartbeat (`at`)
+//   req/<id>.json        {cmd, wo|task, reason, by}      resplit / rerecord / open-upgrade asked for on a non-owner machine
 //
 // Commits are built with plumbing (temporary index, hash-object, commit-tree), so no worktree is touched.
 // dryRun: fetch and reads run; writes are printed and treated as successful.
@@ -16,6 +17,7 @@ import { mkdtempSync, rmSync } from "node:fs";
 import path from "node:path";
 import os from "node:os";
 import { createHash } from "node:crypto";
+import { ALL, hostOf } from "./machine.mjs";
 
 const sleepSync = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 export const fileKey = (key) => {
@@ -80,6 +82,9 @@ export class Claims {
   }
 
   get(p) { this.ensure(); return this.files.get(p) ?? null; }
+  entries(prefix) { this.ensure(); return [...this.files.entries()].filter(([p]) => p.startsWith(prefix)); }
+  // "*" (unsharded) is one process on one host: a "*" record written from another host is not ours.
+  isMine(rec, machine) { return !!rec && rec.machine === machine && (machine !== ALL || hostOf(rec.by) === hostOf(this.by)); }
   owner(key) { const c = this.get(claimPath(key)); return c && typeof c === "object" ? c.machine : null; }
   claimsOf(machine) { this.ensure(); return [...this.files.entries()].filter(([p, v]) => p.startsWith("wo/") && v?.machine === machine).map(([, v]) => v.key); }
   all() { this.ensure(); return [...this.files.entries()].filter(([p]) => p.startsWith("wo/")).map(([, v]) => v); }
@@ -139,9 +144,10 @@ export class Claims {
     return this.cas((c) => {
       const won = [], lost = {}, changes = {};
       for (const k of keys) {
-        const o = c.owner(k);
-        if (o === machine) won.push(k);
-        else if (o) lost[k] = o;
+        const rec = c.get(claimPath(k));
+        const o = rec && typeof rec === "object" ? rec.machine : null;
+        if (o && c.isMine(rec, machine)) won.push(k);
+        else if (o) lost[k] = o === ALL ? `*@${hostOf(rec.by)}` : o;
         else { changes[claimPath(k)] = { key: k, machine, at, by: this.by, why }; won.push(k); }
       }
       return { changes, result: { won, lost } };
@@ -153,11 +159,12 @@ export class Claims {
   reclaim({ from, to, keys = null, force = false, deadAfterMs = 60 * 60_000 }) {
     this.refresh();
     const hb = this.get(statsPath(from))?.at;
-    if (!force && hb && this.now() - Date.parse(hb) < deadAfterMs) return { ok: false, error: `${from} heartbeat ${hb} is recent; pass --force to take its claims anyway`, moved: [] };
+    if (!force && !hb) return { ok: false, error: `${from} has no heartbeat on ${this.branch}; pass --force if it is really gone`, moved: [] };
+    if (!force && this.now() - Date.parse(hb) < deadAfterMs) return { ok: false, error: `${from} heartbeat ${hb} is recent; pass --force to take its claims anyway`, moved: [] };
     const at = new Date(this.now()).toISOString();
     return { ok: true, ...this.cas((c) => {
       const changes = {}, moved = [];
-      for (const v of c.all()) if (v.machine === from && (!keys || keys.includes(v.key))) { changes[claimPath(v.key)] = { ...v, machine: to, at, by: this.by, why: `reclaim from ${from}`, prev: from }; moved.push(v.key); }
+      for (const v of c.all()) if (v.machine === from && (!keys || keys.includes(v.key))) { changes[claimPath(v.key)] = { ...v, machine: to, at, by: this.by, why: `reclaim from ${from}`, prev: from, prevs: [...(v.prevs || []), from] }; moved.push(v.key); }
       return { changes, result: { moved } };
     }, `reclaim ${from} → ${to}`) };
   }
@@ -168,13 +175,15 @@ export class Claims {
     return this.cas((c) => {
       const cur = c.get("leader.json");
       const left = cur ? Date.parse(cur.until) - this.now() : -1;
-      if (cur && cur.machine !== machine && left > 0) return { changes: null, result: { leader: false, holder: cur.machine, until: cur.until } };
-      if (cur && cur.machine === machine && left > ttlMs / 2) return { changes: null, result: { leader: true, holder: machine, until: cur.until } };
+      const mine = c.isMine(cur, machine);
+      if (cur && !mine && left > 0) return { changes: null, result: { leader: false, holder: cur.machine === ALL ? `*@${hostOf(cur.by)}` : cur.machine, until: cur.until } };
+      if (cur && mine && left > ttlMs / 2) return { changes: null, result: { leader: true, holder: machine, until: cur.until } };
       const until = new Date(this.now() + ttlMs).toISOString();
-      return { changes: { "leader.json": { machine, until, at, by: this.by, prev: cur?.machine ?? null } }, result: { leader: true, holder: machine, until, acquired: cur?.machine !== machine } };
+      return { changes: { "leader.json": { machine, until, at, by: this.by, prev: cur?.machine ?? null } }, result: { leader: true, holder: machine, until, acquired: !mine } };
     }, `leader → ${machine}`);
   }
   leaderNow() { const cur = this.get("leader.json"); return cur && Date.parse(cur.until) > this.now() ? cur.machine : null; }
+  leaderRec() { const cur = this.get("leader.json"); return cur && Date.parse(cur.until) > this.now() ? cur : null; }
 
   write(files, message) { return this.cas(() => ({ changes: files, result: {} }), message); }
 }

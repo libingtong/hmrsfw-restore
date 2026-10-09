@@ -1,7 +1,10 @@
 // Which machine this process runs on, and what each machine can do. Everything comes from data, never from agent names:
 //   - machine ids are the `machine` values of the roster (e.g. "mac-mini", "office-server");
 //   - this process's machine: --machine <id|unique prefix> > HMRSFW_MACHINE > roster `machines.<id>.hosts` matching the
-//     hostname > the only machine in the roster > "*" (unsharded: one tick drives every work order, as before sharding);
+//     hostname > the only machine in the roster > unknown (id null). "*" (unsharded: one tick drives every work order,
+//     as before sharding) only when asked for explicitly, so two machines can't both fall back to it by accident.
+//     An unknown process (e.g. a gate agent running `advance` without HMRSFW_MACHINE) owns what its host claimed;
+//     `tick` refuses to run unknown.
 //   - assets per machine: roster `machines.<id>.assets` (e.g. ["login", "har", "baseline"]). A roster without a
 //     `machines` section puts no asset restriction on any machine.
 //   - what a stage needs: scheduler.config.json `requires` (per stage), plus the work order's own `requires` (field name
@@ -29,8 +32,10 @@ export function resolveMachine(roster, { argv = [], env = process.env, hostname 
   const host = hostname.toLowerCase().replace(/\.local$/, "");
   for (const [id, m] of Object.entries(roster.data.machines || {})) if ((m.hosts || []).some((h) => h.toLowerCase().replace(/\.local$/, "") === host)) return { id, source: "hostname" };
   if (ids.length === 1) return { id: ids[0], source: "single" };
-  return { id: ALL, source: "unsharded" };
+  return { id: null, source: "unknown" };
 }
+
+export const hostOf = (by) => String(by || "").replace(/:\d+$/, "").toLowerCase();
 
 export function machineAssets(roster, machine) {
   const m = roster.data.machines?.[machine];

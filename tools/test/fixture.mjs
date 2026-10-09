@@ -75,7 +75,8 @@ export function makeFixture({ orders = [], config = {}, registry = null } = {}) 
   git(tool, "add", "-A"); git(tool, "commit", "-q", "-m", "init"); git(tool, "push", "-q", "origin", "main");
   git(tool, "push", "-q", "origin", "main:integration");
 
-  const env = { ...process.env, RESTORE_STATE: state, MULTICA_FAKE_STATE: fake, HMRSFW_TOOL_ROOT: tool, HMRSFW_APP_DIR: app };
+  // one unsharded tick ("*"), as before sharding; machines.test.mjs passes --machine per process
+  const env = { ...process.env, RESTORE_STATE: state, MULTICA_FAKE_STATE: fake, HMRSFW_TOOL_ROOT: tool, HMRSFW_APP_DIR: app, HMRSFW_MACHINE: "*" };
   delete env.MULTICA_DRY_RUN;
   return { root, state, fake, app, tool, appOrigin, toolOrigin, env, roster, id: (name) => `a-${name}` };
 }

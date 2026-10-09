@@ -39,13 +39,11 @@ export function run(argv) {
     case "open-upgrade": {
       const reason = flag(argv, "--reason");
       if (!target || !reason) throw new Error('usage: tick.mjs open-upgrade <任务id> --reason "<依据>"');
-      const meta = pl.meta(target);
-      const r = pl.withWo(meta.workOrders || [], () => pl.openUpgrade(target, { reason, meta }), 60_000);
-      return r;
+      return pl.routed("open-upgrade", { task: target, reason }, (meta) => pl.withWo(meta.workOrders || [], () => pl.openUpgrade(target, { reason, meta }), 60_000));
     }
     case "open-rule-review": if (!target) throw new Error("usage: tick.mjs open-rule-review <分支>"); return pl.locks.with(`rule-${target}`, () => pl.openRuleReview(target), 60_000);
-    case "resplit": if (!target) throw new Error("usage: tick.mjs resplit <工单id>"); return pl.resplit(target);
-    case "rerecord": if (!target) throw new Error("usage: tick.mjs rerecord <工单id>"); return pl.rerecord(target);
+    case "resplit": if (!target) throw new Error("usage: tick.mjs resplit <工单id>"); return pl.routed("resplit", { wo: target }, () => pl.resplit(target));
+    case "rerecord": if (!target) throw new Error("usage: tick.mjs rerecord <工单id>"); return pl.routed("rerecord", { wo: target }, () => pl.rerecord(target));
     case "resume": return pl.resume();
     case "claims": { const wo = all(argv, "--wo"); return pl.claimsCmd(target, { from: flag(argv, "--from"), keys: wo.length ? wo : null, force: argv.includes("--force") }); }
     default: throw new Error("usage: tick.mjs tick | advance <任务id> [--regate] | digest | open-upgrade <任务id> --reason .. | open-rule-review <分支> | resplit <工单id> | rerecord <工单id> | resume | claims list|reclaim");

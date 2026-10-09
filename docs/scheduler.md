@@ -17,7 +17,7 @@
 | `tools/lib/roster.mjs` | 名册与调度配置 |
 | `tools/lib/error-classes.mjs` | 运行失败类别映射表（**猜测**，见下文） |
 | `tools/lib/workorders.mjs` | 读工单、公共库清单、`deps` 反向索引 |
-| `tools/lib/claims.mjs` | 跨机领取：工具仓库 `claims` 分支上的工单归属、主控租约、各机统计快照（git 比较并交换） |
+| `tools/lib/claims.mjs` | 跨机领取：工具仓库 `claims` 分支上的工单归属、主控租约、各机统计快照、跨机命令请求（git 比较并交换） |
 | `tools/lib/machine.mjs` | 本进程在哪台机器、每台机器有哪些资产、某一步需要哪些资产 |
 
 `tick.mjs` 另有 `claims list`（各机领取数、主控、心跳）和 `claims reclaim --from <机器> [--wo <工单id>] [--force]`（接管停用机器的工单），见「两台机器」。
@@ -99,7 +99,7 @@
 | `reason`、`details` | tick | `kind=incident` 任务 |
 | `createKey`、`createdOn` | tick | 创建键和创建它的机器。本机账本没有这个键时（另一台机器建的、账本丢了），按 `createKey` 认领已有任务，不重建 |
 | `claimedBy` | tick | 派单时工单的领取者（机器）。和 `claims` 分支对不上就报「重复派单」 |
-| `advanceRequested`、`regateDone` | advance | 在不拥有该工单的机器上调用 `advance` 时只写这个键，由工单所属机器的下一轮 tick 推进 |
+| `advanceRequested`、`regateDone` | advance | 在不拥有该工单的机器上调用 `advance` 时只写这个键，由工单所属机器的下一轮 tick 推进。`--regate` 的请求只对发出时的那一轮门槛有效，任务之后变了（已修正、已合并）就丢弃 |
 | `reopenRequest`、`reopenHandled` | tick | 主控回退了别的机器的合并（回归二分、公共库回归）时写给该任务，由所属机器重开 |
 | `paused`、`resumed`、`resumedAt`、`resumedOn` | tick / resume | `kind=incident`：`paused=true` 且未 `resumed` 时，两台机器都停止派新单 |
 
@@ -141,7 +141,11 @@
 
 ### 本机是哪台
 
-`--machine <id>` > 环境变量 `HMRSFW_MACHINE` > 名册 `machines.<id>.hosts` 与主机名匹配 > 名册里只有一台机器时就是它 > `*`（不分片：一个 tick 驱动全部工单，和分片前一样）。`<id>` 是名册里智能体的 `machine` 值，可以写唯一前缀（`mac` → `mac-mini`，`office` → `office-server`）。不看智能体名字里的 `@Mac` / `@Office`。
+`--machine <id>` > 环境变量 `HMRSFW_MACHINE` > 名册 `machines.<id>.hosts` 与主机名匹配 > 名册里只有一台机器时就是它 > 未知。`<id>` 是名册里智能体的 `machine` 值，可以写唯一前缀（`mac` → `mac-mini`，`office` → `office-server`）。不看智能体名字里的 `@Mac` / `@Office`。
+
+- 未知时 `tick` 拒绝运行。其他命令（例如门槛员调用 `advance`）照常运行，这时只认本主机写下的领取记录。
+- `*`（不分片：一个 tick 驱动全部工单，和分片前一样）只在明确写了 `--machine '*'` 或 `HMRSFW_MACHINE=*` 时才用。两台机器不会因为都漏配而同时退回 `*`；另一台主机写的 `*` 记录也不算本机的。
+- 建议在名册里写好 `machines.<id>.hosts`，这样所有智能体不用改指令就能认出本机。
 
 名册可以加 `machines`（可选，不删现有字段）：
 
@@ -176,14 +180,16 @@
 
 - `advance` 在不拥有该工单的机器上调用（门槛员可能在任一台）：只写 `advanceRequested`，返回 `{"ok":true,"deferred":true}`；所属机器下一轮立即推进，不等 10 分钟的兜底。`--regate` 同理。
 - 主控回退了别的机器的合并：写 `reopenRequest`，由所属机器重开。
-- 暂停：停止条件建的排障单带 `paused=true`，两台都看到；`resume` 在任一台运行都把它标成 `resumed`。
+- `resplit`、`rerecord`、`open-upgrade` 会改动工单的任务，所以只在工单所属机器上执行。在另一台机器上调用时（裁定员或被改派的还原员可能在另一台），只在 `claims` 分支写一条 `req/*.json`，返回 `deferred`；所属机器下一轮执行后删掉这条请求。
+- 主控每一步全局操作前都会重新确认租约，剩余时间不到四分之一（7.5 分钟）就跳过。所以 tick 跑得慢，或两台时钟偏差在这个范围内，都不会出现两个主控。两台机器要开 NTP 对时。
+- 暂停：停止条件建的排障单带 `paused=true`，两台都看到；`resume` 在任一台运行都把它标成 `resumed`，发起暂停那台账本里的暂停标记也随之失效。
 - 本机账本只当明细和缓存。已通过的页、合并的 sha、录制是否完成、回归是否在进行、某工单是否已有任务，都从任务元数据或 git 推出来；回归计数改为数 `main..integration` 之间的合并提交。
-- 能力表、漏检、冷却、最近的事件各机只记自己推进的那部分，每 `publishEveryMin` 分钟写到 `claims` 分支 `stats/<机器>.json`（同时是心跳）。路由、抽检档位、停止条件、每日摘要读「本机账本 + 另一台的快照」之和，所以两台的同家族智能体仍共享能力数据。POC 播种只算一次。
+- 能力表、漏检、冷却、最近的事件各机只记自己推进的那部分，每 `publishEveryMin` 分钟写到 `claims` 分支 `stats/<机器>.json`（同时是心跳）。路由、抽检档位、停止条件、每日摘要读「本机账本 + 另一台的快照」之和，所以两台的同家族智能体仍共享能力数据。POC 播种只算一次；只认名册里的机器，从不分片切过来时留下的 `*` 快照不计入，避免把同一份账本算两遍。
 - 主控每轮检查：同一工单有两张以上未结束的任务且不是双派，或任务的 `claimedBy` 和领取记录不符 → 报「重复派单」anomaly 并记入每日摘要，由裁定员决定留哪张。
 
 ### 停用一台机器、从不分片切到分片
 
-`claims reclaim --from <机器>`：对方心跳（`stats/<机器>.json` 的 `at`）超过 `deadAfterMin`（60 分钟）才接管，`--force` 跳过这个检查；接管后按任务元数据重建本机账本里这些工单的记录，已有任务的工单不会重派。不分片（`*`）跑过的工单要交给某台机器时也用它：`claims reclaim --from '*' --machine mac-mini`。
+`claims reclaim --from <机器>`：对方心跳（`stats/<机器>.json` 的 `at`）超过 `deadAfterMin`（60 分钟）才接管；没有心跳记录或要立即接管时加 `--force`；接管后按任务元数据重建本机账本里这些工单的记录，已有任务的工单不会重派。不分片（`*`）跑过的工单要交给某台机器时也用它：`claims reclaim --from '*' --machine mac-mini`。
 
 只有一个 tick 时可以把 `claims.enabled` 设为 `false`（不推 `claims` 分支）；两个 tick 同时跑时不能关。
 

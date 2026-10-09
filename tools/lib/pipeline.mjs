@@ -25,8 +25,8 @@ import { classifyRunError, FAILED_RUN_STATUSES } from "./error-classes.mjs";
 import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isAccepted, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
 import { Ledger, runRow, recordCapability, recordAudit, auditTier, seedFromConfirm, mergeCapability } from "../ledger.mjs";
 import { route, pick, agentLoad, freeSlots } from "../route.mjs";
-import { Claims, claimPath, statsPath } from "./claims.mjs";
-import { ALL, resolveMachine, canRun } from "./machine.mjs";
+import { Claims, claimPath, statsPath, fileKey } from "./claims.mjs";
+import { ALL, resolveMachine, canRun, hostOf, machineIds } from "./machine.mjs";
 
 export const KINDS = ["restore", "record", "integration", "audit", "rule-review", "arbitrate", "incident", "upgrade"];
 const RESTORE_LIKE = new Set(["restore", "upgrade", "arbitrate"]);
@@ -106,14 +106,32 @@ export class Pipeline {
   // read from the lease; with no lease yet only an unsharded process counts as leader.
   get isLeader() {
     if (!this.claims) return true;
-    if (this._leader === undefined) { const h = this.claims.leaderNow(); this._leader = h ? h === this.machine : this.machine === ALL; }
+    if (this._leader === undefined) { const rec = this.claims.leaderRec(); this._leader = rec ? this.mine(rec) : this.machine === ALL; }
     return this._leader;
   }
+  // A claim / lease record is this process's: same machine id ("*" only from the same host), or — machine unknown — written
+  // from this host (the gate agent calling `advance` on the machine whose tick claimed the order).
+  mine(rec) {
+    if (!rec || typeof rec !== "object") return false;
+    if (this.machine === null) return hostOf(rec.by) === os.hostname().toLowerCase();
+    return this.claims.isMine(rec, this.machine);
+  }
+  claimedHere(w) { return this.mine(this.claims.get(claimPath(w))); }
   // A work order nobody has claimed yet (tasks from before claims existed) belongs to the leader.
   ownsWos(wos) {
     if (!this.claims) return true;
     if (!wos.length) return this.isLeader;
-    return wos.every((w) => { const o = this.claims.owner(w); return o ? o === this.machine : this.isLeader; });
+    return wos.every((w) => { const rec = this.claims.get(claimPath(w)); return rec ? this.mine(rec) : this.isLeader; });
+  }
+  // Leader steps run only while the lease has a safety margin left (a long tick or clock skew must not make two leaders).
+  confirmLeader() {
+    if (!this.claims) return true;
+    try {
+      const ttl = this.cfg.claims.leaderTtlMin * 60_000;
+      const l = this.claims.lease(this.machine, ttl);
+      this._leader = l.leader && Date.parse(l.until) - this.now() > ttl / 4;
+    } catch (e) { this._leader = false; this.anomaly(null, `leader lease: ${e.message.slice(0, 200)}`, "检查 claims 分支"); }
+    return this._leader;
   }
   ownsTask(meta) {
     if (!meta || ["integration", "rule-review", "incident", "record"].includes(meta.kind)) return this.isLeader;
@@ -150,7 +168,12 @@ export class Pipeline {
   activeTasks(L, w) { return [...new Set([...(L.tasks.wos[w]?.active || []), ...(this.woView().get(w)?.active || [])])]; }
 
   // Other machines' stats snapshots (claims branch stats/<machine>.json); this machine's own numbers are the live ledger.
-  otherStats() { if (!this.claims) return []; try { return this.claims.statsAll().filter((s) => s.machine !== this.machine); } catch { return []; } }
+  // Only roster machines count: a leftover "*" snapshot from before sharding is this same ledger and would double it.
+  otherStats() {
+    if (!this.claims) return [];
+    const ids = machineIds(this.roster);
+    try { return this.claims.statsAll().filter((s) => s.machine !== this.machine && ids.includes(s.machine)); } catch { return []; }
+  }
   capability(L) { const others = this.otherStats(); return others.length ? mergeCapability(L.capability, ...others.map((s) => s.capability || {})) : L.capability; }
   agentsState(L) {
     const others = this.otherStats();
@@ -252,7 +275,7 @@ export class Pipeline {
     if (!picks.length) return { none: true, route: r };
     const res = this.withWo(wos, () => {
       const L2 = this.ledger.read();
-      if (this.claims && wos.some((w) => this.claims.owner(w) !== this.machine)) return { skipped: true, notOwner: true };
+      if (this.claims && wos.some((w) => !this.claimedHere(w))) return { skipped: true, notOwner: true };
       if (wos.some((w) => (L2.tasks.wos[w]?.active || []).length || ["merged", "done", "suspended", "superseded"].includes(L2.tasks.wos[w]?.state))) return { skipped: true };
       if (wos.some((w) => this.activeTasks(L2, w).length || this.isMergedWo(L2, w))) return { skipped: true, seenElsewhere: true };
       const attempt = Math.max(0, ...wos.map((w) => Math.max(L2.tasks.wos[w]?.attempts || 0, this.woView().get(w)?.attempts || 0))) + 1;
@@ -281,7 +304,7 @@ export class Pipeline {
   // under pack.maxKb are packed 3–5 per order (same app).
   dispatchQueue(L) {
     const busyFiles = new Set(Object.values(L.tick.upgrades || {}).filter((u) => u.state === "active").flatMap((u) => u.files || []));
-    const theirs = (w) => { const o = this.claims ? this.claims.owner(w.id) : null; return !!o && o !== this.machine; };
+    const theirs = (w) => { const rec = this.claims ? this.claims.get(claimPath(w.id)) : null; return !!rec && !this.mine(rec); };
     const eligible = this.orders().filter((w) => !isAccepted(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
     const core = eligible.filter(isCore).filter((w) => !(w.files || []).some((f) => busyFiles.has(f))).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const pages = eligible.filter(isPage).sort((a, b) => (b.kb || 0) - (a.kb || 0));
@@ -320,7 +343,7 @@ export class Pipeline {
     this._extraLoad = saved; // planning only; dispatchUnit counts the real assignments
     if (!plan.length) return 0;
     if (this.claims) {
-      const need = plan.flat().filter((w) => this.claims.owner(w) !== this.machine);
+      const need = plan.flat().filter((w) => !this.claimedHere(w));
       if (need.length) {
         const c = this.claims.claim(need, this.machine, "dispatch");
         const lost = Object.keys(c.lost);
@@ -331,7 +354,7 @@ export class Pipeline {
     let n = 0;
     for (const unit of plan) {
       if (n >= this.cfg.maxNewPerTick) break;
-      if (this.claims && unit.some((w) => this.claims.owner(w) !== this.machine)) continue;
+      if (this.claims && unit.some((w) => !this.claimedHere(w))) continue;
       const r = this.dispatchUnit(unit, L);
       if (r.ids) { n += r.ids.length; L = this.ledger.read(); }
     }
@@ -1112,15 +1135,20 @@ export class Pipeline {
     const rounds = {};
     for (const i of this.pipelineIssues().filter((x) => x.metadata.kind === "rule-review" && x.metadata.branch)) {
       const m = i.metadata;
-      const r = ((rounds[m.branch] ??= {})[m.round || 1] ??= { tasks: {}, open: false });
+      const r = ((rounds[m.branch] ??= {})[m.round || 1] ??= { tasks: {}, open: false, verdicts: [] });
       r.tasks[m.reviewer] = i.id;
       if (OPEN(i)) r.open = true;
+      const v = m[`review.${this.roster.get(m.reviewer)?.name}`];
+      if (v) r.verdicts.push(v.verdict);
     }
     const L = this.ledger.read();
     for (const [branch, byRound] of Object.entries(rounds)) {
       const round = Math.max(...Object.keys(byRound).map(Number));
       const rc = L.tick.ruleChanges?.[branch];
-      if (!rc || rc.round < round) this.ledger.tx((L2) => { (L2.tick.ruleChanges ??= {})[branch] = { state: byRound[round].open ? "reviewing" : "rejected", round, tasks: byRound[round].tasks, openedAt: this.iso(), rebuilt: true }; });
+      const r = byRound[round];
+      // a closed round: all approved → merged; otherwise rejected, and a rejected 2nd round was escalated to a human
+      const state = r.open ? "reviewing" : r.verdicts.length && r.verdicts.every((v) => v === "approve") ? "merged" : round >= 2 ? "escalated" : "rejected";
+      if (!rc || rc.round < round) this.ledger.tx((L2) => { (L2.tick.ruleChanges ??= {})[branch] = { state, round, tasks: r.tasks, openedAt: this.iso(), rebuilt: true }; });
     }
   }
 
@@ -1192,7 +1220,13 @@ export class Pipeline {
 
   // Pause is visible to both machines: an incident with metadata paused=true that `resume` hasn't lifted.
   pausedReason(L = this.ledger.read()) {
-    if (L.tick.paused) return L.tick.pausedReason || "paused";
+    if (L.tick.paused) {
+      // lifted by a resume on the other machine: our incident is marked resumed, or (no incident was created) some resume
+      // happened after we paused
+      const inc = L.tick.incidentTask && this.pipelineIssues().find((i) => i.id === L.tick.incidentTask);
+      const resumedLater = !L.tick.incidentTask && L.tick.pausedAt && this.pipelineIssues().some((i) => i.metadata.resumedAt && i.metadata.resumedAt > L.tick.pausedAt);
+      if (!(inc?.metadata.resumed === true || resumedLater)) return L.tick.pausedReason || "paused";
+    }
     const inc = this.pipelineIssues().find((i) => i.metadata.kind === "incident" && i.metadata.paused === true && i.metadata.resumed !== true);
     return inc ? `${inc.metadata.reason || inc.title}（${inc.metadata.createdOn || "?"}）` : null;
   }
@@ -1347,7 +1381,11 @@ export class Pipeline {
     for (const i of this.pipelineIssues()) {
       const m = i.metadata;
       if (typeof m.advanceRequested === "string" && m.advanceRequested.startsWith("regate:") && m.advanceRequested !== m.regateDone && this.ownsTask(m)) {
-        this.safe(i.id, () => { const r = this.advance(i.id, { regate: true }); this.mc.setMeta(i.id, "regateDone", m.advanceRequested); this.act(`requested regate ${i.id}: ${r.summary || ""}`); });
+        // only for the gate round it was asked for; a task that moved on since (fixed, merged, done) drops the request
+        // (attempt and gateSeq don't move when a verdict sends the task to the fixer, audit or arbiter, so also require it to
+        // still be a gate-side restore/upgrade/integration task)
+        const current = m.advanceRequested === `regate:${this.advKey(m)}` && OPEN(i) && ["restore", "upgrade", "integration"].includes(m.kind) && (this.roster.isRole(i.assignee_id, "gate") || m.waitRecord === true);
+        this.safe(i.id, () => { this.mc.setMeta(i.id, "regateDone", m.advanceRequested); if (current) { const r = this.advance(i.id, { regate: true }); this.act(`requested regate ${i.id}: ${r.summary || ""}`); } else this.act(`stale regate request on ${i.id} dropped`); });
         continue;
       }
       if (!["restore", "upgrade"].includes(m.kind) || i.status !== "in_review" || m.waitRecord === true || m.suspendedBy || !this.ownsTask(m)) continue;
@@ -1410,6 +1448,7 @@ export class Pipeline {
   // One round on this machine. Steps on tasks only touch the ones this machine owns; the global steps (records,
   // rule reviews, integration gate, regression, stop conditions, double-dispatch check) run on the leader only.
   tick() {
+    if (this.machine === null) throw new Error("tick needs to know its machine: --machine <id>, HMRSFW_MACHINE, or roster machines.<id>.hosts (or --machine '*' for a single unsharded tick)");
     const step = (name, fn) => { this.locks.touchAll(); try { return fn(); } catch (e) { this.anomaly(null, `${name}: ${e.message.slice(0, 300)}`, "评论 [ERROR]，建排障单交给裁定员"); return 0; } };
     let lease = { leader: true, holder: this.machine };
     if (this.claims) {
@@ -1424,14 +1463,15 @@ export class Pipeline {
     step("fallback gate", () => this.fallbackGate());
     step("reopen requests", () => this.processReopenRequests());
     step("resume suspended", () => this.resumeSuspendedOwned());
+    step("requests", () => this.processRequests());
     this.issues(true);
     step("records", () => this.syncRecords());
     step("audits", () => this.processAudits());
-    if (this.isLeader) step("rule reviews", () => this.processRuleReviews());
+    if (this.isLeader && this.confirmLeader()) step("rule reviews", () => this.processRuleReviews());
     this.issues(true);
-    const rec = this.isLeader ? step("dispatch records", () => this.dispatchRecords()) : 0;
+    const rec = this.isLeader && this.confirmLeader() ? step("dispatch records", () => this.dispatchRecords()) : 0;
     const neu = step("dispatch", () => this.dispatchNew());
-    if (this.isLeader) {
+    if (this.isLeader && this.confirmLeader()) {
       if (this.appDir) { try { this.maybeIntegrationGate(); this.maybeRegression(); } catch (e) { this.anomaly(null, `integration step failed: ${e.message}`, "检查 hmrsfw-vue 检出"); } }
       step("stop conditions", () => this.checkStopConditions());
       this.issues(true);
@@ -1456,7 +1496,7 @@ export class Pipeline {
       if (!["restore", "audit", "arbitrate"].includes(m.kind) || baseKind(m) === "upgrade" || m.twinLost || !OPEN(i)) continue;
       for (const w of m.workOrders || []) { if (!byWo.has(w)) byWo.set(w, []); byWo.get(w).push(i); }
       const claim = this.claims && (m.workOrders || []).length ? this.claims.get(claimPath(m.workOrders[0])) : null;
-      if (claim?.machine && m.claimedBy && m.claimedBy !== claim.machine && m.claimedBy !== claim.prev) this.reportDouble(`${i.id} created on ${m.claimedBy} but ${m.workOrders[0]} is claimed by ${claim.machine}`, [i.id], m.workOrders);
+      if (claim?.machine && m.claimedBy && m.claimedBy !== claim.machine && !(claim.prevs || [claim.prev]).includes(m.claimedBy)) this.reportDouble(`${i.id} created on ${m.claimedBy} but ${m.workOrders[0]} is claimed by ${claim.machine}`, [i.id], m.workOrders);
     }
     for (const [w, list] of byWo) {
       if (list.length < 2) continue;
@@ -1491,12 +1531,14 @@ export class Pipeline {
   // work orders and rebuild this ledger's view of them from issue metadata.
   claimsCmd(sub, { from, keys, force = false } = {}) {
     if (!this.claims) return { ok: false, summary: "claims are disabled (scheduler.config.json claims.enabled=false)", anomalies: [] };
+    if (sub !== "list" && this.machine === null) throw new Error("claims reclaim needs this machine's id: --machine <id> or HMRSFW_MACHINE");
     if (sub === "list") {
       this.claims.refresh();
+      const reqs = this.claims.entries("req/").length;
       const by = {};
       for (const c of this.claims.all()) by[c.machine] = (by[c.machine] || 0) + 1;
       const hb = Object.fromEntries(this.claims.statsAll().map((x) => [x.machine, x.at]));
-      return { ok: true, summary: `machine ${this.machine} (${this.machineSource}) · leader ${this.claims.leaderNow() || "none"} · claims ${JSON.stringify(by)} · heartbeat ${JSON.stringify(hb)}`, claims: by, heartbeat: hb, leader: this.claims.get("leader.json"), anomalies: [] };
+      return { ok: true, summary: `machine ${this.machine} (${this.machineSource}) · leader ${this.claims.leaderNow() || "none"} · claims ${JSON.stringify(by)} · heartbeat ${JSON.stringify(hb)} · requests ${reqs}`, claims: by, heartbeat: hb, leader: this.claims.get("leader.json"), anomalies: [] };
     }
     if (sub === "reclaim") {
       if (!from) throw new Error("usage: tick.mjs claims reclaim --from <machine> [--wo <工单id> ...] [--force] --machine <this machine>");
@@ -1529,6 +1571,40 @@ export class Pipeline {
   }
 
   // ---- other commands -----------------------------------------------------------------------------------------------
+  // resplit / rerecord / open-upgrade change a work order's tasks, so they run on its owner. Called elsewhere (the
+  // arbiter or a reassigned restorer may sit on the other machine) they leave a request on the claims branch
+  // (req/*.json) that the owner's next tick carries out and deletes.
+  routed(cmd, { wo = null, task = null, reason = null }, run) {
+    const meta = task ? this.meta(task) : null;
+    const owns = task ? this.ownsTask(meta) : this.ownsWos([wo]);
+    if (owns || !this.claims) return run(meta);
+    const rel = `req/${fileKey(`${cmd}-${wo || task}-${this.now()}`)}.json`;
+    this.claims.write({ [rel]: { cmd, wo, task, reason, by: this.machine, at: this.iso() } }, `request ${cmd} ${wo || task}`);
+    return { ok: true, deferred: true, summary: `${cmd} ${wo || task}: belongs to ${task ? this.ownerLabel(meta) : this.claims.owner(wo) || "the leader"}, request left for its tick (${rel})`, anomalies: [] };
+  }
+
+  processRequests() {
+    if (!this.claims) return;
+    for (const [rel, q] of this.claims.entries("req/")) {
+      let owns;
+      try { owns = q.task ? this.ownsTask(this.meta(q.task)) : this.ownsWos([q.wo]); } catch {
+        if (this.isLeader) { this.claims.write({ [rel]: null }, `drop ${q.cmd} ${q.task}: task not found`); this.anomaly(q.task, `request ${q.cmd} dropped: task not found`, "无需处理"); }
+        continue;
+      }
+      if (!owns) continue;
+      this.safe(q.task || null, () => {
+        let r;
+        if (q.cmd === "resplit") r = this.resplit(q.wo);
+        else if (q.cmd === "rerecord") r = this.rerecord(q.wo);
+        else if (q.cmd === "open-upgrade") { const meta = this.meta(q.task); r = this.withWo(meta.workOrders || [], () => this.openUpgrade(q.task, { reason: q.reason, meta }), 60_000); }
+        else r = { ok: false, summary: `unknown request ${q.cmd}` };
+        if (r && r.locked) return;
+        this.claims.write({ [rel]: null }, `done ${q.cmd} ${q.wo || q.task}`);
+        this.act(`request ${q.cmd} ${q.wo || q.task} from ${q.by}: ${r?.summary || ""}`);
+      });
+    }
+  }
+
   // Lifts the pause on both machines: this ledger's flag and every pausing incident (metadata resumed=true).
   resume() {
     const L = this.ledger.read();

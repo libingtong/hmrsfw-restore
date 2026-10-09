@@ -91,6 +91,11 @@ test("claims: first come first served — the loser's push is rejected, it backs
   assert.equal(B.lease("office-server", 60_000).leader, false);
   const later = new Claims(clones[1], { now: () => Date.now() + 120_000 });
   assert.equal(later.lease("office-server", 60_000).leader, true, "expired lease is taken over");
+  // "*" from two hosts is two claimants, not one
+  assert.deepEqual(new Claims(clones[0], { by: "host-a:1" }).claim(["s1"], "*").won, ["s1"]);
+  const other = new Claims(clones[1], { by: "host-b:2" }).claim(["s1"], "*");
+  assert.deepEqual(other.won, []);
+  assert.equal(other.lost.s1, "*@host-a");
 });
 
 test("two ticks with different --machine, concurrently, same queue: one claimant per work order, local restorers only", async () => {
@@ -183,9 +188,14 @@ test("double dispatch is detected; pause and resume reach both machines; reclaim
   r = node(office, "tick.mjs", ["tick", "--machine", "office-server"]);
   assert.match(r.summary, /已暂停/);
   assert.equal(issuesOf(fx).filter((i) => i.title.startsWith("[restore]") && i.status !== "cancelled" && decode(i.metadata.claimedBy) === "office-server").length, 0, "office dispatched nothing while paused");
+  // mac's own ledger flag points at the same incident; resuming on office lifts it on mac too
+  const tsFile = path.join(fx.state, "ledger", "tick-state.json");
+  writeFileSync(tsFile, JSON.stringify({ ...JSON.parse(readFileSync(tsFile, "utf8")), paused: true, pausedReason: "test stop", incidentTask: inc.id }));
   r = node(office, "tick.mjs", ["resume", "--machine", "office-server"]);
   assert.match(r.summary, /resumed/);
   assert.equal(meta(fx, inc.id).resumed, true);
+  r = node(fx, "tick.mjs", ["tick", "--machine", "mac-mini"]);
+  assert.doesNotMatch(r.summary, /已暂停/, "mac resumed by office's resume");
 
   // reclaim: refused while mac's heartbeat is fresh, done with --force, and office's ledger learns the tasks
   r = node(office, "tick.mjs", ["claims", "reclaim", "--from", "mac-mini", "--machine", "office-server"]);
@@ -200,6 +210,14 @@ test("double dispatch is detected; pause and resume reach both machines; reclaim
   assert.equal(r.ok, true, JSON.stringify(r));
   const restores = issuesOf(fx).filter((i) => i.title.startsWith("[restore]") && i.status !== "cancelled" && decode(i.metadata.workOrders).includes(w));
   assert.equal(restores.length, 1, "reclaimed order is not dispatched again");
+
+  // a manual command for an order office owns, run on mac, becomes a request office carries out
+  r = node(fx, "tick.mjs", ["rerecord", w, "--machine", "mac-mini"]);
+  assert.equal(r.deferred, true, JSON.stringify(r));
+  r = node(office, "tick.mjs", ["tick", "--machine", "office-server"]);
+  assert.ok((r.actions || []).some((a) => a.startsWith(`request rerecord ${w}`)), JSON.stringify(r.actions));
+  const left = spawnSync("git", ["--git-dir", fx.toolOrigin, "ls-tree", "-r", "--name-only", "claims", "req/"], { encoding: "utf8" }).stdout.trim();
+  assert.equal(left, "", "request removed once done");
 });
 
 test("machine resolution and asset checks come from roster data, not agent names", () => {
@@ -207,7 +225,8 @@ test("machine resolution and asset checks come from roster data, not agent names
   const r0 = new Roster(data, DEFAULT_CONFIG);
   assert.equal(resolveMachine(r0, { argv: ["--machine", "office"], env: {} }).id, "office-server");
   assert.equal(resolveMachine(r0, { argv: [], env: { HMRSFW_MACHINE: "mac" } }).id, "mac-mini");
-  assert.equal(resolveMachine(r0, { argv: [], env: {}, hostname: "whatever" }).id, "*", "two machines, no mapping → unsharded");
+  assert.equal(resolveMachine(r0, { argv: [], env: {}, hostname: "whatever" }).id, null, "two machines, no mapping → unknown, never a silent '*'");
+  assert.equal(resolveMachine(r0, { argv: ["--machine", "*"], env: {} }).id, "*", "unsharded only when asked for");
   assert.throws(() => resolveMachine(r0, { argv: ["--machine", "nope"], env: {} }));
   const r1 = new Roster({ ...data, machines: { "mac-mini": { hosts: ["DylandeMac-mini.local"], assets: ["login", "har", "baseline"] }, "office-server": { hosts: ["Dylan-Office-Server"], assets: [] } } }, DEFAULT_CONFIG);
   assert.equal(resolveMachine(r1, { argv: [], env: {}, hostname: "dylan-office-server" }).id, "office-server");
