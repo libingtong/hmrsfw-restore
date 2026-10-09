@@ -52,7 +52,7 @@ export function loadHar(file) {
     if (!byKey.has(key)) byKey.set(key, []);
     byKey.get(key).push(entry);
   }
-  return { file, byKey, recordedAt };
+  return { file, byKey, recordedAt, record: har.log._record ?? null }; // record: what record-page.mjs noted (identity storage)
 }
 
 // → { entry, tier: "body" | "path" | null }

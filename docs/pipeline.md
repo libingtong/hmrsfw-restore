@@ -99,6 +99,7 @@ flowchart LR
 | --- | --- |
 | `RESTORE_STATE` | Mac mini 上的全部智能体 |
 | `RESTORE_ASSETS`、`SM2_PRIVATE_KEY`、`HMRSFW_NO_WHITELIST=1` | 只有门槛员、录制员 |
+| `VITE_HMRSFW_SM2_PUBLIC_KEY`、`VITE_HMRSFW_SM4_KEY`、`VITE_HMRSFW_SM4_STORAGE_KEY` | 门槛员（还原版回放时解密响应、加密请求体；门槛的 worktree 里没有 `.env.local`，缺了门槛报 error，见 `docs/gate.md`。HM-9 联调补） |
 | `RESTORE_DEPS_CACHE` | 所有还原员和审计员：本机依赖缓存目录 |
 
 ## 五、还原员统一指令

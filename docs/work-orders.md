@@ -145,6 +145,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `imports` | 第十三节 2 的四条：导入只来自本页文件、清单路径（且导出名对）、清单 npm 包；不重新定义公共函数、不直接请求清单已封装且原 chunk 不是自己定义的 URL；模板里按名字用到的组件和指令必须导入或在 `globals`；本单在 `hmrsfw-vue` 里改动的文件不出本单范围（相对 `origin/integration`）。经由桶文件再导出、重复的接口文件、POC 的 npm 包装、与公共函数同名的本地函数报 warn | `check-imports.mjs` |
 | `copied` | 不得原样拷贝本单原 chunk、它的 CSS 和它导入的 chunk 里的代码（160 字符窗口比对）。30 字符以上的正则字面量（身份证、手机号校验）必须原样保留，两边都先遮掉，不计入 | `check-copied.mjs` |
 | `secrets` | 密钥、token、手机号、证件号、邮箱 | `scan-secrets.mjs` |
+| `no-legacy` | 本单文件（含 `subComponentDir` 里的资源）零引用：源码和注释里没有 `legacy-dist` 路径、带构建哈希的文件名、编译产物；与门槛 page 模式的零引用同一套规则，还原员交付前就能看到（HM-9） | `check-no-legacy.mjs` |
 | `segments` | 分段交付了片段；最后一段没有留下 `_seg/` | `self-check.mjs` |
 | render-equiv | 原 render 与还原版按同版本 compiler 编译后比对（报告） | `render-equiv-confirm.mjs`（现在从 `registry/<app>.json` 取改名表，不再依赖 POC 的 `out/`） |
 

@@ -1,7 +1,7 @@
 // Shared plumbing for the gate (gate.mjs) and the original-side baseline (baseline.mjs): locations, work orders,
 // HAR / login-state / interaction-script lookup (docs/pipeline.md §7, §12).
 // Nothing here writes outside $RESTORE_STATE; HAR files, login state and legacy-dist are only read.
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -51,16 +51,20 @@ export function assetsDir(env = process.env) {
 // Normalised to the fields the gate needs.
 export function loadWorkOrder(id) {
   const q = path.join(ROOT, "queue", `${id}.json`);
-  let raw;
+  let raw, queueId = id;
   if (existsSync(q)) raw = JSON.parse(readFileSync(q, "utf8"));
-  else for (const f of ["tools/confirm-orders.json", "tools/poc-orders.json"]) { raw ??= JSON.parse(readFileSync(path.join(ROOT, f), "utf8")).find((o) => o.id === id); }
+  else {
+    for (const f of ["tools/confirm-orders.json", "tools/poc-orders.json"]) { raw ??= JSON.parse(readFileSync(path.join(ROOT, f), "utf8")).find((o) => o.id === id); }
+    // A POC page is a regression order in queue/ (same source chunk): self-check only knows the queue id.
+    queueId = raw ? queueIdOfChunk(raw.sourceChunk) : null;
+  }
   if (!raw) throw new Error(`work order ${id} not found (queue/${id}.json, tools/confirm-orders.json, tools/poc-orders.json)`);
   const site = raw.site ?? siteOfApp(raw.app);
   if (!SITES[site]) throw new Error(`work order ${id}: unknown site ${raw.site}`);
   const app = SITES[site].app;
   const recordPath = raw.recordPath ?? raw.route;
   return {
-    ...raw, id, site, app, recordPath,
+    ...raw, id, queueId, site, app, recordPath,
     route: raw.route ?? new URL(recordPath, "http://x").pathname,
     role: raw.role ?? site,
     type: raw.type ?? "page",
@@ -69,6 +73,20 @@ export function loadWorkOrder(id) {
     deps: raw.deps ?? [],
   };
 }
+let chunkIndex = null;
+function queueIdOfChunk(chunk) {
+  if (!chunkIndex) {
+    chunkIndex = new Map();
+    const dir = path.join(ROOT, "queue");
+    for (const n of existsSync(dir) ? readdirSync(dir) : []) {
+      if (!n.endsWith(".json") || ["index.json", "routes.json", "summary.json"].includes(n)) continue;
+      const o = JSON.parse(readFileSync(path.join(dir, n), "utf8"));
+      if (o.type === "page" && o.sourceChunk) chunkIndex.set(o.sourceChunk, o.id);
+    }
+  }
+  return chunkIndex.get(chunk) ?? null;
+}
+
 // Work-order paths come as "portal/src/views/x.vue" (POC), "apps/portal/src/…" or "@/views/x.vue"; → "apps/<app>/src/…".
 export function appRelative(p, app) {
   let s = p.replace(/^restore\//, "").replace(/^\.\//, "");
@@ -90,7 +108,15 @@ export function findHar(id, assets, explicit, wo) {
 // Recorded login state of a work order, kept in memory: { localStorage, sessionStorage }. Default file:
 // $RESTORE_ASSETS/.auth/pw-<role>.json (Playwright storageState); a work order may name another file (`auth`, relative
 // to $RESTORE_ASSETS) in either that format or the POC's {localStorage, sessionStorage}.
-export function authStorage(wo, assets) {
+// With the page's HAR (loadHar): record-page.mjs keeps the localStorage as it was after the identity switch (radiotype,
+// routermenu, …; no token) in log._record; it goes over the login state, so the page replays under the identity it
+// was recorded with, whatever identity the shared login state was last saved under.
+export function authStorage(wo, assets, har) {
+  const st = loginStorage(wo, assets);
+  Object.assign(st.localStorage, har?.record?.localStorage ?? {});
+  return st;
+}
+function loginStorage(wo, assets) {
   const f = path.join(assets, wo.auth ?? path.join(".auth", `pw-${wo.role}.json`));
   if (!existsSync(f)) throw new Error(`login state for ${wo.id} (${wo.auth ?? "role " + wo.role}) not found under $RESTORE_ASSETS`);
   const st = JSON.parse(readFileSync(f, "utf8"));
@@ -104,6 +130,24 @@ export async function interactScript(id) {
   if (existsSync(f)) return JSON.parse(readFileSync(f, "utf8"));
   const { SCRIPTS } = await import("../interact-scripts.mjs");
   return SCRIPTS[id] ?? null;
+}
+
+// Keys the restored app needs to read encrypted responses and encrypt request bodies (crypto-adapter.ts). Vite takes
+// them from the process environment or from .env.local / .env in the app root; a --branch worktree and a fresh clone
+// have no .env.local, so the gate agent must carry them in its environment. Missing keys are the gate's own problem:
+// every page with an encrypted response would fail as if the restoration were wrong. Returns the missing names only.
+export const CRYPTO_ENV = ["VITE_HMRSFW_SM2_PUBLIC_KEY", "VITE_HMRSFW_SM4_KEY"];
+export function missingCryptoEnv(appDir, env = process.env) {
+  const files = {};
+  for (const f of [".env.local", ".env"]) {
+    const p = path.join(appDir, f);
+    if (!existsSync(p)) continue;
+    for (const line of readFileSync(p, "utf8").split("\n")) {
+      const m = /^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/.exec(line);
+      if (m && m[2].replace(/^["']|["']$/g, "")) files[m[1]] ??= true;
+    }
+  }
+  return CRYPTO_ENV.filter((k) => !env[k]?.trim() && !files[k]);
 }
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
