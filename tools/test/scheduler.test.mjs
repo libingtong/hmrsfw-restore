@@ -4,7 +4,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { makeFixture, node, issuesOf, fakeState, mc, setMeta, meta, pushBranch, writeReceipt, lsRemote, showRemote, readJson, git } from "./fixture.mjs";
+import { makeFixture, node, issuesOf, fakeState, mc, setMeta, meta, pushBranch, writeReceipt, lsRemote, showRemote, readJson, git, ROSTER, REPO } from "./fixture.mjs";
 
 const page = (id, kb, extra = {}) => ({ id, type: "page", kb, app: "portal", site: "portal", target: `apps/portal/src/views/${id}/index.vue`, subComponentDir: `apps/portal/src/views/${id}/index/`, deps: ["@/shared/Dict.vue"], ...extra });
 const recorded = (fx, ...ids) => ids.forEach((id) => mkdirSync(path.join(fx.state, "baseline", id), { recursive: true }));
@@ -327,6 +327,113 @@ test("route.mjs: core → Opus, complex page → Sonnet, cheap tier switch, capa
   assert.equal(s2.tiers.simple.runs, 1); assert.equal(s2.tiers.large.firstPass, 0);
   const cap = node(fx, "ledger.mjs", ["capability"]);
   assert.equal(cap.byFamilyModel["anthropic|claude-sonnet-5-5"].large.runs, 1);
+});
+
+// Edit the fixture roster in place (e.g. enabled:false), as an operator would in $RESTORE_STATE.
+const editRoster = (fx, fn) => {
+  const p = path.join(fx.state, "agents.roster.json");
+  const r = readJson(p);
+  for (const a of r.agents) fn(a);
+  writeFileSync(p, JSON.stringify(r, null, 1));
+};
+const glmRestorersOff = (a) => { if (a.role === "restorer" && a.family === "zhipu") a.enabled = false; };
+const setCapability = (fx, family, model, tier, t) => writeFileSync(path.join(fx.state, "ledger", "capability.json"), JSON.stringify({ version: 1, keys: { [`rt|v|${model}|i`]: { family, model, tiers: { [tier]: { runs: 0, firstPass: 0, pass: 0, tokens: 0, fixRounds: 0, ...t } } } }, audits: {} }));
+
+test("route.mjs: one cheap family → single cold-start dispatch; after cold start by first-pass rate; disabled agents never chosen", () => {
+  const fx = makeFixture({ orders: [page("SMALL", 12), page("BIG", 40)], config: { cheapTier: { enabled: true, coldStartRuns: 10, minFirstPass: 0.7 } } });
+  editRoster(fx, glmRestorersOff);
+  const glm = [fx.id("glm-mac"), fx.id("glm-office")];
+  const ids = (r) => r.candidates.flatMap((c) => c.agents.map((a) => a.id));
+  // families still lists zhipu, but the roster has no enabled zhipu restorer → one family
+  let r = node(fx, "route.mjs", ["SMALL", "--offline"]);
+  assert.equal(r.dual, false);
+  assert.deepEqual(r.candidates.map((c) => c.family), ["deepseek", "anthropic"], "deepseek first, Sonnet fallback");
+  assert.match(r.candidates[0].reason, /冷启动（medium 档 0\/10 次）单派/);
+  assert.match(r.candidates[1].reason, /回退 Sonnet/);
+  assert.ok(!ids(r).some((id) => glm.includes(id)), "enabled:false agents are not candidates");
+  r = node(fx, "route.mjs", ["BIG", "--offline"]);
+  assert.deepEqual(r.candidates.map((c) => c.model), ["claude-sonnet-5-5"], "≥ 30KB still Sonnet");
+
+  // families: ["deepseek"] with GLM restorers enabled → also single (GLM not configured as cheap tier)
+  editRoster(fx, (a) => delete a.enabled);
+  writeFileSync(path.join(fx.state, "scheduler.config.json"), JSON.stringify({ projectId: "proj-1", cheapTier: { enabled: true, families: ["deepseek"] } }));
+  r = node(fx, "route.mjs", ["SMALL", "--offline"]);
+  assert.equal(r.dual, false);
+  assert.equal(r.candidates[0].family, "deepseek");
+  assert.match(r.candidates[0].reason, /冷启动.*单派/);
+  assert.ok(!ids(r).some((id) => glm.includes(id)), "zhipu not in cheapTier.families → not chosen");
+
+  // cold start over, first pass 8/10 ≥ 70% → deepseek by rate
+  setCapability(fx, "deepseek", "deepseek-official/deepseek-flash", "medium", { runs: 10, firstPass: 8, pass: 10, tokens: 1000 });
+  r = node(fx, "route.mjs", ["SMALL", "--offline"]);
+  assert.equal(r.dual, false);
+  assert.deepEqual(r.candidates.map((c) => c.family), ["deepseek", "anthropic"]);
+  assert.match(r.candidates[0].reason, /首通率 80%/);
+  // cold start over, first pass 5/10 < 70% → Sonnet only
+  setCapability(fx, "deepseek", "deepseek-official/deepseek-flash", "medium", { runs: 10, firstPass: 5, pass: 9, tokens: 1000 });
+  r = node(fx, "route.mjs", ["SMALL", "--offline"]);
+  assert.deepEqual(r.candidates.map((c) => c.family), ["anthropic"]);
+  assert.match(r.candidates[0].reason, /首通率低于 70% → Sonnet/);
+});
+
+test("single cheap family cold start: tick dispatches to DeepSeek alone (no twin), Sonnet once DeepSeek is full", () => {
+  const ids = ["S1", "S2", "S3", "S4", "S5", "S6", "S7"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 8)), config: { cheapTier: { enabled: true, families: ["deepseek"], coldStartRuns: 10 } } });
+  editRoster(fx, glmRestorersOff);
+  recorded(fx, ...ids);
+  const r = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  const ts = restoreTasks(fx);
+  assert.equal(ts.length, ids.length, "one task per page, no dual");
+  const fam = (t) => meta(fx, t.id).family;
+  // deepseek slots: mac 1+1, office 3+1 = 6 → the 7th page falls back to Sonnet
+  assert.equal(ts.filter((t) => fam(t) === "deepseek").length, 6);
+  assert.equal(ts.filter((t) => fam(t) === "anthropic").length, 1);
+  assert.ok(ts.every((t) => !meta(fx, t.id).twin), "no twin");
+  assert.ok(ts.every((t) => !/-[dg]$/.test(meta(fx, t.id).branch)), "no dual-dispatch branch suffix");
+  assert.ok(!ts.some((t) => fam(t) === "zhipu"));
+});
+
+test("route(): a cheap family with no usable agent here (other machine) does not force dual → single cold start", async () => {
+  const { route } = await import("../route.mjs");
+  const { Roster, DEFAULT_CONFIG } = await import("../lib/roster.mjs");
+  const cfg = { ...DEFAULT_CONFIG, cheapTier: { ...DEFAULT_CONFIG.cheapTier, enabled: true } };
+  const roster = new Roster(ROSTER(), cfg);
+  const ctx = { roster, cfg, capability: { keys: {}, audits: {} }, agentsState: {}, load: new Map(), toolRoot: REPO };
+  const wo = page("X", 12);
+  assert.equal(route(wo, ctx).dual, true, "both families usable → dual (unchanged)");
+  const glm = roster.agents.filter((a) => a.family === "zhipu").map((a) => a.id);
+  const r = route(wo, ctx, { exclude: glm });
+  assert.equal(r.dual, false);
+  assert.equal(r.candidates[0].family, "deepseek");
+  assert.match(r.candidates[0].reason, /单派/);
+});
+
+test("DeepSeek branch fixed by Opus: audit goes to the GLM reviewer; without one the page is done and the gap reported", () => {
+  for (const glmReviewer of [true, false]) {
+    const fx = makeFixture({ orders: [page("D1", 10)], config: { cheapTier: { enabled: true, families: ["deepseek"], coldStartRuns: 10 }, audit: { coldRate: 1, normalRate: 1 }, regressionEvery: 100 } });
+    editRoster(fx, glmRestorersOff);
+    if (!glmReviewer) editRoster(fx, (a) => { if (a.role === "reviewer" && a.family === "zhipu") a.enabled = false; });
+    recorded(fx, "D1");
+    node(fx, "tick.mjs", ["tick"]);
+    const [t] = restoreTasks(fx);
+    assert.equal(meta(fx, t.id).family, "deepseek");
+    deliver(fx, t.id, { "apps/portal/src/views/D1/index.vue": vue("ds") });
+    gate(fx, t.id, { pass: false, stage: "browser", failed: [{ check: "dom", where: "x" }] });
+    assert.equal(issue(fx, t.id).assignee_id, fx.id("fixer"));
+    deliver(fx, t.id, { "apps/portal/src/views/D1/index.vue": vue("ds fixed") }, { fix: true });
+    const r = gate(fx, t.id, { pass: true, stage: "browser", failed: [] });
+    assert.equal(r.ok, true, JSON.stringify(r));
+    if (glmReviewer) {
+      assert.equal(issue(fx, t.id).assignee_id, fx.id("review-glm"), "deepseek + anthropic → zhipu reviewer");
+      assert.equal(meta(fx, t.id).kind, "audit");
+    } else {
+      assert.equal(issue(fx, t.id).status, "done", "not stuck waiting for a reviewer");
+      assert.match(lastComment(fx, t.id), /无可用的异家族复核员（参与家族：deepseek、anthropic）/);
+      assert.equal(r.anomalies.length, 1, JSON.stringify(r));
+      assert.match(r.anomalies[0].what, /没有可用的异家族复核员/);
+    }
+  }
 });
 
 test("known-diff: only the arbiter may register", () => {

@@ -676,8 +676,10 @@ export class Pipeline {
       }
       this.ledger.tx((L) => L.newEvents.push({ type: "audit-skipped", task: taskId, participants: [...participants] }));
     }
-    this.setDone(taskId, wos, `[GATE] 通过，已合入 integration（${short(merge.sha)}）${sampled ? "；无可用的异家族复核员，跳过审计" : ""}`);
-    return { ok: true, summary: `${taskId} merged ${short(merge.sha)} → done`, anomalies: [], ...extra };
+    // No reviewer outside the branch's families: the page is not held back (done as usual), but the gap is reported.
+    const skipped = sampled ? [{ issue: taskId, what: `抽中审计但没有可用的异家族复核员（参与家族：${[...participants].join("、")}），已跳过审计`, suggestedAction: "检查名册里的复核员（enabled、家族、所在机器的资产）" }] : [];
+    this.setDone(taskId, wos, `[GATE] 通过，已合入 integration（${short(merge.sha)}）${sampled ? `；无可用的异家族复核员（参与家族：${[...participants].join("、")}），跳过审计` : ""}`);
+    return { ok: true, summary: `${taskId} merged ${short(merge.sha)} → done`, anomalies: skipped, ...extra };
   }
 
   participants(meta) {
