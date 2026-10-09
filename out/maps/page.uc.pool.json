@@ -33,15 +33,13 @@
    "original": "aJ",
    "path": "@/legacy/api",
    "export": "queryCompanyTalentlist",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "E": {
    "original": "aK",
    "path": "@/legacy/api",
    "export": "removeTalent",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "J": {
    "original": "m",
@@ -53,8 +51,7 @@
    "original": "a7",
    "path": "@/legacy/api",
    "export": "isPublishingPosition",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "K": {
    "original": "M",

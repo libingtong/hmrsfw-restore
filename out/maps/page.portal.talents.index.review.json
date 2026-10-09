@@ -33,8 +33,7 @@
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Ze": {
    "original": "a6",
@@ -46,22 +45,19 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Fe": {
    "original": "an",
    "path": "@/legacy/api",
    "export": "queryLatestQuestionsList",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "De": {
    "original": "ao",
    "path": "@/legacy/api",
    "export": "queryQuestionsList",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Xe": {
    "original": "S",

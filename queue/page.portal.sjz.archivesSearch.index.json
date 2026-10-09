@@ -64,7 +64,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.c02",
    "shared.portal.modules"
   ]
  },

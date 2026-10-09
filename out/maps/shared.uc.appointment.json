@@ -62,8 +62,7 @@
    "original": "bu",
    "path": "@/legacy/utils",
    "export": "isMobilePhone",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "we": {
    "original": "I",
@@ -83,63 +82,63 @@
    "original": "index.api.175161560754517.js#g",
    "path": "@/api/collegeCareerTalk",
    "export": "queryListInfoByCareerTalkId",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/queryListInfoByCareerTalkId"
   },
   "Pe": {
    "original": "index.api.175161560754517.js#e",
    "path": "@/api/collegeCareerTalk",
    "export": "queryAttendanceListByCareerTalkId",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/queryAttendanceListByCareerTalkId"
   },
   "De": {
    "original": "index.api.175161560754517.js#f",
    "path": "@/api/collegeCareerTalk",
    "export": "queryTalkDetailById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/careerTalk/xfCollegeCareerTalk/queryTalkDetailById"
   },
   "Oe": {
    "original": "index.api.175161560754517.js#h",
    "path": "@/api/collegeCareerTalk",
    "export": "listPositionForCareerTalk",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/careerTalkPosition/xfCollegeCareerTalkPosition/listPositionForCareerTalk"
   },
   "je": {
    "original": "index.api.175161560754517.js#l",
    "path": "@/api/collegeCareerTalk",
    "export": "listNew",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobCompanyPosition/listNew"
   },
   "Be": {
    "original": "index.api.175161560754517.js#i",
    "path": "@/api/collegeCareerTalk",
    "export": "listByRoomParentOrganizationId",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/campus/xfCollegeCampus/listByRoomParentOrganizationId"
   },
   "ze": {
    "original": "index.api.175161560754517.js#j",
    "path": "@/api/collegeCareerTalk",
    "export": "addCompany",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/careerTalk/xfCollegeCareerTalk/addCompany"
   },
   "Re": {
    "original": "index.api.175161560754517.js#x",
    "path": "@/api/collegeCareerTalk",
    "export": "roomAndTimeList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/careerRoom/xfCollegeCareerRoom/roomAndTimeList"
   },
   "Ue": {
    "original": "index.api.175161560754517.js#k",
    "path": "@/api/collegeCareerTalk",
    "export": "queryGroupByCtbDate",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/careerTimeBucket/xfCollegeCareerTimeBucket/queryGroupByCtbDate"
   }
  },

@@ -62,14 +62,14 @@
    "original": "index.api.178332063620021.js#d",
    "path": "@/api/jobPxCourse",
    "export": "queryFreeDetailById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobPxUnit/queryFreeDetailById"
   },
   "Te": {
    "original": "index.api.178332063620021.js#g",
    "path": "@/api/jobPxCourse",
    "export": "listForWebsite",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
   }
  },

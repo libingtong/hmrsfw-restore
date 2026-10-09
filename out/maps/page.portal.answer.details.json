@@ -48,8 +48,7 @@
    "original": "ag",
    "path": "@/legacy/utils",
    "export": "formatDateTime",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "k": {
    "original": "M",
@@ -67,8 +66,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Ee": {
    "original": "_",
@@ -80,35 +78,35 @@
    "original": "index.api.178332063620011.js#q",
    "path": "@/api/quenaire",
    "export": "izLogin",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/licenseFree/quenaire/izLogin"
   },
   "Ke": {
    "original": "index.api.178332063620011.js#a",
    "path": "@/api/quenaire",
    "export": "preview",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/licenseFree/quenaire/preview"
   },
   "We": {
    "original": "index.api.178332063620011.js#x",
    "path": "@/api/quenaire",
    "export": "preview2",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysQuenaire/preview"
   },
   "$": {
    "original": "index.api.178332063620011.js#s",
    "path": "@/api/quenaire",
    "export": "staggingOrSubmit",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysQuenaireRecord/staggingOrSubmit"
   },
   "me": {
    "original": "index.api.178332063620011.js#b",
    "path": "@/api/quenaire",
    "export": "submit",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/licenseFree/quenaire/submit"
   }
  },

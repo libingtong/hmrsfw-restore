@@ -16,7 +16,7 @@
 | `nt` | index.1783320636200.js | entry | @/legacy `getCurrentUser` | `()=>Ze.getUser()` |
 | `ot` | index.1783320636200.js | entry | @/legacy `getCurrentCorp` | `()=>Ze.getCorp()` |
 | `ct` | index.1783320636200.js | entry | @/legacy `getDictItemsByCode` | `e=>IN("/jeecg-system/sys/dict/getDictItemsByCode",e,"get")` |
-| `rt` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `rt` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
 | `dt` | index.1783320636200.js | entry | @/legacy `checkLogin` | `function(e,t,n,r){const a=Ze.getUser(),o=Ze.getCorp();return console.log("\u5224\u65AD\u5F53\u524D\u8D26\u53F7\u662F\u5426\u767B\u5F55token",Ze.getToken(),a,o),new Promise((i,l)=>{if(!Ze.getToken()){i` |
 | `pt` | index.1783320636200.js | entry | @/legacy `TEXT_GO_AUTH` | `"\u53BB\u8BA4\u8BC1"` |
 | `ut` | index.1783320636200.js | entry | @/legacy `MSG_CORP_NOT_AUTH` | `"\u5F53\u524D\u8D26\u6237\u5C1A\u672A\u8FDB\u884C\u5355\u4F4D\u8BA4\u8BC1\uFF0C\u8BA4\u8BC1\u901A\u8FC7\u540E\u65B9\u53EF\u62A5\u540D\u62DB\u8058\u4F1A"` |
@@ -33,9 +33,9 @@
 | `be` | scrollbar.1783320636200.js | shared | swiper `Scrollbar` | `function(y){let{swiper:a,extendParams:b,on:d,emit:g}=y;const v=I();let f=!1,h=null,p=null,m,n,u,E;b({scrollbar:{el:null,dragSize:"auto",hide:!1,draggable:!1,snapOnRelease:!0,lockClass:"swiper-scrollba` |
 | `le` | autoplay.1783320636200.js | shared | swiper `Autoplay` | `function(y){let{swiper:a,extendParams:u,on:l,emit:t}=y,o;a.autoplay={running:!1,paused:!1},u({autoplay:{enabled:!1,delay:3e3,waitForTransition:!0,disableOnInteraction:!0,stopOnLastSlide:!1,reverseDire` |
 | `yt` | effect-coverflow.1783320636200.js | shared | swiper `EffectCoverflow` | `function(o){let{swiper:s,extendParams:t,on:l}=o;t({coverflowEffect:{rotate:50,stretch:0,depth:100,scale:1,modifier:1,slideShadows:!0,transformEl:null}}),p({effect:"coverflow",swiper:s,on:l,setTranslat` |
-| `kt` | index.api.1783320636200.js | api | @/api/api-1783320636200 `freeCompanyExpandPositionList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandPositionList",method:"post",params:e})` |
-| `xt` | index.api.1783320636200.js | api | @/api/api-1783320636200 `freeCompanyExpandList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandList",method:"post",params:e})` |
-| `Bt` | index.api.1783320636200.js | api | @/api/api-1783320636200 `freeCompanyAttachmentList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyAttachmentList",method:"get",params:e})` |
-| `ie` | index.api.1783320636200.js | api | @/api/api-1783320636200 `getArticleList` | `e=>s.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
+| `kt` | index.api.1783320636200.js | api | @/api/company `freeCompanyExpandPositionList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandPositionList",method:"post",params:e})` |
+| `xt` | index.api.1783320636200.js | api | @/api/company `freeCompanyExpandList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandList",method:"post",params:e})` |
+| `Bt` | index.api.1783320636200.js | api | @/api/company `freeCompanyAttachmentList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyAttachmentList",method:"get",params:e})` |
+| `ie` | index.api.1783320636200.js | api | @/api/company `getArticleList` | `e=>s.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
 | `Lt` | Gigmarketgetjobpost.1783320636200.js | shared | @/shared/Gigmarketgetjobpost.vue `default` | `K(m,[["__scopeId","data-v-f188f3bf"]])` |
 | `W` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |

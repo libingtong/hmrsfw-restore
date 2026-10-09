@@ -49,8 +49,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "te": {
    "original": "h",
@@ -62,8 +61,7 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "$": {
    "original": "B",

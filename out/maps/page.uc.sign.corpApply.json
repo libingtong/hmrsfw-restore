@@ -71,56 +71,56 @@
    "original": "index.api.175161560754514.js#a",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "getWqCompanyExpandInfoByJob",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/getWqCompanyExpandInfoByJob"
   },
   "Re": {
    "original": "index.api.175161560754514.js#q",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "queryList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/collegeWqSignDetail/xfCollegeWqSignDetail/queryList"
   },
   "Le": {
    "original": "index.api.175161560754514.js#b",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "queryList2",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/queryList"
   },
   "Me": {
    "original": "index.api.175161560754514.js#c",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "queryById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/student/xfCollegeStudent/queryById"
   },
   "Ue": {
    "original": "index.api.175161560754514.js#g",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "getWqStudResultInfoById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/wqStudResult/xfCollegeWqStudResult/getWqStudResultInfoById"
   },
   "qe": {
    "original": "index.api.175161560754514.js#d",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "applyForCancel",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/applyForCancel"
   },
   "Be": {
    "original": "index.api.175161560754514.js#n",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "notarizeOrRevocationSign",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/collegeWqSignDetail/xfCollegeWqSignDetail/notarizeOrRevocationSign"
   },
   "Ke": {
    "original": "index.api.175161560754514.js#f",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "byNotarizeOrRevocationCancel",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/byNotarizeOrRevocationCancel"
   }
  },

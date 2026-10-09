@@ -23,8 +23,7 @@
    "original": "bs",
    "path": "@/legacy/utils",
    "export": "openLinkAddress",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "A": {
    "original": "_",

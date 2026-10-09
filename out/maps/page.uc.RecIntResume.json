@@ -33,15 +33,13 @@
    "original": "a2",
    "path": "@/legacy/api",
    "export": "queryPageListByCompanyId",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "ne": {
    "original": "a7",
    "path": "@/legacy/api",
    "export": "isPublishingPosition",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "O": {
    "original": "M",
@@ -53,8 +51,7 @@
    "original": "a8",
    "path": "@/legacy/api",
    "export": "addTalent",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "le": {
    "original": "m",

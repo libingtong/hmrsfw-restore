@@ -56,14 +56,14 @@
  "api": {
   "ua": {
    "original": "index.1783320636200117.js#j",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "hotListForWebsite",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/hotListForWebsite"
   },
   "da": {
    "original": "index.1783320636200117.js#k",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "listForWebsite",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"

@@ -79,7 +79,7 @@
  "api": {
   "G": {
    "original": "index.api.1783320636200.js#a",
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freeCompanyExpandPositionList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyExpandPositionList"

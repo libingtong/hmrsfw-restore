@@ -108,21 +108,21 @@
    "original": "index.api.175161560754520.js#a",
    "path": "@/api/oddShareLackJobInfo",
    "export": "queryById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/queryById"
   },
   "Ce": {
    "original": "index.api.175161560754520.js#e",
    "path": "@/api/oddShareLackJobInfo",
    "export": "edit",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/edit"
   },
   "we": {
    "original": "index.api.175161560754520.js#b",
    "path": "@/api/oddShareLackJobInfo",
    "export": "add",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/add"
   }
  },

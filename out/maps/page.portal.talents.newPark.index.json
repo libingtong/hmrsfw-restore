@@ -29,15 +29,13 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "m": {
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Q": {
    "original": "u",

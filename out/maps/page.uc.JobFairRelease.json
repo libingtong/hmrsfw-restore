@@ -37,8 +37,7 @@
    "original": "b0",
    "path": "@/legacy/api",
    "export": "queryById",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "$": {
    "original": "k",
@@ -50,8 +49,7 @@
    "original": "b1",
    "path": "@/legacy/api",
    "export": "list",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "$e": {
    "original": "a9",
@@ -111,8 +109,7 @@
    "original": "b2",
    "path": "@/legacy/api",
    "export": "addPosition",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "G": {
    "original": "M",
@@ -124,8 +121,7 @@
    "original": "b3",
    "path": "@/legacy/api",
    "export": "editPosition",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "ra": {
    "original": "af",

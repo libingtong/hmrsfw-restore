@@ -43,28 +43,28 @@
  "api": {
   "J": {
    "original": "index.api.17833206362002.js#o",
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listNoPageForDeliver",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/listNoPageForDeliver"
   },
   "N": {
    "original": "index.api.17833206362002.js#p",
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listNoPageForDeliver2",
    "status": "restored",
    "url": "/alliance/curriculumVitaeDeliver/listNoPageForDeliver"
   },
   "Z": {
    "original": "index.api.17833206362002.js#r",
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "add2",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/add"
   },
   "$": {
    "original": "index.api.17833206362002.js#s",
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "add3",
    "status": "restored",
    "url": "/xf-alliance/alliance/curriculumVitaeDeliver/add"

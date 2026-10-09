@@ -38,8 +38,7 @@
    "original": "b5",
    "path": "@/legacy/api",
    "export": "cancel",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "X": {
    "original": "_",
@@ -49,21 +48,21 @@
  "api": {
   "A": {
    "original": "index.api.17516156075456.js#U",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listForUserContent",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/listForUserContent"
   },
   "L": {
    "original": "index.api.17516156075456.js#V",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "add6",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/add"
   },
   "Q": {
    "original": "index.api.17516156075456.js#W",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "undoAllComplaintByType",
    "status": "restored",
    "url": "/xf-job/job/xfJobComplaintRecord/undoAllComplaintByType"

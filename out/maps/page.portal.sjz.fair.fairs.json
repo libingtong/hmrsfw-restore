@@ -68,8 +68,7 @@
    "original": "cd",
    "path": "@/legacy/components/MoveWindow.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "K": {
    "original": "_",

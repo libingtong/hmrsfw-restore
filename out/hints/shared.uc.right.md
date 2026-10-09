@@ -5,6 +5,6 @@
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
 | `f` | index.1751615607545.js | api | @/legacy `getDictItemsByCode` | `t=>Ee.request({url:"/jeecg-system/sys/dict/getDictItemsByCode",method:"get",params:t})` |
-| `k` | index.1751615607545.js | api | @/legacy/api `getArticleListByCode`（reserved） | `t=>Ee.request({url:"/xf-job/job/licenseFree/getArticleListByCode",method:"get",params:t})` |
+| `k` | index.1751615607545.js | api | @/legacy/api `getArticleListByCode` | `t=>Ee.request({url:"/xf-job/job/licenseFree/getArticleListByCode",method:"get",params:t})` |
 | `g` | index.1751615607545.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `h` | index.1751615607545.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |

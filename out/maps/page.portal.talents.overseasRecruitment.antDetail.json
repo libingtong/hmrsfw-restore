@@ -30,15 +30,13 @@
    "original": "V",
    "path": "@/legacy",
    "export": "VideoPlayer",
-   "status": "reserved",
-   "owner": "entry.portal.c05"
+   "status": "restored"
   },
   "X": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "$": {
    "original": "u",
@@ -93,28 +91,28 @@
    "original": "index.api.178332063620041.js#q",
    "path": "@/api/jobOverseasRecruitNotice",
    "export": "queryById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobOverseasRecruitNotice/queryById"
   },
   "oe": {
    "original": "index.api.178332063620041.js#a",
    "path": "@/api/jobOverseasRecruitNotice",
    "export": "queryById2",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobOverseasRecruitNotice/queryById"
   },
   "ie": {
    "original": "index.api.178332063620041.js#s",
    "path": "@/api/jobOverseasRecruitNotice",
    "export": "saveOrCancel",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobOverseasRecruitRegistration/saveOrCancel"
   },
   "ce": {
    "original": "index.api.178332063620035.js#c",
    "path": "@/api/jobGovRecruitCompany",
    "export": "checkIzPerfect",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysUser/checkIzPerfect"
   }
  },

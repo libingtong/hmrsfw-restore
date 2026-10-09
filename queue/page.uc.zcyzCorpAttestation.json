@@ -66,9 +66,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true,
  "segments": [

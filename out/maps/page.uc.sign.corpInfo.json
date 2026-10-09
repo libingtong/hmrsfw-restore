@@ -35,8 +35,7 @@
    "original": "b7",
    "path": "@/legacy/utils",
    "export": "isPhoneOrTel",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "q": {
    "original": "m",
@@ -54,21 +53,21 @@
    "original": "index.api.175161560754514.js#a",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "getWqCompanyExpandInfoByJob",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/getWqCompanyExpandInfoByJob"
   },
   "F": {
    "original": "index.api.175161560754514.js#s",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "add",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/add"
   },
   "B": {
    "original": "index.api.175161560754514.js#e",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "edit",
-   "status": "reserved",
+   "status": "restored",
    "url": "xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/edit"
   }
  },

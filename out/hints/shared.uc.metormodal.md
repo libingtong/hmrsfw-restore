@@ -12,8 +12,8 @@
 | `S` | index.1751615607545.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `C` | index.1751615607545.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `q` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `D` | index.api.17516156075454.js | api | @/api/sysConsult `queryById`（reserved） | `e=>t.request({url:"/xf-job/job/xfSysConsult/queryById",method:"get",params:e})` |
-| `$` | index.api.17516156075454.js | api | @/api/sysConsult `queryOneForUserCenter`（reserved） | `e=>t.request({url:"/xf-job/job/xfJobUserTutorExpand/queryOneForUserCenter",method:"get",params:e})` |
-| `j` | index.api.17516156075454.js | api | @/api/sysConsult `checkIzCanReply`（reserved） | `e=>t.request({url:"/xf-job/job/xfSysConsultReply/checkIzCanReply",method:"get",params:e})` |
-| `A` | index.api.17516156075454.js | api | @/api/sysConsult `saveOne`（reserved） | `e=>t.request({url:"/xf-job/job/xfSysConsultReply/saveOne",method:"post",data:e})` |
+| `D` | index.api.17516156075454.js | api | @/api/sysConsult `queryById` | `e=>t.request({url:"/xf-job/job/xfSysConsult/queryById",method:"get",params:e})` |
+| `$` | index.api.17516156075454.js | api | @/api/sysConsult `queryOneForUserCenter` | `e=>t.request({url:"/xf-job/job/xfJobUserTutorExpand/queryOneForUserCenter",method:"get",params:e})` |
+| `j` | index.api.17516156075454.js | api | @/api/sysConsult `checkIzCanReply` | `e=>t.request({url:"/xf-job/job/xfSysConsultReply/checkIzCanReply",method:"get",params:e})` |
+| `A` | index.api.17516156075454.js | api | @/api/sysConsult `saveOne` | `e=>t.request({url:"/xf-job/job/xfSysConsultReply/saveOne",method:"post",data:e})` |
 | `V` | unfold.1751615607545.js | shared | @/shared/unfold.vue `default` | `m(x,[["__scopeId","data-v-334f6655"]])` |

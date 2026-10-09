@@ -30,8 +30,7 @@
    "original": "b8",
    "path": "@/legacy/api",
    "export": "volist",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "P": {
    "original": "k",
@@ -43,8 +42,7 @@
    "original": "b9",
    "path": "@/legacy/api",
    "export": "undoComplaint",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "L": {
    "original": "m",

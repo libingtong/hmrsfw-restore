@@ -70,15 +70,13 @@
    "original": "bh",
    "path": "@/legacy/utils",
    "export": "parseIdCard",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Jt": {
    "original": "aR",
    "path": "@/legacy/utils",
    "export": "isMobilePhone",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Wt": {
    "original": "d",
@@ -119,8 +117,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Ie": {
    "original": "o",
@@ -150,8 +147,7 @@
    "original": "Q",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_CERTIFIED",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Oe": {
    "original": "A",
@@ -169,8 +165,7 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "aa": {
    "original": "u",
@@ -182,55 +177,55 @@
  "api": {
   "ia": {
    "original": "index.1783320636200117.js#c",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "checkIdCard",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUser/checkIdCard"
   },
   "we": {
    "original": "index.1783320636200117.js#s",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "saveForUserCenter",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUser/saveForUserCenter"
   },
   "de": {
    "original": "index.1783320636200117.js#o",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "o",
    "status": "reserved"
   },
   "sa": {
    "original": "index.1783320636200117.js#i",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "isPublishingPosition",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompany/isPublishingPosition"
   },
   "na": {
    "original": "index.1783320636200117.js#a",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "addTalent",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
   },
   "oa": {
    "original": "index.1783320636200117.js#r",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "cancelTalent",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompanyTalents/cancelTalent"
   },
   "ra": {
    "original": "index.1783320636200117.js#q",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUser/queryById"
   },
   "da": {
    "original": "index.1783320636200117.js#b",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "setCompleteStatus",
    "status": "restored",
    "url": "/xf-job/communal/xfSysGuideRecord/setCompleteStatus"

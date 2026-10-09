@@ -26,8 +26,8 @@
 | `v` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `fe` | index.1751615607545.js | entry | ant-design-vue `Upload` | `Ft(xs,{Dragger:Ts,LIST_IGNORE:Bl,install:function(e){return e.component(xs.name,xs),e.component(Ts.name,Ts),e}})` |
 | `Qe` | index.1751615607545.js | entry | @/legacy `checkFileType` | `(t,e)=>{console.log(t.type);let n=["jpg","jpeg","png","gif","JPG","JPEG","PNG","GIF"];return e&&(n=e),n.findIndex(a=>a==t.name.split(".")[1])<0?(n.join(","),!1):!0}` |
-| `St` | index.1751615607545.js | api | @/legacy/api `sumbitBaseCompanyInfo`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/sumbitBaseCompanyInfo",method:"post",data:t})` |
-| `Dt` | index.1751615607545.js | api | @/legacy/api `sumbitImportantCompanyInfo`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/sumbitImportantCompanyInfo",method:"post",data:t})` |
+| `St` | index.1751615607545.js | api | @/legacy/api `sumbitBaseCompanyInfo` | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/sumbitBaseCompanyInfo",method:"post",data:t})` |
+| `Dt` | index.1751615607545.js | api | @/legacy/api `sumbitImportantCompanyInfo` | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/sumbitImportantCompanyInfo",method:"post",data:t})` |
 | `Ht` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
 | `Ut` | dictCheckBoxAll.1751615607545.js | shared | @/shared/dictCheckBoxAll.vue `default` | `g(O,[["render",v]])` |
 | `Ae` | phone.1751615607545.js | shared | @/shared/phone.vue `default` | `u(d,[["render",m]])` |

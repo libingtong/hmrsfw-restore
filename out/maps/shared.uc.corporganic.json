@@ -23,8 +23,7 @@
    "original": "C",
    "path": "@/legacy/api",
    "export": "queryChildrenTreeListById",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "f": {
    "original": "_",

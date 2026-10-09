@@ -7,11 +7,11 @@
 | `Ue` | moreInfo.1783320636200.js | shared | @/shared/images `moreInfoImg` | `"/assets/moreInfo.1783320636200.png"` |
 | `xe` | yjfk.1783320636200.js | shared | @/shared/images `yjfkImg_` | `"/sjz/newHome/wjdc.png"` |
 | `Ee` | yjfk.1783320636200.js | shared | @/shared/images `yjfkImgA` | `"/sjz/newHome/yjfk.png"` |
-| `Z` | index.1783320636200.js | api | @/legacy/api `getArticleListByCode`（reserved） | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleListByCode",method:"get",params:e})` |
+| `Z` | index.1783320636200.js | api | @/legacy/api `getArticleListByCode` | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleListByCode",method:"get",params:e})` |
 | `Ze` | index.1783320636200.js | entry | @/legacy `FeedbackModal` | `mt(vie,[["__scopeId","data-v-150e31b0"]])` |
-| `Ge` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
-| `Fe` | index.1783320636200.js | api | @/legacy/api `queryLatestQuestionsList`（reserved） | `e=>ut.request({url:"/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryLatestQuestionsList",method:"post",params:e})` |
-| `De` | index.1783320636200.js | api | @/legacy/api `queryQuestionsList`（reserved） | `e=>ut.request({url:"/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuestionsList",method:"post",params:e})` |
+| `Ge` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `Fe` | index.1783320636200.js | api | @/legacy/api `queryLatestQuestionsList` | `e=>ut.request({url:"/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryLatestQuestionsList",method:"post",params:e})` |
+| `De` | index.1783320636200.js | api | @/legacy/api `queryQuestionsList` | `e=>ut.request({url:"/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuestionsList",method:"post",params:e})` |
 | `Xe` | index.1783320636200.js | entry | @/legacy `userStorage` | `{keys:!0,setUser(e){this.keys?localStorage.setItem(jn.USER_INFO,e):localStorage.setItem(jn.USER_INFO,JSON.stringify(e))},getUser(){const e=localStorage.getItem(jn.USER_INFO);if(e&&e!="undefined"&&e!="` |
 | `G` | index.1783320636200.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `F` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |

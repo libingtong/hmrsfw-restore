@@ -7,7 +7,7 @@
 | `vt` | bg.1783320636200.js | shared | @/shared/images `bgImg` | `"/assets/bg.178332063620012.jpg"` |
 | `ht` | index.1783320636200.js | entry | swiper `default` | `class Do{constructor(){let t,n;for(var r=arguments.length,a=new Array(r),o=0;o<r;o++)a[o]=arguments[o];if(a.length===1&&a[0].constructor&&Object.prototype.toString.call(a[0]).slice(8,-1)==="Object"?n=` |
 | `yt` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
-| `ft` | index.1783320636200.js | entry | @/legacy `SlideCaptcha`（reserved） | `re({__name:"SlideCaptcha",props:{type:{type:String,default:"0"},phone:{type:String,default:""},smsmode:{type:String,default:"1"},fromType:{type:String,default:"1"}},emits:["timerCount"],setup(e,{expos` |
+| `ft` | index.1783320636200.js | entry | @/legacy `SlideCaptcha` | `re({__name:"SlideCaptcha",props:{type:{type:String,default:"0"},phone:{type:String,default:""},smsmode:{type:String,default:"1"},fromType:{type:String,default:"1"}},emits:["timerCount"],setup(e,{expos` |
 | `wt` | index.1783320636200.js | entry | @/legacy `useStore` | `function(e){return e===void 0&&(e=null),Ft(e!==null?e:Ru)}` |
 | `E` | index.1783320636200.js | entry | ant-design-vue `message` | `D1` |
 | `_t` | index.1783320636200.js | api | @/legacy `getSettingValueByCode` | `e=>ut.request({url:"/xf-job/job/licenseFree/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:e})` |
@@ -23,10 +23,10 @@
 | `Et` | autoplay.1783320636200.js | shared | swiper `Autoplay` | `function(y){let{swiper:a,extendParams:u,on:l,emit:t}=y,o;a.autoplay={running:!1,paused:!1},u({autoplay:{enabled:!1,delay:3e3,waitForTransition:!0,disableOnInteraction:!0,stopOnLastSlide:!1,reverseDire` |
 | `Bt` | grid.1783320636200.js | shared | swiper `Grid` | `function P(g){let{swiper:a,extendParams:S}=g;S({grid:{rows:1,fill:"column"}});let n,f,w;const z=t=>{const{slidesPerView:e}=a.params,{rows:i,fill:c}=a.params.grid;f=n/i,w=Math.floor(t/i),Math.floor(t/i` |
 | `Ot` | effect-coverflow.1783320636200.js | shared | swiper `EffectCoverflow` | `function(o){let{swiper:s,extendParams:t,on:l}=o;t({coverflowEffect:{rotate:50,stretch:0,depth:100,scale:1,modifier:1,slideShadows:!0,transformEl:null}}),p({effect:"coverflow",swiper:s,on:l,setTranslat` |
-| `At` | index.api.17833206362008.js | api | @/api/api-08 `queryById` | `e=>t.request({url:"/xf-job/school/licenseFree/XfSysArticle/queryById",method:"get",params:e})` |
-| `zt` | index.api.178332063620015.js | api | @/api/api-15 `getChildArticleTypeList` | `e=>t.request({url:"/xf-job/job/licenseFree/getChildArticleTypeList",method:"post",params:e})` |
-| `F` | index.api.178332063620015.js | api | @/api/api-15 `getArticleList` | `e=>t.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
-| `qt` | index.api.178332063620015.js | api | @/api/api-15 `freeArchiveServiceOrgList` | `e=>t.request({url:"/xf-job/job/licenseFree/freeArchiveServiceOrgList",method:"post",params:e})` |
-| `Zt` | index.api.178332063620015.js | api | @/api/api-15 `freeArchiveInfoPageList3` | `e=>t.request({url:"/xf-job/job/licenseFree/hm/freeArchiveInfoPageList",method:"post",data:e})` |
-| `Dt` | index.api.178332063620015.js | api | @/api/api-15 `freeArchiveInfoPageList` | `e=>t.request({url:"/xf-job/job/licenseFree/freeArchiveInfoPageList",method:"post",params:e})` |
+| `At` | index.api.17833206362008.js | api | @/api/sysArticle `queryById` | `e=>t.request({url:"/xf-job/school/licenseFree/XfSysArticle/queryById",method:"get",params:e})` |
+| `zt` | index.api.178332063620015.js | api | @/api/archive `getChildArticleTypeList` | `e=>t.request({url:"/xf-job/job/licenseFree/getChildArticleTypeList",method:"post",params:e})` |
+| `F` | index.api.178332063620015.js | api | @/api/archive `getArticleList` | `e=>t.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
+| `qt` | index.api.178332063620015.js | api | @/api/archive `freeArchiveServiceOrgList` | `e=>t.request({url:"/xf-job/job/licenseFree/freeArchiveServiceOrgList",method:"post",params:e})` |
+| `Zt` | index.api.178332063620015.js | api | @/api/archive `freeArchiveInfoPageList3` | `e=>t.request({url:"/xf-job/job/licenseFree/hm/freeArchiveInfoPageList",method:"post",data:e})` |
+| `Dt` | index.api.178332063620015.js | api | @/api/archive `freeArchiveInfoPageList` | `e=>t.request({url:"/xf-job/job/licenseFree/freeArchiveInfoPageList",method:"post",params:e})` |
 | `Q` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |

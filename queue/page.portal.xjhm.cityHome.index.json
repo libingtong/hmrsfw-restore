@@ -61,9 +61,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
-   "entry.portal.c06",
    "shared.portal.FriendLink",
    "shared.portal.homeRight2",
    "shared.portal.jobArea",

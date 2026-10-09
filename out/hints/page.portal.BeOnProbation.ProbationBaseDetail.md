@@ -15,7 +15,7 @@
 | `Ce` | pagination.1783320636200.js | shared | swiper `Pagination` | `function(f){let{swiper:a,extendParams:P,on:p,emit:x}=f;const o="swiper-pagination";P({pagination:{el:null,bulletElement:"span",clickable:!1,hideOnClick:!1,renderBullet:null,renderProgressbar:null,rend` |
 | `Ye` | scrollbar.1783320636200.js | shared | swiper `Scrollbar` | `function(y){let{swiper:a,extendParams:b,on:d,emit:g}=y;const v=I();let f=!1,h=null,p=null,m,n,u,E;b({scrollbar:{el:null,dragSize:"auto",hide:!1,draggable:!1,snapOnRelease:!0,lockClass:"swiper-scrollba` |
 | `qe` | autoplay.1783320636200.js | shared | swiper `Autoplay` | `function(y){let{swiper:a,extendParams:u,on:l,emit:t}=y,o;a.autoplay={running:!1,paused:!1},u({autoplay:{enabled:!1,delay:3e3,waitForTransition:!0,disableOnInteraction:!0,stopOnLastSlide:!1,reverseDire` |
-| `Ee` | index.api.1783320636200.js | api | @/api/api-1783320636200 `freeDetailById` | `e=>s.request({url:"/xf-job/job/licenseFree/freeDetailById",method:"post",params:e})` |
-| `Me` | index.api.1783320636200.js | api | @/api/api-1783320636200 `freeCompanyExpandPositionList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandPositionList",method:"post",params:e})` |
+| `Ee` | index.api.1783320636200.js | api | @/api/company `freeDetailById` | `e=>s.request({url:"/xf-job/job/licenseFree/freeDetailById",method:"post",params:e})` |
+| `Me` | index.api.1783320636200.js | api | @/api/company `freeCompanyExpandPositionList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandPositionList",method:"post",params:e})` |
 | `V` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
 | `Re` | ellipsisText.1783320636200.js | shared | @/shared/ellipsisText.vue `default`（reserved） | `E(s,[["render",p],["__scopeId","data-v-10b81f42"]])` |

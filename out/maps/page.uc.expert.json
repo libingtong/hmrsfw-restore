@@ -33,8 +33,7 @@
    "original": "D",
    "path": "@/legacy/api",
    "export": "getTreeData",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "$": {
    "original": "_",
@@ -94,14 +93,14 @@
    "original": "index.api.17516156075458.js#g",
    "path": "@/api/jobUserSchoolExpert",
    "export": "queryOneForUserCenter",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobUserSchoolExpert/queryOneForUserCenter"
   },
   "Ce": {
    "original": "index.api.17516156075458.js#p",
    "path": "@/api/jobUserSchoolExpert",
    "export": "saveOneForUserCenter",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobUserSchoolExpert/saveOneForUserCenter"
   }
  },

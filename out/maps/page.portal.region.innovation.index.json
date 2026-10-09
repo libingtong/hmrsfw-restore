@@ -51,15 +51,13 @@
    "original": "c2",
    "path": "@/legacy/components/Notice.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "entry.portal.c09"
+   "status": "restored"
   },
   "De": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Fe": {
    "original": "O",
@@ -71,8 +69,7 @@
    "original": "c3",
    "path": "@/legacy/api",
    "export": "checkIsCanAdd",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "E": {
    "original": "v",
@@ -84,15 +81,13 @@
    "original": "as",
    "path": "@/legacy/utils",
    "export": "getUserInfo",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Ve": {
    "original": "c4",
    "path": "@/legacy/api",
    "export": "jobLoanApplyPersonCheckIsCanAdd",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Ye": {
    "original": "r",
@@ -104,8 +99,7 @@
    "original": "Q",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_CERTIFIED",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Qe": {
    "original": "p",
@@ -117,8 +111,7 @@
    "original": "c5",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_PENDING_2",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "j": {
    "original": "B",
@@ -160,21 +153,21 @@
    "original": "index.api.178332063620031.js#g",
    "path": "@/api/jobPxCourse2",
    "export": "listForWebsite",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
   },
   "_t": {
    "original": "index.api.178332063620032.js#g",
    "path": "@/api/jobEventReleaseNew",
    "export": "listCyfwMh",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/licenseFree/xfJobEventReleaseNew/listCyfwMh"
   },
   "ht": {
    "original": "index.api.17833206362005.js#x",
    "path": "@/api/jobUserTutorExpand2",
    "export": "listForWebsite",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite"
   }
  },

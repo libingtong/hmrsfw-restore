@@ -45,9 +45,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

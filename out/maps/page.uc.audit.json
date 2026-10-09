@@ -46,14 +46,14 @@
    "original": "index.api.17516156075454.js#g",
    "path": "@/api/sysConsult",
    "export": "list",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentityRecord/list"
   },
   "K": {
    "original": "index.api.1751615607545.js#g",
    "path": "@/api/jobSupermarketMerchants",
    "export": "queryByUserId",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId"
   }
  },

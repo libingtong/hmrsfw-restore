@@ -6,9 +6,9 @@
 |---|---|---|---|---|
 | `Re` | jspdf.es.min.1751615607545.js | shared | @/shared/jspdf.es.min.ts `Watermark` | `class{constructor(e){var n,a,c,o,l,h,f,g,b;this.defaultOptions={container:document.body,zIndex:9,rotate:-22,gap:[100,100],font:{}},this.options=Object.assign({},this.defaultOptions,e),this.container=t` |
 | `Ke` | jspdf.es.min.1751615607545.js | shared | jspdf `jsPDF` | `function Ht(r){var e,n=typeof arguments[0]=="string"?arguments[0]:"p",a=arguments[1],c=arguments[2],o=arguments[3],l=[],h=1,f=16,g="S",b=null;ve(r=r\|\|{})==="object"&&(n=r.orientation,a=r.unit\|\|a,c=r.f` |
-| `Ae` | index.api.175161560754511.js | api | @/api/api-175161560754511 `addOrUpdate` | `o=>t.request({url:"/xf-job/job/xfJobFairApplyUnsubscribe/addOrUpdate",method:"post",data:o})` |
-| `He` | index.api.175161560754511.js | api | @/api/api-175161560754511 `myJobFairList` | `o=>t.request({url:"/xf-job/job/xfJobFair/myJobFairList",method:"post",data:o})` |
-| `Je` | index.api.175161560754511.js | api | @/api/api-175161560754511 `fairParticipationToHtml` | `o=>t.request({url:"/xf-job/job/xfJobFair/xfJobFairApplyInfo/fairParticipationToHtml?xfJobFairId="+o.xfJobFairId+"&applyInfoId="+o.applyInfoId,method:"post",data:o})` |
+| `Ae` | index.api.175161560754511.js | api | @/api/jobCompany `addOrUpdate` | `o=>t.request({url:"/xf-job/job/xfJobFairApplyUnsubscribe/addOrUpdate",method:"post",data:o})` |
+| `He` | index.api.175161560754511.js | api | @/api/jobCompany `myJobFairList` | `o=>t.request({url:"/xf-job/job/xfJobFair/myJobFairList",method:"post",data:o})` |
+| `Je` | index.api.175161560754511.js | api | @/api/jobCompany `fairParticipationToHtml` | `o=>t.request({url:"/xf-job/job/xfJobFair/xfJobFairApplyInfo/fairParticipationToHtml?xfJobFairId="+o.xfJobFairId+"&applyInfoId="+o.applyInfoId,method:"post",data:o})` |
 | `ae` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |
 | `qe` | positionmodal.1751615607545.js | shared | @/shared/positionmodal.vue `default` | `B(X,[["__scopeId","data-v-0ff88674"]])` |
 | `De` | beonmodal.1751615607545.js | shared | @/shared/beonmodal.vue `default` | `h(A,[["__scopeId","data-v-1e6b66f8"]])` |

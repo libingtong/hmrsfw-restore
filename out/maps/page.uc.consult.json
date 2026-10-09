@@ -38,7 +38,7 @@
    "original": "index.api.17516156075454.js#d",
    "path": "@/api/sysConsult",
    "export": "queryListForUserCenter",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfSysConsult/queryListForUserCenter"
   }
  },

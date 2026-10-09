@@ -40,7 +40,7 @@
    "original": "index.api.17516156075454.js#c",
    "path": "@/api/sysConsult",
    "export": "queryJoinedForUserCenter",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfSysConsult/queryJoinedForUserCenter"
   }
  },

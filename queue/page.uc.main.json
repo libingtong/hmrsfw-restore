@@ -86,8 +86,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.uc.E4",
-   "entry.uc.E6",
    "shared.uc.addKeynote",
    "shared.uc.market",
    "shared.uc.mymsg",

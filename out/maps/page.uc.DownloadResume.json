@@ -51,14 +51,14 @@
    "original": "index.api.175161560754510.js#g",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "getDownloadList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobCompanyCurriculumDownload/getDownloadList"
   },
   "H": {
    "original": "index.api.175161560754510.js#a",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "addTalent",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
   }
  },

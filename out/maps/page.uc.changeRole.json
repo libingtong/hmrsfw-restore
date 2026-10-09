@@ -37,8 +37,7 @@
    "original": "u",
    "path": "@/legacy/store",
    "export": "useCommonStore",
-   "status": "reserved",
-   "owner": "entry.uc.E4"
+   "status": "restored"
   },
   "H": {
    "original": "a",
@@ -68,22 +67,19 @@
    "original": "l",
    "path": "@/legacy/utils",
    "export": "setLocalStorage",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "W": {
    "original": "bN",
    "path": "@/legacy/api",
    "export": "getUserPermissionByRoleId",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "ee": {
    "original": "q",
    "path": "@/legacy/api",
    "export": "queryByCompanyId",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "te": {
    "original": "_",

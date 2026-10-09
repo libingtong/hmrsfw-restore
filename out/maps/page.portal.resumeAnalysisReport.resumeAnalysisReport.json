@@ -43,8 +43,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Pt": {
    "original": "h",
@@ -109,21 +108,21 @@
  "api": {
   "Jt": {
    "original": "index.api.178332063620033.js#a",
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "freeCompanyPositionDetail",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyPositionDetail"
   },
   "Zt": {
    "original": "index.api.178332063620033.js#b",
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "viewVoByIdFromPerson",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromPerson"
   },
   "qt": {
    "original": "index.api.178332063620033.js#c",
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "getMatchingDegree",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompanyPosition/getMatchingDegree"

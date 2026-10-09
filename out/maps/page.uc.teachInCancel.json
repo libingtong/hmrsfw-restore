@@ -45,14 +45,14 @@
    "original": "index.api.175161560754517.js#b",
    "path": "@/api/collegeCareerTalk",
    "export": "queryTalkListInfo",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/careerTalk/xfCollegeCareerTalk/queryTalkListInfo"
   },
   "de": {
    "original": "index.api.175161560754517.js#m",
    "path": "@/api/collegeCareerTalk",
    "export": "cancelUnsubscribe",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/careerTalk/xfCollegeCareerTalk/cancelUnsubscribe"
   }
  },

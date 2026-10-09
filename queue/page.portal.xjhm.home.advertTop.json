@@ -54,10 +54,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.E4",
-   "entry.portal.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true,
  "recordVia": "page.portal.xjhm.home.index"

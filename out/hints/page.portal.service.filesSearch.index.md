@@ -6,4 +6,4 @@
 |---|---|---|---|---|
 | `Z` | index.1783320636200.js | entry | @/legacy `userStorage` | `{keys:!0,setUser(e){this.keys?localStorage.setItem(jn.USER_INFO,e):localStorage.setItem(jn.USER_INFO,JSON.stringify(e))},getUser(){const e=localStorage.getItem(jn.USER_INFO);if(e&&e!="undefined"&&e!="` |
 | `j` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
-| `E` | index.api.178332063620017.js | api | @/api/api-17 `getFairList` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/getFairList",method:"post",data:e})` |
+| `E` | index.api.178332063620017.js | api | @/api/jobFair `getFairList` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/getFairList",method:"post",data:e})` |

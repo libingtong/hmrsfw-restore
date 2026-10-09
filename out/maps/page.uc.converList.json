@@ -36,7 +36,7 @@
    "original": "index.api.17516156075457.js#h",
    "path": "@/api/oddFindJobInfo",
    "export": "list",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/callRecord/list"
   }
  },

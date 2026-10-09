@@ -68,63 +68,63 @@
    "original": "index.api.175161560754513.js#a",
    "path": "@/api/collegeWqCancelDetail",
    "export": "signCompany",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/collegeWqSignDetail/xfCollegeWqSignDetail/signCompany"
   },
   "we": {
    "original": "index.api.175161560754513.js#u",
    "path": "@/api/collegeWqCancelDetail",
    "export": "applyForCancel",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/applyForCancel"
   },
   "Ie": {
    "original": "index.api.175161560754513.js#g",
    "path": "@/api/collegeWqCancelDetail",
    "export": "getWqCompanyExpandInfoByJob",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/getWqCompanyExpandInfoByJob"
   },
   "me": {
    "original": "index.api.175161560754513.js#c",
    "path": "@/api/collegeWqCancelDetail",
    "export": "studentNotarizeOrRevocationSign",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/collegeWqSignDetail/xfCollegeWqSignDetail/studentNotarizeOrRevocationSign"
   },
   "ue": {
    "original": "index.api.175161560754513.js#b",
    "path": "@/api/collegeWqCancelDetail",
    "export": "byNotarizeOrRevocationCancel",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/byNotarizeOrRevocationCancel"
   },
   "Te": {
    "original": "index.api.175161560754513.js#d",
    "path": "@/api/collegeWqCancelDetail",
    "export": "queryPageList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/queryPageList"
   },
   "Se": {
    "original": "index.api.175161560754513.js#s",
    "path": "@/api/collegeWqCancelDetail",
    "export": "getStudentInfoById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/student/xfCollegeStudent/getStudentInfoById"
   },
   "$e": {
    "original": "index.api.175161560754513.js#f",
    "path": "@/api/collegeWqCancelDetail",
    "export": "queryList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/queryList"
   },
   "je": {
    "original": "index.api.175161560754514.js#g",
    "path": "@/api/collegeWqCompanyExpand",
    "export": "getWqStudResultInfoById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-college/wqStudResult/xfCollegeWqStudResult/getWqStudResultInfoById"
   }
  },

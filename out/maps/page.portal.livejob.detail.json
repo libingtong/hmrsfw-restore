@@ -89,8 +89,7 @@
    "original": "as",
    "path": "@/legacy/utils",
    "export": "getUserInfo",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Qt": {
    "original": "_",
@@ -102,21 +101,21 @@
    "original": "index.api.178332063620013.js#a",
    "path": "@/api/jobLiveTelecast",
    "export": "queryVoById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/queryVoById"
   },
   "ta": {
    "original": "index.api.178332063620013.js#f",
    "path": "@/api/jobLiveTelecast",
    "export": "queryCompanyAndPositionList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobLiveTelecastPosition/queryCompanyAndPositionList"
   },
   "aa": {
    "original": "index.api.178332063620013.js#s",
    "path": "@/api/jobLiveTelecast",
    "export": "submit",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobComment/submit"
   }
  },

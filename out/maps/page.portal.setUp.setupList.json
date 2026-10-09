@@ -73,14 +73,14 @@
    "original": "index.api.178332063620031.js#c",
    "path": "@/api/jobPxCourse2",
    "export": "hotListForWebsite",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/hotListForWebsite"
   },
   "We": {
    "original": "index.api.178332063620031.js#g",
    "path": "@/api/jobPxCourse2",
    "export": "listForWebsite",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
   }
  },

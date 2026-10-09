@@ -54,29 +54,25 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Lt": {
    "original": "ab",
    "path": "@/legacy/api",
    "export": "getArticleListNoCheck",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "_t": {
    "original": "aF",
    "path": "@/legacy/components/TopHead.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "entry.portal.c04"
+   "status": "restored"
   },
   "xt": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "T": {
    "original": "B",
@@ -167,75 +163,75 @@
    "original": "index.api.17833206362004.js#g",
    "path": "@/api/jobUserTutorExpand",
    "export": "queryOrganizationByAreaId",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/queryOrganizationByAreaId"
   },
   "ke": {
    "original": "index.api.17833206362004.js#a",
    "path": "@/api/jobUserTutorExpand",
    "export": "getArticleList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/getArticleList"
   },
   "Wt": {
    "original": "index.api.17833206362004.js#x",
    "path": "@/api/jobUserTutorExpand",
    "export": "listForWebsite",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite"
   },
   "Mt": {
    "original": "index.api.17833206362004.js#f",
    "path": "@/api/jobUserTutorExpand",
    "export": "freeCompanyAllAttachmentList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyAllAttachmentList"
   },
   "Ot": {
    "original": "index.api.17833206362004.js#q",
    "path": "@/api/jobUserTutorExpand",
    "export": "queryMoreClassicQandA",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/licenseFree/xfSysConsult/queryMoreClassicQandA"
   },
   "Ht": {
    "original": "index.api.17833206362004.js#b",
    "path": "@/api/jobUserTutorExpand",
    "export": "freeCompanyExpandPositionList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyExpandPositionList"
   },
   "Kt": {
    "original": "index.api.17833206362004.js#c",
    "path": "@/api/jobUserTutorExpand",
    "export": "freeCompanyExpandList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyExpandList"
   },
   "Zt": {
    "original": "index.api.17833206362004.js#r",
    "path": "@/api/jobUserTutorExpand",
    "export": "recommendJobList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/job/licenseFree/xfJobCompanyPosition/recommendJobList"
   },
   "Gt": {
    "original": "index.api.17833206362004.js#d",
    "path": "@/api/jobUserTutorExpand",
    "export": "freeKeynoteCompanySeeMoreList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeKeynoteCompanySeeMoreList"
   },
   "Xt": {
    "original": "index.api.178332063620020.js#g",
    "path": "@/api/service",
    "export": "freeServiceUnitPageList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeServiceUnitPageList"
   },
   "si": {
    "original": "index.api.178332063620017.js#w",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "getFairList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/getFairList"
@@ -244,7 +240,7 @@
    "original": "index.api.178332063620021.js#g",
    "path": "@/api/jobPxCourse",
    "export": "listForWebsite",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
   }
  },

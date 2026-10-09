@@ -69,9 +69,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
-   "entry.portal.c09",
    "shared.portal.homeNews3",
    "shared.portal.modules"
   ]

@@ -56,21 +56,21 @@
    "original": "index.api.175161560754516.js#a",
    "path": "@/api/jobLiveTelecastApply",
    "export": "list2",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobLiveTelecastApplyPosition/list"
   },
   "ce": {
    "original": "index.api.175161560754516.js#q",
    "path": "@/api/jobLiveTelecastApply",
    "export": "list",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobLiveTelecastApply/list"
   },
   "de": {
    "original": "index.api.175161560754516.js#d",
    "path": "@/api/jobLiveTelecastApply",
    "export": "deleteBatch",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobLiveTelecastApply/deleteBatch"
   }
  },

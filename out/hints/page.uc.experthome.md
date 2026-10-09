@@ -4,9 +4,9 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `h` | index.api.17516156075458.js | api | @/api/jobUserSchoolExpert `statics`（reserved） | `e=>r.request({url:"/xf-job/job/xfSysConsult/statics",method:"get",params:e})` |
-| `C` | index.api.17516156075458.js | api | @/api/jobUserSchoolExpert `queryJoinedForUserCenter`（reserved） | `e=>r.request({url:"/xf-job/job/xfSysConsult/queryJoinedForUserCenter",method:"get",params:e})` |
-| `S` | index.api.17516156075458.js | api | @/api/jobUserSchoolExpert `queryListForUserCenter`（reserved） | `e=>r.request({url:"/xf-job/job/xfSysConsult/queryListForUserCenter",method:"get",params:e})` |
+| `h` | index.api.17516156075458.js | api | @/api/jobUserSchoolExpert `statics` | `e=>r.request({url:"/xf-job/job/xfSysConsult/statics",method:"get",params:e})` |
+| `C` | index.api.17516156075458.js | api | @/api/jobUserSchoolExpert `queryJoinedForUserCenter` | `e=>r.request({url:"/xf-job/job/xfSysConsult/queryJoinedForUserCenter",method:"get",params:e})` |
+| `S` | index.api.17516156075458.js | api | @/api/jobUserSchoolExpert `queryListForUserCenter` | `e=>r.request({url:"/xf-job/job/xfSysConsult/queryListForUserCenter",method:"get",params:e})` |
 | `U` | usercard.1751615607545.js | shared | @/shared/usercard.vue `default`（reserved） | `g(z,[["__scopeId","data-v-aa2d78e0"]])` |
 | `w` | metormodal.1751615607545.js | shared | @/shared/metormodal.vue `default`（reserved） | `q(Ee,[["__scopeId","data-v-73e6c7c9"]])` |
 | `i` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |

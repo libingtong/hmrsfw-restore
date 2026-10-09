@@ -50,7 +50,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.portal.E6",
    "shared.portal.icon"
   ]
  },

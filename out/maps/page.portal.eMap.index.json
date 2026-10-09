@@ -77,8 +77,7 @@
    "original": "N",
    "path": "@/legacy/utils",
    "export": "getCurrentLocation",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "go": {
    "original": "u",
@@ -108,14 +107,14 @@
    "original": "index.api.178332063620022.js#g",
    "path": "@/api/company2",
    "export": "freeCompanyPositionPageListForMap",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyPositionPageListForMap"
   },
   "Se": {
    "original": "index.api.178332063620020.js#a",
    "path": "@/api/service",
    "export": "freeServiceUnitPageListForMap",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeServiceUnitPageListForMap"
   }
  },

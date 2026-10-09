@@ -64,9 +64,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.c03"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true,
  "accepted": {

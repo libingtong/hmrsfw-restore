@@ -4,7 +4,7 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `G` | index.api.1783320636200.js | api | @/api/api-1783320636200 `freeCompanyExpandPositionList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandPositionList",method:"post",params:e})` |
+| `G` | index.api.1783320636200.js | api | @/api/company `freeCompanyExpandPositionList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandPositionList",method:"post",params:e})` |
 | `va` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `wa` | index.1783320636200.js | api | @/legacy `getDictValueByCodeAndItems` | `e=>ut.request({url:"/xf-job/job/licenseFree/getDictValueByCodeAndItems",method:"post",params:e})` |
 | `E` | index.1783320636200.js | entry | @/legacy `BusinessDictLabels` | `(e=>(e.PROVINCE_NAME="provinceName",e.TEACHIN_STATUS="teachin_status",e.WEBSITE_CONFIG="website_config",e.PLATFORM="\u5E73\u53F0\u914D\u7F6E",e.INDEX_QRCODE="index_qrcode",e.TOPNAV="topNav",e.HIDE_COD` |

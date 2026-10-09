@@ -55,8 +55,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c02",
    "shared.portal.thirdParty"
   ]
  },

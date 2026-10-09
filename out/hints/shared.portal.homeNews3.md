@@ -7,9 +7,9 @@
 | `ve` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `Ie` | index.1783320636200.js | entry | @/legacy `useStore` | `function(e){return e===void 0&&(e=null),Ft(e!==null?e:Ru)}` |
 | `ke` | index.1783320636200.js | api | @/legacy `getArticleList` | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
-| `Le` | index.1783320636200.js | api | @/legacy/api `getArticleListByTypeCodes`（reserved） | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleListByTypeCodes",method:"post",params:e})` |
+| `Le` | index.1783320636200.js | api | @/legacy/api `getArticleListByTypeCodes` | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleListByTypeCodes",method:"post",params:e})` |
 | `Ae` | index.1783320636200.js | api | @/legacy `getArticleListByTypeIds` | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleListByTypeIds",method:"post",params:e})` |
-| `K` | index.1783320636200.js | entry | @/legacy/utils `openLink`（reserved） | `(e,t,n)=>{let r=window.location.host;if(e.linkAddress)String(e.linkAddress).includes(r)?window.open(e.linkAddress):e.linkAddress.includes("www")\|\|e.linkAddress.includes("http")?window.open("/outLink?l` |
+| `K` | index.1783320636200.js | entry | @/legacy/utils `openLink` | `(e,t,n)=>{let r=window.location.host;if(e.linkAddress)String(e.linkAddress).includes(r)?window.open(e.linkAddress):e.linkAddress.includes("www")\|\|e.linkAddress.includes("http")?window.open("/outLink?l` |
 | `xe` | index.1783320636200.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `_e` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `Ne` | index.1783320636200.js | entry | dayjs `default` | `Rk(Owe)` |

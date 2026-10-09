@@ -4,8 +4,8 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `G` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `getDownloadList`（reserved） | `e=>t.request({url:"/xf-job/job/xfJobCompanyCurriculumDownload/getDownloadList",method:"get",params:e})` |
-| `H` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `addTalent`（reserved） | `e=>t.request({url:"/xf-job/job/xfJobCompanyTalents/addTalent",method:"post",data:e})` |
+| `G` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `getDownloadList` | `e=>t.request({url:"/xf-job/job/xfJobCompanyCurriculumDownload/getDownloadList",method:"get",params:e})` |
+| `H` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `addTalent` | `e=>t.request({url:"/xf-job/job/xfJobCompanyTalents/addTalent",method:"post",data:e})` |
 | `B` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `K` | index.1751615607545.js | entry | ant-design-vue `Modal` | `re({compatConfig:{MODE:3},name:"AModal",inheritAttrs:!1,props:xt(Cdt(),{width:520,transitionName:"zoom",maskTransitionName:"fade",confirmLoading:!1,visible:!1,okType:"primary"}),setup:function(e,n){va` |
 | `W` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |

@@ -51,14 +51,14 @@
  "api": {
   "P": {
    "original": "index.api.17516156075456.js#f",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listNoPage",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/listNoPage"
   },
   "V": {
    "original": "index.api.17516156075456.js#h",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "saveCopy",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/saveCopy"

@@ -55,9 +55,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.c01"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

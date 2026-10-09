@@ -75,7 +75,7 @@
    "original": "index.api.178332063620020.js#a",
    "path": "@/api/service",
    "export": "freeServiceUnitPageListForMap",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeServiceUnitPageListForMap"
   }
  },

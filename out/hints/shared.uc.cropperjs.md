@@ -5,7 +5,7 @@
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
 | `Ie` | index.1751615607545.js | entry | @/legacy `http` | `new cpt({baseURL:Li,timeout:cvt})` |
-| `Le` | index.1751615607545.js | entry | @/legacy/utils `formatDateDash`（reserved） | `t=>{var e=t.getFullYear(),n=t.getMonth()+1,r=t.getDate();return t.getHours(),t.getMinutes(),t.getSeconds(),e+"-"+n+"-"+r}` |
+| `Le` | index.1751615607545.js | entry | @/legacy/utils `formatDateDash` | `t=>{var e=t.getFullYear(),n=t.getMonth()+1,r=t.getDate();return t.getHours(),t.getMinutes(),t.getSeconds(),e+"-"+n+"-"+r}` |
 | `Et` | index.1751615607545.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `Tt` | index.1751615607545.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `qt` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |

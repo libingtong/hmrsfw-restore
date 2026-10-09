@@ -58,21 +58,21 @@
    "original": "index.api.178332063620018.js#b",
    "path": "@/api/child",
    "export": "getArticleTypeById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/getArticleTypeById"
   },
   "G": {
    "original": "index.api.178332063620018.js#g",
    "path": "@/api/child",
    "export": "getChildArticleTypeList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
   },
   "H": {
    "original": "index.api.178332063620018.js#a",
    "path": "@/api/child",
    "export": "getArticleList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/getArticleList"
   }
  },

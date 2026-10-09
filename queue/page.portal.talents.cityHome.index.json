@@ -61,7 +61,6 @@
    "page.portal.talents.cityHome.talentArea"
   ],
   "orders": [
-   "entry.portal.E6",
    "page.portal.talents.cityHome.talentArea",
    "shared.portal.adsCenter",
    "shared.portal.homeRight"

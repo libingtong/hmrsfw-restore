@@ -43,8 +43,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "re": {
    "original": "o",
@@ -74,8 +73,7 @@
    "original": "bX",
    "path": "@/legacy/utils",
    "export": "toHonorific",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "ve": {
    "original": "u",
@@ -99,8 +97,7 @@
    "original": "bT",
    "path": "@/legacy/utils",
    "export": "maskPhone",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "ye": {
    "original": "_",
@@ -110,7 +107,7 @@
  "api": {
   "Ae": {
    "original": "index.api.178332063620024.js#t",
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "oddjobXfOddUserQueryById",
    "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/oddjobXfOddUserQueryById"

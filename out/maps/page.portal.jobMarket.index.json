@@ -72,21 +72,21 @@
    "original": "index.api.178332063620020.js#q",
    "path": "@/api/service",
    "export": "queryById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/school/licenseFree/XfSysArticle/queryById"
   },
   "Da": {
    "original": "index.api.178332063620020.js#g",
    "path": "@/api/service",
    "export": "freeServiceUnitPageList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeServiceUnitPageList"
   },
   "Ia": {
    "original": "index.api.178332063620026.js#k",
    "path": "@/api/sysConsult",
    "export": "findJobList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/findJobList"
   }
  },

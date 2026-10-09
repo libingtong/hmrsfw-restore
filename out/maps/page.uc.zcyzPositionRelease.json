@@ -95,8 +95,7 @@
    "original": "ac",
    "path": "@/legacy/api",
    "export": "checkPositionName",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "z": {
    "original": "M",
@@ -132,8 +131,7 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "addOrEdit",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "Xe": {
    "original": "af",

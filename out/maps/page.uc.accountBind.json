@@ -46,14 +46,14 @@
  "api": {
   "k": {
    "original": "index.api.17516156075453.js#g",
-   "path": "@/api/api-17516156075453",
+   "path": "@/api/user",
    "export": "userBindInfo",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUserThirdAssociation/userBindInfo"
   },
   "m": {
    "original": "index.api.17516156075453.js#u",
-   "path": "@/api/api-17516156075453",
+   "path": "@/api/user",
    "export": "deleteItem",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUserThirdAssociation/delete"

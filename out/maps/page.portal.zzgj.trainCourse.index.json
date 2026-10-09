@@ -52,8 +52,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "ne": {
    "original": "A",
@@ -93,15 +92,13 @@
    "original": "aB",
    "path": "@/legacy/api",
    "export": "getChildArticleTypeList",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "mt": {
    "original": "aV",
    "path": "@/legacy/api",
    "export": "getAllLevelArticleListByTypeId",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "ae": {
    "original": "B",
@@ -125,7 +122,7 @@
  "api": {
   "ye": {
    "original": "index.api.17833206362008.js#e",
-   "path": "@/api/api-08",
+   "path": "@/api/sysArticle",
    "export": "updateViewTimes",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/updateViewTimes"

@@ -4,9 +4,9 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `ie` | index.api.17516156075457.js | api | @/api/oddFindJobInfo `queryById`（reserved） | `d=>e.request({url:"/xf-oddjob/oddJob/xfOddFindJobInfo/queryById",method:"get",params:d})` |
-| `ce` | index.api.17516156075457.js | api | @/api/oddFindJobInfo `edit2`（reserved） | `d=>e.request({url:"/xf-oddjob/oddJob/xfOddFindJobInfo/edit",method:"post",data:d})` |
-| `pe` | index.api.17516156075457.js | api | @/api/oddFindJobInfo `add2`（reserved） | `d=>e.request({url:"/xf-oddjob/oddJob/xfOddFindJobInfo/add",method:"post",data:d})` |
+| `ie` | index.api.17516156075457.js | api | @/api/oddFindJobInfo `queryById` | `d=>e.request({url:"/xf-oddjob/oddJob/xfOddFindJobInfo/queryById",method:"get",params:d})` |
+| `ce` | index.api.17516156075457.js | api | @/api/oddFindJobInfo `edit2` | `d=>e.request({url:"/xf-oddjob/oddJob/xfOddFindJobInfo/edit",method:"post",data:d})` |
+| `pe` | index.api.17516156075457.js | api | @/api/oddFindJobInfo `add2` | `d=>e.request({url:"/xf-oddjob/oddJob/xfOddFindJobInfo/add",method:"post",data:d})` |
 | `J` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |
 | `me` | oddNews.1751615607545.js | shared | @/shared/oddNews/OddType.vue `default`（reserved） | `A(ie,[["__scopeId","data-v-8b4d3811"]])` |
 | `fe` | oddNews.1751615607545.js | shared | @/shared/oddNews/OddNews.vue `default`（reserved） | `A(de,[["__scopeId","data-v-69c520ac"]])` |

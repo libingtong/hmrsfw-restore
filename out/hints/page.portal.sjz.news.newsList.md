@@ -4,9 +4,9 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `F` | index.api.178332063620018.js | api | @/api/child `getArticleTypeById`（reserved） | `e=>l.request({url:"/xf-job/job/licenseFree/getArticleTypeById",method:"post",params:e})` |
-| `G` | index.api.178332063620018.js | api | @/api/child `getChildArticleTypeList`（reserved） | `e=>l.request({url:"/xf-job/job/licenseFree/getChildArticleTypeList",method:"post",params:e})` |
-| `H` | index.api.178332063620018.js | api | @/api/child `getArticleList`（reserved） | `e=>l.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
+| `F` | index.api.178332063620018.js | api | @/api/child `getArticleTypeById` | `e=>l.request({url:"/xf-job/job/licenseFree/getArticleTypeById",method:"post",params:e})` |
+| `G` | index.api.178332063620018.js | api | @/api/child `getChildArticleTypeList` | `e=>l.request({url:"/xf-job/job/licenseFree/getChildArticleTypeList",method:"post",params:e})` |
+| `H` | index.api.178332063620018.js | api | @/api/child `getArticleList` | `e=>l.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
 | `pe` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
 | `fe` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `Y` | index.1783320636200.js | entry | @/legacy `getDictItemsByCode` | `e=>IN("/jeecg-system/sys/dict/getDictItemsByCode",e,"get")` |

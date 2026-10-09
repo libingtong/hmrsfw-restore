@@ -35,8 +35,7 @@
    "original": "am",
    "path": "@/legacy/utils",
    "export": "formatDateDash",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "Et": {
    "original": "B",

@@ -35,8 +35,7 @@
    "original": "bn",
    "path": "@/legacy/utils",
    "export": "validatePassword",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "P": {
    "original": "h",
@@ -60,8 +59,7 @@
    "original": "aE",
    "path": "@/legacy",
    "export": "SlideCaptcha",
-   "status": "reserved",
-   "owner": "entry.portal.c02"
+   "status": "restored"
   },
   "w": {
    "original": "A",
@@ -73,8 +71,7 @@
    "original": "bJ",
    "path": "@/legacy/api",
    "export": "newRegister",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "be": {
    "original": "M",

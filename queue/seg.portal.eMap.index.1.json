@@ -84,7 +84,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.E6",
    "shared.portal.gaode2",
    "shared.portal.modules"
   ]

@@ -90,8 +90,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Yt": {
    "original": "O",
@@ -168,49 +167,49 @@
  "api": {
   "oo": {
    "original": "index.api.178332063620017.js#b",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "updateBrowseCount",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/updateBrowseCount"
   },
   "lo": {
    "original": "index.api.178332063620017.js#c",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/queryById"
   },
   "so": {
    "original": "index.api.178332063620017.js#d",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryJobFairStatistics",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/statistics/queryJobFairStatistics"
   },
   "io": {
    "original": "index.api.178332063620017.js#e",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "scrollBarData",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/scrollBarData"
   },
   "ro": {
    "original": "index.api.178332063620017.js#f",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryAttendeesCompany",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesCompany"
   },
   "no": {
    "original": "index.api.178332063620017.js#h",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryAttendeesPosition",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesPosition"
   },
   "wo": {
    "original": "index.1783320636200117.js#g",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "getQrcodeImgByObjectId",
    "status": "restored",
    "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"

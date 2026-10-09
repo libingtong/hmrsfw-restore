@@ -116,63 +116,63 @@
  "api": {
   "dt": {
    "original": "index.api.175161560754511.js#c",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "companyDataReport",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompany/companyDataReport"
   },
   "pt": {
    "original": "index.api.175161560754511.js#b",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "queryCompanyIntentionResumeInfo",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompany/queryCompanyIntentionResumeInfo"
   },
   "Ke": {
    "original": "index.api.175161560754511.js#d",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "queryCompanyPositionSelected",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/queryCompanyPositionSelected"
   },
   "ct": {
    "original": "index.api.175161560754511.js#e",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "companyIntentionResumeUpload",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompany/companyIntentionResumeUpload"
   },
   "ft": {
    "original": "index.api.175161560754511.js#f",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "queryCompanyFileDataInfo",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompany/queryCompanyFileDataInfo"
   },
   "mt": {
    "original": "index.api.175161560754511.js#g",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "companyFileDataUpload",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompany/companyFileDataUpload"
   },
   "ht": {
    "original": "index.api.175161560754511.js#h",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "addOrUpdate",
    "status": "restored",
    "url": "/xf-job/job/xfJobFairApplyUnsubscribe/addOrUpdate"
   },
   "gt": {
    "original": "index.api.175161560754511.js#i",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "queryCompanyJobFairInfo",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompany/queryCompanyJobFairInfo"
   },
   "vt": {
    "original": "index.api.175161560754511.js#j",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "queryCompanyDataReport",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompany/queryCompanyDataReport"

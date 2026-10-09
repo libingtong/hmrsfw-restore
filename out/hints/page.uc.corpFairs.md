@@ -5,15 +5,15 @@
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
 | `ut` | confPass.1751615607545.js | shared | @/shared/confPass.vue `default`（reserved） | `K(se,[["__scopeId","data-v-6de9d024"]])` |
-| `dt` | index.api.175161560754511.js | api | @/api/api-175161560754511 `companyDataReport` | `o=>t.request({url:"/xf-job/job/xfJobCompany/companyDataReport",method:"post",data:o})` |
-| `pt` | index.api.175161560754511.js | api | @/api/api-175161560754511 `queryCompanyIntentionResumeInfo` | `o=>t.request({url:"/xf-job/job/xfJobCompany/queryCompanyIntentionResumeInfo",method:"post",data:o})` |
-| `Ke` | index.api.175161560754511.js | api | @/api/api-175161560754511 `queryCompanyPositionSelected` | `o=>t.request({url:"/xf-job/job/licenseFree/queryCompanyPositionSelected",method:"post",params:o})` |
-| `ct` | index.api.175161560754511.js | api | @/api/api-175161560754511 `companyIntentionResumeUpload` | `o=>t.request({url:"/xf-job/job/xfJobCompany/companyIntentionResumeUpload",method:"post",data:o})` |
-| `ft` | index.api.175161560754511.js | api | @/api/api-175161560754511 `queryCompanyFileDataInfo` | `o=>t.request({url:"/xf-job/job/xfJobCompany/queryCompanyFileDataInfo",method:"post",data:o})` |
-| `mt` | index.api.175161560754511.js | api | @/api/api-175161560754511 `companyFileDataUpload` | `o=>t.request({url:"/xf-job/job/xfJobCompany/companyFileDataUpload",method:"post",data:o})` |
-| `ht` | index.api.175161560754511.js | api | @/api/api-175161560754511 `addOrUpdate` | `o=>t.request({url:"/xf-job/job/xfJobFairApplyUnsubscribe/addOrUpdate",method:"post",data:o})` |
-| `gt` | index.api.175161560754511.js | api | @/api/api-175161560754511 `queryCompanyJobFairInfo` | `o=>t.request({url:"/xf-job/job/xfJobCompany/queryCompanyJobFairInfo",method:"post",data:o})` |
-| `vt` | index.api.175161560754511.js | api | @/api/api-175161560754511 `queryCompanyDataReport` | `o=>t.request({url:"/xf-job/job/xfJobCompany/queryCompanyDataReport",method:"post",data:o})` |
+| `dt` | index.api.175161560754511.js | api | @/api/jobCompany `companyDataReport` | `o=>t.request({url:"/xf-job/job/xfJobCompany/companyDataReport",method:"post",data:o})` |
+| `pt` | index.api.175161560754511.js | api | @/api/jobCompany `queryCompanyIntentionResumeInfo` | `o=>t.request({url:"/xf-job/job/xfJobCompany/queryCompanyIntentionResumeInfo",method:"post",data:o})` |
+| `Ke` | index.api.175161560754511.js | api | @/api/jobCompany `queryCompanyPositionSelected` | `o=>t.request({url:"/xf-job/job/licenseFree/queryCompanyPositionSelected",method:"post",params:o})` |
+| `ct` | index.api.175161560754511.js | api | @/api/jobCompany `companyIntentionResumeUpload` | `o=>t.request({url:"/xf-job/job/xfJobCompany/companyIntentionResumeUpload",method:"post",data:o})` |
+| `ft` | index.api.175161560754511.js | api | @/api/jobCompany `queryCompanyFileDataInfo` | `o=>t.request({url:"/xf-job/job/xfJobCompany/queryCompanyFileDataInfo",method:"post",data:o})` |
+| `mt` | index.api.175161560754511.js | api | @/api/jobCompany `companyFileDataUpload` | `o=>t.request({url:"/xf-job/job/xfJobCompany/companyFileDataUpload",method:"post",data:o})` |
+| `ht` | index.api.175161560754511.js | api | @/api/jobCompany `addOrUpdate` | `o=>t.request({url:"/xf-job/job/xfJobFairApplyUnsubscribe/addOrUpdate",method:"post",data:o})` |
+| `gt` | index.api.175161560754511.js | api | @/api/jobCompany `queryCompanyJobFairInfo` | `o=>t.request({url:"/xf-job/job/xfJobCompany/queryCompanyJobFairInfo",method:"post",data:o})` |
+| `vt` | index.api.175161560754511.js | api | @/api/jobCompany `queryCompanyDataReport` | `o=>t.request({url:"/xf-job/job/xfJobCompany/queryCompanyDataReport",method:"post",data:o})` |
 | `_e` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |
 | `bt` | index.175161560754529.js | entry | @/shared/CancelReasonModal.vue `default` | `g(I,[["__scopeId","data-v-db987c98"]])` |
 | `ae` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |

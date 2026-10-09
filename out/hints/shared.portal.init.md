@@ -10,7 +10,7 @@
 | `D` | index.1783320636200118.js | entry | echarts `registerMap` | `function hg(n,e,t){var i=ow("registerMap");i&&i(n,e,t)}` |
 | `u` | index.1783320636200118.js | entry | echarts `graphic` | `$O` |
 | `R` | index.1783320636200.js | api | @/legacy `getDictValueByCodeAndItems` | `e=>ut.request({url:"/xf-job/job/licenseFree/getDictValueByCodeAndItems",method:"post",params:e})` |
-| `q` | index.1783320636200.js | api | @/legacy/api `getAreaInfoById`（reserved） | `e=>ut.request({url:"/xf-job/communal/licenseFree/xfSysAreainfo/getAreaInfoById",method:"get",params:e})` |
+| `q` | index.1783320636200.js | api | @/legacy/api `getAreaInfoById` | `e=>ut.request({url:"/xf-job/communal/licenseFree/xfSysAreainfo/getAreaInfoById",method:"get",params:e})` |
 | `I` | index.1783320636200.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `J` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `M` | index.1783320636200.js | entry | axios `AxiosHeaders` | `cr` |

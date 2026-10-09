@@ -8,5 +8,5 @@
 | `H` | index.1751615607545.js | api | @/legacy `getSettingValueByCode` | `t=>Ee.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:t})` |
 | `P` | index.1751615607545.js | entry | @/legacy `SettingCodes` | `(t=>(t.WEBPORTAL_DOMAIN="webportal_domain",t.USER_CENTE_RDEFAULT_NAME="userCenterDefaultName",t.IS_SHOW_CHANGEPWD="is_show_changepwd",t.JOB_FAIR_PASSED_IZ_EDIT_POSITION="job_fair_passed_iz_edit_positi` |
 | `U` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `ae` | index.api.175161560754512.js | api | @/api/api-175161560754512 `list3` | `t=>o.request({url:"/xf-job/job/xfJobFairUnsubscribeAuditRecord/list",method:"post",data:t})` |
+| `ae` | index.api.175161560754512.js | api | @/api/jobFair `list3` | `t=>o.request({url:"/xf-job/job/xfJobFairUnsubscribeAuditRecord/list",method:"post",data:t})` |
 | `j` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |
