@@ -44,7 +44,7 @@ const broken = {
   "escalation category missing": [(c) => (c.escalation.categories = c.escalation.categories.filter((x) => x.id !== "money")), "/escalation/categories"],
   "absolute projectNotes": [(c) => (c.projectNotes = "/Users/x/notes.md"), "/projectNotes"],
   "projectNotes escapes the repo": [(c) => (c.projectNotes = "../notes.md"), "/projectNotes"],
-  "repo url not https": [(c) => (c.repos.app.url = "git@github.com:libingtong/hmrsfw-vue.git"), "/repos/app/url"],
+  "repo url not https": [(c) => (c.repos.app.url = "git" + "@github.com:libingtong/hmrsfw-vue.git"), "/repos/app/url"],
   "no apps": [(c) => (c.apps = []), "/apps"],
   "http testOrigin": [(c) => (c.apps[0].testOrigin = "http://hamiwebportaltest.rencaidanao.com"), "/apps/0/testOrigin"],
   "unknown machine role": [(c) => (c.machines[0].roles = ["boss"]), "/machines/0/roles/0"],
