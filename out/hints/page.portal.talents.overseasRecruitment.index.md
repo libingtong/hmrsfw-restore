@@ -1,0 +1,11 @@
+# 导入提示：page.portal.talents.overseasRecruitment.index
+
+原 chunk `index.1783320636200101.js`。导入路径和导出名以 maps 为准（来自 registry），这里只给定义片段帮助理解。Vue 运行时别名见 maps.vue。
+
+| 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
+|---|---|---|---|---|
+| `_e` | index.api.178332063620041.js | api | @/api/jobOverseasRecruitNotice `queryList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobOverseasRecruitNotice/queryList",method:"get",params:e})` |
+| `ke` | index.1783320636200.js | entry | @/legacy `getDictItemsByCode` | `e=>IN("/jeecg-system/sys/dict/getDictItemsByCode",e,"get")` |
+| `xe` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
+| `ze` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
+| `we` | homeNews.17833206362003.js | shared | @/shared/homeNews3.vue `default`（reserved） | `be(te,[["__scopeId","data-v-f48bcb6a"]])` |

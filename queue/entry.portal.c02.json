@@ -1,0 +1,60 @@
+{
+ "id": "entry.portal.c02",
+ "type": "entry",
+ "area": "component",
+ "title": "入口全局组件：passwordhint、index、SlideCaptcha",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": 7,
+ "appCode": "018",
+ "components": [
+  {
+   "name": "passwordhint",
+   "binding": "lEt",
+   "scopeId": "data-v-81782968",
+   "kb": 4.9,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/Passwordhint.vue"
+  },
+  {
+   "name": "index",
+   "binding": "dEt",
+   "scopeId": null,
+   "kb": 0.9,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/Index.vue"
+  },
+  {
+   "name": "SlideCaptcha",
+   "binding": "Ek",
+   "scopeId": null,
+   "kb": 1.2,
+   "exportedAs": [
+    "aE"
+   ],
+   "file": "apps/portal/src/legacy/SlideCaptcha.vue",
+   "replacesStub": true
+  }
+ ],
+ "files": [
+  "apps/portal/src/legacy/components/Passwordhint.vue",
+  "apps/portal/src/legacy/components/Index.vue",
+  "apps/portal/src/legacy/SlideCaptcha.vue"
+ ],
+ "owns": [
+  {
+   "alias": "aE",
+   "path": "@/legacy",
+   "export": "SlideCaptcha",
+   "status": "reserved",
+   "stub": "apps/portal/src/legacy/SlideCaptcha.vue"
+  }
+ ],
+ "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",
+ "deps": {
+  "orders": []
+ }
+}

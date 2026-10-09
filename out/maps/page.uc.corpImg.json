@@ -1,0 +1,59 @@
+{
+ "id": "page.uc.corpImg",
+ "chunk": "legacy-dist/usercenter/assets/index.17516156075453.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "x": "defineComponent",
+  "b": "reactive",
+  "I": "onMounted",
+  "m": "openBlock",
+  "f": "createElementBlock",
+  "n": "createElementVNode",
+  "l": "toDisplayString",
+  "S": "Fragment",
+  "w": "renderList",
+  "L": "createStaticVNode",
+  "C": "withDirectives",
+  "N": "vShow",
+  "T": "normalizeClass",
+  "k": "pushScopeId",
+  "j": "popScopeId"
+ },
+ "entry": {
+  "y": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "h": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "E": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "M": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "v": {
+   "original": "index.175161560754527.js#i",
+   "path": "echarts",
+   "export": "init"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

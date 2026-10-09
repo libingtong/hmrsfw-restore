@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.businessSingUp",
+ "chunk": "legacy-dist/usercenter/assets/businessSingUp.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "C": "defineComponent",
+  "h": "inject",
+  "T": "reactive",
+  "B": "onMounted",
+  "r": "resolveComponent",
+  "i": "openBlock",
+  "o": "createElementBlock",
+  "p": "createElementVNode",
+  "U": "Fragment",
+  "u": "createVNode",
+  "g": "withCtx",
+  "l": "toDisplayString",
+  "m": "createCommentVNode",
+  "E": "normalizeStyle",
+  "F": "createTextVNode",
+  "R": "pushScopeId",
+  "q": "popScopeId"
+ },
+ "entry": {
+  "I": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "v": {
+   "original": "bk",
+   "path": "@/legacy/api",
+   "export": "pxRegistList",
+   "status": "restored"
+  },
+  "N": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "w": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,70 @@
+{
+ "id": "page.uc.zcyzJobFairRelease",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 17,
+ "sourceChunk": "legacy-dist/usercenter/assets/zcyzJobFairRelease.1751615607545.js",
+ "components": [
+  {
+   "name": "zcyzJobFairRelease",
+   "scopeId": "data-v-659f3dd2"
+  }
+ ],
+ "scopeIds": [
+  "data-v-659f3dd2"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/zcyzJobFairRelease.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css",
+  "legacy-dist/usercenter/assets/map.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/zcyzJobFairRelease.vue",
+ "subComponentDir": "apps/uc/src/views/zcyzJobFairRelease/",
+ "routes": [
+  {
+   "path": "/zcyzJobFairRelease",
+   "name": "zcyzJobFairRelease"
+  }
+ ],
+ "recordPath": "/zcyzJobFairRelease",
+ "maps": "out/maps/page.uc.zcyzJobFairRelease.json",
+ "hints": "out/hints/page.uc.zcyzJobFairRelease.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a9",
+   "aa",
+   "ab",
+   "ad",
+   "af",
+   "ag",
+   "b0",
+   "b1",
+   "b2",
+   "b3",
+   "c",
+   "d",
+   "m",
+   "v",
+   "x"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "extractpositionmodal.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js",
+   "workType.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

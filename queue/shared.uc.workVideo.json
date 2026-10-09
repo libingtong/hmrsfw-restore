@@ -1,0 +1,64 @@
+{
+ "id": "shared.uc.workVideo",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6.3,
+ "chunkKb": 6.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/workVideo.1751615607545.js",
+ "components": [
+  {
+   "name": "workImg",
+   "scopeId": "data-v-bf79a309"
+  },
+  {
+   "name": "workVideo",
+   "scopeId": "data-v-c9289ee6"
+  }
+ ],
+ "scopeIds": [
+  "data-v-bf79a309",
+  "data-v-c9289ee6"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/workVideo.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/workVideo/WorkImg.vue",
+ "subComponentDir": "apps/uc/src/shared/workVideo/",
+ "exports": {
+  "a": {
+   "path": "@/shared/workVideo/WorkVideo.vue",
+   "export": "default"
+  },
+  "w": {
+   "path": "@/shared/workVideo/WorkImg.vue",
+   "export": "default"
+  }
+ },
+ "registryKey": "workVideo.1751615607545.js",
+ "usedBy": [
+  "page.uc.WorkStyleAdmin",
+  "page.uc.BeOnProbationAdmin",
+  "page.uc.personalstyle"
+ ],
+ "maps": "out/maps/shared.uc.workVideo.json",
+ "hints": "out/hints/shared.uc.workVideo.md",
+ "deps": {
+  "entry": [
+   "I",
+   "M",
+   "aO",
+   "d",
+   "m",
+   "y"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

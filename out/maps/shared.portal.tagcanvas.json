@@ -1,0 +1,24 @@
+{
+ "id": "shared.portal.tagcanvas",
+ "chunk": "legacy-dist/portal/assets/tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ui": "defineComponent",
+  "ci": "onMounted",
+  "gi": "nextTick",
+  "di": "watch",
+  "Lt": "ref",
+  "fi": "openBlock",
+  "mi": "createElementBlock",
+  "vt": "createElementVNode",
+  "pi": "normalizeStyle"
+ },
+ "entry": {},
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

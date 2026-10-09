@@ -1,0 +1,56 @@
+{
+ "id": "shared.portal.auth",
+ "chunk": "legacy-dist/portal/assets/auth.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "_": "defineComponent",
+  "j": "useRoute (vue-router)",
+  "w": "useRouter (vue-router)",
+  "x": "reactive",
+  "U": "onBeforeMount",
+  "P": "onMounted",
+  "A": "openBlock",
+  "d": "createElementBlock",
+  "o": "renderSlot",
+  "W": "createCommentVNode",
+  "it": "normalizeClass",
+  "l": "createElementVNode",
+  "tt": "unref",
+  "m": "toDisplayString",
+  "I": "resolveComponent",
+  "q": "createVNode",
+  "y": "withCtx",
+  "E": "createTextVNode"
+ },
+ "entry": {
+  "R": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "nt": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ct": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "rt": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

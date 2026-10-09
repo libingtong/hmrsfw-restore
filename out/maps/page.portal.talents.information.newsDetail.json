@@ -1,0 +1,77 @@
+{
+ "id": "page.portal.talents.information.newsDetail",
+ "chunk": "legacy-dist/portal/assets/newsDetail.17833206362003.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "M": "defineComponent",
+  "B": "ref",
+  "S": "useRoute (vue-router)",
+  "j": "reactive",
+  "z": "onMounted",
+  "v": "resolveComponent",
+  "w": "openBlock",
+  "L": "createElementBlock",
+  "a": "createElementVNode",
+  "c": "toDisplayString",
+  "r": "createVNode",
+  "T": "withCtx",
+  "y": "unref",
+  "A": "withDirectives",
+  "C": "createCommentVNode",
+  "I": "vShow"
+ },
+ "entry": {
+  "N": {
+   "original": "V",
+   "path": "@/legacy",
+   "export": "VideoPlayer",
+   "status": "reserved",
+   "owner": "entry.portal.c05"
+  },
+  "O": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "V": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "W": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "E": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "R": {
+   "original": "index.api.178332063620040.js#q",
+   "path": "@/api/scan",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-job/school/licenseFree/XfSysArticle/queryById"
+  },
+  "U": {
+   "original": "index.api.178332063620040.js#u",
+   "path": "@/api/scan",
+   "export": "updateScanTimes",
+   "status": "reserved",
+   "url": "/xf-job/school/licenseFree/updateScanTimes"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

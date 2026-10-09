@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.collectmentor",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/collectmentor.1751615607545.js",
+ "components": [
+  {
+   "name": "collectmentor",
+   "scopeId": "data-v-d7a9c611"
+  }
+ ],
+ "scopeIds": [
+  "data-v-d7a9c611"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/collectmentor.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/collectmentor.vue",
+ "subComponentDir": "apps/uc/src/views/collectmentor/",
+ "routes": [
+  {
+   "path": "/collectmentor",
+   "name": "collectmentor"
+  }
+ ],
+ "recordPath": "/collectmentor",
+ "maps": "out/maps/page.uc.collectmentor.json",
+ "hints": "out/hints/page.uc.collectmentor.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "b5",
+   "bn",
+   "d",
+   "h",
+   "m"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [
+   "default.1751615607545.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

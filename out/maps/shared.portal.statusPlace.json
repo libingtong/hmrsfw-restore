@@ -1,0 +1,40 @@
+{
+ "id": "shared.portal.statusPlace",
+ "chunk": "legacy-dist/portal/assets/statusPlace.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "j": "defineComponent",
+  "z": "reactive",
+  "f": "onMounted",
+  "b": "resolveComponent",
+  "g": "openBlock",
+  "r": "createElementBlock",
+  "p": "createElementVNode",
+  "U": "createCommentVNode",
+  "k": "toDisplayString",
+  "O": "createTextVNode",
+  "L": "createVNode"
+ },
+ "entry": {
+  "q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "h": {
+   "original": "noResumeR.1783320636200.js#_",
+   "value": "/assets/noResumeR.1783320636200.png",
+   "inline": false,
+   "path": "@/shared/noResumeR",
+   "export": "_",
+   "status": "restored"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

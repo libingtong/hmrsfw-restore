@@ -1,0 +1,48 @@
+{
+ "id": "page.uc.lookresume",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/lookresume.1751615607545.js",
+ "components": [
+  {
+   "name": "lookresume",
+   "scopeId": "data-v-f402aa4e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f402aa4e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/lookresume.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/lookresume.vue",
+ "subComponentDir": "apps/uc/src/views/lookresume/",
+ "routes": [
+  {
+   "path": "/lookresume",
+   "name": "lookresume"
+  }
+ ],
+ "recordPath": "/lookresume",
+ "maps": "out/maps/page.uc.lookresume.json",
+ "hints": "out/hints/page.uc.lookresume.md",
+ "deps": {
+  "entry": [
+   "d",
+   "k"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17516156075456.js#e",
+   "index.api.17516156075456.js#f"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

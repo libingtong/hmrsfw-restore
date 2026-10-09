@@ -1,0 +1,168 @@
+{
+ "id": "page.portal.News.newsDetail",
+ "chunk": "legacy-dist/portal/assets/newsDetail.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "G": "defineComponent",
+  "J": "useRoute (vue-router)",
+  "k": "ref",
+  "j": "reactive",
+  "K": "onMounted",
+  "p": "resolveComponent",
+  "Ie": "resolveDirective",
+  "g": "openBlock",
+  "P": "createElementBlock",
+  "t": "createVNode",
+  "d": "withCtx",
+  "U": "createBlock",
+  "$": "withDirectives",
+  "Q": "createTextVNode",
+  "a": "createElementVNode",
+  "Ce": "pushScopeId",
+  "Se": "popScopeId",
+  "Te": "useRouter (vue-router)",
+  "T": "toDisplayString",
+  "X": "vShow",
+  "R": "unref",
+  "Le": "normalizeClass",
+  "q": "createCommentVNode",
+  "we": "Fragment"
+ },
+ "entry": {
+  "ee": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "le": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "Ve": {
+   "original": "V",
+   "path": "@/legacy",
+   "export": "VideoPlayer",
+   "status": "reserved",
+   "owner": "entry.portal.c05"
+  },
+  "ze": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Pe": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Ue": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "De": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "se": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Me": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "Ne": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Fe": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "Ye": {
+   "original": "index.api.17833206362008.js#c",
+   "path": "@/api/api-08",
+   "export": "positionList",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysArticlePosition/positionList"
+  },
+  "Be": {
+   "original": "index.api.17833206362008.js#p",
+   "path": "@/api/api-08",
+   "export": "deliver",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysArticlePositionDeliver/deliver"
+  },
+  "Oe": {
+   "original": "index.api.17833206362008.js#q",
+   "path": "@/api/api-08",
+   "export": "queryById",
+   "status": "restored",
+   "url": "/xf-job/school/licenseFree/XfSysArticle/queryById"
+  },
+  "je": {
+   "original": "index.api.17833206362008.js#u",
+   "path": "@/api/api-08",
+   "export": "updateScanTimes",
+   "status": "restored",
+   "url": "/xf-job/school/licenseFree/updateScanTimes"
+  },
+  "$e": {
+   "original": "index.api.17833206362008.js#d",
+   "path": "@/api/api-08",
+   "export": "queryByIdDeliver",
+   "status": "restored",
+   "url": "/xf-job/school/licenseFree/xfSysArticle/queryByIdDeliver"
+  },
+  "ie": {
+   "original": "index.1783320636200117.js#v",
+   "path": "@/api/api-117",
+   "export": "list2",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/list"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

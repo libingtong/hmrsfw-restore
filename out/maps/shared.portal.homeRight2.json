@@ -1,0 +1,112 @@
+{
+ "id": "shared.portal.homeRight2",
+ "chunk": "legacy-dist/portal/assets/homeRight.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "D": "defineComponent",
+  "z": "reactive",
+  "N": "onMounted",
+  "P": "onBeforeUnmount",
+  "ee": "resolveComponent",
+  "a": "openBlock",
+  "i": "createElementBlock",
+  "l": "createElementVNode",
+  "R": "Fragment",
+  "te": "renderList",
+  "w": "createCommentVNode",
+  "S": "normalizeStyle",
+  "X": "createVNode",
+  "H": "unref",
+  "le": "toDisplayString",
+  "se": "useRouter (vue-router)",
+  "oe": "ref",
+  "k": "createTextVNode",
+  "ae": "createBlock",
+  "ie": "pushScopeId",
+  "ne": "popScopeId"
+ },
+ "entry": {
+  "j": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "W": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "L": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "ab",
+   "path": "@/legacy/api",
+   "export": "getArticleListNoCheck",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "q": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "G": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "F": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "J": {
+   "original": "by",
+   "path": "@/legacy/images",
+   "export": "ENTRY_IMAGE_BY",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "K": {
+   "original": "a6",
+   "path": "@/legacy",
+   "export": "FeedbackModal",
+   "status": "restored"
+  },
+  "M": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "U": {
+   "original": "aY",
+   "path": "@/legacy/images",
+   "export": "ENTRY_IMAGE_AY",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "V": {
+   "original": "as",
+   "path": "@/legacy/utils",
+   "export": "getUserInfo",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

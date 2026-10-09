@@ -1,0 +1,100 @@
+{
+ "id": "shared.portal.homeNews",
+ "chunk": "legacy-dist/portal/assets/homeNews.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Xe": "defineComponent",
+  "$e": "useRouter (vue-router)",
+  "es": "watch",
+  "ss": "onBeforeMount",
+  "le": "reactive",
+  "ts": "onMounted",
+  "R": "resolveComponent",
+  "s": "openBlock",
+  "l": "createElementBlock",
+  "v": "createBlock",
+  "h": "withCtx",
+  "i": "createElementVNode",
+  "d": "toDisplayString",
+  "u": "Fragment",
+  "w": "renderList",
+  "A": "createCommentVNode",
+  "m": "createVNode",
+  "j": "normalizeClass",
+  "is": "pushScopeId",
+  "ls": "popScopeId",
+  "p": "unref",
+  "b": "createTextVNode",
+  "J": "withDirectives",
+  "K": "vShow"
+ },
+ "entry": {
+  "as": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "ns": {
+   "original": "ap",
+   "path": "@/legacy",
+   "export": "getArticleListByTypeIds",
+   "status": "restored"
+  },
+  "ds": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "cs": {
+   "original": "am",
+   "path": "@/legacy",
+   "export": "getArticleList",
+   "status": "restored"
+  },
+  "P": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "O": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "V": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "os": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "z": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

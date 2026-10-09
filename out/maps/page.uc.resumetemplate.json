@@ -1,0 +1,76 @@
+{
+ "id": "page.uc.resumetemplate",
+ "chunk": "legacy-dist/usercenter/assets/resumetemplate.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "q": "defineComponent",
+  "h": "ref",
+  "D": "reactive",
+  "E": "onMounted",
+  "s": "resolveComponent",
+  "l": "openBlock",
+  "d": "createElementBlock",
+  "c": "createElementVNode",
+  "i": "createVNode",
+  "p": "withCtx",
+  "y": "Fragment",
+  "F": "renderList",
+  "O": "createBlock",
+  "I": "createCommentVNode",
+  "f": "createTextVNode",
+  "C": "unref",
+  "$": "toDisplayString"
+ },
+ "entry": {
+  "N": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "u": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "S": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "P": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "w": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "R": {
+   "original": "index.api.17516156075456.js#P",
+   "path": "@/api/api-56",
+   "export": "vitaeTempListForUserContent",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobVitaeTemplate/vitaeTempListForUserContent"
+  },
+  "U": {
+   "original": "index.api.17516156075456.js#Q",
+   "path": "@/api/api-56",
+   "export": "saveVitaeTemplateId",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/saveVitaeTemplateId"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

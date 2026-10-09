@@ -1,0 +1,225 @@
+{
+ "id": "page.uc.PositionRelease",
+ "chunk": "legacy-dist/usercenter/assets/PositionRelease.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Be": "defineComponent",
+  "Ue": "useRoute (vue-router)",
+  "Ye": "useRouter (vue-router)",
+  "c": "ref",
+  "Oe": "inject",
+  "Fe": "reactive",
+  "Me": "watch",
+  "je": "onBeforeMount",
+  "Ve": "onMounted",
+  "m": "resolveComponent",
+  "B": "openBlock",
+  "z": "createElementBlock",
+  "C": "unref",
+  "t": "createVNode",
+  "r": "withCtx",
+  "S": "createTextVNode",
+  "$": "toDisplayString",
+  "y": "createElementVNode",
+  "M": "createCommentVNode",
+  "Q": "withDirectives",
+  "G": "vShow",
+  "K": "createBlock",
+  "Le": "pushScopeId",
+  "Ee": "popScopeId"
+ },
+ "entry": {
+  "He": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "J": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "j": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ze": {
+   "original": "a9",
+   "path": "@/legacy",
+   "export": "detailById",
+   "status": "restored"
+  },
+  "V": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "P": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "p": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "ze": {
+   "original": "O",
+   "path": "@/legacy",
+   "export": "getAreaInfoByAreaId",
+   "status": "restored"
+  },
+  "$e": {
+   "original": "aa",
+   "path": "@/legacy",
+   "export": "getExtractPositionConfig",
+   "status": "restored"
+  },
+  "Qe": {
+   "original": "ab",
+   "path": "@/legacy",
+   "export": "confirmExtract",
+   "status": "restored"
+  },
+  "Ge": {
+   "original": "ac",
+   "path": "@/legacy/api",
+   "export": "checkPositionName",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "L": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "U": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "Ke": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "Je": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "ea": {
+   "original": "ad",
+   "path": "@/legacy",
+   "export": "checkSensitive",
+   "status": "restored"
+  },
+  "D": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "aa": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "addOrEdit",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ta": {
+   "original": "af",
+   "path": "@ant-design/icons-vue",
+   "export": "InfoCircleOutlined",
+   "status": "npm"
+  },
+  "sa": {
+   "original": "ag",
+   "path": "@ant-design/icons-vue",
+   "export": "QuestionCircleOutlined",
+   "status": "npm"
+  },
+  "ra": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "We": {
+   "original": "wxyy.hook.1751615607545.js#g",
+   "path": "@/legacy",
+   "export": "askWenXin",
+   "status": "restored"
+  },
+  "Xe": {
+   "original": "wxyy.hook.1751615607545.js#_",
+   "path": "@/legacy",
+   "export": "ROBOT_IMG",
+   "status": "restored"
+  },
+  "la": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "w": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ua": {
+   "original": "extractpositionmodal.1751615607545.js#e",
+   "path": "@/shared/extractpositionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "q": {
+   "original": "dateUtil.1751615607545.js#a",
+   "path": "@/shared/dateUtil.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
+  },
+  "ia": {
+   "original": "dictCheckBoxAll.1751615607545.js#d",
+   "path": "@/shared/dictCheckBoxAll.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "na": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "E": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

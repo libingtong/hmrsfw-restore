@@ -1,0 +1,59 @@
+{
+ "id": "page.uc.maskunit",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 7.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/maskunit.1751615607545.js",
+ "components": [
+  {
+   "name": "maskmodal",
+   "scopeId": "data-v-6023dcba"
+  },
+  {
+   "name": "maskunit",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [
+  "data-v-6023dcba"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/maskunit.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/maskunit.vue",
+ "subComponentDir": "apps/uc/src/views/maskunit/",
+ "routes": [
+  {
+   "path": "/maskunit",
+   "name": "maskunit"
+  }
+ ],
+ "recordPath": "/maskunit",
+ "maps": "out/maps/page.uc.maskunit.json",
+ "hints": "out/hints/page.uc.maskunit.md",
+ "deps": {
+  "entry": [
+   "M",
+   "d",
+   "m"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17516156075456.js#$",
+   "index.api.17516156075456.js#Z",
+   "index.api.17516156075456.js#_",
+   "index.api.17516156075456.js#a0"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/maskunit",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

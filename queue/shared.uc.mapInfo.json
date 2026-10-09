@@ -1,0 +1,47 @@
+{
+ "id": "shared.uc.mapInfo",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.1,
+ "chunkKb": 3.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/mapInfo.1751615607545.js",
+ "components": [
+  {
+   "name": "mapInfo",
+   "scopeId": "data-v-ca2ac43c"
+  }
+ ],
+ "scopeIds": [
+  "data-v-ca2ac43c"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/mapInfo.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/mapInfo.vue",
+ "exports": {
+  "M": {
+   "export": "default"
+  }
+ },
+ "registryKey": "mapInfo.1751615607545.js",
+ "usedBy": [
+  "page.uc.needDetail",
+  "page.uc.gongfuWorkshop.positionPosting"
+ ],
+ "maps": "out/maps/shared.uc.mapInfo.json",
+ "hints": "out/hints/shared.uc.mapInfo.md",
+ "deps": {
+  "entry": [
+   "m"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

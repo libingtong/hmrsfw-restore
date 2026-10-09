@@ -1,0 +1,76 @@
+{
+ "id": "page.portal.sjz.archivesSearch.index",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 15.5,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620071.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-634ef192"
+  }
+ ],
+ "scopeIds": [
+  "data-v-634ef192"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/resource.17833206362002.css",
+  "legacy-dist/portal/assets/index.178332063620066.css",
+  "legacy-dist/portal/assets/index.178332063620071.css"
+ ],
+ "target": "apps/portal/src/views/sjz/archivesSearch/index.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/archivesSearch/index/",
+ "routes": [
+  {
+   "path": "/archivesSearch",
+   "name": "archivesSearch",
+   "title": "档案查询"
+  }
+ ],
+ "recordPath": "/archivesSearch",
+ "maps": "out/maps/page.portal.sjz.archivesSearch.index.json",
+ "hints": "out/hints/page.portal.sjz.archivesSearch.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "a",
+   "a2",
+   "aE",
+   "b",
+   "c",
+   "f",
+   "i",
+   "n",
+   "u",
+   "w"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620015.js#a",
+   "index.api.178332063620015.js#b",
+   "index.api.178332063620015.js#c",
+   "index.api.178332063620015.js#d",
+   "index.api.178332063620015.js#g",
+   "index.api.17833206362008.js#q"
+  ],
+  "modules": [
+   "bg.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.c02",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/archivesSearch",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

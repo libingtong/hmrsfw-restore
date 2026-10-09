@@ -1,0 +1,41 @@
+{
+ "id": "page.portal.fair.webFair.NumVideo",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.9,
+ "sourceChunk": "legacy-dist/portal/assets/NumVideo.1783320636200.js",
+ "components": [
+  {
+   "name": "NumVideo",
+   "scopeId": "data-v-3f3c6a40"
+  }
+ ],
+ "scopeIds": [
+  "data-v-3f3c6a40"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/NumVideo.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/fair/webFair/NumVideo.vue",
+ "subComponentDir": "apps/portal/src/views/fair/webFair/NumVideo/",
+ "routes": [],
+ "recordPath": "/webFairDetail/:zphId",
+ "maps": "out/maps/page.portal.fair.webFair.NumVideo.json",
+ "hints": "out/hints/page.portal.fair.webFair.NumVideo.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.fair.webFair.detail"
+}

@@ -1,0 +1,4785 @@
+{
+ "$doc": "docs/work-orders.md#公共库清单",
+ "app": "uc",
+ "site": "usercenter",
+ "vueVersion": "3.3.4",
+ "antdVersion": "3.2.20",
+ "appCode": "018",
+ "sources": {
+  "entryChunk": "index.1751615607545.js",
+  "vueChunk": "vue.1751615607545.js",
+  "names": "registry/names.uc.json"
+ },
+ "stats": {
+  "entry": {
+   "reserved": 105,
+   "restored": 50,
+   "npm": 10,
+   "ignore": 3
+  },
+  "shared": {
+   "reserved": 22,
+   "restored": 27
+  },
+  "api": {
+   "reserved": 115,
+   "restored": 123
+  }
+ },
+ "vue": {
+  "$": {
+   "name": "createElementVNode",
+   "from": "vue"
+  },
+  "A": {
+   "name": "resolveDirective",
+   "from": "vue"
+  },
+  "B": {
+   "name": "cloneVNode",
+   "from": "vue"
+  },
+  "C": {
+   "name": "Comment",
+   "from": "vue"
+  },
+  "D": {
+   "name": "toRef",
+   "from": "vue"
+  },
+  "E": {
+   "name": "vShow",
+   "from": "vue"
+  },
+  "F": {
+   "name": "Fragment",
+   "from": "vue"
+  },
+  "G": {
+   "name": "withModifiers",
+   "from": "vue"
+  },
+  "H": {
+   "name": "onBeforeMount",
+   "from": "vue"
+  },
+  "I": {
+   "name": "createTextVNode",
+   "from": "vue"
+  },
+  "J": {
+   "name": "isRef",
+   "from": "vue"
+  },
+  "K": {
+   "name": "toRefs",
+   "from": "vue"
+  },
+  "L": {
+   "name": "shallowRef",
+   "from": "vue"
+  },
+  "M": {
+   "name": "toRaw",
+   "from": "vue"
+  },
+  "N": {
+   "name": "onActivated",
+   "from": "vue"
+  },
+  "O": {
+   "name": "onDeactivated",
+   "from": "vue"
+  },
+  "P": {
+   "name": "useAttrs",
+   "from": "vue"
+  },
+  "Q": {
+   "name": "onBeforeUpdate",
+   "from": "vue"
+  },
+  "R": {
+   "name": "getCurrentScope",
+   "from": "vue"
+  },
+  "S": {
+   "name": "onScopeDispose",
+   "from": "vue"
+  },
+  "T": {
+   "name": "Text",
+   "from": "vue"
+  },
+  "U": {
+   "name": "camelize?(cached string fn, verify by usage)",
+   "from": "vue"
+  },
+  "V": {
+   "name": "renderSlot",
+   "from": "vue"
+  },
+  "W": {
+   "name": "createApp",
+   "from": "vue"
+  },
+  "X": {
+   "name": "resolveComponent",
+   "from": "vue"
+  },
+  "Y": {
+   "name": "openBlock",
+   "from": "vue"
+  },
+  "Z": {
+   "name": "createBlock",
+   "from": "vue"
+  },
+  "_": {
+   "name": "withCtx",
+   "from": "vue"
+  },
+  "a": {
+   "name": "createVNode",
+   "from": "vue"
+  },
+  "a0": {
+   "name": "useRoute",
+   "from": "vue-router"
+  },
+  "a1": {
+   "name": "useRouter",
+   "from": "vue-router"
+  },
+  "a2": {
+   "name": "createElementBlock",
+   "from": "vue"
+  },
+  "a3": {
+   "name": "renderList",
+   "from": "vue"
+  },
+  "a4": {
+   "name": "createCommentVNode",
+   "from": "vue"
+  },
+  "a5": {
+   "name": "createSlots",
+   "from": "vue"
+  },
+  "a6": {
+   "name": "toDisplayString",
+   "from": "vue"
+  },
+  "a7": {
+   "name": "normalizeStyle",
+   "from": "vue"
+  },
+  "a8": {
+   "name": "pushScopeId",
+   "from": "vue"
+  },
+  "a9": {
+   "name": "popScopeId",
+   "from": "vue"
+  },
+  "aa": {
+   "name": "onBeforeRouteUpdate",
+   "from": "vue-router"
+  },
+  "ab": {
+   "name": "normalizeClass",
+   "from": "vue"
+  },
+  "ac": {
+   "name": "resolveDynamicComponent",
+   "from": "vue"
+  },
+  "ad": {
+   "name": "KeepAlive",
+   "from": "vue"
+  },
+  "ae": {
+   "name": "createRouter",
+   "from": "vue-router"
+  },
+  "af": {
+   "name": "createWebHistory",
+   "from": "vue-router"
+  },
+  "ag": {
+   "name": "RouterView",
+   "from": "vue-router"
+  },
+  "ah": {
+   "name": "createPinia",
+   "from": "pinia"
+  },
+  "ai": {
+   "name": "createStaticVNode",
+   "from": "vue"
+  },
+  "aj": {
+   "name": "withKeys",
+   "from": "vue"
+  },
+  "ak": {
+   "name": "mergeProps",
+   "from": "vue"
+  },
+  "al": {
+   "name": "RouterLink",
+   "from": "vue-router"
+  },
+  "b": {
+   "name": "isVNode",
+   "from": "vue"
+  },
+  "c": {
+   "name": "computed",
+   "from": "vue"
+  },
+  "d": {
+   "name": "defineStore",
+   "from": "pinia"
+  },
+  "e": {
+   "name": "effectScope",
+   "from": "vue"
+  },
+  "f": {
+   "name": "defineComponent",
+   "from": "vue"
+  },
+  "g": {
+   "name": "getCurrentInstance",
+   "from": "vue"
+  },
+  "h": {
+   "name": "h",
+   "from": "vue"
+  },
+  "i": {
+   "name": "inject",
+   "from": "vue"
+  },
+  "j": {
+   "name": "onUpdated",
+   "from": "vue"
+  },
+  "k": {
+   "name": "onUnmounted",
+   "from": "vue"
+  },
+  "l": {
+   "name": "Transition",
+   "from": "vue"
+  },
+  "m": {
+   "name": "Teleport",
+   "from": "vue"
+  },
+  "n": {
+   "name": "nextTick",
+   "from": "vue"
+  },
+  "o": {
+   "name": "onMounted",
+   "from": "vue"
+  },
+  "p": {
+   "name": "provide",
+   "from": "vue"
+  },
+  "q": {
+   "name": "ref",
+   "from": "vue"
+  },
+  "r": {
+   "name": "reactive",
+   "from": "vue"
+  },
+  "s": {
+   "name": "setupDevtoolsPlugin(internal)",
+   "from": "vue"
+  },
+  "t": {
+   "name": "TransitionGroup",
+   "from": "vue"
+  },
+  "u": {
+   "name": "unref",
+   "from": "vue"
+  },
+  "v": {
+   "name": "render",
+   "from": "vue"
+  },
+  "w": {
+   "name": "watch",
+   "from": "vue"
+  },
+  "x": {
+   "name": "watchEffect",
+   "from": "vue"
+  },
+  "y": {
+   "name": "onBeforeUnmount",
+   "from": "vue"
+  },
+  "z": {
+   "name": "withDirectives",
+   "from": "vue"
+  }
+ },
+ "entry": {
+  "a": {
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "kind": "store",
+   "owner": "entry.uc.E4",
+   "users": 40,
+   "status": "restored"
+  },
+  "A": {
+   "path": "@/legacy",
+   "export": "queryAreaChildrenTreeListById",
+   "url": "/xf-job/job/licenseFree/queryAreaChildrenTreeListById",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "a$": {
+   "path": "@/router",
+   "export": "router",
+   "kind": "binding",
+   "owner": "entry.uc.E3",
+   "users": 1,
+   "status": "restored"
+  },
+  "a9": {
+   "path": "@/legacy",
+   "export": "detailById",
+   "url": "/xf-job/job/xfJobCompanyPosition/detailById",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 9,
+   "status": "restored"
+  },
+  "aa": {
+   "path": "@/legacy",
+   "export": "getExtractPositionConfig",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 6,
+   "status": "restored"
+  },
+  "ab": {
+   "path": "@/legacy",
+   "export": "confirmExtract",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 6,
+   "status": "restored"
+  },
+  "ad": {
+   "path": "@/legacy",
+   "export": "checkSensitive",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 9,
+   "status": "restored"
+  },
+  "an": {
+   "path": "@/legacy",
+   "export": "uniqueByValue",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "aN": {
+   "path": "@/legacy",
+   "export": "downloadFile",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "aw": {
+   "path": "@/legacy",
+   "export": "historyUsePositionList",
+   "url": "/job/xfJobCompanyPosition/historyUsePositionList",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "ax": {
+   "path": "@/legacy",
+   "export": "getMultiDictListByType",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "ay": {
+   "path": "@/legacy",
+   "export": "listToTree",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "B": {
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "kind": "const",
+   "owner": "entry.uc.E5",
+   "users": 47,
+   "status": "restored"
+  },
+  "b4": {
+   "path": "@/legacy",
+   "export": "CURRENT_YEAR_MONTH",
+   "kind": "binding",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bc": {
+   "path": "@/legacy",
+   "export": "pxRegistList",
+   "url": "/xf-job/job/xfJobGovRecruitRegistration/pxRegistList",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bd": {
+   "path": "@/legacy",
+   "export": "ticketToHtml",
+   "url": "/xf-job/job/xfJobGovRecruitNotice/ticketToHtml?noticeId=",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "be": {
+   "path": "@/legacy",
+   "export": "alipayScanPay",
+   "url": "/xf-job/communal/xfSysOrderPayRecord/alipay/scanPay",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bf": {
+   "path": "@/legacy",
+   "export": "updateEnrollmentStatus",
+   "url": "/xf-job/job/xfJobGovRecruitRegistration/updateEnrollmentStatus",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bF": {
+   "path": "@/utils/crypto-adapter",
+   "export": "encryptStorage",
+   "kind": "function",
+   "owner": "entry.uc.E5",
+   "users": 1,
+   "status": "restored"
+  },
+  "bk": {
+   "path": "@/legacy/api",
+   "export": "pxRegistList",
+   "url": "/xf-job/job/xfJobPxRegistration/pxRegistList",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bl": {
+   "path": "@/legacy/api",
+   "export": "pxRegistList",
+   "url": "/xf-job/job/xfJobPxRegistration/pxRegistList",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored",
+   "sameAs": "bk"
+  },
+  "bL": {
+   "path": "@/legacy",
+   "export": "userStorage",
+   "kind": "object",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "bM": {
+   "path": "@/legacy",
+   "export": "verifyUserInfoByPhone",
+   "url": "/xf-job//communal/licenseFree/verifyUserInfoByPhone",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "bx": {
+   "path": "@/legacy",
+   "export": "queryCertificateList",
+   "url": "/xf-job/communal/xfCloudClassroomCertificate/list",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "c": {
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 43,
+   "status": "restored"
+  },
+  "d": {
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 133,
+   "status": "restored"
+  },
+  "e": {
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "url": "/xf-job/job/xfJobCompany/getCompanyInfo",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 18,
+   "status": "restored"
+  },
+  "E": {
+   "path": "@/legacy",
+   "export": "queryFormSettingByCode",
+   "url": "/xf-job/job/xfJobFormSetting/queryByCode",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 4,
+   "status": "restored"
+  },
+  "f": {
+   "path": "@/legacy",
+   "export": "decryptText",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 25,
+   "status": "restored"
+  },
+  "F": {
+   "path": "@/legacy",
+   "export": "izAlreadySubmitCompany",
+   "url": "/xf-job/job/xfJobCompany/izAlreadySubmitCompany",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 4,
+   "status": "restored"
+  },
+  "g": {
+   "path": "@/legacy",
+   "export": "getSettingValueByCodes",
+   "url": "/xf-job/job/licenseFree/xfSysBusinessSetting/getSettingValueByCodes",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 5,
+   "status": "restored"
+  },
+  "G": {
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "url": "/xf-job/job/licenseFree/getDictValueByCodeAndItems",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 7,
+   "status": "restored"
+  },
+  "h": {
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "kind": "const",
+   "owner": "entry.uc.E5",
+   "users": 46,
+   "status": "restored"
+  },
+  "H": {
+   "path": "@/legacy",
+   "export": "companyInfoVerifyForZZJC",
+   "url": "/xf-job/job/xfJobCompany/companyInfoVerifyForZZJC",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "I": {
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 16,
+   "status": "restored"
+  },
+  "J": {
+   "path": "@/legacy",
+   "export": "checkFileType",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "k": {
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "url": "/jeecg-system/sys/dict/getDictItemsByCode",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 54,
+   "status": "restored"
+  },
+  "o": {
+   "path": "@/legacy",
+   "export": "parseIdCard",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 6,
+   "status": "restored"
+  },
+  "O": {
+   "path": "@/legacy",
+   "export": "getAreaInfoByAreaId",
+   "url": "/xf-job/communal/licenseFree/xfSysAreainfo/getInfoByAreaId",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 5,
+   "status": "restored"
+  },
+  "Q": {
+   "path": "@/legacy",
+   "export": "sumbitVerifyInfo",
+   "url": "/xf-job/job/xfJobCompany/sumbitVerifyInfo",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "R": {
+   "path": "@/legacy",
+   "export": "queryCompanyInfo",
+   "url": "/xf-job/job/xfJobCompany/queryCompanyInfo",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "S": {
+   "path": "@/legacy",
+   "export": "getDictListByType",
+   "url": "/xf-job/communal/xfSysMultiDict/getDictListByType",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "t": {
+   "path": "@/legacy",
+   "export": "validatePassword",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "T": {
+   "path": "@/legacy",
+   "export": "commonjsGlobal",
+   "kind": "binding",
+   "owner": "entry.uc.E6",
+   "users": 3,
+   "status": "restored"
+  },
+  "v": {
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 38,
+   "status": "restored"
+  },
+  "V": {
+   "path": "@/legacy",
+   "export": "getDefaultExportFromCjs",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 4,
+   "status": "restored"
+  },
+  "w": {
+   "path": "@/legacy",
+   "export": "http",
+   "kind": "binding",
+   "owner": "entry.uc.E5",
+   "users": 40,
+   "status": "restored"
+  },
+  "x": {
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 28,
+   "status": "restored"
+  },
+  "y": {
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "kind": "binding",
+   "owner": "entry.uc.E6",
+   "users": 16,
+   "status": "restored"
+  },
+  "z": {
+   "path": "@/legacy",
+   "export": "getDictValueByCodes",
+   "url": "/xf-job/school/user/getDictValueByCodes",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 8,
+   "status": "restored"
+  },
+  "$": {
+   "path": "@/legacy/api",
+   "export": "noMoreRemindersToday",
+   "url": "/xf-job/job/xfJobCompanyPosition/expired/noMoreRemindersToday",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "a_": {
+   "path": "@/legacy/utils",
+   "export": "validateContactPhone",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "a0": {
+   "path": "@/legacy/api",
+   "export": "getCompanyStatistic",
+   "url": "/xf-job/job/xfJobCompany/getCompanyStatistic",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "a1": {
+   "path": "@/legacy/api",
+   "export": "getCompanyUserList",
+   "url": "/xf-job/job/xfJobUserCompany/getCompanyUserList",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "a2": {
+   "path": "@/legacy/api",
+   "export": "queryPageListByCompanyId",
+   "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/queryPageListByCompanyId",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 3,
+   "status": "reserved"
+  },
+  "a3": {
+   "path": "@/legacy/api",
+   "export": "queryPageInterviewListByCompanyId",
+   "url": "/xf-job/job/xfJobInterviewInvitation/queryPageInterviewListByCompanyId",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "a4": {
+   "path": "@/legacy/api",
+   "export": "getCount",
+   "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/getCount",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "a5": {
+   "path": "@/legacy/api",
+   "export": "queryCountOfUnFile",
+   "url": "/xf-job/job/xfJobCompany/queryCountOfUnFile",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "a6": {
+   "path": "@/legacy/api",
+   "export": "unBindCompany",
+   "url": "/xf-job/job/xfJobUserCompany/unBindCompany",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "a7": {
+   "path": "@/legacy/api",
+   "export": "isPublishingPosition",
+   "url": "/xf-job/job/xfJobCompany/isPublishingPosition",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 11,
+   "status": "reserved"
+  },
+  "a8": {
+   "path": "@/legacy/api",
+   "export": "addTalent",
+   "url": "/xf-job/job/xfJobCompanyTalents/addTalent",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 3,
+   "status": "reserved"
+  },
+  "aA": {
+   "path": "@/legacy/api",
+   "export": "enableAuseBatch",
+   "url": "/xf-job/job/xfJobCompanyPosition/enableAuseBatch",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "aB": {
+   "path": "@/legacy/api",
+   "export": "getrefreshTime",
+   "url": "/xf-job/job/xfJobCompanyPosition/getrefreshTime",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "ac": {
+   "path": "@/legacy/api",
+   "export": "checkPositionName",
+   "url": "/xf-job/job/xfJobCompanyPosition/checkPositionName",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 4,
+   "status": "reserved"
+  },
+  "aC": {
+   "path": "@/legacy/api",
+   "export": "queryPageInterviewListByCompanyId",
+   "url": "/xf-job/job/xfJobInterviewInvitation/queryPageInterviewListByCompanyId",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved",
+   "sameAs": "a3"
+  },
+  "aD": {
+   "path": "@/legacy/api",
+   "export": "queryByCompanyId",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByCompanyId",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "ae": {
+   "path": "@/legacy/api",
+   "export": "addOrEdit",
+   "url": "/xf-job/job/xfJobCompanyPosition/addOrEdit",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 4,
+   "status": "reserved"
+  },
+  "aE": {
+   "path": "@/legacy/api",
+   "export": "listForAdmin",
+   "url": "/xf-job/job/xfJobFairPositionRelation/listForAdmin",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aF": {
+   "path": "@/legacy/api",
+   "export": "izAbroadCompany",
+   "url": "/xf-job/job/xfJobCompany/izAbroadCompany",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aG": {
+   "path": "@/legacy/api",
+   "export": "setUpUrgentBatch",
+   "url": "/xf-job/job/xfJobCompanyPosition/setUpUrgentBatch",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "ah": {
+   "path": "@/legacy/utils",
+   "export": "stripHtml",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "aH": {
+   "path": "@/legacy/api",
+   "export": "refreshBatch",
+   "url": "/xf-job/job/xfJobCompanyPosition/refreshBatch",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "ai": {
+   "path": "@/legacy/api",
+   "export": "queryNoReaded",
+   "url": "/xf-common/common/xfAnnouncementSendRedcord/queryNoReaded",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "aI": {
+   "path": "@/legacy/api",
+   "export": "setStatus",
+   "url": "/xf-job/job/xfJobCurriculumVitaeSearch/setStatus",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aj": {
+   "path": "@/legacy/api",
+   "export": "certificationBeforeDetailId",
+   "url": "/xf-job/job/xfJobCompanyExpand/certificationBeforeDetailId",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aJ": {
+   "path": "@/legacy/api",
+   "export": "queryCompanyTalentlist",
+   "url": "/xf-job/job/xfJobCompanyTalents/queryCompanyTalentlist",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "ak": {
+   "path": "@/legacy/api",
+   "export": "certificationUser",
+   "url": "/xf-job/job/xfJobCompanyExpand/certificationUser",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aK": {
+   "path": "@/legacy/api",
+   "export": "removeTalent",
+   "url": "/xf-job/job/xfJobCompanyTalents/removeTalent",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "al": {
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "url": "/xf-job/job/licenseFree/getArticleListByCode",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aL": {
+   "path": "@/legacy/api",
+   "export": "restoreTalent",
+   "url": "/xf-job/job/xfJobCompanyTalents/restoreTalent",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "am": {
+   "path": "@/legacy/utils",
+   "export": "formatDateDash",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aM": {
+   "path": "@/legacy/api",
+   "export": "getCareListForCompany",
+   "url": "/xf-job/job/xfJobUserCare/getCareListForCompany",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "ao": {
+   "path": "@/legacy/api",
+   "export": "getSysUserByPhone",
+   "url": "/xf-job/communal/xfSysUser/getSysUserByPhone",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "ap": {
+   "path": "@/legacy/api",
+   "export": "addUserForCompany",
+   "url": "/xf-job/job/xfJobUserCompany/addUserForCompany",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aP": {
+   "path": "@/legacy/api",
+   "export": "getCompanyAttachmentMax",
+   "url": "/xf-job/communal/xfSysAttachment/getCompanyAttachmentMax",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "aq": {
+   "path": "@/legacy/api",
+   "export": "changeUserForCompany",
+   "url": "/xf-job/job/xfJobUserCompany/changeUserForCompany",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aQ": {
+   "path": "@/legacy/api",
+   "export": "getCompanyAttachmentList",
+   "url": "/xf-job/communal/xfSysAttachment/getCompanyAttachmentList",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "ar": {
+   "path": "@/legacy/api",
+   "export": "jobCurriculumVitaeDeliverSetStatus",
+   "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/setStatus",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aR": {
+   "path": "@/legacy/api",
+   "export": "addBatchCompanyAttachment",
+   "url": "/xf-job/communal/xfSysAttachment/addBatchCompanyAttachment",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "as": {
+   "path": "@/legacy/api",
+   "export": "interviewTemplate",
+   "url": "/xf-job/job/xfJobInterviewInvitation/interviewTemplate",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 3,
+   "status": "reserved"
+  },
+  "aS": {
+   "path": "@/legacy/api",
+   "export": "deleteAttachment",
+   "url": "/xf-job/communal/xfSysAttachment/deleteAttachment",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "at": {
+   "path": "@/legacy/api",
+   "export": "getInterviewPosition",
+   "url": "/xf-job/job/xfJobInterviewInvitation/getInterviewPosition",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 3,
+   "status": "reserved"
+  },
+  "aT": {
+   "path": "@/legacy/api",
+   "export": "adminDetailId",
+   "url": "/xf-job/job/xfJobCompanyExpand/adminDetailId",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "au": {
+   "path": "@/legacy/api",
+   "export": "interviewInvitationByFair",
+   "url": "/xf-job/job/xfJobInterviewInvitation/interviewInvitationByFair",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "aU": {
+   "path": "@/legacy/api",
+   "export": "getInternShipCompanyAttachmentMax",
+   "url": "/xf-job/communal/xfSysAttachment/getInternShipCompanyAttachmentMax",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "av": {
+   "path": "@/legacy/api",
+   "export": "interviewInvitation",
+   "url": "/xf-job/job/xfJobInterviewInvitation/interviewInvitation",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 3,
+   "status": "reserved"
+  },
+  "aV": {
+   "path": "@/legacy/api",
+   "export": "setCover",
+   "url": "/xf-job/communal/xfSysAttachment/setCover",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "aW": {
+   "path": "@/legacy/api",
+   "export": "editAdmin",
+   "url": "/xf-job/job/xfJobCompanyExpand/editAdmin",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "az": {
+   "path": "@/legacy/api",
+   "export": "listNew",
+   "url": "/xf-job/job/xfJobCompanyPosition/listNew",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 3,
+   "status": "reserved"
+  },
+  "aZ": {
+   "path": "@/legacy/api",
+   "export": "getArticleList",
+   "url": "/xf-job/job/licenseFree/getArticleList",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "b0": {
+   "path": "@/legacy/api",
+   "export": "queryById",
+   "url": "/xf-job/job/xfJobFair/queryById",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "b1": {
+   "path": "@/legacy/api",
+   "export": "list",
+   "url": "/xf-job/job/xfJobFairPositionRelation/list",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "b2": {
+   "path": "@/legacy/api",
+   "export": "addPosition",
+   "url": "/xf-job/job/xfJobFairPositionRelation/addPosition",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "b3": {
+   "path": "@/legacy/api",
+   "export": "editPosition",
+   "url": "/xf-job/job/xfJobFairPositionRelation/editPosition",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "b5": {
+   "path": "@/legacy/api",
+   "export": "cancel",
+   "url": "/xf-job/job/xfJobUserCare/cancel",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 5,
+   "status": "reserved"
+  },
+  "b6": {
+   "path": "@/legacy/api",
+   "export": "getAllInfo",
+   "url": "/xf-job/communal/xfSysAreainfo/getAllInfo",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "b7": {
+   "path": "@/legacy/utils",
+   "export": "isPhoneOrTel",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "b8": {
+   "path": "@/legacy/api",
+   "export": "volist",
+   "url": "/xf-job/job/xfJobComplaintRecord/volist",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "b9": {
+   "path": "@/legacy/api",
+   "export": "undoComplaint",
+   "url": "/job/xfJobComplaintRecord/undoComplaint",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "ba": {
+   "path": "@/legacy/api",
+   "export": "setAllReaded",
+   "url": "/xf-common/common/xfAnnouncementSendRedcord/setAllReaded",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bA": {
+   "path": "@/legacy/store",
+   "export": "usePermissStore",
+   "kind": "store",
+   "owner": "entry.uc.E4",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bb": {
+   "path": "@/legacy/api",
+   "export": "setReaded",
+   "url": "/xf-common/common/xfAnnouncementSendRedcord/setReaded",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bB": {
+   "path": "@/legacy/utils",
+   "export": "removeUrlParam",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bC": {
+   "path": "@/legacy/utils",
+   "export": "getUrlParams",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bD": {
+   "path": "@/legacy/store",
+   "export": "vuexStore",
+   "kind": "binding",
+   "owner": "entry.uc.E4",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bE": {
+   "path": "@/legacy/api",
+   "export": "getSysUserByToken",
+   "url": "/xf-job/communal/xfSysUser/getSysUserByToken",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bg": {
+   "path": "@/legacy/api",
+   "export": "jobOverseasRecruitRegistrationList",
+   "url": "/xf-job/job/xfJobOverseasRecruitRegistration/list",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bG": {
+   "path": "@/legacy/api",
+   "export": "queryByIdJM",
+   "url": "/xf-job/communal/xfSysUser/queryByIdJM",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bh": {
+   "path": "@/legacy/api",
+   "export": "saveOrCancel",
+   "url": "/xf-job/job/xfJobOverseasRecruitRegistration/saveOrCancel",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bH": {
+   "path": "@/legacy/api",
+   "export": "getPolicyList",
+   "url": "/xf-job/job/licenseFree/getPolicyList",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "bi": {
+   "path": "@/legacy/api",
+   "export": "listByUserId",
+   "url": "/xf-job/job/xfJobEventReleaseSignUp/listByUserId",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bI": {
+   "path": "@/legacy/api",
+   "export": "getPolicyDetail",
+   "url": "/xf-job/job/licenseFree/getPolicyDetail",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "bj": {
+   "path": "@/legacy/api",
+   "export": "jobEventReleaseSignUpCancel",
+   "url": "/xf-job/job/xfJobEventReleaseSignUp/cancel",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bJ": {
+   "path": "@/legacy/api",
+   "export": "listChildrenTreeByTypeId",
+   "url": "/xf-job/communal/licenseFree/xfSysArticleType/listChildrenTreeByTypeId",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bm": {
+   "path": "@/legacy/api",
+   "export": "getMyAnswerRecord",
+   "url": "/xf-job/communal/xfSysQuenaireRecord/getMyAnswerRecord",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bn": {
+   "path": "@/legacy/api",
+   "export": "getTutorExpandForMyCare",
+   "url": "/xf-job/job/xfJobUserCare/getTutorExpandForMyCare",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bN": {
+   "path": "@/legacy/api",
+   "export": "getUserPermissionByRoleId",
+   "url": "/xf-job/communal/xfpermission/getUserPermissionByRoleId",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bo": {
+   "path": "@/legacy/api",
+   "export": "getCompanyForMyCare",
+   "url": "/xf-job/job/xfJobUserCare/getCompanyForMyCare",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bp": {
+   "path": "@/legacy/api",
+   "export": "getCompanyPositionForMyCare",
+   "url": "/xf-job/job/xfJobUserCare/getCompanyPositionForMyCare",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "bq": {
+   "path": "@/legacy/api",
+   "export": "getAllianceCompanyForMyCare",
+   "url": "/xf-job/job/xfJobUserCare/getAllianceCompanyForMyCare",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "br": {
+   "path": "@/legacy/api",
+   "export": "getAlliancePositionForMyCare",
+   "url": "/xf-job/job/xfJobUserCare/getAlliancePositionForMyCare",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bs": {
+   "path": "@/legacy/api",
+   "export": "Collect",
+   "url": "/xf-oddjob/oddjob/xfOddUser/Collect",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bt": {
+   "path": "@/legacy/api",
+   "export": "deleteItem",
+   "url": "/xf-oddjob/oddjob/xfOddUserCollect/delete",
+   "method": "delete",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bu": {
+   "path": "@/legacy/utils",
+   "export": "isMobilePhone",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "bv": {
+   "path": "@/legacy/utils",
+   "export": "formatDateTime",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bw": {
+   "path": "@/legacy/utils",
+   "export": "maskPhone",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "by": {
+   "path": "@/legacy/api",
+   "export": "viewVoByIdFromCompany",
+   "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromCompany",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "bz": {
+   "path": "@/legacy/api",
+   "export": "viewCaredSeekerFromCompany",
+   "url": "/job/xfJobCurriculumVitae/viewCaredSeekerFromCompany?",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "C": {
+   "path": "@/legacy/api",
+   "export": "queryChildrenTreeListById",
+   "url": "/xf-job/communal/xfSysOrganization/queryChildrenTreeListById",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "D": {
+   "path": "@/legacy/api",
+   "export": "getTreeData",
+   "url": "/xf-job/communal/xfSysOrganization/getTreeData",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "i": {
+   "path": "@/legacy/api",
+   "export": "izCompanyComplete",
+   "url": "/xf-job/job/xfJobCompany/izCompanyComplete",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "j": {
+   "path": "@/legacy/api",
+   "export": "sysUserAuthenticateIdentityList",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/list",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 4,
+   "status": "reserved"
+  },
+  "K": {
+   "path": "@/legacy/api",
+   "export": "sumbitBaseCompanyInfo",
+   "url": "/xf-job/job/xfJobCompany/sumbitBaseCompanyInfo",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "l": {
+   "path": "@/legacy/utils",
+   "export": "setLocalStorage",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 8,
+   "status": "reserved"
+  },
+  "L": {
+   "path": "@/legacy/api",
+   "export": "sumbitImportantCompanyInfo",
+   "url": "/xf-job/job/xfJobCompany/sumbitImportantCompanyInfo",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "n": {
+   "path": "@/legacy/api",
+   "export": "listOneForWebSite",
+   "url": "/xf-job/communal/xfSysUser/listOneForWebSite",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 5,
+   "status": "reserved"
+  },
+  "N": {
+   "path": "@/legacy/components/Notice.vue",
+   "export": "default",
+   "component": "notice",
+   "scopeId": null,
+   "kind": "component",
+   "owner": "entry.uc.c01",
+   "users": 4,
+   "status": "reserved"
+  },
+  "q": {
+   "path": "@/legacy/api",
+   "export": "queryByCompanyId",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByCompanyId",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 7,
+   "status": "reserved",
+   "sameAs": "aD"
+  },
+  "r": {
+   "path": "@/legacy/utils",
+   "export": "maskPhone3",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "s": {
+   "path": "@/legacy/api",
+   "export": "queryAnnouncementList",
+   "url": "/xf-common/common/xfAnnouncementSendRedcord/queryAnnouncementList",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 6,
+   "status": "reserved"
+  },
+  "u": {
+   "path": "@/legacy/store",
+   "export": "useCommonStore",
+   "kind": "store",
+   "owner": "entry.uc.E4",
+   "users": 2,
+   "status": "reserved"
+  },
+  "W": {
+   "path": "@/legacy/api",
+   "export": "setCompanyTags",
+   "url": "/xf-job/job/xfJobCompany/setCompanyTags",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "X": {
+   "path": "@/legacy/api",
+   "export": "freeCompanyDetailById",
+   "url": "/xf-job/job/licenseFree/freeCompanyDetailById",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 1,
+   "status": "reserved"
+  },
+  "Y": {
+   "path": "@/legacy/utils",
+   "export": "closeTag",
+   "kind": "function",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "Z": {
+   "path": "@/legacy/api",
+   "export": "remind",
+   "url": "/xf-job/job/xfJobCompanyPosition/expired/remind",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.uc.E6",
+   "users": 2,
+   "status": "reserved"
+  },
+  "af": {
+   "path": "@ant-design/icons-vue",
+   "export": "InfoCircleOutlined",
+   "npm": true,
+   "status": "npm",
+   "users": 4
+  },
+  "ag": {
+   "path": "@ant-design/icons-vue",
+   "export": "QuestionCircleOutlined",
+   "npm": true,
+   "status": "npm",
+   "users": 4
+  },
+  "aO": {
+   "path": "@ant-design/icons-vue",
+   "export": "UploadOutlined",
+   "npm": true,
+   "status": "npm",
+   "users": 2
+  },
+  "b": {
+   "path": "vuex",
+   "export": "useStore",
+   "npm": true,
+   "status": "npm",
+   "users": 11
+  },
+  "bK": {
+   "path": "axios",
+   "export": "AxiosHeaders",
+   "npm": true,
+   "status": "npm",
+   "users": 1
+  },
+  "m": {
+   "path": "ant-design-vue",
+   "export": "message",
+   "npm": true,
+   "status": "npm",
+   "users": 109
+  },
+  "M": {
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "npm": true,
+   "status": "npm",
+   "users": 88
+  },
+  "p": {
+   "path": "dayjs",
+   "export": "default",
+   "local": "dayjs",
+   "npm": true,
+   "status": "npm",
+   "users": 30
+  },
+  "P": {
+   "path": "@ant-design/icons-vue",
+   "export": "PlusOutlined",
+   "npm": true,
+   "status": "npm",
+   "users": 4
+  },
+  "U": {
+   "path": "ant-design-vue",
+   "export": "Upload",
+   "npm": true,
+   "status": "npm",
+   "users": 8
+  },
+  "_": {
+   "status": "ignore",
+   "reason": "_export_sfc：SFC 里不需要，忽略",
+   "users": 169
+  },
+  "aX": {
+   "status": "ignore",
+   "reason": "Babel 的 typeof 辅助函数，源码里直接写 typeof",
+   "users": 1
+  },
+  "aY": {
+   "status": "ignore",
+   "reason": "Vite 的 __vitePreload 辅助函数，源码里直接写 import()",
+   "users": 1
+  }
+ },
+ "shared": {
+  "Content.vue_vue_type_script_setup_true_lang.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "Content"
+   ],
+   "kb": 1.7,
+   "exports": {
+    "_": {
+     "path": "@/shared/Content/Content.vue",
+     "export": "default"
+    },
+    "a": {
+     "export": "a"
+    },
+    "c": {
+     "export": "c"
+    },
+    "d": {
+     "export": "d"
+    },
+    "e": {
+     "export": "e"
+    },
+    "g": {
+     "export": "g"
+    }
+   },
+   "path": "@/shared/Content.ts",
+   "status": "reserved",
+   "owner": "shared.uc.Content",
+   "usedBy": 3
+  },
+  "Editor.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "Editor"
+   ],
+   "kb": 904.4,
+   "exports": {
+    "E": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/Editor.vue",
+   "status": "reserved",
+   "owner": "shared.uc.Editor",
+   "usedBy": 2
+  },
+  "InterviewInvitation.17516156075452.js": {
+   "kind": "component",
+   "components": [
+    "InterviewInvitation"
+   ],
+   "kb": 7.2,
+   "exports": {
+    "I": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/InterviewInvitation.vue",
+   "status": "restored",
+   "owner": "shared.uc.InterviewInvitation",
+   "usedBy": 11
+  },
+  "SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "SlideCaptcha"
+   ],
+   "kb": 157.3,
+   "exports": {
+    "_": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/SlideCaptcha.vue",
+   "status": "restored",
+   "owner": "shared.uc.SlideCaptcha",
+   "usedBy": 2
+  },
+  "XfLoaing.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "XfLoaing"
+   ],
+   "kb": 0.5,
+   "exports": {
+    "_": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/XfLoaing.vue",
+   "status": "restored",
+   "owner": "shared.uc.XfLoaing",
+   "usedBy": 2
+  },
+  "ZgIframe.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "ZgIframe"
+   ],
+   "kb": 0.8,
+   "exports": {
+    "Z": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/ZgIframe.vue",
+   "status": "restored",
+   "owner": "shared.uc.ZgIframe",
+   "usedBy": 3
+  },
+  "addKeynote.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "addBeOnProbation",
+    "addKeynote"
+   ],
+   "kb": 9,
+   "exports": {
+    "a": {
+     "path": "@/shared/addKeynote/AddBeOnProbation.vue",
+     "export": "default"
+    },
+    "b": {
+     "path": "@/shared/addKeynote/AddKeynote.vue",
+     "export": "default"
+    }
+   },
+   "path": "@/shared/addKeynote.ts",
+   "status": "reserved",
+   "owner": "shared.uc.addKeynote",
+   "usedBy": 7
+  },
+  "appointment.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "cancelModal",
+    "orderModal",
+    "signModal",
+    "DetailModal",
+    "appointment"
+   ],
+   "kb": 22.3,
+   "exports": {
+    "D": {
+     "path": "@/shared/appointment/DetailModal.vue",
+     "export": "default"
+    },
+    "a": {
+     "path": "@/shared/appointment/Appointment.vue",
+     "export": "default"
+    },
+    "c": {
+     "path": "@/shared/appointment/CancelModal.vue",
+     "export": "default"
+    },
+    "o": {
+     "path": "@/shared/appointment/OrderModal.vue",
+     "export": "default"
+    },
+    "s": {
+     "path": "@/shared/appointment/SignModal.vue",
+     "export": "default"
+    }
+   },
+   "path": "@/shared/appointment.ts",
+   "status": "reserved",
+   "owner": "shared.uc.appointment",
+   "usedBy": 2
+  },
+  "authCompany.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "authCompany"
+   ],
+   "kb": 6.4,
+   "exports": {
+    "a": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/authCompany.vue",
+   "status": "reserved",
+   "owner": "shared.uc.authCompany",
+   "usedBy": 2
+  },
+  "beonmodal.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "beonmodal"
+   ],
+   "kb": 4.3,
+   "exports": {
+    "b": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/beonmodal.vue",
+   "status": "restored",
+   "owner": "shared.uc.beonmodal",
+   "usedBy": 5
+  },
+  "complaint.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "complaint"
+   ],
+   "kb": 4,
+   "exports": {
+    "c": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/complaint.vue",
+   "status": "reserved",
+   "owner": "shared.uc.complaint",
+   "usedBy": 2
+  },
+  "confPass.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "confPass"
+   ],
+   "kb": 3.7,
+   "exports": {
+    "c": {
+     "path": "@/shared/confPass.vue",
+     "export": "default"
+    },
+    "m": {
+     "export": "m"
+    },
+    "o": {
+     "export": "o"
+    }
+   },
+   "path": "@/shared/confPass.ts",
+   "status": "reserved",
+   "owner": "shared.uc.confPass",
+   "usedBy": 2
+  },
+  "corporganic.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "nation"
+   ],
+   "kb": 1.7,
+   "exports": {
+    "c": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/corporganic.vue",
+   "status": "reserved",
+   "owner": "shared.uc.corporganic",
+   "usedBy": 2
+  },
+  "cropperjs.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "cropperjsModal",
+    "cropperjs"
+   ],
+   "kb": 43.7,
+   "exports": {
+    "c": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/cropperjs.vue",
+   "status": "restored",
+   "owner": "shared.uc.cropperjs",
+   "usedBy": 4
+  },
+  "dictCheckBoxAll.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "nation"
+   ],
+   "kb": 2.1,
+   "exports": {
+    "d": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/dictCheckBoxAll.vue",
+   "status": "restored",
+   "owner": "shared.uc.dictCheckBoxAll",
+   "usedBy": 8
+  },
+  "dictCode.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "nation"
+   ],
+   "kb": 1.4,
+   "exports": {
+    "d": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/dictCode.vue",
+   "status": "restored",
+   "owner": "shared.uc.dictCode",
+   "usedBy": 72
+  },
+  "dictCodeByType.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "nation"
+   ],
+   "kb": 2,
+   "exports": {
+    "d": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/dictCodeByType.vue",
+   "status": "restored",
+   "owner": "shared.uc.dictCodeByType",
+   "usedBy": 3
+  },
+  "dictCodeTreeOne.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "nation"
+   ],
+   "kb": 1.8,
+   "exports": {
+    "d": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/dictCodeTreeOne.vue",
+   "status": "restored",
+   "owner": "shared.uc.dictCodeTreeOne",
+   "usedBy": 7
+  },
+  "email.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "Phone"
+   ],
+   "kb": 0.8,
+   "exports": {
+    "e": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/email.vue",
+   "status": "restored",
+   "owner": "shared.uc.email",
+   "usedBy": 5
+  },
+  "extractpositionmodal.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "extractpositionmodal"
+   ],
+   "kb": 5,
+   "exports": {
+    "e": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/extractpositionmodal.vue",
+   "status": "restored",
+   "owner": "shared.uc.extractpositionmodal",
+   "usedBy": 10
+  },
+  "gaode.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "nation",
+    "map",
+    "gaode"
+   ],
+   "kb": 12.8,
+   "exports": {
+    "M": {
+     "export": "BaiduMapModal"
+    },
+    "g": {
+     "export": "GaodeMapModal"
+    },
+    "i": {
+     "export": "MultiDictNationSelect"
+    }
+   },
+   "path": "@/shared/gaode.ts",
+   "status": "restored",
+   "owner": "shared.uc.gaode",
+   "usedBy": 4
+  },
+  "idCard.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "idCard"
+   ],
+   "kb": 1,
+   "exports": {
+    "i": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/idCard.vue",
+   "status": "restored",
+   "owner": "shared.uc.idCard",
+   "usedBy": 10
+  },
+  "iframeModal.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "iframeModal"
+   ],
+   "kb": 0.9,
+   "exports": {
+    "i": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/iframeModal.vue",
+   "status": "reserved",
+   "owner": "shared.uc.iframeModal",
+   "usedBy": 2
+  },
+  "index.175161560754528.js": {
+   "kind": "component",
+   "components": [
+    "index"
+   ],
+   "kb": 14,
+   "exports": {
+    "f": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/ReceivedResumeList.vue",
+   "status": "restored",
+   "owner": "shared.uc.ReceivedResumeList",
+   "usedBy": 2
+  },
+  "index.175161560754529.js": {
+   "kind": "component",
+   "components": [
+    "index"
+   ],
+   "kb": 1.5,
+   "exports": {
+    "p": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/CancelReasonModal.vue",
+   "status": "restored",
+   "owner": "shared.uc.CancelReasonModal",
+   "usedBy": 2
+  },
+  "mapInfo.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "mapInfo"
+   ],
+   "kb": 3.1,
+   "exports": {
+    "M": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/mapInfo.vue",
+   "status": "reserved",
+   "owner": "shared.uc.mapInfo",
+   "usedBy": 2
+  },
+  "market.vue_vue_type_script_setup_true_lang.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "market"
+   ],
+   "kb": 1.9,
+   "exports": {
+    "_": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/market.vue",
+   "status": "reserved",
+   "owner": "shared.uc.market",
+   "usedBy": 4
+  },
+  "metormodal.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "metormodal"
+   ],
+   "kb": 5.4,
+   "exports": {
+    "m": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/metormodal.vue",
+   "status": "reserved",
+   "owner": "shared.uc.metormodal",
+   "usedBy": 5
+  },
+  "mymsg.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "mymsg"
+   ],
+   "kb": 2.3,
+   "exports": {
+    "_": {
+     "export": "_"
+    },
+    "m": {
+     "path": "@/shared/mymsg/Mymsg.vue",
+     "export": "default"
+    }
+   },
+   "path": "@/shared/mymsg.ts",
+   "status": "reserved",
+   "owner": "shared.uc.mymsg",
+   "usedBy": 3
+  },
+  "oddNews.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "oddType",
+    "oddNews"
+   ],
+   "kb": 5.4,
+   "exports": {
+    "a": {
+     "path": "@/shared/oddNews/OddNews.vue",
+     "export": "default"
+    },
+    "o": {
+     "path": "@/shared/oddNews/OddType.vue",
+     "export": "default"
+    }
+   },
+   "path": "@/shared/oddNews.ts",
+   "status": "reserved",
+   "owner": "shared.uc.oddNews",
+   "usedBy": 2
+  },
+  "phone.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "phone"
+   ],
+   "kb": 0.8,
+   "exports": {
+    "p": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/phone.vue",
+   "status": "restored",
+   "owner": "shared.uc.phone",
+   "usedBy": 20
+  },
+  "positionmodal.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "positionmodal"
+   ],
+   "kb": 7.9,
+   "exports": {
+    "p": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/positionmodal.vue",
+   "status": "restored",
+   "owner": "shared.uc.positionmodal",
+   "usedBy": 7
+  },
+  "recommendZp.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "stateCard",
+    "recommendZp"
+   ],
+   "kb": 5.3,
+   "exports": {
+    "r": {
+     "path": "@/shared/recommendZp/RecommendZp.vue",
+     "export": "default"
+    },
+    "s": {
+     "path": "@/shared/recommendZp/StateCard.vue",
+     "export": "default"
+    }
+   },
+   "path": "@/shared/recommendZp.ts",
+   "status": "reserved",
+   "owner": "shared.uc.recommendZp",
+   "usedBy": 2
+  },
+  "recommendZp.17516156075452.js": {
+   "kind": "component",
+   "components": [
+    "BusinessCard",
+    "MsgAndTip",
+    "MyBusiness",
+    "recommendZp"
+   ],
+   "kb": 39.6,
+   "exports": {
+    "B": {
+     "path": "@/shared/recommendZp2/BusinessCard.vue",
+     "export": "default"
+    },
+    "M": {
+     "path": "@/shared/recommendZp2/MsgAndTip.vue",
+     "export": "default"
+    },
+    "a": {
+     "path": "@/shared/recommendZp2/MyBusiness.vue",
+     "export": "default"
+    },
+    "r": {
+     "path": "@/shared/recommendZp2/RecommendZp.vue",
+     "export": "default"
+    }
+   },
+   "path": "@/shared/recommendZp2.ts",
+   "status": "reserved",
+   "owner": "shared.uc.recommendZp2",
+   "usedBy": 2
+  },
+  "resumemodal.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "resumemodal"
+   ],
+   "kb": 3.7,
+   "exports": {
+    "r": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/resumemodal.vue",
+   "status": "restored",
+   "owner": "shared.uc.resumemodal",
+   "usedBy": 4
+  },
+  "right.vue_vue_type_script_setup_true_lang.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "right"
+   ],
+   "kb": 1.5,
+   "exports": {
+    "_": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/right.vue",
+   "status": "reserved",
+   "owner": "shared.uc.right",
+   "usedBy": 6
+  },
+  "setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "addHandledby"
+   ],
+   "kb": 4.3,
+   "exports": {
+    "a": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/setStatus.vue",
+   "status": "reserved",
+   "owner": "shared.uc.setStatus",
+   "usedBy": 3
+  },
+  "setStatusinterview.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "setStatusinterview"
+   ],
+   "kb": 2.6,
+   "exports": {
+    "s": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/setStatusinterview.vue",
+   "status": "restored",
+   "owner": "shared.uc.setStatusinterview",
+   "usedBy": 10
+  },
+  "unfold.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "unfold"
+   ],
+   "kb": 0.8,
+   "exports": {
+    "u": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/unfold.vue",
+   "status": "restored",
+   "owner": "shared.uc.unfold",
+   "usedBy": 3
+  },
+  "usercard.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "usercard"
+   ],
+   "kb": 2,
+   "exports": {
+    "u": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/usercard.vue",
+   "status": "reserved",
+   "owner": "shared.uc.usercard",
+   "usedBy": 2
+  },
+  "workType.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "workType"
+   ],
+   "kb": 9,
+   "exports": {
+    "w": {
+     "export": "default"
+    }
+   },
+   "path": "@/shared/workType.vue",
+   "status": "restored",
+   "owner": "shared.uc.workType",
+   "usedBy": 13
+  },
+  "workVideo.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "workImg",
+    "workVideo"
+   ],
+   "kb": 6.3,
+   "exports": {
+    "a": {
+     "path": "@/shared/workVideo/WorkVideo.vue",
+     "export": "default"
+    },
+    "w": {
+     "path": "@/shared/workVideo/WorkImg.vue",
+     "export": "default"
+    }
+   },
+   "path": "@/shared/workVideo.ts",
+   "status": "reserved",
+   "owner": "shared.uc.workVideo",
+   "usedBy": 3
+  },
+  "workshopNews.1751615607545.js": {
+   "kind": "component",
+   "components": [
+    "workshopType",
+    "workshopNews"
+   ],
+   "kb": 5.4,
+   "exports": {
+    "a": {
+     "path": "@/shared/workshopNews/WorkshopNews.vue",
+     "export": "default"
+    },
+    "w": {
+     "path": "@/shared/workshopNews/WorkshopType.vue",
+     "export": "default"
+    }
+   },
+   "path": "@/shared/workshopNews.ts",
+   "status": "reserved",
+   "owner": "shared.uc.workshopNews",
+   "usedBy": 2
+  },
+  "DictCodes.1751615607545.js": {
+   "kind": "module",
+   "components": [],
+   "kb": 0.2,
+   "exports": {
+    "D": {
+     "export": "DictCodes"
+    }
+   },
+   "path": "@/shared/DictCodes.ts",
+   "status": "restored",
+   "owner": "shared.uc.modules",
+   "usedBy": 2
+  },
+  "WebSockets.1751615607545.js": {
+   "kind": "module",
+   "components": [],
+   "kb": 0.9,
+   "exports": {
+    "c": {
+     "export": "createWebSocket"
+    },
+    "g": {
+     "export": "getWsBaseUrl"
+    }
+   },
+   "path": "@/shared/WebSockets.ts",
+   "status": "restored",
+   "owner": "shared.uc.modules",
+   "usedBy": 3
+  },
+  "dateUtil.1751615607545.js": {
+   "kind": "module",
+   "components": [],
+   "kb": 0.1,
+   "exports": {
+    "a": {
+     "export": "a"
+    }
+   },
+   "path": "@/shared/dateUtil.ts",
+   "status": "reserved",
+   "owner": "shared.uc.modules",
+   "usedBy": 3
+  },
+  "jspdf.es.min.1751615607545.js": {
+   "kind": "module",
+   "components": [],
+   "kb": 351.6,
+   "exports": {
+    "E": {
+     "path": "jspdf",
+     "export": "jsPDF",
+     "npm": true
+    },
+    "H": {
+     "export": "Watermark"
+    }
+   },
+   "path": "@/shared/jspdf.es.min.ts",
+   "status": "restored",
+   "owner": "shared.uc.modules",
+   "usedBy": 2
+  },
+  "message.1751615607545.js": {
+   "kind": "module",
+   "components": [],
+   "kb": 0.3,
+   "exports": {
+    "i": {
+     "export": "infoAlert"
+    },
+    "s": {
+     "export": "successCountdown"
+    }
+   },
+   "path": "@/shared/message.ts",
+   "status": "restored",
+   "owner": "shared.uc.modules",
+   "usedBy": 21
+  },
+  "wxyy.hook.1751615607545.js": {
+   "kind": "module",
+   "components": [],
+   "kb": 0.4,
+   "exports": {
+    "_": {
+     "path": "@/legacy",
+     "export": "ROBOT_IMG"
+    },
+    "g": {
+     "path": "@/legacy",
+     "export": "askWenXin"
+    }
+   },
+   "path": "@/shared/wxyy.hook.ts",
+   "status": "restored",
+   "owner": "shared.uc.modules",
+   "usedBy": 4
+  }
+ },
+ "api": {
+  "index.api.1751615607545.js#h": {
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "getFairListNew",
+   "url": "/xf-job/job/licenseFree/xfJobFair/getFairListNew",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.1751615607545.js#f": {
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "recommendJobList",
+   "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.1751615607545.js#e": {
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "getRecommendTalentList",
+   "url": "/xf-job/job/xfJobCompany/getRecommendTalentList",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.1751615607545.js#c": {
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "checkIzPerfect",
+   "url": "/xf-job/communal/xfSysUser/checkIzPerfect",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.1751615607545.js#g": {
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "queryByUserId",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.1751615607545.js#p": {
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "beJobSeeker",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/beJobSeeker",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.1751615607545.js#d": {
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "apply",
+   "url": "/xf-job/job/xfJobSupermarketMerchants/apply",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.1751615607545.js#l": {
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "logout",
+   "url": "/xf-job/job/xfJobSupermarketMerchants/logout",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.1751615607545.js#b": {
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "addForClosDown",
+   "url": "/xf-job/job/xfJobAppealRecord/merchants/addForClosDown",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.1751615607545.js#a": {
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "getAppealFlagByXfSysUserId",
+   "url": "/xf-job/job/xfJobAppealRecord/getAppealFlagByXfSysUserId",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754510.js#c": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "queryPageListByCompanyIdForFair",
+   "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/queryPageListByCompanyIdForFair",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754510.js#g": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "getDownloadList",
+   "url": "/xf-job/job/xfJobCompanyCurriculumDownload/getDownloadList",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754510.js#a": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "addTalent",
+   "url": "/xf-job/job/xfJobCompanyTalents/addTalent",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754510.js#b": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "queryPageInterviewListByCompanyId",
+   "url": "/xf-job/job/xfJobInterviewInvitation/queryPageInterviewListByCompanyId",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754510.js#d": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "queryPageListByCompanyId",
+   "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/queryPageListByCompanyId",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754510.js#f": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "downPdf",
+   "url": "/xf-job/job/xfJobCompanyCurriculumDownload/downPdf",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754510.js#q": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "queryPageListByCompanyId2",
+   "url": "/xf-job/job/xfJobCurriculumVitaeSearch/queryPageListByCompanyId",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754510.js#e": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "getHouseSetting",
+   "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/getHouseSetting",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754510.js#l": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "queryUserPageList",
+   "url": "/xf-job/job/xfJobLiveCurriculumVitaeDeliver/queryUserPageList",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754510.js#s": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "setStatus",
+   "url": "/job/licenseFree/xfJobLiveCurriculumVitaeDeliver/setStatus",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754511.js#m": {
+   "path": "@/api/api-175161560754511",
+   "export": "myJobFairList",
+   "url": "/xf-job/job/xfJobFair/myJobFairList",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#a": {
+   "path": "@/api/api-175161560754511",
+   "export": "myBoothList",
+   "url": "/xf-job/job/xfJobFair/myBoothList",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#h": {
+   "path": "@/api/api-175161560754511",
+   "export": "addOrUpdate",
+   "url": "/xf-job/job/xfJobFairApplyUnsubscribe/addOrUpdate",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#k": {
+   "path": "@/api/api-175161560754511",
+   "export": "fairParticipationToHtml",
+   "url": "/xf-job/job/xfJobFair/xfJobFairApplyInfo/fairParticipationToHtml?xfJobFairId=",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#i": {
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyJobFairInfo",
+   "url": "/xf-job/job/xfJobCompany/queryCompanyJobFairInfo",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#j": {
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyDataReport",
+   "url": "/xf-job/job/xfJobCompany/queryCompanyDataReport",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#c": {
+   "path": "@/api/api-175161560754511",
+   "export": "companyDataReport",
+   "url": "/xf-job/job/xfJobCompany/companyDataReport",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#b": {
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyIntentionResumeInfo",
+   "url": "/xf-job/job/xfJobCompany/queryCompanyIntentionResumeInfo",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#e": {
+   "path": "@/api/api-175161560754511",
+   "export": "companyIntentionResumeUpload",
+   "url": "/xf-job/job/xfJobCompany/companyIntentionResumeUpload",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#f": {
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyFileDataInfo",
+   "url": "/xf-job/job/xfJobCompany/queryCompanyFileDataInfo",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#g": {
+   "path": "@/api/api-175161560754511",
+   "export": "companyFileDataUpload",
+   "url": "/xf-job/job/xfJobCompany/companyFileDataUpload",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#d": {
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyPositionSelected",
+   "url": "/xf-job/job/licenseFree/queryCompanyPositionSelected",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754511.js#q": {
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyPersonInfoRegister",
+   "url": "/xf-job/job/licenseFree/queryCompanyPersonInfoRegister",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#g": {
+   "path": "@/api/api-175161560754512",
+   "export": "checkIzShowApplySameNetworkFair",
+   "url": "/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#a": {
+   "path": "@/api/api-175161560754512",
+   "export": "queryFairRegions",
+   "url": "/xf-job/job/licenseFree/queryFairRegions",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#s": {
+   "path": "@/api/api-175161560754512",
+   "export": "updateCompIntroduc",
+   "url": "/xf-job/job/licenseFree/updateCompIntroduc",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#f": {
+   "path": "@/api/api-175161560754512",
+   "export": "list",
+   "url": "/xf-job/job/xfJobFair/list",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#i": {
+   "path": "@/api/api-175161560754512",
+   "export": "detailById",
+   "url": "/xf-job/job/xfJobCompanyPosition/detailById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#J": {
+   "path": "@/api/api-175161560754512",
+   "export": "list2",
+   "url": "/xf-job/job/xfJobFairPositionRelation/list",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#e": {
+   "path": "@/api/api-175161560754512",
+   "export": "addPosition",
+   "url": "/xf-job/job/xfJobFairPositionRelation/addPosition",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#h": {
+   "path": "@/api/api-175161560754512",
+   "export": "editPosition",
+   "url": "/xf-job/job/xfJobFairPositionRelation/editPosition",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#q": {
+   "path": "@/api/api-175161560754512",
+   "export": "queryById",
+   "url": "/xf-job/job/xfJobFair/queryById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#d": {
+   "path": "@/api/api-175161560754512",
+   "export": "companyPositionAdd",
+   "url": "/xf-job/job/xfJobFairApplyInfo/companyPositionAdd",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#l": {
+   "path": "@/api/api-175161560754512",
+   "export": "getCompanyAttachmentList",
+   "url": "/xf-job/communal/xfSysAttachment/getCompanyAttachmentList",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#k": {
+   "path": "@/api/api-175161560754512",
+   "export": "queryBoothView",
+   "url": "/xf-job/job/xfJobFair/queryBoothView",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#j": {
+   "path": "@/api/api-175161560754512",
+   "export": "queryBoothPlaceInfo",
+   "url": "/xf-job/job/xfJobFair/queryBoothPlaceInfo",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#b": {
+   "path": "@/api/api-175161560754512",
+   "export": "list3",
+   "url": "/xf-job/job/xfJobFairUnsubscribeAuditRecord/list",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754512.js#c": {
+   "path": "@/api/api-175161560754512",
+   "export": "checkIzDishonesty",
+   "url": "/xf-job/job/xfJobFairApplyInfo/checkIzDishonesty",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.175161560754513.js#s": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "getStudentInfoById",
+   "url": "/xf-college/student/xfCollegeStudent/getStudentInfoById",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754513.js#g": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "getWqCompanyExpandInfoByJob",
+   "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/getWqCompanyExpandInfoByJob",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754513.js#e": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "edit",
+   "url": "/xf-college/student/xfCollegeStudent/edit",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754513.js#d": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "queryPageList",
+   "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/queryPageList",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754513.js#c": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "studentNotarizeOrRevocationSign",
+   "url": "/xf-college/collegeWqSignDetail/xfCollegeWqSignDetail/studentNotarizeOrRevocationSign",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754513.js#f": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "queryList",
+   "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/queryList",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754513.js#a": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "signCompany",
+   "url": "/xf-college/collegeWqSignDetail/xfCollegeWqSignDetail/signCompany",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754513.js#u": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "applyForCancel",
+   "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/applyForCancel",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754513.js#b": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "byNotarizeOrRevocationCancel",
+   "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/byNotarizeOrRevocationCancel",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754513.js#i": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "edit2",
+   "url": "/xf-college/wqStudResult/xfCollegeWqStudResult/edit",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754513.js#h": {
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "queryById",
+   "url": "/xf-college/wqStudResult/xfCollegeWqStudResult/queryById",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754514.js#s": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "add",
+   "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/add",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754514.js#e": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "edit",
+   "url": "xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/edit",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754514.js#a": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "getWqCompanyExpandInfoByJob",
+   "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/getWqCompanyExpandInfoByJob",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754514.js#q": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "queryList",
+   "url": "/xf-college/collegeWqSignDetail/xfCollegeWqSignDetail/queryList",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754514.js#b": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "queryList2",
+   "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/queryList",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754514.js#n": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "notarizeOrRevocationSign",
+   "url": "/xf-college/collegeWqSignDetail/xfCollegeWqSignDetail/notarizeOrRevocationSign",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754514.js#c": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "queryById",
+   "url": "/xf-college/student/xfCollegeStudent/queryById",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754514.js#g": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "getWqStudResultInfoById",
+   "url": "/xf-college/wqStudResult/xfCollegeWqStudResult/getWqStudResultInfoById",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754514.js#d": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "applyForCancel",
+   "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/applyForCancel",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754514.js#f": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "byNotarizeOrRevocationCancel",
+   "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/byNotarizeOrRevocationCancel",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754515.js#c": {
+   "path": "@/api/jobLoanApplyPerson",
+   "export": "checkIsCanAdd",
+   "url": "/xf-job/job/xfJobLoanApplyPerson/checkIsCanAdd",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754515.js#g": {
+   "path": "@/api/jobLoanApplyPerson",
+   "export": "listForUserCenter",
+   "url": "/xf-job/job/xfJobLoanApplyPerson/listForUserCenter",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754515.js#a": {
+   "path": "@/api/jobLoanApplyPerson",
+   "export": "queryById",
+   "url": "/xf-job/job/xfJobLoanApplyPerson/queryById",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754515.js#b": {
+   "path": "@/api/jobLoanApplyPerson",
+   "export": "queryUserInfo",
+   "url": "/xf-job/job/xfJobLoanApplyPerson/queryUserInfo",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754515.js#d": {
+   "path": "@/api/jobLoanApplyPerson",
+   "export": "save",
+   "url": "/xf-job/job/xfJobLoanApplyPerson/save",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754516.js#q": {
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "list",
+   "url": "/xf-job/job/xfJobLiveTelecastApply/list",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754516.js#b": {
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "queryById",
+   "url": "/xf-job/job/xfJobLiveTelecastApply/queryById",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754516.js#d": {
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "deleteBatch",
+   "url": "/xf-job/job/xfJobLiveTelecastApply/deleteBatch",
+   "method": "delete",
+   "status": "reserved"
+  },
+  "index.api.175161560754516.js#s": {
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "save",
+   "url": "/xf-job/job/xfJobLiveTelecastApply/save",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754516.js#l": {
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "listForPickUp",
+   "url": "/xf-job/job/xfJobLiveTelecastApplyPosition/listForPickUp",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754516.js#a": {
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "list2",
+   "url": "/xf-job/job/xfJobLiveTelecastApplyPosition/list",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#m": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "cancelUnsubscribe",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/cancelUnsubscribe",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#e": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryAttendanceListByCareerTalkId",
+   "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/queryAttendanceListByCareerTalkId",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#g": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryListInfoByCareerTalkId",
+   "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/queryListInfoByCareerTalkId",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#f": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryTalkDetailById",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/queryTalkDetailById",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#b": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryTalkListInfo",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/queryTalkListInfo",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#q": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryTalkStudentListInfo",
+   "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/queryTalkStudentListInfo",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#j": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "addCompany",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/addCompany",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#i": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "listByRoomParentOrganizationId",
+   "url": "/xf-college/campus/xfCollegeCampus/listByRoomParentOrganizationId",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#x": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "roomAndTimeList",
+   "url": "/xf-college/careerRoom/xfCollegeCareerRoom/roomAndTimeList",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#k": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryGroupByCtbDate",
+   "url": "/xf-college/careerTimeBucket/xfCollegeCareerTimeBucket/queryGroupByCtbDate",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#l": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "listNew",
+   "url": "/xf-job/job/xfJobCompanyPosition/listNew",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#d": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "cancelCompany",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/cancelCompany",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#h": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "listPositionForCareerTalk",
+   "url": "/xf-college/careerTalkPosition/xfCollegeCareerTalkPosition/listPositionForCareerTalk",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#a": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "attendanceAll",
+   "url": "/xf-job/attendance/xfJobAttendance/attendanceAll",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#c": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "cancelStudent",
+   "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/cancelStudent",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754517.js#u": {
+   "path": "@/api/collegeCareerTalk",
+   "export": "updateSigninNum",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/updateSigninNum",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754518.js#g": {
+   "path": "@/api/sysArticle",
+   "export": "getArticleListForRecruitment",
+   "url": "/xf-job/communal/xfSysArticle/getArticleListForRecruitment",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754518.js#b": {
+   "path": "@/api/sysArticle",
+   "export": "addOrEditRecruitment",
+   "url": "/xf-job/communal/xfSysArticle/addOrEditRecruitment",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754518.js#a": {
+   "path": "@/api/sysArticle",
+   "export": "queryById",
+   "url": "/xf-job/communal/xfSysArticle/queryById",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754518.js#s": {
+   "path": "@/api/sysArticle",
+   "export": "setPublish",
+   "url": "/xf-job/communal/xfSysArticle/setPublish",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754519.js#e": {
+   "path": "@/api/oddShareSurplusJobInfo",
+   "export": "edit",
+   "url": "/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/edit",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754519.js#a": {
+   "path": "@/api/oddShareSurplusJobInfo",
+   "export": "queryById",
+   "url": "/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/queryById",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754519.js#g": {
+   "path": "@/api/oddShareSurplusJobInfo",
+   "export": "list",
+   "url": "/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/list",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754519.js#b": {
+   "path": "@/api/oddShareSurplusJobInfo",
+   "export": "add",
+   "url": "/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/add",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075452.js#p": {
+   "path": "@/api/sysUser",
+   "export": "saveForUserCenter",
+   "url": "/xf-job/communal/xfSysUser/saveForUserCenter",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075452.js#g": {
+   "path": "@/api/sysUser",
+   "export": "queryByIdJM",
+   "url": "/xf-job/communal/xfSysUser/queryByIdJM",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075452.js#c": {
+   "path": "@/api/sysUser",
+   "export": "checkEmail",
+   "url": "/xf-job/communal/xfSysUser/checkEmail",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075452.js#b": {
+   "path": "@/api/sysUser",
+   "export": "queryIzExistByIdPhone",
+   "url": "/xf-job/job/xfJobUserTutorExpand/queryIzExistByIdPhone",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075452.js#a": {
+   "path": "@/api/sysUser",
+   "export": "checkIdCard",
+   "url": "/xf-job/communal/xfSysUser/checkIdCard",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075452.js#d": {
+   "path": "@/api/sysUser",
+   "export": "getSettingValueByCode",
+   "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754520.js#e": {
+   "path": "@/api/oddShareLackJobInfo",
+   "export": "edit",
+   "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/edit",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.175161560754520.js#a": {
+   "path": "@/api/oddShareLackJobInfo",
+   "export": "queryById",
+   "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/queryById",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754520.js#g": {
+   "path": "@/api/oddShareLackJobInfo",
+   "export": "list",
+   "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/list",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.175161560754520.js#b": {
+   "path": "@/api/oddShareLackJobInfo",
+   "export": "add",
+   "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/add",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075453.js#p": {
+   "path": "@/api/api-17516156075453",
+   "export": "updatePassword",
+   "url": "/xf-job/extend/user/updatePassword",
+   "method": "put",
+   "status": "restored"
+  },
+  "index.api.17516156075453.js#b": {
+   "path": "@/api/api-17516156075453",
+   "export": "phoneVerification",
+   "url": "/jeecg-system/sys/user/phoneVerification",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075453.js#a": {
+   "path": "@/api/api-17516156075453",
+   "export": "check",
+   "url": "/jeecg-system/sys/duplicate/check",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075453.js#d": {
+   "path": "@/api/api-17516156075453",
+   "export": "changePhone",
+   "url": "/xf-job/communal/xfSysUser/changePhone",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075453.js#e": {
+   "path": "@/api/api-17516156075453",
+   "export": "setXfSysUserPhoto",
+   "url": "/xf-job/communal/xfSysUser/setXfSysUserPhoto",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075453.js#c": {
+   "path": "@/api/api-17516156075453",
+   "export": "changePwdWithSmsCode",
+   "url": "/xf-job/extend/user/changePwdWithSmsCode",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075453.js#g": {
+   "path": "@/api/api-17516156075453",
+   "export": "userBindInfo",
+   "url": "/xf-job/communal/xfSysUserThirdAssociation/userBindInfo",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075453.js#u": {
+   "path": "@/api/api-17516156075453",
+   "export": "deleteItem",
+   "url": "/xf-job/communal/xfSysUserThirdAssociation/delete",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075454.js#g": {
+   "path": "@/api/sysConsult",
+   "export": "list",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityRecord/list",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075454.js#a": {
+   "path": "@/api/sysConsult",
+   "export": "queryOneForUserCenter",
+   "url": "/xf-job/job/xfJobUserTutorExpand/queryOneForUserCenter",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075454.js#p": {
+   "path": "@/api/sysConsult",
+   "export": "saveOneForUserCenter",
+   "url": "/xf-job/job/xfJobUserTutorExpand/saveOneForUserCenter",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075454.js#b": {
+   "path": "@/api/sysConsult",
+   "export": "statics",
+   "url": "/xf-job/job/xfSysConsult/statics",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075454.js#d": {
+   "path": "@/api/sysConsult",
+   "export": "queryListForUserCenter",
+   "url": "/xf-job/job/xfSysConsult/queryListForUserCenter",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075454.js#e": {
+   "path": "@/api/sysConsult",
+   "export": "queryById",
+   "url": "/xf-job/job/xfSysConsult/queryById",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075454.js#h": {
+   "path": "@/api/sysConsult",
+   "export": "saveOne",
+   "url": "/xf-job/job/xfSysConsultReply/saveOne",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075454.js#f": {
+   "path": "@/api/sysConsult",
+   "export": "checkIzCanReply",
+   "url": "/xf-job/job/xfSysConsultReply/checkIzCanReply",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075454.js#c": {
+   "path": "@/api/sysConsult",
+   "export": "queryJoinedForUserCenter",
+   "url": "/xf-job/job/xfSysConsult/queryJoinedForUserCenter",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075455.js#f": {
+   "path": "@/api/api-17516156075455",
+   "export": "queryOpenStatus",
+   "url": "/xf-job/job/licenseFree/xfJobMattermanage/queryOpenStatus",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#d": {
+   "path": "@/api/api-17516156075455",
+   "export": "getCollegeInfo",
+   "url": "/xf-talent/talent/xfTalentStayUniversity/getCollegeInfo",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#s": {
+   "path": "@/api/api-17516156075455",
+   "export": "addCollegeInfo",
+   "url": "/xf-talent/talent/xfTalentStayUniversity/addCollegeInfo",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#c": {
+   "path": "@/api/api-17516156075455",
+   "export": "list",
+   "url": "/xf-talent/talent/xfTalentStayUniversity/list",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#a": {
+   "path": "@/api/api-17516156075455",
+   "export": "list2",
+   "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/list",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#q": {
+   "path": "@/api/api-17516156075455",
+   "export": "queryById",
+   "url": "/xf-talent/talent/xfTalentStayUniversity/queryById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#r": {
+   "path": "@/api/api-17516156075455",
+   "export": "saveOrUpdate",
+   "url": "/xf-talent/talent/xfTalentStayUniversity/saveOrUpdate",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#o": {
+   "path": "@/api/api-17516156075455",
+   "export": "queryById2",
+   "url": "/xf-talent/talent/xfTalentPfiPromotion/queryById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#p": {
+   "path": "@/api/api-17516156075455",
+   "export": "saveOrUpdate2",
+   "url": "/xf-talent/talent/xfTalentPfiPromotion/saveOrUpdate",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#i": {
+   "path": "@/api/api-17516156075455",
+   "export": "queryById3",
+   "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/queryById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#j": {
+   "path": "@/api/api-17516156075455",
+   "export": "saveOrUpdate3",
+   "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/saveOrUpdate",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#l": {
+   "path": "@/api/api-17516156075455",
+   "export": "queryById4",
+   "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/queryById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#m": {
+   "path": "@/api/api-17516156075455",
+   "export": "saveOrupdate",
+   "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/saveOrupdate",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#k": {
+   "path": "@/api/api-17516156075455",
+   "export": "checkIdCard",
+   "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/checkIdCard",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#n": {
+   "path": "@/api/api-17516156075455",
+   "export": "checkIdCard2",
+   "url": "/xf-talent/talent/xfTalentPfiPromotion/checkIdCard",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#h": {
+   "path": "@/api/api-17516156075455",
+   "export": "checkIdCard3",
+   "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/checkIdCard",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#g": {
+   "path": "@/api/api-17516156075455",
+   "export": "list3",
+   "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/list",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#b": {
+   "path": "@/api/api-17516156075455",
+   "export": "list4",
+   "url": "/xf-talent/talent/xfTalentPfiPromotion/list",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#e": {
+   "path": "@/api/api-17516156075455",
+   "export": "list5",
+   "url": "/xf-talent/talent/xfTalentPostdocPerk/list",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#u": {
+   "path": "@/api/api-17516156075455",
+   "export": "queryById5",
+   "url": "/xf-talent/talent/xfTalentPostdocPerk/queryById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#t": {
+   "path": "@/api/api-17516156075455",
+   "export": "checkIdCard4",
+   "url": "/xf-talent/talent/xfTalentPostdocPerk/checkIdCard",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075455.js#v": {
+   "path": "@/api/api-17516156075455",
+   "export": "saveOrUpdate4",
+   "url": "/xf-talent/talent/xfTalentPostdocPerk/saveOrUpdate",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#g": {
+   "path": "@/api/api-56",
+   "export": "queryRuleList",
+   "url": "/xf-job/job/xfJobIntegralRule/queryRuleList",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a": {
+   "path": "@/api/api-56",
+   "export": "queryDetailList",
+   "url": "/xf-job/job/xfJobIntegralDetailRecord/queryDetailList",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#c": {
+   "path": "@/api/api-56",
+   "export": "statics",
+   "url": "/xf-job/job/xfJobCurriculumVitae/statics",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#y": {
+   "path": "@/api/api-56",
+   "export": "queryVoById",
+   "url": "/xf-job/job/xfJobCurriculumVitae/queryVoById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#C": {
+   "path": "@/api/api-56",
+   "export": "save",
+   "url": "/xf-job/job/xfJobCurriculumVitae/save",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#l": {
+   "path": "@/api/api-56",
+   "export": "list",
+   "url": "/xf-job/job/xfJobCurriculumVitae/list",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#f": {
+   "path": "@/api/api-56",
+   "export": "listNoPage",
+   "url": "/xf-job/job/xfJobCurriculumVitae/listNoPage",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#b": {
+   "path": "@/api/api-56",
+   "export": "getSettingValueByCode",
+   "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#i": {
+   "path": "@/api/api-56",
+   "export": "getVitaeNumByXfSysUserId",
+   "url": "/xf-job/job/xfJobCurriculumVitae/getVitaeNumByXfSysUserId",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#m": {
+   "path": "@/api/api-56",
+   "export": "queryIzCanCreatVitae",
+   "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanCreatVitae",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#h": {
+   "path": "@/api/api-56",
+   "export": "saveCopy",
+   "url": "/xf-job/job/xfJobCurriculumVitae/saveCopy",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#v": {
+   "path": "@/api/api-56",
+   "export": "deleteItem",
+   "url": "/xf-job/job/xfJobCurriculumVitae/delete",
+   "method": "delete",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#z": {
+   "path": "@/api/api-56",
+   "export": "list2",
+   "url": "/xf-job/job/xfJobWorkExperience/list",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#F": {
+   "path": "@/api/api-56",
+   "export": "add",
+   "url": "/xf-job/job/xfJobWorkExperience/add",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#M": {
+   "path": "@/api/api-56",
+   "export": "queryById",
+   "url": "/xf-job/job/xfJobWorkExperience/queryById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#D": {
+   "path": "@/api/api-56",
+   "export": "deleteItem2",
+   "url": "/xf-job/job/xfJobWorkExperience/delete",
+   "method": "delete",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#E": {
+   "path": "@/api/api-56",
+   "export": "edit",
+   "url": "/xf-job/job/xfJobWorkExperience/edit",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#A": {
+   "path": "@/api/api-56",
+   "export": "list3",
+   "url": "/xf-job/job/xfJobEducationalExperience/list",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#I": {
+   "path": "@/api/api-56",
+   "export": "add2",
+   "url": "/xf-job/job/xfJobEducationalExperience/add",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#H": {
+   "path": "@/api/api-56",
+   "export": "edit2",
+   "url": "/xf-job/job/xfJobEducationalExperience/edit",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#N": {
+   "path": "@/api/api-56",
+   "export": "queryById2",
+   "url": "/xf-job/job/xfJobEducationalExperience/queryById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#G": {
+   "path": "@/api/api-56",
+   "export": "deleteItem3",
+   "url": "/xf-job/job/xfJobEducationalExperience/delete",
+   "method": "delete",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#B": {
+   "path": "@/api/api-56",
+   "export": "list4",
+   "url": "/xf-job/job/xfJobCredentials/list",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#L": {
+   "path": "@/api/api-56",
+   "export": "add3",
+   "url": "/xf-job/job/xfJobCredentials/add",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#K": {
+   "path": "@/api/api-56",
+   "export": "edit3",
+   "url": "/xf-job/job/xfJobCredentials/edit",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#O": {
+   "path": "@/api/api-56",
+   "export": "queryById3",
+   "url": "/xf-job/job/xfJobCredentials/queryById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#J": {
+   "path": "@/api/api-56",
+   "export": "deleteItem4",
+   "url": "/xf-job/job/xfJobCredentials/delete",
+   "method": "delete",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#o": {
+   "path": "@/api/api-56",
+   "export": "izPublic",
+   "url": "/xf-job/job/xfJobCurriculumVitae/izPublic",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#r": {
+   "path": "@/api/api-56",
+   "export": "refresh",
+   "url": "/xf-job/job/xfJobCurriculumVitae/refresh",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#q": {
+   "path": "@/api/api-56",
+   "export": "showElegant",
+   "url": "/xf-job/job/xfJobCurriculumVitae/showElegant",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#s": {
+   "path": "@/api/api-56",
+   "export": "entrust",
+   "url": "/xf-job/job/xfJobCurriculumVitae/entrust",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#j": {
+   "path": "@/api/api-56",
+   "export": "isRefreshed",
+   "url": "/xf-job/job/xfJobCurriculumVitae/isRefreshed",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#k": {
+   "path": "@/api/api-56",
+   "export": "refreshByXfUserId",
+   "url": "/xf-job/job/xfJobCurriculumVitae/refreshByXfUserId",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#t": {
+   "path": "@/api/api-56",
+   "export": "downPdf",
+   "url": "/xf-job/job/xfJobCurriculumVitae/downPdf",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#d": {
+   "path": "@/api/api-56",
+   "export": "listNew",
+   "url": "/xf-job/job/xfJobInterviewInvitation/listNew",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#p": {
+   "path": "@/api/api-56",
+   "export": "acceptOrRefuse",
+   "url": "/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#e": {
+   "path": "@/api/api-56",
+   "export": "listWithSort",
+   "url": "/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#u": {
+   "path": "@/api/api-56",
+   "export": "queryIzCanDeleteViares",
+   "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeleteViares",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#w": {
+   "path": "@/api/api-56",
+   "export": "showDefault",
+   "url": "/xf-job/job/xfJobCurriculumVitae/showDefault",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#x": {
+   "path": "@/api/api-56",
+   "export": "queryPositionIzOnly",
+   "url": "/xf-job/job/xfJobCurriculumVitae/queryPositionIzOnly",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#n": {
+   "path": "@/api/api-56",
+   "export": "saveName",
+   "url": "/xf-job/job/xfJobCurriculumVitae/saveName",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#U": {
+   "path": "@/api/api-56",
+   "export": "listForUserContent",
+   "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/listForUserContent",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a0": {
+   "path": "@/api/api-56",
+   "export": "companyList",
+   "url": "/xf-job/job/xfJobShieldList/companyList",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#Z": {
+   "path": "@/api/api-56",
+   "export": "getCompany",
+   "url": "/xf-job/job/xfJobShieldList/getCompany",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#$": {
+   "path": "@/api/api-56",
+   "export": "add4",
+   "url": "/xf-job/job/xfJobShieldList/add",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#_": {
+   "path": "@/api/api-56",
+   "export": "cancel",
+   "url": "/xf-job/job/xfJobShieldList/cancel",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a9": {
+   "path": "@/api/api-56",
+   "export": "viewVoByIdFromPerson",
+   "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromPerson",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a1": {
+   "path": "@/api/api-56",
+   "export": "getPersonalFilelistForUser",
+   "url": "/xf-job/communal/xfSysAttachment/getPersonalFilelistForUser",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a2": {
+   "path": "@/api/api-56",
+   "export": "batchUploadFromUserCenter",
+   "url": "/xf-job/communal/xfSysAttachment/batchUploadFromUserCenter",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a3": {
+   "path": "@/api/api-56",
+   "export": "deleteItem5",
+   "url": "/xf-job/communal/xfSysAttachment/delete",
+   "method": "delete",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a5": {
+   "path": "@/api/api-56",
+   "export": "list5",
+   "url": "/xf-job/job/xfJobSubscribeRecord/list",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a8": {
+   "path": "@/api/api-56",
+   "export": "add5",
+   "url": "/xf-job/job/xfJobSubscribeRecord/add",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a4": {
+   "path": "@/api/api-56",
+   "export": "isCanAdd",
+   "url": "/xf-job/job/xfJobSubscribeRecord/isCanAdd",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a7": {
+   "path": "@/api/api-56",
+   "export": "queryById4",
+   "url": "/xf-job/job/xfJobSubscribeRecord/queryById",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#a6": {
+   "path": "@/api/api-56",
+   "export": "deleteItem6",
+   "url": "/xf-job/job/xfJobSubscribeRecord/delete",
+   "method": "DELETE",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#aa": {
+   "path": "@/api/api-56",
+   "export": "downPdf2",
+   "url": "/xf-job/job/xfJobCompanyCurriculumDownload/downPdf",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#P": {
+   "path": "@/api/api-56",
+   "export": "vitaeTempListForUserContent",
+   "url": "/xf-job/job/xfJobVitaeTemplate/vitaeTempListForUserContent",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#Q": {
+   "path": "@/api/api-56",
+   "export": "saveVitaeTemplateId",
+   "url": "/xf-job/job/xfJobCurriculumVitae/saveVitaeTemplateId",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#R": {
+   "path": "@/api/api-56",
+   "export": "vitaeTempListByType",
+   "url": "/job/xfJobVitaeTemplate/vitaeTempListByType",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#S": {
+   "path": "@/api/api-56",
+   "export": "listNewForPoster",
+   "url": "/xf-job/job/xfJobCompanyPosition/listNewForPoster",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#T": {
+   "path": "@/api/api-56",
+   "export": "generatePoster4PC",
+   "url": "/xf-job/job/xfJobCompany/generatePoster4PC",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#V": {
+   "path": "@/api/api-56",
+   "export": "add6",
+   "url": "/xf-job/job/xfJobUserCare/add",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#X": {
+   "path": "@/api/api-56",
+   "export": "add7",
+   "url": "/xf-job/job/xfJobComplaintRecord/add",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#W": {
+   "path": "@/api/api-56",
+   "export": "undoAllComplaintByType",
+   "url": "/xf-job/job/xfJobComplaintRecord/undoAllComplaintByType",
+   "method": "post",
+   "status": "restored"
+  },
+  "index.api.17516156075456.js#Y": {
+   "path": "@/api/api-56",
+   "export": "listForUserContent2",
+   "url": "/xf-alliance/alliance/curriculumVitaeDeliver/listForUserContent",
+   "method": "get",
+   "status": "restored"
+  },
+  "index.api.17516156075457.js#g": {
+   "path": "@/api/oddFindJobInfo",
+   "export": "userRelease",
+   "url": "/xf-oddjob/oddjob/xfOddUser/userRelease",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075457.js#s": {
+   "path": "@/api/oddFindJobInfo",
+   "export": "add",
+   "url": "/xf-oddjob/oddJob/xfOddNeedJobInfo/add",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075457.js#e": {
+   "path": "@/api/oddFindJobInfo",
+   "export": "edit",
+   "url": "/xf-oddjob/oddJob/xfOddNeedJobInfo/edit",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075457.js#a": {
+   "path": "@/api/oddFindJobInfo",
+   "export": "getDetailById",
+   "url": "/xf-oddjob/oddJob/xfOddNeedJobInfo/getDetailById",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075457.js#b": {
+   "path": "@/api/oddFindJobInfo",
+   "export": "grounding",
+   "url": "/xf-oddjob/oddjob/xfOddUser/grounding",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075457.js#f": {
+   "path": "@/api/oddFindJobInfo",
+   "export": "add2",
+   "url": "/xf-oddjob/oddJob/xfOddFindJobInfo/add",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075457.js#d": {
+   "path": "@/api/oddFindJobInfo",
+   "export": "edit2",
+   "url": "/xf-oddjob/oddJob/xfOddFindJobInfo/edit",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075457.js#c": {
+   "path": "@/api/oddFindJobInfo",
+   "export": "queryById",
+   "url": "/xf-oddjob/oddJob/xfOddFindJobInfo/queryById",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075457.js#h": {
+   "path": "@/api/oddFindJobInfo",
+   "export": "list",
+   "url": "/xf-oddjob/oddJob/licenseFree/callRecord/list",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075457.js#i": {
+   "path": "@/api/oddFindJobInfo",
+   "export": "browseRecords",
+   "url": "/oddjob/xfOddUserBrowse/browseRecords",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075458.js#g": {
+   "path": "@/api/jobUserSchoolExpert",
+   "export": "queryOneForUserCenter",
+   "url": "/xf-job/job/xfJobUserSchoolExpert/queryOneForUserCenter",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075458.js#p": {
+   "path": "@/api/jobUserSchoolExpert",
+   "export": "saveOneForUserCenter",
+   "url": "/xf-job/job/xfJobUserSchoolExpert/saveOneForUserCenter",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075458.js#a": {
+   "path": "@/api/jobUserSchoolExpert",
+   "export": "statics",
+   "url": "/xf-job/job/xfSysConsult/statics",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075458.js#c": {
+   "path": "@/api/jobUserSchoolExpert",
+   "export": "queryListForUserCenter",
+   "url": "/xf-job/job/xfSysConsult/queryListForUserCenter",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075458.js#b": {
+   "path": "@/api/jobUserSchoolExpert",
+   "export": "queryJoinedForUserCenter",
+   "url": "/xf-job/job/xfSysConsult/queryJoinedForUserCenter",
+   "method": "get",
+   "status": "reserved"
+  },
+  "index.api.17516156075459.js#g": {
+   "path": "@/api/jobLoanApplyCompany",
+   "export": "listForUserCenter",
+   "url": "/xf-job/job/xfJobLoanApplyCompany/listForUserCenter",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075459.js#b": {
+   "path": "@/api/jobLoanApplyCompany",
+   "export": "queryById",
+   "url": "/xf-job/job/xfJobLoanApplyCompany/queryById",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075459.js#d": {
+   "path": "@/api/jobLoanApplyCompany",
+   "export": "queryCompanyInfo",
+   "url": "/xf-job/job/xfJobLoanApplyCompany/queryCompanyInfo",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075459.js#a": {
+   "path": "@/api/jobLoanApplyCompany",
+   "export": "saveOrUpdateMh",
+   "url": "/job/xfJobLoanApplyCompany/saveOrUpdateMh",
+   "method": "post",
+   "status": "reserved"
+  },
+  "index.api.17516156075459.js#c": {
+   "path": "@/api/jobLoanApplyCompany",
+   "export": "checkIsCanAdd",
+   "url": "/xf-job/job/xfJobLoanApplyCompany/checkIsCanAdd",
+   "method": "post",
+   "status": "reserved"
+  }
+ },
+ "apiModules": {
+  "index.api.1751615607545.js": {
+   "path": "@/api/jobSupermarketMerchants",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 10
+  },
+  "index.api.175161560754510.js": {
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 10
+  },
+  "index.api.175161560754511.js": {
+   "path": "@/api/api-175161560754511",
+   "renameTo": "@/api/jobCompany",
+   "status": "restored",
+   "owner": null,
+   "functions": 13
+  },
+  "index.api.175161560754512.js": {
+   "path": "@/api/api-175161560754512",
+   "renameTo": "@/api/jobFair",
+   "status": "restored",
+   "owner": null,
+   "functions": 15
+  },
+  "index.api.175161560754513.js": {
+   "path": "@/api/collegeWqCancelDetail",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 11
+  },
+  "index.api.175161560754514.js": {
+   "path": "@/api/collegeWqCompanyExpand",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 10
+  },
+  "index.api.175161560754515.js": {
+   "path": "@/api/jobLoanApplyPerson",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 5
+  },
+  "index.api.175161560754516.js": {
+   "path": "@/api/jobLiveTelecastApply",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 6
+  },
+  "index.api.175161560754517.js": {
+   "path": "@/api/collegeCareerTalk",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 16
+  },
+  "index.api.175161560754518.js": {
+   "path": "@/api/sysArticle",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 4
+  },
+  "index.api.175161560754519.js": {
+   "path": "@/api/oddShareSurplusJobInfo",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 4
+  },
+  "index.api.17516156075452.js": {
+   "path": "@/api/sysUser",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 6
+  },
+  "index.api.175161560754520.js": {
+   "path": "@/api/oddShareLackJobInfo",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 4
+  },
+  "index.api.17516156075453.js": {
+   "path": "@/api/api-17516156075453",
+   "renameTo": "@/api/user",
+   "status": "restored",
+   "owner": null,
+   "functions": 8
+  },
+  "index.api.17516156075454.js": {
+   "path": "@/api/sysConsult",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 9
+  },
+  "index.api.17516156075455.js": {
+   "path": "@/api/api-17516156075455",
+   "renameTo": "@/api/talentStayUniversity",
+   "status": "restored",
+   "owner": null,
+   "functions": 22,
+   "duplicates": [
+    "@/api/api-55"
+   ]
+  },
+  "index.api.17516156075456.js": {
+   "path": "@/api/api-56",
+   "renameTo": "@/api/jobCurriculumVitae",
+   "status": "restored",
+   "owner": null,
+   "functions": 65
+  },
+  "index.api.17516156075457.js": {
+   "path": "@/api/oddFindJobInfo",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 10
+  },
+  "index.api.17516156075458.js": {
+   "path": "@/api/jobUserSchoolExpert",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 5
+  },
+  "index.api.17516156075459.js": {
+   "path": "@/api/jobLoanApplyCompany",
+   "status": "reserved",
+   "owner": "script:restore-api",
+   "functions": 5
+  }
+ },
+ "modules": {
+  "default.1751615607545.js": {
+   "kind": "asset",
+   "exports": {
+    "_": {
+     "value": "/assets/default.1751615607545.jpg",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "defaultImg",
+     "status": "reserved",
+     "owner": "shared.uc.modules"
+    }
+   }
+  },
+  "html2canvas.esm.1751615607545.js": {
+   "kind": "npm",
+   "npm": "html2canvas",
+   "exports": {
+    "default": {
+     "path": "html2canvas",
+     "export": "default"
+    }
+   }
+  },
+  "index.175161560754527.js": {
+   "kind": "npm",
+   "npm": "echarts",
+   "exports": {
+    "i": {
+     "path": "echarts",
+     "export": "init"
+    }
+   }
+  },
+  "main.1751615607545.js": {
+   "kind": "npm",
+   "npm": "pinyin-match",
+   "exports": {
+    "t": {
+     "path": "pinyin-match",
+     "export": "default"
+    }
+   }
+  },
+  "newUserCard.vue_vue_type_style_index_0_scoped_399cb1b5_lang.1751615607545.js": {
+   "kind": "asset",
+   "exports": {
+    "_": {
+     "value": "/assets/clogo.1751615607545.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "newUserCardImg",
+     "status": "reserved",
+     "owner": "shared.uc.modules"
+    }
+   }
+  },
+  "print.1751615607545.js": {
+   "kind": "npm",
+   "npm": "print-js",
+   "note": "依赖未在 hmrsfw-vue/package.json 里，版本由 E7 按指纹核对后加入",
+   "exports": {
+    "$": {
+     "path": "print-js",
+     "export": "default"
+    }
+   }
+  },
+  "right.vue_vue_type_style_index_0_scopes_true_lang.1751615607545.js": {
+   "kind": "side-effect",
+   "note": "swiper 核心（ssr-window / dom7），由 npm swiper 提供",
+   "exports": {}
+  },
+  "stateCard.vue_vue_type_style_index_0_scoped_53902b4a_lang.1751615607545.js": {
+   "kind": "asset",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.7KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "stateCardImg",
+     "status": "reserved",
+     "owner": "shared.uc.modules"
+    }
+   }
+  }
+ },
+ "utils": {
+  "@/utils/crypto-adapter": [
+   "CryptoAdapter",
+   "CryptoKeys",
+   "createCryptoAdapter",
+   "decryptResponse",
+   "decryptStorage",
+   "encryptRequest",
+   "encryptStorage",
+   "readCryptoKeysFromEnv",
+   "shouldEncryptRequest",
+   "sm2EncryptHex",
+   "sm4DecryptHex",
+   "sm4EncryptHex"
+  ],
+  "@/utils/request": [
+   "API_BASE",
+   "ApiResponse",
+   "STATIC_BASE",
+   "request"
+  ]
+ },
+ "globals": {
+  "components": [
+   "RouterLink",
+   "RouterView",
+   "baidu-map",
+   "bm-auto-complete",
+   "bm-boundary",
+   "bm-bus",
+   "bm-circle",
+   "bm-city-list",
+   "bm-context-menu",
+   "bm-context-menu-item",
+   "bm-control",
+   "bm-copyright",
+   "bm-driving",
+   "bm-geolocation",
+   "bm-ground",
+   "bm-info-window",
+   "bm-label",
+   "bm-local-search",
+   "bm-map-type",
+   "bm-marker",
+   "bm-navigation",
+   "bm-overlay",
+   "bm-overview-map",
+   "bm-panorama",
+   "bm-point-collection",
+   "bm-polygon",
+   "bm-polyline",
+   "bm-scale",
+   "bm-tile",
+   "bm-traffic",
+   "bm-transit",
+   "bm-walking",
+   "city",
+   "router-link",
+   "router-view"
+  ],
+  "componentPatterns": [
+   "^a-",
+   "^A[A-Z]",
+   "(Outlined|Filled|TwoTone)$",
+   "-(outlined|filled|two-tone)$",
+   "^bm-",
+   "^baidu-map$"
+  ],
+  "directives": [
+   "click-outside",
+   "imgerr"
+  ],
+  "provide": [],
+  "notes": [
+   "ant-design-vue 由 app.use 全量注册（a-* 组件）",
+   "@ant-design/icons-vue 图标全量注册",
+   "vue-baidu-map-3x（baidu-map、bm-*）由入口在取到 ak 后注册"
+  ]
+ },
+ "npm": {
+  "@amap/amap-jsapi-loader": "1.0.1",
+  "@ant-design/icons-vue": "6.1.0",
+  "ant-design-vue": "3.2.20",
+  "axios": "1.4.0",
+  "cropperjs": "1.5.13",
+  "dayjs": "1.11.9",
+  "echarts": "5.5.0",
+  "html2canvas": "1.4.1",
+  "icons-svg-portal": "npm:@ant-design/icons-svg@4.2.1",
+  "jquery": "3.7.0",
+  "jspdf": "2.5.1",
+  "lodash-es": "4.17.21",
+  "moment": "2.29.4",
+  "pinia": "2.1.4",
+  "pinyin-match": "1.2.4",
+  "qrcodejs2": "0.0.2",
+  "qrcodejs2-fix": "0.0.1",
+  "sm-crypto": "0.3.13",
+  "swiper": "8.4.7",
+  "vue": "3.3.4",
+  "vue-baidu-map-3x": "1.0.40",
+  "vue-router": "4.2.2",
+  "vue3-seamless-scroll": "2.0.1",
+  "vuex": "4.1.0",
+  "print-js": "待 E7 按指纹核对"
+ },
+ "npmSubpaths": [
+  "swiper/vue",
+  "swiper/css",
+  "ant-design-vue/es",
+  "dayjs/locale",
+  "echarts/core"
+ ]
+}

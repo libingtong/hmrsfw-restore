@@ -1,0 +1,71 @@
+{
+ "id": "page.portal.sjz.unitMain.unitMain",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 13.6,
+ "sourceChunk": "legacy-dist/portal/assets/unitMain.1783320636200.js",
+ "components": [
+  {
+   "name": "application",
+   "scopeId": "data-v-7d18e1a9"
+  },
+  {
+   "name": "unitMain",
+   "scopeId": "data-v-cdce1826"
+  }
+ ],
+ "scopeIds": [
+  "data-v-7d18e1a9",
+  "data-v-cdce1826"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/unitMain.1783320636200.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/sjz/unitMain/unitMain.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/unitMain/unitMain/",
+ "routes": [
+  {
+   "path": "/unitMain",
+   "name": "unitMain",
+   "title": "企业招聘列表详情"
+  }
+ ],
+ "recordPath": "/unitMain",
+ "maps": "out/maps/page.portal.sjz.unitMain.unitMain.json",
+ "hints": "out/hints/page.portal.sjz.unitMain.unitMain.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "S",
+   "a6",
+   "a8",
+   "a9",
+   "av",
+   "c",
+   "f",
+   "m",
+   "v"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620035.js#c",
+   "index.api.178332063620035.js#g",
+   "index.api.178332063620035.js#n",
+   "index.api.178332063620035.js#o",
+   "index.api.178332063620035.js#x"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

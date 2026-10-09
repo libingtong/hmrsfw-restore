@@ -1,0 +1,65 @@
+{
+ "id": "page.uc.expert",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 14.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.17516156075457.js",
+ "components": [
+  {
+   "name": "nation",
+   "scopeId": null
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-013acda5"
+  }
+ ],
+ "scopeIds": [
+  "data-v-013acda5"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.17516156075457.css"
+ ],
+ "target": "apps/uc/src/views/expert.vue",
+ "subComponentDir": "apps/uc/src/views/expert/",
+ "routes": [
+  {
+   "path": "/expert",
+   "name": "expert"
+  }
+ ],
+ "recordPath": "/expert",
+ "maps": "out/maps/page.uc.expert.json",
+ "hints": "out/hints/page.uc.expert.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "M",
+   "a",
+   "d",
+   "h",
+   "k",
+   "m",
+   "x"
+  ],
+  "shared": [
+   "cropperjs.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "dictCodeTreeOne.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075458.js#g",
+   "index.api.17516156075458.js#p"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

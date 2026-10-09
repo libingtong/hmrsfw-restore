@@ -1,0 +1,127 @@
+{
+ "id": "shared.uc.recommendZp2",
+ "chunk": "legacy-dist/usercenter/assets/recommendZp.17516156075452.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Z": "defineComponent",
+  "b": "ref",
+  "C": "useRouter (vue-router)",
+  "x": "reactive",
+  "w": "onMounted",
+  "I": "resolveComponent",
+  "l": "openBlock",
+  "d": "createElementBlock",
+  "e": "createElementVNode",
+  "c": "toDisplayString",
+  "Y": "normalizeClass",
+  "J": "createVNode",
+  "g": "unref",
+  "$": "withDirectives",
+  "ee": "vShow",
+  "h": "createTextVNode",
+  "y": "createCommentVNode",
+  "V": "pushScopeId",
+  "U": "popScopeId",
+  "P": "Fragment",
+  "B": "renderList",
+  "D": "withModifiers",
+  "j": "createBlock",
+  "Q": "withCtx"
+ },
+ "entry": {
+  "f": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "se": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "te": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "ie": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "ne": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "O": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "X": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "H": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ce": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "S": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "oe": {
+   "original": "s",
+   "path": "@/legacy/api",
+   "export": "queryAnnouncementList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "le": {
+   "original": "ah",
+   "path": "@/legacy/utils",
+   "export": "stripHtml",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {
+  "de": {
+   "original": "index.api.1751615607545.js#h",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "getFairListNew",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobFair/getFairListNew"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

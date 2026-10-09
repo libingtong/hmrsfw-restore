@@ -1,0 +1,78 @@
+{
+ "id": "shared.portal.resumemodal",
+ "chunk": "legacy-dist/portal/assets/resumemodal.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "K": "defineComponent",
+  "Q": "useRoute (vue-router)",
+  "W": "ref",
+  "ee": "reactive",
+  "se": "onMounted",
+  "o": "resolveComponent",
+  "ae": "openBlock",
+  "te": "createElementBlock",
+  "c": "createVNode",
+  "d": "withCtx",
+  "le": "createTextVNode"
+ },
+ "entry": {
+  "T": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "x": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "S": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "D": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "J": {
+   "original": "index.api.17833206362002.js#o",
+   "path": "@/api/api-17833206362002",
+   "export": "listNoPageForDeliver",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/listNoPageForDeliver"
+  },
+  "N": {
+   "original": "index.api.17833206362002.js#p",
+   "path": "@/api/api-17833206362002",
+   "export": "listNoPageForDeliver2",
+   "status": "restored",
+   "url": "/alliance/curriculumVitaeDeliver/listNoPageForDeliver"
+  },
+  "Z": {
+   "original": "index.api.17833206362002.js#r",
+   "path": "@/api/api-17833206362002",
+   "export": "add2",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/add"
+  },
+  "$": {
+   "original": "index.api.17833206362002.js#s",
+   "path": "@/api/api-17833206362002",
+   "export": "add3",
+   "status": "restored",
+   "url": "/xf-alliance/alliance/curriculumVitaeDeliver/add"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

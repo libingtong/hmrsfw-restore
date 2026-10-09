@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.oddjob.lack",
+ "chunk": "legacy-dist/usercenter/assets/lack-job.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "X": "defineComponent",
+  "Y": "useRouter (vue-router)",
+  "Z": "useRoute (vue-router)",
+  "_": "ref",
+  "G": "reactive",
+  "F": "onMounted",
+  "m": "resolveComponent",
+  "d": "openBlock",
+  "p": "createElementBlock",
+  "J": "createElementVNode",
+  "t": "createVNode",
+  "o": "withCtx",
+  "b": "createTextVNode",
+  "z": "unref",
+  "v": "toDisplayString",
+  "y": "createCommentVNode",
+  "H": "createBlock",
+  "L": "Fragment"
+ },
+ "entry": {
+  "Q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "te": {
+   "original": "index.api.175161560754520.js#g",
+   "path": "@/api/oddShareLackJobInfo",
+   "export": "list",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/list"
+  }
+ },
+ "shared": {
+  "ee": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

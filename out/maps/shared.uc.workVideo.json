@@ -1,0 +1,69 @@
+{
+ "id": "shared.uc.workVideo",
+ "chunk": "legacy-dist/usercenter/assets/workVideo.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "G": "defineComponent",
+  "R": "reactive",
+  "d": "ref",
+  "F": "onMounted",
+  "z": "resolveComponent",
+  "J": "openBlock",
+  "q": "createElementBlock",
+  "i": "createVNode",
+  "p": "withCtx",
+  "I": "createTextVNode",
+  "m": "unref",
+  "M": "createElementVNode",
+  "L": "toDisplayString"
+ },
+ "entry": {
+  "f": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "A": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "O": {
+   "original": "aO",
+   "path": "@ant-design/icons-vue",
+   "export": "UploadOutlined",
+   "status": "npm"
+  },
+  "U": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "V": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  },
+  "E": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "$": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,41 @@
+{
+ "id": "page.portal.talents.newPark.industry",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 14.4,
+ "sourceChunk": "legacy-dist/portal/assets/industry.1783320636200.js",
+ "components": [
+  {
+   "name": "industry",
+   "scopeId": "data-v-9e6c643f"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9e6c643f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/industry.1783320636200.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/newPark/industry.vue",
+ "subComponentDir": "apps/portal/src/views/talents/newPark/industry/",
+ "routes": [],
+ "recordPath": "/talents/park",
+ "maps": "out/maps/page.portal.talents.newPark.industry.json",
+ "hints": "out/hints/page.portal.talents.newPark.industry.md",
+ "deps": {
+  "entry": [],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.newPark.index"
+}

@@ -1,0 +1,53 @@
+{
+ "id": "shared.uc.beonmodal",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.3,
+ "chunkKb": 4.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/beonmodal.1751615607545.js",
+ "components": [
+  {
+   "name": "beonmodal",
+   "scopeId": "data-v-1e6b66f8"
+  }
+ ],
+ "scopeIds": [
+  "data-v-1e6b66f8"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/beonmodal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/beonmodal.vue",
+ "exports": {
+  "b": {
+   "export": "default"
+  }
+ },
+ "registryKey": "beonmodal.1751615607545.js",
+ "usedBy": [
+  "page.uc.BeOnAdmin",
+  "page.uc.PositionAdmin",
+  "page.uc.TalentSearch",
+  "page.uc.JobFairsHome",
+  "page.uc.fairsList"
+ ],
+ "maps": "out/maps/shared.uc.beonmodal.json",
+ "hints": "out/hints/shared.uc.beonmodal.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a9",
+   "p",
+   "x"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

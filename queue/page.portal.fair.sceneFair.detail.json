@@ -1,0 +1,90 @@
+{
+ "id": "page.portal.fair.sceneFair.detail",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 35.1,
+ "sourceChunk": "legacy-dist/portal/assets/detail.17833206362003.js",
+ "components": [
+  {
+   "name": "detail",
+   "scopeId": "data-v-aa062d95"
+  }
+ ],
+ "scopeIds": [
+  "data-v-aa062d95"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/detail.17833206362004.css",
+  "legacy-dist/portal/assets/detail.17833206362003.css"
+ ],
+ "target": "apps/portal/src/views/fair/sceneFair/detail.vue",
+ "subComponentDir": "apps/portal/src/views/fair/sceneFair/detail/",
+ "routes": [
+  {
+   "path": "/sceneFairDetail/:zphId",
+   "name": "sceneFairDetail",
+   "title": "固定展位招聘会"
+  }
+ ],
+ "recordPath": "/sceneFairDetail/:zphId",
+ "maps": "out/maps/page.portal.fair.sceneFair.detail.json",
+ "hints": "out/hints/page.portal.fair.sceneFair.detail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "D",
+   "I",
+   "J",
+   "K",
+   "O",
+   "S",
+   "aD",
+   "ap",
+   "ba",
+   "c",
+   "d",
+   "f",
+   "g",
+   "h",
+   "m",
+   "p",
+   "q",
+   "r",
+   "u",
+   "v"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "industryCode.1783320636200.js",
+   "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#g",
+   "index.api.178332063620017.js#b",
+   "index.api.178332063620017.js#c",
+   "index.api.178332063620017.js#d",
+   "index.api.178332063620017.js#e",
+   "index.api.178332063620017.js#f",
+   "index.api.178332063620017.js#h",
+   "index.api.178332063620017.js#i",
+   "index.api.178332063620017.js#j"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/sceneFairDetail/:zphId",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

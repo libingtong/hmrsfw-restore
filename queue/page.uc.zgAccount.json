@@ -1,0 +1,53 @@
+{
+ "id": "page.uc.zgAccount",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/account.1751615607545.js",
+ "components": [
+  {
+   "name": "account",
+   "scopeId": "data-v-31e0088b"
+  }
+ ],
+ "scopeIds": [
+  "data-v-31e0088b"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/account.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/zgAccount.vue",
+ "subComponentDir": "apps/uc/src/views/zgAccount/",
+ "routes": [
+  {
+   "path": "/zgAccount",
+   "name": "zgAccount"
+  }
+ ],
+ "recordPath": "/zgAccount",
+ "maps": "out/maps/page.uc.zgAccount.json",
+ "hints": "out/hints/page.uc.zgAccount.md",
+ "deps": {
+  "entry": [
+   "G",
+   "bL",
+   "bM"
+  ],
+  "shared": [
+   "WebSockets.1751615607545.js",
+   "ZgIframe.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/zgAccount",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

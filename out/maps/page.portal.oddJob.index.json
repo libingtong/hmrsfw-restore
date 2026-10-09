@@ -1,0 +1,217 @@
+{
+ "id": "page.portal.oddJob.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620048.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ee": "defineComponent",
+  "se": "useRouter (vue-router)",
+  "V": "reactive",
+  "Qs": "watch",
+  "ae": "onMounted",
+  "y": "resolveComponent",
+  "l": "openBlock",
+  "i": "createElementBlock",
+  "e": "createElementVNode",
+  "T": "createCommentVNode",
+  "d": "createVNode",
+  "R": "Fragment",
+  "E": "renderList",
+  "a": "toDisplayString",
+  "k": "createTextVNode",
+  "h": "createBlock",
+  "Xs": "nextTick",
+  "le": "pushScopeId",
+  "te": "popScopeId",
+  "u": "unref",
+  "ie": "withCtx",
+  "ne": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "G": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Fs": {
+   "original": "bW",
+   "path": "@/legacy",
+   "export": "listAuthenticateIdentity",
+   "status": "restored"
+  },
+  "Bs": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "K": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "Ds": {
+   "original": "i",
+   "path": "swiper",
+   "export": "default",
+   "status": "npm",
+   "as": "SwiperCore"
+  },
+  "Es": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Ps": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "As": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Is": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "js": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "zs": {
+   "original": "C",
+   "path": "@/legacy",
+   "export": "TEXT_GO_PERFECT",
+   "status": "restored"
+  },
+  "Os": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "Us": {
+   "original": "E",
+   "path": "@/legacy",
+   "export": "IDENTITY_PERSON",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "X": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "N": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "C": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "aa": {
+   "original": "index.api.178332063620024.js#r",
+   "path": "@/api/api-24",
+   "export": "recommendation",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/xfOddRecommendRecord/recommendation"
+  },
+  "la": {
+   "original": "index.api.178332063620024.js#l",
+   "path": "@/api/api-24",
+   "export": "loadTreeRoot",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/loadTreeRoot"
+  },
+  "ta": {
+   "original": "index.api.178332063620024.js#b",
+   "path": "@/api/api-24",
+   "export": "getArticleList",
+   "status": "restored",
+   "url": "/xf-job/school/licenseFree/getArticleList"
+  },
+  "ia": {
+   "original": "index.api.178332063620024.js#n",
+   "path": "@/api/api-24",
+   "export": "needJoblist",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/needJoblist"
+  },
+  "na": {
+   "original": "index.api.178332063620024.js#f",
+   "path": "@/api/api-24",
+   "export": "findJoblist",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/findJoblist"
+  },
+  "ra": {
+   "original": "index.api.178332063620024.js#x",
+   "path": "@/api/api-24",
+   "export": "add2",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddUserBrowse/add"
+  }
+ },
+ "shared": {
+  "ea": {
+   "original": "homeNews.17833206362002.js#h",
+   "path": "@/shared/homeNews.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "re": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Hs": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "Vs": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "Zs": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  },
+  "Gs": {
+   "original": "effect-coverflow.1783320636200.js#E",
+   "path": "swiper",
+   "export": "EffectCoverflow"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

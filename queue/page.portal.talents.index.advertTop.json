@@ -1,0 +1,46 @@
+{
+ "id": "page.portal.talents.index.advertTop",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.9,
+ "sourceChunk": "legacy-dist/portal/assets/advertTop.17833206362005.js",
+ "components": [
+  {
+   "name": "advertTop",
+   "scopeId": "data-v-1faefb90"
+  }
+ ],
+ "scopeIds": [
+  "data-v-1faefb90"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/advertTop.17833206362005.css"
+ ],
+ "target": "apps/portal/src/views/talents/index/advertTop.vue",
+ "subComponentDir": "apps/portal/src/views/talents/index/advertTop/",
+ "routes": [],
+ "recordPath": "/talents/index",
+ "maps": "out/maps/page.portal.talents.index.advertTop.json",
+ "hints": "out/hints/page.portal.talents.index.advertTop.md",
+ "deps": {
+  "entry": [
+   "B",
+   "av",
+   "bs",
+   "cn",
+   "f"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.index.index"
+}

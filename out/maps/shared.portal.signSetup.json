@@ -1,0 +1,56 @@
+{
+ "id": "shared.portal.signSetup",
+ "chunk": "legacy-dist/portal/assets/signSetup.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "N": "defineComponent",
+  "$": "ref",
+  "A": "reactive",
+  "o": "resolveComponent",
+  "E": "openBlock",
+  "H": "createElementBlock",
+  "l": "createVNode",
+  "a": "withCtx",
+  "x": "createElementVNode",
+  "y": "createTextVNode"
+ },
+ "entry": {
+  "q": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "O": {
+   "original": "Y",
+   "path": "@/legacy/components/Phone.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "M": {
+   "original": "cj",
+   "path": "@/legacy/api",
+   "export": "jobPxRegistrationAdd",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "P": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Y": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.projectSingUp",
+ "chunk": "legacy-dist/usercenter/assets/projectSingUp.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "w": "defineComponent",
+  "_": "inject",
+  "C": "reactive",
+  "T": "onMounted",
+  "r": "resolveComponent",
+  "o": "openBlock",
+  "s": "createElementBlock",
+  "p": "createElementVNode",
+  "B": "Fragment",
+  "u": "createVNode",
+  "g": "withCtx",
+  "l": "toDisplayString",
+  "m": "createCommentVNode",
+  "U": "normalizeStyle",
+  "E": "createTextVNode",
+  "j": "pushScopeId",
+  "F": "popScopeId"
+ },
+ "entry": {
+  "I": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "b": {
+   "original": "bl",
+   "path": "@/legacy/api",
+   "export": "pxRegistList",
+   "status": "restored"
+  },
+  "v": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "N": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

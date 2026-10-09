@@ -1,0 +1,120 @@
+{
+ "id": "page.uc.TalentSearch",
+ "chunk": "legacy-dist/usercenter/assets/TalentSearch.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Q": "defineComponent",
+  "Y": "ref",
+  "Z": "reactive",
+  "G": "onMounted",
+  "u": "resolveComponent",
+  "c": "openBlock",
+  "k": "createElementBlock",
+  "o": "createVNode",
+  "i": "withCtx",
+  "H": "Fragment",
+  "pe": "renderList",
+  "_e": "unref",
+  "S": "createBlock",
+  "z": "createTextVNode",
+  "P": "toDisplayString",
+  "D": "inject",
+  "fe": "useRouter (vue-router)",
+  "w": "createElementVNode",
+  "I": "createCommentVNode",
+  "N": "h"
+ },
+ "entry": {
+  "R": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "B": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ye": {
+   "original": "aI",
+   "path": "@/legacy/api",
+   "export": "setStatus",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "j": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "W": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "be": {
+   "original": "a7",
+   "path": "@/legacy/api",
+   "export": "isPublishingPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {
+  "xe": {
+   "original": "index.api.175161560754510.js#q",
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "queryPageListByCompanyId2",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCurriculumVitaeSearch/queryPageListByCompanyId"
+  },
+  "Ie": {
+   "original": "index.api.175161560754510.js#a",
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "addTalent",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
+  }
+ },
+ "shared": {
+  "K": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "me": {
+   "original": "positionmodal.1751615607545.js#p",
+   "path": "@/shared/positionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ve": {
+   "original": "beonmodal.1751615607545.js#b",
+   "path": "@/shared/beonmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ge": {
+   "original": "InterviewInvitation.17516156075452.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "message.1751615607545.js"
+ ],
+ "missing": []
+}

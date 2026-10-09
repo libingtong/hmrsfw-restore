@@ -1,0 +1,49 @@
+{
+ "id": "entry.portal.c08",
+ "type": "entry",
+ "area": "component",
+ "title": "入口全局组件：headers、foot、App",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": 6.8,
+ "appCode": "018",
+ "components": [
+  {
+   "name": "headers",
+   "binding": "SLt",
+   "scopeId": "data-v-392944e8",
+   "kb": 4.7,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/Headers.vue"
+  },
+  {
+   "name": "foot",
+   "binding": "jLt",
+   "scopeId": "data-v-e16ad344",
+   "kb": 1,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/Foot.vue"
+  },
+  {
+   "name": "App",
+   "binding": "kLt",
+   "scopeId": "data-v-9438a43f",
+   "kb": 1.1,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/App.vue"
+  }
+ ],
+ "files": [
+  "apps/portal/src/legacy/components/Headers.vue",
+  "apps/portal/src/legacy/components/Foot.vue",
+  "apps/portal/src/legacy/components/App.vue"
+ ],
+ "owns": [],
+ "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",
+ "deps": {
+  "orders": []
+ }
+}

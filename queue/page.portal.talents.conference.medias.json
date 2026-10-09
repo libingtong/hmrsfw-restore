@@ -1,0 +1,44 @@
+{
+ "id": "page.portal.talents.conference.medias",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.4,
+ "sourceChunk": "legacy-dist/portal/assets/medias.1783320636200.js",
+ "components": [
+  {
+   "name": "medias",
+   "scopeId": "data-v-91aab35f"
+  }
+ ],
+ "scopeIds": [
+  "data-v-91aab35f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/medias.1783320636200.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/conference/medias.vue",
+ "subComponentDir": "apps/portal/src/views/talents/conference/medias/",
+ "routes": [],
+ "recordPath": "/talents/conference",
+ "maps": "out/maps/page.portal.talents.conference.medias.json",
+ "hints": "out/hints/page.portal.talents.conference.medias.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.conference.index"
+}

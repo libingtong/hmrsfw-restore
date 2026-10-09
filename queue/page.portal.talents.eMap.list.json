@@ -1,0 +1,44 @@
+{
+ "id": "page.portal.talents.eMap.list",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.6,
+ "sourceChunk": "legacy-dist/portal/assets/list.17833206362009.js",
+ "components": [
+  {
+   "name": "list",
+   "scopeId": "data-v-e3276917"
+  }
+ ],
+ "scopeIds": [
+  "data-v-e3276917"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.17833206362009.css"
+ ],
+ "target": "apps/portal/src/views/talents/eMap/list.vue",
+ "subComponentDir": "apps/portal/src/views/talents/eMap/list/",
+ "routes": [],
+ "recordPath": "/talents/eMap",
+ "maps": "out/maps/page.portal.talents.eMap.list.json",
+ "hints": "out/hints/page.portal.talents.eMap.list.md",
+ "deps": {
+  "entry": [],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [
+   "adr.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.eMap.index"
+}

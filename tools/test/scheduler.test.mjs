@@ -1,0 +1,537 @@
+// Scenario tests for tick / route / ledger / handoff against the fake Multica CLI and local git repos.
+// Run: node --test tools/test/scheduler.test.mjs
+import test from "node:test";
+import assert from "node:assert/strict";
+import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
+import path from "node:path";
+import { makeFixture, node, issuesOf, fakeState, mc, setMeta, meta, pushBranch, writeReceipt, lsRemote, showRemote, readJson, git, ROSTER, REPO } from "./fixture.mjs";
+
+const page = (id, kb, extra = {}) => ({ id, type: "page", kb, app: "portal", site: "portal", target: `apps/portal/src/views/${id}/index.vue`, subComponentDir: `apps/portal/src/views/${id}/index/`, deps: ["@/shared/Dict.vue"], ...extra });
+const recorded = (fx, ...ids) => ids.forEach((id) => mkdirSync(path.join(fx.state, "baseline", id), { recursive: true }));
+const restoreTasks = (fx) => issuesOf(fx).filter((i) => i.title.startsWith("[restore]"));
+const vue = (s) => `<template><div>${s}</div></template>\n`;
+const deliver = (fx, taskId, files, { fix = false, receipt = {} } = {}) => {
+  const m = meta(fx, taskId);
+  pushBranch(fx, { branch: m.branch, files });
+  for (const wo of m.workOrders) writeReceipt(fx, wo, { branch: m.branch, ...receipt });
+  const r = node(fx, "handoff.mjs", [taskId, ...(fix ? ["--fix"] : [])]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  return r;
+};
+const gate = (fx, taskId, result) => { const m = meta(fx, taskId); setMeta(fx, taskId, `gate.${m.attempt}`, result); return node(fx, "tick.mjs", ["advance", taskId]); };
+const issue = (fx, id) => fakeState(fx).issues[id];
+const lastComment = (fx, id) => issue(fx, id).comments.at(-1)?.content || "";
+
+test("full chain: dispatch → handoff → gate fail → fix → pass → merge → audit issue → revert → redo → arbiter → blocked", () => {
+  const fx = makeFixture({ orders: [page("P1", 10)], config: { cheapTier: { enabled: true, coldStartRuns: 0, minFirstPass: 0 }, audit: { coldRate: 1, normalRate: 1 }, regressionEvery: 100 } });
+  recorded(fx, "P1");
+  let r = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  const [t] = restoreTasks(fx);
+  assert.ok(t, "restore task created");
+  let m = meta(fx, t.id);
+  assert.equal(t.assignee_id, fx.id("deepseek-office"), "cheap tier, not cold → deepseek (office has more free slots)");
+  assert.equal(m.branch, "restore/P1-a1");
+  assert.equal(t.status, "todo");
+
+  // restorer delivers
+  deliver(fx, t.id, { "apps/portal/src/views/P1/index.vue": vue("a1") });
+  assert.equal(issue(fx, t.id).status, "in_review");
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("gate"));
+  assert.match(lastComment(fx, t.id), /^\[RECEIPT\]/);
+  assert.ok(showRemote(fx, "tool", "integration", "receipts/P1.json"), "receipt committed to tool repo integration");
+  assert.ok(meta(fx, t.id)["receipt.1"].P1, "receipt summary in metadata");
+
+  // gate fails → fixer round 1 on the same branch
+  r = gate(fx, t.id, { pass: false, stage: "browser", failed: [{ check: "dom", where: "x" }] });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  m = meta(fx, t.id);
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("fixer"));
+  assert.equal(m.fixRound, 1);
+  assert.equal(m.branch, "restore/P1-a1");
+
+  // fixer delivers, gate passes → merged, audited by a reviewer of a third family (deepseek restored, anthropic fixed → zhipu)
+  deliver(fx, t.id, { "apps/portal/src/views/P1/index.vue": vue("a1 fixed") }, { fix: true });
+  assert.match(lastComment(fx, t.id), /^\[FIX\]/);
+  r = gate(fx, t.id, { pass: true, stage: "browser", failed: [] });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/P1/index.vue"), vue("a1 fixed"), "merged into integration");
+  const intLog = git(fx.root, "--git-dir", fx.appOrigin, "log", "--first-parent", "--format=%P", "-1", "integration");
+  assert.equal(intLog.split(" ").length, 2, "merge commit (--no-ff)");
+  m = meta(fx, t.id);
+  assert.equal(m.kind, "audit");
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("review-glm"));
+  assert.equal(issue(fx, t.id).status, "in_review");
+
+  // reviewer finds a high issue → tick reverts the merge, counts a miss, sends the page to a Sonnet redo (new branch)
+  setMeta(fx, t.id, "audit.1", { verdict: "issue", reviewer: "review-glm", findings: [{ severity: "high", file: "index.vue", where: "submit", what: "> became >=", evidence: "chunk:1:200" }] });
+  r = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/P1/index.vue"), null, "merge reverted");
+  m = meta(fx, t.id);
+  assert.equal(m.kind, "restore");
+  assert.equal(m.attempt, 2);
+  assert.equal(m.branch, "restore/P1-a2");
+  assert.equal(m.history.length, 1);
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("sonnet-office"));
+  const cap = readJson(path.join(fx.state, "ledger", "capability.json"));
+  assert.deepEqual(cap.audits["deepseek|zhipu"], { audits: 1, misses: 1 });
+
+  // Sonnet attempt: fail → fixer 1 → fail → fixer 2 → fail → arbiter
+  deliver(fx, t.id, { "apps/portal/src/views/P1/index.vue": vue("a2") });
+  gate(fx, t.id, { pass: false, stage: "static", failed: ["text-nodes"] });
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("fixer"));
+  deliver(fx, t.id, { "apps/portal/src/views/P1/index.vue": vue("a2 f1") }, { fix: true });
+  gate(fx, t.id, { pass: false, stage: "static", failed: ["text-nodes"] });
+  assert.equal(meta(fx, t.id).fixRound, 2);
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("fixer"));
+  deliver(fx, t.id, { "apps/portal/src/views/P1/index.vue": vue("a2 f2") }, { fix: true });
+  gate(fx, t.id, { pass: false, stage: "static", failed: ["text-nodes"] });
+  assert.equal(meta(fx, t.id).kind, "arbitrate");
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("arbiter"));
+
+  // arbiter: nothing applies → blocked + human (agent action); the scheduler leaves it alone afterwards
+  mc(fx, "issue", "update", t.id, "--status", "blocked", "--assignee-id", "member-human", "--no-start");
+  r = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(r.ok, true);
+  assert.equal(issue(fx, t.id).status, "blocked");
+  assert.equal(restoreTasks(fx).length, 1, "no new task for a blocked page");
+  const runs = readFileSync(path.join(fx.state, "ledger", "runs.jsonl"), "utf8").trim().split("\n").map((l) => JSON.parse(l));
+  assert.ok(runs.some((r) => r.family === "deepseek" && r.result === "delivered" && r.model && r.runtime && r.cliVersion && r.instructionsVersion), "run rows carry agent/runtime/CLI/model/instructions");
+});
+
+test("dual dispatch during cold start: first pass merges, the other is only recorded", () => {
+  const fx = makeFixture({ orders: [page("P2", 8)], config: { cheapTier: { enabled: true, coldStartRuns: 10 }, audit: { coldRate: 0, normalRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "P2");
+  node(fx, "tick.mjs", ["tick"]);
+  const ts = restoreTasks(fx);
+  assert.equal(ts.length, 2, "two tasks");
+  const byFam = Object.fromEntries(ts.map((t) => [meta(fx, t.id).family, t]));
+  assert.ok(byFam.deepseek && byFam.zhipu);
+  assert.equal(meta(fx, byFam.deepseek.id).twin, byFam.zhipu.id);
+  assert.equal(meta(fx, byFam.deepseek.id).branch, "restore/P2-a1-d");
+  assert.equal(meta(fx, byFam.zhipu.id).branch, "restore/P2-a1-g");
+  const ledger = readJson(path.join(fx.state, "ledger", "tasks.json"));
+  assert.deepEqual([...ledger.wos.P2.twins].sort(), ts.map((t) => t.id).sort(), "both tasks recorded together");
+
+  deliver(fx, byFam.zhipu.id, { "apps/portal/src/views/P2/index.vue": vue("glm") });
+  deliver(fx, byFam.deepseek.id, { "apps/portal/src/views/P2/index.vue": vue("ds") });
+  gate(fx, byFam.zhipu.id, { pass: true });
+  assert.equal(issue(fx, byFam.zhipu.id).status, "done");
+  const shaAfterFirst = lsRemote(fx, "app", "integration");
+  gate(fx, byFam.deepseek.id, { pass: true });
+  assert.equal(issue(fx, byFam.deepseek.id).status, "cancelled");
+  assert.equal(lsRemote(fx, "app", "integration"), shaAfterFirst, "second twin not merged");
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/P2/index.vue"), vue("glm"));
+  const cap = readJson(path.join(fx.state, "ledger", "capability.json"));
+  const fams = Object.values(cap.keys).map((k) => k.family).sort();
+  assert.deepEqual(fams, ["deepseek", "zhipu"], "both twins counted in capability");
+});
+
+test("twin fails while the other is still running → only recorded; page order touching the public library is refused", () => {
+  const fx = makeFixture({ orders: [page("P2", 8)], config: { cheapTier: { enabled: true, coldStartRuns: 10 }, audit: { coldRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "P2");
+  node(fx, "tick.mjs", ["tick"]);
+  const byFam = Object.fromEntries(restoreTasks(fx).map((t) => [meta(fx, t.id).family, t]));
+  deliver(fx, byFam.deepseek.id, { "apps/portal/src/views/P2/index.vue": vue("ds") });
+  gate(fx, byFam.deepseek.id, { pass: false, stage: "build", failed: ["vite"] });
+  assert.equal(issue(fx, byFam.deepseek.id).status, "cancelled", "failing twin cancelled while the other runs");
+  deliver(fx, byFam.zhipu.id, { "apps/portal/src/views/P2/index.vue": vue("glm"), "apps/portal/src/shared/Dict.vue": "<template>hacked</template>\n" });
+  const before = lsRemote(fx, "app", "integration");
+  gate(fx, byFam.zhipu.id, { pass: true });
+  assert.equal(lsRemote(fx, "app", "integration"), before, "not merged");
+  assert.equal(issue(fx, byFam.zhipu.id).assignee_id, fx.id("fixer"), "forbidden paths → failure rules (fixer)");
+  assert.match(fakeState(fx).issues[byFam.zhipu.id].comments.map((c) => c.content).join("\n"), /合并被拒/);
+});
+
+test("pending record → wait, recording done → back to the gate", () => {
+  const fx = makeFixture({ orders: [page("P8", 12)], config: { audit: { coldRate: 0 } } });
+  // no baseline: tick also opens a record task
+  node(fx, "tick.mjs", ["tick"]);
+  const rec = issuesOf(fx).find((i) => i.title.startsWith("[record]"));
+  assert.ok(rec, "record task dispatched");
+  assert.equal(rec.assignee_id, fx.id("recorder"));
+  const [t] = restoreTasks(fx);
+  deliver(fx, t.id, { "apps/portal/src/views/P8/index.vue": vue("p8") });
+  gate(fx, t.id, { pending: "record" });
+  assert.equal(meta(fx, t.id).waitRecord, true);
+  assert.equal(issuesOf(fx).filter((i) => i.title.startsWith("[record]")).length, 1, "no duplicate record task");
+  setMeta(fx, rec.id, "record", "ok");
+  mc(fx, "issue", "update", rec.id, "--status", "done", "--no-start");
+  const runsBefore = issue(fx, t.id).runs.length;
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(meta(fx, t.id).waitRecord, false);
+  assert.equal(issue(fx, t.id).runs.length, runsBefore + 1, "gate rerun");
+});
+
+test("packed small pages: per-page verdicts, passing pages merged, failing page split off", () => {
+  const fx = makeFixture({ orders: [page("S-a", 2), page("S-b", 3), page("S-c", 4)], config: { audit: { coldRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "S-a", "S-b", "S-c");
+  node(fx, "tick.mjs", ["tick"]);
+  const ts = restoreTasks(fx);
+  assert.equal(ts.length, 1, "3 small pages → one pack");
+  const m = meta(fx, ts[0].id);
+  assert.equal(m.workOrders.length, 3);
+  deliver(fx, ts[0].id, { "apps/portal/src/views/S-a/index.vue": vue("a"), "apps/portal/src/views/S-b/index.vue": vue("b"), "apps/portal/src/views/S-c/index.vue": vue("c") });
+  gate(fx, ts[0].id, { pass: false, pages: { "S-a": { pass: true }, "S-b": { pass: false, failed: ["dom"] }, "S-c": { pass: true } } });
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/S-a/index.vue"), vue("a"));
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/S-c/index.vue"), vue("c"));
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/S-b/index.vue"), null, "failing page dropped from the merge");
+  const split = restoreTasks(fx).find((t) => t.id !== ts[0].id);
+  assert.ok(split, "failing page re-dispatched");
+  assert.deepEqual(meta(fx, split.id).workOrders, ["S-b"]);
+  assert.equal(issue(fx, ts[0].id).status, "done");
+});
+
+test("needsFromSkeleton → upgrade order, page suspended; upgrade merged → lib regression + page re-dispatched; lib regression fails → revert", () => {
+  const fx = makeFixture({ orders: [page("P3", 12), page("P4", 12, { accepted: true }), { id: "S1", type: "shared", kb: 6, app: "portal", files: ["apps/portal/src/shared/Dict.vue"] }], config: { audit: { coldRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "P3");
+  // S1 is already restored (state done) so it isn't dispatched
+  writeFileSync(path.join(fx.state, "ledger", "tasks.json"), JSON.stringify({ wos: { S1: { state: "done", tasks: [] } }, tasks: {}, seq: 0 }));
+  node(fx, "tick.mjs", ["tick"]);
+  const [t] = restoreTasks(fx);
+  deliver(fx, t.id, { "apps/portal/src/views/P3/index.vue": vue("p3") }, { receipt: { needsFromSkeleton: ["Dict 缺 size 属性"] } });
+  gate(fx, t.id, { pass: false, stage: "browser", failed: ["dom"] });
+  assert.equal(issue(fx, t.id).status, "backlog", "page suspended");
+  const up = issuesOf(fx).find((i) => i.title.startsWith("[upgrade]"));
+  assert.ok(up, "upgrade order opened");
+  assert.equal(up.assignee_id, fx.id("opus-office"));
+  assert.equal(meta(fx, t.id).suspendedBy, up.id);
+
+  deliver(fx, up.id, { "apps/portal/src/shared/Dict.vue": "<template><span>dict v2</span></template>\n" });
+  const r = gate(fx, up.id, { pass: true });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  const libSha = lsRemote(fx, "app", "integration");
+  assert.match(showRemote(fx, "app", "integration", "apps/portal/src/shared/Dict.vue"), /v2/);
+  const reg = issuesOf(fx).find((i) => i.title.startsWith("[integration] lib-regression"));
+  assert.ok(reg, "lib regression for pages depending on Dict.vue");
+  assert.deepEqual(meta(fx, reg.id).workOrders, ["P4"]);
+  assert.equal(issue(fx, t.id).status, "todo", "suspended page re-dispatched");
+  assert.equal(meta(fx, t.id).attempt, 2);
+
+  setMeta(fx, reg.id, "gate.1", { pass: false, failed: ["P4"] });
+  node(fx, "tick.mjs", ["advance", reg.id]);
+  assert.match(showRemote(fx, "app", "integration", "apps/portal/src/shared/Dict.vue"), /v1/, "lib merge reverted");
+  assert.notEqual(lsRemote(fx, "app", "integration"), libSha);
+  assert.equal(issue(fx, up.id).assignee_id, fx.id("fixer"), "upgrade back through failure rules");
+});
+
+test("integration regression every N merges: failure bisects to the culprit, reverts it; next regression fast-forwards main", () => {
+  const fx = makeFixture({ orders: [page("P5", 20), page("P6", 10)], config: { audit: { coldRate: 0 }, regressionEvery: 2 } });
+  recorded(fx, "P5", "P6");
+  node(fx, "tick.mjs", ["tick"]);
+  const ts = restoreTasks(fx);
+  assert.equal(ts.length, 2);
+  const byWo = Object.fromEntries(ts.map((t) => [meta(fx, t.id).workOrders[0], t]));
+  for (const wo of ["P5", "P6"]) { deliver(fx, byWo[wo].id, { [`apps/portal/src/views/${wo}/index.vue`]: vue(wo) }); gate(fx, byWo[wo].id, { pass: true }); }
+  const mainBefore = lsRemote(fx, "app", "main");
+  node(fx, "tick.mjs", ["tick"]);
+  const reg = issuesOf(fx).find((i) => i.title.startsWith("[integration] regression"));
+  assert.ok(reg, "regression opened after 2 merges");
+  setMeta(fx, reg.id, "gate.1", { pass: false, failed: [] }); // gate didn't say which pages failed → test all present ones
+  node(fx, "tick.mjs", ["advance", reg.id]);
+  const b1 = issuesOf(fx).find((i) => i.title.startsWith("[integration] bisect"));
+  assert.ok(b1, "bisect step");
+  assert.deepEqual(meta(fx, b1.id).workOrders, ["P5"], "only pages already merged at the tested commit");
+  setMeta(fx, b1.id, "gate.1", { pass: true });
+  node(fx, "tick.mjs", ["advance", b1.id]);
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/P6/index.vue"), null, "culprit (P6 merge) reverted");
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/P5/index.vue"), vue("P5"));
+  assert.equal(issue(fx, byWo.P6.id).status, "todo", "P6 reopened");
+  assert.equal(lsRemote(fx, "app", "main"), mainBefore, "main untouched");
+  node(fx, "tick.mjs", ["tick"]);
+  const reg2 = issuesOf(fx).filter((i) => i.title.startsWith("[integration] regression")).find((i) => i.id !== reg.id);
+  assert.ok(reg2, "regression re-run after the revert");
+  setMeta(fx, reg2.id, "gate.1", { pass: true });
+  node(fx, "tick.mjs", ["advance", reg2.id]);
+  assert.equal(lsRemote(fx, "app", "main"), lsRemote(fx, "app", "integration"), "main fast-forwarded");
+});
+
+test("rule change review: two non-arbiter families; round 2 reject escalates to the human; approval merges + regression", () => {
+  const fx = makeFixture({ orders: [], config: {} });
+  git(fx.tool, "checkout", "-q", "-b", "rules/r1");
+  writeFileSync(path.join(fx.tool, "rules.json"), JSON.stringify({ rules: ["base", "collapse-empty-comment"] }));
+  git(fx.tool, "commit", "-q", "-am", "rule r1"); git(fx.tool, "push", "-q", "origin", "rules/r1");
+  let r = node(fx, "tick.mjs", ["open-rule-review", "rules/r1"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  let reviews = issuesOf(fx).filter((i) => i.title.startsWith("[rule-review]"));
+  assert.deepEqual(reviews.map((i) => i.assignee_id).sort(), [fx.id("review-deepseek"), fx.id("review-glm")]);
+  setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-deepseek")).id, "review.review-deepseek", { verdict: "approve", why: "ok" });
+  setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-glm")).id, "review.review-glm", { verdict: "reject", why: "swallows real diffs" });
+  node(fx, "tick.mjs", ["tick"]);
+  assert.ok(issuesOf(fx).find((i) => i.title.startsWith("[incident]") && i.assignee_id === fx.id("arbiter")), "round 1 reject → back to the arbiter");
+  r = node(fx, "tick.mjs", ["open-rule-review", "rules/r1"]);
+  reviews = issuesOf(fx).filter((i) => i.title.includes(" r2 "));
+  assert.equal(reviews.length, 2);
+  for (const i of reviews) { const name = i.assignee_id.slice(2); setMeta(fx, i.id, `review.${name}`, { verdict: name === "review-glm" ? "reject" : "approve", why: "x" }); }
+  node(fx, "tick.mjs", ["tick"]);
+  const blocked = issuesOf(fx).find((i) => i.status === "blocked");
+  assert.ok(blocked, "escalated");
+  assert.equal(blocked.assignee_id, "member-human");
+
+  git(fx.tool, "checkout", "-q", "main"); git(fx.tool, "checkout", "-q", "-b", "rules/r2");
+  writeFileSync(path.join(fx.tool, "rules.json"), JSON.stringify({ rules: ["base", "attr-order"] }));
+  git(fx.tool, "commit", "-q", "-am", "rule r2"); git(fx.tool, "push", "-q", "origin", "rules/r2");
+  node(fx, "tick.mjs", ["open-rule-review", "rules/r2"]);
+  for (const i of issuesOf(fx).filter((x) => x.title.includes("rules/r2"))) { const name = i.assignee_id.slice(2); setMeta(fx, i.id, `review.${name}`, { verdict: "approve", why: "equivalent" }); }
+  node(fx, "tick.mjs", ["tick"]);
+  assert.match(showRemote(fx, "tool", "main", "rules.json"), /attr-order/, "approved rule merged into tool main");
+});
+
+test("rate-limited run → agent cooldown, reassigned within the family; unknown error → anomaly", () => {
+  const fx = makeFixture({ orders: [page("P9", 10), page("P10", 9)], config: { cheapTier: { enabled: true, coldStartRuns: 0, minFirstPass: 0 } } });
+  recorded(fx, "P9", "P10");
+  node(fx, "tick.mjs", ["tick"]);
+  const ts = restoreTasks(fx);
+  const s = fakeState(fx);
+  const t = ts.find((x) => x.assignee_id === fx.id("deepseek-office"));
+  assert.ok(t);
+  s.issues[t.id].runs.unshift({ id: "run-x", agent_id: fx.id("deepseek-office"), status: "failed", error: "API error 429: Too Many Requests" });
+  const other = ts.find((x) => x.id !== t.id);
+  s.issues[other.id].runs.unshift({ id: "run-y", agent_id: other.assignee_id, status: "failed", error: "segfault in harness" });
+  writeFileSync(fx.fake, JSON.stringify(s));
+  const r = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("deepseek-mac"), "same family, other machine");
+  const agents = readJson(path.join(fx.state, "ledger", "agents.json"));
+  assert.ok(agents[fx.id("deepseek-office")].cooldownUntil > Date.now());
+  assert.ok(r.anomalies.some((a) => a.issue === other.id), "unknown error reported");
+  const again = node(fx, "tick.mjs", ["tick"]);
+  assert.ok(!again.anomalies.some((a) => a.issue === other.id), "a failed run is handled once");
+});
+
+test("dry-run prints writes and changes nothing", () => {
+  const fx = makeFixture({ orders: [page("P11", 10)] });
+  recorded(fx, "P11");
+  const before = fakeState(fx);
+  const res = node(fx, "tick.mjs", ["tick", "--dry-run"]);
+  assert.equal(res.ok, true, JSON.stringify(res));
+  const after = fakeState(fx);
+  assert.equal(after.log.length, before.log.length, "no writes in dry-run");
+  assert.equal(readJson(path.join(fx.state, "ledger", "tasks.json"), null), null, "ledger untouched");
+});
+
+test("route.mjs: core → Opus, complex page → Sonnet, cheap tier switch, capability seed", () => {
+  const fx = makeFixture({ orders: [{ id: "E1", type: "entry", kb: 50, app: "portal" }, page("BIG", 40), page("RULES", 12, { rules: 12 }), page("SMALL", 12)], config: { cheapTier: { enabled: true, coldStartRuns: 10 } } });
+  let r = node(fx, "route.mjs", ["E1", "--offline"]);
+  assert.deepEqual(r.candidates[0].agents.map((a) => a.id), [fx.id("opus-office")]);
+  r = node(fx, "route.mjs", ["BIG", "--offline"]);
+  assert.equal(r.candidates.length, 1); assert.equal(r.candidates[0].model, "claude-sonnet-5-5"); assert.equal(r.features.complex, true);
+  r = node(fx, "route.mjs", ["RULES", "--offline"]);
+  assert.equal(r.features.complex, true, "≥ 10 rules is complex");
+  r = node(fx, "route.mjs", ["SMALL", "--offline"]);
+  assert.equal(r.dual, true); assert.deepEqual(r.candidates.slice(0, 2).map((c) => c.family), ["deepseek", "zhipu"]);
+  const seed = node(fx, "ledger.mjs", ["seed", "--from", path.join(fx.root, "stats.json")]);
+  assert.equal(seed.error !== undefined, true, "missing stats file reported");
+  writeFileSync(path.join(fx.root, "stats.json"), JSON.stringify({ rows: [{ model: "claude-sonnet-5-5", kb: 3, firstPass: true, finalPass: true, fixRounds: 0, tokensCache: 100 }, { model: "claude-sonnet-5-5", kb: 40, firstPass: false, finalPass: true, fixRounds: 1, tokensCache: 900 }, { model: "claude-haiku-5-5", kb: 3, firstPass: true, finalPass: true, tokensCache: 50 }] }));
+  const s2 = node(fx, "ledger.mjs", ["seed", "--from", path.join(fx.root, "stats.json")]);
+  assert.equal(s2.tiers.simple.runs, 1); assert.equal(s2.tiers.large.firstPass, 0);
+  const cap = node(fx, "ledger.mjs", ["capability"]);
+  assert.equal(cap.byFamilyModel["anthropic|claude-sonnet-5-5"].large.runs, 1);
+});
+
+// Edit the fixture roster in place (e.g. enabled:false), as an operator would in $RESTORE_STATE.
+const editRoster = (fx, fn) => {
+  const p = path.join(fx.state, "agents.roster.json");
+  const r = readJson(p);
+  for (const a of r.agents) fn(a);
+  writeFileSync(p, JSON.stringify(r, null, 1));
+};
+const glmRestorersOff = (a) => { if (a.role === "restorer" && a.family === "zhipu") a.enabled = false; };
+const setCapability = (fx, family, model, tier, t) => writeFileSync(path.join(fx.state, "ledger", "capability.json"), JSON.stringify({ version: 1, keys: { [`rt|v|${model}|i`]: { family, model, tiers: { [tier]: { runs: 0, firstPass: 0, pass: 0, tokens: 0, fixRounds: 0, ...t } } } }, audits: {} }));
+
+test("route.mjs: one cheap family → single cold-start dispatch; after cold start by first-pass rate; disabled agents never chosen", () => {
+  const fx = makeFixture({ orders: [page("SMALL", 12), page("BIG", 40)], config: { cheapTier: { enabled: true, coldStartRuns: 10, minFirstPass: 0.7 } } });
+  editRoster(fx, glmRestorersOff);
+  const glm = [fx.id("glm-mac"), fx.id("glm-office")];
+  const ids = (r) => r.candidates.flatMap((c) => c.agents.map((a) => a.id));
+  // families still lists zhipu, but the roster has no enabled zhipu restorer → one family
+  let r = node(fx, "route.mjs", ["SMALL", "--offline"]);
+  assert.equal(r.dual, false);
+  assert.deepEqual(r.candidates.map((c) => c.family), ["deepseek", "anthropic"], "deepseek first, Sonnet fallback");
+  assert.match(r.candidates[0].reason, /冷启动（medium 档 0\/10 次）单派/);
+  assert.match(r.candidates[1].reason, /回退 Sonnet/);
+  assert.ok(!ids(r).some((id) => glm.includes(id)), "enabled:false agents are not candidates");
+  r = node(fx, "route.mjs", ["BIG", "--offline"]);
+  assert.deepEqual(r.candidates.map((c) => c.model), ["claude-sonnet-5-5"], "≥ 30KB still Sonnet");
+
+  // families: ["deepseek"] with GLM restorers enabled → also single (GLM not configured as cheap tier)
+  editRoster(fx, (a) => delete a.enabled);
+  writeFileSync(path.join(fx.state, "scheduler.config.json"), JSON.stringify({ projectId: "proj-1", cheapTier: { enabled: true, families: ["deepseek"] } }));
+  r = node(fx, "route.mjs", ["SMALL", "--offline"]);
+  assert.equal(r.dual, false);
+  assert.equal(r.candidates[0].family, "deepseek");
+  assert.match(r.candidates[0].reason, /冷启动.*单派/);
+  assert.ok(!ids(r).some((id) => glm.includes(id)), "zhipu not in cheapTier.families → not chosen");
+
+  // cold start over, first pass 8/10 ≥ 70% → deepseek by rate
+  setCapability(fx, "deepseek", "deepseek-official/deepseek-flash", "medium", { runs: 10, firstPass: 8, pass: 10, tokens: 1000 });
+  r = node(fx, "route.mjs", ["SMALL", "--offline"]);
+  assert.equal(r.dual, false);
+  assert.deepEqual(r.candidates.map((c) => c.family), ["deepseek", "anthropic"]);
+  assert.match(r.candidates[0].reason, /首通率 80%/);
+  // cold start over, first pass 5/10 < 70% → Sonnet only
+  setCapability(fx, "deepseek", "deepseek-official/deepseek-flash", "medium", { runs: 10, firstPass: 5, pass: 9, tokens: 1000 });
+  r = node(fx, "route.mjs", ["SMALL", "--offline"]);
+  assert.deepEqual(r.candidates.map((c) => c.family), ["anthropic"]);
+  assert.match(r.candidates[0].reason, /首通率低于 70% → Sonnet/);
+});
+
+test("single cheap family cold start: tick dispatches to DeepSeek alone (no twin), Sonnet once DeepSeek is full", () => {
+  const ids = ["S1", "S2", "S3", "S4", "S5", "S6", "S7"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 8)), config: { cheapTier: { enabled: true, families: ["deepseek"], coldStartRuns: 10 } } });
+  editRoster(fx, glmRestorersOff);
+  recorded(fx, ...ids);
+  const r = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  const ts = restoreTasks(fx);
+  assert.equal(ts.length, ids.length, "one task per page, no dual");
+  const fam = (t) => meta(fx, t.id).family;
+  // deepseek slots: mac 1+1, office 3+1 = 6 → the 7th page falls back to Sonnet
+  assert.equal(ts.filter((t) => fam(t) === "deepseek").length, 6);
+  assert.equal(ts.filter((t) => fam(t) === "anthropic").length, 1);
+  assert.ok(ts.every((t) => !meta(fx, t.id).twin), "no twin");
+  assert.ok(ts.every((t) => !/-[dg]$/.test(meta(fx, t.id).branch)), "no dual-dispatch branch suffix");
+  assert.ok(!ts.some((t) => fam(t) === "zhipu"));
+});
+
+test("route(): a cheap family with no usable agent here (other machine) does not force dual → single cold start", async () => {
+  const { route } = await import("../route.mjs");
+  const { Roster, DEFAULT_CONFIG } = await import("../lib/roster.mjs");
+  const cfg = { ...DEFAULT_CONFIG, cheapTier: { ...DEFAULT_CONFIG.cheapTier, enabled: true } };
+  const roster = new Roster(ROSTER(), cfg);
+  const ctx = { roster, cfg, capability: { keys: {}, audits: {} }, agentsState: {}, load: new Map(), toolRoot: REPO };
+  const wo = page("X", 12);
+  assert.equal(route(wo, ctx).dual, true, "both families usable → dual (unchanged)");
+  const glm = roster.agents.filter((a) => a.family === "zhipu").map((a) => a.id);
+  const r = route(wo, ctx, { exclude: glm });
+  assert.equal(r.dual, false);
+  assert.equal(r.candidates[0].family, "deepseek");
+  assert.match(r.candidates[0].reason, /单派/);
+});
+
+test("DeepSeek branch fixed by Opus: audit goes to the GLM reviewer; without one the page is done and the gap reported", () => {
+  for (const glmReviewer of [true, false]) {
+    const fx = makeFixture({ orders: [page("D1", 10)], config: { cheapTier: { enabled: true, families: ["deepseek"], coldStartRuns: 10 }, audit: { coldRate: 1, normalRate: 1 }, regressionEvery: 100 } });
+    editRoster(fx, glmRestorersOff);
+    if (!glmReviewer) editRoster(fx, (a) => { if (a.role === "reviewer" && a.family === "zhipu") a.enabled = false; });
+    recorded(fx, "D1");
+    node(fx, "tick.mjs", ["tick"]);
+    const [t] = restoreTasks(fx);
+    assert.equal(meta(fx, t.id).family, "deepseek");
+    deliver(fx, t.id, { "apps/portal/src/views/D1/index.vue": vue("ds") });
+    gate(fx, t.id, { pass: false, stage: "browser", failed: [{ check: "dom", where: "x" }] });
+    assert.equal(issue(fx, t.id).assignee_id, fx.id("fixer"));
+    deliver(fx, t.id, { "apps/portal/src/views/D1/index.vue": vue("ds fixed") }, { fix: true });
+    const r = gate(fx, t.id, { pass: true, stage: "browser", failed: [] });
+    assert.equal(r.ok, true, JSON.stringify(r));
+    if (glmReviewer) {
+      assert.equal(issue(fx, t.id).assignee_id, fx.id("review-glm"), "deepseek + anthropic → zhipu reviewer");
+      assert.equal(meta(fx, t.id).kind, "audit");
+    } else {
+      assert.equal(issue(fx, t.id).status, "done", "not stuck waiting for a reviewer");
+      assert.match(lastComment(fx, t.id), /无可用的异家族复核员（参与家族：deepseek、anthropic）/);
+      assert.equal(r.anomalies.length, 1, JSON.stringify(r));
+      assert.match(r.anomalies[0].what, /没有可用的异家族复核员/);
+    }
+  }
+});
+
+test("known-diff: only the arbiter may register", () => {
+  const fx = makeFixture({ orders: [page("P12", 10)] });
+  let r = node(fx, "known-diff.mjs", ["add", "P12", "--evidence", "legacy-dist/portal/assets/x.js:120", "--why", "原包引用了未定义变量"], { MULTICA_AGENT_ID: fx.id("fixer") });
+  assert.equal(r.ok, false);
+  r = node(fx, "known-diff.mjs", ["add", "P12", "--evidence", "legacy-dist/portal/assets/x.js:120", "--why", "原包引用了未定义变量"], { MULTICA_AGENT_ID: fx.id("arbiter") });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  r = node(fx, "known-diff.mjs", ["list", "P12"]);
+  assert.equal(r.entries.length, 1);
+  const d = node(fx, "tick.mjs", ["digest"]);
+  assert.match(d.summary, /P12/);
+});
+
+test("review fixes: concurrent advance handled once; stale gate result dropped on handoff; regate after arbiter advances", async () => {
+  const fx = makeFixture({ orders: [page("R1", 10)], config: { audit: { coldRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "R1");
+  node(fx, "tick.mjs", ["tick"]);
+  const [t] = restoreTasks(fx);
+  deliver(fx, t.id, { "apps/portal/src/views/R1/index.vue": vue("r1") });
+  setMeta(fx, t.id, "gate.1", { pass: false, stage: "static", failed: ["x"] });
+  const { spawn } = await import("node:child_process");
+  const { REPO } = await import("./fixture.mjs");
+  const run = () => new Promise((res) => { const p = spawn(process.execPath, [path.join(REPO, "tools/tick.mjs"), "advance", t.id], { cwd: fx.tool, env: fx.env }); p.on("close", res); });
+  await Promise.all([run(), run(), run()]);
+  const fixerAssigns = fakeState(fx).log.filter((e) => e.op === "update" && e.issue === t.id && e.assignee === fx.id("fixer"));
+  assert.equal(fixerAssigns.length, 1, "one verdict → one fixer assignment");
+  assert.equal(meta(fx, t.id).fixRound, 1);
+  // fixer hands off: the previous gate.1 must be gone so nobody can advance it again
+  deliver(fx, t.id, { "apps/portal/src/views/R1/index.vue": vue("r1 f1") }, { fix: true });
+  assert.equal(meta(fx, t.id)["gate.1"], undefined, "stale gate result removed on handoff");
+  let r = node(fx, "tick.mjs", ["advance", t.id]);
+  assert.equal(r.ok, false, "no gate result yet → nothing to advance");
+  // fail twice more (Sonnet: fixer 2 → arbiter), then the arbiter re-gates and the new verdict is processed
+  gate(fx, t.id, { pass: false, stage: "static", failed: ["x"] });
+  deliver(fx, t.id, { "apps/portal/src/views/R1/index.vue": vue("r1 f2") }, { fix: true });
+  gate(fx, t.id, { pass: false, stage: "static", failed: ["x"] });
+  assert.equal(meta(fx, t.id).kind, "arbitrate");
+  r = node(fx, "tick.mjs", ["advance", t.id, "--regate"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("gate"));
+  r = gate(fx, t.id, { pass: true });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(issue(fx, t.id).status, "done", "re-gated verdict advanced, not swallowed");
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/R1/index.vue"), vue("r1 f2"));
+});
+
+test("review fixes: audit issue at fix round 0 → revert, fixer continues on a re-branch that merges cleanly", () => {
+  const fx = makeFixture({ orders: [page("R2", 10)], config: { audit: { coldRate: 1 }, regressionEvery: 100 } });
+  recorded(fx, "R2");
+  node(fx, "tick.mjs", ["tick"]);
+  const [t] = restoreTasks(fx);
+  deliver(fx, t.id, { "apps/portal/src/views/R2/index.vue": vue("r2") });
+  gate(fx, t.id, { pass: true });
+  assert.equal(meta(fx, t.id).kind, "audit");
+  assert.equal(issue(fx, t.id).assignee_id === fx.id("review-deepseek") || issue(fx, t.id).assignee_id === fx.id("review-glm"), true, "Sonnet-restored page → non-anthropic reviewer");
+  setMeta(fx, t.id, "audit.1", { verdict: "issue", findings: [{ severity: "medium", what: "watch dropped", evidence: "c:1" }] });
+  node(fx, "tick.mjs", ["tick"]);
+  const m = meta(fx, t.id);
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/R2/index.vue"), null, "reverted");
+  assert.equal(m.branch, "restore/R2-a1-r1", "new branch carrying the reverted work");
+  assert.equal(showRemote(fx, "app", "restore/R2-a1-r1", "apps/portal/src/views/R2/index.vue"), vue("r2"), "re-branch has the reverted work");
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("fixer"));
+  deliver(fx, t.id, { "apps/portal/src/views/R2/index.vue": vue("r2 fixed") }, { fix: true });
+  const r = gate(fx, t.id, { pass: true });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/R2/index.vue"), vue("r2 fixed"), "fix merged after the revert");
+  // second audit on the same attempt: the old verdict was cleared, so nothing is processed until the reviewer writes
+  if (meta(fx, t.id).kind === "audit") { assert.equal(meta(fx, t.id)["audit.1"], undefined); node(fx, "tick.mjs", ["tick"]); assert.equal(meta(fx, t.id).kind, "audit", "waits for the new verdict"); }
+});
+
+test("review fixes: a task whose branch was never pushed doesn't stop the round", () => {
+  const fx = makeFixture({ orders: [page("R3", 10), page("R4", 12)], config: { audit: { coldRate: 0 }, maxNewPerTick: 1 } });
+  recorded(fx, "R3", "R4");
+  node(fx, "tick.mjs", ["tick"]);
+  const [t] = restoreTasks(fx);
+  for (const wo of meta(fx, t.id).workOrders) writeReceipt(fx, wo);
+  node(fx, "handoff.mjs", [t.id]);
+  setMeta(fx, t.id, "gate.1", { pass: true });
+  const r = node(fx, "tick.mjs", ["advance", t.id]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("fixer"), "missing branch → failure rules");
+  const tk = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(tk.ok, true, JSON.stringify(tk));
+  assert.equal(restoreTasks(fx).length, 2, "dispatch continued");
+});
+
+test("bisect: failing page not yet merged at the midpoint → that step counts as good without a gate run", () => {
+  const fx = makeFixture({ orders: [page("B1", 20), page("B2", 15), page("B3", 10)], config: { audit: { coldRate: 0 }, regressionEvery: 3 } });
+  recorded(fx, "B1", "B2", "B3");
+  node(fx, "tick.mjs", ["tick"]);
+  const byWo = Object.fromEntries(restoreTasks(fx).map((t) => [meta(fx, t.id).workOrders[0], t]));
+  for (const wo of ["B1", "B2", "B3"]) { deliver(fx, byWo[wo].id, { [`apps/portal/src/views/${wo}/index.vue`]: vue(wo) }); gate(fx, byWo[wo].id, { pass: true }); }
+  node(fx, "tick.mjs", ["tick"]);
+  const reg = issuesOf(fx).find((i) => i.title.startsWith("[integration] regression"));
+  setMeta(fx, reg.id, "gate.1", { pass: false, failed: ["B3"] });
+  node(fx, "tick.mjs", ["advance", reg.id]);
+  assert.equal(issuesOf(fx).filter((i) => i.title.startsWith("[integration] bisect")).length, 0, "B3 is only in the last merge");
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/B3/index.vue"), null, "B3 merge reverted");
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/B2/index.vue"), vue("B2"));
+});

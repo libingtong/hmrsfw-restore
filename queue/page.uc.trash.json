@@ -1,0 +1,54 @@
+{
+ "id": "page.uc.trash",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/trash.1751615607545.js",
+ "components": [
+  {
+   "name": "trash",
+   "scopeId": "data-v-7177ce7c"
+  }
+ ],
+ "scopeIds": [
+  "data-v-7177ce7c"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/trash.1751615607545.css",
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/metormodal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/trash.vue",
+ "subComponentDir": "apps/uc/src/views/trash/",
+ "routes": [
+  {
+   "path": "/trash",
+   "name": "trash"
+  }
+ ],
+ "recordPath": "/trash",
+ "maps": "out/maps/page.uc.trash.json",
+ "hints": "out/hints/page.uc.trash.md",
+ "deps": {
+  "entry": [
+   "aJ",
+   "aL",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "InterviewInvitation.17516156075452.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

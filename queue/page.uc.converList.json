@@ -1,0 +1,47 @@
+{
+ "id": "page.uc.converList",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754521.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-c924be97"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c924be97"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754524.css",
+  "legacy-dist/usercenter/assets/index.175161560754521.css"
+ ],
+ "target": "apps/uc/src/views/converList.vue",
+ "subComponentDir": "apps/uc/src/views/converList/",
+ "routes": [
+  {
+   "path": "/converList",
+   "name": "converList"
+  }
+ ],
+ "recordPath": "/converList",
+ "maps": "out/maps/page.uc.converList.json",
+ "hints": "out/hints/page.uc.converList.md",
+ "deps": {
+  "entry": [
+   "d"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17516156075457.js#h"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

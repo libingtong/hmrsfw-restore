@@ -1,0 +1,29 @@
+{
+ "id": "entry.uc.E3",
+ "type": "entry",
+ "area": "E3",
+ "title": "路由与登录/角色守卫",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "sourceChunk": "legacy-dist/usercenter/assets/index.1751615607545.js",
+ "kb": 0.4,
+ "appCode": "018",
+ "files": [
+  "apps/uc/src/router.ts"
+ ],
+ "owns": [
+  {
+   "alias": "a$",
+   "path": "@/router",
+   "export": "router",
+   "status": "restored"
+  }
+ ],
+ "note": "只接哈密（appCode 018）的路由；还原中的页面用工单 target 路径懒加载",
+ "deps": {
+  "orders": []
+ },
+ "kbEstimated": true
+}

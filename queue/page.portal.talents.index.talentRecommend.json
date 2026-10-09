@@ -1,0 +1,60 @@
+{
+ "id": "page.portal.talents.index.talentRecommend",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.9,
+ "sourceChunk": "legacy-dist/portal/assets/talentRecommend.1783320636200.js",
+ "components": [
+  {
+   "name": "talentRecommend",
+   "scopeId": "data-v-a2e8a8e9"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a2e8a8e9"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/talentRecommend.1783320636200.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/index/talentRecommend.vue",
+ "subComponentDir": "apps/portal/src/views/talents/index/talentRecommend/",
+ "routes": [],
+ "recordPath": "/talents/index",
+ "maps": "out/maps/page.portal.talents.index.talentRecommend.json",
+ "hints": "out/hints/page.portal.talents.index.talentRecommend.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "be",
+   "f",
+   "m",
+   "o",
+   "p",
+   "r",
+   "u"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620037.js#s"
+  ],
+  "modules": [
+   "robot.1783320636200.js",
+   "woman.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.index.index"
+}

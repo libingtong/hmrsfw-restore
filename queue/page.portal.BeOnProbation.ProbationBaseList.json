@@ -1,0 +1,56 @@
+{
+ "id": "page.portal.BeOnProbation.ProbationBaseList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8.6,
+ "sourceChunk": "legacy-dist/portal/assets/ProbationBaseList.1783320636200.js",
+ "components": [
+  {
+   "name": "ProbationBaseList",
+   "scopeId": "data-v-d25dd3fc"
+  }
+ ],
+ "scopeIds": [
+  "data-v-d25dd3fc"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/ProbationBaseList.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/BeOnProbation/ProbationBaseList.vue",
+ "subComponentDir": "apps/portal/src/views/BeOnProbation/ProbationBaseList/",
+ "routes": [
+  {
+   "path": "/ProbationBaseList",
+   "name": "ProbationBaseList",
+   "title": "就业见习岗位"
+  }
+ ],
+ "recordPath": "/ProbationBaseList",
+ "maps": "out/maps/page.portal.BeOnProbation.ProbationBaseList.json",
+ "hints": "out/hints/page.portal.BeOnProbation.ProbationBaseList.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "S",
+   "c",
+   "e",
+   "f",
+   "g"
+  ],
+  "shared": [
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.1783320636200.js#b"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

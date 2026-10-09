@@ -1,0 +1,192 @@
+{
+ "id": "page.uc.JobFairRelease",
+ "chunk": "legacy-dist/usercenter/assets/JobFairRelease.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Ye": "defineComponent",
+  "De": "useRoute (vue-router)",
+  "Me": "useRouter (vue-router)",
+  "S": "ref",
+  "Ve": "inject",
+  "Oe": "reactive",
+  "We": "onMounted",
+  "d": "resolveComponent",
+  "h": "openBlock",
+  "L": "createElementBlock",
+  "r": "createVNode",
+  "l": "withCtx",
+  "b": "createTextVNode",
+  "T": "createElementVNode",
+  "x": "createCommentVNode",
+  "P": "createBlock",
+  "Y": "toDisplayString",
+  "_": "unref",
+  "H": "nextTick",
+  "Xe": "pushScopeId",
+  "Ee": "popScopeId"
+ },
+ "entry": {
+  "Z": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "He": {
+   "original": "b0",
+   "path": "@/legacy/api",
+   "export": "queryById",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "$": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ze": {
+   "original": "b1",
+   "path": "@/legacy/api",
+   "export": "list",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "$e": {
+   "original": "a9",
+   "path": "@/legacy",
+   "export": "detailById",
+   "status": "restored"
+  },
+  "J": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "Je": {
+   "original": "aa",
+   "path": "@/legacy",
+   "export": "getExtractPositionConfig",
+   "status": "restored"
+  },
+  "Qe": {
+   "original": "ab",
+   "path": "@/legacy",
+   "export": "confirmExtract",
+   "status": "restored"
+  },
+  "Ge": {
+   "original": "z",
+   "path": "@/legacy",
+   "export": "getDictValueByCodes",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Ke": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "D": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ea": {
+   "original": "ad",
+   "path": "@/legacy",
+   "export": "checkSensitive",
+   "status": "restored"
+  },
+  "aa": {
+   "original": "b2",
+   "path": "@/legacy/api",
+   "export": "addPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "G": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "ta": {
+   "original": "b3",
+   "path": "@/legacy/api",
+   "export": "editPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ra": {
+   "original": "af",
+   "path": "@ant-design/icons-vue",
+   "export": "InfoCircleOutlined",
+   "status": "npm"
+  },
+  "la": {
+   "original": "ag",
+   "path": "@ant-design/icons-vue",
+   "export": "QuestionCircleOutlined",
+   "status": "npm"
+  },
+  "sa": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ia": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "w": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "oa": {
+   "original": "extractpositionmodal.1751615607545.js#e",
+   "path": "@/shared/extractpositionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ua": {
+   "original": "dictCheckBoxAll.1751615607545.js#d",
+   "path": "@/shared/dictCheckBoxAll.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "na": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "K": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

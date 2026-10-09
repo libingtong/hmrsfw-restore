@@ -1,0 +1,48 @@
+{
+ "id": "page.uc.converList",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754521.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "S": "defineComponent",
+  "J": "ref",
+  "b": "inject",
+  "R": "useRouter (vue-router)",
+  "C": "reactive",
+  "P": "onMounted",
+  "u": "resolveComponent",
+  "z": "openBlock",
+  "U": "createElementBlock",
+  "t": "createVNode",
+  "n": "withCtx",
+  "v": "createTextVNode",
+  "x": "createElementVNode",
+  "B": "toDisplayString"
+ },
+ "entry": {
+  "q": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "D": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "V": {
+   "original": "index.api.17516156075457.js#h",
+   "path": "@/api/oddFindJobInfo",
+   "export": "list",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddJob/licenseFree/callRecord/list"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

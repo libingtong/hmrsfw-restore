@@ -1,0 +1,48 @@
+{
+ "id": "page.uc.lookList",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754522.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "R": "defineComponent",
+  "C": "ref",
+  "v": "inject",
+  "P": "useRouter (vue-router)",
+  "U": "reactive",
+  "z": "onMounted",
+  "d": "resolveComponent",
+  "B": "openBlock",
+  "V": "createElementBlock",
+  "t": "createVNode",
+  "n": "withCtx",
+  "_": "createTextVNode",
+  "y": "createElementVNode",
+  "N": "toDisplayString"
+ },
+ "entry": {
+  "D": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "L": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "q": {
+   "original": "index.api.17516156075457.js#i",
+   "path": "@/api/oddFindJobInfo",
+   "export": "browseRecords",
+   "status": "reserved",
+   "url": "/oddjob/xfOddUserBrowse/browseRecords"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

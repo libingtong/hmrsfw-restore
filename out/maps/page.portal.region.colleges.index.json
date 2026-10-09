@@ -1,0 +1,160 @@
+{
+ "id": "page.portal.region.colleges.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620064.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "wa": "defineComponent",
+  "Fa": "useRouter (vue-router)",
+  "K": "reactive",
+  "za": "onMounted",
+  "v": "resolveComponent",
+  "a": "openBlock",
+  "p": "createElementBlock",
+  "s": "createElementVNode",
+  "n": "createVNode",
+  "o": "withCtx",
+  "c": "createBlock",
+  "oe": "resolveDynamicComponent",
+  "m": "Fragment",
+  "D": "renderList",
+  "f": "createCommentVNode",
+  "ja": "pushScopeId",
+  "La": "popScopeId",
+  "d": "createTextVNode",
+  "r": "toDisplayString",
+  "g": "unref",
+  "Q": "normalizeClass"
+ },
+ "entry": {
+  "P": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "sa": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "ia": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "te": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ra": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "$": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "G": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Y": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "na": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "ca": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "da": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "pa": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "ua": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "ya": {
+   "original": "aD",
+   "path": "@/legacy",
+   "export": "checkIzDishonesty",
+   "status": "restored"
+  },
+  "fa": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "ha": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ma": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ba": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "xa": {
+   "original": "homeNews.17833206362003.js#h",
+   "path": "@/shared/homeNews3.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.homeNews3"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

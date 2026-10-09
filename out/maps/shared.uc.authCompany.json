@@ -1,0 +1,105 @@
+{
+ "id": "shared.uc.authCompany",
+ "chunk": "legacy-dist/usercenter/assets/authCompany.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "N": "defineComponent",
+  "U": "inject",
+  "V": "useRoute (vue-router)",
+  "q": "useRouter (vue-router)",
+  "D": "reactive",
+  "M": "toRefs",
+  "H": "onBeforeMount",
+  "X": "onMounted",
+  "m": "resolveComponent",
+  "f": "unref",
+  "s": "openBlock",
+  "l": "createElementBlock",
+  "h": "createVNode",
+  "S": "withCtx",
+  "i": "createElementVNode",
+  "v": "Fragment",
+  "Y": "renderList",
+  "g": "createBlock",
+  "c": "createCommentVNode",
+  "w": "normalizeClass",
+  "d": "toDisplayString",
+  "Z": "createTextVNode",
+  "G": "pushScopeId",
+  "J": "popScopeId"
+ },
+ "entry": {
+  "Q": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "W": {
+   "original": "b",
+   "path": "vuex",
+   "export": "useStore",
+   "status": "npm"
+  },
+  "x": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "y": {
+   "original": "q",
+   "path": "@/legacy/api",
+   "export": "queryByCompanyId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "T": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "K": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "te": {
+   "original": "market.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/market.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.market"
+  },
+  "se": {
+   "original": "addKeynote.1751615607545.js#a",
+   "path": "@/shared/addKeynote/AddBeOnProbation.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.addKeynote"
+  },
+  "oe": {
+   "original": "addKeynote.1751615607545.js#b",
+   "path": "@/shared/addKeynote/AddKeynote.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.addKeynote"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js"
+ ],
+ "missing": []
+}

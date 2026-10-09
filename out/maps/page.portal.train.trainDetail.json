@@ -1,0 +1,176 @@
+{
+ "id": "page.portal.train.trainDetail",
+ "chunk": "legacy-dist/portal/assets/trainDetail.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Fe": "defineComponent",
+  "Ge": "useRouter (vue-router)",
+  "Ye": "useRoute (vue-router)",
+  "Ee": "reactive",
+  "Je": "onMounted",
+  "y": "resolveComponent",
+  "s": "openBlock",
+  "a": "createElementBlock",
+  "t": "createElementVNode",
+  "r": "createVNode",
+  "m": "withCtx",
+  "l": "toDisplayString",
+  "g": "unref",
+  "T": "createTextVNode",
+  "f": "createCommentVNode",
+  "M": "Fragment",
+  "G": "renderList",
+  "w": "createBlock",
+  "Ke": "pushScopeId",
+  "Qe": "popScopeId"
+ },
+ "entry": {
+  "Pe": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "He": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "q": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "A": {
+   "original": "C",
+   "path": "@/legacy",
+   "export": "TEXT_GO_PERFECT",
+   "status": "restored"
+  },
+  "U": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "E",
+   "path": "@/legacy",
+   "export": "IDENTITY_PERSON",
+   "status": "restored"
+  },
+  "D": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "F": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ue": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "Ze": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Ve": {
+   "original": "index.api.178332063620021.js#a",
+   "path": "@/api/jobPxCourse",
+   "export": "queryByIdNew",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/queryByIdNew"
+  },
+  "We": {
+   "original": "index.api.178332063620021.js#g",
+   "path": "@/api/jobPxCourse",
+   "export": "listForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
+  },
+  "$e": {
+   "original": "index.api.178332063620021.js#b",
+   "path": "@/api/jobPxCourse",
+   "export": "getArticleList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/getArticleList"
+  },
+  "et": {
+   "original": "index.api.17833206362008.js#b",
+   "path": "@/api/api-08",
+   "export": "getChildArticleTypeList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
+  }
+ },
+ "shared": {
+  "Y": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "it": {
+   "original": "signSetup.1783320636200.js#s",
+   "path": "@/shared/signSetup.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.signSetup"
+  },
+  "lt": {
+   "original": "complaint.1783320636200.js#c",
+   "path": "@/shared/complaint.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.complaint"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Se": {
+   "original": "card.1783320636200.js#_",
+   "value": "/sjz/setup/good.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ze": {
+   "original": "card.1783320636200.js#a",
+   "value": "/sjz/setup/card.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

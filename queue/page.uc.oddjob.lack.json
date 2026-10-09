@@ -1,0 +1,47 @@
+{
+ "id": "page.uc.oddjob.lack",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/lack-job.1751615607545.js",
+ "components": [
+  {
+   "name": "lack-job",
+   "scopeId": "data-v-9597492b"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9597492b"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/lack-job.1751615607545.css",
+  "legacy-dist/usercenter/assets/workType.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/oddjob/lack.vue",
+ "subComponentDir": "apps/uc/src/views/oddjob/lack/",
+ "routes": [
+  {
+   "path": "/oddjob/lack",
+   "name": "OddjobLack"
+  }
+ ],
+ "recordPath": "/oddjob/lack",
+ "maps": "out/maps/page.uc.oddjob.lack.json",
+ "hints": "out/hints/page.uc.oddjob.lack.md",
+ "deps": {
+  "entry": [],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754520.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

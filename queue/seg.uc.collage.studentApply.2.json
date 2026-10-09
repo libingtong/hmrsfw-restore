@@ -1,0 +1,87 @@
+{
+ "id": "seg.uc.collage.studentApply.2",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.collage.studentApply",
+ "index": 2,
+ "of": 2,
+ "assemble": true,
+ "after": [
+  "seg.uc.collage.studentApply.1"
+ ],
+ "kb": 14.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/apply.1751615607545.js",
+ "range": [
+  18105,
+  33451
+ ],
+ "components": [
+  {
+   "name": "protocol",
+   "scopeId": null
+  },
+  {
+   "name": "apply",
+   "scopeId": "data-v-9662b120"
+  }
+ ],
+ "parts": [],
+ "outputs": [
+  "apps/uc/src/views/collage/studentApply/protocol.vue",
+  "apps/uc/src/views/collage/studentApply.vue"
+ ],
+ "target": "apps/uc/src/views/collage/studentApply.vue",
+ "subComponentDir": "apps/uc/src/views/collage/studentApply/",
+ "scopeIds": [
+  "data-v-5ffb5602",
+  "data-v-60225454",
+  "data-v-9662b120"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/apply.1751615607545.css"
+ ],
+ "routes": [
+  {
+   "path": "/collage/studentApply",
+   "name": "studentApply"
+  }
+ ],
+ "recordPath": "/collage/studentApply",
+ "maps": "out/maps/page.uc.collage.studentApply.json",
+ "hints": "out/hints/page.uc.collage.studentApply.md",
+ "deps": {
+  "entry": [
+   "I",
+   "M",
+   "d",
+   "m",
+   "y"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754513.js#a",
+   "index.api.175161560754513.js#b",
+   "index.api.175161560754513.js#c",
+   "index.api.175161560754513.js#d",
+   "index.api.175161560754513.js#f",
+   "index.api.175161560754513.js#g",
+   "index.api.175161560754513.js#s",
+   "index.api.175161560754513.js#u",
+   "index.api.175161560754514.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [18105, 33451)（约 14.9KB），其余部分由同页的其他分段负责。",
+  "完整还原这些组件并写成 SFC：protocol → apps/uc/src/views/collage/studentApply/protocol.vue；apply → apps/uc/src/views/collage/studentApply.vue。",
+  "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.uc.collage.studentApply --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
+ ]
+}

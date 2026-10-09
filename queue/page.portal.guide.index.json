@@ -1,0 +1,118 @@
+{
+ "id": "page.portal.guide.index",
+ "type": "page",
+ "status": "segmented",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 30.6,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620034.js",
+ "components": [
+  {
+   "name": "StepForm4",
+   "scopeId": "data-v-a1bf3a52"
+  },
+  {
+   "name": "JoinModal",
+   "scopeId": "data-v-66fbaa3f"
+  },
+  {
+   "name": "StepForm5",
+   "scopeId": "data-v-ea565f2a"
+  },
+  {
+   "name": "AlertModalCom",
+   "scopeId": "data-v-fc67a970"
+  },
+  {
+   "name": "TalentItem",
+   "scopeId": "data-v-3fb9d8ac"
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-6576d825"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a1bf3a52",
+  "data-v-66fbaa3f",
+  "data-v-ea565f2a",
+  "data-v-fc67a970",
+  "data-v-3fb9d8ac",
+  "data-v-6576d825"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620030.css",
+  "legacy-dist/portal/assets/index.178332063620034.css"
+ ],
+ "target": "apps/portal/src/views/guide/index.vue",
+ "subComponentDir": "apps/portal/src/views/guide/index/",
+ "routes": [
+  {
+   "path": "/guide/corp",
+   "name": "corp",
+   "title": "单位信息维护"
+  }
+ ],
+ "recordPath": "/guide/corp",
+ "maps": "out/maps/page.portal.guide.index.json",
+ "hints": "out/hints/page.portal.guide.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "Q",
+   "S",
+   "a2",
+   "aR",
+   "ae",
+   "ar",
+   "bf",
+   "bg",
+   "bh",
+   "c",
+   "d",
+   "f",
+   "m",
+   "o",
+   "p",
+   "q",
+   "r",
+   "u",
+   "v"
+  ],
+  "shared": [
+   "InterviewInvitation.1783320636200.js",
+   "auth.1783320636200.js",
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "industryCode.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#a",
+   "index.1783320636200117.js#b",
+   "index.1783320636200117.js#c",
+   "index.1783320636200117.js#i",
+   "index.1783320636200117.js#o",
+   "index.1783320636200117.js#q",
+   "index.1783320636200117.js#r",
+   "index.1783320636200117.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.InterviewInvitation",
+   "shared.portal.auth"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "segments": [
+  "seg.portal.guide.index.1",
+  "seg.portal.guide.index.2"
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "id": "shared.portal.workType",
+ "type": "shared",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.2,
+ "chunkKb": 6.2,
+ "sourceChunk": "legacy-dist/portal/assets/workType.1783320636200.js",
+ "components": [
+  {
+   "name": "workType",
+   "scopeId": "data-v-c9091e07"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c9091e07"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/workType.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/workType.vue",
+ "exports": {
+  "w": {
+   "export": "default"
+  }
+ },
+ "registryKey": "workType.1783320636200.js",
+ "usedBy": [
+  "page.portal.oddJob.Jobshortage.index",
+  "page.portal.oddJob.Sparework.index",
+  "page.portal.oddJob.shareUser.index",
+  "page.portal.recruitMarket.marketDetail.index",
+  "page.portal.sjz.job.jobList",
+  "page.portal.sjz.talent.talentList",
+  "page.portal.eMap.index",
+  "page.portal.fair.webFair.detail",
+  "page.portal.fair.sceneFair.detail",
+  "page.portal.fair.outFair.detail",
+  "page.portal.guide.jobHunt",
+  "page.portal.guide.index",
+  "page.portal.talents.job.jobList",
+  "page.portal.talents.fair.webFair.detail",
+  "page.portal.talents.fair.outFair.detail",
+  "page.portal.talents.talentnew.talentList",
+  "page.portal.talents.eMap.index",
+  "page.portal.talents.cityHome.talentArea",
+  "shared.portal.addResume"
+ ],
+ "maps": "out/maps/shared.portal.workType.json",
+ "hints": "out/hints/shared.portal.workType.md",
+ "deps": {
+  "entry": [
+   "L",
+   "t"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

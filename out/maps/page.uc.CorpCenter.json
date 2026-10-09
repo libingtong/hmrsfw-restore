@@ -1,0 +1,350 @@
+{
+ "id": "page.uc.CorpCenter",
+ "chunk": "legacy-dist/usercenter/assets/CorpCenter.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "se": "defineComponent",
+  "ze": "computed",
+  "R": "ref",
+  "ue": "onBeforeMount",
+  "oe": "onMounted",
+  "f": "resolveComponent",
+  "o": "openBlock",
+  "a": "createElementBlock",
+  "s": "createElementVNode",
+  "u": "toDisplayString",
+  "P": "createBlock",
+  "p": "withCtx",
+  "I": "Fragment",
+  "H": "renderList",
+  "de": "normalizeClass",
+  "g": "createCommentVNode",
+  "C": "createTextVNode",
+  "N": "unref",
+  "pe": "reactive",
+  "i": "createVNode",
+  "he": "useRouter (vue-router)",
+  "Ee": "watch",
+  "Fe": "inject",
+  "He": "useRoute (vue-router)",
+  "M": "h",
+  "fe": "withDirectives",
+  "me": "vShow",
+  "qe": "pushScopeId",
+  "De": "popScopeId"
+ },
+ "entry": {
+  "We": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "F": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "ee": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "te": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ne": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "ge": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ye": {
+   "original": "W",
+   "path": "@/legacy/api",
+   "export": "setCompanyTags",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "G": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "V": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "q": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "Je": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getSettingValueByCodes",
+   "status": "restored"
+  },
+  "ve": {
+   "original": "X",
+   "path": "@/legacy/api",
+   "export": "freeCompanyDetailById",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Xe": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "Qe": {
+   "original": "b",
+   "path": "vuex",
+   "export": "useStore",
+   "status": "npm"
+  },
+  "et": {
+   "original": "Y",
+   "path": "@/legacy/utils",
+   "export": "closeTag",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "tt": {
+   "original": "Z",
+   "path": "@/legacy/api",
+   "export": "remind",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "st": {
+   "original": "$",
+   "path": "@/legacy/api",
+   "export": "noMoreRemindersToday",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ot": {
+   "original": "a0",
+   "path": "@/legacy/api",
+   "export": "getCompanyStatistic",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Z": {
+   "original": "q",
+   "path": "@/legacy/api",
+   "export": "queryByCompanyId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "nt": {
+   "original": "a1",
+   "path": "@/legacy/api",
+   "export": "getCompanyUserList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "at": {
+   "original": "a2",
+   "path": "@/legacy/api",
+   "export": "queryPageListByCompanyId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "lt": {
+   "original": "a3",
+   "path": "@/legacy/api",
+   "export": "queryPageInterviewListByCompanyId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "it": {
+   "original": "a4",
+   "path": "@/legacy/api",
+   "export": "getCount",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ct": {
+   "original": "a5",
+   "path": "@/legacy/api",
+   "export": "queryCountOfUnFile",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "rt": {
+   "original": "a6",
+   "path": "@/legacy/api",
+   "export": "unBindCompany",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "dt": {
+   "original": "a7",
+   "path": "@/legacy/api",
+   "export": "isPublishingPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ut": {
+   "original": "a8",
+   "path": "@/legacy/api",
+   "export": "addTalent",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {
+  "Q": {
+   "original": "index.api.17516156075456.js#b",
+   "path": "@/api/api-56",
+   "export": "getSettingValueByCode",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"
+  },
+  "kt": {
+   "original": "index.api.1751615607545.js#e",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "getRecommendTalentList",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCompany/getRecommendTalentList"
+  },
+  "bt": {
+   "original": "index.api.1751615607545.js#f",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "recommendJobList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"
+  }
+ },
+ "shared": {
+  "je": {
+   "original": "mymsg.1751615607545.js#m",
+   "path": "@/shared/mymsg/Mymsg.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.mymsg"
+  },
+  "Ke": {
+   "original": "mymsg.1751615607545.js#_",
+   "path": "@/shared/mymsg.ts",
+   "export": "_",
+   "status": "reserved",
+   "owner": "shared.uc.mymsg"
+  },
+  "Ze": {
+   "original": "recommendZp.1751615607545.js#s",
+   "path": "@/shared/recommendZp/StateCard.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.recommendZp"
+  },
+  "Ge": {
+   "original": "recommendZp.1751615607545.js#r",
+   "path": "@/shared/recommendZp/RecommendZp.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.recommendZp"
+  },
+  "pt": {
+   "original": "authCompany.1751615607545.js#a",
+   "path": "@/shared/authCompany.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.authCompany"
+  },
+  "_t": {
+   "original": "setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js#a",
+   "path": "@/shared/setStatus.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.setStatus"
+  },
+  "yt": {
+   "original": "addKeynote.1751615607545.js#a",
+   "path": "@/shared/addKeynote/AddBeOnProbation.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.addKeynote"
+  },
+  "ft": {
+   "original": "addKeynote.1751615607545.js#b",
+   "path": "@/shared/addKeynote/AddKeynote.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.addKeynote"
+  },
+  "mt": {
+   "original": "setStatusinterview.1751615607545.js#s",
+   "path": "@/shared/setStatusinterview.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ht": {
+   "original": "InterviewInvitation.17516156075452.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ct": {
+   "original": "dictCheckBoxAll.1751615607545.js#d",
+   "path": "@/shared/dictCheckBoxAll.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "xt": {
+   "original": "right.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/right.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.right"
+  }
+ },
+ "views": {},
+ "modules": {
+  "gt": {
+   "original": "stateCard.vue_vue_type_style_index_0_scoped_53902b4a_lang.1751615607545.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.7KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "stateCardImg",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
+  },
+  "vt": {
+   "original": "default.1751615607545.js#_",
+   "value": "/assets/default.1751615607545.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "defaultImg",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
+  }
+ },
+ "sideEffects": [
+  "right.vue_vue_type_style_index_0_scopes_true_lang.1751615607545.js",
+  "market.vue_vue_type_script_setup_true_lang.1751615607545.js",
+  "phone.1751615607545.js",
+  "corporganic.1751615607545.js",
+  "message.1751615607545.js",
+  "index.api.175161560754510.js"
+ ],
+ "missing": []
+}

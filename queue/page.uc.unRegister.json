@@ -1,0 +1,53 @@
+{
+ "id": "page.uc.unRegister",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/unRegister.1751615607545.js",
+ "components": [
+  {
+   "name": "unRegister",
+   "scopeId": "data-v-628f7ae3"
+  }
+ ],
+ "scopeIds": [
+  "data-v-628f7ae3"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unRegister.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/unRegister.vue",
+ "subComponentDir": "apps/uc/src/views/unRegister/",
+ "routes": [
+  {
+   "path": "/unRegister",
+   "name": "unRegister"
+  }
+ ],
+ "recordPath": "/unRegister",
+ "maps": "out/maps/page.uc.unRegister.json",
+ "hints": "out/hints/page.uc.unRegister.md",
+ "deps": {
+  "entry": [
+   "G",
+   "bL",
+   "bM"
+  ],
+  "shared": [
+   "WebSockets.1751615607545.js",
+   "ZgIframe.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/unRegister",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

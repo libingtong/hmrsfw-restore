@@ -1,0 +1,57 @@
+{
+ "id": "page.uc.experthome",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 2.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/home.17516156075452.js",
+ "components": [
+  {
+   "name": "home",
+   "scopeId": "data-v-468db37e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-468db37e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/right.1751615607545.css",
+  "legacy-dist/usercenter/assets/home.17516156075452.css"
+ ],
+ "target": "apps/uc/src/views/experthome.vue",
+ "subComponentDir": "apps/uc/src/views/experthome/",
+ "routes": [
+  {
+   "path": "/experthome",
+   "name": "experthome"
+  }
+ ],
+ "recordPath": "/experthome",
+ "maps": "out/maps/page.uc.experthome.json",
+ "hints": "out/hints/page.uc.experthome.md",
+ "deps": {
+  "entry": [
+   "d"
+  ],
+  "shared": [
+   "metormodal.1751615607545.js",
+   "right.vue_vue_type_script_setup_true_lang.1751615607545.js",
+   "usercard.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075458.js#a",
+   "index.api.17516156075458.js#b",
+   "index.api.17516156075458.js#c"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.metormodal",
+   "shared.uc.right",
+   "shared.uc.usercard"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

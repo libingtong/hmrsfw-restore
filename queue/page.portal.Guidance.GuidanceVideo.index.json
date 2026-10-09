@@ -1,0 +1,59 @@
+{
+ "id": "page.portal.Guidance.GuidanceVideo.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 4.6,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620011.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-0a139be8"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0a139be8"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620013.css",
+  "legacy-dist/portal/assets/index.178332063620011.css"
+ ],
+ "target": "apps/portal/src/views/Guidance/GuidanceVideo/index.vue",
+ "subComponentDir": "apps/portal/src/views/Guidance/GuidanceVideo/index/",
+ "routes": [
+  {
+   "path": "/GuidanceVideo",
+   "name": "GuidanceVideo",
+   "title": "职业指导精品课程"
+  }
+ ],
+ "recordPath": "/GuidanceVideo",
+ "maps": "out/maps/page.portal.Guidance.GuidanceVideo.index.json",
+ "hints": "out/hints/page.portal.Guidance.GuidanceVideo.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "c",
+   "f",
+   "h",
+   "z"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "videoModal.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [
+   "courseNull.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules",
+   "shared.portal.videoModal"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

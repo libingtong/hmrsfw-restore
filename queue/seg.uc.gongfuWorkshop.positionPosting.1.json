@@ -1,0 +1,83 @@
+{
+ "id": "seg.uc.gongfuWorkshop.positionPosting.1",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.gongfuWorkshop.positionPosting",
+ "index": 1,
+ "of": 2,
+ "assemble": false,
+ "after": [],
+ "kb": 12.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754523.js",
+ "range": [
+  0,
+  13143
+ ],
+ "components": [
+  {
+   "name": "workShopAddOrEditModel",
+   "scopeId": "data-v-1d37b1c5"
+  },
+  {
+   "name": "workShopBaseInfoModel",
+   "scopeId": "data-v-2b6ba6e8"
+  }
+ ],
+ "parts": [],
+ "outputs": [
+  "apps/uc/src/views/gongfuWorkshop/positionPosting/workShopAddOrEditModel.vue",
+  "apps/uc/src/views/gongfuWorkshop/positionPosting/workShopBaseInfoModel.vue"
+ ],
+ "target": "apps/uc/src/views/gongfuWorkshop/positionPosting.vue",
+ "subComponentDir": "apps/uc/src/views/gongfuWorkshop/positionPosting/",
+ "scopeIds": [
+  "data-v-1d37b1c5",
+  "data-v-2b6ba6e8",
+  "data-v-4378db7d",
+  "data-v-50063266",
+  "data-v-55f3158e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754526.css",
+  "legacy-dist/usercenter/assets/index.175161560754523.css"
+ ],
+ "routes": [
+  {
+   "path": "/gongfuWorkshop/positionPosting",
+   "name": "positionPosting"
+  }
+ ],
+ "recordPath": "/gongfuWorkshop/positionPosting",
+ "maps": "out/maps/page.uc.gongfuWorkshop.positionPosting.json",
+ "hints": "out/hints/page.uc.gongfuWorkshop.positionPosting.md",
+ "deps": {
+  "entry": [
+   "M",
+   "d",
+   "m",
+   "w",
+   "x"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "mapInfo.1751615607545.js",
+   "workshopNews.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.mapInfo",
+   "shared.uc.workshopNews"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [0, 13143)（约 12.8KB），其余部分由同页的其他分段负责。",
+  "完整还原这些组件并写成 SFC：workShopAddOrEditModel → apps/uc/src/views/gongfuWorkshop/positionPosting/workShopAddOrEditModel.vue；workShopBaseInfoModel → apps/uc/src/views/gongfuWorkshop/positionPosting/workShopBaseInfoModel.vue。",
+  "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
+ ]
+}

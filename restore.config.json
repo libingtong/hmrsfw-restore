@@ -1,0 +1,94 @@
+{
+  "$schema": "./schema/restore.config.schema.json",
+  "schemaVersion": 1,
+  "project": {
+    "id": "hmrsfw",
+    "name": "哈密公共就业服务网前端（门户 + 用户中心）",
+    "owner": { "memberId": "9ba7e167-e61a-43e0-a53e-aeeba4ec5eb1", "label": "李炳通" },
+    "adapter": "vue3-vite",
+    "multicaProjectId": "d18fdd43-5f49-43b7-a9c8-1b8abadb58b7"
+  },
+  "repos": {
+    "engine": { "url": "https://github.com/libingtong/hmrsfw-restore", "defaultBranch": "main", "integrationBranch": "integration" },
+    "data": { "url": "https://github.com/libingtong/hmrsfw-restore", "defaultBranch": "main", "integrationBranch": "integration" },
+    "app": {
+      "url": "https://github.com/libingtong/hmrsfw-vue",
+      "defaultBranch": "main",
+      "integrationBranch": "integration",
+      "packageName": "hmrsfw-vue",
+      "attemptBranchPrefix": "restore/"
+    }
+  },
+  "apps": [
+    {
+      "name": "portal",
+      "site": "portal",
+      "title": "门户",
+      "legacyDist": "legacy-dist/portal",
+      "entryChunk": "index.1783320636200.js",
+      "vueChunk": "vue.1783320636200.js",
+      "versions": { "vue": "3.2.47", "ant-design-vue": "3.2.15" },
+      "target": "apps/{app}/src/views/{view}",
+      "viteConfig": "vite.portal.config.ts",
+      "testOrigin": "https://hamiwebportaltest.rencaidanao.com",
+      "apiPrefix": "/xf-api/"
+    },
+    {
+      "name": "uc",
+      "site": "usercenter",
+      "title": "用户中心",
+      "legacyDist": "legacy-dist/usercenter",
+      "entryChunk": "index.1751615607545.js",
+      "vueChunk": "vue.1751615607545.js",
+      "versions": { "vue": "3.3.4", "ant-design-vue": "3.2.20" },
+      "target": "apps/{app}/src/views/{view}",
+      "viteConfig": "vite.uc.config.ts",
+      "testOrigin": "https://hamiusercentertest.rencaidanao.com",
+      "apiPrefix": "/xf-api/"
+    }
+  ],
+  "env": {
+    "appDir": "VR_APP_DIR",
+    "appDirAliases": ["HMRSFW_APP_DIR"],
+    "secrets": ["SM2_PRIVATE_KEY"]
+  },
+  "recording": {
+    "allowedHosts": ["hamiwebportaltest.rencaidanao.com", "hamiusercentertest.rencaidanao.com"]
+  },
+  "escalation": {
+    "assignee": "owner",
+    "categories": [
+      {
+        "id": "human-presence",
+        "title": "需要人在场",
+        "examples": ["登录态过期要重新登录", "需要其他角色测试账号（D6）", "测试环境重置", "造数（D7）", "SM2 真实场景验证（D8）"]
+      },
+      {
+        "id": "money",
+        "title": "钱",
+        "examples": ["累计用量超出预算上限", "要新增付费模型或运行时"]
+      },
+      {
+        "id": "compliance-security",
+        "title": "合规与安全",
+        "examples": ["反编译的著作权与合同问题（D9）", "发现密钥或个人数据已经进了仓库或评论", "需要访问生产环境"]
+      },
+      {
+        "id": "agent-disagreement",
+        "title": "智能体无法达成一致",
+        "examples": ["规则变更单两轮复核不同意", "裁定员判断为需要业务知识的取舍，例如 talentScreen 是否废弃（D5）"]
+      }
+    ],
+    "defaults": [
+      { "id": "D2", "decision": "比对器规范化空注释节点，源码不留 v-if=\"false\"" },
+      { "id": "D3", "decision": "路由表、config.json 这类配置数据登记豁免，代码不豁免" },
+      { "id": "D4", "decision": "表单页和操作页必须写交互脚本，其余页面抽 20%" },
+      { "id": "D10", "decision": "按实测额度触发情况自动调节并发" }
+    ]
+  },
+  "projectNotes": "docs/project-notes.md",
+  "machines": [
+    { "name": "mac", "host": "DylandeMac-mini.local", "holdsSecrets": true, "roles": ["dispatcher", "gate", "recorder", "fixer", "arbiter", "restorer"] },
+    { "name": "office", "host": "Dylan-Office-Server", "holdsSecrets": false, "roles": ["restorer", "restorer-core", "reviewer"] }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+ "id": "page.portal.talents.fair.outFair.list",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 9.6,
+ "sourceChunk": "legacy-dist/portal/assets/list.178332063620010.js",
+ "components": [
+  {
+   "name": "list",
+   "scopeId": "data-v-7c10e688"
+  }
+ ],
+ "scopeIds": [
+  "data-v-7c10e688"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.17833206362008.css",
+  "legacy-dist/portal/assets/list.178332063620010.css"
+ ],
+ "target": "apps/portal/src/views/talents/fair/outFair/list.vue",
+ "subComponentDir": "apps/portal/src/views/talents/fair/outFair/list/",
+ "routes": [],
+ "recordPath": "/talents/fairList",
+ "maps": "out/maps/page.portal.talents.fair.outFair.list.json",
+ "hints": "out/hints/page.portal.talents.fair.outFair.list.md",
+ "deps": {
+  "entry": [
+   "A",
+   "S",
+   "aD",
+   "aQ",
+   "c",
+   "d",
+   "m",
+   "o",
+   "p",
+   "q",
+   "r"
+  ],
+  "shared": [
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620017.js#w"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.fair.fairList"
+}

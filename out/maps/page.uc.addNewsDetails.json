@@ -1,0 +1,134 @@
+{
+ "id": "page.uc.addNewsDetails",
+ "chunk": "legacy-dist/usercenter/assets/addNewsDetails.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Ve": "defineComponent",
+  "d": "ref",
+  "xe": "useRoute (vue-router)",
+  "Ue": "useRouter (vue-router)",
+  "ee": "reactive",
+  "De": "onBeforeMount",
+  "Be": "onMounted",
+  "qe": "computed",
+  "m": "resolveComponent",
+  "k": "openBlock",
+  "G": "createElementBlock",
+  "s": "createVNode",
+  "l": "withCtx",
+  "w": "createTextVNode",
+  "te": "toDisplayString",
+  "M": "unref",
+  "Le": "Fragment",
+  "Ee": "renderList",
+  "U": "createCommentVNode",
+  "C": "createElementVNode",
+  "O": "createBlock",
+  "Se": "pushScopeId",
+  "$e": "popScopeId"
+ },
+ "entry": {
+  "ze": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Ge": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "y": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "Me": {
+   "original": "bv",
+   "path": "@/legacy/utils",
+   "export": "formatDateTime",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "D": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "B": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "I": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Oe": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "Ye": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  },
+  "He": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "Je": {
+   "original": "index.api.175161560754518.js#a",
+   "path": "@/api/sysArticle",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysArticle/queryById"
+  },
+  "Ae": {
+   "original": "index.api.175161560754518.js#b",
+   "path": "@/api/sysArticle",
+   "export": "addOrEditRecruitment",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysArticle/addOrEditRecruitment"
+  }
+ },
+ "shared": {
+  "Fe": {
+   "original": "Editor.1751615607545.js#E",
+   "path": "@/shared/Editor.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.Editor"
+  },
+  "Re": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

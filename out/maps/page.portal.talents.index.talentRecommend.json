@@ -1,0 +1,149 @@
+{
+ "id": "page.portal.talents.index.talentRecommend",
+ "chunk": "legacy-dist/portal/assets/talentRecommend.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ge": "defineComponent",
+  "Ue": "useRoute (vue-router)",
+  "He": "useRouter (vue-router)",
+  "Le": "computed",
+  "je": "reactive",
+  "Ae": "onBeforeMount",
+  "Be": "onMounted",
+  "N": "ref",
+  "V": "resolveComponent",
+  "s": "openBlock",
+  "l": "createElementBlock",
+  "a": "createElementVNode",
+  "h": "createVNode",
+  "n": "unref",
+  "u": "toDisplayString",
+  "R": "createCommentVNode",
+  "_": "Fragment",
+  "x": "renderList",
+  "H": "withCtx",
+  "L": "createBlock",
+  "Me": "pushScopeId",
+  "Oe": "popScopeId",
+  "Ze": "normalizeClass",
+  "w": "createTextVNode"
+ },
+ "entry": {
+  "I": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Fe": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Ie": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "G": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "U": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "Re": {
+   "original": "be",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_AUTH_RESUME",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ze": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "De": {
+   "original": "index.api.178332063620037.js#s",
+   "path": "@/api/sysBusinessSetting",
+   "export": "searchListForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobCurriculumVitae/searchListForWebsite"
+  }
+ },
+ "shared": {
+  "$e": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "We": {
+   "original": "vue-countup-v3.es.1783320636200.js#_",
+   "path": "vue-countup-v3",
+   "export": "default",
+   "status": "npm"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Te": {
+   "original": "robot.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 4.4KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "robotImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "j": {
+   "original": "woman.1783320636200.js#m",
+   "value": "/assets/man.1783320636200.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "womanImgM",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "A": {
+   "original": "woman.1783320636200.js#w",
+   "value": "/assets/woman.1783320636200.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "womanImgW",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

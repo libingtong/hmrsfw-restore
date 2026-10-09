@@ -1,0 +1,41 @@
+{
+ "id": "page.uc.CenterFairResume",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754511.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "t": "defineComponent",
+  "r": "useRoute (vue-router)",
+  "o": "reactive",
+  "i": "onMounted",
+  "s": "openBlock",
+  "n": "createElementBlock",
+  "p": "createVNode"
+ },
+ "entry": {
+  "_": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "m": {
+   "original": "index.175161560754528.js#f",
+   "path": "@/shared/ReceivedResumeList.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "index.api.175161560754511.js",
+  "dictCode.1751615607545.js",
+  "setStatusinterview.1751615607545.js",
+  "index.api.175161560754510.js",
+  "InterviewInvitation.17516156075452.js",
+  "message.1751615607545.js"
+ ],
+ "missing": []
+}

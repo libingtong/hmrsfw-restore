@@ -1,0 +1,90 @@
+{
+ "id": "page.portal.xjhm.home.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 10.5,
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200107.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-59688fd9"
+  }
+ ],
+ "scopeIds": [
+  "data-v-59688fd9"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/homeNews.17833206362002.css",
+  "legacy-dist/portal/assets/FriendLinks.17833206362002.css",
+  "legacy-dist/portal/assets/swiper-bundle.1783320636200.css",
+  "legacy-dist/portal/assets/index.1783320636200106.css",
+  "legacy-dist/portal/assets/index.1783320636200107.css"
+ ],
+ "target": "apps/portal/src/views/xjhm/home/index.vue",
+ "subComponentDir": "apps/portal/src/views/xjhm/home/index/",
+ "routes": [
+  {
+   "path": "/",
+   "name": "home",
+   "title": "哈密公共就业服务网"
+  }
+ ],
+ "recordPath": "/",
+ "maps": "out/maps/page.portal.xjhm.home.index.json",
+ "hints": "out/hints/page.portal.xjhm.home.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "O",
+   "Q",
+   "S",
+   "a1",
+   "aZ",
+   "ab",
+   "as",
+   "bA",
+   "c",
+   "c2",
+   "c3",
+   "c4",
+   "c5",
+   "cE",
+   "cd",
+   "f",
+   "m",
+   "n",
+   "p",
+   "r",
+   "u",
+   "v",
+   "w"
+  ],
+  "shared": [
+   "FriendLinks.vue_vue_type_style_index_0_lang.1783320636200.js",
+   "empty.1783320636200.js",
+   "homeNews.17833206362003.js",
+   "homeRight.17833206362002.js"
+  ],
+  "api": [],
+  "modules": [
+   "jqqd.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E5",
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "entry.portal.c04",
+   "entry.portal.c09",
+   "shared.portal.FriendLinks",
+   "shared.portal.homeNews3",
+   "shared.portal.homeRight2",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

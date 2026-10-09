@@ -1,0 +1,99 @@
+{
+ "id": "page.portal.region.skill.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620067.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ls": "defineComponent",
+  "Ts": "useRouter (vue-router)",
+  "J": "reactive",
+  "Bs": "onMounted",
+  "z": "resolveComponent",
+  "e": "openBlock",
+  "t": "createElementBlock",
+  "s": "createElementVNode",
+  "v": "createVNode",
+  "b": "withCtx",
+  "g": "createTextVNode",
+  "P": "Fragment",
+  "S": "renderList",
+  "k": "createBlock",
+  "js": "pushScopeId",
+  "Fs": "popScopeId",
+  "p": "toDisplayString",
+  "w": "unref",
+  "y": "createCommentVNode"
+ },
+ "entry": {
+  "N": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "q": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "D": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "bs": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "E": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ws": {
+   "original": "homeNews.17833206362003.js#h",
+   "path": "@/shared/homeNews3.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.homeNews3"
+  }
+ },
+ "views": {},
+ "modules": {
+  "ys": {
+   "original": "card.1783320636200.js#_",
+   "value": "/sjz/setup/good.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "hs": {
+   "original": "card.1783320636200.js#a",
+   "value": "/sjz/setup/card.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "_s": {
+   "original": "map.1783320636200.js#_",
+   "value": "/xjhm/innovation/map.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "mapImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

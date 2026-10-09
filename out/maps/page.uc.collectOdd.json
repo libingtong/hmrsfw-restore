@@ -1,0 +1,81 @@
+{
+ "id": "page.uc.collectOdd",
+ "chunk": "legacy-dist/usercenter/assets/collectOdd.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "X": "defineComponent",
+  "w": "inject",
+  "Y": "reactive",
+  "Z": "onMounted",
+  "i": "resolveComponent",
+  "l": "openBlock",
+  "r": "createElementBlock",
+  "n": "createVNode",
+  "d": "withCtx",
+  "_": "Fragment",
+  "N": "renderList",
+  "a": "createElementVNode",
+  "W": "createTextVNode",
+  "g": "createBlock",
+  "s": "toDisplayString",
+  "u": "unref",
+  "C": "h"
+ },
+ "entry": {
+  "$": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "M": {
+   "original": "bs",
+   "path": "@/legacy/api",
+   "export": "Collect",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "k": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "x": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "V": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "q": {
+   "original": "bt",
+   "path": "@/legacy/api",
+   "export": "deleteItem",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "E": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

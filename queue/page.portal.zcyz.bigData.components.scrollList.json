@@ -1,0 +1,38 @@
+{
+ "id": "page.portal.zcyz.bigData.components.scrollList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.2,
+ "sourceChunk": "legacy-dist/portal/assets/scrollList.17833206362002.js",
+ "components": [
+  {
+   "name": "scrollList",
+   "scopeId": "data-v-85ac4362"
+  }
+ ],
+ "scopeIds": [
+  "data-v-85ac4362"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/scrollList.17833206362002.css"
+ ],
+ "target": "apps/portal/src/views/zcyz/bigData/components/scrollList.vue",
+ "subComponentDir": "apps/portal/src/views/zcyz/bigData/components/scrollList/",
+ "routes": [],
+ "recordPath": "/statistics",
+ "maps": "out/maps/page.portal.zcyz.bigData.components.scrollList.json",
+ "hints": "out/hints/page.portal.zcyz.bigData.components.scrollList.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.xjhm.bigData.statistics"
+}

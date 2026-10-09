@@ -1,0 +1,96 @@
+{
+ "id": "page.uc.CorpCenterZ",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 18.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/CorpCenterZzgj.1751615607545.js",
+ "components": [
+  {
+   "name": "QuivkEnter",
+   "scopeId": "data-v-0ed8fce1"
+  },
+  {
+   "name": "recommendpeople",
+   "scopeId": "data-v-4f97f92a"
+  },
+  {
+   "name": "CorpCenterZzgj",
+   "scopeId": "data-v-0e3e67d2"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0ed8fce1",
+  "data-v-4f97f92a",
+  "data-v-0e3e67d2"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/stateCard.1751615607545.css",
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/setStatus.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/CorpCenterZzgj.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/CorpCenterZ.vue",
+ "subComponentDir": "apps/uc/src/views/CorpCenterZ/",
+ "routes": [
+  {
+   "path": "/CorpCenterZ",
+   "name": "CorpCenterZ"
+  }
+ ],
+ "recordPath": "/CorpCenterZ",
+ "maps": "out/maps/page.uc.CorpCenterZ.json",
+ "hints": "out/hints/page.uc.CorpCenterZ.md",
+ "deps": {
+  "entry": [
+   "$",
+   "B",
+   "G",
+   "M",
+   "Z",
+   "a0",
+   "a1",
+   "a2",
+   "az",
+   "b",
+   "bH",
+   "bI",
+   "bJ",
+   "bK",
+   "c",
+   "d",
+   "h",
+   "k",
+   "q",
+   "v"
+  ],
+  "shared": [
+   "InterviewInvitation.17516156075452.js",
+   "addKeynote.1751615607545.js",
+   "recommendZp.17516156075452.js",
+   "setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js",
+   "setStatusinterview.1751615607545.js"
+  ],
+  "api": [
+   "index.api.1751615607545.js#e",
+   "index.api.1751615607545.js#f",
+   "index.api.17516156075456.js#b"
+  ],
+  "modules": [
+   "default.1751615607545.js",
+   "stateCard.vue_vue_type_style_index_0_scoped_53902b4a_lang.1751615607545.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.addKeynote",
+   "shared.uc.modules",
+   "shared.uc.recommendZp2",
+   "shared.uc.setStatus"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

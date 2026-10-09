@@ -1,0 +1,46 @@
+{
+ "id": "page.uc.courseSingUp",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/courseSingUp.1751615607545.js",
+ "components": [
+  {
+   "name": "courseSingUp",
+   "scopeId": "data-v-9e9d994b"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9e9d994b"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/courseSingUp.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/courseSingUp.vue",
+ "subComponentDir": "apps/uc/src/views/courseSingUp/",
+ "routes": [
+  {
+   "path": "/courseSingUp",
+   "name": "courseSingUp"
+  }
+ ],
+ "recordPath": "/courseSingUp",
+ "maps": "out/maps/page.uc.courseSingUp.json",
+ "hints": "out/hints/page.uc.courseSingUp.md",
+ "deps": {
+  "entry": [
+   "bl",
+   "d",
+   "k"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

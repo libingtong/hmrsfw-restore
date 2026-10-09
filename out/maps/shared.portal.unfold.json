@@ -1,0 +1,29 @@
+{
+ "id": "shared.portal.unfold",
+ "chunk": "legacy-dist/portal/assets/unfold.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "k": "defineComponent",
+  "f": "reactive",
+  "H": "computed",
+  "e": "openBlock",
+  "l": "createElementBlock",
+  "_": "createElementVNode",
+  "b": "unref",
+  "B": "toDisplayString",
+  "M": "createCommentVNode"
+ },
+ "entry": {
+  "T": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

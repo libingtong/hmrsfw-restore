@@ -1,0 +1,70 @@
+{
+ "id": "page.portal.talents.index.advertTop",
+ "chunk": "legacy-dist/portal/assets/advertTop.17833206362005.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "H": "defineComponent",
+  "M": "useRouter (vue-router)",
+  "Q": "watch",
+  "R": "ref",
+  "U": "reactive",
+  "V": "onBeforeMount",
+  "J": "onMounted",
+  "b": "resolveComponent",
+  "r": "openBlock",
+  "c": "createElementBlock",
+  "T": "createVNode",
+  "S": "withCtx",
+  "A": "Fragment",
+  "B": "renderList",
+  "h": "createCommentVNode",
+  "w": "unref",
+  "F": "normalizeClass",
+  "K": "createBlock"
+ },
+ "entry": {
+  "W": {
+   "original": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "j": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "X": {
+   "original": "bs",
+   "path": "@/legacy/utils",
+   "export": "openLinkAddress",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "aa": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ea": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ta": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

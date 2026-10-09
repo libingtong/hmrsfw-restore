@@ -1,0 +1,456 @@
+{
+ "_doc": "入口导出的可读名（人工核定）。来源：shim-map = POC 对照表（20 页确认后的版本）；curated = 按入口定义核定。接口函数、组件、图标不在此表，由 tools/registry.mjs 按 URL、组件名、图标定义推导。改名会改变所有页面工单的导入，只能在入口单还原之前改。",
+ "entry": {
+  "_": {
+   "ignore": "_export_sfc：SFC 里不需要，忽略",
+   "source": "shim-map"
+  },
+  "a": {
+   "export": "useTagsStore",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "pinia \"tags\" store"
+  },
+  "A": {
+   "export": "queryAreaChildrenTreeListById",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "a_": {
+   "export": "validateContactPhone",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "a-form 手机/座机校验器"
+  },
+  "a$": {
+   "export": "router",
+   "path": "@/router",
+   "source": "curated",
+   "note": "vue-router 实例"
+  },
+  "a9": {
+   "export": "detailById",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "aa": {
+   "export": "getExtractPositionConfig",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "`（→ `{name, alert}`"
+  },
+  "ab": {
+   "export": "confirmExtract",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "onOk, label)`"
+  },
+  "ad": {
+   "export": "checkSensitive",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "{value})`（敏感词检查，返回 Promise<boolean>"
+  },
+  "ah": {
+   "export": "stripHtml",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "去掉 HTML 标签"
+  },
+  "am": {
+   "export": "formatDateDash",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "日期 → YYYY-M-D"
+  },
+  "an": {
+   "export": "uniqueByValue",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "list)`（按 value 去重"
+  },
+  "aN": {
+   "export": "downloadFile",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "url, filename?)`"
+  },
+  "aw": {
+   "export": "historyUsePositionList",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "data)`"
+  },
+  "ax": {
+   "export": "getMultiDictListByType",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "data)`"
+  },
+  "aX": {
+   "ignore": "Babel 的 typeof 辅助函数，源码里直接写 typeof",
+   "source": "curated"
+  },
+  "ay": {
+   "export": "listToTree",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "list)`"
+  },
+  "aY": {
+   "ignore": "Vite 的 __vitePreload 辅助函数，源码里直接写 import()",
+   "source": "curated"
+  },
+  "b": {
+   "export": "useStore",
+   "path": "vuex",
+   "npm": true,
+   "source": "shim-map",
+   "note": "vuex；store 已在 `main.ts` 安装"
+  },
+  "B": {
+   "export": "API_BASE",
+   "path": "@/utils/request",
+   "source": "shim-map",
+   "note": "\"/xf-api\""
+  },
+  "b4": {
+   "export": "CURRENT_YEAR_MONTH",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "\"YYYY-MM\""
+  },
+  "b7": {
+   "export": "isPhoneOrTel",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "手机号或座机号校验"
+  },
+  "bA": {
+   "export": "usePermissStore",
+   "path": "@/legacy/store",
+   "source": "curated",
+   "note": "pinia permiss store"
+  },
+  "bB": {
+   "export": "removeUrlParam",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "从 URL 去掉一个参数"
+  },
+  "bc": {
+   "export": "pxRegistList",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "bC": {
+   "export": "getUrlParams",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "解析 URL 查询参数"
+  },
+  "bd": {
+   "export": "ticketToHtml",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "{noticeId, registrationId, ...})`"
+  },
+  "bD": {
+   "export": "vuexStore",
+   "path": "@/legacy/store",
+   "source": "curated",
+   "note": "vuex store 实例（autoLogin 用）"
+  },
+  "be": {
+   "export": "alipayScanPay",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "bf": {
+   "export": "updateEnrollmentStatus",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "data)`"
+  },
+  "bF": {
+   "export": "encryptStorage",
+   "path": "@/utils/crypto-adapter",
+   "source": "curated",
+   "note": "SM4 加密后写存储（密钥只从环境变量读）"
+  },
+  "bK": {
+   "export": "AxiosHeaders",
+   "path": "axios",
+   "npm": true,
+   "source": "curated",
+   "note": "原包 Vq(AxiosHeaders)，待入口单核对"
+  },
+  "bL": {
+   "export": "userStorage",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "userInfo/corpInfo/xfSysUserId 等的读写，`getXfSysUser()` 等"
+  },
+  "bM": {
+   "export": "verifyUserInfoByPhone",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "bu": {
+   "export": "isMobilePhone",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "手机号校验"
+  },
+  "bv": {
+   "export": "formatDateTime",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "日期 → YYYY-M-D H:m:s"
+  },
+  "bw": {
+   "export": "maskPhone",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "手机号打码 3****4"
+  },
+  "bx": {
+   "export": "queryCertificateList",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "c": {
+   "export": "SettingCodes",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "业务配置码枚举"
+  },
+  "d": {
+   "export": "decryptStorage",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "text, key)`（原包：解密 localStorage 里的加密 JSON；POC 里直接 JSON.parse"
+  },
+  "e": {
+   "export": "getCompanyInfo",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "E": {
+   "export": "queryFormSettingByCode",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "f": {
+   "export": "decryptText",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "text)`（解密接口返回的密文，得到 JSON 文本，调用方再 `JSON.parse`"
+  },
+  "F": {
+   "export": "izAlreadySubmitCompany",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "g": {
+   "export": "getSettingValueByCodes",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "G": {
+   "export": "getDictValueByCodeAndItems",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "h": {
+   "export": "STATIC_BASE",
+   "path": "@/utils/request",
+   "source": "shim-map",
+   "note": "\"/jeecg-system/sys/common/static\""
+  },
+  "H": {
+   "export": "companyInfoVerifyForZZJC",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "I": {
+   "export": "formatDateSlash",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "date)`（\"YYYY/M/D\""
+  },
+  "J": {
+   "export": "checkFileType",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "file, exts?)`"
+  },
+  "k": {
+   "export": "getDictItemsByCode",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "l": {
+   "export": "setLocalStorage",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "localStorage.setItem"
+  },
+  "m": {
+   "export": "message",
+   "path": "ant-design-vue",
+   "npm": true,
+   "source": "shim-map",
+   "note": "ant-design-vue，`message.success(...)`"
+  },
+  "M": {
+   "export": "Modal",
+   "path": "ant-design-vue",
+   "npm": true,
+   "source": "shim-map",
+   "note": "ant-design-vue"
+  },
+  "o": {
+   "export": "parseIdCard",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "idCard)`（返回 {age, sex, birth}"
+  },
+  "O": {
+   "export": "getAreaInfoByAreaId",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "p": {
+   "export": "default",
+   "local": "dayjs",
+   "path": "dayjs",
+   "npm": true,
+   "source": "shim-map",
+   "note": "`dayjs(x).format(\"YYYY-MM\")`"
+  },
+  "P": {
+   "export": "PlusOutlined",
+   "path": "@ant-design/icons-vue",
+   "npm": true,
+   "source": "shim-map"
+  },
+  "Q": {
+   "export": "sumbitVerifyInfo",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "data)`"
+  },
+  "r": {
+   "export": "maskPhone3",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "手机号打码 3****3"
+  },
+  "R": {
+   "export": "queryCompanyInfo",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "S": {
+   "export": "getDictListByType",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`（多级字典，参数走 params"
+  },
+  "t": {
+   "export": "validatePassword",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "rule, value)`（a-form 密码校验器"
+  },
+  "T": {
+   "export": "commonjsGlobal",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "Rollup 帮助值；页面里内联的 CJS 库改从 npm 导入时不需要"
+  },
+  "u": {
+   "export": "useCommonStore",
+   "path": "@/legacy/store",
+   "source": "curated",
+   "note": "pinia common store"
+  },
+  "U": {
+   "export": "Upload",
+   "path": "ant-design-vue",
+   "npm": true,
+   "source": "shim-map",
+   "note": "ant-design-vue，`Upload.LIST_IGNORE`"
+  },
+  "v": {
+   "export": "getSettingValueByCode",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "V": {
+   "export": "getDefaultExportFromCjs",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "Rollup 帮助函数；同上"
+  },
+  "w": {
+   "export": "http",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "入口请求实例，`http.request(config)`；转给 `request`"
+  },
+  "x": {
+   "export": "joinAreaNames",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "obj, kind)`"
+  },
+  "y": {
+   "export": "UPLOAD_URL",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "上传接口地址"
+  },
+  "Y": {
+   "export": "closeTag",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "关闭标签页并跳到相邻标签"
+  },
+  "z": {
+   "export": "getDictValueByCodes",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  }
+ },
+ "chunks": {
+  "wxyy.hook.1751615607545.js": {
+   "_": {
+    "path": "@/legacy",
+    "export": "ROBOT_IMG"
+   },
+   "g": {
+    "path": "@/legacy",
+    "export": "askWenXin"
+   }
+  }
+ }
+}

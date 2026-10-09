@@ -1,0 +1,189 @@
+{
+ "id": "page.portal.eMap.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620031.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Jt": "defineComponent",
+  "te": "ref",
+  "$t": "reactive",
+  "Kt": "computed",
+  "Qt": "onMounted",
+  "p": "resolveComponent",
+  "d": "openBlock",
+  "v": "createElementBlock",
+  "n": "createElementVNode",
+  "b": "createBlock",
+  "C": "unref",
+  "l": "withCtx",
+  "a": "createVNode",
+  "j": "Fragment",
+  "M": "renderList",
+  "_": "toDisplayString",
+  "k": "createTextVNode",
+  "L": "normalizeClass",
+  "Xt": "normalizeStyle",
+  "y": "createCommentVNode",
+  "oe": "withDirectives",
+  "ae": "vShow",
+  "eo": "pushScopeId",
+  "to": "popScopeId",
+  "re": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "lo": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "io": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "he": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "G": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "so": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "we": {
+   "original": "ar",
+   "path": "lodash-es",
+   "export": "debounce",
+   "status": "npm"
+  },
+  "no": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "uo": {
+   "original": "N",
+   "path": "@/legacy/utils",
+   "export": "getCurrentLocation",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "go": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "be": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "co": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "po": {
+   "original": "index.api.178332063620022.js#g",
+   "path": "@/api/company2",
+   "export": "freeCompanyPositionPageListForMap",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeCompanyPositionPageListForMap"
+  },
+  "Se": {
+   "original": "index.api.178332063620020.js#a",
+   "path": "@/api/service",
+   "export": "freeServiceUnitPageListForMap",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeServiceUnitPageListForMap"
+  }
+ },
+ "shared": {
+  "I": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ho": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "yo": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "le": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Co": {
+   "original": "gaode.vue_vue_type_style_index_0_lang.17833206362002.js#_",
+   "path": "@/shared/gaode2.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.gaode2"
+  }
+ },
+ "views": {},
+ "modules": {
+  "oo": {
+   "original": "adr.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.9KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "adrImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ao": {
+   "original": "adr.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.4KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "adrImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ro": {
+   "original": "work.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.3KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "workImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

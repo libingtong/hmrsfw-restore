@@ -1,0 +1,72 @@
+{
+ "id": "page.portal.talents.greenchannel.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620097.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "xe": "defineComponent",
+  "ve": "useRouter (vue-router)",
+  "z": "reactive",
+  "be": "ref",
+  "me": "onUnmounted",
+  "fe": "onMounted",
+  "N": "resolveComponent",
+  "s": "openBlock",
+  "c": "createElementBlock",
+  "t": "createElementVNode",
+  "h": "toDisplayString",
+  "f": "Fragment",
+  "I": "renderList",
+  "ke": "createBlock",
+  "k": "createCommentVNode",
+  "Ae": "pushScopeId",
+  "we": "popScopeId",
+  "A": "normalizeStyle",
+  "w": "createTextVNode",
+  "y": "createVNode",
+  "d": "withCtx"
+ },
+ "entry": {
+  "ce": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "de": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "ge": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "ue": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "he": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

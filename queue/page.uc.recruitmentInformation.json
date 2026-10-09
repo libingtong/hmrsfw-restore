@@ -1,0 +1,57 @@
+{
+ "id": "page.uc.recruitmentInformation",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754518.js",
+ "components": [
+  {
+   "name": "previewModal",
+   "scopeId": "data-v-0308e9f7"
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-ae1fb8d4"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0308e9f7",
+  "data-v-ae1fb8d4"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754521.css",
+  "legacy-dist/usercenter/assets/index.175161560754518.css"
+ ],
+ "target": "apps/uc/src/views/recruitmentInformation.vue",
+ "subComponentDir": "apps/uc/src/views/recruitmentInformation/",
+ "routes": [
+  {
+   "path": "/recruitmentInformation",
+   "name": "recruitmentInformation"
+  }
+ ],
+ "recordPath": "/recruitmentInformation",
+ "maps": "out/maps/page.uc.recruitmentInformation.json",
+ "hints": "out/hints/page.uc.recruitmentInformation.md",
+ "deps": {
+  "entry": [
+   "d",
+   "m"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754518.js#a",
+   "index.api.175161560754518.js#g",
+   "index.api.175161560754518.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

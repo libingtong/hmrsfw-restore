@@ -1,0 +1,54 @@
+{
+ "id": "shared.portal.pie",
+ "chunk": "legacy-dist/portal/assets/pie.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "g": "defineComponent",
+  "d": "ref",
+  "j": "reactive",
+  "x": "onMounted",
+  "u": "nextTick",
+  "O": "onBeforeUnmount",
+  "S": "watch",
+  "T": "onBeforeMount",
+  "b": "openBlock",
+  "k": "createElementBlock",
+  "C": "renderSlot"
+ },
+ "entry": {
+  "c": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  }
+ },
+ "api": {},
+ "shared": {
+  "f": {
+   "original": "timeOut.1783320636200.js#a",
+   "path": "@/shared/timeOut.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "h": {
+   "original": "timeOut.1783320636200.js#l",
+   "path": "@/shared/timeOut.ts",
+   "export": "l",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "views": {},
+ "modules": {
+  "y": {
+   "original": "index.1783320636200118.js#i",
+   "path": "echarts",
+   "export": "init"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

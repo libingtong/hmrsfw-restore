@@ -1,0 +1,103 @@
+{
+ "id": "page.portal.Guidance.GuidanceVideo.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620011.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "oe": "defineComponent",
+  "ne": "useRouter (vue-router)",
+  "re": "useRoute (vue-router)",
+  "de": "reactive",
+  "ce": "onMounted",
+  "c": "resolveComponent",
+  "s": "openBlock",
+  "u": "createElementBlock",
+  "d": "createElementVNode",
+  "h": "createBlock",
+  "i": "withCtx",
+  "n": "createVNode",
+  "v": "unref",
+  "C": "createTextVNode",
+  "T": "toDisplayString",
+  "L": "createCommentVNode",
+  "ue": "normalizeClass",
+  "q": "Fragment",
+  "pe": "renderList",
+  "me": "resolveDynamicComponent",
+  "he": "pushScopeId",
+  "_e": "popScopeId",
+  "I": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "N": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "te": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "se": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "A": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "B": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "le": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ge": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "videoModal.1783320636200.js#v",
+   "path": "@/shared/videoModal.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.videoModal"
+  }
+ },
+ "views": {},
+ "modules": {
+  "ae": {
+   "original": "courseNull.1783320636200.js#_",
+   "value": "/default/courseNull.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "courseNullImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

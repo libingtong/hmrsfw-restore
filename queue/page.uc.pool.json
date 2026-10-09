@@ -1,0 +1,56 @@
+{
+ "id": "page.uc.pool",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/pool.1751615607545.js",
+ "components": [
+  {
+   "name": "pool",
+   "scopeId": "data-v-f80f4a2e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f80f4a2e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/pool.1751615607545.css",
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/metormodal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/pool.vue",
+ "subComponentDir": "apps/uc/src/views/pool/",
+ "routes": [
+  {
+   "path": "/pool",
+   "name": "pool"
+  }
+ ],
+ "recordPath": "/pool",
+ "maps": "out/maps/page.uc.pool.json",
+ "hints": "out/hints/page.uc.pool.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a7",
+   "aJ",
+   "aK",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "InterviewInvitation.17516156075452.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

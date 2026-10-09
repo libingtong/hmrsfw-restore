@@ -1,0 +1,50 @@
+{
+ "id": "page.uc.fairsOutList",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/fairsOutList.1751615607545.js",
+ "components": [
+  {
+   "name": "fairsOutList",
+   "scopeId": "data-v-752fbe94"
+  }
+ ],
+ "scopeIds": [
+  "data-v-752fbe94"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/fairsOutList.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/fairsOutList.vue",
+ "subComponentDir": "apps/uc/src/views/fairsOutList/",
+ "routes": [
+  {
+   "path": "/fairsOutList",
+   "name": "fairsOutList"
+  }
+ ],
+ "recordPath": "/fairsOutList",
+ "maps": "out/maps/page.uc.fairsOutList.json",
+ "hints": "out/hints/page.uc.fairsOutList.md",
+ "deps": {
+  "entry": [
+   "c",
+   "d",
+   "v"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754512.js#b"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

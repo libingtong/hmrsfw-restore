@@ -1,0 +1,130 @@
+{
+ "id": "page.portal.answer.details",
+ "chunk": "legacy-dist/portal/assets/details.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ae": "defineComponent",
+  "Be": "ref",
+  "ge": "reactive",
+  "Pe": "useRouter (vue-router)",
+  "Ne": "useRoute (vue-router)",
+  "Je": "onMounted",
+  "Q": "h",
+  "m": "resolveComponent",
+  "n": "openBlock",
+  "p": "createElementBlock",
+  "b": "createElementVNode",
+  "J": "unref",
+  "V": "normalizeClass",
+  "c": "toDisplayString",
+  "d": "createVNode",
+  "T": "createCommentVNode",
+  "s": "withCtx",
+  "v": "Fragment",
+  "x": "renderList",
+  "r": "createBlock",
+  "D": "createTextVNode",
+  "He": "getCurrentInstance",
+  "$e": "inject",
+  "H": "normalizeStyle",
+  "Ye": "pushScopeId",
+  "Ze": "popScopeId"
+ },
+ "entry": {
+  "Oe": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Fe": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "q": {
+   "original": "ag",
+   "path": "@/legacy/utils",
+   "export": "formatDateTime",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "k": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Re": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Ee": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Ge": {
+   "original": "index.api.178332063620011.js#q",
+   "path": "@/api/quenaire",
+   "export": "izLogin",
+   "status": "reserved",
+   "url": "/xf-job/communal/licenseFree/quenaire/izLogin"
+  },
+  "Ke": {
+   "original": "index.api.178332063620011.js#a",
+   "path": "@/api/quenaire",
+   "export": "preview",
+   "status": "reserved",
+   "url": "/xf-job/communal/licenseFree/quenaire/preview"
+  },
+  "We": {
+   "original": "index.api.178332063620011.js#x",
+   "path": "@/api/quenaire",
+   "export": "preview2",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysQuenaire/preview"
+  },
+  "$": {
+   "original": "index.api.178332063620011.js#s",
+   "path": "@/api/quenaire",
+   "export": "staggingOrSubmit",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysQuenaireRecord/staggingOrSubmit"
+  },
+  "me": {
+   "original": "index.api.178332063620011.js#b",
+   "path": "@/api/quenaire",
+   "export": "submit",
+   "status": "reserved",
+   "url": "/xf-job/communal/licenseFree/quenaire/submit"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {
+  "Ce": {
+   "original": "wenjuan.1783320636200.js#_",
+   "value": "/zcyz/wenjuan.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "wenjuanImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

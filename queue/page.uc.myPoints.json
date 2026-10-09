@@ -1,0 +1,49 @@
+{
+ "id": "page.uc.myPoints",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/myPoints.1751615607545.js",
+ "components": [
+  {
+   "name": "myPoints",
+   "scopeId": "data-v-4c3dce6b"
+  }
+ ],
+ "scopeIds": [
+  "data-v-4c3dce6b"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/myPoints.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/myPoints.vue",
+ "subComponentDir": "apps/uc/src/views/myPoints/",
+ "routes": [
+  {
+   "path": "/myPoints",
+   "name": "myPoints"
+  },
+  {
+   "path": "/pointsAdmin",
+   "name": "pointsAdmin"
+  }
+ ],
+ "recordPath": "/myPoints",
+ "maps": "out/maps/page.uc.myPoints.json",
+ "hints": "out/hints/page.uc.myPoints.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [
+   "index.api.17516156075456.js#a",
+   "index.api.17516156075456.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

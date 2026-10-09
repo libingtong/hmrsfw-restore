@@ -1,0 +1,59 @@
+{
+ "id": "shared.uc.extractpositionmodal",
+ "chunk": "legacy-dist/usercenter/assets/extractpositionmodal.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Z": "defineComponent",
+  "j": "reactive",
+  "G": "onMounted",
+  "d": "resolveComponent",
+  "f": "openBlock",
+  "B": "createElementBlock",
+  "i": "createVNode",
+  "n": "withCtx",
+  "v": "createTextVNode",
+  "b": "createElementVNode",
+  "C": "createCommentVNode",
+  "T": "toDisplayString",
+  "P": "createBlock",
+  "J": "unref"
+ },
+ "entry": {
+  "H": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "q": {
+   "original": "aw",
+   "path": "@/legacy",
+   "export": "historyUsePositionList",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "X": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Y": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

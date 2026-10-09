@@ -1,0 +1,168 @@
+{
+ "id": "shared.portal.workItem",
+ "chunk": "legacy-dist/portal/assets/workItem.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Wa": "defineComponent",
+  "ja": "useRoute (vue-router)",
+  "Da": "useRouter (vue-router)",
+  "Ua": "reactive",
+  "Fa": "computed",
+  "Ja": "onBeforeMount",
+  "v": "resolveComponent",
+  "t": "openBlock",
+  "d": "createElementBlock",
+  "j": "normalizeClass",
+  "m": "createVNode",
+  "c": "withCtx",
+  "o": "createElementVNode",
+  "l": "toDisplayString",
+  "y": "Fragment",
+  "r": "createTextVNode",
+  "f": "createCommentVNode",
+  "u": "createBlock",
+  "I": "unref"
+ },
+ "entry": {
+  "ha": {
+   "original": "aq",
+   "path": "@/legacy/store",
+   "export": "useStoreGetters",
+   "status": "reserved",
+   "owner": "entry.portal.E4"
+  },
+  "_a": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "H": {
+   "original": "ar",
+   "path": "lodash-es",
+   "export": "debounce",
+   "status": "npm"
+  },
+  "V": {
+   "original": "O",
+   "path": "@/legacy",
+   "export": "checkIdentity",
+   "status": "restored"
+  },
+  "w": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "T": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "C": {
+   "original": "as",
+   "path": "@/legacy/utils",
+   "export": "getUserInfo",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "O": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "N": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "W": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "Sa": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "wa": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ta": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "$": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Ca": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "Ra": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "E": {
+   "original": "index.api.17833206362002.js#e",
+   "path": "@/api/api-17833206362002",
+   "export": "add",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobUserCare/add"
+  },
+  "Oa": {
+   "original": "index.api.17833206362002.js#h",
+   "path": "@/api/api-17833206362002",
+   "export": "cancel",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobUserCare/cancel"
+  },
+  "G": {
+   "original": "index.api.17833206362002.js#q",
+   "path": "@/api/api-17833206362002",
+   "export": "queryIzCanDeliver",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver"
+  }
+ },
+ "shared": {
+  "Aa": {
+   "original": "resumemodal.1783320636200.js#r",
+   "path": "@/shared/resumemodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "za": {
+   "original": "addResume.1783320636200.js#a",
+   "path": "@/shared/addResume.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.addResume"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

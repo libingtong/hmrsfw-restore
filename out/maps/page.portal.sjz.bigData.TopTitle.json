@@ -1,0 +1,50 @@
+{
+ "id": "page.portal.sjz.bigData.TopTitle",
+ "chunk": "legacy-dist/portal/assets/TopTitle.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "N": "defineComponent",
+  "T": "reactive",
+  "I": "onMounted",
+  "f": "openBlock",
+  "h": "createElementBlock",
+  "m": "createElementVNode",
+  "v": "toDisplayString",
+  "D": "createCommentVNode",
+  "E": "pushScopeId",
+  "k": "popScopeId"
+ },
+ "entry": {
+  "b": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "g": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "x": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "w": {
+   "original": "index.api.178332063620034.js#g",
+   "path": "@/api/jobBigDataViewSettings",
+   "export": "queryAllInfoById",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobBigDataViewSettings/queryAllInfoById"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

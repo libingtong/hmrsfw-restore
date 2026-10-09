@@ -1,0 +1,51 @@
+{
+ "id": "page.uc.ReceivedResumeLive",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/ReceivedResumeLive.1751615607545.js",
+ "components": [
+  {
+   "name": "ReceivedResumeLive",
+   "scopeId": "data-v-ccb69f47"
+  }
+ ],
+ "scopeIds": [
+  "data-v-ccb69f47"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/ReceivedResumeLive.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/iframeModal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/ReceivedResumeLive.vue",
+ "subComponentDir": "apps/uc/src/views/ReceivedResumeLive/",
+ "routes": [
+  {
+   "path": "/ReceivedResumeLive",
+   "name": "ReceivedResumeLive"
+  }
+ ],
+ "recordPath": "/ReceivedResumeLive",
+ "maps": "out/maps/page.uc.ReceivedResumeLive.json",
+ "hints": "out/hints/page.uc.ReceivedResumeLive.md",
+ "deps": {
+  "entry": [
+   "d"
+  ],
+  "shared": [
+   "setStatusinterview.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754510.js#l"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

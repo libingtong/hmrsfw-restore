@@ -1,0 +1,44 @@
+{
+ "id": "shared.uc.email",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 0.8,
+ "chunkKb": 0.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/email.1751615607545.js",
+ "components": [
+  {
+   "name": "Phone",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/email.vue",
+ "exports": {
+  "e": {
+   "export": "default"
+  }
+ },
+ "registryKey": "email.1751615607545.js",
+ "usedBy": [
+  "page.uc.nom",
+  "page.uc.CorpAttestation",
+  "page.uc.zcyzCorpAttestation",
+  "page.uc.CorpAttestationapprove",
+  "page.uc.zcyzCorpAttestationapprove"
+ ],
+ "maps": "out/maps/shared.uc.email.json",
+ "hints": "out/hints/shared.uc.email.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

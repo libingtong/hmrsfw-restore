@@ -1,0 +1,72 @@
+{
+ "id": "page.uc.liveApplyAdd",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 16.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/add.1751615607545.js",
+ "components": [
+  {
+   "name": "ExtractListModal",
+   "scopeId": "data-v-fadf7779"
+  },
+  {
+   "name": "AlertModal",
+   "scopeId": "data-v-e02f754a"
+  },
+  {
+   "name": "add",
+   "scopeId": "data-v-8eb28cbf"
+  }
+ ],
+ "scopeIds": [
+  "data-v-fadf7779",
+  "data-v-e02f754a",
+  "data-v-8eb28cbf"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/add.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/liveApplyAdd.vue",
+ "subComponentDir": "apps/uc/src/views/liveApplyAdd/",
+ "routes": [
+  {
+   "path": "/liveApplyAdd",
+   "name": "liveApplyAdd"
+  }
+ ],
+ "recordPath": "/liveApplyAdd",
+ "maps": "out/maps/page.uc.liveApplyAdd.json",
+ "hints": "out/hints/page.uc.liveApplyAdd.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a",
+   "bu",
+   "c",
+   "d",
+   "m",
+   "v"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "dictCodeTreeOne.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754516.js#a",
+   "index.api.175161560754516.js#b",
+   "index.api.175161560754516.js#l",
+   "index.api.175161560754516.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

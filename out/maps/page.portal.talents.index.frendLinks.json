@@ -1,0 +1,56 @@
+{
+ "id": "page.portal.talents.index.frendLinks",
+ "chunk": "legacy-dist/portal/assets/frendLinks.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "p": "defineComponent",
+  "N": "useRoute (vue-router)",
+  "Y": "useRouter (vue-router)",
+  "D": "reactive",
+  "u": "watch",
+  "j": "onBeforeMount",
+  "T": "onMounted",
+  "o": "openBlock",
+  "I": "createElementBlock",
+  "a": "createElementVNode",
+  "Z": "Fragment",
+  "w": "renderList",
+  "y": "pushScopeId",
+  "F": "popScopeId",
+  "L": "unref",
+  "x": "toDisplayString"
+ },
+ "entry": {
+  "J": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "O": {
+   "original": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "W": {
+   "original": "aj",
+   "path": "@/legacy/utils",
+   "export": "openLink",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "g": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

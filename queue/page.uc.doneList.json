@@ -1,0 +1,107 @@
+{
+ "id": "page.uc.doneList",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 35.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/doneList.1751615607545.js",
+ "components": [
+  {
+   "name": "bmgjjl",
+   "scopeId": "data-v-6a4ffb67"
+  },
+  {
+   "name": "lsajbt",
+   "scopeId": "data-v-b8ce5be2"
+  },
+  {
+   "name": "zctsjl",
+   "scopeId": "data-v-b0681253"
+  },
+  {
+   "name": "gxModal",
+   "scopeId": "data-v-e2dc51aa"
+  },
+  {
+   "name": "zsgxjl",
+   "scopeId": "data-v-52f2d3bc"
+  },
+  {
+   "name": "bshbt",
+   "scopeId": "data-v-60ca775d"
+  },
+  {
+   "name": "bshky",
+   "scopeId": "data-v-f4337a65"
+  },
+  {
+   "name": "szftsjt",
+   "scopeId": "data-v-36a28532"
+  },
+  {
+   "name": "doneList",
+   "scopeId": "data-v-52447ec8"
+  }
+ ],
+ "scopeIds": [
+  "data-v-6a4ffb67",
+  "data-v-b8ce5be2",
+  "data-v-b0681253",
+  "data-v-e2dc51aa",
+  "data-v-52f2d3bc",
+  "data-v-60ca775d",
+  "data-v-f4337a65",
+  "data-v-36a28532",
+  "data-v-52447ec8"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/doneList.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/doneList.vue",
+ "subComponentDir": "apps/uc/src/views/doneList/",
+ "routes": [
+  {
+   "path": "/doneList",
+   "name": "doneList"
+  }
+ ],
+ "recordPath": "/doneList",
+ "maps": "out/maps/page.uc.doneList.json",
+ "hints": "out/hints/page.uc.doneList.md",
+ "deps": {
+  "entry": [
+   "B",
+   "I",
+   "M",
+   "c",
+   "d",
+   "h",
+   "m",
+   "v",
+   "y"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075455.js#a",
+   "index.api.17516156075455.js#b",
+   "index.api.17516156075455.js#c",
+   "index.api.17516156075455.js#d",
+   "index.api.17516156075455.js#e",
+   "index.api.17516156075455.js#f",
+   "index.api.17516156075455.js#g",
+   "index.api.17516156075455.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/doneList",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

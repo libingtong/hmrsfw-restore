@@ -1,0 +1,113 @@
+{
+ "id": "page.portal.talents.index.jobFair",
+ "chunk": "legacy-dist/portal/assets/jobFair.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ot": "defineComponent",
+  "Pt": "useRoute (vue-router)",
+  "Ft": "useRouter (vue-router)",
+  "Gt": "reactive",
+  "Xt": "onBeforeMount",
+  "Yt": "onMounted",
+  "r": "openBlock",
+  "o": "createElementBlock",
+  "e": "createElementVNode",
+  "c": "toDisplayString",
+  "j": "createCommentVNode",
+  "w": "createVNode",
+  "X": "withCtx",
+  "N": "Fragment",
+  "E": "renderList",
+  "u": "unref",
+  "Y": "createTextVNode",
+  "I": "normalizeClass",
+  "Ht": "pushScopeId",
+  "zt": "popScopeId",
+  "Dt": "createBlock"
+ },
+ "entry": {
+  "Jt": {
+   "original": "i",
+   "path": "swiper",
+   "export": "default",
+   "status": "npm",
+   "as": "SwiperCore"
+  },
+  "Vt": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "Kt": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Mt": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Rt": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "Zt": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "le": {
+   "original": "index.api.178332063620037.js#g",
+   "path": "@/api/sysBusinessSetting",
+   "export": "queryPageZcyzList_",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobFair/queryPageZcyzList "
+  }
+ },
+ "shared": {
+  "C": {
+   "original": "vue-countup-v3.es.1783320636200.js#_",
+   "path": "vue-countup-v3",
+   "export": "default",
+   "status": "npm"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Qt": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "_t": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "te": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  },
+  "ae": {
+   "original": "grid.1783320636200.js#G",
+   "path": "swiper",
+   "export": "Grid"
+  },
+  "ie": {
+   "original": "effect-coverflow.1783320636200.js#E",
+   "path": "swiper",
+   "export": "EffectCoverflow"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

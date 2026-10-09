@@ -1,0 +1,35 @@
+{
+ "id": "shared.portal.GetLocationMap",
+ "chunk": "legacy-dist/portal/assets/GetLocationMap.vue_vue_type_script_setup_true_lang.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "v": "defineComponent",
+  "p": "ref",
+  "L": "reactive",
+  "M": "onBeforeMount",
+  "S": "resolveComponent",
+  "I": "openBlock",
+  "w": "createElementBlock",
+  "G": "withDirectives",
+  "z": "createElementVNode",
+  "B": "createVNode",
+  "C": "createCommentVNode",
+  "N": "vShow"
+ },
+ "entry": {
+  "P": {
+   "original": "N",
+   "path": "@/legacy/utils",
+   "export": "getCurrentLocation",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

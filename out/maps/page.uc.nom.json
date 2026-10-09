@@ -1,0 +1,171 @@
+{
+ "id": "page.uc.nom",
+ "chunk": "legacy-dist/usercenter/assets/nom.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "de": "defineComponent",
+  "ne": "getCurrentInstance",
+  "v": "ref",
+  "ce": "useRouter (vue-router)",
+  "me": "useRoute (vue-router)",
+  "pe": "inject",
+  "fe": "onMounted",
+  "ge": "reactive",
+  "m": "resolveComponent",
+  "U": "openBlock",
+  "F": "createElementBlock",
+  "t": "createVNode",
+  "l": "withCtx",
+  "N": "createTextVNode",
+  "he": "unref",
+  "I": "createElementVNode",
+  "_e": "createCommentVNode",
+  "A": "toDisplayString",
+  "be": "pushScopeId",
+  "ve": "popScopeId"
+ },
+ "entry": {
+  "V": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Ie": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "C": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "xe": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "k": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "z": {
+   "original": "l",
+   "path": "@/legacy/utils",
+   "export": "setLocalStorage",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Ne": {
+   "original": "n",
+   "path": "@/legacy/api",
+   "export": "listOneForWebSite",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "D": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "Pe": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "parseIdCard",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "Se": {
+   "original": "index.api.17516156075452.js#a",
+   "path": "@/api/sysUser",
+   "export": "checkIdCard",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUser/checkIdCard"
+  },
+  "we": {
+   "original": "index.api.17516156075452.js#b",
+   "path": "@/api/sysUser",
+   "export": "queryIzExistByIdPhone",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobUserTutorExpand/queryIzExistByIdPhone"
+  },
+  "Ue": {
+   "original": "index.api.17516156075452.js#c",
+   "path": "@/api/sysUser",
+   "export": "checkEmail",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUser/checkEmail"
+  },
+  "M": {
+   "original": "index.api.17516156075452.js#d",
+   "path": "@/api/sysUser",
+   "export": "getSettingValueByCode",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"
+  },
+  "Fe": {
+   "original": "index.api.17516156075452.js#p",
+   "path": "@/api/sysUser",
+   "export": "saveForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUser/saveForUserCenter"
+  },
+  "Ae": {
+   "original": "index.api.17516156075452.js#g",
+   "path": "@/api/sysUser",
+   "export": "queryByIdJM",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUser/queryByIdJM"
+  }
+ },
+ "shared": {
+  "y": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "idCard.1751615607545.js#i",
+   "path": "@/shared/idCard.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "email.1751615607545.js#e",
+   "path": "@/shared/email.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

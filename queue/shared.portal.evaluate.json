@@ -1,0 +1,46 @@
+{
+ "id": "shared.portal.evaluate",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.3,
+ "chunkKb": 2.3,
+ "sourceChunk": "legacy-dist/portal/assets/evaluate.1783320636200.js",
+ "components": [
+  {
+   "name": "evaluate",
+   "scopeId": "data-v-15c6e00d"
+  }
+ ],
+ "scopeIds": [
+  "data-v-15c6e00d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/evaluate.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/evaluate.vue",
+ "exports": {
+  "e": {
+   "export": "default"
+  }
+ },
+ "registryKey": "evaluate.1783320636200.js",
+ "usedBy": [
+  "page.portal.LookForJob.PostDetail"
+ ],
+ "maps": "out/maps/shared.portal.evaluate.json",
+ "hints": "out/hints/shared.portal.evaluate.md",
+ "deps": {
+  "entry": [
+   "S"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

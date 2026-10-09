@@ -1,0 +1,28 @@
+{
+ "id": "shared.uc.market",
+ "chunk": "legacy-dist/usercenter/assets/market.vue_vue_type_script_setup_true_lang.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "N": "defineComponent",
+  "q": "ref",
+  "d": "reactive",
+  "S": "onBeforeMount",
+  "a": "resolveComponent",
+  "z": "openBlock",
+  "M": "createElementBlock",
+  "_": "createElementVNode",
+  "t": "createVNode",
+  "s": "withCtx",
+  "f": "createTextVNode",
+  "O": "mergeProps",
+  "R": "createCommentVNode"
+ },
+ "entry": {},
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,108 @@
+{
+ "id": "page.uc.mentorhome",
+ "chunk": "legacy-dist/usercenter/assets/home.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "O": "defineComponent",
+  "j": "useRouter (vue-router)",
+  "J": "reactive",
+  "X": "onMounted",
+  "c": "resolveComponent",
+  "o": "openBlock",
+  "i": "createElementBlock",
+  "t": "createElementVNode",
+  "l": "createVNode",
+  "a": "withCtx",
+  "r": "toDisplayString",
+  "_": "createCommentVNode",
+  "I": "createTextVNode",
+  "f": "createBlock",
+  "b": "Fragment",
+  "Y": "renderList",
+  "x": "unref",
+  "N": "withDirectives",
+  "L": "vShow",
+  "Z": "pushScopeId",
+  "G": "popScopeId"
+ },
+ "entry": {
+  "C": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "te": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "se": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "oe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "K": {
+   "original": "index.api.17516156075454.js#b",
+   "path": "@/api/sysConsult",
+   "export": "statics",
+   "status": "reserved",
+   "url": "/xf-job/job/xfSysConsult/statics"
+  },
+  "Q": {
+   "original": "index.api.17516156075454.js#c",
+   "path": "@/api/sysConsult",
+   "export": "queryJoinedForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/job/xfSysConsult/queryJoinedForUserCenter"
+  },
+  "W": {
+   "original": "index.api.17516156075454.js#d",
+   "path": "@/api/sysConsult",
+   "export": "queryListForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/job/xfSysConsult/queryListForUserCenter"
+  }
+ },
+ "shared": {
+  "ee": {
+   "original": "usercard.1751615607545.js#u",
+   "path": "@/shared/usercard.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.usercard"
+  },
+  "ne": {
+   "original": "metormodal.1751615607545.js#m",
+   "path": "@/shared/metormodal.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.metormodal"
+  },
+  "le": {
+   "original": "right.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/right.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.right"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "right.vue_vue_type_style_index_0_scopes_true_lang.1751615607545.js",
+  "index.api.17516156075452.js",
+  "default.1751615607545.js",
+  "unfold.1751615607545.js"
+ ],
+ "missing": []
+}

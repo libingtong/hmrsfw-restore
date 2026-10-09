@@ -1,0 +1,58 @@
+{
+ "id": "page.portal.BeOnProbation.ProbationBaseDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 7.7,
+ "sourceChunk": "legacy-dist/portal/assets/ProbationBaseDetail.1783320636200.js",
+ "components": [
+  {
+   "name": "ProbationBaseDetail",
+   "scopeId": "data-v-3554e173"
+  }
+ ],
+ "scopeIds": [
+  "data-v-3554e173"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/ProbationBaseDetail.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/BeOnProbation/ProbationBaseDetail.vue",
+ "subComponentDir": "apps/portal/src/views/BeOnProbation/ProbationBaseDetail/",
+ "routes": [
+  {
+   "path": "/ProbationBaseDetail",
+   "name": "ProbationBaseDetail",
+   "title": "就业见习基地详情"
+  }
+ ],
+ "recordPath": "/ProbationBaseDetail",
+ "maps": "out/maps/page.portal.BeOnProbation.ProbationBaseDetail.json",
+ "hints": "out/hints/page.portal.BeOnProbation.ProbationBaseDetail.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "a",
+   "b",
+   "d",
+   "f"
+  ],
+  "shared": [
+   "ellipsisText.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.1783320636200.js#a",
+   "index.api.1783320636200.js#f"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.ellipsisText"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,30 @@
+{
+ "id": "page.portal.talents.fair.fairList",
+ "chunk": "legacy-dist/portal/assets/fairList.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "A": "defineComponent",
+  "F": "useRoute (vue-router)",
+  "N": "reactive",
+  "T": "onMounted",
+  "m": "openBlock",
+  "n": "createElementBlock",
+  "c": "createElementVNode",
+  "u": "normalizeClass",
+  "f": "createVNode",
+  "k": "Fragment"
+ },
+ "entry": {
+  "q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

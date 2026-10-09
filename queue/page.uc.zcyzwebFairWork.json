@@ -1,0 +1,70 @@
+{
+ "id": "page.uc.zcyzwebFairWork",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 19.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/zcyzwebFairWork.1751615607545.js",
+ "components": [
+  {
+   "name": "zcyzwebFairWork",
+   "scopeId": "data-v-cdada0b5"
+  }
+ ],
+ "scopeIds": [
+  "data-v-cdada0b5"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/zcyzwebFairWork.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/zcyzwebFairWork.vue",
+ "subComponentDir": "apps/uc/src/views/zcyzwebFairWork/",
+ "routes": [
+  {
+   "path": "/zcyzwebFairWork/:zphId",
+   "name": "zcyzwebFairWork"
+  }
+ ],
+ "recordPath": "/zcyzwebFairWork/:zphId",
+ "maps": "out/maps/page.uc.zcyzwebFairWork.json",
+ "hints": "out/hints/page.uc.zcyzwebFairWork.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a",
+   "aa",
+   "ab",
+   "ad",
+   "c",
+   "d",
+   "k",
+   "m",
+   "v",
+   "x"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "extractpositionmodal.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js",
+   "positionmodal.1751615607545.js",
+   "workType.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754512.js#J",
+   "index.api.175161560754512.js#d",
+   "index.api.175161560754512.js#e",
+   "index.api.175161560754512.js#h",
+   "index.api.175161560754512.js#i",
+   "index.api.175161560754512.js#q"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

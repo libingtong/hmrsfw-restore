@@ -1,0 +1,23 @@
+{
+ "id": "shared.portal.vue-countup-v3",
+ "type": "shared",
+ "status": "npm",
+ "site": "portal",
+ "app": "portal",
+ "kb": 7.4,
+ "sourceChunk": "legacy-dist/portal/assets/vue-countup-v3.es.1783320636200.js",
+ "npm": "vue-countup-v3",
+ "registryKey": "vue-countup-v3.es.1783320636200.js",
+ "note": "打包进来的 npm 组件库 vue-countup-v3，用 npm 依赖代替，不出还原单；依赖不在 hmrsfw-vue/package.json 里，版本由 E7 按指纹核对后加入",
+ "usedBy": [],
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "maps": "out/maps/shared.portal.vue-countup-v3.json",
+ "hints": "out/hints/shared.portal.vue-countup-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+ "id": "shared.portal.icon",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 0.1,
+ "chunkKb": 41.3,
+ "bundled": {
+  "kb": 41.2,
+  "what": "未识别（数据或库，待核对）",
+  "rule": "开头这段是打包进来的库或数据：库改为 npm 依赖（版本按指纹），数据抽成 JSON/资源文件，不得原样拷进 .vue"
+ },
+ "sourceChunk": "legacy-dist/portal/assets/icon.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "components": [
+  {
+   "name": "icon",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/icon.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "icon.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "usedBy": [
+  "page.portal.park.index",
+  "page.portal.talents.conference.index"
+ ],
+ "maps": "out/maps/shared.portal.icon.json",
+ "hints": "out/hints/shared.portal.icon.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

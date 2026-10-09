@@ -1,0 +1,40 @@
+{
+ "id": "shared.uc.corporganic",
+ "chunk": "legacy-dist/usercenter/assets/corporganic.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "g": "defineComponent",
+  "C": "onMounted",
+  "y": "reactive",
+  "I": "ref",
+  "v": "resolveComponent",
+  "w": "openBlock",
+  "D": "createBlock"
+ },
+ "entry": {
+  "m": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "h": {
+   "original": "C",
+   "path": "@/legacy/api",
+   "export": "queryChildrenTreeListById",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "f": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

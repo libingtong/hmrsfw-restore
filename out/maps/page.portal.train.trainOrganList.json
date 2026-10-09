@@ -1,0 +1,78 @@
+{
+ "id": "page.portal.train.trainOrganList",
+ "chunk": "legacy-dist/portal/assets/trainOrganList.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "A": "defineComponent",
+  "G": "useRouter (vue-router)",
+  "J": "useRoute (vue-router)",
+  "K": "reactive",
+  "M": "onMounted",
+  "i": "resolveComponent",
+  "s": "openBlock",
+  "m": "createElementBlock",
+  "d": "createElementVNode",
+  "l": "createVNode",
+  "o": "withCtx",
+  "w": "createTextVNode",
+  "Q": "Fragment",
+  "V": "renderList",
+  "z": "createBlock",
+  "W": "resolveDynamicComponent",
+  "C": "unref",
+  "N": "toDisplayString",
+  "X": "createCommentVNode",
+  "$": "pushScopeId",
+  "aa": "popScopeId"
+ },
+ "entry": {
+  "sa": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "la": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ra": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ea": {
+   "original": "index.api.178332063620021.js#e",
+   "path": "@/api/jobPxCourse",
+   "export": "freeList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobPxUnit/freeList"
+  }
+ },
+ "shared": {
+  "ia": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Z": {
+   "original": "map.1783320636200.js#_",
+   "value": "/xjhm/innovation/map.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "mapImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

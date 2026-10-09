@@ -1,0 +1,103 @@
+{
+ "id": "page.portal.talents.index.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620098.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "E": "defineComponent",
+  "M": "reactive",
+  "P": "watch",
+  "B": "onMounted",
+  "Y": "onBeforeUnmount",
+  "Z": "resolveComponent",
+  "u": "openBlock",
+  "g": "createElementBlock",
+  "z": "createBlock",
+  "J": "withCtx",
+  "o": "createElementVNode",
+  "O": "Fragment",
+  "K": "renderList",
+  "Q": "normalizeStyle",
+  "R": "createCommentVNode",
+  "k": "unref",
+  "$": "toDisplayString",
+  "tt": "useRoute (vue-router)",
+  "st": "useRouter (vue-router)",
+  "at": "onBeforeMount",
+  "F": "ref",
+  "l": "createVNode"
+ },
+ "entry": {
+  "U": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "ot": {
+   "original": "cu",
+   "path": "@/legacy/api",
+   "export": "getChildArticleTypeListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "et": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "lt": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "D": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "rt": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "Mt": {
+   "original": "index.api.178332063620037.js#a",
+   "path": "@/api/sysBusinessSetting",
+   "export": "getTalentSettings",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfSysBusinessSetting/getTalentSettings"
+  }
+ },
+ "shared": {
+  "bt": {
+   "original": "adsCenter.1783320636200.js#a",
+   "path": "@/shared/adsCenter.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.adsCenter"
+  },
+  "wt": {
+   "original": "homeRight.1783320636200.js#h",
+   "path": "@/shared/homeRight.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.homeRight"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "vue-countup-v3.es.1783320636200.js",
+  "grid.1783320636200.js",
+  "robot.1783320636200.js",
+  "woman.1783320636200.js",
+  "moreInfo.1783320636200.js",
+  "yjfk.1783320636200.js"
+ ],
+ "missing": []
+}

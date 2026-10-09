@@ -1,0 +1,38 @@
+{
+ "id": "page.portal.cityHome.titles",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.1,
+ "sourceChunk": "legacy-dist/portal/assets/titles.1783320636200.js",
+ "components": [
+  {
+   "name": "titles",
+   "scopeId": "data-v-bc9fa8e0"
+  }
+ ],
+ "scopeIds": [
+  "data-v-bc9fa8e0"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/titles.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/cityHome/titles.vue",
+ "subComponentDir": "apps/portal/src/views/cityHome/titles/",
+ "routes": [],
+ "recordPath": "/cityHome/:cityCode",
+ "maps": "out/maps/page.portal.cityHome.titles.json",
+ "hints": "out/hints/page.portal.cityHome.titles.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.cityHome.index"
+}

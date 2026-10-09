@@ -1,0 +1,66 @@
+{
+ "id": "entry.portal.c04",
+ "type": "entry",
+ "area": "component",
+ "title": "入口全局组件：TopHead、areaCont、homeLoginBtm",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": 8.8,
+ "appCode": "018",
+ "components": [
+  {
+   "name": "TopHead",
+   "binding": "Vne",
+   "scopeId": "data-v-15d22a66",
+   "kb": 6,
+   "exportedAs": [
+    "aF"
+   ],
+   "file": "apps/portal/src/legacy/components/TopHead.vue"
+  },
+  {
+   "name": "areaCont",
+   "binding": "wre",
+   "scopeId": null,
+   "kb": 2,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/AreaCont.vue"
+  },
+  {
+   "name": "homeLoginBtm",
+   "binding": "_re",
+   "scopeId": "data-v-2742027c",
+   "kb": 0.8,
+   "exportedAs": [
+    "bA"
+   ],
+   "file": "apps/portal/src/legacy/components/HomeLoginBtm.vue"
+  }
+ ],
+ "files": [
+  "apps/portal/src/legacy/components/TopHead.vue",
+  "apps/portal/src/legacy/components/AreaCont.vue",
+  "apps/portal/src/legacy/components/HomeLoginBtm.vue"
+ ],
+ "owns": [
+  {
+   "alias": "aF",
+   "path": "@/legacy/components/TopHead.vue",
+   "export": "default",
+   "status": "reserved"
+  },
+  {
+   "alias": "bA",
+   "path": "@/legacy/components/HomeLoginBtm.vue",
+   "export": "default",
+   "status": "reserved"
+  }
+ ],
+ "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",
+ "deps": {
+  "orders": []
+ }
+}

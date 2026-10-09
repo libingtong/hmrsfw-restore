@@ -1,0 +1,39 @@
+{
+ "id": "shared.uc.Content",
+ "chunk": "legacy-dist/usercenter/assets/Content.vue_vue_type_script_setup_true_lang.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "y": "defineComponent",
+  "p": "reactive",
+  "b": "ref",
+  "x": "onMounted",
+  "m": "resolveComponent",
+  "I": "openBlock",
+  "_": "createBlock",
+  "l": "withCtx",
+  "g": "createVNode",
+  "q": "createTextVNode",
+  "w": "createElementVNode"
+ },
+ "entry": {
+  "a": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "h": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

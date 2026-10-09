@@ -1,0 +1,56 @@
+{
+ "id": "shared.uc.usercard",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 2,
+ "chunkKb": 2,
+ "sourceChunk": "legacy-dist/usercenter/assets/usercard.1751615607545.js",
+ "components": [
+  {
+   "name": "usercard",
+   "scopeId": "data-v-aa2d78e0"
+  }
+ ],
+ "scopeIds": [
+  "data-v-aa2d78e0"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/usercard.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/usercard.vue",
+ "exports": {
+  "u": {
+   "export": "default"
+  }
+ },
+ "registryKey": "usercard.1751615607545.js",
+ "usedBy": [
+  "page.uc.mentorhome",
+  "page.uc.experthome"
+ ],
+ "maps": "out/maps/shared.uc.usercard.json",
+ "hints": "out/hints/shared.uc.usercard.md",
+ "deps": {
+  "entry": [
+   "d",
+   "f",
+   "n",
+   "o",
+   "p",
+   "r"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17516156075452.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

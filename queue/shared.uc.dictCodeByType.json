@@ -1,0 +1,45 @@
+{
+ "id": "shared.uc.dictCodeByType",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 2,
+ "chunkKb": 2,
+ "sourceChunk": "legacy-dist/usercenter/assets/dictCodeByType.1751615607545.js",
+ "components": [
+  {
+   "name": "nation",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/dictCodeByType.vue",
+ "exports": {
+  "d": {
+   "export": "default"
+  }
+ },
+ "registryKey": "dictCodeByType.1751615607545.js",
+ "usedBy": [
+  "page.uc.Createaresume",
+  "page.uc.collage.studentInfo",
+  "page.uc.addmysubscribe"
+ ],
+ "maps": "out/maps/shared.uc.dictCodeByType.json",
+ "hints": "out/hints/shared.uc.dictCodeByType.md",
+ "deps": {
+  "entry": [
+   "ax",
+   "ay"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

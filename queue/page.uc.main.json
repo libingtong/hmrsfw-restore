@@ -1,0 +1,98 @@
+{
+ "id": "page.uc.main",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 19.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/dashboard.1751615607545.js",
+ "components": [
+  {
+   "name": "auth",
+   "scopeId": "data-v-0df33c31"
+  },
+  {
+   "name": "usercardnew",
+   "scopeId": "data-v-6373f0a1"
+  },
+  {
+   "name": "dashboard",
+   "scopeId": "data-v-682fe1dc"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0df33c31",
+  "data-v-6373f0a1",
+  "data-v-682fe1dc"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/right.1751615607545.css",
+  "legacy-dist/usercenter/assets/dashboard.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/main.vue",
+ "subComponentDir": "apps/uc/src/views/main/",
+ "routes": [
+  {
+   "path": "/main",
+   "name": "dashboard"
+  }
+ ],
+ "recordPath": "/main",
+ "maps": "out/maps/page.uc.main.json",
+ "hints": "out/hints/page.uc.main.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "a",
+   "b",
+   "c",
+   "d",
+   "e",
+   "f",
+   "g",
+   "h",
+   "i",
+   "j",
+   "k",
+   "l",
+   "m",
+   "n",
+   "o",
+   "p",
+   "q",
+   "r",
+   "s",
+   "u"
+  ],
+  "shared": [
+   "addKeynote.1751615607545.js",
+   "market.vue_vue_type_script_setup_true_lang.1751615607545.js",
+   "mymsg.1751615607545.js",
+   "right.vue_vue_type_script_setup_true_lang.1751615607545.js"
+  ],
+  "api": [
+   "index.api.1751615607545.js#a",
+   "index.api.1751615607545.js#b",
+   "index.api.1751615607545.js#c",
+   "index.api.1751615607545.js#d",
+   "index.api.1751615607545.js#g",
+   "index.api.1751615607545.js#l",
+   "index.api.1751615607545.js#p",
+   "index.api.17516156075452.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E4",
+   "entry.uc.E6",
+   "shared.uc.addKeynote",
+   "shared.uc.market",
+   "shared.uc.mymsg",
+   "shared.uc.right"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

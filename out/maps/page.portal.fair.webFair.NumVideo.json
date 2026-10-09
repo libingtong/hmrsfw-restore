@@ -1,0 +1,45 @@
+{
+ "id": "page.portal.fair.webFair.NumVideo",
+ "chunk": "legacy-dist/portal/assets/NumVideo.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "k": "defineComponent",
+  "n": "ref",
+  "P": "reactive",
+  "E": "onMounted",
+  "B": "onUnmounted",
+  "C": "resolveComponent",
+  "U": "openBlock",
+  "A": "createElementBlock",
+  "h": "createElementVNode",
+  "N": "createTextVNode",
+  "z": "createVNode",
+  "H": "createCommentVNode",
+  "I": "nextTick"
+ },
+ "entry": {
+  "y": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "g": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "V": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,100 @@
+{
+ "id": "page.portal.LookForJob.PostDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 24.6,
+ "sourceChunk": "legacy-dist/portal/assets/PostDetail.1783320636200.js",
+ "components": [
+  {
+   "name": "PostDetail",
+   "scopeId": "data-v-b3612e89"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b3612e89"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/gaode.1783320636200.css",
+  "legacy-dist/portal/assets/PostDetail.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/LookForJob/PostDetail.vue",
+ "subComponentDir": "apps/portal/src/views/LookForJob/PostDetail/",
+ "routes": [
+  {
+   "path": "/PostDetail",
+   "name": "PostDetail",
+   "title": "职位详情"
+  },
+  {
+   "path": "/talents/PostDetail",
+   "name": "talents/PostDetail",
+   "title": "职位详情"
+  }
+ ],
+ "recordPath": "/PostDetail",
+ "maps": "out/maps/page.portal.LookForJob.PostDetail.json",
+ "hints": "out/hints/page.portal.LookForJob.PostDetail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "C",
+   "D",
+   "E",
+   "J",
+   "M",
+   "N",
+   "O",
+   "S",
+   "c",
+   "f",
+   "g",
+   "m",
+   "o",
+   "p",
+   "u",
+   "v",
+   "w",
+   "x",
+   "y"
+  ],
+  "shared": [
+   "addResume.1783320636200.js",
+   "complaint.1783320636200.js",
+   "empty.1783320636200.js",
+   "evaluate.1783320636200.js",
+   "gaode.vue_vue_type_style_index_0_lang.1783320636200.js",
+   "map.vue_vue_type_script_setup_true_lang.1783320636200.js",
+   "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "resumemodal.1783320636200.js"
+  ],
+  "api": [
+   "index.api.17833206362002.js#e",
+   "index.api.17833206362002.js#f",
+   "index.api.17833206362002.js#h",
+   "index.api.17833206362002.js#i",
+   "index.api.17833206362002.js#j",
+   "index.api.17833206362002.js#k",
+   "index.api.17833206362002.js#l",
+   "index.api.17833206362002.js#m",
+   "index.api.17833206362002.js#n",
+   "index.api.17833206362002.js#q",
+   "index.api.17833206362006.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.addResume",
+   "shared.portal.complaint",
+   "shared.portal.evaluate",
+   "shared.portal.gaode",
+   "shared.portal.map2"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

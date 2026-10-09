@@ -1,0 +1,101 @@
+{
+ "id": "page.uc.gongfuWorkshop.positionPosting",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754523.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "G": "defineComponent",
+  "F": "ref",
+  "J": "reactive",
+  "Q": "onMounted",
+  "c": "resolveComponent",
+  "x": "openBlock",
+  "B": "createElementBlock",
+  "e": "createVNode",
+  "o": "withCtx",
+  "f": "createTextVNode",
+  "k": "createElementVNode",
+  "S": "toDisplayString",
+  "K": "createBlock",
+  "$": "createCommentVNode",
+  "fe": "pushScopeId",
+  "me": "popScopeId",
+  "ce": "inject",
+  "Me": "useRouter (vue-router)",
+  "Ne": "useRoute (vue-router)",
+  "qe": "onBeforeMount",
+  "oe": "Fragment"
+ },
+ "entry": {
+  "R": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "j": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "P": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Z": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "Pe": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ae": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "mapInfo.1751615607545.js#M",
+   "path": "@/shared/mapInfo.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.mapInfo"
+  },
+  "Re": {
+   "original": "workshopNews.1751615607545.js#w",
+   "path": "@/shared/workshopNews/WorkshopType.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.workshopNews"
+  },
+  "Ae": {
+   "original": "workshopNews.1751615607545.js#a",
+   "path": "@/shared/workshopNews/WorkshopNews.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.workshopNews"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

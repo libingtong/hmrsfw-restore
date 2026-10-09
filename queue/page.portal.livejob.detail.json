@@ -1,0 +1,68 @@
+{
+ "id": "page.portal.livejob.detail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 14.2,
+ "sourceChunk": "legacy-dist/portal/assets/detail.17833206362005.js",
+ "components": [
+  {
+   "name": "detail",
+   "scopeId": "data-v-75fa5ed7"
+  }
+ ],
+ "scopeIds": [
+  "data-v-75fa5ed7"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/workItem.1783320636200.css",
+  "legacy-dist/portal/assets/detail.178332063620013.css",
+  "legacy-dist/portal/assets/detail.17833206362005.css"
+ ],
+ "target": "apps/portal/src/views/livejob/detail.vue",
+ "subComponentDir": "apps/portal/src/views/livejob/detail/",
+ "routes": [
+  {
+   "path": "/livedetail",
+   "name": "livedetail",
+   "title": "直播详情"
+  }
+ ],
+ "recordPath": "/livedetail",
+ "maps": "out/maps/page.portal.livejob.detail.json",
+ "hints": "out/hints/page.portal.livejob.detail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "S",
+   "as",
+   "c",
+   "f",
+   "h",
+   "u",
+   "w"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "likeBtn.1783320636200.js",
+   "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "workItem.17833206362002.js"
+  ],
+  "api": [
+   "index.api.178332063620013.js#a",
+   "index.api.178332063620013.js#f",
+   "index.api.178332063620013.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "shared.portal.likeBtn",
+   "shared.portal.workItem"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

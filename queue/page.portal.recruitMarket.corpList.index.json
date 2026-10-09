@@ -1,0 +1,56 @@
+{
+ "id": "page.portal.recruitMarket.corpList.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 7,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620062.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-02701f12"
+  }
+ ],
+ "scopeIds": [
+  "data-v-02701f12"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620059.css",
+  "legacy-dist/portal/assets/index.178332063620062.css"
+ ],
+ "target": "apps/portal/src/views/recruitMarket/corpList/index.vue",
+ "subComponentDir": "apps/portal/src/views/recruitMarket/corpList/index/",
+ "routes": [
+  {
+   "path": "/marketCorp",
+   "name": "marketCorp",
+   "title": "单位信息"
+  }
+ ],
+ "recordPath": "/marketCorp",
+ "maps": "out/maps/page.portal.recruitMarket.corpList.index.json",
+ "hints": "out/hints/page.portal.recruitMarket.corpList.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "L",
+   "f",
+   "t",
+   "w"
+  ],
+  "shared": [
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "industryCode.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620014.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

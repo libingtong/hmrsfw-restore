@@ -1,0 +1,122 @@
+{
+ "id": "page.portal.Guidance.GuidanceMentorDetail.index",
+ "chunk": "legacy-dist/portal/assets/index.17833206362008.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Y": "defineComponent",
+  "Ve": "ref",
+  "N": "useRoute (vue-router)",
+  "Oe": "useRouter (vue-router)",
+  "z": "reactive",
+  "m": "resolveComponent",
+  "c": "openBlock",
+  "f": "createElementBlock",
+  "a": "createElementVNode",
+  "n": "toDisplayString",
+  "s": "createVNode",
+  "t": "withCtx",
+  "h": "createTextVNode",
+  "M": "pushScopeId",
+  "J": "popScopeId",
+  "De": "onMounted",
+  "qe": "resolveDirective",
+  "O": "unref",
+  "L": "Fragment",
+  "Fe": "renderList",
+  "X": "createCommentVNode",
+  "G": "createBlock",
+  "He": "withDirectives"
+ },
+ "entry": {
+  "E": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "he": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "ke": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "_e": {
+   "original": "F",
+   "path": "@/legacy",
+   "export": "checkPerfect",
+   "status": "restored"
+  },
+  "V": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Te": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "je": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "Ie": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Re": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

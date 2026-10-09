@@ -1,0 +1,63 @@
+{
+ "id": "page.uc.collectme",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 11.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/collectme.1751615607545.js",
+ "components": [
+  {
+   "name": "InterviewInvitationcollect",
+   "scopeId": "data-v-b94e7c03"
+  },
+  {
+   "name": "collectme",
+   "scopeId": "data-v-7cb310d5"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b94e7c03",
+  "data-v-7cb310d5"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/collectme.1751615607545.css",
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/metormodal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/collectme.vue",
+ "subComponentDir": "apps/uc/src/views/collectme/",
+ "routes": [
+  {
+   "path": "/collectme",
+   "name": "collectme"
+  }
+ ],
+ "recordPath": "/collectme",
+ "maps": "out/maps/page.uc.collectme.json",
+ "hints": "out/hints/page.uc.collectme.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a7",
+   "aM",
+   "as",
+   "at",
+   "av",
+   "d",
+   "k",
+   "p"
+  ],
+  "shared": [
+   "message.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,175 @@
+{
+ "id": "page.uc.zcyzJobFairRelease",
+ "chunk": "legacy-dist/usercenter/assets/zcyzJobFairRelease.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Se": "defineComponent",
+  "Ne": "useRoute (vue-router)",
+  "Fe": "useRouter (vue-router)",
+  "W": "ref",
+  "Pe": "inject",
+  "ze": "reactive",
+  "Be": "onBeforeMount",
+  "Le": "onMounted",
+  "n": "resolveComponent",
+  "y": "openBlock",
+  "j": "createElementBlock",
+  "t": "createVNode",
+  "s": "withCtx",
+  "g": "createTextVNode",
+  "_": "createElementVNode",
+  "h": "createCommentVNode",
+  "C": "createBlock",
+  "Z": "toDisplayString",
+  "R": "unref",
+  "V": "nextTick",
+  "We": "pushScopeId",
+  "je": "popScopeId"
+ },
+ "entry": {
+  "A": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "O": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Ze": {
+   "original": "b0",
+   "path": "@/legacy/api",
+   "export": "queryById",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Me": {
+   "original": "b1",
+   "path": "@/legacy/api",
+   "export": "list",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Ye": {
+   "original": "a9",
+   "path": "@/legacy",
+   "export": "detailById",
+   "status": "restored"
+  },
+  "H": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "Ue": {
+   "original": "aa",
+   "path": "@/legacy",
+   "export": "getExtractPositionConfig",
+   "status": "restored"
+  },
+  "De": {
+   "original": "ab",
+   "path": "@/legacy",
+   "export": "confirmExtract",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "ad",
+   "path": "@/legacy",
+   "export": "checkSensitive",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "b2",
+   "path": "@/legacy/api",
+   "export": "addPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "J": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "X": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "He": {
+   "original": "b3",
+   "path": "@/legacy/api",
+   "export": "editPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Je": {
+   "original": "af",
+   "path": "@ant-design/icons-vue",
+   "export": "InfoCircleOutlined",
+   "status": "npm"
+  },
+  "Xe": {
+   "original": "ag",
+   "path": "@ant-design/icons-vue",
+   "export": "QuestionCircleOutlined",
+   "status": "npm"
+  },
+  "$e": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Ee": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "S": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Qe": {
+   "original": "extractpositionmodal.1751615607545.js#e",
+   "path": "@/shared/extractpositionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ge": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "$": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

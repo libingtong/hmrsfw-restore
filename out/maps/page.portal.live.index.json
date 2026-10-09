@@ -1,0 +1,131 @@
+{
+ "id": "page.portal.live.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620039.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Le": "defineComponent",
+  "Se": "useRouter (vue-router)",
+  "Ce": "useRoute (vue-router)",
+  "Ie": "reactive",
+  "Te": "computed",
+  "Be": "onMounted",
+  "c": "resolveComponent",
+  "n": "openBlock",
+  "o": "createElementBlock",
+  "r": "createElementVNode",
+  "s": "createVNode",
+  "i": "withCtx",
+  "x": "unref",
+  "w": "createTextVNode",
+  "v": "toDisplayString",
+  "U": "Fragment",
+  "Ne": "renderList",
+  "N": "createBlock",
+  "Ae": "resolveDynamicComponent",
+  "Pe": "pushScopeId",
+  "Re": "popScopeId",
+  "W": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "ge": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "me": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "R": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "fe": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "he": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "ve": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "we": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ue": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "B": {
+   "original": "type.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.2KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "typeImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "pe": {
+   "original": "liveNull.1783320636200.js#_",
+   "value": "/default/liveNull.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "liveNullImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "be": {
+   "original": "btn.1783320636200.js#_",
+   "value": "/assets/btn.1783320636200.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "btnImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

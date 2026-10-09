@@ -1,0 +1,58 @@
+{
+ "id": "shared.uc.confPass",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.7,
+ "chunkKb": 3.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/confPass.1751615607545.js",
+ "components": [
+  {
+   "name": "confPass",
+   "scopeId": "data-v-6de9d024"
+  }
+ ],
+ "scopeIds": [
+  "data-v-6de9d024"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/confPass.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/confPass.ts",
+ "exports": {
+  "c": {
+   "path": "@/shared/confPass.vue",
+   "export": "default"
+  },
+  "m": {
+   "export": "m"
+  },
+  "o": {
+   "export": "o"
+  }
+ },
+ "registryKey": "confPass.1751615607545.js",
+ "usedBy": [
+  "page.uc.userFairs",
+  "page.uc.corpFairs"
+ ],
+ "maps": "out/maps/shared.uc.confPass.json",
+ "hints": "out/hints/shared.uc.confPass.md",
+ "deps": {
+  "entry": [
+   "B",
+   "d",
+   "h",
+   "m",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

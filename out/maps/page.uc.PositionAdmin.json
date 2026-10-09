@@ -1,0 +1,198 @@
+{
+ "id": "page.uc.PositionAdmin",
+ "chunk": "legacy-dist/usercenter/assets/PositionAdmin.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "pe": "defineComponent",
+  "ye": "reactive",
+  "be": "onMounted",
+  "f": "resolveComponent",
+  "u": "openBlock",
+  "h": "createElementBlock",
+  "i": "createVNode",
+  "a": "withCtx",
+  "x": "createElementVNode",
+  "p": "toDisplayString",
+  "K": "unref",
+  "j": "createTextVNode",
+  "v": "createCommentVNode",
+  "R": "createBlock",
+  "ze": "inject",
+  "Be": "useRouter (vue-router)",
+  "Ne": "useRoute (vue-router)",
+  "se": "ref",
+  "Je": "onBeforeMount",
+  "ke": "Fragment",
+  "Pe": "renderList"
+ },
+ "entry": {
+  "$e": {
+   "original": "a9",
+   "path": "@/legacy",
+   "export": "detailById",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "ie": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "V": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "me": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "ce": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "de": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "fe": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "aD",
+   "path": "@/legacy/api",
+   "export": "queryByCompanyId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Ke": {
+   "original": "az",
+   "path": "@/legacy/api",
+   "export": "listNew",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Me": {
+   "original": "aE",
+   "path": "@/legacy/api",
+   "export": "listForAdmin",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "De": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "Ue": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "Ye": {
+   "original": "aF",
+   "path": "@/legacy/api",
+   "export": "izAbroadCompany",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "J": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ve": {
+   "original": "aG",
+   "path": "@/legacy/api",
+   "export": "setUpUrgentBatch",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "He": {
+   "original": "aH",
+   "path": "@/legacy/api",
+   "export": "refreshBatch",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "xe": {
+   "original": "aA",
+   "path": "@/legacy/api",
+   "export": "enableAuseBatch",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {
+  "Le": {
+   "original": "index.api.1751615607545.js#g",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "queryByUserId",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId"
+  },
+  "Ze": {
+   "original": "index.api.175161560754511.js#m",
+   "path": "@/api/api-175161560754511",
+   "export": "myJobFairList",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFair/myJobFairList"
+  },
+  "Qe": {
+   "original": "index.api.175161560754511.js#a",
+   "path": "@/api/api-175161560754511",
+   "export": "myBoothList",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFair/myBoothList"
+  }
+ },
+ "shared": {
+  "Te": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Xe": {
+   "original": "positionmodal.1751615607545.js#p",
+   "path": "@/shared/positionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "beonmodal.1751615607545.js#b",
+   "path": "@/shared/beonmodal.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

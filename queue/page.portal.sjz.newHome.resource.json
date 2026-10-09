@@ -1,0 +1,51 @@
+{
+ "id": "page.portal.sjz.newHome.resource",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.8,
+ "sourceChunk": "legacy-dist/portal/assets/resource.17833206362004.js",
+ "components": [
+  {
+   "name": "resource",
+   "scopeId": "data-v-7b192e04"
+  }
+ ],
+ "scopeIds": [
+  "data-v-7b192e04"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/resource.17833206362002.css",
+  "legacy-dist/portal/assets/resource.17833206362004.css"
+ ],
+ "target": "apps/portal/src/shared/resource.vue",
+ "subComponentDir": "apps/portal/src/shared/resource/",
+ "routes": [],
+ "recordPath": "/archivesSearch",
+ "maps": "out/maps/page.portal.sjz.newHome.resource.json",
+ "hints": "out/hints/page.portal.sjz.newHome.resource.md",
+ "deps": {
+  "entry": [
+   "B",
+   "a",
+   "b",
+   "f",
+   "n"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": null,
+  "in": "hmrsfw-vue @/shared/resource.vue（POC 放在共享层；registry-cleanup 方案里迁回 views/sjz/newHome/resource.vue）"
+ },
+ "recordVia": "page.portal.sjz.archivesSearch.index"
+}

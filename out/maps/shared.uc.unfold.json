@@ -1,0 +1,28 @@
+{
+ "id": "shared.uc.unfold",
+ "chunk": "legacy-dist/usercenter/assets/unfold.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "d": "defineComponent",
+  "i": "reactive",
+  "l": "computed",
+  "e": "openBlock",
+  "s": "createElementBlock",
+  "n": "createElementVNode",
+  "o": "toDisplayString",
+  "u": "createTextVNode"
+ },
+ "entry": {
+  "m": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

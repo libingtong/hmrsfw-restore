@@ -1,0 +1,191 @@
+{
+ "id": "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
+ "chunk": "legacy-dist/portal/assets/resumeMatchAnalysisReport.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ua": "defineComponent",
+  "pa": "useRoute (vue-router)",
+  "ma": "reactive",
+  "f": "ref",
+  "w": "watch",
+  "va": "onBeforeMount",
+  "xa": "onMounted",
+  "b": "resolveComponent",
+  "l": "openBlock",
+  "p": "createElementBlock",
+  "t": "createElementVNode",
+  "De": "withDirectives",
+  "je": "vShow",
+  "F": "createVNode",
+  "y": "withCtx",
+  "d": "createTextVNode",
+  "v": "createBlock",
+  "o": "toDisplayString",
+  "Be": "unref",
+  "u": "createCommentVNode",
+  "Ee": "Fragment",
+  "fa": "renderList",
+  "ya": "normalizeClass",
+  "ha": "onUnmounted",
+  "Oe": "h",
+  "ga": "pushScopeId",
+  "ba": "popScopeId"
+ },
+ "entry": {
+  "Ve": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Ia": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "ka": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ye": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "K": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Aa": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "wa": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "_a": {
+   "original": "Q",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_CERTIFIED",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Ca": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "Pa": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "La": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Ma": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "za": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "U": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "Sa": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Oa": {
+   "original": "index.api.178332063620033.js#d",
+   "path": "@/api/api-178332063620033",
+   "export": "viewVoByIdFromCompany",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromCompany"
+  },
+  "Va": {
+   "original": "index.api.178332063620033.js#c",
+   "path": "@/api/api-178332063620033",
+   "export": "getMatchingDegree",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompanyPosition/getMatchingDegree"
+  },
+  "Ya": {
+   "original": "index.api.178332063620033.js#e",
+   "path": "@/api/api-178332063620033",
+   "export": "addTalent",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
+  },
+  "qa": {
+   "original": "index.api.178332063620033.js#i",
+   "path": "@/api/api-178332063620033",
+   "export": "isPublishingPosition",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/isPublishingPosition"
+  }
+ },
+ "shared": {
+  "Ba": {
+   "original": "jspdf.es.min.1783320636200.js#E",
+   "path": "jspdf",
+   "export": "jsPDF",
+   "status": "npm"
+  },
+  "Fa": {
+   "original": "InterviewInvitation.1783320636200.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.InterviewInvitation"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Ta": {
+   "original": "noResumeR.1783320636200.js#_",
+   "value": "/assets/noResumeR.1783320636200.png",
+   "inline": false,
+   "path": "@/shared/noResumeR",
+   "export": "_",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "index.1783320636200118.js#i",
+   "path": "echarts",
+   "export": "init"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

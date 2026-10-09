@@ -1,0 +1,41 @@
+{
+ "id": "page.portal.sjz.bigData.screen",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.1,
+ "sourceChunk": "legacy-dist/portal/assets/screen.1783320636200.js",
+ "components": [
+  {
+   "name": "screen",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620064.css"
+ ],
+ "target": "apps/portal/src/views/sjz/bigData/screen.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/bigData/screen/",
+ "routes": [
+  {
+   "path": "/sjzbigData",
+   "name": "sjzbigData",
+   "title": "综合调度大数据分析"
+  }
+ ],
+ "recordPath": "/sjzbigData",
+ "maps": "out/maps/page.portal.sjz.bigData.screen.json",
+ "hints": "out/hints/page.portal.sjz.bigData.screen.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

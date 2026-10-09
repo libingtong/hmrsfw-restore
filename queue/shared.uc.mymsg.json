@@ -1,0 +1,58 @@
+{
+ "id": "shared.uc.mymsg",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 2.3,
+ "chunkKb": 2.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/mymsg.1751615607545.js",
+ "components": [
+  {
+   "name": "mymsg",
+   "scopeId": "data-v-dfa9af6a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-dfa9af6a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/mymsg.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/mymsg.ts",
+ "subComponentDir": "apps/uc/src/shared/mymsg/",
+ "exports": {
+  "_": {
+   "export": "_"
+  },
+  "m": {
+   "path": "@/shared/mymsg/Mymsg.vue",
+   "export": "default"
+  }
+ },
+ "registryKey": "mymsg.1751615607545.js",
+ "usedBy": [
+  "page.uc.main",
+  "page.uc.CorpCenter",
+  "page.uc.jobhunterhome"
+ ],
+ "maps": "out/maps/shared.uc.mymsg.json",
+ "hints": "out/hints/shared.uc.mymsg.md",
+ "deps": {
+  "entry": [
+   "ah",
+   "ai",
+   "d",
+   "s"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

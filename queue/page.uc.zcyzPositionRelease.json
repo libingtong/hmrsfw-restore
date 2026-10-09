@@ -1,0 +1,75 @@
+{
+ "id": "page.uc.zcyzPositionRelease",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 17.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/zcyzPositionRelease.1751615607545.js",
+ "components": [
+  {
+   "name": "zcyzPositionRelease",
+   "scopeId": "data-v-c8d1277f"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c8d1277f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/zcyzPositionRelease.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/zcyzPositionRelease.vue",
+ "subComponentDir": "apps/uc/src/views/zcyzPositionRelease/",
+ "routes": [
+  {
+   "path": "/zcyzPositionRelease",
+   "name": "zcyzPositionRelease"
+  }
+ ],
+ "recordPath": "/zcyzPositionRelease",
+ "maps": "out/maps/page.uc.zcyzPositionRelease.json",
+ "hints": "out/hints/page.uc.zcyzPositionRelease.md",
+ "deps": {
+  "entry": [
+   "M",
+   "O",
+   "a",
+   "a9",
+   "aa",
+   "ab",
+   "ac",
+   "ae",
+   "af",
+   "ag",
+   "c",
+   "d",
+   "e",
+   "f",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x"
+  ],
+  "shared": [
+   "dateUtil.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "extractpositionmodal.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js",
+   "workType.1751615607545.js",
+   "wxyy.hook.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

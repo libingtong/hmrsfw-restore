@@ -1,0 +1,89 @@
+{
+ "id": "page.uc.CorpAttestation",
+ "type": "page",
+ "status": "segmented",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 63.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/CorpAttestation.1751615607545.js",
+ "components": [
+  {
+   "name": "CorpAttestation",
+   "scopeId": "data-v-95caedd9"
+  }
+ ],
+ "scopeIds": [
+  "data-v-95caedd9"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/map.1751615607545.css",
+  "legacy-dist/usercenter/assets/CorpAttestation.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/CorpAttestation.vue",
+ "subComponentDir": "apps/uc/src/views/CorpAttestation/",
+ "routes": [
+  {
+   "path": "/CorpAttestation",
+   "name": "CorpAttestation"
+  },
+  {
+   "path": "/supermarket",
+   "name": "supermarket"
+  }
+ ],
+ "recordPath": "/CorpAttestation",
+ "maps": "out/maps/page.uc.CorpAttestation.json",
+ "hints": "out/hints/page.uc.CorpAttestation.md",
+ "deps": {
+  "entry": [
+   "B",
+   "E",
+   "F",
+   "G",
+   "H",
+   "I",
+   "J",
+   "K",
+   "L",
+   "M",
+   "P",
+   "U",
+   "a",
+   "c",
+   "d",
+   "e",
+   "f",
+   "g",
+   "h",
+   "m",
+   "p",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [
+   "DictCodes.1751615607545.js",
+   "dictCheckBoxAll.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "dictCodeTreeOne.1751615607545.js",
+   "email.1751615607545.js",
+   "gaode.1751615607545.js",
+   "idCard.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "segments": [
+  "seg.uc.CorpAttestation.1",
+  "seg.uc.CorpAttestation.2"
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "id": "page.portal.talents.greenchannel.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.8,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620097.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-fc76a0be"
+  }
+ ],
+ "scopeIds": [
+  "data-v-fc76a0be"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620093.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css",
+  "legacy-dist/portal/assets/index.178332063620097.css"
+ ],
+ "target": "apps/portal/src/views/talents/greenchannel/index.vue",
+ "subComponentDir": "apps/portal/src/views/talents/greenchannel/index/",
+ "routes": [
+  {
+   "path": "/talents/greenchannel",
+   "name": "greenchannel",
+   "title": "高层次人才绿色通道"
+  }
+ ],
+ "recordPath": "/talents/greenchannel",
+ "maps": "out/maps/page.portal.talents.greenchannel.index.json",
+ "hints": "out/hints/page.portal.talents.greenchannel.index.md",
+ "deps": {
+  "entry": [
+   "S",
+   "c",
+   "h",
+   "m",
+   "z"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

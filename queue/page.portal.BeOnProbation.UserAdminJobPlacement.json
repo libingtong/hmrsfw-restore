@@ -1,0 +1,49 @@
+{
+ "id": "page.portal.BeOnProbation.UserAdminJobPlacement",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 4.8,
+ "sourceChunk": "legacy-dist/portal/assets/UserAdminJobPlacement.1783320636200.js",
+ "components": [
+  {
+   "name": "UserAdminJobPlacement",
+   "scopeId": "data-v-232030c6"
+  }
+ ],
+ "scopeIds": [
+  "data-v-232030c6"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/UserAdminJobPlacement.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/BeOnProbation/UserAdminJobPlacement.vue",
+ "subComponentDir": "apps/portal/src/views/BeOnProbation/UserAdminJobPlacement/",
+ "routes": [
+  {
+   "path": "/UserAdminJobPlacement",
+   "name": "UserAdminJobPlacement",
+   "title": "就业见习资讯"
+  }
+ ],
+ "recordPath": "/UserAdminJobPlacement",
+ "maps": "out/maps/page.portal.BeOnProbation.UserAdminJobPlacement.json",
+ "hints": "out/hints/page.portal.BeOnProbation.UserAdminJobPlacement.md",
+ "deps": {
+  "entry": [
+   "h",
+   "n",
+   "z"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,70 @@
+{
+ "id": "page.uc.findList",
+ "chunk": "legacy-dist/usercenter/assets/index.17516156075455.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "M": "defineComponent",
+  "Q": "ref",
+  "C": "inject",
+  "X": "useRouter (vue-router)",
+  "Y": "reactive",
+  "Z": "onMounted",
+  "r": "resolveComponent",
+  "l": "openBlock",
+  "_": "createElementBlock",
+  "n": "createVNode",
+  "o": "withCtx",
+  "x": "createTextVNode",
+  "g": "createElementVNode",
+  "N": "createBlock",
+  "k": "createCommentVNode",
+  "w": "toDisplayString"
+ },
+ "entry": {
+  "J": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "O": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "L": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "H": {
+   "original": "index.api.17516156075457.js#g",
+   "path": "@/api/oddFindJobInfo",
+   "export": "userRelease",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddjob/xfOddUser/userRelease"
+  },
+  "K": {
+   "original": "index.api.17516156075457.js#b",
+   "path": "@/api/oddFindJobInfo",
+   "export": "grounding",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddjob/xfOddUser/grounding"
+  }
+ },
+ "shared": {
+  "R": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

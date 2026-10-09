@@ -1,0 +1,50 @@
+{
+ "id": "page.uc.findList",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.17516156075455.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-5b002837"
+  }
+ ],
+ "scopeIds": [
+  "data-v-5b002837"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.17516156075455.css"
+ ],
+ "target": "apps/uc/src/views/findList.vue",
+ "subComponentDir": "apps/uc/src/views/findList/",
+ "routes": [
+  {
+   "path": "/findList",
+   "name": "findList"
+  }
+ ],
+ "recordPath": "/findList",
+ "maps": "out/maps/page.uc.findList.json",
+ "hints": "out/hints/page.uc.findList.md",
+ "deps": {
+  "entry": [
+   "d",
+   "m"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075457.js#b",
+   "index.api.17516156075457.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

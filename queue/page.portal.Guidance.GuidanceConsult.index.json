@@ -1,0 +1,57 @@
+{
+ "id": "page.portal.Guidance.GuidanceConsult.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.4,
+ "sourceChunk": "legacy-dist/portal/assets/index.17833206362005.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-c92c3a61"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c92c3a61"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.17833206362008.css",
+  "legacy-dist/portal/assets/index.17833206362005.css"
+ ],
+ "target": "apps/portal/src/views/Guidance/GuidanceConsult/index.vue",
+ "subComponentDir": "apps/portal/src/views/Guidance/GuidanceConsult/index/",
+ "routes": [
+  {
+   "path": "/GuidanceConsult",
+   "name": "GuidanceConsult",
+   "title": "职业指导 会客厅"
+  }
+ ],
+ "recordPath": "/GuidanceConsult",
+ "maps": "out/maps/page.portal.Guidance.GuidanceConsult.index.json",
+ "hints": "out/hints/page.portal.Guidance.GuidanceConsult.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "S",
+   "f",
+   "m",
+   "o",
+   "p",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

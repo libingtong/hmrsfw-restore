@@ -1,0 +1,52 @@
+{
+ "id": "shared.uc.right",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1.5,
+ "chunkKb": 1.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/right.vue_vue_type_script_setup_true_lang.1751615607545.js",
+ "components": [
+  {
+   "name": "right",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/right.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "right.vue_vue_type_script_setup_true_lang.1751615607545.js",
+ "usedBy": [
+  "page.uc.main",
+  "page.uc.mentorhome",
+  "page.uc.experthome",
+  "page.uc.CorpCenter",
+  "page.uc.marketCenter",
+  "page.uc.jobhunterhome"
+ ],
+ "maps": "out/maps/shared.uc.right.json",
+ "hints": "out/hints/shared.uc.right.md",
+ "deps": {
+  "entry": [
+   "B",
+   "al",
+   "h",
+   "k"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

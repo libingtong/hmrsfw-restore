@@ -1,0 +1,88 @@
+{
+ "id": "page.uc.BeOnAdmin",
+ "chunk": "legacy-dist/usercenter/assets/BeOnAdmin.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "se": "defineComponent",
+  "$": "inject",
+  "le": "useRouter (vue-router)",
+  "J": "ref",
+  "ce": "reactive",
+  "ue": "onMounted",
+  "r": "resolveComponent",
+  "m": "openBlock",
+  "C": "createElementBlock",
+  "n": "createVNode",
+  "i": "withCtx",
+  "b": "createTextVNode",
+  "x": "createElementVNode",
+  "de": "Fragment",
+  "f": "createCommentVNode",
+  "N": "toDisplayString",
+  "T": "createBlock"
+ },
+ "entry": {
+  "D": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "re": {
+   "original": "az",
+   "path": "@/legacy/api",
+   "export": "listNew",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "pe": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "I": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "R": {
+   "original": "aA",
+   "path": "@/legacy/api",
+   "export": "enableAuseBatch",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "me": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "K": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "positionmodal.1751615607545.js#p",
+   "path": "@/shared/positionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "fe": {
+   "original": "beonmodal.1751615607545.js#b",
+   "path": "@/shared/beonmodal.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,107 @@
+{
+ "id": "page.uc.BeOnProbation",
+ "chunk": "legacy-dist/usercenter/assets/BeOnProbation.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "z": "defineComponent",
+  "W": "useRoute (vue-router)",
+  "J": "useRouter (vue-router)",
+  "_": "ref",
+  "K": "inject",
+  "L": "reactive",
+  "Z": "onMounted",
+  "o": "resolveComponent",
+  "$": "openBlock",
+  "G": "createElementBlock",
+  "t": "createVNode",
+  "r": "withCtx",
+  "x": "createTextVNode",
+  "j": "createElementVNode"
+ },
+ "entry": {
+  "ee": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "N": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "a9",
+   "path": "@/legacy",
+   "export": "detailById",
+   "status": "restored"
+  },
+  "te": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "T": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "re": {
+   "original": "ac",
+   "path": "@/legacy/api",
+   "export": "checkPositionName",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "se": {
+   "original": "aB",
+   "path": "@/legacy/api",
+   "export": "getrefreshTime",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "le": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "addOrEdit",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ue": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ne": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "P": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ie": {
+   "original": "dictCodeTreeOne.1751615607545.js#d",
+   "path": "@/shared/dictCodeTreeOne.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

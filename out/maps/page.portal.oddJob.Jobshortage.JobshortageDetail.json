@@ -1,0 +1,132 @@
+{
+ "id": "page.portal.oddJob.Jobshortage.JobshortageDetail",
+ "chunk": "legacy-dist/portal/assets/JobshortageDetail.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ae": "defineComponent",
+  "Ie": "useRouter (vue-router)",
+  "Me": "useRoute (vue-router)",
+  "Fe": "reactive",
+  "Oe": "computed",
+  "De": "onMounted",
+  "f": "resolveComponent",
+  "n": "openBlock",
+  "d": "createElementBlock",
+  "a": "createElementVNode",
+  "l": "createVNode",
+  "i": "withCtx",
+  "s": "toDisplayString",
+  "y": "Fragment",
+  "t": "createTextVNode",
+  "v": "createCommentVNode",
+  "Je": "renderList",
+  "T": "unref",
+  "W": "createBlock",
+  "Le": "pushScopeId",
+  "Pe": "popScopeId"
+ },
+ "entry": {
+  "ve": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "xe": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "ge": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "he": {
+   "original": "C",
+   "path": "@/legacy",
+   "export": "TEXT_GO_PERFECT",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "we": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "bV",
+   "path": "@/legacy/utils",
+   "export": "maskName",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "We": {
+   "original": "bT",
+   "path": "@/legacy/utils",
+   "export": "maskPhone",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "je": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "qe": {
+   "original": "index.api.178332063620024.js#J",
+   "path": "@/api/api-24",
+   "export": "queryById",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/queryById"
+  }
+ },
+ "shared": {
+  "Ue": {
+   "original": "complaint.1783320636200.js#c",
+   "path": "@/shared/complaint.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.complaint"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

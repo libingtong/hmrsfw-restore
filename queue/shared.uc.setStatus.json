@@ -1,0 +1,57 @@
+{
+ "id": "shared.uc.setStatus",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.3,
+ "chunkKb": 4.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js",
+ "components": [
+  {
+   "name": "addHandledby",
+   "scopeId": "data-v-adee5d08"
+  }
+ ],
+ "scopeIds": [
+  "data-v-adee5d08"
+ ],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/setStatus.vue",
+ "exports": {
+  "a": {
+   "export": "default"
+  }
+ },
+ "registryKey": "setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js",
+ "usedBy": [
+  "page.uc.CorpCenterZ",
+  "page.uc.CorpCenter",
+  "page.uc.marketCenter"
+ ],
+ "maps": "out/maps/shared.uc.setStatus.json",
+ "hints": "out/hints/shared.uc.setStatus.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a",
+   "ao",
+   "ap",
+   "aq",
+   "d",
+   "k",
+   "m"
+  ],
+  "shared": [
+   "phone.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

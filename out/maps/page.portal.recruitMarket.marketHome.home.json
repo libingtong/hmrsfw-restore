@@ -1,0 +1,203 @@
+{
+ "id": "page.portal.recruitMarket.marketHome.home",
+ "chunk": "legacy-dist/portal/assets/home.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "$": "defineComponent",
+  "ee": "onMounted",
+  "K": "reactive",
+  "A": "resolveComponent",
+  "t": "openBlock",
+  "i": "createElementBlock",
+  "l": "createVNode",
+  "o": "withCtx",
+  "e": "createElementVNode",
+  "c": "toDisplayString",
+  "L": "createCommentVNode",
+  "Nt": "withDirectives",
+  "Pt": "vShow",
+  "f": "createBlock",
+  "ye": "pushScopeId",
+  "be": "popScopeId",
+  "p": "createTextVNode",
+  "q": "ref",
+  "v": "Fragment",
+  "N": "renderList",
+  "m": "unref",
+  "te": "withModifiers",
+  "ce": "normalizeClass",
+  "Qt": "useRouter (vue-router)",
+  "P": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "ue": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "oe": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "me": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Tt": {
+   "original": "a6",
+   "path": "@/legacy",
+   "export": "FeedbackModal",
+   "status": "restored"
+  },
+  "G": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "fe": {
+   "original": "L",
+   "path": "@/legacy",
+   "export": "getDictListByType",
+   "status": "restored"
+  },
+  "ve": {
+   "original": "t",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "ge": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "zt": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Jt": {
+   "original": "c1",
+   "path": "@/legacy/utils",
+   "export": "LOGIN_CHECK_TYPE_4",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Rt": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "ne": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "re": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "Ft": {
+   "original": "index.api.178332063620014.js#a",
+   "path": "@/api/article",
+   "export": "getChildArticleTypeList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
+  },
+  "Ut": {
+   "original": "index.api.178332063620014.js#b",
+   "path": "@/api/article",
+   "export": "getArticleList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/getArticleList"
+  },
+  "he": {
+   "original": "index.api.178332063620014.js#g",
+   "path": "@/api/article",
+   "export": "freeCompanyList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeCompanyList"
+  },
+  "_e": {
+   "original": "index.api.178332063620014.js#c",
+   "path": "@/api/article",
+   "export": "findJobList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/findJobList"
+  }
+ },
+ "shared": {
+  "Dt": {
+   "original": "workItem.17833206362002.js#w",
+   "path": "@/shared/workItem.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.workItem"
+  },
+  "Ot": {
+   "original": "resumemodal.1783320636200.js#r",
+   "path": "@/shared/resumemodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "de": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "we": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "xe": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "Le": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "Ie": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  }
+ },
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

@@ -1,0 +1,151 @@
+{
+ "id": "page.portal.RecruitTalents.ResumePreview",
+ "chunk": "legacy-dist/portal/assets/ResumePreview.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "qe": "defineComponent",
+  "Me": "useRouter (vue-router)",
+  "Ue": "useRoute (vue-router)",
+  "Ve": "reactive",
+  "Ge": "ref",
+  "De": "onBeforeMount",
+  "He": "onMounted",
+  "h": "resolveComponent",
+  "s": "openBlock",
+  "f": "createElementBlock",
+  "o": "createElementVNode",
+  "t": "createVNode",
+  "a": "withCtx",
+  "w": "unref",
+  "l": "toDisplayString",
+  "r": "createTextVNode",
+  "u": "createBlock",
+  "p": "createCommentVNode",
+  "_": "Fragment",
+  "k": "renderList",
+  "Qe": "pushScopeId",
+  "Xe": "popScopeId"
+ },
+ "entry": {
+  "Le": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "V": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "G": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Ie": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "Q",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_CERTIFIED",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ze": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "D": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Je": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "F": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "O": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "je": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "We": {
+   "original": "index.api.17833206362007.js#v",
+   "path": "@/api/jobInterviewInvitation",
+   "export": "viewVoByIdFromCompany",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromCompany"
+  },
+  "Fe": {
+   "original": "index.api.17833206362007.js#a",
+   "path": "@/api/jobInterviewInvitation",
+   "export": "downPdf",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCompanyCurriculumDownload/downPdf"
+  },
+  "Oe": {
+   "original": "index.api.17833206362007.js#i",
+   "path": "@/api/jobInterviewInvitation",
+   "export": "isPublishingPosition",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCompany/isPublishingPosition"
+  }
+ },
+ "shared": {
+  "Ye": {
+   "original": "InterviewInvitation.1783320636200.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.InterviewInvitation"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

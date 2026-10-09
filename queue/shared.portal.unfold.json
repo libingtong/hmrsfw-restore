@@ -1,0 +1,46 @@
+{
+ "id": "shared.portal.unfold",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.2,
+ "chunkKb": 1.2,
+ "sourceChunk": "legacy-dist/portal/assets/unfold.1783320636200.js",
+ "components": [
+  {
+   "name": "unfold",
+   "scopeId": "data-v-cc9c6323"
+  }
+ ],
+ "scopeIds": [
+  "data-v-cc9c6323"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/unfold.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/unfold.vue",
+ "exports": {
+  "u": {
+   "export": "default"
+  }
+ },
+ "registryKey": "unfold.1783320636200.js",
+ "usedBy": [
+  "page.portal.recruitMarket.marketDetail.index",
+  "page.portal.train.trainOrganDetail",
+  "page.portal.LookForJob.CorpDetail"
+ ],
+ "maps": "out/maps/shared.portal.unfold.json",
+ "hints": "out/hints/shared.portal.unfold.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

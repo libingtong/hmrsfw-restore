@@ -1,0 +1,56 @@
+{
+ "id": "page.portal.personnelAssessment.index",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.5,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620059.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-852963d6"
+  }
+ ],
+ "scopeIds": [
+  "data-v-852963d6"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620054.css",
+  "legacy-dist/portal/assets/index.178332063620059.css"
+ ],
+ "target": "apps/portal/src/views/personnelAssessment/index.vue",
+ "subComponentDir": "apps/portal/src/views/personnelAssessment/index/",
+ "routes": [
+  {
+   "path": "/personnelAssessment",
+   "name": "personnelAssessment",
+   "title": "人才职业测评"
+  }
+ ],
+ "recordPath": "/personnelAssessment",
+ "maps": "out/maps/page.portal.personnelAssessment.index.json",
+ "hints": "out/hints/page.portal.personnelAssessment.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "ad",
+   "am",
+   "c",
+   "f",
+   "h",
+   "n"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/personnelAssessment",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

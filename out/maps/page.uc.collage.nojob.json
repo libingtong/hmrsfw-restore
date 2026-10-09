@@ -1,0 +1,88 @@
+{
+ "id": "page.uc.collage.nojob",
+ "chunk": "legacy-dist/usercenter/assets/nojob.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "M": "defineComponent",
+  "$": "reactive",
+  "Z": "onMounted",
+  "_": "resolveComponent",
+  "o": "openBlock",
+  "c": "createBlock",
+  "G": "useRouter (vue-router)",
+  "R": "ref",
+  "H": "computed",
+  "n": "createElementBlock",
+  "x": "createElementVNode",
+  "a": "createVNode",
+  "t": "withCtx",
+  "T": "createTextVNode",
+  "v": "toDisplayString",
+  "U": "Fragment",
+  "F": "createCommentVNode",
+  "z": "unref",
+  "K": "pushScopeId",
+  "Q": "popScopeId"
+ },
+ "entry": {
+  "J": {
+   "original": "b6",
+   "path": "@/legacy/api",
+   "export": "getAllInfo",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "L": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "X": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Y": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "W": {
+   "original": "index.api.175161560754513.js#s",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "getStudentInfoById",
+   "status": "reserved",
+   "url": "/xf-college/student/xfCollegeStudent/getStudentInfoById"
+  },
+  "ee": {
+   "original": "index.api.175161560754513.js#h",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-college/wqStudResult/xfCollegeWqStudResult/queryById"
+  },
+  "le": {
+   "original": "index.api.175161560754513.js#i",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "edit2",
+   "status": "reserved",
+   "url": "/xf-college/wqStudResult/xfCollegeWqStudResult/edit"
+  }
+ },
+ "shared": {
+  "N": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

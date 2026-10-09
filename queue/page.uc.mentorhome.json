@@ -1,0 +1,59 @@
+{
+ "id": "page.uc.mentorhome",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/home.1751615607545.js",
+ "components": [
+  {
+   "name": "home",
+   "scopeId": "data-v-cde83c2f"
+  }
+ ],
+ "scopeIds": [
+  "data-v-cde83c2f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/right.1751615607545.css",
+  "legacy-dist/usercenter/assets/home.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/mentorhome.vue",
+ "subComponentDir": "apps/uc/src/views/mentorhome/",
+ "routes": [
+  {
+   "path": "/mentorhome",
+   "name": "mentorhome"
+  }
+ ],
+ "recordPath": "/mentorhome",
+ "maps": "out/maps/page.uc.mentorhome.json",
+ "hints": "out/hints/page.uc.mentorhome.md",
+ "deps": {
+  "entry": [
+   "B",
+   "d",
+   "h"
+  ],
+  "shared": [
+   "metormodal.1751615607545.js",
+   "right.vue_vue_type_script_setup_true_lang.1751615607545.js",
+   "usercard.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075454.js#b",
+   "index.api.17516156075454.js#c",
+   "index.api.17516156075454.js#d"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.metormodal",
+   "shared.uc.right",
+   "shared.uc.usercard"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

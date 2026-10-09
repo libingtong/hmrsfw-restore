@@ -1,0 +1,90 @@
+{
+ "id": "page.uc.changeavatar",
+ "chunk": "legacy-dist/usercenter/assets/changeavatar.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "V": "defineComponent",
+  "k": "useRouter (vue-router)",
+  "E": "ref",
+  "F": "onBeforeMount",
+  "G": "inject",
+  "q": "reactive",
+  "t": "resolveComponent",
+  "d": "openBlock",
+  "H": "createElementBlock",
+  "a": "createVNode",
+  "c": "withCtx",
+  "m": "createTextVNode",
+  "s": "createElementVNode",
+  "M": "toDisplayString",
+  "_": "unref",
+  "O": "createBlock",
+  "R": "createCommentVNode",
+  "j": "pushScopeId",
+  "A": "popScopeId"
+ },
+ "entry": {
+  "i": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "w": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "P": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "u": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "B": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "z": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "N": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "D": {
+   "original": "index.api.17516156075453.js#e",
+   "path": "@/api/api-17516156075453",
+   "export": "setXfSysUserPhoto",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUser/setXfSysUserPhoto"
+  }
+ },
+ "shared": {
+  "J": {
+   "original": "cropperjs.1751615607545.js#c",
+   "path": "@/shared/cropperjs.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,72 @@
+{
+ "id": "page.uc.mysubscribe",
+ "chunk": "legacy-dist/usercenter/assets/mysubscribe.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "I": "defineComponent",
+  "N": "useRouter (vue-router)",
+  "T": "inject",
+  "q": "reactive",
+  "V": "onMounted",
+  "i": "resolveComponent",
+  "d": "openBlock",
+  "E": "createBlock",
+  "o": "withCtx",
+  "s": "createVNode",
+  "c": "createElementVNode",
+  "l": "createTextVNode",
+  "r": "toDisplayString",
+  "U": "unref",
+  "y": "createElementBlock"
+ },
+ "entry": {
+  "$": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "A": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "R": {
+   "original": "index.api.17516156075456.js#b",
+   "path": "@/api/api-56",
+   "export": "getSettingValueByCode",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"
+  },
+  "B": {
+   "original": "index.api.17516156075456.js#a4",
+   "path": "@/api/api-56",
+   "export": "isCanAdd",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobSubscribeRecord/isCanAdd"
+  },
+  "F": {
+   "original": "index.api.17516156075456.js#a5",
+   "path": "@/api/api-56",
+   "export": "list5",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobSubscribeRecord/list"
+  },
+  "D": {
+   "original": "index.api.17516156075456.js#a6",
+   "path": "@/api/api-56",
+   "export": "deleteItem6",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobSubscribeRecord/delete"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

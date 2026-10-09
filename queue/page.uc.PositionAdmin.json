@@ -1,0 +1,82 @@
+{
+ "id": "page.uc.PositionAdmin",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 29.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/PositionAdmin.1751615607545.js",
+ "components": [
+  {
+   "name": "positionmodalzcyz",
+   "scopeId": "data-v-216b4d97"
+  },
+  {
+   "name": "jobfairmodal",
+   "scopeId": "data-v-fba33f4b"
+  },
+  {
+   "name": "PositionAdmin",
+   "scopeId": "data-v-c8a869ba"
+  }
+ ],
+ "scopeIds": [
+  "data-v-216b4d97",
+  "data-v-fba33f4b",
+  "data-v-c8a869ba"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/PositionAdmin.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/PositionAdmin.vue",
+ "subComponentDir": "apps/uc/src/views/PositionAdmin/",
+ "routes": [
+  {
+   "path": "/PositionAdmin",
+   "name": "PositionAdmin"
+  }
+ ],
+ "recordPath": "/PositionAdmin",
+ "maps": "out/maps/page.uc.PositionAdmin.json",
+ "hints": "out/hints/page.uc.PositionAdmin.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a9",
+   "aA",
+   "aD",
+   "aE",
+   "aF",
+   "aG",
+   "aH",
+   "az",
+   "c",
+   "d",
+   "e",
+   "f",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x"
+  ],
+  "shared": [
+   "beonmodal.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "positionmodal.1751615607545.js"
+  ],
+  "api": [
+   "index.api.1751615607545.js#g",
+   "index.api.175161560754511.js#a",
+   "index.api.175161560754511.js#m"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

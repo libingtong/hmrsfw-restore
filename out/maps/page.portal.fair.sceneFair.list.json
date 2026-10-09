@@ -1,0 +1,178 @@
+{
+ "id": "page.portal.fair.sceneFair.list",
+ "chunk": "legacy-dist/portal/assets/list.17833206362004.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ya": "defineComponent",
+  "Ra": "useRouter (vue-router)",
+  "Da": "useRoute (vue-router)",
+  "Aa": "reactive",
+  "Ua": "computed",
+  "Wa": "onMounted",
+  "Oa": "onUnmounted",
+  "f": "resolveComponent",
+  "l": "openBlock",
+  "y": "createElementBlock",
+  "i": "createElementVNode",
+  "s": "createVNode",
+  "e": "withCtx",
+  "p": "unref",
+  "r": "createTextVNode",
+  "o": "toDisplayString",
+  "P": "Fragment",
+  "Ea": "renderList",
+  "c": "createBlock",
+  "qa": "resolveDynamicComponent",
+  "k": "createCommentVNode",
+  "Ma": "pushScopeId",
+  "Ha": "popScopeId",
+  "F": "RouterLink (vue-router)",
+  "J": "normalizeClass",
+  "Pa": "withDirectives",
+  "Ja": "vShow"
+ },
+ "entry": {
+  "Qa": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "E": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Za": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "checkBtnPermission",
+   "status": "restored"
+  },
+  "$a": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ga": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "Ka": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Va": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Xa": {
+   "original": "bc",
+   "path": "@ant-design/icons-vue",
+   "export": "DownOutlined",
+   "status": "npm"
+  },
+  "Q": {
+   "original": "aQ",
+   "path": "@/legacy",
+   "export": "getWeekDay",
+   "status": "restored"
+  },
+  "I": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "ae": {
+   "original": "O",
+   "path": "@/legacy",
+   "export": "checkIdentity",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "te": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "se": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "le": {
+   "original": "ba",
+   "path": "@/legacy",
+   "export": "MSG_CORP_PENDING",
+   "status": "restored"
+  },
+  "ie": {
+   "original": "aD",
+   "path": "@/legacy",
+   "export": "checkIzDishonesty",
+   "status": "restored"
+  },
+  "re": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "oe": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ne": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "pe": {
+   "original": "index.api.178332063620017.js#w",
+   "path": "@/api/api-17",
+   "export": "getFairList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFair/getFairList"
+  }
+ },
+ "shared": {
+  "de": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

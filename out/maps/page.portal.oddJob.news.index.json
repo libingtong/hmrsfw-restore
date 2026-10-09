@@ -1,0 +1,135 @@
+{
+ "id": "page.portal.oddJob.news.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620049.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "le": "defineComponent",
+  "A": "ref",
+  "ne": "useRouter (vue-router)",
+  "re": "useRoute (vue-router)",
+  "D": "reactive",
+  "oe": "onBeforeMount",
+  "b": "resolveComponent",
+  "l": "openBlock",
+  "c": "createElementBlock",
+  "u": "createVNode",
+  "_": "withCtx",
+  "s": "createElementVNode",
+  "L": "unref",
+  "z": "Fragment",
+  "I": "renderList",
+  "F": "withModifiers",
+  "h": "createBlock",
+  "ie": "resolveDynamicComponent",
+  "ce": "pushScopeId",
+  "pe": "popScopeId",
+  "P": "normalizeClass",
+  "ue": "createTextVNode",
+  "d": "toDisplayString"
+ },
+ "entry": {
+  "he": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "xe": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "ge": {
+   "original": "t",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "we": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "ke": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "H": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "_e": {
+   "original": "index.api.178332063620024.js#a",
+   "path": "@/api/api-24",
+   "export": "getChildArticleTypeList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
+  },
+  "de": {
+   "original": "index.api.178332063620024.js#b",
+   "path": "@/api/api-24",
+   "export": "getArticleList",
+   "status": "restored",
+   "url": "/xf-job/school/licenseFree/getArticleList"
+  },
+  "be": {
+   "original": "index.api.17833206362008.js#a",
+   "path": "@/api/api-08",
+   "export": "getHotArticleList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getHotArticleList"
+  }
+ },
+ "shared": {
+  "q": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Be": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "Se": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "Te": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "Ie": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

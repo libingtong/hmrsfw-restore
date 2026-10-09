@@ -1,0 +1,295 @@
+{
+ "id": "page.portal.fair.outFair.detail",
+ "chunk": "legacy-dist/portal/assets/detail.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "_t": "defineComponent",
+  "It": "useRouter (vue-router)",
+  "xt": "useRoute (vue-router)",
+  "St": "ref",
+  "ye": "reactive",
+  "Ct": "computed",
+  "Nt": "onUnmounted",
+  "Wt": "onMounted",
+  "O": "nextTick",
+  "Tt": "onBeforeMount",
+  "k": "resolveComponent",
+  "r": "openBlock",
+  "p": "createElementBlock",
+  "l": "createVNode",
+  "c": "unref",
+  "i": "createElementVNode",
+  "s": "withCtx",
+  "u": "createTextVNode",
+  "d": "toDisplayString",
+  "G": "normalizeClass",
+  "f": "createCommentVNode",
+  "y": "createBlock",
+  "T": "withDirectives",
+  "L": "vShow",
+  "b": "Fragment",
+  "Lt": "normalizeStyle",
+  "E": "renderList",
+  "ve": "resolveDynamicComponent",
+  "Bt": "pushScopeId",
+  "jt": "popScopeId",
+  "B": "RouterLink (vue-router)",
+  "Ft": "getCurrentInstance"
+ },
+ "entry": {
+  "Et": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "ge": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "J",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "Mt": {
+   "original": "K",
+   "path": "@/legacy",
+   "export": "getSettingValueByCodes",
+   "status": "restored"
+  },
+  "At": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "Dt": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "Ot": {
+   "original": "ap",
+   "path": "@/legacy",
+   "export": "getArticleListByTypeIds",
+   "status": "restored"
+  },
+  "qt": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Yt": {
+   "original": "O",
+   "path": "@/legacy",
+   "export": "checkIdentity",
+   "status": "restored"
+  },
+  "Ht": {
+   "original": "aD",
+   "path": "@/legacy",
+   "export": "checkIzDishonesty",
+   "status": "restored"
+  },
+  "Kt": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Vt": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Xt": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "Jt": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "$t": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "Gt": {
+   "original": "ba",
+   "path": "@/legacy",
+   "export": "MSG_CORP_PENDING",
+   "status": "restored"
+  },
+  "S": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "C": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "Zt": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "oo": {
+   "original": "index.api.178332063620017.js#b",
+   "path": "@/api/api-17",
+   "export": "updateBrowseCount",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFair/updateBrowseCount"
+  },
+  "lo": {
+   "original": "index.api.178332063620017.js#c",
+   "path": "@/api/api-17",
+   "export": "queryById",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFair/queryById"
+  },
+  "so": {
+   "original": "index.api.178332063620017.js#d",
+   "path": "@/api/api-17",
+   "export": "queryJobFairStatistics",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/statistics/queryJobFairStatistics"
+  },
+  "io": {
+   "original": "index.api.178332063620017.js#e",
+   "path": "@/api/api-17",
+   "export": "scrollBarData",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/scrollBarData"
+  },
+  "ro": {
+   "original": "index.api.178332063620017.js#f",
+   "path": "@/api/api-17",
+   "export": "queryAttendeesCompany",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesCompany"
+  },
+  "no": {
+   "original": "index.api.178332063620017.js#h",
+   "path": "@/api/api-17",
+   "export": "queryAttendeesPosition",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesPosition"
+  },
+  "wo": {
+   "original": "index.1783320636200117.js#g",
+   "path": "@/api/api-117",
+   "export": "getQrcodeImgByObjectId",
+   "status": "restored",
+   "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"
+  }
+ },
+ "shared": {
+  "j": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ao": {
+   "original": "industryCode.1783320636200.js#i",
+   "path": "@/shared/industryCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "we": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "uo": {
+   "original": "vue3-seamless-scroll.es.1783320636200.js#V",
+   "path": "vue3-seamless-scroll",
+   "export": "Vue3SeamlessScroll",
+   "status": "npm"
+  },
+  "ho": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "vo": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "go": {
+   "original": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js#_",
+   "path": "@/shared/qrcode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Pt": {
+   "original": "outIcon.1783320636200.js#_",
+   "value": "/default/outIcon.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "outIconImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Rt": {
+   "original": "down.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.2KB）",
+   "inline": true,
+   "path": "@/shared/down",
+   "export": "_",
+   "status": "restored"
+  },
+  "Ut": {
+   "original": "down.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.3KB）",
+   "inline": true,
+   "path": "@/shared/down",
+   "export": "a",
+   "status": "restored"
+  }
+ },
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

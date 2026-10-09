@@ -1,0 +1,102 @@
+{
+ "id": "page.portal.talents.conference.swperSlides",
+ "chunk": "legacy-dist/portal/assets/swperSlides.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "V": "defineComponent",
+  "Y": "useRoute (vue-router)",
+  "Z": "useRouter (vue-router)",
+  "x": "reactive",
+  "$": "onBeforeMount",
+  "j": "onMounted",
+  "q": "resolveComponent",
+  "o": "openBlock",
+  "u": "createElementBlock",
+  "E": "createVNode",
+  "S": "withCtx",
+  "m": "unref",
+  "B": "Fragment",
+  "b": "renderList",
+  "n": "createElementVNode",
+  "C": "withModifiers",
+  "P": "createBlock",
+  "z": "normalizeClass"
+ },
+ "entry": {
+  "D": {
+   "original": "i",
+   "path": "swiper",
+   "export": "default",
+   "status": "npm",
+   "as": "SwiperCore"
+  },
+  "H": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "J": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "K": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "L": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "M": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Q": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "U": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "X": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "te": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  },
+  "se": {
+   "original": "grid.1783320636200.js#G",
+   "path": "swiper",
+   "export": "Grid"
+  },
+  "le": {
+   "original": "effect-coverflow.1783320636200.js#E",
+   "path": "swiper",
+   "export": "EffectCoverflow"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

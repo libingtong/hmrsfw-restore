@@ -1,0 +1,32 @@
+{
+ "id": "page.portal.talents.conference.abouts",
+ "chunk": "legacy-dist/portal/assets/abouts.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "I": "defineComponent",
+  "R": "useRoute (vue-router)",
+  "A": "useRouter (vue-router)",
+  "V": "reactive",
+  "y": "onBeforeMount",
+  "x": "onMounted",
+  "C": "openBlock",
+  "k": "createElementBlock",
+  "n": "createElementVNode",
+  "w": "pushScopeId",
+  "q": "popScopeId",
+  "o": "createTextVNode"
+ },
+ "entry": {
+  "z": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

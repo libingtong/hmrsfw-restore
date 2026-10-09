@@ -1,0 +1,83 @@
+{
+ "id": "page.portal.oddJob.index",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 13.9,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620048.js",
+ "components": [
+  {
+   "name": "recommend",
+   "scopeId": "data-v-6402d96c"
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-87289232"
+  }
+ ],
+ "scopeIds": [
+  "data-v-6402d96c",
+  "data-v-87289232"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/homeNews.1783320636200.css",
+  "legacy-dist/portal/assets/index.178332063620042.css",
+  "legacy-dist/portal/assets/index.178332063620048.css"
+ ],
+ "target": "apps/portal/src/views/oddJob/index.vue",
+ "subComponentDir": "apps/portal/src/views/oddJob/index/",
+ "routes": [
+  {
+   "path": "/oddJob",
+   "name": "oddJob",
+   "title": "零工市场"
+  }
+ ],
+ "recordPath": "/oddJob",
+ "maps": "out/maps/page.portal.oddJob.index.json",
+ "hints": "out/hints/page.portal.oddJob.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "C",
+   "E",
+   "M",
+   "S",
+   "bW",
+   "c",
+   "f",
+   "h",
+   "i",
+   "m",
+   "n",
+   "o",
+   "v",
+   "w",
+   "x"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "homeNews.17833206362002.js"
+  ],
+  "api": [
+   "index.api.178332063620024.js#b",
+   "index.api.178332063620024.js#f",
+   "index.api.178332063620024.js#l",
+   "index.api.178332063620024.js#n",
+   "index.api.178332063620024.js#r",
+   "index.api.178332063620024.js#x"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/oddJob",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

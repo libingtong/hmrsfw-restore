@@ -1,0 +1,79 @@
+{
+ "id": "page.portal.talents.fair.webFair.detail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 26.2,
+ "sourceChunk": "legacy-dist/portal/assets/detail.178332063620012.js",
+ "components": [
+  {
+   "name": "detail",
+   "scopeId": "data-v-b7cb5f58"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b7cb5f58"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/detail.178332063620011.css",
+  "legacy-dist/portal/assets/detail.178332063620012.css"
+ ],
+ "target": "apps/portal/src/views/talents/fair/webFair/detail.vue",
+ "subComponentDir": "apps/portal/src/views/talents/fair/webFair/detail/",
+ "routes": [
+  {
+   "path": "/talents/webFairDetail/:zphId",
+   "name": "talents/webFairDetail",
+   "title": "线上招聘会"
+  }
+ ],
+ "recordPath": "/talents/webFairDetail/:zphId",
+ "maps": "out/maps/page.portal.talents.fair.webFair.detail.json",
+ "hints": "out/hints/page.portal.talents.fair.webFair.detail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "J",
+   "K",
+   "S",
+   "aD",
+   "aV",
+   "c",
+   "d",
+   "f",
+   "h",
+   "m",
+   "o",
+   "p",
+   "q",
+   "r"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "industryCode.1783320636200.js",
+   "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#g",
+   "index.api.178332063620017.js#b",
+   "index.api.178332063620017.js#c",
+   "index.api.178332063620017.js#d",
+   "index.api.178332063620017.js#e",
+   "index.api.178332063620017.js#f",
+   "index.api.178332063620017.js#h"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

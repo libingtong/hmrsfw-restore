@@ -1,0 +1,35 @@
+{
+ "id": "shared.uc.SlideCaptcha",
+ "chunk": "legacy-dist/usercenter/assets/SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Nr": "defineComponent",
+  "Pr": "reactive",
+  "Qr": "watch",
+  "Gr": "onMounted",
+  "Yr": "openBlock",
+  "Ur": "createElementBlock",
+  "lr": "createElementVNode"
+ },
+ "entry": {
+  "cr": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ur": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

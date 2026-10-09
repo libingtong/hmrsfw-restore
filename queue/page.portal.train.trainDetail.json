@@ -1,0 +1,76 @@
+{
+ "id": "page.portal.train.trainDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8.4,
+ "sourceChunk": "legacy-dist/portal/assets/trainDetail.1783320636200.js",
+ "components": [
+  {
+   "name": "trainDetail",
+   "scopeId": "data-v-a17c8330"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a17c8330"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/trainDetail.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/train/trainDetail.vue",
+ "subComponentDir": "apps/portal/src/views/train/trainDetail/",
+ "routes": [
+  {
+   "path": "/trainDetail",
+   "name": "trainDetail",
+   "title": "培训详情"
+  },
+  {
+   "path": "/trainDetail",
+   "name": "trainDetail",
+   "title": "培训详情"
+  }
+ ],
+ "recordPath": "/trainDetail",
+ "maps": "out/maps/page.portal.train.trainDetail.json",
+ "hints": "out/hints/page.portal.train.trainDetail.md",
+ "deps": {
+  "entry": [
+   "B",
+   "C",
+   "E",
+   "S",
+   "c",
+   "f",
+   "h",
+   "m",
+   "n",
+   "o",
+   "x"
+  ],
+  "shared": [
+   "complaint.1783320636200.js",
+   "empty.1783320636200.js",
+   "signSetup.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620021.js#a",
+   "index.api.178332063620021.js#b",
+   "index.api.178332063620021.js#g",
+   "index.api.17833206362008.js#b"
+  ],
+  "modules": [
+   "card.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.c03",
+   "shared.portal.complaint",
+   "shared.portal.modules",
+   "shared.portal.signSetup"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

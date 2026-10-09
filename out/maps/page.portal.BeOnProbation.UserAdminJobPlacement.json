@@ -1,0 +1,67 @@
+{
+ "id": "page.portal.BeOnProbation.UserAdminJobPlacement",
+ "chunk": "legacy-dist/portal/assets/UserAdminJobPlacement.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "te": "defineComponent",
+  "B": "ref",
+  "se": "useRouter (vue-router)",
+  "le": "useRoute (vue-router)",
+  "j": "reactive",
+  "ie": "onBeforeMount",
+  "_": "resolveComponent",
+  "i": "openBlock",
+  "r": "createElementBlock",
+  "h": "createVNode",
+  "y": "withCtx",
+  "e": "createElementVNode",
+  "oe": "normalizeStyle",
+  "N": "Fragment",
+  "A": "renderList",
+  "E": "createBlock",
+  "ne": "resolveDynamicComponent",
+  "re": "pushScopeId",
+  "ce": "popScopeId",
+  "F": "normalizeClass",
+  "v": "toDisplayString",
+  "P": "unref"
+ },
+ "entry": {
+  "S": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "de": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "W": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "ue": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ve": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

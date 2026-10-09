@@ -1,0 +1,71 @@
+{
+ "id": "page.uc.Enterpriseonlineservices",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 11.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/Enterpriseonlineservices.1751615607545.js",
+ "components": [
+  {
+   "name": "Enterpriseonlineservices",
+   "scopeId": "data-v-279bdb01"
+  }
+ ],
+ "scopeIds": [
+  "data-v-279bdb01"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/Enterpriseonlineservices.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/Enterpriseonlineservices.vue",
+ "subComponentDir": "apps/uc/src/views/Enterpriseonlineservices/",
+ "routes": [
+  {
+   "path": "/Enterpriseonlineservices",
+   "name": "Enterpriseonlineservices"
+  }
+ ],
+ "recordPath": "/Enterpriseonlineservices",
+ "maps": "out/maps/page.uc.Enterpriseonlineservices.json",
+ "hints": "out/hints/page.uc.Enterpriseonlineservices.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "a",
+   "b",
+   "d",
+   "e",
+   "f",
+   "h",
+   "j",
+   "l",
+   "m",
+   "q"
+  ],
+  "shared": [
+   "addKeynote.1751615607545.js",
+   "market.vue_vue_type_script_setup_true_lang.1751615607545.js"
+  ],
+  "api": [
+   "index.api.1751615607545.js#a",
+   "index.api.1751615607545.js#b",
+   "index.api.1751615607545.js#c",
+   "index.api.1751615607545.js#d",
+   "index.api.1751615607545.js#g",
+   "index.api.1751615607545.js#l",
+   "index.api.1751615607545.js#p"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.addKeynote",
+   "shared.uc.market"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,67 @@
+{
+ "id": "page.uc.accountBind",
+ "chunk": "legacy-dist/usercenter/assets/accountBind.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "B": "defineComponent",
+  "C": "reactive",
+  "S": "onMounted",
+  "U": "resolveComponent",
+  "o": "openBlock",
+  "a": "createElementBlock",
+  "n": "createElementVNode",
+  "c": "createCommentVNode",
+  "r": "createTextVNode",
+  "N": "toDisplayString",
+  "A": "createVNode",
+  "V": "withCtx",
+  "D": "pushScopeId",
+  "T": "popScopeId"
+ },
+ "entry": {
+  "p": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "w": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "z": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "g": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "k": {
+   "original": "index.api.17516156075453.js#g",
+   "path": "@/api/api-17516156075453",
+   "export": "userBindInfo",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUserThirdAssociation/userBindInfo"
+  },
+  "m": {
+   "original": "index.api.17516156075453.js#u",
+   "path": "@/api/api-17516156075453",
+   "export": "deleteItem",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUserThirdAssociation/delete"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

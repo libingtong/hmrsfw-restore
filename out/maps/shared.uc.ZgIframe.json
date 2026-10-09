@@ -1,0 +1,35 @@
+{
+ "id": "shared.uc.ZgIframe",
+ "chunk": "legacy-dist/usercenter/assets/ZgIframe.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "_": "defineComponent",
+  "f": "ref",
+  "i": "watch",
+  "u": "reactive",
+  "p": "onBeforeMount",
+  "d": "onMounted",
+  "m": "openBlock",
+  "g": "createElementBlock",
+  "y": "createElementVNode"
+ },
+ "entry": {
+  "c": {
+   "original": "G",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "n": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

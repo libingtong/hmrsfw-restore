@@ -1,0 +1,230 @@
+{
+ "id": "page.uc.corpFairs",
+ "chunk": "legacy-dist/usercenter/assets/corpFairs.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "fe": "defineComponent",
+  "ke": "useRouter (vue-router)",
+  "ce": "reactive",
+  "me": "onMounted",
+  "x": "resolveComponent",
+  "w": "openBlock",
+  "P": "createElementBlock",
+  "o": "createVNode",
+  "r": "withCtx",
+  "v": "unref",
+  "F": "createElementVNode",
+  "q": "createTextVNode",
+  "Se": "pushScopeId",
+  "De": "popScopeId",
+  "be": "inject",
+  "Q": "ref",
+  "te": "Fragment",
+  "Be": "renderList",
+  "J": "createBlock",
+  "U": "createCommentVNode",
+  "ee": "toDisplayString",
+  "st": "nextTick",
+  "nt": "useRoute (vue-router)",
+  "rt": "withModifiers"
+ },
+ "entry": {
+  "ae": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ie": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "we": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "ye": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "He": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "_t": {
+   "original": "T",
+   "path": "@/legacy",
+   "export": "commonjsGlobal",
+   "status": "restored"
+  },
+  "yt": {
+   "original": "V",
+   "path": "@/legacy",
+   "export": "getDefaultExportFromCjs",
+   "status": "restored"
+  },
+  "kt": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "Me": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "xe": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "dt": {
+   "original": "index.api.175161560754511.js#c",
+   "path": "@/api/api-175161560754511",
+   "export": "companyDataReport",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/companyDataReport"
+  },
+  "pt": {
+   "original": "index.api.175161560754511.js#b",
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyIntentionResumeInfo",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/queryCompanyIntentionResumeInfo"
+  },
+  "Ke": {
+   "original": "index.api.175161560754511.js#d",
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyPositionSelected",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/queryCompanyPositionSelected"
+  },
+  "ct": {
+   "original": "index.api.175161560754511.js#e",
+   "path": "@/api/api-175161560754511",
+   "export": "companyIntentionResumeUpload",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/companyIntentionResumeUpload"
+  },
+  "ft": {
+   "original": "index.api.175161560754511.js#f",
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyFileDataInfo",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/queryCompanyFileDataInfo"
+  },
+  "mt": {
+   "original": "index.api.175161560754511.js#g",
+   "path": "@/api/api-175161560754511",
+   "export": "companyFileDataUpload",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/companyFileDataUpload"
+  },
+  "ht": {
+   "original": "index.api.175161560754511.js#h",
+   "path": "@/api/api-175161560754511",
+   "export": "addOrUpdate",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairApplyUnsubscribe/addOrUpdate"
+  },
+  "gt": {
+   "original": "index.api.175161560754511.js#i",
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyJobFairInfo",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/queryCompanyJobFairInfo"
+  },
+  "vt": {
+   "original": "index.api.175161560754511.js#j",
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyDataReport",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/queryCompanyDataReport"
+  }
+ },
+ "shared": {
+  "ut": {
+   "original": "confPass.1751615607545.js#c",
+   "path": "@/shared/confPass.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.confPass"
+  },
+  "_e": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "bt": {
+   "original": "index.175161560754529.js#p",
+   "path": "@/shared/CancelReasonModal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "wt": {
+   "original": "index.175161560754528.js#f",
+   "path": "@/shared/ReceivedResumeList.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ct": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js",
+  "html2canvas.esm.1751615607545.js",
+  "setStatusinterview.1751615607545.js",
+  "index.api.175161560754510.js",
+  "InterviewInvitation.17516156075452.js"
+ ],
+ "missing": []
+}

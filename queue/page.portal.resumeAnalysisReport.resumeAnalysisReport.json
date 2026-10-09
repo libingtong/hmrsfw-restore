@@ -1,0 +1,67 @@
+{
+ "id": "page.portal.resumeAnalysisReport.resumeAnalysisReport",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 13.9,
+ "sourceChunk": "legacy-dist/portal/assets/resumeAnalysisReport.1783320636200.js",
+ "components": [
+  {
+   "name": "resumeAnalysisReport",
+   "scopeId": "data-v-798feaf3"
+  }
+ ],
+ "scopeIds": [
+  "data-v-798feaf3"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/resumeAnalysisReport.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/resumeAnalysisReport/resumeAnalysisReport.vue",
+ "subComponentDir": "apps/portal/src/views/resumeAnalysisReport/resumeAnalysisReport/",
+ "routes": [
+  {
+   "path": "/resumeAnalysisReport",
+   "name": "resumeAnalysisReport",
+   "title": "简历竞争力分析报告"
+  }
+ ],
+ "recordPath": "/resumeAnalysisReport",
+ "maps": "out/maps/page.portal.resumeAnalysisReport.resumeAnalysisReport.json",
+ "hints": "out/hints/page.portal.resumeAnalysisReport.resumeAnalysisReport.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "S",
+   "d",
+   "f",
+   "h",
+   "m",
+   "o",
+   "p",
+   "x",
+   "y"
+  ],
+  "shared": [
+   "resumemodal.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620033.js#a",
+   "index.api.178332063620033.js#b",
+   "index.api.178332063620033.js#c"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/resumeAnalysisReport",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

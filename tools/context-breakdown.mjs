@@ -11,8 +11,8 @@ const cat = (p = "") => {
   if (/legacy-dist\/.*\.css/.test(p)) return "原 CSS";
   if (/legacy-dist\//.test(p)) return "原 chunk";
   if (/wakaru-out\//.test(p)) return "wakaru 产物";
-  if (/skeleton\/apps\/.*\/(legacy|api|utils|shared)\//.test(p)) return "骨架文件";
-  if (/restore-[ab]\//.test(p)) return "自己的输出";
+  if (/apps\/[^/]+\/src\/(legacy|api|utils|shared)\//.test(p)) return "公共库文件";
+  if (/restore-[ab]\/|apps\/[^/]+\/src\/views\//.test(p)) return "自己的输出";
   return "其他";
 };
 const rows = [];

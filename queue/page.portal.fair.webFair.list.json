@@ -1,0 +1,71 @@
+{
+ "id": "page.portal.fair.webFair.list",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 10.4,
+ "sourceChunk": "legacy-dist/portal/assets/list.17833206362005.js",
+ "components": [
+  {
+   "name": "list",
+   "scopeId": "data-v-69d09db9"
+  }
+ ],
+ "scopeIds": [
+  "data-v-69d09db9"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.17833206362002.css",
+  "legacy-dist/portal/assets/list.17833206362005.css"
+ ],
+ "target": "apps/portal/src/views/fair/webFair/list.vue",
+ "subComponentDir": "apps/portal/src/views/fair/webFair/list/",
+ "routes": [
+  {
+   "path": "/webFairList",
+   "name": "webFairList",
+   "title": "网络招聘会"
+  }
+ ],
+ "recordPath": "/webFairList",
+ "maps": "out/maps/page.portal.fair.webFair.list.json",
+ "hints": "out/hints/page.portal.fair.webFair.list.md",
+ "deps": {
+  "entry": [
+   "A",
+   "I",
+   "O",
+   "S",
+   "aD",
+   "ba",
+   "bc",
+   "c",
+   "e",
+   "h",
+   "m",
+   "p",
+   "q",
+   "r",
+   "u"
+  ],
+  "shared": [
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620017.js#w"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/webFairList",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

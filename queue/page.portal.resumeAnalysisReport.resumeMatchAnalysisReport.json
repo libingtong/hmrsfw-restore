@@ -1,0 +1,69 @@
+{
+ "id": "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 17.1,
+ "sourceChunk": "legacy-dist/portal/assets/resumeMatchAnalysisReport.1783320636200.js",
+ "components": [
+  {
+   "name": "resumeMatchAnalysisReport",
+   "scopeId": "data-v-4663120b"
+  }
+ ],
+ "scopeIds": [
+  "data-v-4663120b"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/resumeMatchAnalysisReport.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/resumeAnalysisReport/resumeMatchAnalysisReport.vue",
+ "subComponentDir": "apps/portal/src/views/resumeAnalysisReport/resumeMatchAnalysisReport/",
+ "routes": [
+  {
+   "path": "/resumeMatchAnalysisReport",
+   "name": "resumeMatchAnalysisReport",
+   "title": "简历匹配度分析报告"
+  }
+ ],
+ "recordPath": "/resumeMatchAnalysisReport",
+ "maps": "out/maps/page.portal.resumeAnalysisReport.resumeMatchAnalysisReport.json",
+ "hints": "out/hints/page.portal.resumeAnalysisReport.resumeMatchAnalysisReport.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "Q",
+   "S",
+   "av",
+   "d",
+   "f",
+   "h",
+   "m",
+   "o",
+   "p",
+   "r",
+   "v"
+  ],
+  "shared": [
+   "InterviewInvitation.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620033.js#c",
+   "index.api.178332063620033.js#d",
+   "index.api.178332063620033.js#e",
+   "index.api.178332063620033.js#i"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.InterviewInvitation"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

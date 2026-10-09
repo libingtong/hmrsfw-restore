@@ -1,0 +1,128 @@
+{
+ "id": "page.uc.projectApplyDetails",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 0.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/projectApplyDetails.1751615607545.js",
+ "components": [
+  {
+   "name": "projectApplyDetails",
+   "scopeId": "data-v-f3af2640"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f3af2640"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/projectApplyDetails.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/projectApplyDetails.vue",
+ "subComponentDir": "apps/uc/src/views/projectApplyDetails/",
+ "routes": [
+  {
+   "path": "/projectApplyDetails",
+   "name": "projectApplyDetails"
+  },
+  {
+   "path": "/financeorgDetailsNew",
+   "name": "financeorgDetailsNew"
+  },
+  {
+   "path": "/incubatorsManage",
+   "name": "incubatorsManage"
+  },
+  {
+   "path": "/cominfo",
+   "name": "cominfo"
+  },
+  {
+   "path": "/indicatorSystemList",
+   "name": "indicatorSystemList"
+  },
+  {
+   "path": "/projectMg",
+   "name": "projectMg"
+  },
+  {
+   "path": "/projectMgList",
+   "name": "projectMgList"
+  },
+  {
+   "path": "/activitiesMgBook",
+   "name": "activitiesMgBook"
+  },
+  {
+   "path": "/companyReceiveBook",
+   "name": "companyReceiveBook"
+  },
+  {
+   "path": "/companyInitiateBook",
+   "name": "companyInitiateBook"
+  },
+  {
+   "path": "/personinfo",
+   "name": "personinfo"
+  },
+  {
+   "path": "/perApplyDetails",
+   "name": "perApplyDetails"
+  },
+  {
+   "path": "/projectApply",
+   "name": "projectApply"
+  },
+  {
+   "path": "/perProjectMgList",
+   "name": "perProjectMgList"
+  },
+  {
+   "path": "/mentorsRecruit",
+   "name": "mentorsRecruit"
+  },
+  {
+   "path": "/personReceiveBook",
+   "name": "personReceiveBook"
+  },
+  {
+   "path": "/personInitiateBook",
+   "name": "personInitiateBook"
+  },
+  {
+   "path": "/personReceiveLeaveMsg",
+   "name": "personReceiveLeaveMsg"
+  },
+  {
+   "path": "/rc04MemberZx",
+   "name": "rc04MemberZx"
+  },
+  {
+   "path": "/rc05Good",
+   "name": "rc05Good"
+  },
+  {
+   "path": "/rc06Party",
+   "name": "rc06Party"
+  },
+  {
+   "path": "/applyDifficulty",
+   "name": "applyDifficulty"
+  }
+ ],
+ "recordPath": "/projectApplyDetails",
+ "maps": "out/maps/page.uc.projectApplyDetails.json",
+ "hints": "out/hints/page.uc.projectApplyDetails.md",
+ "deps": {
+  "entry": [],
+  "shared": [
+   "ZgIframe.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

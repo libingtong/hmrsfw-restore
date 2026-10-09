@@ -1,0 +1,219 @@
+{
+ "id": "page.portal.sjz.school.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620084.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Aa": "defineComponent",
+  "Ra": "useRouter (vue-router)",
+  "ae": "reactive",
+  "pe": "ref",
+  "Ya": "onUnmounted",
+  "Da": "onMounted",
+  "k": "resolveComponent",
+  "t": "openBlock",
+  "o": "createElementBlock",
+  "s": "createElementVNode",
+  "n": "createVNode",
+  "d": "createBlock",
+  "i": "withCtx",
+  "y": "Fragment",
+  "T": "renderList",
+  "ue": "resolveDynamicComponent",
+  "v": "createCommentVNode",
+  "p": "createTextVNode",
+  "u": "unref",
+  "Ea": "pushScopeId",
+  "Ma": "popScopeId",
+  "c": "toDisplayString",
+  "V": "normalizeClass"
+ },
+ "entry": {
+  "E": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "na": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "ce": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "ca": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "de": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "da": {
+   "original": "ab",
+   "path": "@/legacy/api",
+   "export": "getArticleListNoCheck",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "pa": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ua": {
+   "original": "a$",
+   "path": "@/legacy/api",
+   "export": "getArticleListByTypeCodes",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "fa": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "B": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "I": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "A": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "M": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "ha": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "ya": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "va": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "ma": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "ga": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "ba": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "ka": {
+   "original": "aD",
+   "path": "@/legacy",
+   "export": "checkIzDishonesty",
+   "status": "restored"
+  },
+  "wa": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "xa": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "_a": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Sa": {
+   "original": "tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/tagcanvas.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.tagcanvas"
+  },
+  "q": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "ra": {
+   "original": "videoNull.1783320636200.js#_",
+   "value": "/default/videoNull.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "videoNullImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Ca": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "Na": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "Ba": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

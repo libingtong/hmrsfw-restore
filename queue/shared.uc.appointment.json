@@ -1,0 +1,107 @@
+{
+ "id": "shared.uc.appointment",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 22.3,
+ "chunkKb": 22.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/appointment.1751615607545.js",
+ "components": [
+  {
+   "name": "cancelModal",
+   "scopeId": "data-v-bf01f09f"
+  },
+  {
+   "name": "orderModal",
+   "scopeId": "data-v-3b597f48"
+  },
+  {
+   "name": "signModal",
+   "scopeId": "data-v-391d749e"
+  },
+  {
+   "name": "DetailModal",
+   "scopeId": "data-v-270af80f"
+  },
+  {
+   "name": "appointment",
+   "scopeId": "data-v-f193e881"
+  }
+ ],
+ "scopeIds": [
+  "data-v-bf01f09f",
+  "data-v-3b597f48",
+  "data-v-391d749e",
+  "data-v-270af80f",
+  "data-v-f193e881"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/appointment.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/appointment/SignModal.vue",
+ "subComponentDir": "apps/uc/src/shared/appointment/",
+ "exports": {
+  "D": {
+   "path": "@/shared/appointment/DetailModal.vue",
+   "export": "default"
+  },
+  "a": {
+   "path": "@/shared/appointment/Appointment.vue",
+   "export": "default"
+  },
+  "c": {
+   "path": "@/shared/appointment/CancelModal.vue",
+   "export": "default"
+  },
+  "o": {
+   "path": "@/shared/appointment/OrderModal.vue",
+   "export": "default"
+  },
+  "s": {
+   "path": "@/shared/appointment/SignModal.vue",
+   "export": "default"
+  }
+ },
+ "registryKey": "appointment.1751615607545.js",
+ "usedBy": [
+  "page.uc.teachInManage",
+  "page.uc.teachInCancel"
+ ],
+ "maps": "out/maps/shared.uc.appointment.json",
+ "hints": "out/hints/shared.uc.appointment.md",
+ "deps": {
+  "entry": [
+   "B",
+   "I",
+   "M",
+   "bu",
+   "d",
+   "h",
+   "m",
+   "y"
+  ],
+  "shared": [
+   "Editor.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754517.js#e",
+   "index.api.175161560754517.js#f",
+   "index.api.175161560754517.js#g",
+   "index.api.175161560754517.js#h",
+   "index.api.175161560754517.js#i",
+   "index.api.175161560754517.js#j",
+   "index.api.175161560754517.js#k",
+   "index.api.175161560754517.js#l",
+   "index.api.175161560754517.js#x"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.Editor"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

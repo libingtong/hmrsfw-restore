@@ -1,0 +1,59 @@
+{
+ "id": "page.portal.sjz.bigData.components.Dashboard2",
+ "chunk": "legacy-dist/portal/assets/Dashboard2.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Bt": "defineComponent",
+  "Jt": "reactive",
+  "J": "ref",
+  "qt": "onMounted",
+  "q": "resolveComponent",
+  "i": "openBlock",
+  "e": "createElementBlock",
+  "t": "createElementVNode",
+  "s": "toDisplayString",
+  "o": "createCommentVNode",
+  "T": "createBlock",
+  "u": "withCtx",
+  "I": "Fragment",
+  "N": "renderList",
+  "p": "unref",
+  "Tt": "pushScopeId",
+  "It": "popScopeId",
+  "R": "createVNode",
+  "L": "createTextVNode"
+ },
+ "entry": {
+  "Ct": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "wt": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Dt": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "_t": {
+   "original": "index.api.178332063620034.js#g",
+   "path": "@/api/jobBigDataViewSettings",
+   "export": "queryAllInfoById",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobBigDataViewSettings/queryAllInfoById"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

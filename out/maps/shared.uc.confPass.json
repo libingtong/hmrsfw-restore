@@ -1,0 +1,70 @@
+{
+ "id": "shared.uc.confPass",
+ "chunk": "legacy-dist/usercenter/assets/confPass.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "J": "defineComponent",
+  "M": "useRoute (vue-router)",
+  "R": "reactive",
+  "V": "onMounted",
+  "F": "ref",
+  "d": "resolveComponent",
+  "E": "resolveDirective",
+  "p": "openBlock",
+  "b": "createElementBlock",
+  "u": "createVNode",
+  "f": "withCtx",
+  "O": "withDirectives",
+  "S": "createCommentVNode",
+  "A": "Fragment",
+  "H": "renderList",
+  "L": "createElementVNode",
+  "$": "createBlock",
+  "N": "unref",
+  "X": "createTextVNode",
+  "Y": "toDisplayString"
+ },
+ "entry": {
+  "h": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "x": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "w": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Z": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "G": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "K": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

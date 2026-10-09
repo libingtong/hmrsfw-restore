@@ -1,0 +1,141 @@
+{
+ "id": "page.portal.talents.cityHome.talentArea",
+ "chunk": "legacy-dist/portal/assets/talentArea.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "he": "defineComponent",
+  "Ce": "useRoute (vue-router)",
+  "xe": "useRouter (vue-router)",
+  "Ie": "reactive",
+  "Te": "onBeforeMount",
+  "we": "onMounted",
+  "k": "resolveComponent",
+  "s": "openBlock",
+  "r": "createElementBlock",
+  "i": "createElementVNode",
+  "Se": "renderSlot",
+  "c": "createVNode",
+  "d": "withCtx",
+  "I": "Fragment",
+  "je": "renderList",
+  "y": "createBlock",
+  "T": "createCommentVNode",
+  "p": "toDisplayString",
+  "X": "unref",
+  "b": "createTextVNode",
+  "O": "h"
+ },
+ "entry": {
+  "x": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "$": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "me": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "ve": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "z": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "B": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "L": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "K": {
+   "original": "Q",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_CERTIFIED",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "A": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "N": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "be": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Fe": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "InterviewInvitation.1783320636200.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.InterviewInvitation"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

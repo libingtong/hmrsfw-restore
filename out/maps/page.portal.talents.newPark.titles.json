@@ -1,0 +1,32 @@
+{
+ "id": "page.portal.talents.newPark.titles",
+ "chunk": "legacy-dist/portal/assets/titles.17833206362004.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "f": "defineComponent",
+  "u": "useRoute (vue-router)",
+  "b": "useRouter (vue-router)",
+  "y": "reactive",
+  "h": "onBeforeMount",
+  "v": "onMounted",
+  "g": "openBlock",
+  "x": "createElementBlock",
+  "i": "createElementVNode",
+  "m": "toDisplayString",
+  "S": "pushScopeId",
+  "B": "popScopeId"
+ },
+ "entry": {
+  "G": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

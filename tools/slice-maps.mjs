@@ -1,44 +1,23 @@
-// Per-page sliced maps (plan §6.1): only the entries a chunk actually imports — Vue runtime aliases, entry exports
-// (from out/shim-map.<site>.md), API functions (from out/api/<site>.<chunk>.map.json), shared chunks.
-// Usage: node tools/slice-maps.mjs <samples.json>  → out/maps/<id>.json
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+// Per-order sliced import maps (batch-plan.md §6.1): only the bindings a chunk actually imports, each resolved through the
+// public-library registry (registry/<app>.json) to one path and export name. work-orders.mjs writes them for every order;
+// this script rewrites them for selected orders after a registry change (e.g. a shared component moved from reserved to
+// restored) without regenerating the whole queue.
+// Usage: node tools/slice-maps.mjs <order id> [<order id> ...] --app <hmrsfw-vue>    → out/maps/<id>.json
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
-const samples = JSON.parse(readFileSync(process.argv[2] ?? "tools/confirm-samples.json", "utf8"));
-mkdirSync("out/maps", { recursive: true });
-const ENTRY = { portal: "index.1783320636200.js", usercenter: "index.1751615607545.js" }; // other index.<hash><n>.js files are shared component chunks
-const SHARED_ALIAS = { "index.1783320636200118.js": "echarts", "index.175161560754529.js": "CancelReasonModal", "index.175161560754528.js": "ReceivedResumeList" }; // numbered chunks named by content
-const shimRows = (site) => {
-  const rows = {};
-  for (const line of readFileSync(`out/shim-map.${site}.md`, "utf8").split("\n")) {
-    const m = line.match(/^\| `([^`]+)` \| (.+?) \| (.+?) \|\s*$/); if (m) rows[m[1]] = { readable: m[2].trim(), from: m[3].trim() };
-  }
-  return rows;
-};
-for (const s of samples) {
-  const dir = `legacy-dist/${s.site}/assets`; const src = readFileSync(path.join(dir, s.chunk), "utf8");
-  const aliases = JSON.parse(readFileSync(`out/vue-exports.${s.site}.final.json`, "utf8")).aliases;
-  const shim = shimRows(s.site);
-  const out = { id: s.id, site: s.site, chunk: s.chunk, vue: {}, entry: {}, api: {}, shared: {}, missing: [] };
-  for (const m of src.matchAll(/import\{([^}]*)\}from"\.\/([^"]+)"/g)) {
-    const file = m[2]; const specs = m[1].split(",").map((x) => x.trim()).filter((x) => x && !x.startsWith("__tla"));
-    for (const sp of specs) {
-      const [imported, local = imported] = sp.split(/\s+as\s+/);
-      if (file.startsWith("vue.")) { out.vue[local] = aliases[imported]?.name ?? `?${imported}`; continue; }
-      if (file === ENTRY[s.site]) { if (shim[imported]) out.entry[local] = { export: imported, ...shim[imported] }; else { out.entry[local] = { export: imported, readable: "?" }; out.missing.push(`entry:${imported}`); } continue; }
-      const apiMap = `out/api/${s.site}.${file}.map.json`;
-      if (existsSync(apiMap)) { const mp = JSON.parse(readFileSync(apiMap, "utf8")); out.api[local] = { file, export: imported, fn: mp[imported] ?? `?${imported}` }; continue; }
-      const base = SHARED_ALIAS[file] ?? file.replace(/\.\d{10,}\d*\.js$/, ""); const short = base.split(".")[0];
-      const app = s.site === "portal" ? "portal" : "uc"; const NPM = { "vue3-seamless-scroll": "vue3-seamless-scroll", main: "pinyin-match", cropperjs: "cropperjs", "html2canvas": "html2canvas", "jspdf": "jspdf", "swiper": "swiper", "navigation": "swiper", "pagination": "swiper", "autoplay": "swiper", "effect-coverflow": "swiper", "scrollbar": "swiper", "grid": "swiper" };
-      const sharedFile = [base, short].flatMap((n) => ["vue", "ts"].map((ext) => `skeleton/apps/${app}/src/shared/${n}.${ext}`)).find((f) => existsSync(f));
-      // A shared .ts whose header lists "`X` → Name" maps each original export to a named (or default) import.
-      const tsFile = [base, short].map((n) => `skeleton/apps/${app}/src/shared/${n}.ts`).find((f) => existsSync(f));
-      let named = null;
-      if (tsFile) for (const m of readFileSync(tsFile, "utf8").matchAll(/`([\w$]+)` → ([\w$]+)/g)) if (m[1] === imported) named = m[2];
-      if (tsFile && named) { out.shared[local] = { file, export: imported, base, target: "@shared/" + path.basename(tsFile).replace(/\.ts$/, ""), import: named === "default" ? "default" : `{ ${named} }` }; continue; }
-      out.shared[local] = { file, export: imported, base, target: sharedFile ? "@shared/" + path.basename(sharedFile) : NPM[short] ? "npm:" + NPM[short] : "?" };
-      if (!sharedFile && !NPM[short]) out.missing.push(`shared:${base}`);
-    }
-  }
-  writeFileSync(`out/maps/${s.id}.json`, JSON.stringify(out, null, 1));
-  console.log(s.id, "vue", Object.keys(out.vue).length, "entry", Object.keys(out.entry).length, "api", Object.keys(out.api).length, "shared", Object.keys(out.shared).length, "missing", out.missing.length);
+import { ROOT } from "./scope.mjs";
+import { loadRegistry } from "./registry.mjs";
+import { buildMaps } from "./work-orders.mjs";
+import { appDir } from "./app-dir.mjs";
+
+appDir(); // fail early without a hmrsfw-vue checkout, like every tool that reads the product
+const ids = process.argv.slice(2).filter((a, i, all) => !a.startsWith("--") && all[i - 1] !== "--app");
+if (!ids.length) { console.error("usage: node tools/slice-maps.mjs <order id> [...] --app <hmrsfw-vue>"); process.exit(2); }
+const orders = readdirSync(path.join(ROOT, "queue")).filter((f) => /^(page|seg|shared|entry)\./.test(f)).map((f) => JSON.parse(readFileSync(path.join(ROOT, "queue", f), "utf8")));
+const byChunk = new Map(orders.filter((o) => o.sourceChunk && (o.type === "page" || o.type === "shared")).map((o) => [`${o.site}/${o.sourceChunk.split("/").pop()}`, o]));
+for (const id of ids) {
+  const o = orders.find((x) => x.id === id); if (!o?.maps || !o.sourceChunk) { console.log(id, "skipped (no maps for this order type)"); continue; }
+  const maps = buildMaps(o.site, o.sourceChunk.split("/").pop(), loadRegistry(o.app), byChunk);
+  writeFileSync(path.join(ROOT, o.maps), JSON.stringify({ id: o.id, ...maps }, null, 1) + "\n");
+  console.log(id, "vue", Object.keys(maps.vue).length, "entry", Object.keys(maps.entry).length, "api", Object.keys(maps.api).length, "shared", Object.keys(maps.shared).length, "views", Object.keys(maps.views).length, "missing", maps.missing.length);
 }

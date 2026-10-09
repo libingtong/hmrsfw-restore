@@ -1,0 +1,42 @@
+{
+ "id": "shared.portal.videoModal",
+ "chunk": "legacy-dist/portal/assets/videoModal.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "q": "defineComponent",
+  "A": "reactive",
+  "F": "watch",
+  "G": "onMounted",
+  "E": "nextTick",
+  "k": "ref",
+  "J": "onUnmounted",
+  "L": "resolveComponent",
+  "C": "openBlock",
+  "x": "createElementBlock",
+  "O": "createVNode",
+  "g": "withCtx",
+  "n": "createElementVNode",
+  "j": "withModifiers",
+  "K": "toDisplayString",
+  "_": "withDirectives",
+  "b": "vShow",
+  "W": "createCommentVNode",
+  "Z": "normalizeClass",
+  "B": "normalizeStyle",
+  "Q": "pushScopeId",
+  "R": "popScopeId"
+ },
+ "entry": {
+  "X": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

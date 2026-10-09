@@ -1,0 +1,198 @@
+{
+ "id": "page.uc.webFairWork",
+ "chunk": "legacy-dist/usercenter/assets/webFairWork.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Je": "defineComponent",
+  "W": "ref",
+  "Oe": "useRoute (vue-router)",
+  "Xe": "useRouter (vue-router)",
+  "$e": "inject",
+  "Ge": "reactive",
+  "Qe": "onMounted",
+  "y": "resolveComponent",
+  "b": "openBlock",
+  "q": "createElementBlock",
+  "r": "createVNode",
+  "s": "withCtx",
+  "T": "createElementVNode",
+  "P": "createBlock",
+  "g": "createTextVNode",
+  "I": "createCommentVNode",
+  "C": "toDisplayString",
+  "Z": "Fragment",
+  "Ke": "withDirectives",
+  "ea": "vShow",
+  "E": "unref",
+  "Y": "nextTick",
+  "aa": "pushScopeId",
+  "ta": "popScopeId"
+ },
+ "entry": {
+  "na": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "K": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "J": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ua": {
+   "original": "aa",
+   "path": "@/legacy",
+   "export": "getExtractPositionConfig",
+   "status": "restored"
+  },
+  "da": {
+   "original": "ab",
+   "path": "@/legacy",
+   "export": "confirmExtract",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "ca": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "D": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ma": {
+   "original": "ad",
+   "path": "@/legacy",
+   "export": "checkSensitive",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "te": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "pa": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "ra": {
+   "original": "index.api.175161560754512.js#q",
+   "path": "@/api/api-175161560754512",
+   "export": "queryById",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFair/queryById"
+  },
+  "sa": {
+   "original": "index.api.175161560754512.js#J",
+   "path": "@/api/api-175161560754512",
+   "export": "list2",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairPositionRelation/list"
+  },
+  "Q": {
+   "original": "index.api.175161560754512.js#d",
+   "path": "@/api/api-175161560754512",
+   "export": "companyPositionAdd",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairApplyInfo/companyPositionAdd"
+  },
+  "la": {
+   "original": "index.api.175161560754512.js#e",
+   "path": "@/api/api-175161560754512",
+   "export": "addPosition",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairPositionRelation/addPosition"
+  },
+  "ia": {
+   "original": "index.api.175161560754512.js#h",
+   "path": "@/api/api-175161560754512",
+   "export": "editPosition",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairPositionRelation/editPosition"
+  },
+  "oa": {
+   "original": "index.api.175161560754512.js#i",
+   "path": "@/api/api-175161560754512",
+   "export": "detailById",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompanyPosition/detailById"
+  }
+ },
+ "shared": {
+  "fa": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "z": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ya": {
+   "original": "extractpositionmodal.1751615607545.js#e",
+   "path": "@/shared/extractpositionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ga": {
+   "original": "positionmodal.1751615607545.js#p",
+   "path": "@/shared/positionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ba": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "B": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  },
+  "va": {
+   "original": "dictCheckBoxAll.1751615607545.js#d",
+   "path": "@/shared/dictCheckBoxAll.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

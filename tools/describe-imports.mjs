@@ -1,11 +1,15 @@
 // For a chunk, list every imported binding with where it comes from and a definition snippet (hint sheet for restorers).
+// Site directories come from scope.mjs and the Vue alias table from registry/<app>.json (no out/mapping.json needed).
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { symbolsOf } from "./entry-symbols.mjs";
+import { ROOT, SITES, APP_OF } from "./scope.mjs";
+const mapping = Object.fromEntries(Object.entries(SITES).map(([s, c]) => [s, { dir: path.join(ROOT, c.dir) }]));
 const symCache = new Map();
 const symbols = (site, chunk) => { const p = path.join(mapping[site].dir, "assets", chunk); if (!symCache.has(p)) symCache.set(p, existsSync(p) ? symbolsOf(p) : {}); return symCache.get(p); };
-const mapping = JSON.parse(readFileSync("out/mapping.json", "utf8"));
-const vueAliases = { portal: JSON.parse(readFileSync("out/vue-exports.portal.final.json", "utf8")).aliases, usercenter: JSON.parse(readFileSync("out/vue-exports.usercenter.final.json", "utf8")).aliases };
+const aliasCache = {};
+const vueAliasesOf = (site) => (aliasCache[site] ??= (() => { const f = path.join(ROOT, "registry", `${APP_OF[site]}.json`); return existsSync(f) ? JSON.parse(readFileSync(f, "utf8")).vue : {}; })());
 const cache = new Map();
 const read = (site, chunk) => { const p = path.join(mapping[site].dir, "assets", chunk); if (!cache.has(p)) cache.set(p, existsSync(p) ? readFileSync(p, "utf8") : ""); return cache.get(p); };
 function exportsOf(src) { const m = {}; for (const e of src.matchAll(/export\{([^}]+)\}/g)) for (const part of e[1].split(",")) { const [l, n] = part.trim().split(/\s+as\s+/); m[n ?? l] = l; } return m; }
@@ -25,7 +29,7 @@ export function describe(site, chunk) {
       const [imported, local] = part.trim().split(/\s+as\s+/).map((x) => x.trim());
       if (imported === "__tla") continue;
       const loc = local ?? imported;
-      if (isVue) { const a = vueAliases[site][imported]; out.push({ local: loc, from: "vue-runtime", name: a?.name ?? "?", lib: a?.from ?? "vue" }); continue; }
+      if (isVue) { const a = vueAliasesOf(site)[imported]; out.push({ local: loc, from: "vue-runtime", name: a?.name ?? "?", lib: a?.from ?? "vue" }); continue; }
       const srcLocal = ex?.[imported];
       const sym = symbols(site, from)[imported];
       const sn = sym && sym.kind !== "unknown" ? { def: sym.def, componentName: sym.componentName } : srcLocal ? snippet(read(site, from), srcLocal) : { def: "(源文件无此导出)" };
@@ -35,7 +39,7 @@ export function describe(site, chunk) {
   }
   return out;
 }
-if (process.argv[2]) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href && process.argv[2]) {
   const [site, chunk, outFile] = process.argv.slice(2);
   const res = describe(site, chunk);
   const md = ["# 导入提示：" + chunk, "", "| 本地名 | 来源 | 类型 | 识别 | 定义片段 |", "|---|---|---|---|---|", ...res.map((r) => `| \`${r.local}\` | ${r.from} | ${r.kind ?? r.lib} | ${r.name ?? r.componentName ?? ""} | ${r.def ? "`" + r.def.slice(0, 200).replace(/\|/g, "\\|") + "`" : ""} |`)].join("\n");

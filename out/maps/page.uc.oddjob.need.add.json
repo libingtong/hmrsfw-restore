@@ -1,0 +1,168 @@
+{
+ "id": "page.uc.oddjob.need.add",
+ "chunk": "legacy-dist/usercenter/assets/need-job-add.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "fe": "defineComponent",
+  "ge": "useRoute (vue-router)",
+  "ve": "useRouter (vue-router)",
+  "m": "ref",
+  "D": "onMounted",
+  "ye": "inject",
+  "be": "reactive",
+  "u": "resolveComponent",
+  "N": "openBlock",
+  "Y": "createElementBlock",
+  "a": "createVNode",
+  "l": "withCtx",
+  "h": "createTextVNode",
+  "E": "unref",
+  "he": "Fragment",
+  "_e": "renderList",
+  "w": "createBlock",
+  "B": "createCommentVNode",
+  "ke": "toDisplayString"
+ },
+ "entry": {
+  "Ie": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "M": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "j": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "F": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "V": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "Pe": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "A": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "R": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "S": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "we": {
+   "original": "ad",
+   "path": "@/legacy",
+   "export": "checkSensitive",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "Te": {
+   "original": "index.api.175161560754519.js#a",
+   "path": "@/api/oddShareSurplusJobInfo",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/queryById"
+  },
+  "xe": {
+   "original": "index.api.175161560754519.js#e",
+   "path": "@/api/oddShareSurplusJobInfo",
+   "export": "edit",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/edit"
+  },
+  "Ne": {
+   "original": "index.api.175161560754519.js#b",
+   "path": "@/api/oddShareSurplusJobInfo",
+   "export": "add",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/add"
+  }
+ },
+ "shared": {
+  "qe": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "We": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ue": {
+   "original": "extractpositionmodal.1751615607545.js#e",
+   "path": "@/shared/extractpositionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "De": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ye": {
+   "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/Content/Content.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.Content"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

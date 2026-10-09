@@ -103,7 +103,7 @@ E5 的密钥：前端需要 SM2 公钥（加密请求体）和 SM4 密钥（解�
   "route": "/oddJob", "sourceChunk": "legacy-dist/portal/assets/index.178332063620048.js",
   "components": [{ "name": "index", "scopeId": "data-v-87289232" }, { "name": "recommend", "scopeId": "data-v-6402d96c" }],
   "maps": "out/maps/<id>.json（按页裁剪：只含本 chunk 用到的 Vue 别名、入口导出、接口函数、共享组件）",
-  "target": "restore/portal/src/views/oddJob/index.vue", "subComponentDir": "restore/portal/src/views/oddJob/index/",
+  "target": "apps/portal/src/views/oddJob/index.vue", "subComponentDir": "apps/portal/src/views/oddJob/index/",
   "stylesProvidedByScript": true, "model": "sonnet-5.5"
 }
 ```

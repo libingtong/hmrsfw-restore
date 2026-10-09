@@ -1,0 +1,58 @@
+{
+ "id": "page.uc.collage.nojob",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 11.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/nojob.1751615607545.js",
+ "components": [
+  {
+   "name": "vascader",
+   "scopeId": "data-v-97f206ea"
+  },
+  {
+   "name": "nojob",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [
+  "data-v-97f206ea"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/nojob.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/collage/nojob.vue",
+ "subComponentDir": "apps/uc/src/views/collage/nojob/",
+ "routes": [
+  {
+   "path": "/collage/nojob",
+   "name": "studentNojob"
+  }
+ ],
+ "recordPath": "/collage/nojob",
+ "maps": "out/maps/page.uc.collage.nojob.json",
+ "hints": "out/hints/page.uc.collage.nojob.md",
+ "deps": {
+  "entry": [
+   "b6",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754513.js#h",
+   "index.api.175161560754513.js#i",
+   "index.api.175161560754513.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,52 @@
+{
+ "id": "shared.portal.FriendLink",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.7,
+ "chunkKb": 2.7,
+ "sourceChunk": "legacy-dist/portal/assets/FriendLink.1783320636200.js",
+ "components": [
+  {
+   "name": "FriendLink",
+   "scopeId": "data-v-3fcad7da"
+  }
+ ],
+ "scopeIds": [
+  "data-v-3fcad7da"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/FriendLink.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/FriendLink.vue",
+ "exports": {
+  "F": {
+   "export": "default"
+  }
+ },
+ "registryKey": "FriendLink.1783320636200.js",
+ "usedBy": [
+  "page.portal.xjhm.cityHome.index"
+ ],
+ "maps": "out/maps/shared.portal.FriendLink.json",
+ "hints": "out/hints/shared.portal.FriendLink.md",
+ "deps": {
+  "entry": [
+   "B",
+   "a",
+   "b",
+   "f",
+   "n"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

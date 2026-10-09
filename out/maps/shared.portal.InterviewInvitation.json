@@ -1,0 +1,86 @@
+{
+ "id": "shared.portal.InterviewInvitation",
+ "chunk": "legacy-dist/portal/assets/InterviewInvitation.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "N": "defineComponent",
+  "Y": "ref",
+  "Q": "reactive",
+  "W": "onMounted",
+  "c": "resolveComponent",
+  "L": "openBlock",
+  "ee": "createElementBlock",
+  "a": "createVNode",
+  "s": "withCtx",
+  "te": "unref",
+  "ae": "createBlock",
+  "h": "createTextVNode",
+  "le": "toDisplayString",
+  "ie": "createCommentVNode",
+  "se": "pushScopeId",
+  "oe": "popScopeId",
+  "C": "createElementVNode"
+ },
+ "entry": {
+  "k": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "R": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "r": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "A": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "X": {
+   "original": "index.api.17833206362007.js#b",
+   "path": "@/api/jobInterviewInvitation",
+   "export": "interviewTemplate",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobInterviewInvitation/interviewTemplate"
+  },
+  "Z": {
+   "original": "index.api.17833206362007.js#c",
+   "path": "@/api/jobInterviewInvitation",
+   "export": "getInterviewPosition",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobInterviewInvitation/getInterviewPosition"
+  },
+  "$": {
+   "original": "index.api.17833206362007.js#d",
+   "path": "@/api/jobInterviewInvitation",
+   "export": "interviewInvitation",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobInterviewInvitation/interviewInvitation"
+  }
+ },
+ "shared": {
+  "J": {
+   "original": "message.1783320636200.js#s",
+   "path": "@/shared/message.ts",
+   "export": "s",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

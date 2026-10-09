@@ -1,0 +1,52 @@
+{
+ "id": "page.uc.collectOdd",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/collectOdd.1751615607545.js",
+ "components": [
+  {
+   "name": "collectOdd",
+   "scopeId": "data-v-8dcc9d85"
+  }
+ ],
+ "scopeIds": [
+  "data-v-8dcc9d85"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/collectOdd.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/collectOdd.vue",
+ "subComponentDir": "apps/uc/src/views/collectOdd/",
+ "routes": [
+  {
+   "path": "/collectOdd",
+   "name": "collectOdd"
+  }
+ ],
+ "recordPath": "/collectOdd",
+ "maps": "out/maps/page.uc.collectOdd.json",
+ "hints": "out/hints/page.uc.collectOdd.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "bs",
+   "bt",
+   "d",
+   "h",
+   "m"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

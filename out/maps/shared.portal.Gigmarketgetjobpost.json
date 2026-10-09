@@ -1,0 +1,101 @@
+{
+ "id": "shared.portal.Gigmarketgetjobpost",
+ "chunk": "legacy-dist/portal/assets/Gigmarketgetjobpost.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "G": "defineComponent",
+  "L": "ref",
+  "k": "reactive",
+  "N": "onMounted",
+  "x": "resolveComponent",
+  "b": "openBlock",
+  "w": "createElementBlock",
+  "B": "createElementVNode",
+  "y": "createVNode",
+  "C": "withCtx",
+  "z": "Fragment",
+  "P": "renderList",
+  "g": "unref",
+  "E": "withModifiers",
+  "R": "createBlock",
+  "U": "normalizeClass",
+  "j": "createTextVNode",
+  "F": "toDisplayString"
+ },
+ "entry": {
+  "H": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Y": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "A": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "l",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "$": {
+   "original": "t",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "q": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "J": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "K": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "T": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "O": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "W": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "tt": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

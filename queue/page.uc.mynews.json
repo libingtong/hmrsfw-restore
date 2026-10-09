@@ -1,0 +1,50 @@
+{
+ "id": "page.uc.mynews",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/mynews.1751615607545.js",
+ "components": [
+  {
+   "name": "mynews",
+   "scopeId": "data-v-127bb505"
+  }
+ ],
+ "scopeIds": [
+  "data-v-127bb505"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/mynews.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/mynews.vue",
+ "subComponentDir": "apps/uc/src/views/mynews/",
+ "routes": [
+  {
+   "path": "/mynews",
+   "name": "mynews"
+  }
+ ],
+ "recordPath": "/mynews",
+ "maps": "out/maps/page.uc.mynews.json",
+ "hints": "out/hints/page.uc.mynews.md",
+ "deps": {
+  "entry": [
+   "ai",
+   "ba",
+   "bb",
+   "d",
+   "s"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

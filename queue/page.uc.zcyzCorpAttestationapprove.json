@@ -1,0 +1,88 @@
+{
+ "id": "page.uc.zcyzCorpAttestationapprove",
+ "type": "page",
+ "status": "segmented",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 63.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/zcyzCorpAttestationapprove.1751615607545.js",
+ "components": [
+  {
+   "name": "BusinessModal",
+   "scopeId": "data-v-00292fa9"
+  },
+  {
+   "name": "zcyzCorpAttestationapprove",
+   "scopeId": "data-v-e472039d"
+  }
+ ],
+ "scopeIds": [
+  "data-v-00292fa9",
+  "data-v-e472039d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/map.1751615607545.css",
+  "legacy-dist/usercenter/assets/zcyzCorpAttestationapprove.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/zcyzCorpAttestationapprove.vue",
+ "subComponentDir": "apps/uc/src/views/zcyzCorpAttestationapprove/",
+ "routes": [
+  {
+   "path": "/zcyzCorpAttestationapprove",
+   "name": "zcyzCorpAttestationapprove"
+  }
+ ],
+ "recordPath": "/zcyzCorpAttestationapprove",
+ "maps": "out/maps/page.uc.zcyzCorpAttestationapprove.json",
+ "hints": "out/hints/page.uc.zcyzCorpAttestationapprove.md",
+ "deps": {
+  "entry": [
+   "B",
+   "E",
+   "F",
+   "I",
+   "M",
+   "O",
+   "P",
+   "Q",
+   "R",
+   "U",
+   "a",
+   "b",
+   "c",
+   "d",
+   "e",
+   "f",
+   "h",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [
+   "XfLoaing.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "email.1751615607545.js",
+   "gaode.1751615607545.js",
+   "idCard.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "segments": [
+  "seg.uc.zcyzCorpAttestationapprove.1",
+  "seg.uc.zcyzCorpAttestationapprove.2",
+  "seg.uc.zcyzCorpAttestationapprove.3"
+ ]
+}

@@ -1,0 +1,141 @@
+{
+ "id": "page.uc.liveApplyAdd",
+ "chunk": "legacy-dist/usercenter/assets/add.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "H": "defineComponent",
+  "le": "useRoute (vue-router)",
+  "ie": "watch",
+  "M": "reactive",
+  "K": "onMounted",
+  "m": "resolveComponent",
+  "k": "openBlock",
+  "L": "createElementBlock",
+  "t": "createVNode",
+  "a": "withCtx",
+  "f": "createElementVNode",
+  "A": "createCommentVNode",
+  "q": "toDisplayString",
+  "V": "createBlock",
+  "S": "createTextVNode",
+  "Y": "unref",
+  "J": "ref",
+  "Ce": "onBeforeMount",
+  "Se": "useRouter (vue-router)",
+  "Ne": "inject",
+  "Te": "Fragment",
+  "Pe": "renderList",
+  "we": "pushScopeId",
+  "Le": "popScopeId"
+ },
+ "entry": {
+  "X": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ne": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Z": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "Re": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "te": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "U": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "oe": {
+   "original": "bu",
+   "path": "@/legacy/utils",
+   "export": "isMobilePhone",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {
+  "qe": {
+   "original": "index.api.175161560754516.js#l",
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "listForPickUp",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLiveTelecastApplyPosition/listForPickUp"
+  },
+  "Fe": {
+   "original": "index.api.175161560754516.js#b",
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLiveTelecastApply/queryById"
+  },
+  "Ue": {
+   "original": "index.api.175161560754516.js#a",
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "list2",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLiveTelecastApplyPosition/list"
+  },
+  "Ae": {
+   "original": "index.api.175161560754516.js#s",
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "save",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLiveTelecastApply/save"
+  }
+ },
+ "shared": {
+  "Be": {
+   "original": "dictCodeTreeOne.1751615607545.js#d",
+   "path": "@/shared/dictCodeTreeOne.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "$e": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "se": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "E": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

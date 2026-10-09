@@ -1,0 +1,61 @@
+{
+ "id": "page.uc.BeOnProbation",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 9.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/BeOnProbation.1751615607545.js",
+ "components": [
+  {
+   "name": "BeOnProbation",
+   "scopeId": "data-v-c36f174a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c36f174a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/BeOnProbation.1751615607545.css",
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/metormodal.1751615607545.css",
+  "legacy-dist/usercenter/assets/map.1751615607545.css",
+  "legacy-dist/usercenter/assets/workType.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/BeOnProbation.vue",
+ "subComponentDir": "apps/uc/src/views/BeOnProbation/",
+ "routes": [
+  {
+   "path": "/BeOnProbation",
+   "name": "BeOnProbation"
+  }
+ ],
+ "recordPath": "/BeOnProbation",
+ "maps": "out/maps/page.uc.BeOnProbation.json",
+ "hints": "out/hints/page.uc.BeOnProbation.md",
+ "deps": {
+  "entry": [
+   "a",
+   "a9",
+   "aB",
+   "ac",
+   "ae",
+   "d",
+   "m",
+   "p",
+   "x"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "dictCodeTreeOne.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

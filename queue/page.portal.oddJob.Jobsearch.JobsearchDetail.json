@@ -1,0 +1,75 @@
+{
+ "id": "page.portal.oddJob.Jobsearch.JobsearchDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 9.4,
+ "sourceChunk": "legacy-dist/portal/assets/JobsearchDetail.1783320636200.js",
+ "components": [
+  {
+   "name": "JobsearchDetail",
+   "scopeId": "data-v-803154db"
+  }
+ ],
+ "scopeIds": [
+  "data-v-803154db"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/JobsearchDetail.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/oddJob/Jobsearch/JobsearchDetail.vue",
+ "subComponentDir": "apps/portal/src/views/oddJob/Jobsearch/JobsearchDetail/",
+ "routes": [
+  {
+   "path": "/JobsearchDetail",
+   "name": "JobsearchDetail",
+   "title": "找活信息详情"
+  }
+ ],
+ "recordPath": "/JobsearchDetail",
+ "maps": "out/maps/page.portal.oddJob.Jobsearch.JobsearchDetail.json",
+ "hints": "out/hints/page.portal.oddJob.Jobsearch.JobsearchDetail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "C",
+   "S",
+   "as",
+   "bT",
+   "f",
+   "m",
+   "o",
+   "p",
+   "u",
+   "x",
+   "y"
+  ],
+  "shared": [
+   "complaint.1783320636200.js",
+   "nowContact.vue_vue_type_script_setup_true_lang.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620024.js#c",
+   "index.api.178332063620024.js#d",
+   "index.api.178332063620024.js#e",
+   "index.api.178332063620024.js#h",
+   "index.api.178332063620024.js#i",
+   "index.api.178332063620024.js#j"
+  ],
+  "modules": [
+   "sm.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.complaint",
+   "shared.portal.modules",
+   "shared.portal.nowContact"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

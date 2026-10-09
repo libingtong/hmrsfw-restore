@@ -1,0 +1,68 @@
+{
+ "id": "shared.portal.adsCenter",
+ "chunk": "legacy-dist/portal/assets/adsCenter.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "q": "defineComponent",
+  "z": "useRoute (vue-router)",
+  "E": "useRouter (vue-router)",
+  "G": "watch",
+  "N": "reactive",
+  "R": "onBeforeMount",
+  "U": "onMounted",
+  "$": "resolveComponent",
+  "h": "openBlock",
+  "k": "createElementBlock",
+  "D": "createElementVNode",
+  "K": "Fragment",
+  "M": "renderList",
+  "x": "createCommentVNode",
+  "V": "normalizeClass",
+  "Y": "createBlock",
+  "L": "unref"
+ },
+ "entry": {
+  "Z": {
+   "original": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "H": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "P": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "J": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "W": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

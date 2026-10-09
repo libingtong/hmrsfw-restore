@@ -1,0 +1,53 @@
+{
+ "id": "page.portal.talents.conference.detail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.5,
+ "sourceChunk": "legacy-dist/portal/assets/detail.178332063620010.js",
+ "components": [
+  {
+   "name": "detail",
+   "scopeId": "data-v-35387565"
+  }
+ ],
+ "scopeIds": [
+  "data-v-35387565"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/detail.17833206362008.css",
+  "legacy-dist/portal/assets/detail.178332063620010.css"
+ ],
+ "target": "apps/portal/src/views/talents/conference/detail.vue",
+ "subComponentDir": "apps/portal/src/views/talents/conference/detail/",
+ "routes": [
+  {
+   "path": "/talents/conference/detail",
+   "name": "/talents/conference/detail",
+   "title": "会场服务"
+  }
+ ],
+ "recordPath": "/talents/conference/detail",
+ "maps": "out/maps/page.portal.talents.conference.detail.json",
+ "hints": "out/hints/page.portal.talents.conference.detail.md",
+ "deps": {
+  "entry": [
+   "B",
+   "V",
+   "d",
+   "f"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620039.js#q"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c05"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

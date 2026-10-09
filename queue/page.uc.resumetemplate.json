@@ -1,0 +1,54 @@
+{
+ "id": "page.uc.resumetemplate",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 2.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/resumetemplate.1751615607545.js",
+ "components": [
+  {
+   "name": "resumetemplate",
+   "scopeId": "data-v-f1f72af7"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f1f72af7"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/resumetemplate.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/resumetemplate.vue",
+ "subComponentDir": "apps/uc/src/views/resumetemplate/",
+ "routes": [
+  {
+   "path": "/resumetemplate",
+   "name": "Resumetemplate"
+  }
+ ],
+ "recordPath": "/resumetemplate",
+ "maps": "out/maps/page.uc.resumetemplate.json",
+ "hints": "out/hints/page.uc.resumetemplate.md",
+ "deps": {
+  "entry": [
+   "B",
+   "d",
+   "h",
+   "m"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17516156075456.js#P",
+   "index.api.17516156075456.js#Q"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/resumetemplate",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

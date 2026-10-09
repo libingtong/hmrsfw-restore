@@ -1,0 +1,42 @@
+{
+ "id": "page.uc.404",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 0.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/404.1751615607545.js",
+ "components": [
+  {
+   "name": "404",
+   "scopeId": "data-v-4c10c976"
+  }
+ ],
+ "scopeIds": [
+  "data-v-4c10c976"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/404.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/404.vue",
+ "subComponentDir": "apps/uc/src/views/404/",
+ "routes": [
+  {
+   "path": "/404",
+   "name": "404"
+  }
+ ],
+ "recordPath": "/404",
+ "maps": "out/maps/page.uc.404.json",
+ "hints": "out/hints/page.uc.404.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

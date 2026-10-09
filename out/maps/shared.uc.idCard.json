@@ -1,0 +1,32 @@
+{
+ "id": "shared.uc.idCard",
+ "chunk": "legacy-dist/usercenter/assets/idCard.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "l": "defineComponent",
+  "c": "ref",
+  "g": "reactive",
+  "f": "resolveComponent",
+  "m": "openBlock",
+  "C": "createBlock"
+ },
+ "entry": {
+  "s": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "parseIdCard",
+   "status": "restored"
+  },
+  "u": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

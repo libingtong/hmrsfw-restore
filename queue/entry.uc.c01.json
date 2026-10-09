@@ -1,0 +1,57 @@
+{
+ "id": "entry.uc.c01",
+ "type": "entry",
+ "area": "component",
+ "title": "入口全局组件：notice、index、index",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "sourceChunk": "legacy-dist/usercenter/assets/index.1751615607545.js",
+ "kb": 14.6,
+ "appCode": "018",
+ "components": [
+  {
+   "name": "notice",
+   "binding": "gpt",
+   "scopeId": null,
+   "kb": 1.1,
+   "exportedAs": [
+    "N"
+   ],
+   "file": "apps/uc/src/legacy/components/Notice.vue"
+  },
+  {
+   "name": "index",
+   "binding": "Apt",
+   "scopeId": "data-v-c401db35",
+   "kb": 10.8,
+   "exportedAs": [],
+   "file": "apps/uc/src/legacy/components/Index.vue"
+  },
+  {
+   "name": "index",
+   "binding": "Hpt",
+   "scopeId": "data-v-3b43f257",
+   "kb": 2.7,
+   "exportedAs": [],
+   "file": "apps/uc/src/legacy/components/Index.vue"
+  }
+ ],
+ "files": [
+  "apps/uc/src/legacy/components/Notice.vue",
+  "apps/uc/src/legacy/components/Index.vue"
+ ],
+ "owns": [
+  {
+   "alias": "N",
+   "path": "@/legacy/components/Notice.vue",
+   "export": "default",
+   "status": "reserved"
+  }
+ ],
+ "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",
+ "deps": {
+  "orders": []
+ }
+}

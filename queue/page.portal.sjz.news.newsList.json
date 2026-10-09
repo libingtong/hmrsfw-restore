@@ -1,0 +1,54 @@
+{
+ "id": "page.portal.sjz.news.newsList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.3,
+ "sourceChunk": "legacy-dist/portal/assets/newsList.17833206362003.js",
+ "components": [
+  {
+   "name": "newsList",
+   "scopeId": "data-v-bcaedb64"
+  }
+ ],
+ "scopeIds": [
+  "data-v-bcaedb64"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/newsList.17833206362002.css",
+  "legacy-dist/portal/assets/newsList.17833206362003.css"
+ ],
+ "target": "apps/portal/src/views/sjz/news/newsList.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/news/newsList/",
+ "routes": [
+  {
+   "path": "/newsList",
+   "name": "newsList",
+   "title": "新闻公告"
+  }
+ ],
+ "recordPath": "/newsList",
+ "maps": "out/maps/page.portal.sjz.news.newsList.json",
+ "hints": "out/hints/page.portal.sjz.news.newsList.md",
+ "deps": {
+  "entry": [
+   "c",
+   "h",
+   "n"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620018.js#a",
+   "index.api.178332063620018.js#b",
+   "index.api.178332063620018.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

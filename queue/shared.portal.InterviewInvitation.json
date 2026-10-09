@@ -1,0 +1,61 @@
+{
+ "id": "shared.portal.InterviewInvitation",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.8,
+ "chunkKb": 6.8,
+ "sourceChunk": "legacy-dist/portal/assets/InterviewInvitation.1783320636200.js",
+ "components": [
+  {
+   "name": "InterviewInvitation",
+   "scopeId": "data-v-699372eb"
+  }
+ ],
+ "scopeIds": [
+  "data-v-699372eb"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/InterviewInvitation.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/InterviewInvitation.vue",
+ "exports": {
+  "I": {
+   "export": "default"
+  }
+ },
+ "registryKey": "InterviewInvitation.1783320636200.js",
+ "usedBy": [
+  "page.portal.sjz.talent.talentList",
+  "page.portal.RecruitTalents.ResumePreview",
+  "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
+  "page.portal.guide.index",
+  "page.portal.talents.talentnew.talentList",
+  "page.portal.talents.cityHome.talentArea"
+ ],
+ "maps": "out/maps/shared.portal.InterviewInvitation.json",
+ "hints": "out/hints/shared.portal.InterviewInvitation.md",
+ "deps": {
+  "entry": [
+   "S",
+   "d",
+   "h"
+  ],
+  "shared": [
+   "message.1783320636200.js"
+  ],
+  "api": [
+   "index.api.17833206362007.js#b",
+   "index.api.17833206362007.js#c",
+   "index.api.17833206362007.js#d"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

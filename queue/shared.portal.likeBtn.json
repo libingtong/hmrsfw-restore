@@ -1,0 +1,49 @@
+{
+ "id": "shared.portal.likeBtn",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.1,
+ "chunkKb": 6.1,
+ "sourceChunk": "legacy-dist/portal/assets/likeBtn.1783320636200.js",
+ "components": [
+  {
+   "name": "likeBtn",
+   "scopeId": "data-v-a81e5626"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a81e5626"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/likeBtn.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/likeBtn.vue",
+ "exports": {
+  "l": {
+   "export": "default"
+  }
+ },
+ "registryKey": "likeBtn.1783320636200.js",
+ "usedBy": [
+  "page.portal.livejob.detail"
+ ],
+ "maps": "out/maps/shared.portal.likeBtn.json",
+ "hints": "out/hints/shared.portal.likeBtn.md",
+ "deps": {
+  "entry": [
+   "ar"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620013.js#a",
+   "index.api.178332063620013.js#h"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

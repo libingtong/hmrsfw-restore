@@ -1,0 +1,65 @@
+{
+ "id": "page.portal.BeOnProbation.ProbationPostDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 7.7,
+ "sourceChunk": "legacy-dist/portal/assets/ProbationPostDetail.1783320636200.js",
+ "components": [
+  {
+   "name": "ProbationPostDetail",
+   "scopeId": "data-v-27b58645"
+  }
+ ],
+ "scopeIds": [
+  "data-v-27b58645"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/ProbationPostDetail.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/BeOnProbation/ProbationPostDetail.vue",
+ "subComponentDir": "apps/portal/src/views/BeOnProbation/ProbationPostDetail/",
+ "routes": [
+  {
+   "path": "/ProbationPostDetail",
+   "name": "ProbationPostDetail",
+   "title": "就业见习岗位详情"
+  }
+ ],
+ "recordPath": "/ProbationPostDetail",
+ "maps": "out/maps/page.portal.BeOnProbation.ProbationPostDetail.json",
+ "hints": "out/hints/page.portal.BeOnProbation.ProbationPostDetail.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "S",
+   "d",
+   "f",
+   "m",
+   "o",
+   "p",
+   "v",
+   "w",
+   "x",
+   "y"
+  ],
+  "shared": [
+   "resumemodal.1783320636200.js"
+  ],
+  "api": [
+   "index.api.1783320636200.js#d",
+   "index.api.1783320636200.js#e",
+   "index.api.1783320636200.js#f",
+   "index.api.17833206362002.js#q"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

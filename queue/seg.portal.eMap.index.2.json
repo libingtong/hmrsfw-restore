@@ -1,0 +1,100 @@
+{
+ "id": "seg.portal.eMap.index.2",
+ "type": "segment",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "page": "page.portal.eMap.index",
+ "index": 2,
+ "of": 2,
+ "assemble": true,
+ "after": [
+  "seg.portal.eMap.index.1"
+ ],
+ "kb": 12,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620031.js",
+ "range": [
+  19212,
+  31510
+ ],
+ "components": [],
+ "parts": [
+  {
+   "component": "index",
+   "part": "template",
+   "range": [
+    19212,
+    31510
+   ],
+   "kb": 12,
+   "file": "apps/portal/src/views/eMap/index/_seg/index.template.html"
+  }
+ ],
+ "outputs": [
+  "apps/portal/src/views/eMap/index/_seg/index.template.html"
+ ],
+ "target": "apps/portal/src/views/eMap/index.vue",
+ "subComponentDir": "apps/portal/src/views/eMap/index/",
+ "scopeIds": [
+  "data-v-baaa065e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.17833206362005.css",
+  "legacy-dist/portal/assets/gaode.17833206362002.css",
+  "legacy-dist/portal/assets/index.1783320636200110.css",
+  "legacy-dist/portal/assets/index.178332063620031.css"
+ ],
+ "routes": [
+  {
+   "path": "/eMap",
+   "name": "eMap",
+   "title": "就业E图"
+  }
+ ],
+ "recordPath": "/eMap",
+ "maps": "out/maps/page.portal.eMap.index.json",
+ "hints": "out/hints/page.portal.eMap.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "N",
+   "ar",
+   "c",
+   "e",
+   "f",
+   "g",
+   "h",
+   "u",
+   "w"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "gaode.vue_vue_type_style_index_0_lang.17833206362002.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620020.js#a",
+   "index.api.178332063620022.js#g"
+  ],
+  "modules": [
+   "adr.1783320636200.js",
+   "work.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "shared.portal.gaode2",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [19212, 31510)（约 12KB），其余部分由同页的其他分段负责。",
+  "组件 index 只还原 <template> 部分（setup 最后 return 的渲染函数），写成 apps/portal/src/views/eMap/index/_seg/index.template.html，内容就是将来 <template> 里的模板。",
+  "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.portal.eMap.index --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
+ ]
+}

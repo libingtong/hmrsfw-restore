@@ -1,0 +1,51 @@
+{
+ "id": "shared.portal.FriendLinks",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 13.2,
+ "chunkKb": 13.2,
+ "sourceChunk": "legacy-dist/portal/assets/FriendLinks.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "components": [
+  {
+   "name": "FriendLinks",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/FriendLinks.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "FriendLinks.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "usedBy": [
+  "page.portal.xjhm.home.index"
+ ],
+ "maps": "out/maps/shared.portal.FriendLinks.json",
+ "hints": "out/hints/shared.portal.FriendLinks.md",
+ "deps": {
+  "entry": [
+   "B",
+   "a",
+   "ab",
+   "b",
+   "f",
+   "n"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

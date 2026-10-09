@@ -1,0 +1,47 @@
+{
+ "id": "page.portal.oddJob.rtInto.odd",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.6,
+ "sourceChunk": "legacy-dist/portal/assets/odd.1783320636200.js",
+ "components": [
+  {
+   "name": "odd",
+   "scopeId": "data-v-09c277fa"
+  }
+ ],
+ "scopeIds": [
+  "data-v-09c277fa"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/odd.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/oddJob/rtInto/odd.vue",
+ "subComponentDir": "apps/portal/src/views/oddJob/rtInto/odd/",
+ "routes": [],
+ "recordPath": "/recruitworkers",
+ "maps": "out/maps/page.portal.oddJob.rtInto.odd.json",
+ "hints": "out/hints/page.portal.oddJob.rtInto.odd.md",
+ "deps": {
+  "entry": [
+   "C",
+   "E",
+   "m",
+   "o",
+   "v",
+   "x"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.oddJob.recruitworkers.index"
+}
