@@ -4,7 +4,8 @@
 //   - pages → the default page model (还原-Sonnet) on either machine;
 //   - cheap tier (DeepSeek, GLM) only when cfg.cheapTier.enabled, the page is < 30KB and not complex
 //     (complex = ≥ 30KB or ≥ 10 validation rules). While either cheap family has fewer than coldStartRuns finished runs in
-//     the page's tier, the order goes to both (dual; branches -d / -g); afterwards to the cheapest family whose first-pass
+//     the page's tier, the order goes to both (dual; branches -d / -g) — or, when the roster has only one cheap family,
+//     to that family alone (single; Sonnet if it has no free slot); afterwards to the cheapest family whose first-pass
 //     rate ≥ minFirstPass, Sonnet last;
 //   - agents of the same family on both machines share capability data (ledger.familyCapability) and each has its own
 //     free slots: maxConcurrent + preQueue − active tasks (pre-queue = running + 1).
@@ -60,10 +61,19 @@ export function route(wo, ctx, { kind = "restore", exclude = [] } = {}) {
   if (f.kb >= ct.maxKb || f.complex) return { candidates: [defCand(f.complex ? `复杂页（${f.kb}KB，校验规则 ${f.rules}）→ Sonnet` : `≥ ${ct.maxKb}KB → Sonnet`)], features: f, dual: false };
   const cheap = ct.families.map((fam) => { const ag = roster.family(fam, "restorer"); return ag.length ? cand(fam, ag, "", ag[0].model) : null; }).filter(Boolean);
   if (!cheap.length) return { candidates: [defCand("名册里没有便宜档还原员")], features: f, dual: false };
-  const cold = cheap.filter((c) => c.runs < ct.coldStartRuns);
-  if (cold.length && cheap.length >= 2) {
-    cheap.forEach((c) => (c.reason = `冷启动（${f.tier} 档 ${c.runs}/${ct.coldStartRuns} 次）双派`));
-    return { candidates: [...cheap.slice(0, 2), defCand("便宜档没有空位时回退 Sonnet")], features: f, dual: true };
+  // Cold start counts only families with an agent usable here (not excluded, e.g. by machine).
+  const usable = cheap.filter((c) => c.agents.length);
+  const cold = usable.filter((c) => c.runs < ct.coldStartRuns);
+  if (cold.length && usable.length >= 2) {
+    usable.forEach((c) => (c.reason = `冷启动（${f.tier} 档 ${c.runs}/${ct.coldStartRuns} 次）双派`));
+    return { candidates: [...usable.slice(0, 2), defCand("便宜档没有空位时回退 Sonnet")], features: f, dual: true };
+  }
+  // Only one cheap family left (others disabled, not configured or not on this machine): there is no twin, so the cold
+  // family gets the page alone; without this its first-pass rate stays empty and it never passes minFirstPass.
+  if (cold.length) {
+    const [c] = usable;
+    c.reason = `冷启动（${f.tier} 档 ${c.runs}/${ct.coldStartRuns} 次）单派（便宜档只有 ${c.family} 一个家族）`;
+    return { candidates: [c, defCand("便宜档没有空位时回退 Sonnet")], features: f, dual: false };
   }
   const ok = cheap.filter((c) => (c.firstPassRate ?? 0) >= ct.minFirstPass).sort((a, b) => (a.expectedCost ?? Infinity) - (b.expectedCost ?? Infinity));
   ok.forEach((c) => (c.reason = `便宜档：首通率 ${(c.firstPassRate * 100).toFixed(0)}%，预计 ${c.expectedCost}`));

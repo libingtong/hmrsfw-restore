@@ -72,6 +72,10 @@
 ```
 
 - `cheapTier.enabled` 就是便宜档的开关。G（小样本重测）通过后由裁定员或李炳通改成 `true`。
+- 便宜档的路由（`route.mjs`）：只看 `cheapTier.families` 里、名册中有已启用（`enabled` 不是 `false`）还原员的家族；判断冷启动单派还是双派时，只数本次可用的家族（`tick` 只为本机还原员派单，本机没有某家族的还原员就不算这个家族）。
+  - 两个及以上家族，且有一个还在冷启动（该页所在档 `runs < coldStartRuns`）：双派，前两个家族各一张，分支后缀 `-d` / `-g`。
+  - 只剩一个家族且在冷启动（例如 GLM 还原员停用，或 `families` 只写 `["deepseek"]`）：单派给这个家族，原因写「冷启动（<档> <runs>/<coldStartRuns> 次）单派」；它没有空位时回退 Sonnet。不单派的话它的首通率一直为空、按 0 算，永远达不到 `minFirstPass`。
+  - 冷启动结束后：首通率 ≥ `minFirstPass` 的家族按预计成本排序，Sonnet 最后；都不达标就只派 Sonnet。
 - `priceFactor` 只用于给候选排序，数值是占位，拿到实际价格后替换。
 - 名册可以加两个可选字段：`instructionsVersion`（该智能体的指令版本，进能力表的键）、`enabled: false`（暂时不派单）。其他字段不删不改。
 
@@ -121,7 +125,7 @@
 
 **合并**：`git merge --no-ff`，在 `origin/integration` 的临时 worktree 里做，持有 `locks/integration`。页面单改到 `src/legacy|shared|api|utils/`、`package.json`、锁文件时拒绝合并，按失败处理。入口包、共享组件单只能改清单里 `owner` 是自己（或没有 owner）的公共库文件；升级单只能改 owner 当前没有进行中任务的文件。冲突就放弃合并，元数据记 `mergeConflict.<attempt>`，按失败处理（`merge_conflict`）。
 
-**审计**：抽检率按生成家族的档位：审计不满 20 次为冷启动 50%，漏检率 > 10% 为加严 100%，满 50 次且漏检率 < 3% 为放宽 10%，其余 20%。是否抽中由任务 id 和尝试次数的哈希决定，重复处理结果不变。复核员从「家族不属于本分支所有参与者」的复核员里选负载最低的；没有就跳过审计，计入每日摘要。
+**审计**：抽检率按生成家族的档位：审计不满 20 次为冷启动 50%，漏检率 > 10% 为加严 100%，满 50 次且漏检率 < 3% 为放宽 10%，其余 20%。是否抽中由任务 id 和尝试次数的哈希决定，重复处理结果不变。复核员从「家族不属于本分支所有参与者」的复核员里选负载最低的。例如 DeepSeek 还原、Opus 修正的分支只能由 GLM 家族的复核员复核。没有可用的复核员时不卡住：页面照常 `done`，评论写明跳过审计和参与家族，`advance` / `tick` 输出一条 anomaly（检查名册的复核员），并计入每日摘要。
 
 **集成回归**：`integration` 新合入满 20 单，或没有还原、审计、裁定中的任务时，建 `purpose=regression` 的集成任务（固定在当时的 `integration` 提交上）。通过就把 `main` 快进到该提交；失败就对 `main..该提交` 之间、还没被回退过的合并提交二分。每一步是一张 `purpose=bisect` 的集成任务，只测回归里失败的页（门槛没给出失败页时测全部已通过页），并且只测在被测提交里已经存在的页；没有这样的页时这一步直接算通过、不建任务。找到后回退该合并，相应任务重新走失败规则，再跑一次回归。回归、二分任务的创建键带「回归轮次」，新一轮不会撞上上一轮已结束的任务。
 
@@ -196,7 +200,7 @@
 ## 测试
 
 ```bash
-node --test tools/test/scheduler.test.mjs     # 场景：完整链路、双派、打包、等录制、升级单、回归二分、规则复核、限流、dry-run、路由、已知差异
+node --test tools/test/scheduler.test.mjs     # 场景：完整链路、双派、单家族冷启动单派、打包、等录制、升级单、回归二分、规则复核、限流、dry-run、路由、无异家族复核员、已知差异
 node --test tools/test/concurrency.test.mjs   # 3 个 tick 并发 × 20 轮，两种锁模式
 node --test tools/test/machines.test.mjs      # 两台机器：并发领取、先到先得与退避、两个 --machine 的 tick 并发、advance 只在所属机器、暂停/接管、资产判断、C 的工单格式
 ```
