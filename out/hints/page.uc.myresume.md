@@ -22,7 +22,7 @@
 | `Oe` | index.api.17516156075456.js | api | @/api/api-56 `showElegant` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/showElegant",method:"get",params:e})` |
 | `$e` | index.api.17516156075456.js | api | @/api/api-56 `refresh` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/refresh",method:"get",params:e})` |
 | `P` | index.api.17516156075456.js | api | @/api/api-56 `entrust` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/entrust",method:"get",params:e})` |
-| `Le` | index.api.17516156075456.js | api | @/api/api-56 `downPdf`（reserved） | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/downPdf",method:"get",responseType:"blob",headers:{"Content-Type":"application/json; application/octet-stream"},params:e})` |
+| `Le` | index.api.17516156075456.js | api | @/api/api-56 `downPdf` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/downPdf",method:"get",responseType:"blob",headers:{"Content-Type":"application/json; application/octet-stream"},params:e})` |
 | `Ne` | index.api.17516156075456.js | api | @/api/api-56 `queryIzCanDeleteViares` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/queryIzCanDeleteViares",method:"get",params:e})` |
 | `Ve` | index.api.17516156075456.js | api | @/api/api-56 `deleteItem` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/delete",method:"delete",params:e})` |
 | `De` | index.api.17516156075456.js | api | @/api/api-56 `showDefault` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/showDefault",method:"get",params:e})` |
