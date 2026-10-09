@@ -95,7 +95,7 @@ node tools/api-inventory.mjs --app <hmrsfw-vue> [--orders <含 queue/ 的目录>
 
 ## 遗留与后续
 
-- **HM-18**：部署时补 Nacos `jeecg.shiro.excludeUrls`、加密字典和网关路由（见结论）；用实测补齐 HAR 没覆盖的 476 个接口；确认 `xf-college`、`xf-alliance` 在测试环境是否存在，决定 59 条缺失是否真的阻断。
+- **HM-18（已完成，2026-10-10）**：范围改为静态结论，不在本机起后端。`xf-college`、`xf-alliance` 经不登录探测确认测试环境也未部署，59 条阻断项里 58 条不阻断，`POST /xf-job/school/user/sms` 待人工确认；结论见 `replace-assessment.md`，部署要补的配置见 `deploy-prerequisites.md`。
 - **`tools/restore-api.mjs` 漏函数（HM-29 已处理）**：HM-23 当时的统计用的是 POC 时期的正则（遇到分号就截断，`headers:{"Content-Type":"application/json; application/octet-stream"}` 这类写法会被漏掉，条件 url 也取不到），旧包里共 6 个函数受影响。`restore-api.mjs` 的 `parseApiChunk` 已改为按语法树取函数和导出表，`api-inventory.mjs` 的「restore-api」列直接调用它，两站 66 个 api chunk（门户 46、用户中心 20）现在都与「函数」一致；已落到 `hmrsfw-vue` 的只有 `apps/uc/src/api/api-56.ts` 少的 2 个 `downPdf`（`downPdf`、`downPdf2`），已补回。
 - HM-6 合入 `main` 后，`queue/` 就在仓库里，不再需要 `--orders`。
 
