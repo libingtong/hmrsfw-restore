@@ -53,6 +53,40 @@ npm --prefix "$HMRSFW_APP_DIR" run build    # 构建两个应用，输出 hmrsfw
 | 加解密密钥 | 在 `hmrsfw-vue` 里复制 `.env.example` 为 `.env.local` 填值，不得提交 |
 | HAR、登录态、原版基线、门槛产物 | 只在 Mac mini：`$RESTORE_ASSETS`、`$RESTORE_STATE` |
 
+## 录制：登录态、身份与并发
+
+录制只在 Mac mini 上跑（`tools/record-page.mjs`，见 `docs/pipeline.md` 第六、十二节），只访问两个测试站。
+
+**登录态按站点存，人只登录、不切身份。** 每个站点一份：`$RESTORE_ASSETS/.auth/pw-portal.json`、`pw-usercenter.json`。在 `$RESTORE_ASSETS` 下运行 `node <本仓库>/tools/pw-login.mjs all`，会依次弹出门户、用户中心的登录页。窗口顶部写着现在该做什么；检测到登录后自动保存并进入下一步，全部完成后窗口自动关闭，不需要另外回复。脚本不会输入账号密码。登录态大约 4 小时内失效，失效后 record-page 输出 `blocked: login-expired`；没有登录态文件时输出 `need-login:<站点>`。
+
+**身份由 record-page 切换，登录态不代表身份。** 用户中心的测试账号是同一个账号，在右上角可以切换四种身份，工单 `role` 填其中一个：
+
+| role | 身份 | 首页 |
+| --- | --- | --- |
+| `general` | 普通用户 | `/main` |
+| `jobseeker`（用户中心默认） | 求职者 | `/jobhunterhome` |
+| `corp` | 招聘单位 | `/CorpCenter` |
+| `mentor` | 职业导师 | `/mentorhome` |
+
+门户的 `role` 固定为 `portal`。POC 的旧写法 `usercenter-jobseeker`、`usercenter-corp` 仍然可以用。没有「培训机构」身份（李炳通确认，2026-10-09）。
+
+身份只存在浏览器里：localStorage 的 `radiotype` 是该身份在 `userroledata` 里的 roleId，请求头里不带身份。所以 record-page 每次开录前都会在右上角下拉框里把身份切到工单的 `role`，切换的方式和人操作一样。切换后检查一次，页面加载完再检查一次。
+
+- 账号没有这个身份，或者切换失败：输出 `blocked: need-role:<身份>`，需要人确认账号能切出这个身份。
+- 页面加载后身份变了：输出 `blocked: role-drift:<身份>`。
+- 切换过程中发出的请求不写进 HAR。HAR 的 `log._record` 记录身份，以及切换后的 localStorage（去掉 token），回放时用它还原身份。
+- 第一次成功录制某个身份时，会把「账号 + 该身份 roleId」的哈希固定到 `$RESTORE_STATE/record/identities.json`。之后账号或身份不一致时输出 `blocked: role-changed:<身份>`。
+
+单独检查四种身份能否切换：`RESTORE_ASSETS=… node tools/pw-switch-role.mjs --cross`。这个命令不保存任何东西。
+
+**并发：同身份可以同时跑，不同身份排队。** 用户中心的录制共用一把账号级锁 `$RESTORE_STATE/locks/account-usercenter.json`：
+
+- 持有者的身份和本次相同，就一起跑；不同就等待，默认最多 30 分钟（`--wait-identity <分钟>`），超时输出 `{"locked":true,"identityBusy":…}`。
+- 持有进程退出后，锁会自动清掉。
+- 门户只有一个账号、没有身份，不受这把锁限制。
+
+实测（2026-10-09）：在一个浏览器上下文里依次切到四种身份，同账号的另一个上下文每次重新加载后仍然是原身份（`pw-switch-role.mjs --cross`）。也就是说，切身份不会连带改掉别的上下文。这把锁是保守做法，按 HM-7 的决定保留：服务端数据会因身份不同而不同（例如单位信息）。
+
 ## 分支
 
 - `main`：人工审查后合入。

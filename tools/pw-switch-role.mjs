@@ -1,59 +1,46 @@
-// Headed role switch driven by the USER: open the user center with an existing storageState, the user switches the role
-// (top-right "角色"), the script waits until the role id (localStorage radiotype) differs from the one in <fromLabel>'s
-// storageState on any open user-center page, then saves a new storageState. The page also shows a "已切换，点这里保存"
-// button as a manual fallback when the change is not detected. Closing the window ends the run without saving.
-// Allow-list filtering stays on; role-switch requests (identity/role/permission/menu paths) are allowed only in this
-// window and logged as "allowed-role-flow". Usage: node tools/pw-switch-role.mjs <fromLabel> <toLabel> [minutes]
+// Checks the user-center identities of the test account, headless, with the same switch record-page uses
+// (record-lib switchIdentity: header dropdown, like a person). Nothing is saved: the login state stays one per site and
+// record-page switches the identity itself before every recording. Prints identity names and pages only.
+//   default: switches one context through the given identities (all four by default) and reports each;
+//   --cross: also reloads a second context of the same account after every switch and reports its identity, i.e. whether
+//            switching in one browser context changes the identity seen by another (README「录制」).
+// Run with RESTORE_ASSETS set. Usage: node tools/pw-switch-role.mjs [general|jobseeker|corp|mentor ...] [--cross]
 import { chromium } from "playwright";
-import { readFileSync, appendFileSync } from "node:fs";
-const [from = "usercenter-jobseeker", to = "usercenter-corp", minutes = "20"] = process.argv.slice(2);
-const WL = JSON.parse(readFileSync("out/whitelist-confirmed.json", "utf8"));
-const allow = new Set(WL.allow.map((a) => a.method + " " + a.url)); const prefixes = WL.allowPrefix ?? [];
-const ROLE_FLOW = /(Identity|identity|Role|role|permission|Permission|menu|Menu|changeUserForCompany|getSysUserByToken|getCompanyInfo)/;
-const UC = "https://hamiusercentertest.rencaidanao.com";
-const fromState = JSON.parse(readFileSync(`.auth/pw-${from}.json`, "utf8"));
-const fromRole = fromState.origins.find((o) => o.origin === UC)?.localStorage.find((i) => i.name === "radiotype")?.value ?? "";
-const browser = await chromium.launch({ headless: false });
-const ctx = await browser.newContext({ storageState: `.auth/pw-${from}.json`, viewport: { width: 1440, height: 900 }, locale: "zh-CN" });
-await ctx.route(/\/xf-api\//, (r) => {
-  const q = r.request(); const p = new URL(q.url()).pathname.replace(/^\/xf-api/, "");
-  if (allow.has(q.method() + " " + p) || prefixes.some((x) => x.method === q.method() && p.startsWith(x.prefix))) return r.continue();
-  const action = ROLE_FLOW.test(p) ? "allowed-role-flow" : "aborted";
-  appendFileSync("out/blocked-requests.jsonl", JSON.stringify({ t: new Date().toISOString(), phase: `switch:${from}->${to}`, action, method: q.method(), path: p }) + "\n");
-  return action === "aborted" ? r.abort() : r.continue();
-});
-let manual = false;
-await ctx.exposeBinding("__pwSwitchSave", () => { manual = true; });
-await ctx.addInitScript(() => {
-  const add = () => {
-    if (!document.body || document.getElementById("__pw_switch_save")) return;
-    const b = document.createElement("button"); b.id = "__pw_switch_save"; b.textContent = "已切换，点这里保存";
-    b.style.cssText = "position:fixed;left:16px;bottom:16px;z-index:2147483647;padding:10px 16px;background:#e6552e;color:#fff;border:0;border-radius:6px;font-size:14px;cursor:pointer";
-    b.onclick = () => { b.textContent = "保存中…"; window.__pwSwitchSave(); };
-    document.body.appendChild(b);
-  };
-  setInterval(add, 1500);
-});
-const page = await ctx.newPage();
-await page.goto(UC + "/");
-// The switch may navigate or open another tab: read the role from whichever user-center page answers.
-const role = async () => {
-  for (const p of ctx.pages()) if (p.url().startsWith(UC)) { const v = await p.evaluate(() => localStorage.getItem("radiotype")).catch(() => null); if (v !== null) return v; }
-  return null;
+import { IDENTITIES, ORIGIN, TEST_HOSTS, authState, identityOf, switchIdentity } from "./record-lib.mjs";
+
+const args = process.argv.slice(2);
+const cross = args.includes("--cross");
+const wanted = args.filter((a) => !a.startsWith("--"));
+const list = wanted.length ? wanted : Object.keys(IDENTITIES);
+if (!list.every((x) => IDENTITIES[x])) { console.error(`usage: node tools/pw-switch-role.mjs [${Object.keys(IDENTITIES).join("|")} ...] [--cross]`); process.exit(1); }
+const assets = process.env.RESTORE_ASSETS;
+if (!assets) { console.error("RESTORE_ASSETS must be set"); process.exit(1); }
+const auth = authState(assets, "usercenter");
+if (auth.missing || !auth.hasToken) { console.log(JSON.stringify({ ok: false, blocked: auth.missing ? "need-login:usercenter" : "login-expired" })); process.exit(2); }
+
+const browser = await chromium.launch();
+const open = async () => {
+  const ctx = await browser.newContext({ storageState: auth.file, viewport: { width: 1440, height: 900 }, locale: "zh-CN" });
+  await ctx.route("**/*", (r) => { const u = new URL(r.request().url()); return !/^https?:$/.test(u.protocol) || TEST_HOSTS.has(u.host) ? r.continue() : r.abort(); });
+  const page = await ctx.newPage();
+  const from = identityOf(auth.localStorage);
+  await page.goto(ORIGIN.usercenter + IDENTITIES[from ?? "jobseeker"].home, { waitUntil: "load", timeout: 60000 });
+  await page.waitForTimeout(5000);
+  return page;
 };
-console.log(`[${to}] 窗口已打开，请在右上角"角色"中切换到目标角色；没有自动保存时点左下角按钮（最多等待 ${minutes} 分钟）…`);
-const deadline = Date.now() + Number(minutes) * 60000; let how = "";
-while (Date.now() < deadline && browser.isConnected()) {
-  await new Promise((r) => setTimeout(r, 2000));
-  if (manual) { how = "manual"; break; }
-  const now = await role();
-  if (now && now !== fromRole) { how = "auto"; break; }
-}
-if (how) {
-  await new Promise((r) => setTimeout(r, 6000));
-  const changed = (await role()) !== fromRole;
-  await ctx.storageState({ path: `.auth/pw-${to}.json` });
-  console.log(`[${to}] 已保存 .auth/pw-${to}.json（${how === "auto" ? "检测到角色变化" : "手动保存"}，角色${changed ? "已" : "未"}变化）；当前页面 ${ctx.pages().map((p) => new URL(p.url()).pathname).join(" ")}`);
-  if (!changed) console.log(`[${to}] 警告：角色与 ${from} 相同，请确认已切换后重跑`);
-} else console.log(`[${to}] ${browser.isConnected() ? "超时" : "窗口已关闭"}，未检测到角色变化，未保存`);
-await browser.close().catch(() => {}); process.exitCode = how ? 0 : 2;
+const seen = async (page) => ({ identity: identityOf(await page.evaluate(() => ({ ...localStorage })).catch(() => ({}))), path: new URL(page.url()).pathname });
+const out = { ok: true, start: null, switches: [] };
+try {
+  const a = await open(), b = cross ? await open() : null;
+  out.start = await seen(a);
+  if (/\/login/i.test(out.start.path)) { out.ok = false; out.blocked = "login-expired"; }
+  else for (const identity of list) {
+    const r = await switchIdentity(a, identity);
+    const row = { identity, ok: r.ok, ...(r.ok ? {} : { reason: r.reason }), now: await seen(a) };
+    if (b) { await b.reload({ waitUntil: "load" }); await b.waitForTimeout(5000); row.otherContext = await seen(b); }
+    out.switches.push(row);
+    if (!r.ok) out.ok = false;
+  }
+} finally { await browser.close(); }
+console.log(JSON.stringify(out));
+process.exitCode = out.ok ? 0 : out.blocked ? 2 : 1;

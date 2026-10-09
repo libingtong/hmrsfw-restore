@@ -1,6 +1,6 @@
 // Shared pieces of the recording line (record-page.mjs, record-baseline-placeholder.mjs): work-order lookup, the two
-// test sites, the human-prepared login states, role pinning, interaction-coverage rule, per-order lock, and committing an
-// interaction script to the integration branch. See docs/pipeline.md §6 (录制员), §12 and §14.
+// test sites, the human-prepared login states, user-center identities (switch, pin, account lock), interaction-coverage
+// rule, per-order lock, and committing an interaction script to the integration branch. See docs/pipeline.md §6 (录制员), §12 and §14.
 import { execFileSync } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
@@ -13,10 +13,24 @@ export { ROOT };
 export const ORIGIN = { portal: "https://hamiwebportaltest.rencaidanao.com", usercenter: "https://hamiusercentertest.rencaidanao.com" };
 export const TEST_HOSTS = new Set(Object.values(ORIGIN).map((o) => new URL(o).host));
 export const LEGACY_DIR = { portal: "legacy-dist/portal", usercenter: "legacy-dist/usercenter" };
-export const DEFAULT_ROLE = { portal: "portal", usercenter: "usercenter-jobseeker" };
-// localStorage keys that identify the account's current role in the user center (same keys as pw-switch-role.mjs). Only
-// their hash is kept, never the values.
-const ROLE_KEYS = ["radiotype", "Recruiters", "GeneraluserId", "danwei", "idenityType", "roleId"];
+// One test account per site. The user center account has four identities (李炳通, HM-7, 2026-10-09), switched in the
+// header dropdown ("右上角"); the identity lives in the browser only (localStorage radiotype = the identity's roleId in
+// userroledata; no request header carries it), so a login state says nothing about the identity: record-page switches
+// to the work order's identity before every recording and checks it again after the page load.
+export const IDENTITIES = {
+  general: { type: null, home: "/main", label: "普通用户" },
+  jobseeker: { type: 0, home: "/jobhunterhome", label: "求职者" },
+  corp: { type: 10, home: "/CorpCenter", label: "招聘单位" },
+  mentor: { type: 20, home: "/mentorhome", label: "职业导师" },
+};
+// Work-order role → identity. Old labels from the POC (tools/confirm-orders.json, one login state per role) still work.
+const ROLE_ALIAS = { "usercenter-general": "general", "usercenter-jobseeker": "jobseeker", "usercenter-corp": "corp", "usercenter-mentor": "mentor" };
+export const DEFAULT_ROLE = { portal: "portal", usercenter: "jobseeker" };
+export function normalizeRole(site, role) {
+  if (site === "portal") return role == null || role === "portal" ? "portal" : null;
+  const r = role == null ? DEFAULT_ROLE.usercenter : ROLE_ALIAS[role] ?? role;
+  return IDENTITIES[r] ? r : null;
+}
 
 export const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 const MIME = { ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif", ".svg": "image/svg+xml", ".ico": "image/x-icon", ".woff": "font/woff", ".woff2": "font/woff2", ".ttf": "font/ttf", ".html": "text/html", ".webp": "image/webp" };
@@ -48,36 +62,77 @@ export function resolveOrder(id, orderFile) {
   const site = o.site ?? (o.app === "uc" ? "usercenter" : o.app);
   if (!ORIGIN[site]) throw fail(`work order ${id}: unknown site ${site}`);
   if (typeof o.recordPath !== "string" || !o.recordPath.startsWith("/")) throw fail(`work order ${id}: recordPath missing (must start with /)`);
-  return { ...o, id, site, role: o.role ?? DEFAULT_ROLE[site], from };
+  const role = normalizeRole(site, o.role);
+  if (!role) throw fail(`work order ${id}: unknown role ${o.role} for ${site} (portal: portal; usercenter: ${Object.keys(IDENTITIES).join(" / ")})`);
+  return { ...o, id, site, role, from };
 }
 
-// Login state prepared by a human (pw-login.mjs / pw-switch-role.mjs): $RESTORE_ASSETS/.auth/pw-<role>.json.
-export function authState(assets, role, site) {
-  const file = path.join(assets, ".auth", `pw-${role}.json`);
+// Login state prepared by a human (pw-login.mjs), one per site: $RESTORE_ASSETS/.auth/pw-<site>.json. It carries the
+// session only; the identity is switched per recording (switchIdentity).
+export function authState(assets, site) {
+  const file = path.join(assets, ".auth", `pw-${site}.json`);
   if (!existsSync(file)) return { file, missing: true };
   const st = JSON.parse(readFileSync(file, "utf8"));
   const ls = Object.fromEntries((st.origins?.find((x) => x.origin === ORIGIN[site])?.localStorage ?? []).map((x) => [x.name, x.value]));
   return { file, state: st, localStorage: ls, hasToken: !!ls.token };
 }
 
-export const roleFingerprint = (ls) => sha256(JSON.stringify(ROLE_KEYS.map((k) => [k, ls[k] || null])));
-// Role keys present (non-empty) in both the saved login state and the live page that differ → names only.
-export const roleDrift = (saved, live) => ROLE_KEYS.filter((k) => saved[k] && live[k] && saved[k] !== live[k]);
-
-// Role pinning (全局说明 §6「流程」3): the first successful recording with a role stores the hash of its role keys in
-// $RESTORE_STATE/record/roles.json (pinRole); a later login state for the same role must carry the same role keys.
-const pinFile = (state) => path.join(state, "record", "roles.json");
-const readPins = (state) => (existsSync(pinFile(state)) ? JSON.parse(readFileSync(pinFile(state), "utf8")) : {});
-export function checkRolePin(state, role, ls) {
-  const pin = readPins(state)[role];
-  return { ok: !pin || pin.fingerprint === roleFingerprint(ls), pinned: !!pin };
+// Identity of a user-center localStorage: the userroledata entry whose roleId is radiotype → IDENTITIES key, or null.
+export function identityOf(ls) {
+  let list = []; try { list = JSON.parse(ls.userroledata ?? "[]") ?? []; } catch {}
+  const r = list.find((x) => String(x.roleId) === String(ls.radiotype ?? ""));
+  if (!r) return null;
+  return Object.keys(IDENTITIES).find((k) => (IDENTITIES[k].type === null ? r.type == null : r.type === IDENTITIES[k].type)) ?? null;
 }
-export function pinRole(state, role, ls) {
+const roleIdOf = (ls, identity) => {
+  let list = []; try { list = JSON.parse(ls.userroledata ?? "[]") ?? []; } catch {}
+  const t = IDENTITIES[identity].type;
+  return list.find((x) => (t === null ? x.type == null : x.type === t))?.roleId ?? null;
+};
+
+// Switches the user-center identity of `page` (already on the test site, logged in) through the header dropdown, the way a
+// person does it, then waits for radiotype and the identity's home page. → {ok} | {ok:false, reason}. Never logs in.
+export async function switchIdentity(page, identity, { timeout = 20000 } = {}) {
+  const ls = await page.evaluate(() => ({ ...localStorage }));
+  const target = roleIdOf(ls, identity);
+  if (!target) return { ok: false, reason: `the account has no ${IDENTITIES[identity].label} identity (userroledata)` };
+  if (identityOf(ls) !== identity) {
+    // the dropdown is in the header of the identity pages; /main of another identity has none, so start from the current home
+    const cur = identityOf(ls);
+    if (cur && new URL(page.url()).pathname !== IDENTITIES[cur].home) await page.goto(new URL(IDENTITIES[cur].home, page.url()).href, { waitUntil: "load", timeout: 60000 });
+    try {
+      await page.locator(".maring .ant-dropdown-link.ant-dropdown-trigger").first().hover({ timeout });
+      const radio = page.locator(`.usermenu1 input.ant-radio-input[value="${target}"]`);
+      await radio.waitFor({ state: "attached", timeout });
+      await radio.locator("xpath=ancestor::label[1]").click({ timeout });
+      await page.waitForFunction(([t, home]) => localStorage.getItem("radiotype") === t || location.pathname === home, [String(target), IDENTITIES[identity].home], { timeout });
+    } catch (e) { return { ok: false, reason: `switch to ${IDENTITIES[identity].label} failed: ${String(e.message).split("\n")[0].slice(0, 160)}` }; }
+  }
+  try { await page.waitForURL((u) => u.pathname === IDENTITIES[identity].home, { timeout }); } catch {
+    if (new URL(page.url()).pathname !== IDENTITIES[identity].home) await page.goto(new URL(IDENTITIES[identity].home, page.url()).href, { waitUntil: "load", timeout: 60000 }).catch(() => {});
+  }
+  const live = await page.evaluate(() => ({ ...localStorage })).catch(() => ({}));
+  if (identityOf(live) !== identity) return { ok: false, reason: `identity after switch is ${identityOf(live) ?? "unknown"}, not ${identity}` };
+  return { ok: true, localStorage: live };
+}
+
+// Pinning (全局说明 §6「流程」3): the first successful recording of a site + identity stores a hash of the account and the
+// identity's roleId in $RESTORE_STATE/record/identities.json; a later recording must see the same account and roleId (a
+// different test account, or a re-created identity, means earlier recordings no longer match and is blocked).
+export const pinKey = (site, role) => (site === "portal" ? "portal" : `usercenter:${role}`);
+export const identityFingerprint = (site, ls) => sha256(JSON.stringify(site === "portal" ? [ls.xfSysUserId ?? null] : [ls.GeneraluserId ?? null, ls.radiotype ?? null]));
+const pinFile = (state) => path.join(state, "record", "identities.json");
+const readPins = (state) => (existsSync(pinFile(state)) ? JSON.parse(readFileSync(pinFile(state), "utf8")) : {});
+export function checkPin(state, key, fingerprint) {
+  const pin = readPins(state)[key];
+  return { ok: !pin || pin.fingerprint === fingerprint, pinned: !!pin };
+}
+export function pin(state, key, fingerprint) {
   const pins = readPins(state);
-  if (pins[role]) return false;
+  if (pins[key]) return false;
   mkdirSync(path.dirname(pinFile(state)), { recursive: true });
   const tmp = `${pinFile(state)}.${process.pid}.tmp`;
-  writeFileSync(tmp, JSON.stringify({ ...pins, [role]: { fingerprint: roleFingerprint(ls), pinnedAt: new Date().toISOString() } }, null, 1));
+  writeFileSync(tmp, JSON.stringify({ ...pins, [key]: { fingerprint, pinnedAt: new Date().toISOString() } }, null, 1));
   renameSync(tmp, pinFile(state));
   return true;
 }
@@ -115,6 +170,40 @@ export function lockOrder(state, id) {
   return null;
 }
 const statMtime = (p) => { try { return statSync(p).mtimeMs; } catch { return 0; } };
+
+// Account-level identity lock. Identities of one account are session state: the decision on HM-7 is that recordings of
+// the same identity may run together and different identities queue. $RESTORE_STATE/locks/account-<site>.json holds
+// {identity, pids}; it is changed only under the mkdir mutex account-<site>.mutex. Dead pids are dropped on every pass.
+// → release function, or null when another identity still holds the account after waitMs.
+export async function lockIdentity(state, site, identity, { waitMs = 30 * 60e3, pollMs = 2000 } = {}) {
+  const dir = path.join(state, "locks"); mkdirSync(dir, { recursive: true });
+  const file = path.join(dir, `account-${site}.json`), mutex = path.join(dir, `account-${site}.mutex`);
+  const alive = (pid) => { try { process.kill(pid, 0); return true; } catch (e) { return e.code === "EPERM"; } };
+  const locked = async (fn) => {
+    for (let i = 0; ; i++) {
+      try { mkdirSync(mutex); break; } catch (e) {
+        if (e.code !== "EEXIST") throw e;
+        if (Date.now() - statMtime(mutex) > 30e3) rmSync(mutex, { recursive: true, force: true }); // owner died inside the critical section
+        await new Promise((r) => setTimeout(r, 50 + Math.random() * 100));
+      }
+    }
+    try { return fn(); } finally { rmSync(mutex, { recursive: true, force: true }); }
+  };
+  const read = () => { try { const j = JSON.parse(readFileSync(file, "utf8")); return { identity: j.identity, pids: j.pids.filter(alive) }; } catch { return { identity: null, pids: [] }; } };
+  const write = (j) => { const tmp = `${file}.${process.pid}.tmp`; writeFileSync(tmp, JSON.stringify(j)); renameSync(tmp, file); };
+  const t0 = Date.now();
+  for (;;) {
+    const got = await locked(() => {
+      const cur = read();
+      if (cur.pids.length && cur.identity !== identity) return false;
+      write({ identity, pids: [...cur.pids, process.pid] });
+      return true;
+    });
+    if (got) return () => locked(() => { const cur = read(); const pids = cur.pids.filter((p) => p !== process.pid); write({ identity: pids.length ? cur.identity : null, pids }); });
+    if (Date.now() - t0 >= waitMs) return null;
+    await new Promise((r) => setTimeout(r, pollMs));
+  }
+}
 
 const git = (args, opts = {}) => execFileSync("git", args, { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"], ...opts }).toString().trim();
 

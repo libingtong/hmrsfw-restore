@@ -1,38 +1,47 @@
 // Records one page work order against the TEST environment (docs/pipeline.md §6 录制员, §12):
-//   1. loads the human-prepared login state $RESTORE_ASSETS/.auth/pw-<role>.json (never logs in, never types a password;
-//      no login state → blocked need-role, token gone or redirected to login → blocked login-expired);
-//   2. pins the account role (全局说明 §6「流程」3): role keys must match the first recording with that role;
-//   3. opens <test site><recordPath> headless and runs tests/interact/<id>.json for real. Every request to the two test
-//      hosts goes out, writes included (HMRSFW_NO_WHITELIST=1 is required as the acknowledgement); every other host,
-//      production included, is aborted;
-//   4. writes all /xf-api/ traffic as HAR 1.2 to $RESTORE_ASSETS/har/pages/<id>.har: request bodies exactly as sent
-//      (SM2 ciphertext kept; tools/har-body.mjs decrypts them in memory), responses as received (encrypted ones keep their
-//      crypto_opt header and ciphertext), auth headers and token-named query parameters redacted. Extra per-entry fields: _seq (request order), _phase
-//      ("load" | "step<i>" | "after"), _crypto;
-//   5. runs the original baseline: tools/baseline.mjs <id> --har <har> (A); until A is merged,
+//   1. loads the human-prepared login state of the site, $RESTORE_ASSETS/.auth/pw-<portal|usercenter>.json (never logs in,
+//      never types a password; no login state → blocked need-login:<site>, token gone or redirected to login → blocked
+//      login-expired);
+//   2. user center: switches the account to the work order's identity (role: general / jobseeker / corp / mentor) in the
+//      header dropdown, like a person would, and checks it (the login state does NOT fix the identity; an identity the
+//      account cannot switch to → blocked need-role:<identity>). Identities of one account are session state, so runs of
+//      different identities queue on an account lock (lockIdentity), runs of the same identity may go together;
+//   3. pins account + identity (全局说明 §6「流程」3): they must match the first recording of that identity;
+//   4. opens <test site><recordPath> headless and runs tests/interact/<id>.json for real; the identity is checked again
+//      after the page load (changed → blocked role-drift). Every request to the two test hosts goes out, writes included
+//      (HMRSFW_NO_WHITELIST=1 is required as the acknowledgement); every other host, production included, is aborted;
+//   5. writes all /xf-api/ traffic of the page (not of the identity switch) as HAR 1.2 to $RESTORE_ASSETS/har/pages/<id>.har:
+//      request bodies exactly as sent (SM2 ciphertext kept; tools/har-body.mjs decrypts them in memory), responses as
+//      received (encrypted ones keep their crypto_opt header and ciphertext), auth headers and token-named query
+//      parameters redacted. Extra per-entry fields: _seq (request order), _phase
+//      ("load" | "step<i>" | "after"), _crypto; log._record carries the identity and the page's localStorage after the switch
+//      with the token removed (replay needs the identity keys, e.g. radiotype, routermenu);
+//   6. runs the original baseline: tools/baseline.mjs <id> --har <har> (A); until A is merged,
 //      tools/record-baseline-placeholder.mjs with the same command line;
-//   6. on success commits tests/interact/<id>.json to the integration branch (only the script, never the HAR).
+//   7. on success commits tests/interact/<id>.json to the integration branch (only the script, never the HAR).
 // Concurrency: each run has its own browser; HAR written via temp file + rename; one run per work order
-// ($RESTORE_STATE/locks/rec-<id>); per-order notes in $RESTORE_STATE/record/<id>/ (no shared append file).
+// ($RESTORE_STATE/locks/rec-<id>); user-center runs share the account by identity ($RESTORE_STATE/locks/account-usercenter.json:
+// same identity together, another identity waits up to --wait-identity); per-order notes in $RESTORE_STATE/record/<id>/.
 // Usage: node tools/record-page.mjs <工单id> [--app <hmrsfw-vue>] [--order <file>] [--script <file>] [--no-baseline]
-//        [--baseline-only] [--no-commit] [--headed]
+//        [--baseline-only] [--no-commit] [--headed] [--wait-identity <minutes, default 30>]
 //        --offline <old.har> --out <new.har>: self-test without network. The test hosts are answered from legacy-dist and
 //        <old.har>; the HAR goes to <new.har>; no commit, no role pin, no notes in $RESTORE_STATE.
 // Output (one JSON line): {ok, id, steps, unstable:[...], blocked?, hint?, evidence?, error?, har, entries, writes:[{method,
 //        path, count, phases, statuses}], sm2:{bodies, decrypted, undecryptable}, baseline, committed, warnings, durationMs}
-// Exit: 0 ok · 1 error or unstable · 2 blocked (needs a human: login, other role). {"locked":true} when the order is
-//       already being recorded. HAR contents and response data are never printed.
+// Exit: 0 ok · 1 error or unstable · 2 blocked (needs a human: login, identity). {"locked":true} when the order is
+//       already being recorded, {"locked":true, identityBusy} when another identity kept the account past --wait-identity.
+//       HAR contents and response data are never printed.
 import { chromium } from "playwright";
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { apiTracker, describeStep, loadScript, runStepRetry, scriptPath, settle } from "./interact.mjs";
 import { entryKey, fulfillOptions, harResponder, requestBody } from "./har-body.mjs";
-import { ORIGIN, ROOT, TEST_HOSTS, authState, checkRolePin, pinRole, commitToIntegration, coverage, envDirs, fail, legacyFile, lockOrder, resolveOrder, roleDrift, validId } from "./record-lib.mjs";
+import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, pin, pinKey, resolveOrder, switchIdentity, validId } from "./record-lib.mjs";
 
 const t0 = Date.now();
 const argv = process.argv.slice(2);
-const VALUED = new Set(["--app", "--order", "--script", "--offline", "--out"]);
+const VALUED = new Set(["--app", "--order", "--script", "--offline", "--out", "--wait-identity"]);
 const opt = (n) => { const i = argv.findIndex((a) => a === n || a.startsWith(n + "=")); return i < 0 ? undefined : argv[i].includes("=") ? argv[i].slice(n.length + 1) : argv[i + 1]; };
 const flag = (n) => argv.includes(n);
 const OFFLINE = opt("--offline");
@@ -45,7 +54,7 @@ const SECRET_HEADER = /^(x-access-token|token|authorization|cookie)$/i;
 const SECRET_PARAM = /token/i; // e.g. portal getSysUserByToken?curToken=…
 const redactUrl = (raw) => { const u = new URL(raw); for (const k of [...u.searchParams.keys()]) if (SECRET_PARAM.test(k)) u.searchParams.set(k, "[redacted]"); return u.href; };
 const brief = (e) => String(e.message).split("\n").map((l) => l.trim()).filter((l) => l && !/^=+/.test(l)).slice(0, 6).join(" | ").slice(0, 400);
-const loginHint = (role, site) => `登录态失效或缺失：请人工在有界面的浏览器里重新登录测试站（${ORIGIN[site]}），把登录态保存为 $RESTORE_ASSETS/.auth/pw-${role}.json（在 $RESTORE_ASSETS 下运行 node tools/pw-login.mjs ${role} …；单位等角色用 pw-switch-role.mjs 切换后保存），然后重跑 record-page。脚本不会自动登录。`;
+const loginHint = (site) => `登录态失效或缺失：请人工在有界面的浏览器里重新登录测试站（${ORIGIN[site]}），在 $RESTORE_ASSETS 下运行 node <本仓库>/tools/pw-login.mjs ${site}，窗口里显示「已保存」后自动关闭，然后重跑 record-page。只需登录，不用切身份（身份由 record-page 切）。脚本不会自动登录。`;
 
 function emit(o, code) {
   console.log(JSON.stringify({ ...o, warnings, durationMs: Date.now() - t0 }));
@@ -53,11 +62,10 @@ function emit(o, code) {
 }
 
 async function record({ order, steps, assets, state, harFile }) {
-  const auth = authState(assets, order.role, order.site);
-  if (auth.missing) return { blocked: `need-role:${order.role}`, hint: `没有角色 ${order.role} 的登录态（$RESTORE_ASSETS/.auth/pw-${order.role}.json），需要人准备该角色的测试账号并登录。` };
-  if (!auth.hasToken) return { blocked: "login-expired", hint: loginHint(order.role, order.site) };
-  const pin = checkRolePin(state, order.role, auth.localStorage);
-  if (!pin.ok) return { blocked: `role-changed:${order.role}`, hint: `pw-${order.role}.json 的角色与第一次录制时固定的角色不同。请人切回原角色后重新保存登录态；确需更换角色时，删掉 $RESTORE_STATE/record/roles.json 里的 ${order.role} 项并重录该角色的全部页面。` };
+  const auth = authState(assets, order.site);
+  if (auth.missing) return { blocked: `need-login:${order.site}`, hint: loginHint(order.site) };
+  if (!auth.hasToken) return { blocked: "login-expired", hint: loginHint(order.site) };
+  const uc = order.site === "usercenter" && !OFFLINE;
 
   const browser = await chromium.launch({ headless: !flag("--headed") });
   try {
@@ -72,10 +80,10 @@ async function record({ order, steps, assets, state, harFile }) {
       if (/\/xf-api\//.test(q.url())) return r.fulfill(fulfillOptions(offline.lookup(q.method(), q.url(), q.postData()).entry));
       return r.fulfill(legacyFile(order.site, u.pathname));
     });
-    let phase = "load", seq = 0;
+    let phase = uc ? null : "load", seq = 0; // null: identity switch, not part of the page recording
     const loginSignals = [];
     const recs = new Map(), jobs = [], entries = [];
-    context.on("request", (req) => { if (isApi(req.url())) recs.set(req, { seq: seq++, phase, t: Date.now() }); });
+    context.on("request", (req) => { if (phase && isApi(req.url())) recs.set(req, { seq: seq++, phase, t: Date.now() }); });
     const collect = async (req, failed) => {
       const rec = recs.get(req); if (!rec) return;
       const res = failed ? null : await req.response().catch(() => null);
@@ -115,15 +123,33 @@ async function record({ order, steps, assets, state, harFile }) {
     page.on("pageerror", (e) => pageErrors.push(String(e.message).slice(0, 160)));
     page.on("dialog", (d) => d.dismiss().catch(() => {}));
 
+    let switched = null;
+    if (uc) {
+      // start from the identity home the saved session is on: the header dropdown only exists on identity pages
+      const from = identityOf(auth.localStorage);
+      await page.goto(ORIGIN.usercenter + (from ? IDENTITIES[from].home : IDENTITIES.jobseeker.home), { waitUntil: "load", timeout: 60000 });
+      await settle(page, tracker, { maxMs: 20000 });
+      if (LOGIN_PATH.test(new URL(page.url()).pathname) || !(await page.evaluate(() => localStorage.getItem("token")).catch(() => null)) || loginSignals.length)
+        return { blocked: "login-expired", hint: loginHint(order.site), evidence: [new URL(page.url()).pathname, ...loginSignals].slice(0, 5) };
+      const sw = await switchIdentity(page, order.role);
+      if (!sw.ok) return { blocked: `need-role:${order.role}`, hint: `无法把测试账号切到「${IDENTITIES[order.role].label}」身份：${sw.reason}。请人确认该账号右上角能切出这个身份（需要的话为账号开通该身份），然后重跑 record-page。`, evidence: [sw.reason] };
+      switched = sw.localStorage;
+      const p = checkPin(state, pinKey(order.site, order.role), identityFingerprint(order.site, switched));
+      if (!p.ok) return { blocked: `role-changed:${order.role}`, hint: `测试账号或「${IDENTITIES[order.role].label}」身份与第一次录制时固定的不同（换了账号或身份被重建）。确认要换时，删掉 $RESTORE_STATE/record/identities.json 里的 ${pinKey(order.site, order.role)} 项并重录该身份的全部页面。` };
+      await settle(page, tracker, { maxMs: 15000 });
+      phase = "load";
+    } else if (!OFFLINE) {
+      const p = checkPin(state, pinKey(order.site, order.role), identityFingerprint(order.site, auth.localStorage));
+      if (!p.ok) return { blocked: `role-changed:${order.role}`, hint: "门户登录态的账号与第一次录制时固定的不同。确认要换时，删掉 $RESTORE_STATE/record/identities.json 里的 portal 项并重录门户的全部页面。" };
+    }
     await page.goto(ORIGIN[order.site] + order.recordPath, { waitUntil: "load", timeout: 60000 });
     const textLength = await settle(page, tracker);
     const finalPath = new URL(page.url()).pathname;
     const live = await page.evaluate(() => ({ ...localStorage })).catch(() => ({}));
     await Promise.all(jobs);
     const why = [...(LOGIN_PATH.test(finalPath) ? [`redirected to ${finalPath}`] : []), ...(live.token ? [] : ["token cleared from localStorage"]), ...loginSignals];
-    if (why.length) return { blocked: "login-expired", hint: loginHint(order.role, order.site), evidence: why.slice(0, 5) };
-    const drift = roleDrift(auth.localStorage, live);
-    if (drift.length) return { blocked: `role-drift:${order.role}`, evidence: drift.map((k) => `localStorage ${k} changed after load`), hint: "页面加载后账号角色与登录态里的角色不一致（可能有人在别处切换了角色）。请人切回固定角色并重新保存登录态。" };
+    if (why.length) return { blocked: "login-expired", hint: loginHint(order.site), evidence: why.slice(0, 5) };
+    if (uc && identityOf(live) !== order.role) return { blocked: `role-drift:${order.role}`, evidence: [`identity after load: ${identityOf(live) ?? "unknown"}`], hint: `切到「${IDENTITIES[order.role].label}」后，页面加载完身份又变了（页面自己改了身份，或该页面不属于这个身份）。请核对工单的 role。` };
     if (finalPath !== new URL(ORIGIN[order.site] + order.recordPath).pathname) warnings.push(`landed on ${finalPath} instead of the record path`);
 
     const stepResults = [];
@@ -139,7 +165,7 @@ async function record({ order, steps, assets, state, harFile }) {
     phase = "after";
     await tracker.idle(page, { maxMs: 10000 });
     await Promise.all(jobs);
-    if (loginSignals.length || LOGIN_PATH.test(new URL(page.url()).pathname)) return { blocked: "login-expired", hint: loginHint(order.role, order.site), evidence: [...loginSignals, new URL(page.url()).pathname].slice(0, 5) };
+    if (loginSignals.length || LOGIN_PATH.test(new URL(page.url()).pathname)) return { blocked: "login-expired", hint: loginHint(order.site), evidence: [...loginSignals, new URL(page.url()).pathname].slice(0, 5) };
     const failedAt = new URL(page.url()).pathname;
     await context.close();
 
@@ -150,8 +176,8 @@ async function record({ order, steps, assets, state, harFile }) {
     if (external.size) warnings.push(`aborted non-test hosts: ${[...external].sort().join(", ")}`);
     if (pageErrors.length) warnings.push(`${pageErrors.length} page error(s) on the original, first: ${pageErrors[0]}`);
 
-    const har = { log: { version: "1.2", creator: { name: "record-page", version: "1" }, pages: [], entries, _record: { id: order.id, site: order.site, role: order.role, recordPath: order.recordPath, finalPath, textLength, steps: stepResults, recordedAt: new Date().toISOString() } } };
-    if (!offline && pinRole(state, order.role, auth.localStorage)) warnings.push(`role ${order.role} pinned by this recording`);
+    const har = { log: { version: "1.2", creator: { name: "record-page", version: "1" }, pages: [], entries, _record: { id: order.id, site: order.site, role: order.role, ...(uc ? { identity: IDENTITIES[order.role].label, localStorage: Object.fromEntries(Object.entries(live).filter(([k]) => !/token/i.test(k))) } : {}), recordPath: order.recordPath, finalPath, textLength, steps: stepResults, recordedAt: new Date().toISOString() } } };
+    if (!offline && pin(state, pinKey(order.site, order.role), identityFingerprint(order.site, uc ? switched : auth.localStorage))) warnings.push(`${pinKey(order.site, order.role)} pinned by this recording`);
     mkdirSync(path.dirname(harFile), { recursive: true });
     const tmp = `${harFile}.${process.pid}.tmp`;
     writeFileSync(tmp, JSON.stringify(har));
@@ -195,7 +221,7 @@ function baseline({ id, harFile }) {
   return { tool, placeholder: !own, unstable: j.unstable ?? [], result: j };
 }
 
-let release = null;
+let release = null, releaseIdentity = null;
 try {
   if (!validId(id)) throw fail("usage: node tools/record-page.mjs <工单id> [--order <file>] [--script <file>] [--no-baseline] [--baseline-only] [--no-commit] [--headed]");
   const { assets, state } = envDirs();
@@ -213,6 +239,10 @@ try {
   }
   release = lockOrder(state, id);
   if (!release) { console.log(JSON.stringify({ locked: true, id })); process.exit(0); }
+  if (order.site === "usercenter" && !OFFLINE && !baselineOnly) {
+    releaseIdentity = await lockIdentity(state, "usercenter", order.role, { waitMs: Number(opt("--wait-identity") ?? 30) * 60e3 });
+    if (!releaseIdentity) { release(); release = null; console.log(JSON.stringify({ locked: true, id, identityBusy: "the test account is recording another identity; retry later" })); process.exit(0); }
+  }
   const harFile = OFFLINE ? path.resolve(opt("--out")) : path.join(assets, "har", "pages", `${id}.har`);
   const noteDir = path.join(state, "record", id);
 
@@ -246,4 +276,5 @@ try {
   if (e !== null) emit({ ok: false, id, steps: null, unstable: [], error: e?.userFacing ? e.message : String(e?.stack ?? e).split("\n").slice(0, 3).join(" | ") }, 1);
 } finally {
   release?.();
+  await releaseIdentity?.();
 }
