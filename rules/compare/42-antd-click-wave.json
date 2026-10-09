@@ -1,7 +1,7 @@
 {
  "id": "antd-click-wave",
  "kind": "drop-attrs",
- "enabled": true,
+ "enabled": false,
  "since": "HM-4",
  "attrs": [
   "ant-click-animating-without-extra-node"
