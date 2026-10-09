@@ -80,14 +80,16 @@ export function authState(assets, site) {
 // Identity of a user-center localStorage: the userroledata entry whose roleId is radiotype → IDENTITIES key, or null.
 export function identityOf(ls) {
   let list = []; try { list = JSON.parse(ls.userroledata ?? "[]") ?? []; } catch {}
-  const r = list.find((x) => String(x.roleId) === String(ls.radiotype ?? ""));
+  // the app keeps "roleId[,…]" in radiotype (e.g. the corp branch copies localStorage danwei) and reads the first part
+  const r = list.find((x) => String(x.roleId) === String(ls.radiotype ?? "").split(",")[0]);
   if (!r) return null;
-  return Object.keys(IDENTITIES).find((k) => (IDENTITIES[k].type === null ? r.type == null : r.type === IDENTITIES[k].type)) ?? null;
+  return Object.keys(IDENTITIES).find((k) => typeMatches(r, k)) ?? null;
 }
+const typeMatches = (r, identity) => (IDENTITIES[identity].type === null ? r.type == null || r.type === "" : Number(r.type) === IDENTITIES[identity].type);
 const roleIdOf = (ls, identity) => {
   let list = []; try { list = JSON.parse(ls.userroledata ?? "[]") ?? []; } catch {}
   const t = IDENTITIES[identity].type;
-  return list.find((x) => (t === null ? x.type == null : x.type === t))?.roleId ?? null;
+  return list.find((x) => typeMatches(x, identity))?.roleId ?? null;
 };
 
 // Switches the user-center identity of `page` (already on the test site, logged in) through the header dropdown, the way a
@@ -105,7 +107,7 @@ export async function switchIdentity(page, identity, { timeout = 20000 } = {}) {
       const radio = page.locator(`.usermenu1 input.ant-radio-input[value="${target}"]`);
       await radio.waitFor({ state: "attached", timeout });
       await radio.locator("xpath=ancestor::label[1]").click({ timeout });
-      await page.waitForFunction(([t, home]) => localStorage.getItem("radiotype") === t || location.pathname === home, [String(target), IDENTITIES[identity].home], { timeout });
+      await page.waitForFunction(([t, home]) => (localStorage.getItem("radiotype") ?? "").split(",")[0] === t || location.pathname === home, [String(target), IDENTITIES[identity].home], { timeout });
     } catch (e) { return { ok: false, reason: `switch to ${IDENTITIES[identity].label} failed: ${String(e.message).split("\n")[0].slice(0, 160)}` }; }
   }
   try { await page.waitForURL((u) => u.pathname === IDENTITIES[identity].home, { timeout }); } catch {
@@ -116,11 +118,17 @@ export async function switchIdentity(page, identity, { timeout = 20000 } = {}) {
   return { ok: true, localStorage: live };
 }
 
-// Pinning (全局说明 §6「流程」3): the first successful recording of a site + identity stores a hash of the account and the
-// identity's roleId in $RESTORE_STATE/record/identities.json; a later recording must see the same account and roleId (a
+// Pinning (全局说明 §6「流程」3): the first successful recording of a site + identity stores a hash of the account (token
+// username) and the identity's roleId in $RESTORE_STATE/record/identities.json; a later recording must see the same account and roleId (a
 // different test account, or a re-created identity, means earlier recordings no longer match and is blocked).
 export const pinKey = (site, role) => (site === "portal" ? "portal" : `usercenter:${role}`);
-export const identityFingerprint = (site, ls) => sha256(JSON.stringify(site === "portal" ? [ls.xfSysUserId ?? null] : [ls.GeneraluserId ?? null, ls.radiotype ?? null]));
+// The account is the token's JWT `username` claim (only its hash is kept; the encrypted user fields in localStorage change
+// with every login). → {account: sha256 | null, exp: epoch seconds | null}
+export function tokenInfo(ls) {
+  try { const p = JSON.parse(Buffer.from(String(ls.token).split(".")[1], "base64url").toString("utf8")); return { account: p.username ? sha256(String(p.username)) : null, exp: Number(p.exp) || null }; }
+  catch { return { account: null, exp: null }; }
+}
+export const identityFingerprint = (site, ls) => sha256(JSON.stringify(site === "portal" ? [tokenInfo(ls).account] : [tokenInfo(ls).account, String(ls.radiotype ?? "").split(",")[0] || null]));
 const pinFile = (state) => path.join(state, "record", "identities.json");
 const readPins = (state) => (existsSync(pinFile(state)) ? JSON.parse(readFileSync(pinFile(state), "utf8")) : {});
 export function checkPin(state, key, fingerprint) {
@@ -183,7 +191,8 @@ export async function lockIdentity(state, site, identity, { waitMs = 30 * 60e3, 
     for (let i = 0; ; i++) {
       try { mkdirSync(mutex); break; } catch (e) {
         if (e.code !== "EEXIST") throw e;
-        if (Date.now() - statMtime(mutex) > 30e3) rmSync(mutex, { recursive: true, force: true }); // owner died inside the critical section
+        const m = statMtime(mutex); // 0: just released, retry
+        if (m && Date.now() - m > 30e3) rmSync(mutex, { recursive: true, force: true }); // owner died inside the critical section
         await new Promise((r) => setTimeout(r, 50 + Math.random() * 100));
       }
     }

@@ -1,18 +1,22 @@
 // Checks the user-center identities of the test account, headless, with the same switch record-page uses
-// (record-lib switchIdentity: header dropdown, like a person). Nothing is saved: the login state stays one per site and
-// record-page switches the identity itself before every recording. Prints identity names and pages only.
+// (record-lib switchIdentity: header dropdown, like a person). record-page does not need anything saved: the login state
+// stays one per site and it switches the identity itself before every recording. Prints identity names and pages only.
 //   default: switches one context through the given identities (all four by default) and reports each;
 //   --cross: also reloads a second context of the same account after every switch and reports its identity, i.e. whether
-//            switching in one browser context changes the identity seen by another (README「录制」).
-// Run with RESTORE_ASSETS set. Usage: node tools/pw-switch-role.mjs [general|jobseeker|corp|mentor ...] [--cross]
+//            switching in one browser context changes the identity seen by another (README「录制」);
+//   --save-legacy: after each successful switch also saves .auth/pw-usercenter-<identity>.json, the per-role states the
+//            POC confirmation tools still read (pw-record, interact-confirm, verify-confirm, shell-probe).
+// Run with RESTORE_ASSETS set. Usage: node tools/pw-switch-role.mjs [general|jobseeker|corp|mentor ...] [--cross] [--save-legacy]
 import { chromium } from "playwright";
+import { renameSync } from "node:fs";
+import path from "node:path";
 import { IDENTITIES, ORIGIN, TEST_HOSTS, authState, identityOf, switchIdentity } from "./record-lib.mjs";
 
 const args = process.argv.slice(2);
-const cross = args.includes("--cross");
+const cross = args.includes("--cross"), saveLegacy = args.includes("--save-legacy");
 const wanted = args.filter((a) => !a.startsWith("--"));
 const list = wanted.length ? wanted : Object.keys(IDENTITIES);
-if (!list.every((x) => IDENTITIES[x])) { console.error(`usage: node tools/pw-switch-role.mjs [${Object.keys(IDENTITIES).join("|")} ...] [--cross]`); process.exit(1); }
+if (!list.every((x) => IDENTITIES[x])) { console.error(`usage: node tools/pw-switch-role.mjs [${Object.keys(IDENTITIES).join("|")} ...] [--cross] [--save-legacy]`); process.exit(1); }
 const assets = process.env.RESTORE_ASSETS;
 if (!assets) { console.error("RESTORE_ASSETS must be set"); process.exit(1); }
 const auth = authState(assets, "usercenter");
@@ -37,6 +41,10 @@ try {
   else for (const identity of list) {
     const r = await switchIdentity(a, identity);
     const row = { identity, ok: r.ok, ...(r.ok ? {} : { reason: r.reason }), now: await seen(a) };
+    if (r.ok && saveLegacy) {
+      const file = path.join(assets, ".auth", `pw-usercenter-${identity}.json`), tmp = `${file}.${process.pid}.tmp`;
+      await a.context().storageState({ path: tmp }); renameSync(tmp, file); row.saved = `.auth/pw-usercenter-${identity}.json`;
+    }
     if (b) { await b.reload({ waitUntil: "load" }); await b.waitForTimeout(5000); row.otherContext = await seen(b); }
     out.switches.push(row);
     if (!r.ok) out.ok = false;

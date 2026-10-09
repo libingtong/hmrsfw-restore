@@ -44,7 +44,7 @@ async function replay(browser, { origin, har, ls, order, steps, decrypt }) {
   const page = await ctx.newPage();
   page.on("dialog", (d) => d.dismiss().catch(() => {}));
   const snaps = {};
-  const snap = async (p) => { snaps[p] = { text: await page.evaluate(() => document.body?.innerText ?? "").catch(() => "") }; };
+  const snap = async (p) => { snaps[p] = { text: await page.evaluate(() => document.body?.innerText ?? "").catch(() => ""), req: log.filter((x) => x.phase === p).map((x) => x.key) }; };
   await page.goto(origin + order.recordPath, { waitUntil: "load", timeout: 60000 }).catch(() => {});
   await settle(page, tracker, { maxMs: 30000 });
   await snap("load");
@@ -54,9 +54,6 @@ async function replay(browser, { origin, har, ls, order, steps, decrypt }) {
     await tracker.idle(page);
     await snap(phase); snaps[phase].err = err;
   }
-  // late requests (timers after the settle) still count for the phase they started in
-  await tracker.idle(page); await page.waitForTimeout(3000);
-  for (const p of Object.keys(snaps)) snaps[p].req = log.filter((x) => x.phase === p).map((x) => x.key);
   await ctx.close();
   return { snaps, stats };
 }

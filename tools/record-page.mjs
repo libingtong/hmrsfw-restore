@@ -21,7 +21,8 @@
 //   7. on success commits tests/interact/<id>.json to the integration branch (only the script, never the HAR).
 // Concurrency: each run has its own browser; HAR written via temp file + rename; one run per work order
 // ($RESTORE_STATE/locks/rec-<id>); user-center runs share the account by identity ($RESTORE_STATE/locks/account-usercenter.json:
-// same identity together, another identity waits up to --wait-identity); per-order notes in $RESTORE_STATE/record/<id>/.
+// same identity together, another identity waits up to --wait-identity; held for the recording only, not the baseline);
+// per-order notes in $RESTORE_STATE/record/<id>/.
 // Usage: node tools/record-page.mjs <工单id> [--app <hmrsfw-vue>] [--order <file>] [--script <file>] [--no-baseline]
 //        [--baseline-only] [--no-commit] [--headed] [--wait-identity <minutes, default 30>]
 //        --offline <old.har> --out <new.har>: self-test without network. The test hosts are answered from legacy-dist and
@@ -37,7 +38,7 @@ import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync 
 import path from "node:path";
 import { apiTracker, describeStep, loadScript, runStepRetry, scriptPath, settle } from "./interact.mjs";
 import { entryKey, fulfillOptions, harResponder, requestBody } from "./har-body.mjs";
-import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, pin, pinKey, resolveOrder, switchIdentity, validId } from "./record-lib.mjs";
+import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, pin, pinKey, resolveOrder, switchIdentity, tokenInfo, validId } from "./record-lib.mjs";
 
 const t0 = Date.now();
 const argv = process.argv.slice(2);
@@ -65,11 +66,19 @@ async function record({ order, steps, assets, state, harFile }) {
   const auth = authState(assets, order.site);
   if (auth.missing) return { blocked: `need-login:${order.site}`, hint: loginHint(order.site) };
   if (!auth.hasToken) return { blocked: "login-expired", hint: loginHint(order.site) };
+  const { exp } = tokenInfo(auth.localStorage);
+  if (!OFFLINE && exp && exp * 1000 < Date.now() + 60e3) return { blocked: "login-expired", hint: loginHint(order.site), evidence: [`token expired at ${new Date(exp * 1000).toISOString()}`] };
   const uc = order.site === "usercenter" && !OFFLINE;
 
   const browser = await chromium.launch({ headless: !flag("--headed") });
   try {
     const context = await browser.newContext({ storageState: auth.file, viewport: { width: 1920, height: 1080 }, locale: "zh-CN" });
+    if (OFFLINE && order.site === "usercenter") {
+      // no switch offline: take the identity from the given HAR when it was recorded by record-page
+      const rec = JSON.parse(readFileSync(path.resolve(OFFLINE), "utf8")).log?._record;
+      if (rec?.localStorage) await context.addInitScript((ls) => { for (const [k, v] of Object.entries(ls)) localStorage.setItem(k, v); }, rec.localStorage);
+      else warnings.push(`offline: ${path.basename(OFFLINE)} has no recorded identity, the page runs as the identity saved in pw-usercenter.json`);
+    }
     const external = new Set();
     const offline = OFFLINE ? harResponder(JSON.parse(readFileSync(path.resolve(OFFLINE), "utf8"))) : null;
     await context.route("**/*", (r) => {
@@ -84,6 +93,14 @@ async function record({ order, steps, assets, state, harFile }) {
     const loginSignals = [];
     const recs = new Map(), jobs = [], entries = [];
     context.on("request", (req) => { if (phase && isApi(req.url())) recs.set(req, { seq: seq++, phase, t: Date.now() }); });
+    // the identity switch is not recorded, but a 401 there still means the login is gone (not a missing identity)
+    context.on("response", async (res) => {
+      if (phase || !isApi(res.url())) return;
+      if (res.status() === 401) return loginSignals.push(`HTTP 401 on ${entryKey(res.request().method(), res.url())} (identity switch)`);
+      if (res.headers()["crypto_opt"] !== "true" && /json/i.test(res.headers()["content-type"] ?? "")) {
+        try { const j = await res.json(); if (j && (j.code === 401 || LOGIN_MSG.test(String(j.message ?? "")))) loginSignals.push(`login message from ${entryKey(res.request().method(), res.url())} (identity switch)`); } catch {}
+      }
+    });
     const collect = async (req, failed) => {
       const rec = recs.get(req); if (!rec) return;
       const res = failed ? null : await req.response().catch(() => null);
@@ -132,6 +149,7 @@ async function record({ order, steps, assets, state, harFile }) {
       if (LOGIN_PATH.test(new URL(page.url()).pathname) || !(await page.evaluate(() => localStorage.getItem("token")).catch(() => null)) || loginSignals.length)
         return { blocked: "login-expired", hint: loginHint(order.site), evidence: [new URL(page.url()).pathname, ...loginSignals].slice(0, 5) };
       const sw = await switchIdentity(page, order.role);
+      if (loginSignals.length || LOGIN_PATH.test(new URL(page.url()).pathname)) return { blocked: "login-expired", hint: loginHint(order.site), evidence: [new URL(page.url()).pathname, ...loginSignals].slice(0, 5) };
       if (!sw.ok) return { blocked: `need-role:${order.role}`, hint: `无法把测试账号切到「${IDENTITIES[order.role].label}」身份：${sw.reason}。请人确认该账号右上角能切出这个身份（需要的话为账号开通该身份），然后重跑 record-page。`, evidence: [sw.reason] };
       switched = sw.localStorage;
       const p = checkPin(state, pinKey(order.site, order.role), identityFingerprint(order.site, switched));
@@ -240,7 +258,9 @@ try {
   release = lockOrder(state, id);
   if (!release) { console.log(JSON.stringify({ locked: true, id })); process.exit(0); }
   if (order.site === "usercenter" && !OFFLINE && !baselineOnly) {
-    releaseIdentity = await lockIdentity(state, "usercenter", order.role, { waitMs: Number(opt("--wait-identity") ?? 30) * 60e3 });
+    const waitMin = Number(opt("--wait-identity") ?? 30);
+    if (!Number.isFinite(waitMin) || waitMin < 0) throw fail("--wait-identity <minutes> must be a non-negative number");
+    releaseIdentity = await lockIdentity(state, "usercenter", order.role, { waitMs: waitMin * 60e3 });
     if (!releaseIdentity) { release(); release = null; console.log(JSON.stringify({ locked: true, id, identityBusy: "the test account is recording another identity; retry later" })); process.exit(0); }
   }
   const harFile = OFFLINE ? path.resolve(opt("--out")) : path.join(assets, "har", "pages", `${id}.har`);
@@ -249,7 +269,8 @@ try {
   let rec = { entries: null, writes: [], sm2: null };
   if (baselineOnly) { if (!existsSync(harFile)) throw fail(`--baseline-only: no HAR for ${id} yet`); }
   else {
-    rec = await record({ order, steps, assets, state, harFile });
+    try { rec = await record({ order, steps, assets, state, harFile }); }
+    finally { await releaseIdentity?.(); releaseIdentity = null; } // the baseline and the commit do not touch the account
     if (rec.blocked) { emit({ ok: false, id, steps: steps.length, unstable: [], blocked: rec.blocked, hint: rec.hint, ...(rec.evidence ? { evidence: rec.evidence } : {}) }, 2); throw null; }
     if (rec.error) throw fail(rec.error);
     if (OFFLINE) warnings.push("offline self-test: test hosts answered from legacy-dist and the given HAR, nothing sent; no commit, role pin or notes");

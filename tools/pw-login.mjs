@@ -51,7 +51,7 @@ for (const [i, site] of sites.entries()) {
   console.log(`[${site}] 浏览器已打开${s.name}登录页，请手动登录（最多等待 ${minutes} 分钟）…`);
   const deadline = Date.now() + Number(minutes) * 60000;
   let ok = false;
-  while (Date.now() < deadline && browser.isConnected()) {
+  while (Date.now() < deadline && !page.isClosed()) {
     const left = Math.ceil((deadline - Date.now()) / 60000);
     await say(`${step}请在本窗口登录${s.name}测试站（还剩约 ${left} 分钟）。只需登录，不用切身份；登录后会自动保存并继续。`);
     await page.waitForTimeout(2000).catch(() => {});
@@ -63,13 +63,13 @@ for (const [i, site] of sites.entries()) {
   }
   if (ok) {
     await say(`${step}已检测到${s.name}登录，正在保存…`);
-    await page.waitForTimeout(3000);
+    await new Promise((r) => setTimeout(r, 3000)); // not page.waitForTimeout: closing the window now must not lose the login
     const tmp = `.auth/pw-${site}.json.${process.pid}.tmp`;
     await context.storageState({ path: tmp }); renameSync(tmp, `.auth/pw-${site}.json`);
     await say(`${step}${s.name}登录态已保存${i + 1 < sites.length ? "，马上打开下一个登录页" : "，窗口即将关闭"}`);
     console.log(`[${site}] 已检测到登录，storageState 已保存到 .auth/pw-${site}.json`);
     await page.waitForTimeout(1500).catch(() => {});
-  } else console.log(`[${site}] ${browser.isConnected() ? "超时" : "窗口已关闭"}，未检测到登录，未保存`);
+  } else console.log(`[${site}] ${page.isClosed() ? "窗口已关闭" : "超时"}，未检测到登录，未保存`);
   results.push(ok);
   if (!ok) break;
 }

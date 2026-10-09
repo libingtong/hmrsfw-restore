@@ -75,13 +75,18 @@ npm --prefix "$HMRSFW_APP_DIR" run build    # 构建两个应用，输出 hmrsfw
 - 账号没有这个身份，或者切换失败：输出 `blocked: need-role:<身份>`，需要人确认账号能切出这个身份。
 - 页面加载后身份变了：输出 `blocked: role-drift:<身份>`。
 - 切换过程中发出的请求不写进 HAR。HAR 的 `log._record` 记录身份，以及切换后的 localStorage（去掉 token），回放时用它还原身份。
-- 第一次成功录制某个身份时，会把「账号 + 该身份 roleId」的哈希固定到 `$RESTORE_STATE/record/identities.json`。之后账号或身份不一致时输出 `blocked: role-changed:<身份>`。
+- 第一次成功录制某个身份时，会把「账号 + 该身份 roleId」的哈希固定到 `$RESTORE_STATE/record/identities.json`。账号取 token 里的 `username`，只存哈希。之后账号或身份不一致时输出 `blocked: role-changed:<身份>`。
+- token 的 `exp` 已过期时，不打开浏览器，直接输出 `login-expired`。
 
-单独检查四种身份能否切换：`RESTORE_ASSETS=… node tools/pw-switch-role.mjs --cross`。这个命令不保存任何东西。
+单独检查四种身份能否切换：`RESTORE_ASSETS=… node tools/pw-switch-role.mjs --cross`。这个命令默认不保存任何东西。
+
+POC 时期的确认工具（`pw-record`、`interact-confirm`、`verify-confirm`、`shell-probe`）仍然按角色读 `.auth/pw-usercenter-jobseeker.json`、`pw-usercenter-corp.json`。需要用它们时，登录后运行 `node tools/pw-switch-role.mjs jobseeker corp --save-legacy`，为每个身份另存一份。
 
 **并发：同身份可以同时跑，不同身份排队。** 用户中心的录制共用一把账号级锁 `$RESTORE_STATE/locks/account-usercenter.json`：
 
 - 持有者的身份和本次相同，就一起跑；不同就等待，默认最多 30 分钟（`--wait-identity <分钟>`），超时输出 `{"locked":true,"identityBusy":…}`。
+- 锁只在真实录制期间持有。回放基线和提交脚本不碰账号，开始前就释放。
+- 同身份的录制持续进来时，别的身份可能一直等到超时。录制员遇到 `identityBusy` 时，先把同身份的工单录完。
 - 持有进程退出后，锁会自动清掉。
 - 门户只有一个账号、没有身份，不受这把锁限制。
 
