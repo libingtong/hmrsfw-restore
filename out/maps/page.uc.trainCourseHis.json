@@ -1,0 +1,85 @@
+{
+ "id": "page.uc.trainCourseHis",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754512.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Z": "defineComponent",
+  "G": "reactive",
+  "ee": "watch",
+  "X": "onMounted",
+  "U": "nextTick",
+  "k": "ref",
+  "te": "onUnmounted",
+  "g": "resolveComponent",
+  "d": "openBlock",
+  "v": "createElementBlock",
+  "r": "createVNode",
+  "h": "withCtx",
+  "a": "createElementVNode",
+  "B": "withDirectives",
+  "O": "vShow",
+  "q": "withModifiers",
+  "C": "createCommentVNode",
+  "z": "toDisplayString",
+  "N": "unref",
+  "w": "createTextVNode",
+  "R": "createBlock",
+  "D": "normalizeClass",
+  "J": "normalizeStyle",
+  "Y": "pushScopeId",
+  "K": "popScopeId",
+  "se": "useRouter (vue-router)",
+  "oe": "useRoute (vue-router)",
+  "W": "Fragment",
+  "ae": "renderList"
+ },
+ "entry": {
+  "T": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "le": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "L": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "H": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "E": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "F": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

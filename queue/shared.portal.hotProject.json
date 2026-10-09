@@ -1,0 +1,67 @@
+{
+ "id": "shared.portal.hotProject",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.4,
+ "chunkKb": 3.4,
+ "sourceChunk": "legacy-dist/portal/assets/hotProject.1783320636200.js",
+ "components": [
+  {
+   "name": "hotProject",
+   "scopeId": "data-v-e9d68059"
+  }
+ ],
+ "scopeIds": [
+  "data-v-e9d68059"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/hotProject.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/hotProject.ts",
+ "subComponentDir": "apps/portal/src/shared/hotProject/",
+ "exports": {
+  "a": {
+   "export": "a"
+  },
+  "g": {
+   "export": "g"
+  },
+  "h": {
+   "path": "@/shared/hotProject/HotProject.vue",
+   "export": "default"
+  }
+ },
+ "registryKey": "hotProject.1783320636200.js",
+ "usedBy": [
+  "page.portal.talents.setUp.setupList",
+  "page.portal.talents.setUp.setupDetail"
+ ],
+ "maps": "out/maps/shared.portal.hotProject.json",
+ "hints": "out/hints/shared.portal.hotProject.md",
+ "deps": {
+  "entry": [
+   "B",
+   "av",
+   "f",
+   "z"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#j",
+   "index.1783320636200117.js#k"
+  ],
+  "modules": [
+   "three.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

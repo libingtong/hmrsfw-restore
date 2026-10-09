@@ -1,0 +1,126 @@
+{
+ "id": "page.portal.talents.overseasRecruitment.antDetail",
+ "chunk": "legacy-dist/portal/assets/antDetail.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "z": "defineComponent",
+  "F": "ref",
+  "N": "useRoute (vue-router)",
+  "S": "reactive",
+  "R": "onMounted",
+  "U": "resolveComponent",
+  "d": "openBlock",
+  "x": "createElementBlock",
+  "a": "createElementVNode",
+  "b": "toDisplayString",
+  "g": "unref",
+  "V": "withDirectives",
+  "I": "createVNode",
+  "T": "createCommentVNode",
+  "W": "withCtx",
+  "Z": "createTextVNode",
+  "E": "createBlock",
+  "G": "Fragment",
+  "J": "computed",
+  "K": "vShow"
+ },
+ "entry": {
+  "Q": {
+   "original": "V",
+   "path": "@/legacy",
+   "export": "VideoPlayer",
+   "status": "reserved",
+   "owner": "entry.portal.c05"
+  },
+  "X": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "$": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "m": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "w": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "C": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ee": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "te": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "se": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "le": {
+   "original": "index.api.178332063620041.js#q",
+   "path": "@/api/jobOverseasRecruitNotice",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobOverseasRecruitNotice/queryById"
+  },
+  "oe": {
+   "original": "index.api.178332063620041.js#a",
+   "path": "@/api/jobOverseasRecruitNotice",
+   "export": "queryById2",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobOverseasRecruitNotice/queryById"
+  },
+  "ie": {
+   "original": "index.api.178332063620041.js#s",
+   "path": "@/api/jobOverseasRecruitNotice",
+   "export": "saveOrCancel",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobOverseasRecruitRegistration/saveOrCancel"
+  },
+  "ce": {
+   "original": "index.api.178332063620035.js#c",
+   "path": "@/api/jobGovRecruitCompany",
+   "export": "checkIzPerfect",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUser/checkIzPerfect"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

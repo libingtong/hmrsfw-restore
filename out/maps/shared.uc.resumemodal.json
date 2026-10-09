@@ -1,0 +1,72 @@
+{
+ "id": "shared.uc.resumemodal",
+ "chunk": "legacy-dist/usercenter/assets/resumemodal.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "D": "defineComponent",
+  "U": "reactive",
+  "B": "ref",
+  "E": "onMounted",
+  "b": "resolveComponent",
+  "m": "openBlock",
+  "h": "createElementBlock",
+  "d": "createVNode",
+  "n": "withCtx",
+  "i": "createElementVNode",
+  "v": "createTextVNode",
+  "G": "Fragment",
+  "L": "renderList",
+  "$": "unref",
+  "j": "createBlock",
+  "A": "normalizeStyle",
+  "H": "toDisplayString",
+  "O": "pushScopeId",
+  "R": "popScopeId"
+ },
+ "entry": {
+  "w": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "T": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "q": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "F": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "P": {
+   "original": "index.api.17516156075456.js#f",
+   "path": "@/api/api-56",
+   "export": "listNoPage",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/listNoPage"
+  },
+  "V": {
+   "original": "index.api.17516156075456.js#h",
+   "path": "@/api/api-56",
+   "export": "saveCopy",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/saveCopy"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

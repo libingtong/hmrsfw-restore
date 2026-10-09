@@ -1,0 +1,43 @@
+{
+ "id": "shared.portal.thirdParty",
+ "chunk": "legacy-dist/portal/assets/thirdParty.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "D": "defineComponent",
+  "G": "reactive",
+  "L": "onBeforeMount",
+  "M": "onMounted",
+  "r": "openBlock",
+  "d": "createElementBlock",
+  "a": "createElementVNode",
+  "N": "toDisplayString",
+  "u": "createCommentVNode",
+  "V": "pushScopeId",
+  "Y": "popScopeId"
+ },
+ "entry": {
+  "P": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "I": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "S": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

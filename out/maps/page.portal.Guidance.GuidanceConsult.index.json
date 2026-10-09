@@ -1,0 +1,101 @@
+{
+ "id": "page.portal.Guidance.GuidanceConsult.index",
+ "chunk": "legacy-dist/portal/assets/index.17833206362005.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "pe": "defineComponent",
+  "me": "ref",
+  "Te": "useRoute (vue-router)",
+  "be": "onMounted",
+  "ye": "reactive",
+  "c": "resolveComponent",
+  "f": "openBlock",
+  "T": "createElementBlock",
+  "s": "createElementVNode",
+  "a": "createVNode",
+  "t": "withCtx",
+  "F": "unref",
+  "l": "toDisplayString",
+  "j": "Fragment",
+  "ve": "renderList",
+  "q": "createCommentVNode",
+  "B": "createTextVNode",
+  "xe": "createBlock",
+  "ge": "pushScopeId",
+  "he": "popScopeId"
+ },
+ "entry": {
+  "U": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "se": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "te": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "le": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "ne": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "oe": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "ie": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "re": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ue": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ce": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "fe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,63 @@
+{
+ "id": "page.uc.oddjob.sharepage",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 14.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/share-job.1751615607545.js",
+ "components": [
+  {
+   "name": "share-job",
+   "scopeId": "data-v-6c7cd28e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-6c7cd28e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/share-job.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/oddjob/sharepage.vue",
+ "subComponentDir": "apps/uc/src/views/oddjob/sharepage/",
+ "routes": [
+  {
+   "path": "/oddjob/sharepage",
+   "name": "OddjobShare"
+  }
+ ],
+ "recordPath": "/oddjob/sharepage",
+ "maps": "out/maps/page.uc.oddjob.sharepage.json",
+ "hints": "out/hints/page.uc.oddjob.sharepage.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a",
+   "ad",
+   "c",
+   "d",
+   "f",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x"
+  ],
+  "shared": [
+   "Content.vue_vue_type_script_setup_true_lang.1751615607545.js",
+   "extractpositionmodal.1751615607545.js",
+   "phone.1751615607545.js",
+   "workType.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.Content"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

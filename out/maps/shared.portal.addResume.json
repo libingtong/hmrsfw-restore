@@ -1,0 +1,111 @@
+{
+ "id": "shared.portal.addResume",
+ "chunk": "legacy-dist/portal/assets/addResume.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "re": "defineComponent",
+  "te": "ref",
+  "ie": "reactive",
+  "ue": "onMounted",
+  "oe": "onBeforeMount",
+  "c": "resolveComponent",
+  "F": "openBlock",
+  "de": "createElementBlock",
+  "l": "createVNode",
+  "s": "withCtx",
+  "v": "createElementVNode",
+  "q": "createTextVNode",
+  "ne": "toDisplayString",
+  "ce": "createBlock",
+  "pe": "createCommentVNode",
+  "me": "pushScopeId",
+  "fe": "popScopeId",
+  "ye": "getCurrentInstance"
+ },
+ "entry": {
+  "P": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "J": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "L": {
+   "original": "a0",
+   "path": "@/legacy/api",
+   "export": "queryByIdJM",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "X": {
+   "original": "a1",
+   "path": "@/utils/crypto-adapter",
+   "export": "decryptSm4",
+   "status": "reserved",
+   "owner": "entry.portal.E5"
+  },
+  "Y": {
+   "original": "a2",
+   "path": "@/legacy",
+   "export": "validateIdCard",
+   "status": "restored"
+  },
+  "U": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "D": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Z": {
+   "original": "index.1783320636200117.js#c",
+   "path": "@/api/api-117",
+   "export": "checkIdCard",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUser/checkIdCard"
+  },
+  "ae": {
+   "original": "index.api.17833206362002.js#t",
+   "path": "@/api/api-17833206362002",
+   "export": "saveUserAndVitaeWithCare",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobUserCare/saveUserAndVitaeWithCare"
+  },
+  "le": {
+   "original": "index.api.17833206362002.js#u",
+   "path": "@/api/api-17833206362002",
+   "export": "saveUserAndVitae",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/saveUserAndVitae"
+  }
+ },
+ "shared": {
+  "K": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "V": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,123 @@
+{
+ "id": "seg.portal.guide.jobHunt.1",
+ "type": "segment",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "page": "page.portal.guide.jobHunt",
+ "index": 1,
+ "of": 2,
+ "assemble": false,
+ "after": [],
+ "kb": 18.8,
+ "sourceChunk": "legacy-dist/portal/assets/jobHunt.1783320636200.js",
+ "range": [
+  0,
+  19162
+ ],
+ "components": [
+  {
+   "name": "StepForm",
+   "scopeId": "data-v-04f4f568"
+  },
+  {
+   "name": "vascader",
+   "scopeId": "data-v-8d4a8610"
+  },
+  {
+   "name": "StepForm2",
+   "scopeId": null
+  }
+ ],
+ "parts": [],
+ "outputs": [
+  "apps/portal/src/views/guide/jobHunt/StepForm.vue",
+  "apps/portal/src/views/guide/jobHunt/vascader.vue",
+  "apps/portal/src/views/guide/jobHunt/StepForm2.vue"
+ ],
+ "target": "apps/portal/src/views/guide/jobHunt.vue",
+ "subComponentDir": "apps/portal/src/views/guide/jobHunt/",
+ "scopeIds": [
+  "data-v-04f4f568",
+  "data-v-8d4a8610",
+  "data-v-2dbadcc3",
+  "data-v-3745ead4",
+  "data-v-de35c3a3"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/jobHunt.1783320636200.css"
+ ],
+ "routes": [
+  {
+   "path": "/guide/jobHunt",
+   "name": "jobHunt",
+   "title": "求职者信息维护"
+  }
+ ],
+ "recordPath": "/guide/jobHunt",
+ "maps": "out/maps/page.portal.guide.jobHunt.json",
+ "hints": "out/hints/page.portal.guide.jobHunt.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "L",
+   "M",
+   "S",
+   "a2",
+   "a5",
+   "aR",
+   "aU",
+   "ae",
+   "bg",
+   "bh",
+   "bi",
+   "c",
+   "d",
+   "f",
+   "h",
+   "m",
+   "o",
+   "p",
+   "t",
+   "u",
+   "v",
+   "w",
+   "x",
+   "y"
+  ],
+  "shared": [
+   "auth.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "resumemodal.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#b",
+   "index.1783320636200117.js#c",
+   "index.1783320636200117.js#d",
+   "index.1783320636200117.js#e",
+   "index.1783320636200117.js#f",
+   "index.1783320636200117.js#s",
+   "index.1783320636200117.js#v",
+   "index.api.17833206362002.js#e",
+   "index.api.17833206362002.js#h",
+   "index.api.17833206362002.js#q"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.auth"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [0, 19162)（约 18.8KB），其余部分由同页的其他分段负责。",
+  "完整还原这些组件并写成 SFC：StepForm → apps/portal/src/views/guide/jobHunt/StepForm.vue；vascader → apps/portal/src/views/guide/jobHunt/vascader.vue；StepForm2 → apps/portal/src/views/guide/jobHunt/StepForm2.vue。",
+  "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
+ ]
+}

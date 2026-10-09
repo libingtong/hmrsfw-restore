@@ -1,0 +1,71 @@
+{
+ "id": "page.uc.trash",
+ "chunk": "legacy-dist/usercenter/assets/trash.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "E": "defineComponent",
+  "y": "inject",
+  "J": "useRouter (vue-router)",
+  "Q": "reactive",
+  "L": "onMounted",
+  "i": "resolveComponent",
+  "r": "openBlock",
+  "I": "createElementBlock",
+  "c": "createElementVNode",
+  "s": "createVNode",
+  "n": "withCtx",
+  "d": "createTextVNode",
+  "p": "createCommentVNode",
+  "u": "toDisplayString",
+  "m": "createBlock",
+  "M": "Fragment"
+ },
+ "entry": {
+  "f": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "O": {
+   "original": "aJ",
+   "path": "@/legacy/api",
+   "export": "queryCompanyTalentlist",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "j": {
+   "original": "aL",
+   "path": "@/legacy/api",
+   "export": "restoreTalent",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "A": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "D": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "X": {
+   "original": "InterviewInvitation.17516156075452.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "message.1751615607545.js"
+ ],
+ "missing": []
+}

@@ -1,0 +1,70 @@
+{
+ "id": "page.portal.sjz.setUp.setupDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8.5,
+ "sourceChunk": "legacy-dist/portal/assets/setupDetail.17833206362002.js",
+ "components": [
+  {
+   "name": "setupDetail",
+   "scopeId": "data-v-80c8c83d"
+  }
+ ],
+ "scopeIds": [
+  "data-v-80c8c83d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/setupDetail.1783320636200.css",
+  "legacy-dist/portal/assets/setupDetail.17833206362002.css"
+ ],
+ "target": "apps/portal/src/views/sjz/setUp/setupDetail.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/setUp/setupDetail/",
+ "routes": [
+  {
+   "path": "/setupDetail",
+   "name": "setupDetail",
+   "title": "创业详情"
+  }
+ ],
+ "recordPath": "/setupDetail",
+ "maps": "out/maps/page.portal.sjz.setUp.setupDetail.json",
+ "hints": "out/hints/page.portal.sjz.setUp.setupDetail.md",
+ "deps": {
+  "entry": [
+   "B",
+   "C",
+   "E",
+   "S",
+   "aB",
+   "c",
+   "f",
+   "h",
+   "m",
+   "n",
+   "o",
+   "x",
+   "z"
+  ],
+  "shared": [
+   "complaint.1783320636200.js",
+   "empty.1783320636200.js",
+   "signSetup.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [
+   "card.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.complaint",
+   "shared.portal.modules",
+   "shared.portal.signSetup"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

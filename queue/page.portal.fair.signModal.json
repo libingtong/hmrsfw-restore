@@ -1,0 +1,53 @@
+{
+ "id": "page.portal.fair.signModal",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8.7,
+ "sourceChunk": "legacy-dist/portal/assets/signModal.1783320636200.js",
+ "components": [
+  {
+   "name": "signModal",
+   "scopeId": "data-v-484c8df1"
+  }
+ ],
+ "scopeIds": [
+  "data-v-484c8df1"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/signModal.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/signModal.vue",
+ "subComponentDir": "apps/portal/src/shared/signModal/",
+ "routes": [],
+ "recordPath": "/cityHome/:cityCode",
+ "maps": "out/maps/page.portal.fair.signModal.json",
+ "hints": "out/hints/page.portal.fair.signModal.md",
+ "deps": {
+  "entry": [
+   "A",
+   "J",
+   "K",
+   "S",
+   "c",
+   "v"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620017.js#a",
+   "index.api.178332063620017.js#g",
+   "index.api.178332063620017.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": null,
+  "in": "hmrsfw-vue @/shared/signModal.vue（POC 放在共享层；registry-cleanup 方案里迁回 views/fair/signModal.vue）"
+ },
+ "recordVia": "page.portal.cityHome.index"
+}

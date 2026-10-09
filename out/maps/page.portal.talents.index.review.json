@@ -1,0 +1,123 @@
+{
+ "id": "page.portal.talents.index.review",
+ "chunk": "legacy-dist/portal/assets/review.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "We": "defineComponent",
+  "Ne": "useRouter (vue-router)",
+  "Te": "reactive",
+  "qe": "watch",
+  "Ie": "onBeforeMount",
+  "Ye": "onMounted",
+  "M": "ref",
+  "S": "resolveComponent",
+  "l": "openBlock",
+  "o": "createElementBlock",
+  "i": "createElementVNode",
+  "w": "createCommentVNode",
+  "A": "createVNode",
+  "V": "withCtx",
+  "R": "Fragment",
+  "z": "renderList",
+  "Je": "createBlock",
+  "je": "pushScopeId",
+  "Me": "popScopeId",
+  "Ve": "createTextVNode",
+  "U": "unref",
+  "Ke": "normalizeClass",
+  "K": "toDisplayString"
+ },
+ "entry": {
+  "Z": {
+   "original": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Ze": {
+   "original": "a6",
+   "path": "@/legacy",
+   "export": "FeedbackModal",
+   "status": "restored"
+  },
+  "Ge": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Fe": {
+   "original": "an",
+   "path": "@/legacy/api",
+   "export": "queryLatestQuestionsList",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "De": {
+   "original": "ao",
+   "path": "@/legacy/api",
+   "export": "queryQuestionsList",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Xe": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "G": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "F": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "Ue": {
+   "original": "moreInfo.1783320636200.js#_",
+   "value": "/assets/moreInfo.1783320636200.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "moreInfoImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "xe": {
+   "original": "yjfk.1783320636200.js#_",
+   "value": "/sjz/newHome/wjdc.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "yjfkImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Ee": {
+   "original": "yjfk.1783320636200.js#a",
+   "value": "/sjz/newHome/yjfk.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "yjfkImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

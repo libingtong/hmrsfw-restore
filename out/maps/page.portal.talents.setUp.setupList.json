@@ -1,0 +1,154 @@
+{
+ "id": "page.portal.talents.setUp.setupList",
+ "chunk": "legacy-dist/portal/assets/setupList.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "W": "defineComponent",
+  "Te": "useRoute (vue-router)",
+  "Z": "useRouter (vue-router)",
+  "H": "reactive",
+  "Se": "onBeforeMount",
+  "V": "onMounted",
+  "m": "resolveComponent",
+  "i": "openBlock",
+  "c": "createElementBlock",
+  "Pe": "Fragment",
+  "je": "renderList",
+  "k": "createBlock",
+  "d": "withCtx",
+  "s": "createElementVNode",
+  "z": "createCommentVNode",
+  "A": "createTextVNode",
+  "o": "toDisplayString",
+  "t": "createVNode",
+  "X": "unref",
+  "Re": "watch",
+  "Ie": "resolveDynamicComponent",
+  "qe": "pushScopeId",
+  "Ue": "popScopeId"
+ },
+ "entry": {
+  "ke": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "E": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "Le": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "F": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "De": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {
+  "we": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Y": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "hotProject.1783320636200.js#a",
+   "path": "@/shared/hotProject.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.hotProject"
+  },
+  "Ae": {
+   "original": "hotProject.1783320636200.js#h",
+   "path": "@/shared/hotProject/HotProject.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.hotProject"
+  },
+  "Fe": {
+   "original": "tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/tagcanvas.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.tagcanvas"
+  },
+  "He": {
+   "original": "adsCenter.1783320636200.js#a",
+   "path": "@/shared/adsCenter.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.adsCenter"
+  },
+  "Xe": {
+   "original": "homeNews.17833206362003.js#h",
+   "path": "@/shared/homeNews3.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.homeNews3"
+  }
+ },
+ "views": {},
+ "modules": {
+  "We": {
+   "original": "card.1783320636200.js#_",
+   "value": "/sjz/setup/good.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Ze": {
+   "original": "card.1783320636200.js#a",
+   "value": "/sjz/setup/card.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [
+  "three.1783320636200.js"
+ ],
+ "missing": []
+}

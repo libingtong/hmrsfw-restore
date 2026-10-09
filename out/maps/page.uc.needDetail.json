@@ -1,0 +1,160 @@
+{
+ "id": "page.uc.needDetail",
+ "chunk": "legacy-dist/usercenter/assets/detail.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "We": "defineComponent",
+  "Ce": "useRouter (vue-router)",
+  "Ne": "useRoute (vue-router)",
+  "Ie": "inject",
+  "w": "ref",
+  "xe": "onMounted",
+  "Le": "reactive",
+  "n": "resolveComponent",
+  "p": "openBlock",
+  "N": "createElementBlock",
+  "s": "createVNode",
+  "t": "withCtx",
+  "v": "createTextVNode",
+  "D": "Fragment",
+  "J": "renderList",
+  "q": "unref",
+  "I": "toDisplayString",
+  "y": "createElementVNode",
+  "S": "createCommentVNode",
+  "x": "createBlock",
+  "Pe": "pushScopeId",
+  "qe": "popScopeId"
+ },
+ "entry": {
+  "F": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "De": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "Je": {
+   "original": "z",
+   "path": "@/legacy",
+   "export": "getDictValueByCodes",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "Fe": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "L": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Ye": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "He": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Oe": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "Se": {
+   "original": "index.api.17516156075457.js#a",
+   "path": "@/api/oddFindJobInfo",
+   "export": "getDetailById",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddJob/xfOddNeedJobInfo/getDetailById"
+  },
+  "Ue": {
+   "original": "index.api.17516156075457.js#e",
+   "path": "@/api/oddFindJobInfo",
+   "export": "edit",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddJob/xfOddNeedJobInfo/edit"
+  },
+  "Re": {
+   "original": "index.api.17516156075457.js#s",
+   "path": "@/api/oddFindJobInfo",
+   "export": "add",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddJob/xfOddNeedJobInfo/add"
+  }
+ },
+ "shared": {
+  "V": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "mapInfo.1751615607545.js#M",
+   "path": "@/shared/mapInfo.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.mapInfo"
+  },
+  "Me": {
+   "original": "oddNews.1751615607545.js#o",
+   "path": "@/shared/oddNews/OddType.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.oddNews"
+  },
+  "Ae": {
+   "original": "oddNews.1751615607545.js#a",
+   "path": "@/shared/oddNews/OddNews.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.oddNews"
+  },
+  "$e": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

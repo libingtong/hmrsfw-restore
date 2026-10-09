@@ -1,0 +1,71 @@
+{
+ "id": "page.portal.talents.overseasRecruitment.index",
+ "chunk": "legacy-dist/portal/assets/index.1783320636200101.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "re": "defineComponent",
+  "oe": "useRoute (vue-router)",
+  "ce": "useRouter (vue-router)",
+  "ue": "ref",
+  "pe": "reactive",
+  "de": "onMounted",
+  "f": "resolveComponent",
+  "s": "openBlock",
+  "n": "createElementBlock",
+  "o": "createVNode",
+  "M": "Fragment",
+  "R": "renderList",
+  "g": "withCtx",
+  "l": "createElementVNode",
+  "L": "createTextVNode",
+  "H": "createBlock",
+  "fe": "resolveDynamicComponent",
+  "j": "normalizeClass",
+  "u": "toDisplayString",
+  "ge": "createCommentVNode",
+  "me": "withModifiers",
+  "ve": "pushScopeId",
+  "ye": "popScopeId"
+ },
+ "entry": {
+  "ke": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "xe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "_e": {
+   "original": "index.api.178332063620041.js#b",
+   "path": "@/api/jobOverseasRecruitNotice",
+   "export": "queryList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobOverseasRecruitNotice/queryList"
+  }
+ },
+ "shared": {
+  "ze": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "we": {
+   "original": "homeNews.17833206362003.js#h",
+   "path": "@/shared/homeNews3.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.homeNews3"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

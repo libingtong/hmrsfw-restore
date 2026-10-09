@@ -1,0 +1,65 @@
+{
+ "id": "page.uc.audit",
+ "chunk": "legacy-dist/usercenter/assets/audit.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "$": "defineComponent",
+  "q": "onMounted",
+  "D": "reactive",
+  "u": "resolveComponent",
+  "b": "openBlock",
+  "Q": "createBlock",
+  "X": "ref",
+  "U": "inject",
+  "N": "createElementBlock",
+  "l": "createVNode",
+  "c": "withCtx",
+  "y": "createTextVNode",
+  "Y": "withDirectives",
+  "Z": "vShow",
+  "A": "createElementVNode",
+  "G": "Fragment",
+  "F": "toDisplayString",
+  "H": "createCommentVNode"
+ },
+ "entry": {
+  "P": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "B": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "W": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "J": {
+   "original": "index.api.17516156075454.js#g",
+   "path": "@/api/sysConsult",
+   "export": "list",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityRecord/list"
+  },
+  "K": {
+   "original": "index.api.1751615607545.js#g",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "queryByUserId",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

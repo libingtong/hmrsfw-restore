@@ -1,0 +1,78 @@
+{
+ "id": "page.portal.sjz.school.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 24,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620084.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-20e0700e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-20e0700e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/tagcanvas.1783320636200.css",
+  "legacy-dist/portal/assets/index.178332063620096.css",
+  "legacy-dist/portal/assets/index.178332063620084.css"
+ ],
+ "target": "apps/portal/src/views/sjz/school/index.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/school/index/",
+ "routes": [
+  {
+   "path": "/schoolHome",
+   "name": "schoolHome",
+   "title": "招聘服务"
+  }
+ ],
+ "recordPath": "/schoolHome",
+ "maps": "out/maps/page.portal.sjz.school.index.json",
+ "hints": "out/hints/page.portal.sjz.school.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "S",
+   "a",
+   "a$",
+   "aD",
+   "ab",
+   "ae",
+   "b",
+   "c",
+   "d",
+   "f",
+   "h",
+   "m",
+   "n",
+   "o",
+   "p",
+   "q",
+   "r",
+   "v",
+   "w",
+   "z"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [
+   "videoNull.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.modules",
+   "shared.portal.tagcanvas"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

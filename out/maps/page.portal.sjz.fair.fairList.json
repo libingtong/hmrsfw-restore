@@ -1,0 +1,30 @@
+{
+ "id": "page.portal.sjz.fair.fairList",
+ "chunk": "legacy-dist/portal/assets/fairList.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "S": "defineComponent",
+  "k": "reactive",
+  "v": "onMounted",
+  "n": "openBlock",
+  "u": "createElementBlock",
+  "p": "createVNode"
+ },
+ "entry": {
+  "C": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "liveNull.1783320636200.js"
+ ],
+ "missing": []
+}

@@ -1,0 +1,46 @@
+{
+ "id": "shared.portal.lines",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.6,
+ "chunkKb": 1.6,
+ "sourceChunk": "legacy-dist/portal/assets/lines.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "components": [
+  {
+   "name": "lines",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/lines.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "lines.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "usedBy": [
+  "page.portal.xjhm.bigData.newBigdata"
+ ],
+ "maps": "out/maps/shared.portal.lines.json",
+ "hints": "out/hints/shared.portal.lines.md",
+ "deps": {
+  "entry": [
+   "av"
+  ],
+  "shared": [
+   "timeOut.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

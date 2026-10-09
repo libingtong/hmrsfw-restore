@@ -1,0 +1,57 @@
+{
+ "id": "page.portal.BeOnProbation.ProbationElegantList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 4.8,
+ "sourceChunk": "legacy-dist/portal/assets/ProbationElegantList.1783320636200.js",
+ "components": [
+  {
+   "name": "ProbationElegantList",
+   "scopeId": "data-v-28159d7d"
+  }
+ ],
+ "scopeIds": [
+  "data-v-28159d7d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/ProbationElegantList.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/BeOnProbation/ProbationElegantList.vue",
+ "subComponentDir": "apps/portal/src/views/BeOnProbation/ProbationElegantList/",
+ "routes": [
+  {
+   "path": "/ProbationElegantList",
+   "name": "ProbationElegantList",
+   "title": "见习生风采"
+  }
+ ],
+ "recordPath": "/ProbationElegantList",
+ "maps": "out/maps/page.portal.BeOnProbation.ProbationElegantList.json",
+ "hints": "out/hints/page.portal.BeOnProbation.ProbationElegantList.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "S",
+   "c",
+   "e",
+   "f",
+   "g",
+   "h",
+   "n"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.1783320636200.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

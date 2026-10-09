@@ -1,0 +1,154 @@
+{
+ "id": "page.portal.xjhm.home.advertTop",
+ "chunk": "legacy-dist/portal/assets/advertTop.17833206362006.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "oe": "defineComponent",
+  "V": "reactive",
+  "ce": "onMounted",
+  "x": "resolveComponent",
+  "s": "openBlock",
+  "c": "createElementBlock",
+  "l": "createElementVNode",
+  "T": "toDisplayString",
+  "I": "createVNode",
+  "f": "withCtx",
+  "A": "Fragment",
+  "X": "renderList",
+  "u": "unref",
+  "re": "pushScopeId",
+  "de": "popScopeId",
+  "F": "normalizeClass",
+  "Nt": "useRouter (vue-router)",
+  "Ot": "useRoute (vue-router)",
+  "pe": "watch",
+  "Bt": "ref",
+  "ue": "computed",
+  "M": "createBlock",
+  "w": "createCommentVNode",
+  "he": "withModifiers",
+  "C": "createTextVNode"
+ },
+ "entry": {
+  "ve": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Pt": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "zt": {
+   "original": "W",
+   "path": "@/legacy",
+   "export": "queryAreaChildrenTreeListById",
+   "status": "restored"
+  },
+  "jt": {
+   "original": "cD",
+   "path": "@/legacy/api",
+   "export": "queryOrganizationByAreaId",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "At": {
+   "original": "bc",
+   "path": "@ant-design/icons-vue",
+   "export": "DownOutlined",
+   "status": "npm"
+  },
+  "ye": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "qt": {
+   "original": "aq",
+   "path": "@/legacy/store",
+   "export": "useStoreGetters",
+   "status": "reserved",
+   "owner": "entry.portal.E4"
+  },
+  "fe": {
+   "original": "ab",
+   "path": "@/legacy/api",
+   "export": "getArticleListNoCheck",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Z": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "Rt": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "Et": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Ht": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Dt": {
+   "original": "af",
+   "path": "@/legacy/api",
+   "export": "logout",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "q": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "R": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Wt": {
+   "original": "bs",
+   "path": "@/legacy/utils",
+   "export": "openLinkAddress",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Vt": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "bt",
+   "path": "@/legacy/store",
+   "export": "store",
+   "status": "reserved",
+   "owner": "entry.portal.E4"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

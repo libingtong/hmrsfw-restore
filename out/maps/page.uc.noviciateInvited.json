@@ -1,0 +1,84 @@
+{
+ "id": "page.uc.noviciateInvited",
+ "chunk": "legacy-dist/usercenter/assets/noviciateInvited.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Q": "defineComponent",
+  "N": "inject",
+  "J": "useRouter (vue-router)",
+  "L": "reactive",
+  "X": "onMounted",
+  "l": "resolveComponent",
+  "c": "openBlock",
+  "g": "createElementBlock",
+  "n": "createVNode",
+  "i": "withCtx",
+  "x": "createTextVNode",
+  "S": "createElementVNode",
+  "Y": "Fragment",
+  "f": "createCommentVNode",
+  "h": "toDisplayString",
+  "C": "createBlock",
+  "V": "h"
+ },
+ "entry": {
+  "U": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "aC",
+   "path": "@/legacy/api",
+   "export": "queryPageInterviewListByCompanyId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "G": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "H": {
+   "original": "a8",
+   "path": "@/legacy/api",
+   "export": "addTalent",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "K": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "W": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ee": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "te": {
+   "original": "setStatusinterview.1751615607545.js#s",
+   "path": "@/shared/setStatusinterview.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "index.api.175161560754510.js"
+ ],
+ "missing": []
+}

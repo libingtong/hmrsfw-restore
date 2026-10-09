@@ -1,0 +1,68 @@
+{
+ "id": "shared.uc.gaode",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 12.8,
+ "chunkKb": 12.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/gaode.1751615607545.js",
+ "components": [
+  {
+   "name": "nation",
+   "scopeId": null
+  },
+  {
+   "name": "map",
+   "scopeId": "data-v-74092770"
+  },
+  {
+   "name": "gaode",
+   "scopeId": "data-v-56312994"
+  }
+ ],
+ "scopeIds": [
+  "data-v-74092770",
+  "data-v-56312994"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/gaode.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/gaode.ts",
+ "exports": {
+  "M": {
+   "export": "BaiduMapModal"
+  },
+  "g": {
+   "export": "GaodeMapModal"
+  },
+  "i": {
+   "export": "MultiDictNationSelect"
+  }
+ },
+ "registryKey": "gaode.1751615607545.js",
+ "usedBy": [
+  "page.uc.CorpAttestation",
+  "page.uc.zcyzCorpAttestation",
+  "page.uc.CorpAttestationapprove",
+  "page.uc.zcyzCorpAttestationapprove"
+ ],
+ "maps": "out/maps/shared.uc.gaode.json",
+ "hints": "out/hints/shared.uc.gaode.md",
+ "deps": {
+  "entry": [
+   "M",
+   "S",
+   "T",
+   "V",
+   "m"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,99 @@
+{
+ "id": "shared.portal.maps",
+ "chunk": "legacy-dist/portal/assets/maps.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "n1": "defineComponent",
+  "A": "ref",
+  "E": "reactive",
+  "c1": "onMounted",
+  "H": "nextTick",
+  "i1": "onBeforeUnmount",
+  "u1": "watch",
+  "l1": "onBeforeMount",
+  "s1": "openBlock",
+  "p1": "createElementBlock"
+ },
+ "entry": {
+  "r": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "W": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "X": {
+   "original": "c7",
+   "path": "@/legacy/api",
+   "export": "getAreaInfoById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "e1": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "t1": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "r1": {
+   "original": "c8",
+   "path": "axios",
+   "export": "AxiosHeaders",
+   "status": "npm"
+  }
+ },
+ "api": {},
+ "shared": {
+  "G": {
+   "original": "timeOut.1783320636200.js#a",
+   "path": "@/shared/timeOut.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Y": {
+   "original": "timeOut.1783320636200.js#l",
+   "path": "@/shared/timeOut.ts",
+   "export": "l",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Z": {
+   "original": "index.1783320636200118.js#i",
+   "path": "echarts",
+   "export": "init"
+  },
+  "q": {
+   "original": "index.1783320636200118.js#r",
+   "path": "echarts",
+   "export": "registerMap"
+  },
+  "a1": {
+   "original": "china.1783320636200.js#c",
+   "path": "@/assets/geo/china.json",
+   "export": "default"
+  },
+  "d1": {
+   "original": "henan.1783320636200.js#h",
+   "path": "@/assets/geo/henan.json",
+   "export": "default"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

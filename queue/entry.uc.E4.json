@@ -1,0 +1,47 @@
+{
+ "id": "entry.uc.E4",
+ "type": "entry",
+ "area": "E4",
+ "title": "store",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "sourceChunk": "legacy-dist/usercenter/assets/index.1751615607545.js",
+ "kb": 1.6,
+ "appCode": "018",
+ "files": [
+  "apps/uc/src/legacy/store.ts"
+ ],
+ "owns": [
+  {
+   "alias": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  {
+   "alias": "bA",
+   "path": "@/legacy/store",
+   "export": "usePermissStore",
+   "status": "reserved"
+  },
+  {
+   "alias": "bD",
+   "path": "@/legacy/store",
+   "export": "vuexStore",
+   "status": "reserved"
+  },
+  {
+   "alias": "u",
+   "path": "@/legacy/store",
+   "export": "useCommonStore",
+   "status": "reserved"
+  }
+ ],
+ "note": "门户 vuex，用户中心 pinia（+ autoLogin 用的 vuex）",
+ "deps": {
+  "orders": []
+ },
+ "kbEstimated": true
+}

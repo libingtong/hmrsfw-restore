@@ -1,0 +1,53 @@
+{
+ "id": "shared.portal.Gigmarketgetjobpost",
+ "type": "shared",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.6,
+ "chunkKb": 2.6,
+ "sourceChunk": "legacy-dist/portal/assets/Gigmarketgetjobpost.1783320636200.js",
+ "components": [
+  {
+   "name": "Gigmarketgetjobpost",
+   "scopeId": "data-v-f188f3bf"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f188f3bf"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/Gigmarketgetjobpost.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/Gigmarketgetjobpost.vue",
+ "exports": {
+  "G": {
+   "export": "default"
+  }
+ },
+ "registryKey": "Gigmarketgetjobpost.1783320636200.js",
+ "usedBy": [
+  "page.portal.Guidance.GuidanceHome.index",
+  "page.portal.BeOnProbation.ProbationHome"
+ ],
+ "maps": "out/maps/shared.portal.Gigmarketgetjobpost.json",
+ "hints": "out/hints/shared.portal.Gigmarketgetjobpost.md",
+ "deps": {
+  "entry": [
+   "D",
+   "a",
+   "b",
+   "c",
+   "g",
+   "l",
+   "t"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,108 @@
+{
+ "id": "page.uc.teachInCancel",
+ "chunk": "legacy-dist/usercenter/assets/cancelList.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "G": "defineComponent",
+  "T": "inject",
+  "H": "useRouter (vue-router)",
+  "K": "useRoute (vue-router)",
+  "N": "reactive",
+  "W": "onMounted",
+  "p": "resolveComponent",
+  "c": "openBlock",
+  "u": "createElementBlock",
+  "l": "createVNode",
+  "s": "withCtx",
+  "w": "createTextVNode",
+  "g": "createElementVNode",
+  "ee": "Fragment",
+  "k": "createCommentVNode",
+  "m": "toDisplayString",
+  "_": "createBlock"
+ },
+ "entry": {
+  "le": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "I": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ce": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "re": {
+   "original": "index.api.175161560754517.js#b",
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryTalkListInfo",
+   "status": "reserved",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/queryTalkListInfo"
+  },
+  "de": {
+   "original": "index.api.175161560754517.js#m",
+   "path": "@/api/collegeCareerTalk",
+   "export": "cancelUnsubscribe",
+   "status": "reserved",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/cancelUnsubscribe"
+  }
+ },
+ "shared": {
+  "te": {
+   "original": "appointment.1751615607545.js#D",
+   "path": "@/shared/appointment/DetailModal.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.appointment"
+  },
+  "ae": {
+   "original": "appointment.1751615607545.js#a",
+   "path": "@/shared/appointment/Appointment.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.appointment"
+  },
+  "ne": {
+   "original": "appointment.1751615607545.js#c",
+   "path": "@/shared/appointment/CancelModal.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.appointment"
+  },
+  "oe": {
+   "original": "appointment.1751615607545.js#o",
+   "path": "@/shared/appointment/OrderModal.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.appointment"
+  },
+  "se": {
+   "original": "appointment.1751615607545.js#s",
+   "path": "@/shared/appointment/SignModal.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.appointment"
+  },
+  "ie": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "Editor.1751615607545.js"
+ ],
+ "missing": []
+}

@@ -1,0 +1,43 @@
+{
+ "id": "shared.portal.map2",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 0.9,
+ "chunkKb": 0.9,
+ "sourceChunk": "legacy-dist/portal/assets/map.vue_vue_type_script_setup_true_lang.1783320636200.js",
+ "components": [
+  {
+   "name": "map",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/map2.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "map.vue_vue_type_script_setup_true_lang.1783320636200.js",
+ "usedBy": [
+  "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+  "page.portal.recruitMarket.marketDetail.index",
+  "page.portal.LookForJob.PostDetail",
+  "page.portal.jobMarket.marketDetail"
+ ],
+ "maps": "out/maps/shared.portal.map2.json",
+ "hints": "out/hints/shared.portal.map2.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

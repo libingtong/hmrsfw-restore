@@ -1,0 +1,79 @@
+{
+ "id": "page.uc.recruitmentInformation",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754518.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "P": "defineComponent",
+  "R": "ref",
+  "F": "onMounted",
+  "L": "reactive",
+  "r": "resolveComponent",
+  "k": "openBlock",
+  "C": "createElementBlock",
+  "i": "createVNode",
+  "o": "withCtx",
+  "d": "createElementVNode",
+  "f": "toDisplayString",
+  "b": "createCommentVNode",
+  "U": "inject",
+  "te": "useRouter (vue-router)",
+  "g": "createTextVNode",
+  "ae": "Fragment",
+  "ne": "withModifiers",
+  "oe": "createBlock"
+ },
+ "entry": {
+  "V": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "O": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "re": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  }
+ },
+ "api": {
+  "se": {
+   "original": "index.api.175161560754518.js#g",
+   "path": "@/api/sysArticle",
+   "export": "getArticleListForRecruitment",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysArticle/getArticleListForRecruitment"
+  },
+  "le": {
+   "original": "index.api.175161560754518.js#a",
+   "path": "@/api/sysArticle",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysArticle/queryById"
+  },
+  "ce": {
+   "original": "index.api.175161560754518.js#s",
+   "path": "@/api/sysArticle",
+   "export": "setPublish",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysArticle/setPublish"
+  }
+ },
+ "shared": {
+  "ie": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

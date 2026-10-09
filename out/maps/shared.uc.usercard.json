@@ -1,0 +1,82 @@
+{
+ "id": "shared.uc.usercard",
+ "chunk": "legacy-dist/usercenter/assets/usercard.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "x": "defineComponent",
+  "p": "ref",
+  "S": "useRouter (vue-router)",
+  "C": "reactive",
+  "N": "watch",
+  "B": "resolveComponent",
+  "D": "openBlock",
+  "j": "createBlock",
+  "u": "withCtx",
+  "e": "createElementVNode",
+  "w": "createTextVNode",
+  "a": "toDisplayString",
+  "m": "unref",
+  "Y": "pushScopeId",
+  "T": "popScopeId"
+ },
+ "entry": {
+  "i": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "b": {
+   "original": "n",
+   "path": "@/legacy/api",
+   "export": "listOneForWebSite",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "_": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "y": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "parseIdCard",
+   "status": "restored"
+  },
+  "v": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "I": {
+   "original": "r",
+   "path": "@/legacy/utils",
+   "export": "maskPhone3",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "g": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "k": {
+   "original": "index.api.17516156075452.js#g",
+   "path": "@/api/sysUser",
+   "export": "queryByIdJM",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUser/queryByIdJM"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

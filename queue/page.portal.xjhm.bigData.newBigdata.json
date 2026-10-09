@@ -1,0 +1,66 @@
+{
+ "id": "page.portal.xjhm.bigData.newBigdata",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 19.7,
+ "sourceChunk": "legacy-dist/portal/assets/newBigdata.1783320636200.js",
+ "components": [
+  {
+   "name": "manaLoginModal",
+   "scopeId": "data-v-31156f5e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-31156f5e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/bars.1783320636200.css",
+  "legacy-dist/portal/assets/lines.1783320636200.css",
+  "legacy-dist/portal/assets/newBigdata.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/xjhm/bigData/newBigdata.vue",
+ "subComponentDir": "apps/portal/src/views/xjhm/bigData/newBigdata/",
+ "routes": [
+  {
+   "path": "/newBigdata",
+   "name": "newBigdata",
+   "title": "新大屏"
+  }
+ ],
+ "recordPath": "/newBigdata",
+ "maps": "out/maps/page.portal.xjhm.bigData.newBigdata.json",
+ "hints": "out/hints/page.portal.xjhm.bigData.newBigdata.md",
+ "deps": {
+  "entry": [
+   "A",
+   "aQ",
+   "c",
+   "cA",
+   "cB",
+   "cC",
+   "u"
+  ],
+  "shared": [
+   "bars.vue_vue_type_style_index_0_lang.1783320636200.js",
+   "dateUtil.1783320636200.js",
+   "init.17833206362002.js",
+   "lines.vue_vue_type_style_index_0_lang.1783320636200.js",
+   "pie.vue_vue_type_style_index_0_lang.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "shared.portal.bars",
+   "shared.portal.init",
+   "shared.portal.lines",
+   "shared.portal.modules",
+   "shared.portal.pie"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,71 @@
+{
+ "id": "page.portal.talents.setUp.setupDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 7.9,
+ "sourceChunk": "legacy-dist/portal/assets/setupDetail.17833206362003.js",
+ "components": [
+  {
+   "name": "setupDetail",
+   "scopeId": "data-v-e60c8b9d"
+  }
+ ],
+ "scopeIds": [
+  "data-v-e60c8b9d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/navigation.1783320636200.css",
+  "legacy-dist/portal/assets/setupDetail.17833206362003.css"
+ ],
+ "target": "apps/portal/src/views/talents/setUp/setupDetail.vue",
+ "subComponentDir": "apps/portal/src/views/talents/setUp/setupDetail/",
+ "routes": [
+  {
+   "path": "/talents/setupDetail",
+   "name": "talents/setupDetail",
+   "title": "培训详情"
+  }
+ ],
+ "recordPath": "/talents/setupDetail",
+ "maps": "out/maps/page.portal.talents.setUp.setupDetail.json",
+ "hints": "out/hints/page.portal.talents.setUp.setupDetail.md",
+ "deps": {
+  "entry": [
+   "B",
+   "C",
+   "E",
+   "S",
+   "aj",
+   "c",
+   "cn",
+   "f",
+   "h",
+   "m",
+   "o",
+   "x"
+  ],
+  "shared": [
+   "complaint.1783320636200.js",
+   "empty.1783320636200.js",
+   "hotProject.1783320636200.js",
+   "signSetup.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [
+   "card.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.complaint",
+   "shared.portal.hotProject",
+   "shared.portal.modules",
+   "shared.portal.signSetup"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

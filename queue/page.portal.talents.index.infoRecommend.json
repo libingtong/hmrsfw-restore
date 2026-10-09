@@ -1,0 +1,53 @@
+{
+ "id": "page.portal.talents.index.infoRecommend",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.8,
+ "sourceChunk": "legacy-dist/portal/assets/infoRecommend.1783320636200.js",
+ "components": [
+  {
+   "name": "infoRecommend",
+   "scopeId": "data-v-f9e2e168"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f9e2e168"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/infoRecommend.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/index/infoRecommend.vue",
+ "subComponentDir": "apps/portal/src/views/talents/index/infoRecommend/",
+ "routes": [],
+ "recordPath": "/talents/index",
+ "maps": "out/maps/page.portal.talents.index.infoRecommend.json",
+ "hints": "out/hints/page.portal.talents.index.infoRecommend.md",
+ "deps": {
+  "entry": [
+   "a",
+   "b",
+   "i",
+   "m",
+   "u"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620037.js#b"
+  ],
+  "modules": [
+   "robot.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.c03",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.index.index"
+}

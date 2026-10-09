@@ -1,0 +1,61 @@
+{
+ "id": "page.portal.sjz.corp.corpList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8.1,
+ "sourceChunk": "legacy-dist/portal/assets/corpList.1783320636200.js",
+ "components": [
+  {
+   "name": "corpList",
+   "scopeId": "data-v-b9ec3268"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b9ec3268"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/corpList.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/sjz/corp/corpList.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/corp/corpList/",
+ "routes": [
+  {
+   "path": "/CompanyList",
+   "name": "CompanyList",
+   "title": "单位信息"
+  },
+  {
+   "path": "/talents/CompanyList",
+   "name": "talents/CompanyList",
+   "title": "单位信息"
+  }
+ ],
+ "recordPath": "/CompanyList",
+ "maps": "out/maps/page.portal.sjz.corp.corpList.json",
+ "hints": "out/hints/page.portal.sjz.corp.corpList.md",
+ "deps": {
+  "entry": [
+   "B",
+   "L",
+   "f",
+   "t",
+   "w"
+  ],
+  "shared": [
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "industryCode.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620014.js#f",
+   "index.api.178332063620014.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,58 @@
+{
+ "id": "page.portal.jobMarket.marketDetail",
+ "chunk": "legacy-dist/portal/assets/marketDetail.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Z": "defineComponent",
+  "$": "useRoute (vue-router)",
+  "j": "reactive",
+  "z": "toRefs",
+  "E": "ref",
+  "K": "onBeforeMount",
+  "O": "onMounted",
+  "N": "nextTick",
+  "A": "openBlock",
+  "Q": "createElementBlock",
+  "a": "createElementVNode",
+  "i": "toDisplayString",
+  "s": "unref",
+  "h": "createTextVNode",
+  "R": "createBlock",
+  "S": "createCommentVNode",
+  "f": "withDirectives",
+  "v": "vShow",
+  "V": "normalizeClass",
+  "W": "Fragment",
+  "X": "pushScopeId",
+  "aa": "popScopeId"
+ },
+ "entry": {
+  "ta": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "sa": {
+   "original": "index.api.178332063620020.js#b",
+   "path": "@/api/service",
+   "export": "freeServiceUnitDetailById",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeServiceUnitDetailById"
+  }
+ },
+ "shared": {
+  "ea": {
+   "original": "map.vue_vue_type_script_setup_true_lang.1783320636200.js#_",
+   "path": "@/shared/map2.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.map2"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

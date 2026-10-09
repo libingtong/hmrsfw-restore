@@ -1,0 +1,187 @@
+{
+ "id": "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+ "chunk": "legacy-dist/portal/assets/recruitworkersDetail.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ts": "defineComponent",
+  "is": "useRouter (vue-router)",
+  "ns": "useRoute (vue-router)",
+  "ds": "reactive",
+  "cs": "onMounted",
+  "u": "resolveComponent",
+  "o": "openBlock",
+  "d": "createElementBlock",
+  "s": "createElementVNode",
+  "n": "createVNode",
+  "c": "withCtx",
+  "l": "toDisplayString",
+  "f": "createTextVNode",
+  "m": "createCommentVNode",
+  "y": "createBlock",
+  "R": "Fragment",
+  "E": "renderList",
+  "v": "unref",
+  "rs": "pushScopeId",
+  "fs": "popScopeId",
+  "us": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "Qe": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "S": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "J": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Xe": {
+   "original": "as",
+   "path": "@/legacy/utils",
+   "export": "getUserInfo",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "$e": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "U": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "es": {
+   "original": "C",
+   "path": "@/legacy",
+   "export": "TEXT_GO_PERFECT",
+   "status": "restored"
+  },
+  "M": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "z": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "H": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "I": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ss": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "ls": {
+   "original": "bT",
+   "path": "@/legacy/utils",
+   "export": "maskPhone",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "as": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ys": {
+   "original": "index.api.178332063620024.js#p",
+   "path": "@/api/api-24",
+   "export": "popularNeedJob",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/popularNeedJob"
+  },
+  "bs": {
+   "original": "index.api.178332063620024.js#q",
+   "path": "@/api/api-24",
+   "export": "getDetailById",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/getDetailById"
+  },
+  "gs": {
+   "original": "index.api.178332063620024.js#e",
+   "path": "@/api/api-24",
+   "export": "add3",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddPositionApply/add"
+  },
+  "vs": {
+   "original": "index.api.178332063620024.js#h",
+   "path": "@/api/api-24",
+   "export": "add4",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/callRecord/add"
+  },
+  "hs": {
+   "original": "index.api.178332063620024.js#i",
+   "path": "@/api/api-24",
+   "export": "add",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddUserCollect/add"
+  },
+  "Ts": {
+   "original": "index.api.178332063620024.js#j",
+   "path": "@/api/api-24",
+   "export": "deleteItem",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddUserCollect/delete"
+  }
+ },
+ "shared": {
+  "ps": {
+   "original": "nowContact.vue_vue_type_script_setup_true_lang.1783320636200.js#_",
+   "path": "@/shared/nowContact.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.nowContact"
+  },
+  "ms": {
+   "original": "map.vue_vue_type_script_setup_true_lang.1783320636200.js#_",
+   "path": "@/shared/map2.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.map2"
+  },
+  "xs": {
+   "original": "complaint.1783320636200.js#c",
+   "path": "@/shared/complaint.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.complaint"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

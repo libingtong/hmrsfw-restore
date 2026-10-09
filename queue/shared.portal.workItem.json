@@ -1,0 +1,74 @@
+{
+ "id": "shared.portal.workItem",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 9.6,
+ "chunkKb": 9.6,
+ "sourceChunk": "legacy-dist/portal/assets/workItem.17833206362002.js",
+ "components": [
+  {
+   "name": "workItem",
+   "scopeId": "data-v-23adcd83"
+  }
+ ],
+ "scopeIds": [
+  "data-v-23adcd83"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/workItem.17833206362002.css"
+ ],
+ "target": "apps/portal/src/shared/workItem.vue",
+ "exports": {
+  "w": {
+   "export": "default"
+  }
+ },
+ "registryKey": "workItem.17833206362002.js",
+ "usedBy": [
+  "page.portal.livejob.detail",
+  "page.portal.recruitMarket.marketHome.home",
+  "page.portal.sjz.job.jobList"
+ ],
+ "maps": "out/maps/shared.portal.workItem.json",
+ "hints": "out/hints/shared.portal.workItem.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "O",
+   "aq",
+   "ar",
+   "as",
+   "f",
+   "m",
+   "o",
+   "p",
+   "u",
+   "v",
+   "x",
+   "y"
+  ],
+  "shared": [
+   "addResume.1783320636200.js",
+   "resumemodal.1783320636200.js"
+  ],
+  "api": [
+   "index.api.17833206362002.js#e",
+   "index.api.17833206362002.js#h",
+   "index.api.17833206362002.js#q"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E4",
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.addResume"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

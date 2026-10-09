@@ -1,0 +1,237 @@
+{
+ "id": "page.uc.formDone",
+ "chunk": "legacy-dist/usercenter/assets/formDone.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Se": "defineComponent",
+  "b": "ref",
+  "qe": "useRouter (vue-router)",
+  "je": "useRoute (vue-router)",
+  "Ge": "inject",
+  "Ae": "onMounted",
+  "Fe": "reactive",
+  "h": "resolveComponent",
+  "x": "openBlock",
+  "B": "createElementBlock",
+  "e": "createVNode",
+  "a": "withCtx",
+  "$": "createTextVNode",
+  "I": "unref",
+  "y": "createElementVNode",
+  "K": "createCommentVNode",
+  "fa": "Fragment",
+  "ba": "renderList",
+  "va": "normalizeClass",
+  "ha": "withDirectives",
+  "_a": "vShow",
+  "Ze": "toDisplayString",
+  "pe": "createBlock",
+  "Be": "pushScopeId",
+  "Xe": "popScopeId"
+ },
+ "entry": {
+  "ce": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Me": {
+   "original": "A",
+   "path": "@/legacy",
+   "export": "queryAreaChildrenTreeListById",
+   "status": "restored"
+  },
+  "le": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "ue": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "re": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "L": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "fe": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "We": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  },
+  "De": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "ya": {
+   "original": "U",
+   "path": "ant-design-vue",
+   "export": "Upload",
+   "status": "npm"
+  }
+ },
+ "api": {
+  "Ca": {
+   "original": "index.api.17516156075455.js#h",
+   "path": "@/api/api-17516156075455",
+   "export": "checkIdCard3",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/checkIdCard"
+  },
+  "xa": {
+   "original": "index.api.17516156075455.js#i",
+   "path": "@/api/api-17516156075455",
+   "export": "queryById3",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/queryById"
+  },
+  "wa": {
+   "original": "index.api.17516156075455.js#j",
+   "path": "@/api/api-17516156075455",
+   "export": "saveOrUpdate3",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/saveOrUpdate"
+  },
+  "ua": {
+   "original": "index.api.17516156075455.js#k",
+   "path": "@/api/api-17516156075455",
+   "export": "checkIdCard",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/checkIdCard"
+  },
+  "ra": {
+   "original": "index.api.17516156075455.js#l",
+   "path": "@/api/api-17516156075455",
+   "export": "queryById4",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/queryById"
+  },
+  "ka": {
+   "original": "index.api.17516156075455.js#m",
+   "path": "@/api/api-17516156075455",
+   "export": "saveOrupdate",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/saveOrupdate"
+  },
+  "Ia": {
+   "original": "index.api.17516156075455.js#n",
+   "path": "@/api/api-17516156075455",
+   "export": "checkIdCard2",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentPfiPromotion/checkIdCard"
+  },
+  "La": {
+   "original": "index.api.17516156075455.js#o",
+   "path": "@/api/api-17516156075455",
+   "export": "queryById2",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentPfiPromotion/queryById"
+  },
+  "Pa": {
+   "original": "index.api.17516156075455.js#p",
+   "path": "@/api/api-17516156075455",
+   "export": "saveOrUpdate2",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentPfiPromotion/saveOrUpdate"
+  },
+  "Na": {
+   "original": "index.api.17516156075455.js#q",
+   "path": "@/api/api-17516156075455",
+   "export": "queryById",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentStayUniversity/queryById"
+  },
+  "Ta": {
+   "original": "index.api.17516156075455.js#d",
+   "path": "@/api/api-17516156075455",
+   "export": "getCollegeInfo",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentStayUniversity/getCollegeInfo"
+  },
+  "Ua": {
+   "original": "index.api.17516156075455.js#r",
+   "path": "@/api/api-17516156075455",
+   "export": "saveOrUpdate",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentStayUniversity/saveOrUpdate"
+  },
+  "na": {
+   "original": "index.api.17516156075455.js#t",
+   "path": "@/api/api-17516156075455",
+   "export": "checkIdCard4",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentPostdocPerk/checkIdCard"
+  },
+  "ia": {
+   "original": "index.api.17516156075455.js#u",
+   "path": "@/api/api-17516156075455",
+   "export": "queryById5",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentPostdocPerk/queryById"
+  },
+  "oa": {
+   "original": "index.api.17516156075455.js#v",
+   "path": "@/api/api-17516156075455",
+   "export": "saveOrUpdate4",
+   "status": "restored",
+   "url": "/xf-talent/talent/xfTalentPostdocPerk/saveOrUpdate"
+  }
+ },
+ "shared": {
+  "Ie": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "idCard.1751615607545.js#i",
+   "path": "@/shared/idCard.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,183 @@
+{
+ "id": "page.portal.Guidance.GuidanceMentorList.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620010.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "$": "defineComponent",
+  "Q": "onMounted",
+  "G": "reactive",
+  "p": "resolveComponent",
+  "i": "openBlock",
+  "b": "createBlock",
+  "n": "withCtx",
+  "o": "createVNode",
+  "W": "ref",
+  "Ae": "useRouter (vue-router)",
+  "Ee": "useRoute (vue-router)",
+  "m": "createElementBlock",
+  "h": "unref",
+  "S": "createTextVNode",
+  "c": "toDisplayString",
+  "R": "createCommentVNode",
+  "r": "createElementVNode",
+  "Be": "withDirectives",
+  "Fe": "vShow",
+  "M": "Fragment",
+  "H": "renderList",
+  "Oe": "resolveDynamicComponent",
+  "qe": "pushScopeId",
+  "De": "popScopeId",
+  "J": "RouterLink (vue-router)",
+  "Ve": "withModifiers"
+ },
+ "entry": {
+  "Ke": {
+   "original": "G",
+   "path": "@ant-design/icons-vue",
+   "export": "SmileOutlined",
+   "status": "npm"
+  },
+  "Ye": {
+   "original": "H",
+   "path": "@ant-design/icons-vue",
+   "export": "MehOutlined",
+   "status": "npm"
+  },
+  "Ze": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "X": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "$e": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Qe": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "E": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "We": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "Xe": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "ee": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ea": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "aa": {
+   "original": "C",
+   "path": "@/legacy",
+   "export": "TEXT_GO_PERFECT",
+   "status": "restored"
+  },
+  "la": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "sa": {
+   "original": "E",
+   "path": "@/legacy",
+   "export": "IDENTITY_PERSON",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "je": {
+   "original": "index.api.17833206362005.js#x",
+   "path": "@/api/jobUserTutorExpand2",
+   "export": "listForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite"
+  },
+  "Ge": {
+   "original": "index.api.17833206362005.js#h",
+   "path": "@/api/jobUserTutorExpand2",
+   "export": "hotlistForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/hotlistForWebsite"
+  },
+  "Re": {
+   "original": "index.api.17833206362005.js#t",
+   "path": "@/api/jobUserTutorExpand2",
+   "export": "add",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysThumbsUp/add"
+  },
+  "He": {
+   "original": "index.api.17833206362004.js#g",
+   "path": "@/api/jobUserTutorExpand",
+   "export": "queryOrganizationByAreaId",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/queryOrganizationByAreaId"
+  }
+ },
+ "shared": {
+  "ra": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "oa": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Ue": {
+   "original": "dianzan.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.4KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "dianzanImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,87 @@
+{
+ "id": "page.uc.allianceSend",
+ "chunk": "legacy-dist/usercenter/assets/AllianceSend.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "K": "defineComponent",
+  "S": "inject",
+  "q": "reactive",
+  "Q": "onMounted",
+  "p": "resolveComponent",
+  "i": "openBlock",
+  "c": "createElementBlock",
+  "n": "createElementVNode",
+  "s": "createVNode",
+  "y": "withCtx",
+  "r": "createTextVNode",
+  "g": "Fragment",
+  "Y": "renderList",
+  "J": "createBlock",
+  "h": "createCommentVNode",
+  "m": "toDisplayString"
+ },
+ "entry": {
+  "B": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "k": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "E": {
+   "original": "b5",
+   "path": "@/legacy/api",
+   "export": "cancel",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "F": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "M": {
+   "original": "index.api.17516156075456.js#Y",
+   "path": "@/api/api-56",
+   "export": "listForUserContent2",
+   "status": "restored",
+   "url": "/xf-alliance/alliance/curriculumVitaeDeliver/listForUserContent"
+  },
+  "A": {
+   "original": "index.api.17516156075456.js#V",
+   "path": "@/api/api-56",
+   "export": "add6",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobUserCare/add"
+  }
+ },
+ "shared": {
+  "L": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "R": {
+   "original": "complaint.1751615607545.js#c",
+   "path": "@/shared/complaint.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.complaint"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "index.api.17516156075452.js",
+  "phone.1751615607545.js"
+ ],
+ "missing": []
+}

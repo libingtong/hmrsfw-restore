@@ -1,0 +1,98 @@
+{
+ "id": "page.uc.graduates",
+ "chunk": "legacy-dist/usercenter/assets/index.17516156075458.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "O": "defineComponent",
+  "v": "ref",
+  "V": "useRouter (vue-router)",
+  "z": "useRoute (vue-router)",
+  "G": "inject",
+  "H": "onMounted",
+  "P": "reactive",
+  "d": "resolveComponent",
+  "E": "openBlock",
+  "K": "createElementBlock",
+  "a": "createVNode",
+  "r": "withCtx",
+  "_": "createTextVNode",
+  "X": "createElementVNode"
+ },
+ "entry": {
+  "N": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "x": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "$": {
+   "original": "b",
+   "path": "vuex",
+   "export": "useStore",
+   "status": "npm"
+  },
+  "A": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "L": {
+   "original": "n",
+   "path": "@/legacy/api",
+   "export": "listOneForWebSite",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "T": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "l",
+   "path": "@/legacy/utils",
+   "export": "setLocalStorage",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "S": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "I": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "W": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "j": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,124 @@
+{
+ "id": "page.portal.talents.job.jobList",
+ "chunk": "legacy-dist/portal/assets/jobList.17833206362004.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ge": "defineComponent",
+  "Ce": "useRouter (vue-router)",
+  "Se": "useRoute (vue-router)",
+  "Te": "reactive",
+  "ze": "computed",
+  "Le": "onMounted",
+  "c": "resolveComponent",
+  "Ne": "resolveDirective",
+  "n": "openBlock",
+  "y": "createElementBlock",
+  "o": "createElementVNode",
+  "t": "createVNode",
+  "r": "withCtx",
+  "B": "withDirectives",
+  "D": "toDisplayString",
+  "V": "vShow",
+  "F": "createTextVNode",
+  "Ie": "unref",
+  "T": "Fragment",
+  "P": "renderList",
+  "z": "createBlock",
+  "qe": "resolveDynamicComponent",
+  "Ae": "createCommentVNode",
+  "Be": "pushScopeId",
+  "De": "popScopeId",
+  "Fe": "RouterLink (vue-router)",
+  "Pe": "normalizeClass"
+ },
+ "entry": {
+  "Ue": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "Re": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "je": {
+   "original": "L",
+   "path": "@/legacy",
+   "export": "getDictListByType",
+   "status": "restored"
+  },
+  "Je": {
+   "original": "t",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "U": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Me": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "b": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "He": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "workItemNew.1783320636200.js#w",
+   "path": "@/shared/workItemNew.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.workItemNew"
+  },
+  "Ke": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Xe": {
+   "original": "map.17833206362002.js#m",
+   "path": "@/shared/map.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.map"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

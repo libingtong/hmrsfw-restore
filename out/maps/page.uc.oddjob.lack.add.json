@@ -1,0 +1,174 @@
+{
+ "id": "page.uc.oddjob.lack.add",
+ "chunk": "legacy-dist/usercenter/assets/lack-job-add.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "ye": "defineComponent",
+  "he": "useRoute (vue-router)",
+  "be": "useRouter (vue-router)",
+  "p": "ref",
+  "D": "onMounted",
+  "_e": "inject",
+  "ke": "reactive",
+  "i": "resolveComponent",
+  "N": "openBlock",
+  "E": "createElementBlock",
+  "a": "createVNode",
+  "l": "withCtx",
+  "b": "createTextVNode",
+  "Y": "unref",
+  "Te": "Fragment",
+  "xe": "renderList",
+  "P": "createBlock",
+  "j": "createCommentVNode",
+  "Ne": "toDisplayString"
+ },
+ "entry": {
+  "Ae": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "M": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "F": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "V": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "R": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Pe": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "S": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "J": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "q": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "qe": {
+   "original": "ad",
+   "path": "@/legacy",
+   "export": "checkSensitive",
+   "status": "restored"
+  },
+  "We": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "Ie": {
+   "original": "index.api.175161560754520.js#a",
+   "path": "@/api/oddShareLackJobInfo",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/queryById"
+  },
+  "Ce": {
+   "original": "index.api.175161560754520.js#e",
+   "path": "@/api/oddShareLackJobInfo",
+   "export": "edit",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/edit"
+  },
+  "we": {
+   "original": "index.api.175161560754520.js#b",
+   "path": "@/api/oddShareLackJobInfo",
+   "export": "add",
+   "status": "reserved",
+   "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/add"
+  }
+ },
+ "shared": {
+  "Ue": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "L": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "De": {
+   "original": "extractpositionmodal.1751615607545.js#e",
+   "path": "@/shared/extractpositionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "dictCheckBoxAll.1751615607545.js#d",
+   "path": "@/shared/dictCheckBoxAll.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ye": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "je": {
+   "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/Content/Content.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.Content"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

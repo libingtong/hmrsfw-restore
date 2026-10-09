@@ -1,0 +1,40 @@
+{
+ "id": "page.uc.login",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754526.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "_": "defineComponent",
+  "e": "reactive",
+  "c": "useRouter (vue-router)",
+  "i": "onMounted",
+  "p": "openBlock",
+  "u": "createBlock"
+ },
+ "entry": {
+  "o": {
+   "original": "bA",
+   "path": "@/legacy/store",
+   "export": "usePermissStore",
+   "status": "reserved",
+   "owner": "entry.uc.E4"
+  },
+  "a": {
+   "original": "bB",
+   "path": "@/legacy/utils",
+   "export": "removeUrlParam",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "r": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

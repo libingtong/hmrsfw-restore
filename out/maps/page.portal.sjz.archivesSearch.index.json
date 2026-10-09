@@ -1,0 +1,209 @@
+{
+ "id": "page.portal.sjz.archivesSearch.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620071.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "tt": "defineComponent",
+  "at": "useRouter (vue-router)",
+  "$": "ref",
+  "lt": "watch",
+  "st": "onBeforeMount",
+  "D": "reactive",
+  "ot": "toRefs",
+  "Y": "nextTick",
+  "y": "resolveComponent",
+  "s": "openBlock",
+  "n": "createElementBlock",
+  "r": "createElementVNode",
+  "i": "unref",
+  "w": "createCommentVNode",
+  "c": "createVNode",
+  "p": "withCtx",
+  "g": "createBlock",
+  "f": "toDisplayString",
+  "rt": "createTextVNode",
+  "nt": "mergeProps",
+  "N": "Fragment",
+  "j": "renderList",
+  "it": "withDirectives",
+  "ct": "vShow",
+  "dt": "resolveDynamicComponent",
+  "J": "withModifiers",
+  "ut": "isRef",
+  "pt": "pushScopeId",
+  "mt": "popScopeId",
+  "gt": "normalizeClass"
+ },
+ "entry": {
+  "ht": {
+   "original": "i",
+   "path": "swiper",
+   "export": "default",
+   "status": "npm",
+   "as": "SwiperCore"
+  },
+  "yt": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "ft": {
+   "original": "aE",
+   "path": "@/legacy",
+   "export": "SlideCaptcha",
+   "status": "reserved",
+   "owner": "entry.portal.c02"
+  },
+  "wt": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "E": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "_t": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "kt": {
+   "original": "a2",
+   "path": "@/legacy",
+   "export": "validateIdCard",
+   "status": "restored"
+  },
+  "K": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "X": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "bt": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "Ct": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "St": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "xt": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "At": {
+   "original": "index.api.17833206362008.js#q",
+   "path": "@/api/api-08",
+   "export": "queryById",
+   "status": "restored",
+   "url": "/xf-job/school/licenseFree/XfSysArticle/queryById"
+  },
+  "zt": {
+   "original": "index.api.178332063620015.js#g",
+   "path": "@/api/api-15",
+   "export": "getChildArticleTypeList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
+  },
+  "F": {
+   "original": "index.api.178332063620015.js#a",
+   "path": "@/api/api-15",
+   "export": "getArticleList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getArticleList"
+  },
+  "qt": {
+   "original": "index.api.178332063620015.js#b",
+   "path": "@/api/api-15",
+   "export": "freeArchiveServiceOrgList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/freeArchiveServiceOrgList"
+  },
+  "Zt": {
+   "original": "index.api.178332063620015.js#c",
+   "path": "@/api/api-15",
+   "export": "freeArchiveInfoPageList3",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/hm/freeArchiveInfoPageList"
+  },
+  "Dt": {
+   "original": "index.api.178332063620015.js#d",
+   "path": "@/api/api-15",
+   "export": "freeArchiveInfoPageList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/freeArchiveInfoPageList"
+  }
+ },
+ "shared": {
+  "Q": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "vt": {
+   "original": "bg.1783320636200.js#_",
+   "value": "/assets/bg.178332063620012.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "bgImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Lt": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "Nt": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "Et": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  },
+  "Bt": {
+   "original": "grid.1783320636200.js#G",
+   "path": "swiper",
+   "export": "Grid"
+  },
+  "Ot": {
+   "original": "effect-coverflow.1783320636200.js#E",
+   "path": "swiper",
+   "export": "EffectCoverflow"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

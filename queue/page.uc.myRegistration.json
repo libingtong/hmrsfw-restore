@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.myRegistration",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 10.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/innovation.1751615607545.js",
+ "components": [
+  {
+   "name": "innovationAdd",
+   "scopeId": "data-v-fca5fddc"
+  },
+  {
+   "name": "innovation",
+   "scopeId": "data-v-30f264d4"
+  }
+ ],
+ "scopeIds": [
+  "data-v-fca5fddc",
+  "data-v-30f264d4"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/innovation.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/myRegistration.vue",
+ "subComponentDir": "apps/uc/src/views/myRegistration/",
+ "routes": [
+  {
+   "path": "/myRegistration",
+   "name": "myRegistration"
+  }
+ ],
+ "recordPath": "/myRegistration",
+ "maps": "out/maps/page.uc.myRegistration.json",
+ "hints": "out/hints/page.uc.myRegistration.md",
+ "deps": {
+  "entry": [
+   "M",
+   "m",
+   "o",
+   "w"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "idCard.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,44 @@
+{
+ "id": "shared.portal.gaode2",
+ "chunk": "legacy-dist/portal/assets/gaode.vue_vue_type_style_index_0_lang.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "S": "defineComponent",
+  "I": "computed",
+  "j": "useRouter (vue-router)",
+  "m": "ref",
+  "q": "onMounted",
+  "P": "onUnmounted",
+  "L": "nextTick",
+  "G": "openBlock",
+  "E": "createElementBlock",
+  "Z": "createElementVNode"
+ },
+ "entry": {
+  "f": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "h": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "$": {
+   "original": "index.1783320636200116.js#A",
+   "path": "@amap/amap-jsapi-loader",
+   "export": "default"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

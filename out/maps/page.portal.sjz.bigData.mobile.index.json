@@ -1,0 +1,137 @@
+{
+ "id": "page.portal.sjz.bigData.mobile.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620075.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "j": "defineComponent",
+  "L": "ref",
+  "B": "reactive",
+  "N": "onMounted",
+  "C": "nextTick",
+  "P": "onBeforeUnmount",
+  "I": "watch",
+  "R": "onBeforeMount",
+  "k": "openBlock",
+  "_": "createElementBlock",
+  "Dt": "renderSlot",
+  "Et": "useRoute (vue-router)",
+  "Ft": "useRouter (vue-router)",
+  "r": "createElementVNode",
+  "S": "toDisplayString",
+  "Gt": "Fragment",
+  "Wt": "renderList",
+  "T": "createVNode",
+  "X": "normalizeClass"
+ },
+ "entry": {
+  "Y": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "$t": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Pt": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Ht": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Ut": {
+   "original": "index.apinew.1783320636200.js#q",
+   "path": "@/api/deviceBasic",
+   "export": "queryAllInfoById",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobBigDataViewSettings/queryAllInfoById"
+  }
+ },
+ "shared": {
+  "q": {
+   "original": "timeOut.1783320636200.js#a",
+   "path": "@/shared/timeOut.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "U": {
+   "original": "timeOut.1783320636200.js#l",
+   "path": "@/shared/timeOut.ts",
+   "export": "l",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "views": {},
+ "modules": {
+  "H": {
+   "original": "index.1783320636200118.js#i",
+   "path": "echarts",
+   "export": "init"
+  },
+  "Mt": {
+   "original": "index.1783320636200118.js#L",
+   "path": "echarts",
+   "export": "graphic",
+   "member": "LinearGradient"
+  },
+  "tt": {
+   "original": "s04.1783320636200.js#s",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgS",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "et": {
+   "original": "s04.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "at": {
+   "original": "s04.1783320636200.js#b",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgB",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ot": {
+   "original": "s04.1783320636200.js#c",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgC",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "it": {
+   "original": "s05.1783320636200.js#s",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s05Img",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

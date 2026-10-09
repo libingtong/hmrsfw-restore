@@ -1,0 +1,156 @@
+{
+ "id": "page.uc.sceneFairSign",
+ "chunk": "legacy-dist/usercenter/assets/sceneFairSign.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "se": "defineComponent",
+  "he": "ref",
+  "oe": "reactive",
+  "ae": "onMounted",
+  "fe": "nextTick",
+  "p": "resolveComponent",
+  "l": "openBlock",
+  "c": "createElementBlock",
+  "a": "createElementVNode",
+  "t": "createVNode",
+  "s": "withCtx",
+  "R": "Fragment",
+  "M": "renderList",
+  "x": "createBlock",
+  "d": "createTextVNode",
+  "b": "createCommentVNode",
+  "ge": "normalizeClass",
+  "m": "unref",
+  "ve": "useRoute (vue-router)",
+  "r": "toDisplayString",
+  "be": "pushScopeId",
+  "ye": "popScopeId"
+ },
+ "entry": {
+  "Q": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "aZ",
+   "path": "@/legacy/api",
+   "export": "getArticleList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Y": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "D": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "te": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "ue": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "a_",
+   "path": "@/legacy/utils",
+   "export": "validateContactPhone",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "W": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "X": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "me": {
+   "original": "a$",
+   "path": "@/router",
+   "export": "router",
+   "status": "restored"
+  },
+  "V": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  }
+ },
+ "api": {
+  "Ie": {
+   "original": "index.api.175161560754512.js#g",
+   "path": "@/api/api-175161560754512",
+   "export": "checkIzShowApplySameNetworkFair",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair"
+  },
+  "ke": {
+   "original": "index.api.175161560754512.js#j",
+   "path": "@/api/api-175161560754512",
+   "export": "queryBoothPlaceInfo",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFair/queryBoothPlaceInfo"
+  },
+  "xe": {
+   "original": "index.api.175161560754512.js#k",
+   "path": "@/api/api-175161560754512",
+   "export": "queryBoothView",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFair/queryBoothView"
+  },
+  "Ce": {
+   "original": "index.api.175161560754512.js#l",
+   "path": "@/api/api-175161560754512",
+   "export": "getCompanyAttachmentList",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysAttachment/getCompanyAttachmentList"
+  },
+  "ze": {
+   "original": "index.api.175161560754512.js#d",
+   "path": "@/api/api-175161560754512",
+   "export": "companyPositionAdd",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairApplyInfo/companyPositionAdd"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "phone.1751615607545.js",
+  "dictCode.1751615607545.js",
+  "extractpositionmodal.1751615607545.js",
+  "positionmodal.1751615607545.js",
+  "workType.1751615607545.js",
+  "main.1751615607545.js",
+  "message.1751615607545.js",
+  "dictCheckBoxAll.1751615607545.js"
+ ],
+ "missing": []
+}

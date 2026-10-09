@@ -1,0 +1,67 @@
+{
+ "id": "page.uc.nom",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 12.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/nom.1751615607545.js",
+ "components": [
+  {
+   "name": "nom",
+   "scopeId": "data-v-49ddf775"
+  }
+ ],
+ "scopeIds": [
+  "data-v-49ddf775"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/nom.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/nom.vue",
+ "subComponentDir": "apps/uc/src/views/nom/",
+ "routes": [
+  {
+   "path": "/nom",
+   "name": "nom"
+  }
+ ],
+ "recordPath": "/nom",
+ "maps": "out/maps/page.uc.nom.json",
+ "hints": "out/hints/page.uc.nom.md",
+ "deps": {
+  "entry": [
+   "a",
+   "c",
+   "d",
+   "f",
+   "k",
+   "l",
+   "m",
+   "n",
+   "o",
+   "p",
+   "x"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "email.1751615607545.js",
+   "idCard.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075452.js#a",
+   "index.api.17516156075452.js#b",
+   "index.api.17516156075452.js#c",
+   "index.api.17516156075452.js#d",
+   "index.api.17516156075452.js#g",
+   "index.api.17516156075452.js#p"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

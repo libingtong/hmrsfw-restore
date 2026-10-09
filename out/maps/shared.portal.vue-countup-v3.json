@@ -1,0 +1,24 @@
+{
+ "id": "shared.portal.vue-countup-v3",
+ "chunk": "legacy-dist/portal/assets/vue-countup-v3.es.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "A": "defineComponent",
+  "m": "ref",
+  "w": "watch",
+  "S": "onMounted",
+  "O": "onUnmounted",
+  "N": "openBlock",
+  "D": "createElementBlock",
+  "y": "renderSlot",
+  "x": "createElementVNode"
+ },
+ "entry": {},
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

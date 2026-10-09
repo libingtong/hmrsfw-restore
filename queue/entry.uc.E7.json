@@ -1,0 +1,23 @@
+{
+ "id": "entry.uc.E7",
+ "type": "entry",
+ "area": "E7",
+ "title": "样式与依赖版本",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "sourceChunk": "legacy-dist/usercenter/assets/index.1751615607545.js",
+ "kb": null,
+ "appCode": "018",
+ "files": [
+  "apps/uc/src/styles/",
+  "package.json"
+ ],
+ "owns": [],
+ "note": "拆回 ant-design-vue 依赖与全局样式源文件；按站点锁版本（门户 Vue 3.2.47 / antd 3.2.15，用户中心 Vue 3.3.4 / antd 3.2.20）",
+ "deps": {
+  "orders": []
+ },
+ "kbEstimated": true
+}

@@ -1,0 +1,65 @@
+{
+ "id": "page.portal.talents.index.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.5,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620098.js",
+ "components": [
+  {
+   "name": "homeLeft",
+   "scopeId": "data-v-b0860225"
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-8e0faf38"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b0860225",
+  "data-v-8e0faf38"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/homeList.17833206362002.css",
+  "legacy-dist/portal/assets/index.178332063620091.css",
+  "legacy-dist/portal/assets/index.178332063620098.css"
+ ],
+ "target": "apps/portal/src/views/talents/index/index.vue",
+ "subComponentDir": "apps/portal/src/views/talents/index/index/",
+ "routes": [
+  {
+   "path": "/talents/index",
+   "name": "/talents/index",
+   "title": "高层次系统人才首页"
+  }
+ ],
+ "recordPath": "/talents/index",
+ "maps": "out/maps/page.portal.talents.index.index.json",
+ "hints": "out/hints/page.portal.talents.index.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "c",
+   "cu",
+   "f",
+   "u"
+  ],
+  "shared": [
+   "adsCenter.1783320636200.js",
+   "homeRight.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620037.js#a"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "shared.portal.adsCenter",
+   "shared.portal.homeRight"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

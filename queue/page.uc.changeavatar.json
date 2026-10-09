@@ -1,0 +1,53 @@
+{
+ "id": "page.uc.changeavatar",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 2.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/changeavatar.1751615607545.js",
+ "components": [
+  {
+   "name": "changeavatar",
+   "scopeId": "data-v-32d29d63"
+  }
+ ],
+ "scopeIds": [
+  "data-v-32d29d63"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/changeavatar.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/changeavatar.vue",
+ "subComponentDir": "apps/uc/src/views/changeavatar/",
+ "routes": [
+  {
+   "path": "/changeavatar",
+   "name": "changeavatar"
+  }
+ ],
+ "recordPath": "/changeavatar",
+ "maps": "out/maps/page.uc.changeavatar.json",
+ "hints": "out/hints/page.uc.changeavatar.md",
+ "deps": {
+  "entry": [
+   "B",
+   "c",
+   "d",
+   "h",
+   "m",
+   "v"
+  ],
+  "shared": [
+   "cropperjs.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075453.js#e"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

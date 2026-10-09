@@ -1,0 +1,66 @@
+{
+ "id": "shared.uc.metormodal",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.4,
+ "chunkKb": 5.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/metormodal.1751615607545.js",
+ "components": [
+  {
+   "name": "metormodal",
+   "scopeId": "data-v-73e6c7c9"
+  }
+ ],
+ "scopeIds": [
+  "data-v-73e6c7c9"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/metormodal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/metormodal.vue",
+ "exports": {
+  "m": {
+   "export": "default"
+  }
+ },
+ "registryKey": "metormodal.1751615607545.js",
+ "usedBy": [
+  "page.uc.mentorhome",
+  "page.uc.experthome",
+  "page.uc.myconsult",
+  "page.uc.allconsult",
+  "page.uc.consult"
+ ],
+ "maps": "out/maps/shared.uc.metormodal.json",
+ "hints": "out/hints/shared.uc.metormodal.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "d",
+   "f",
+   "h",
+   "m"
+  ],
+  "shared": [
+   "unfold.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075454.js#a",
+   "index.api.17516156075454.js#e",
+   "index.api.17516156075454.js#f",
+   "index.api.17516156075454.js#h"
+  ],
+  "modules": [
+   "default.1751615607545.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.uc.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

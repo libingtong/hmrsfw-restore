@@ -1,0 +1,104 @@
+{
+ "id": "page.portal.loginviews.siginbig",
+ "chunk": "legacy-dist/portal/assets/siginbig.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ce": "defineComponent",
+  "xe": "useRouter (vue-router)",
+  "A": "ref",
+  "H": "reactive",
+  "Se": "onMounted",
+  "c": "resolveComponent",
+  "y": "openBlock",
+  "k": "createElementBlock",
+  "t": "createElementVNode",
+  "s": "createVNode",
+  "r": "withCtx",
+  "z": "toDisplayString",
+  "d": "unref",
+  "Be": "createCommentVNode",
+  "R": "createTextVNode",
+  "j": "normalizeClass",
+  "Te": "pushScopeId",
+  "Ie": "popScopeId",
+  "E": "inject"
+ },
+ "entry": {
+  "ge": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "he": {
+   "original": "bn",
+   "path": "@/legacy/utils",
+   "export": "validatePassword",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "P": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "$": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "ve": {
+   "original": "am",
+   "path": "@/legacy",
+   "export": "getArticleList",
+   "status": "restored"
+  },
+  "me": {
+   "original": "aE",
+   "path": "@/legacy",
+   "export": "SlideCaptcha",
+   "status": "reserved",
+   "owner": "entry.portal.c02"
+  },
+  "w": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "fe": {
+   "original": "bJ",
+   "path": "@/legacy/api",
+   "export": "newRegister",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "be": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "_e": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ye": {
+   "original": "thirdParty.1783320636200.js#t",
+   "path": "@/shared/thirdParty.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.thirdParty"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

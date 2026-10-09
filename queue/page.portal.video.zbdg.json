@@ -1,0 +1,68 @@
+{
+ "id": "page.portal.video.zbdg",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 9.8,
+ "sourceChunk": "legacy-dist/portal/assets/zbdg.1783320636200.js",
+ "components": [
+  {
+   "name": "zbdg",
+   "scopeId": "data-v-e1ee6988"
+  }
+ ],
+ "scopeIds": [
+  "data-v-e1ee6988"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/zbdg.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/video/zbdg.vue",
+ "subComponentDir": "apps/portal/src/views/video/zbdg/",
+ "routes": [
+  {
+   "path": "/video",
+   "name": "video",
+   "title": "云视频"
+  }
+ ],
+ "recordPath": "/video",
+ "maps": "out/maps/page.portal.video.zbdg.json",
+ "hints": "out/hints/page.portal.video.zbdg.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "V",
+   "aV",
+   "ad",
+   "ar",
+   "c",
+   "e",
+   "f",
+   "h"
+  ],
+  "shared": [
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620013.js#g"
+  ],
+  "modules": [
+   "btn.1783320636200.js",
+   "liveNull.1783320636200.js",
+   "type.1783320636200.js",
+   "videoNull.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c05",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

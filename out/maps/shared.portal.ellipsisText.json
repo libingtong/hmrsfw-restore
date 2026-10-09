@@ -1,0 +1,30 @@
+{
+ "id": "shared.portal.ellipsisText",
+ "chunk": "legacy-dist/portal/assets/ellipsisText.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "w": "defineComponent",
+  "k": "reactive",
+  "b": "onBeforeMount",
+  "$": "nextTick",
+  "q": "toRefs",
+  "a": "openBlock",
+  "i": "createElementBlock",
+  "y": "createElementVNode",
+  "v": "normalizeClass",
+  "C": "createCommentVNode"
+ },
+ "entry": {
+  "E": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

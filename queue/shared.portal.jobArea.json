@@ -1,0 +1,51 @@
+{
+ "id": "shared.portal.jobArea",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 9.4,
+ "chunkKb": 9.4,
+ "sourceChunk": "legacy-dist/portal/assets/jobArea.vue_vue_type_script_setup_true_lang.17833206362003.js",
+ "components": [
+  {
+   "name": "jobArea",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/jobArea.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "jobArea.vue_vue_type_script_setup_true_lang.17833206362003.js",
+ "usedBy": [
+  "page.portal.xjhm.cityHome.index"
+ ],
+ "maps": "out/maps/shared.portal.jobArea.json",
+ "hints": "out/hints/shared.portal.jobArea.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [
+   "jobfair_arrow.1783320636200.js",
+   "news.1783320636200.js",
+   "type.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

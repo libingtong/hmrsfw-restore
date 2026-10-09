@@ -1,0 +1,71 @@
+{
+ "id": "page.uc.Personalonlineservice",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 11.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/Personalonlineservice.1751615607545.js",
+ "components": [
+  {
+   "name": "Personalonlineservice",
+   "scopeId": "data-v-fe57c0aa"
+  }
+ ],
+ "scopeIds": [
+  "data-v-fe57c0aa"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/Personalonlineservice.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/Personalonlineservice.vue",
+ "subComponentDir": "apps/uc/src/views/Personalonlineservice/",
+ "routes": [
+  {
+   "path": "/Personalonlineservice",
+   "name": "Personalonlineservice"
+  }
+ ],
+ "recordPath": "/Personalonlineservice",
+ "maps": "out/maps/page.uc.Personalonlineservice.json",
+ "hints": "out/hints/page.uc.Personalonlineservice.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "a",
+   "b",
+   "d",
+   "e",
+   "f",
+   "h",
+   "j",
+   "l",
+   "m",
+   "q"
+  ],
+  "shared": [
+   "addKeynote.1751615607545.js",
+   "market.vue_vue_type_script_setup_true_lang.1751615607545.js"
+  ],
+  "api": [
+   "index.api.1751615607545.js#a",
+   "index.api.1751615607545.js#b",
+   "index.api.1751615607545.js#c",
+   "index.api.1751615607545.js#d",
+   "index.api.1751615607545.js#g",
+   "index.api.1751615607545.js#l",
+   "index.api.1751615607545.js#p"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.addKeynote",
+   "shared.uc.market"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

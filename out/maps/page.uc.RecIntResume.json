@@ -1,0 +1,98 @@
+{
+ "id": "page.uc.RecIntResume",
+ "chunk": "legacy-dist/usercenter/assets/RecIntResume.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "W": "defineComponent",
+  "P": "inject",
+  "ee": "useRouter (vue-router)",
+  "te": "reactive",
+  "ae": "onMounted",
+  "s": "resolveComponent",
+  "l": "openBlock",
+  "p": "createElementBlock",
+  "a": "createVNode",
+  "i": "withCtx",
+  "C": "createTextVNode",
+  "I": "createElementVNode",
+  "oe": "Fragment",
+  "g": "createCommentVNode",
+  "w": "toDisplayString",
+  "x": "createBlock",
+  "h": "h"
+ },
+ "entry": {
+  "F": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ie": {
+   "original": "a2",
+   "path": "@/legacy/api",
+   "export": "queryPageListByCompanyId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ne": {
+   "original": "a7",
+   "path": "@/legacy/api",
+   "export": "isPublishingPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "O": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "se": {
+   "original": "a8",
+   "path": "@/legacy/api",
+   "export": "addTalent",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "le": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ce": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "U": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ue": {
+   "original": "setStatusinterview.1751615607545.js#s",
+   "path": "@/shared/setStatusinterview.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "re": {
+   "original": "InterviewInvitation.17516156075452.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "index.api.175161560754510.js",
+  "message.1751615607545.js"
+ ],
+ "missing": []
+}

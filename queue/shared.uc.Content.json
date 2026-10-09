@@ -1,0 +1,62 @@
+{
+ "id": "shared.uc.Content",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1.7,
+ "chunkKb": 1.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/Content.vue_vue_type_script_setup_true_lang.1751615607545.js",
+ "components": [
+  {
+   "name": "Content",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/Content.ts",
+ "subComponentDir": "apps/uc/src/shared/Content/",
+ "exports": {
+  "_": {
+   "path": "@/shared/Content/Content.vue",
+   "export": "default"
+  },
+  "a": {
+   "export": "a"
+  },
+  "c": {
+   "export": "c"
+  },
+  "d": {
+   "export": "d"
+  },
+  "e": {
+   "export": "e"
+  },
+  "g": {
+   "export": "g"
+  }
+ },
+ "registryKey": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js",
+ "usedBy": [
+  "page.uc.oddjob.need.add",
+  "page.uc.oddjob.lack.add",
+  "page.uc.oddjob.sharepage"
+ ],
+ "maps": "out/maps/shared.uc.Content.json",
+ "hints": "out/hints/shared.uc.Content.md",
+ "deps": {
+  "entry": [
+   "k",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

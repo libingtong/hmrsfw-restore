@@ -1,0 +1,95 @@
+{
+ "id": "page.portal.LookForJob.CorpDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 19,
+ "sourceChunk": "legacy-dist/portal/assets/CorpDetail.1783320636200.js",
+ "components": [
+  {
+   "name": "CorpDetail",
+   "scopeId": "data-v-94499d1a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-94499d1a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/CorpDetail.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/LookForJob/CorpDetail.vue",
+ "subComponentDir": "apps/portal/src/views/LookForJob/CorpDetail/",
+ "routes": [
+  {
+   "path": "/CorpDetail",
+   "name": "CorpDetail",
+   "title": "单位详情"
+  },
+  {
+   "path": "/talents/CorpDetail",
+   "name": "talents/CorpDetail",
+   "title": "单位详情"
+  }
+ ],
+ "recordPath": "/CorpDetail",
+ "maps": "out/maps/page.portal.LookForJob.CorpDetail.json",
+ "hints": "out/hints/page.portal.LookForJob.CorpDetail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "C",
+   "D",
+   "E",
+   "I",
+   "J",
+   "K",
+   "M",
+   "S",
+   "c",
+   "f",
+   "g",
+   "m",
+   "o",
+   "p",
+   "u",
+   "v",
+   "w",
+   "x",
+   "y"
+  ],
+  "shared": [
+   "GetLocationMap.vue_vue_type_script_setup_true_lang.1783320636200.js",
+   "complaint.1783320636200.js",
+   "empty.1783320636200.js",
+   "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "resumemodal.1783320636200.js",
+   "unfold.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#g",
+   "index.api.17833206362002.js#a",
+   "index.api.17833206362002.js#b",
+   "index.api.17833206362002.js#c",
+   "index.api.17833206362002.js#d",
+   "index.api.17833206362002.js#e",
+   "index.api.17833206362002.js#f",
+   "index.api.17833206362002.js#g",
+   "index.api.17833206362002.js#h",
+   "index.api.17833206362002.js#j",
+   "index.api.17833206362002.js#q",
+   "index.api.17833206362006.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03",
+   "shared.portal.GetLocationMap",
+   "shared.portal.complaint",
+   "shared.portal.unfold"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

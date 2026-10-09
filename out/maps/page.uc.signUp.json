@@ -1,0 +1,141 @@
+{
+ "id": "page.uc.signUp",
+ "chunk": "legacy-dist/usercenter/assets/signUp.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Q": "defineComponent",
+  "le": "watch",
+  "V": "reactive",
+  "ne": "onBeforeMount",
+  "G": "onMounted",
+  "q": "nextTick",
+  "_": "openBlock",
+  "h": "createElementBlock",
+  "l": "createVNode",
+  "c": "withCtx",
+  "t": "createElementVNode",
+  "r": "toDisplayString",
+  "z": "createTextVNode",
+  "E": "unref",
+  "Y": "pushScopeId",
+  "K": "popScopeId",
+  "v": "resolveComponent",
+  "k": "createCommentVNode",
+  "W": "createBlock",
+  "se": "inject",
+  "U": "ref",
+  "J": "Fragment",
+  "Oe": "normalizeStyle",
+  "Me": "Teleport"
+ },
+ "entry": {
+  "oe": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "A": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "te": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "aN",
+   "path": "@/legacy",
+   "export": "downloadFile",
+   "status": "restored"
+  },
+  "De": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "bc",
+   "path": "@/legacy",
+   "export": "pxRegistList",
+   "status": "restored"
+  },
+  "we": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "bd",
+   "path": "@/legacy",
+   "export": "ticketToHtml",
+   "status": "restored"
+  },
+  "R": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Ie": {
+   "original": "be",
+   "path": "@/legacy",
+   "export": "alipayScanPay",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "bf",
+   "path": "@/legacy",
+   "export": "updateEnrollmentStatus",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Pe": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "$e": {
+   "original": "WebSockets.1751615607545.js#g",
+   "path": "@/shared/WebSockets.ts",
+   "export": "getWsBaseUrl",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "WebSockets.1751615607545.js#c",
+   "path": "@/shared/WebSockets.ts",
+   "export": "createWebSocket",
+   "status": "restored"
+  },
+  "Fe": {
+   "original": "jspdf.es.min.1751615607545.js#H",
+   "path": "@/shared/jspdf.es.min.ts",
+   "export": "Watermark",
+   "status": "restored"
+  },
+  "Re": {
+   "original": "jspdf.es.min.1751615607545.js#E",
+   "path": "jspdf",
+   "export": "jsPDF",
+   "status": "npm"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

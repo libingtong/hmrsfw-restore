@@ -1,0 +1,46 @@
+{
+ "id": "page.portal.talents.index.jobFair",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 15.4,
+ "sourceChunk": "legacy-dist/portal/assets/jobFair.1783320636200.js",
+ "components": [
+  {
+   "name": "jobFair",
+   "scopeId": "data-v-bb4a8a3f"
+  }
+ ],
+ "scopeIds": [
+  "data-v-bb4a8a3f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/jobFair.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/index/jobFair.vue",
+ "subComponentDir": "apps/portal/src/views/talents/index/jobFair/",
+ "routes": [],
+ "recordPath": "/talents/index",
+ "maps": "out/maps/page.portal.talents.index.jobFair.json",
+ "hints": "out/hints/page.portal.talents.index.jobFair.md",
+ "deps": {
+  "entry": [
+   "B",
+   "a",
+   "b",
+   "f",
+   "i"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620037.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.index.index"
+}

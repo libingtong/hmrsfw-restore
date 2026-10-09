@@ -1,0 +1,61 @@
+{
+ "id": "shared.portal.complaint",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 4.2,
+ "chunkKb": 4.2,
+ "sourceChunk": "legacy-dist/portal/assets/complaint.1783320636200.js",
+ "components": [
+  {
+   "name": "complaint",
+   "scopeId": "data-v-78e7da48"
+  }
+ ],
+ "scopeIds": [
+  "data-v-78e7da48"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/complaint.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/complaint.vue",
+ "exports": {
+  "c": {
+   "export": "default"
+  }
+ },
+ "registryKey": "complaint.1783320636200.js",
+ "usedBy": [
+  "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+  "page.portal.oddJob.Jobsearch.JobsearchDetail",
+  "page.portal.oddJob.Jobshortage.JobshortageDetail",
+  "page.portal.oddJob.Sparework.SpareworkDetail",
+  "page.portal.oddJob.shareUser.detail",
+  "page.portal.LookForJob.PostDetail",
+  "page.portal.sjz.setUp.setupDetail",
+  "page.portal.train.trainDetail",
+  "page.portal.LookForJob.CorpDetail",
+  "page.portal.talents.setUp.setupDetail"
+ ],
+ "maps": "out/maps/shared.portal.complaint.json",
+ "hints": "out/hints/shared.portal.complaint.md",
+ "deps": {
+  "entry": [
+   "A",
+   "S",
+   "Y",
+   "Z"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

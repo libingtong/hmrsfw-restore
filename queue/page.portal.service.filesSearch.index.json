@@ -1,0 +1,48 @@
+{
+ "id": "page.portal.service.filesSearch.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 4.6,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620069.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-a7d369d3"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a7d369d3"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620082.css",
+  "legacy-dist/portal/assets/index.178332063620069.css"
+ ],
+ "target": "apps/portal/src/views/service/filesSearch/index.vue",
+ "subComponentDir": "apps/portal/src/views/service/filesSearch/index/",
+ "routes": [
+  {
+   "path": "/filesSearch",
+   "name": "filesSearch",
+   "title": "档案查询"
+  }
+ ],
+ "recordPath": "/filesSearch",
+ "maps": "out/maps/page.portal.service.filesSearch.index.json",
+ "hints": "out/hints/page.portal.service.filesSearch.index.md",
+ "deps": {
+  "entry": [
+   "S"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620017.js#w"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

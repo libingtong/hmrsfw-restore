@@ -1,0 +1,71 @@
+{
+ "id": "shared.portal.homeRight2",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 4.4,
+ "chunkKb": 4.4,
+ "sourceChunk": "legacy-dist/portal/assets/homeRight.17833206362002.js",
+ "components": [
+  {
+   "name": "homeLeft",
+   "scopeId": "data-v-24601f4c"
+  },
+  {
+   "name": "homeRight",
+   "scopeId": "data-v-4e527359"
+  }
+ ],
+ "scopeIds": [
+  "data-v-24601f4c",
+  "data-v-4e527359"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/homeRight.17833206362002.css"
+ ],
+ "target": "apps/portal/src/shared/homeRight2/HomeLeft.vue",
+ "subComponentDir": "apps/portal/src/shared/homeRight2/",
+ "exports": {
+  "a": {
+   "path": "@/shared/homeRight2/HomeRight.vue",
+   "export": "default"
+  },
+  "h": {
+   "path": "@/shared/homeRight2/HomeLeft.vue",
+   "export": "default"
+  }
+ },
+ "registryKey": "homeRight.17833206362002.js",
+ "usedBy": [
+  "page.portal.xjhm.home.index",
+  "page.portal.xjhm.cityHome.index"
+ ],
+ "maps": "out/maps/shared.portal.homeRight2.json",
+ "hints": "out/hints/shared.portal.homeRight2.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "a6",
+   "aY",
+   "ab",
+   "as",
+   "by",
+   "c",
+   "f",
+   "g",
+   "m"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

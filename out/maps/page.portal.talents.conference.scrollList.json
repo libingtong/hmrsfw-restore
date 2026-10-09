@@ -1,0 +1,40 @@
+{
+ "id": "page.portal.talents.conference.scrollList",
+ "chunk": "legacy-dist/portal/assets/scrollList.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "C": "defineComponent",
+  "g": "useRoute (vue-router)",
+  "h": "useRouter (vue-router)",
+  "k": "reactive",
+  "x": "onBeforeMount",
+  "b": "onMounted",
+  "d": "openBlock",
+  "_": "createElementBlock",
+  "m": "createElementVNode",
+  "w": "Fragment",
+  "B": "renderList",
+  "F": "unref",
+  "y": "toDisplayString"
+ },
+ "entry": {
+  "L": {
+   "original": "bs",
+   "path": "@/legacy/utils",
+   "export": "openLinkAddress",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "A": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

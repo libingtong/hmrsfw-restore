@@ -1,0 +1,204 @@
+{
+ "id": "page.portal.xjhm.cityHome.index",
+ "chunk": "legacy-dist/portal/assets/index.1783320636200106.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Me": "defineComponent",
+  "He": "useRoute (vue-router)",
+  "Oe": "useRouter (vue-router)",
+  "ne": "reactive",
+  "Re": "onBeforeMount",
+  "Ve": "onMounted",
+  "ce": "resolveComponent",
+  "d": "openBlock",
+  "m": "createElementBlock",
+  "i": "createElementVNode",
+  "x": "unref",
+  "de": "toDisplayString",
+  "p": "createVNode",
+  "De": "withCtx",
+  "pe": "createTextVNode",
+  "I": "Fragment",
+  "ue": "renderList",
+  "z": "createCommentVNode",
+  "S": "normalizeClass",
+  "me": "createBlock"
+ },
+ "entry": {
+  "A": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Fe": {
+   "original": "bN",
+   "path": "@/legacy/components/Foot.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.portal.c06"
+  },
+  "Ne": {
+   "original": "bO",
+   "path": "@/legacy/components/HomeLoginBtm2.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.portal.c06"
+  },
+  "Pe": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "qe": {
+   "original": "a6",
+   "path": "@/legacy",
+   "export": "FeedbackModal",
+   "status": "restored"
+  },
+  "We": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "se": {
+   "original": "aB",
+   "path": "@/legacy/api",
+   "export": "getChildArticleTypeList",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "le": {
+   "original": "am",
+   "path": "@/legacy",
+   "export": "getArticleList",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "oe": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "re": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "aa": {
+   "original": "index.api.178332063620014.js#g",
+   "path": "@/api/article",
+   "export": "freeCompanyList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeCompanyList"
+  }
+ },
+ "shared": {
+  "Ue": {
+   "original": "homeNews.17833206362002.js#h",
+   "path": "@/shared/homeNews.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ze": {
+   "original": "jobArea.vue_vue_type_script_setup_true_lang.17833206362003.js#_",
+   "path": "@/shared/jobArea.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.jobArea"
+  },
+  "Xe": {
+   "original": "homeRight.17833206362002.js#h",
+   "path": "@/shared/homeRight2/HomeLeft.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.homeRight2"
+  },
+  "Ye": {
+   "original": "homeRight.17833206362002.js#a",
+   "path": "@/shared/homeRight2/HomeRight.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.homeRight2"
+  },
+  "Qe": {
+   "original": "FriendLink.1783320636200.js#F",
+   "path": "@/shared/FriendLink.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.FriendLink"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Ce": {
+   "original": "zph.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.3KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "zphImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Te": {
+   "original": "zph.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.7KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "zphImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "je": {
+   "original": "zph.1783320636200.js#b",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.5KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "zphImgB",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Ae": {
+   "original": "zph.1783320636200.js#c",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "zphImgC",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [
+  "news.1783320636200.js",
+  "jobfair_arrow.1783320636200.js",
+  "type.1783320636200.js",
+  "vue3-seamless-scroll.es.1783320636200.js"
+ ],
+ "missing": []
+}

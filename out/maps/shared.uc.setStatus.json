@@ -1,0 +1,94 @@
+{
+ "id": "shared.uc.setStatus",
+ "chunk": "legacy-dist/usercenter/assets/setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "G": "defineComponent",
+  "O": "inject",
+  "X": "useRouter (vue-router)",
+  "Y": "ref",
+  "Z": "reactive",
+  "J": "onMounted",
+  "r": "resolveComponent",
+  "u": "openBlock",
+  "K": "createElementBlock",
+  "t": "createVNode",
+  "o": "withCtx",
+  "_": "createBlock",
+  "g": "createTextVNode",
+  "T": "toDisplayString",
+  "y": "createCommentVNode",
+  "Q": "unref"
+ },
+ "entry": {
+  "H": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "L": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "V": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "f": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "$": {
+   "original": "ao",
+   "path": "@/legacy/api",
+   "export": "getSysUserByPhone",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "j": {
+   "original": "ap",
+   "path": "@/legacy/api",
+   "export": "addUserForCompany",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "E": {
+   "original": "aq",
+   "path": "@/legacy/api",
+   "export": "changeUserForCompany",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "z": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "A": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "R": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

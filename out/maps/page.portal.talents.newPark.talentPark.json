@@ -1,0 +1,48 @@
+{
+ "id": "page.portal.talents.newPark.talentPark",
+ "chunk": "legacy-dist/portal/assets/talentPark.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "L": "defineComponent",
+  "G": "useRoute (vue-router)",
+  "V": "useRouter (vue-router)",
+  "X": "reactive",
+  "Z": "onBeforeMount",
+  "H": "onMounted",
+  "m": "ref",
+  "x": "resolveComponent",
+  "n": "openBlock",
+  "c": "createElementBlock",
+  "a": "createElementVNode",
+  "Y": "renderSlot",
+  "F": "createVNode",
+  "j": "withCtx",
+  "R": "toDisplayString",
+  "W": "createCommentVNode",
+  "M": "Fragment",
+  "N": "renderList",
+  "q": "createBlock",
+  "_": "pushScopeId",
+  "$": "popScopeId"
+ },
+ "entry": {
+  "ea": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "aa": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,112 @@
+{
+ "id": "shared.portal.hotProject",
+ "chunk": "legacy-dist/portal/assets/hotProject.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ea": "defineComponent",
+  "ta": "useRoute (vue-router)",
+  "sa": "useRouter (vue-router)",
+  "la": "reactive",
+  "ra": "onBeforeMount",
+  "ia": "onMounted",
+  "N": "resolveComponent",
+  "s": "openBlock",
+  "i": "createElementBlock",
+  "J": "Fragment",
+  "O": "renderList",
+  "T": "createBlock",
+  "oa": "withCtx",
+  "Z": "createVNode",
+  "k": "unref",
+  "j": "createElementVNode",
+  "D": "toDisplayString",
+  "ca": "createCommentVNode"
+ },
+ "entry": {
+  "q": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "I": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "S": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "F": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "U": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ua": {
+   "original": "index.1783320636200117.js#j",
+   "path": "@/api/api-117",
+   "export": "hotListForWebsite",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/hotListForWebsite"
+  },
+  "da": {
+   "original": "index.1783320636200117.js#k",
+   "path": "@/api/api-117",
+   "export": "listForWebsite",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
+  }
+ },
+ "shared": {
+  "na": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "X": {
+   "original": "three.1783320636200.js#_",
+   "value": "/sjz/setup/one.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "threeImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "$": {
+   "original": "three.1783320636200.js#a",
+   "value": "/sjz/setup/two.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "threeImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "aa": {
+   "original": "three.1783320636200.js#b",
+   "value": "/sjz/setup/three.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "threeImgB",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

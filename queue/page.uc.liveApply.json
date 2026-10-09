@@ -1,0 +1,59 @@
+{
+ "id": "page.uc.liveApply",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 10.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754514.js",
+ "components": [
+  {
+   "name": "DetailModal",
+   "scopeId": "data-v-e2b7fcca"
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-4225b752"
+  }
+ ],
+ "scopeIds": [
+  "data-v-e2b7fcca",
+  "data-v-4225b752"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754517.css",
+  "legacy-dist/usercenter/assets/index.175161560754514.css"
+ ],
+ "target": "apps/uc/src/views/liveApply.vue",
+ "subComponentDir": "apps/uc/src/views/liveApply/",
+ "routes": [
+  {
+   "path": "/liveApply",
+   "name": "liveApply"
+  }
+ ],
+ "recordPath": "/liveApply",
+ "maps": "out/maps/page.uc.liveApply.json",
+ "hints": "out/hints/page.uc.liveApply.md",
+ "deps": {
+  "entry": [
+   "M",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "dictCodeTreeOne.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754516.js#a",
+   "index.api.175161560754516.js#d",
+   "index.api.175161560754516.js#q"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

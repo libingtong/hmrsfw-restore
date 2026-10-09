@@ -1,0 +1,191 @@
+{
+ "id": "page.portal.oddJob.Jobsearch.JobsearchDetail",
+ "chunk": "legacy-dist/portal/assets/JobsearchDetail.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "qe": "defineComponent",
+  "Ge": "useRouter (vue-router)",
+  "Ke": "useRoute (vue-router)",
+  "Qe": "reactive",
+  "Xe": "computed",
+  "$e": "onMounted",
+  "p": "resolveComponent",
+  "n": "openBlock",
+  "f": "createElementBlock",
+  "s": "createElementVNode",
+  "o": "createVNode",
+  "d": "withCtx",
+  "l": "toDisplayString",
+  "m": "createTextVNode",
+  "_": "createCommentVNode",
+  "w": "unref",
+  "es": "Fragment",
+  "ss": "renderList",
+  "W": "createBlock",
+  "as": "pushScopeId",
+  "ls": "popScopeId",
+  "ts": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "ze": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "J": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "U": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "as",
+   "path": "@/legacy/utils",
+   "export": "getUserInfo",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Re": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "O": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "C",
+   "path": "@/legacy",
+   "export": "TEXT_GO_PERFECT",
+   "status": "restored"
+  },
+  "S": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "j": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "D": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "T": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Ee": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "He": {
+   "original": "bT",
+   "path": "@/legacy/utils",
+   "export": "maskPhone",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Ye": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "os": {
+   "original": "index.api.178332063620024.js#c",
+   "path": "@/api/api-24",
+   "export": "populaFindJob",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/populaFindJob"
+  },
+  "ns": {
+   "original": "index.api.178332063620024.js#d",
+   "path": "@/api/api-24",
+   "export": "getFindDetailById",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/getFindDetailById"
+  },
+  "ds": {
+   "original": "index.api.178332063620024.js#e",
+   "path": "@/api/api-24",
+   "export": "add3",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddPositionApply/add"
+  },
+  "cs": {
+   "original": "index.api.178332063620024.js#h",
+   "path": "@/api/api-24",
+   "export": "add4",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/callRecord/add"
+  },
+  "rs": {
+   "original": "index.api.178332063620024.js#i",
+   "path": "@/api/api-24",
+   "export": "add",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddUserCollect/add"
+  },
+  "us": {
+   "original": "index.api.178332063620024.js#j",
+   "path": "@/api/api-24",
+   "export": "deleteItem",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddUserCollect/delete"
+  }
+ },
+ "shared": {
+  "is": {
+   "original": "nowContact.vue_vue_type_script_setup_true_lang.1783320636200.js#_",
+   "path": "@/shared/nowContact.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.nowContact"
+  },
+  "ps": {
+   "original": "complaint.1783320636200.js#c",
+   "path": "@/shared/complaint.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.complaint"
+  }
+ },
+ "views": {},
+ "modules": {
+  "De": {
+   "original": "sm.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.6KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "smImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

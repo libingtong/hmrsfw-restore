@@ -1,0 +1,39 @@
+{
+ "id": "shared.uc.dictCodeByType",
+ "chunk": "legacy-dist/usercenter/assets/dictCodeByType.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "y": "defineComponent",
+  "v": "onMounted",
+  "T": "reactive",
+  "g": "ref",
+  "A": "resolveComponent",
+  "w": "openBlock",
+  "D": "createBlock"
+ },
+ "entry": {
+  "h": {
+   "original": "ax",
+   "path": "@/legacy",
+   "export": "getMultiDictListByType",
+   "status": "restored"
+  },
+  "C": {
+   "original": "ay",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "f": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

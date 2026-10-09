@@ -1,0 +1,50 @@
+{
+ "id": "page.portal.sjz.fair.fairs",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.8,
+ "sourceChunk": "legacy-dist/portal/assets/fairs.1783320636200.js",
+ "components": [
+  {
+   "name": "fairs",
+   "scopeId": "data-v-bb1d00ba"
+  }
+ ],
+ "scopeIds": [
+  "data-v-bb1d00ba"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.178332063620011.css",
+  "legacy-dist/portal/assets/fairs.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/sjz/fair/fairs.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/fair/fairs/",
+ "routes": [],
+ "recordPath": "/fairList",
+ "maps": "out/maps/page.portal.sjz.fair.fairs.json",
+ "hints": "out/hints/page.portal.sjz.fair.fairs.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "c",
+   "cd",
+   "f",
+   "g",
+   "h",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.sjz.fair.fairList"
+}

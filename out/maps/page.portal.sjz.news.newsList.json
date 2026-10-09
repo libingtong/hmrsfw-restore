@@ -1,0 +1,91 @@
+{
+ "id": "page.portal.sjz.news.newsList",
+ "chunk": "legacy-dist/portal/assets/newsList.17833206362003.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ae": "defineComponent",
+  "te": "useRoute (vue-router)",
+  "se": "ref",
+  "Z": "reactive",
+  "le": "onBeforeMount",
+  "ie": "watch",
+  "ne": "nextTick",
+  "C": "resolveComponent",
+  "m": "openBlock",
+  "f": "createElementBlock",
+  "L": "createVNode",
+  "_": "withCtx",
+  "p": "createElementVNode",
+  "I": "toDisplayString",
+  "P": "Fragment",
+  "A": "renderList",
+  "D": "normalizeClass",
+  "U": "unref",
+  "E": "createBlock",
+  "re": "withDirectives",
+  "ce": "vShow",
+  "ue": "resolveDynamicComponent",
+  "oe": "createCommentVNode",
+  "me": "createTextVNode"
+ },
+ "entry": {
+  "fe": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Y": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ve": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "ge": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "F": {
+   "original": "index.api.178332063620018.js#b",
+   "path": "@/api/child",
+   "export": "getArticleTypeById",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/getArticleTypeById"
+  },
+  "G": {
+   "original": "index.api.178332063620018.js#g",
+   "path": "@/api/child",
+   "export": "getChildArticleTypeList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
+  },
+  "H": {
+   "original": "index.api.178332063620018.js#a",
+   "path": "@/api/child",
+   "export": "getArticleList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/getArticleList"
+  }
+ },
+ "shared": {
+  "pe": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

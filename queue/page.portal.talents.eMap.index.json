@@ -1,0 +1,63 @@
+{
+ "id": "page.portal.talents.eMap.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 26.7,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620096.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-a9fc01f6"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a9fc01f6"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620076.css",
+  "legacy-dist/portal/assets/index.178332063620096.css"
+ ],
+ "target": "apps/portal/src/views/talents/eMap/index.vue",
+ "subComponentDir": "apps/portal/src/views/talents/eMap/index/",
+ "routes": [
+  {
+   "path": "/talents/eMap",
+   "name": "talents/eMap",
+   "title": "就业E图"
+  }
+ ],
+ "recordPath": "/talents/eMap",
+ "maps": "out/maps/page.portal.talents.eMap.index.json",
+ "hints": "out/hints/page.portal.talents.eMap.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "c",
+   "e",
+   "f",
+   "h",
+   "z"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620020.js#a"
+  ],
+  "modules": [
+   "adr.1783320636200.js",
+   "work.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

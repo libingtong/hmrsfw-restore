@@ -1,0 +1,99 @@
+{
+ "id": "shared.portal.FriendLinks",
+ "chunk": "legacy-dist/portal/assets/FriendLinks.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "aA": "defineComponent",
+  "tA": "reactive",
+  "IA": "watch",
+  "M": "ref",
+  "rA": "onMounted",
+  "J": "resolveComponent",
+  "s": "openBlock",
+  "G": "createElementBlock",
+  "e": "createElementVNode",
+  "D": "createVNode",
+  "C": "withCtx",
+  "n": "unref",
+  "cA": "Fragment",
+  "sA": "renderList",
+  "h": "createBlock",
+  "nA": "createTextVNode",
+  "bA": "toDisplayString",
+  "EA": "createCommentVNode"
+ },
+ "entry": {
+  "x": {
+   "original": "ab",
+   "path": "@/legacy/api",
+   "export": "getArticleListNoCheck",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "j": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "N": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "F": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "T": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "X": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {
+  "P": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "K": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "_": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "AA": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "lA": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

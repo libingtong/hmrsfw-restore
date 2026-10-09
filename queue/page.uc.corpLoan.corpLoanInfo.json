@@ -1,0 +1,65 @@
+{
+ "id": "page.uc.corpLoan.corpLoanInfo",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 23.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/corpLoanInfo.1751615607545.js",
+ "components": [
+  {
+   "name": "corpLoanInfo",
+   "scopeId": "data-v-3c62fb2e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-3c62fb2e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/corpLoanInfo.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/corpLoan/corpLoanInfo.vue",
+ "subComponentDir": "apps/uc/src/views/corpLoan/corpLoanInfo/",
+ "routes": [
+  {
+   "path": "/corpLoan/corpLoanInfo",
+   "name": "corpLoanInfo"
+  }
+ ],
+ "recordPath": "/corpLoan/corpLoanInfo",
+ "maps": "out/maps/page.uc.corpLoan.corpLoanInfo.json",
+ "hints": "out/hints/page.uc.corpLoan.corpLoanInfo.md",
+ "deps": {
+  "entry": [
+   "B",
+   "I",
+   "M",
+   "N",
+   "U",
+   "a",
+   "d",
+   "h",
+   "k",
+   "m",
+   "p",
+   "y"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "idCard.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075459.js#a",
+   "index.api.17516156075459.js#b",
+   "index.api.17516156075459.js#c",
+   "index.api.17516156075459.js#d"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.c01"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

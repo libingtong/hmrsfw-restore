@@ -1,0 +1,99 @@
+{
+ "id": "page.portal.oddJob.shareUser.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620052.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Le": "defineComponent",
+  "Ne": "useRouter (vue-router)",
+  "je": "useRoute (vue-router)",
+  "ze": "ref",
+  "Be": "reactive",
+  "Ie": "computed",
+  "Oe": "onMounted",
+  "p": "resolveComponent",
+  "t": "openBlock",
+  "l": "createElementBlock",
+  "i": "createElementVNode",
+  "s": "createVNode",
+  "n": "withCtx",
+  "F": "createTextVNode",
+  "O": "Fragment",
+  "C": "renderList",
+  "w": "createBlock",
+  "Ce": "resolveDynamicComponent",
+  "u": "createCommentVNode",
+  "Se": "pushScopeId",
+  "Ae": "popScopeId",
+  "S": "unref",
+  "Me": "RouterLink (vue-router)",
+  "r": "toDisplayString"
+ },
+ "entry": {
+  "ge": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "ve": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "U": {
+   "original": "bX",
+   "path": "@/legacy/utils",
+   "export": "toHonorific",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "he": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Re": {
+   "original": "index.api.178332063620024.js#s",
+   "path": "@/api/api-24",
+   "export": "querySearchPersonList",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/querySearchPersonList"
+  },
+  "De": {
+   "original": "index.api.178332063620024.js#m",
+   "path": "@/api/api-24",
+   "export": "getDictListByType",
+   "status": "restored",
+   "url": "/xf-job/communal/licenseFree/getDictListByType?dictTypeCode=ACA111_C"
+  }
+ },
+ "shared": {
+  "Ee": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Fe": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

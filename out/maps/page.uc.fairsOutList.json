@@ -1,0 +1,71 @@
+{
+ "id": "page.uc.fairsOutList",
+ "chunk": "legacy-dist/usercenter/assets/fairsOutList.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "D": "defineComponent",
+  "N": "inject",
+  "X": "useRouter (vue-router)",
+  "$": "useRoute (vue-router)",
+  "Q": "reactive",
+  "W": "ref",
+  "Y": "onBeforeMount",
+  "A": "onMounted",
+  "c": "resolveComponent",
+  "G": "openBlock",
+  "K": "createElementBlock",
+  "a": "createVNode",
+  "s": "withCtx",
+  "b": "createTextVNode",
+  "v": "createElementVNode",
+  "y": "toDisplayString",
+  "ee": "pushScopeId",
+  "te": "popScopeId"
+ },
+ "entry": {
+  "Z": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "H": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "P": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "U": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "ae": {
+   "original": "index.api.175161560754512.js#b",
+   "path": "@/api/api-175161560754512",
+   "export": "list3",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairUnsubscribeAuditRecord/list"
+  }
+ },
+ "shared": {
+  "j": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

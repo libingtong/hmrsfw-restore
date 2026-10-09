@@ -1,0 +1,93 @@
+{
+ "id": "shared.portal.FriendLink",
+ "chunk": "legacy-dist/portal/assets/FriendLink.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "z": "defineComponent",
+  "G": "useRoute (vue-router)",
+  "H": "useRouter (vue-router)",
+  "L": "reactive",
+  "T": "onBeforeMount",
+  "V": "onMounted",
+  "Y": "onBeforeUnmount",
+  "x": "ref",
+  "w": "resolveComponent",
+  "t": "openBlock",
+  "v": "createBlock",
+  "g": "withCtx",
+  "n": "createElementBlock",
+  "h": "createElementVNode",
+  "P": "createVNode",
+  "Z": "Fragment",
+  "q": "renderList",
+  "l": "unref",
+  "y": "createCommentVNode",
+  "D": "toDisplayString"
+ },
+ "entry": {
+  "J": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "K": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "M": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "O": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "b": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "U": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "W": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "aa": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "ta": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,66 @@
+{
+ "id": "shared.uc.cropperjs",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.5,
+ "chunkKb": 43.7,
+ "bundled": {
+  "kb": 38.2,
+  "what": "cropperjs 1.6.0",
+  "rule": "开头这段是打包进来的库或数据：库改为 npm 依赖（版本按指纹），数据抽成 JSON/资源文件，不得原样拷进 .vue"
+ },
+ "sourceChunk": "legacy-dist/usercenter/assets/cropperjs.1751615607545.js",
+ "components": [
+  {
+   "name": "cropperjsModal",
+   "scopeId": "data-v-e652d67f"
+  },
+  {
+   "name": "cropperjs",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [
+  "data-v-e652d67f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/cropperjs.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/cropperjs.vue",
+ "exports": {
+  "c": {
+   "export": "default"
+  }
+ },
+ "registryKey": "cropperjs.1751615607545.js",
+ "usedBy": [
+  "page.uc.changeavatar",
+  "page.uc.mentor",
+  "page.uc.expert",
+  "page.uc.Createaresume"
+ ],
+ "maps": "out/maps/shared.uc.cropperjs.json",
+ "hints": "out/hints/shared.uc.cropperjs.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "U",
+   "am",
+   "h",
+   "m",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

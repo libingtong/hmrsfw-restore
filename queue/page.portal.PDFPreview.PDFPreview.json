@@ -1,0 +1,52 @@
+{
+ "id": "page.portal.PDFPreview.PDFPreview",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.5,
+ "sourceChunk": "legacy-dist/portal/assets/PDFPreview.1783320636200.js",
+ "components": [
+  {
+   "name": "PDFPreview",
+   "scopeId": "data-v-8e61dc40"
+  }
+ ],
+ "scopeIds": [
+  "data-v-8e61dc40"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/PDFPreview.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/PDFPreview/PDFPreview.vue",
+ "subComponentDir": "apps/portal/src/views/PDFPreview/PDFPreview/",
+ "routes": [
+  {
+   "path": "/PDFPreview",
+   "name": "PDFPreview",
+   "title": "pdf预览"
+  },
+  {
+   "path": "/talents/PDFPreview",
+   "name": "talents/PDFPreview",
+   "title": "pdf预览"
+  }
+ ],
+ "recordPath": "/PDFPreview",
+ "maps": "out/maps/page.portal.PDFPreview.PDFPreview.json",
+ "hints": "out/hints/page.portal.PDFPreview.PDFPreview.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/PDFPreview",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

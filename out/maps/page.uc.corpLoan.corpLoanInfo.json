@@ -1,0 +1,160 @@
+{
+ "id": "page.uc.corpLoan.corpLoanInfo",
+ "chunk": "legacy-dist/usercenter/assets/corpLoanInfo.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Ae": "defineComponent",
+  "k": "ref",
+  "Ce": "useRouter (vue-router)",
+  "Te": "useRoute (vue-router)",
+  "Ue": "inject",
+  "Ie": "onMounted",
+  "Pe": "reactive",
+  "je": "computed",
+  "Fe": "watch",
+  "g": "resolveComponent",
+  "u": "openBlock",
+  "n": "createElementBlock",
+  "s": "createVNode",
+  "t": "withCtx",
+  "C": "createTextVNode",
+  "i": "toDisplayString",
+  "d": "createBlock",
+  "Le": "Fragment",
+  "Re": "renderList",
+  "U": "createElementVNode",
+  "P": "unref",
+  "j": "createCommentVNode",
+  "qe": "pushScopeId",
+  "Me": "popScopeId"
+ },
+ "entry": {
+  "M": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "He": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "v": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ze": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "N",
+   "path": "@/legacy/components/Notice.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.uc.c01"
+  },
+  "Y": {
+   "original": "U",
+   "path": "ant-design-vue",
+   "export": "Upload",
+   "status": "npm"
+  },
+  "Oe": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "E": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "S": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "J": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "Ze": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Ge": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  },
+  "Je": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "Ye": {
+   "original": "index.api.17516156075459.js#c",
+   "path": "@/api/jobLoanApplyCompany",
+   "export": "checkIsCanAdd",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLoanApplyCompany/checkIsCanAdd"
+  },
+  "Ee": {
+   "original": "index.api.17516156075459.js#a",
+   "path": "@/api/jobLoanApplyCompany",
+   "export": "saveOrUpdateMh",
+   "status": "reserved",
+   "url": "/job/xfJobLoanApplyCompany/saveOrUpdateMh"
+  },
+  "Se": {
+   "original": "index.api.17516156075459.js#b",
+   "path": "@/api/jobLoanApplyCompany",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLoanApplyCompany/queryById"
+  },
+  "$e": {
+   "original": "index.api.17516156075459.js#d",
+   "path": "@/api/jobLoanApplyCompany",
+   "export": "queryCompanyInfo",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLoanApplyCompany/queryCompanyInfo"
+  }
+ },
+ "shared": {
+  "T": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "De": {
+   "original": "idCard.1751615607545.js#i",
+   "path": "@/shared/idCard.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

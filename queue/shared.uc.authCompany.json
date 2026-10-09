@@ -1,0 +1,57 @@
+{
+ "id": "shared.uc.authCompany",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6.4,
+ "chunkKb": 6.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/authCompany.1751615607545.js",
+ "components": [
+  {
+   "name": "authCompany",
+   "scopeId": "data-v-09e59f45"
+  }
+ ],
+ "scopeIds": [
+  "data-v-09e59f45"
+ ],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/authCompany.vue",
+ "exports": {
+  "a": {
+   "export": "default"
+  }
+ },
+ "registryKey": "authCompany.1751615607545.js",
+ "usedBy": [
+  "page.uc.CorpCenter",
+  "page.uc.marketCenter"
+ ],
+ "maps": "out/maps/shared.uc.authCompany.json",
+ "hints": "out/hints/shared.uc.authCompany.md",
+ "deps": {
+  "entry": [
+   "B",
+   "a",
+   "b",
+   "d",
+   "h",
+   "q"
+  ],
+  "shared": [
+   "addKeynote.1751615607545.js",
+   "market.vue_vue_type_script_setup_true_lang.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.addKeynote",
+   "shared.uc.market"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

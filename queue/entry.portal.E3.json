@@ -1,0 +1,22 @@
+{
+ "id": "entry.portal.E3",
+ "type": "entry",
+ "area": "E3",
+ "title": "路由与登录/角色守卫",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": null,
+ "appCode": "018",
+ "files": [
+  "apps/portal/src/router.ts"
+ ],
+ "owns": [],
+ "note": "只接哈密（appCode 018）的路由；还原中的页面用工单 target 路径懒加载",
+ "deps": {
+  "orders": []
+ },
+ "kbEstimated": true
+}

@@ -1,0 +1,84 @@
+{
+ "id": "page.portal.personnelAssessment.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620059.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "R": "defineComponent",
+  "U": "useRouter (vue-router)",
+  "V": "useRoute (vue-router)",
+  "W": "reactive",
+  "X": "onUnmounted",
+  "aa": "onMounted",
+  "H": "resolveComponent",
+  "l": "openBlock",
+  "r": "createElementBlock",
+  "g": "createVNode",
+  "b": "withCtx",
+  "k": "Fragment",
+  "P": "renderList",
+  "a": "createElementVNode",
+  "L": "toDisplayString",
+  "M": "createTextVNode",
+  "n": "unref",
+  "z": "createCommentVNode",
+  "ea": "normalizeStyle",
+  "ta": "pushScopeId",
+  "sa": "popScopeId",
+  "D": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "na": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "la": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ra": {
+   "original": "ad",
+   "path": "@/legacy",
+   "export": "listChildrenTreeByTypeId",
+   "status": "restored"
+  },
+  "ca": {
+   "original": "am",
+   "path": "@/legacy",
+   "export": "getArticleList",
+   "status": "restored"
+  },
+  "p": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "m": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "oa": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "ia": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

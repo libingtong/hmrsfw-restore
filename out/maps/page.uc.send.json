@@ -1,0 +1,94 @@
+{
+ "id": "page.uc.send",
+ "chunk": "legacy-dist/usercenter/assets/send.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "G": "defineComponent",
+  "S": "inject",
+  "H": "reactive",
+  "ee": "onMounted",
+  "d": "resolveComponent",
+  "n": "openBlock",
+  "s": "createElementBlock",
+  "c": "createElementVNode",
+  "i": "createVNode",
+  "u": "withCtx",
+  "g": "Fragment",
+  "T": "renderList",
+  "_": "createTextVNode",
+  "$": "createBlock",
+  "m": "createCommentVNode",
+  "b": "toDisplayString"
+ },
+ "entry": {
+  "J": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "k": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "W": {
+   "original": "b5",
+   "path": "@/legacy/api",
+   "export": "cancel",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "X": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "A": {
+   "original": "index.api.17516156075456.js#U",
+   "path": "@/api/api-56",
+   "export": "listForUserContent",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/listForUserContent"
+  },
+  "L": {
+   "original": "index.api.17516156075456.js#V",
+   "path": "@/api/api-56",
+   "export": "add6",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobUserCare/add"
+  },
+  "Q": {
+   "original": "index.api.17516156075456.js#W",
+   "path": "@/api/api-56",
+   "export": "undoAllComplaintByType",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobComplaintRecord/undoAllComplaintByType"
+  }
+ },
+ "shared": {
+  "Y": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "complaint.1751615607545.js#c",
+   "path": "@/shared/complaint.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.complaint"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "index.api.17516156075452.js",
+  "phone.1751615607545.js"
+ ],
+ "missing": []
+}

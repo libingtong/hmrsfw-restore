@@ -1,0 +1,50 @@
+{
+ "id": "page.uc.needList",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.17516156075454.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-b124cb3d"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b124cb3d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.17516156075454.css"
+ ],
+ "target": "apps/uc/src/views/needList.vue",
+ "subComponentDir": "apps/uc/src/views/needList/",
+ "routes": [
+  {
+   "path": "/needList",
+   "name": "needList"
+  }
+ ],
+ "recordPath": "/needList",
+ "maps": "out/maps/page.uc.needList.json",
+ "hints": "out/hints/page.uc.needList.md",
+ "deps": {
+  "entry": [
+   "d",
+   "m"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075457.js#b",
+   "index.api.17516156075457.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

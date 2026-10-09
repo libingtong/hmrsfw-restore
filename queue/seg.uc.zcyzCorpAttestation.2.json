@@ -1,0 +1,100 @@
+{
+ "id": "seg.uc.zcyzCorpAttestation.2",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.zcyzCorpAttestation",
+ "index": 2,
+ "of": 2,
+ "assemble": true,
+ "after": [
+  "seg.uc.zcyzCorpAttestation.1"
+ ],
+ "kb": 22.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/zcyzCorpAttestation.1751615607545.js",
+ "range": [
+  22232,
+  45359
+ ],
+ "components": [],
+ "parts": [
+  {
+   "component": "zcyzCorpAttestation",
+   "part": "template",
+   "range": [
+    22232,
+    45359
+   ],
+   "kb": 22.6,
+   "file": "apps/uc/src/views/zcyzCorpAttestation/_seg/zcyzCorpAttestation.template.html"
+  }
+ ],
+ "outputs": [
+  "apps/uc/src/views/zcyzCorpAttestation/_seg/zcyzCorpAttestation.template.html"
+ ],
+ "target": "apps/uc/src/views/zcyzCorpAttestation.vue",
+ "subComponentDir": "apps/uc/src/views/zcyzCorpAttestation/",
+ "scopeIds": [
+  "data-v-64fd3025"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/map.1751615607545.css",
+  "legacy-dist/usercenter/assets/zcyzCorpAttestation.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "routes": [
+  {
+   "path": "/zcyzCorpAttestation",
+   "name": "zcyzCorpAttestation"
+  }
+ ],
+ "recordPath": "/zcyzCorpAttestation",
+ "maps": "out/maps/page.uc.zcyzCorpAttestation.json",
+ "hints": "out/hints/page.uc.zcyzCorpAttestation.md",
+ "deps": {
+  "entry": [
+   "B",
+   "E",
+   "F",
+   "I",
+   "L",
+   "M",
+   "P",
+   "U",
+   "a",
+   "c",
+   "d",
+   "e",
+   "f",
+   "h",
+   "m",
+   "p",
+   "v",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "email.1751615607545.js",
+   "gaode.1751615607545.js",
+   "idCard.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [22232, 45359)（约 22.6KB），其余部分由同页的其他分段负责。",
+  "组件 zcyzCorpAttestation 只还原 <template> 部分（setup 最后 return 的渲染函数），写成 apps/uc/src/views/zcyzCorpAttestation/_seg/zcyzCorpAttestation.template.html，内容就是将来 <template> 里的模板。",
+  "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.uc.zcyzCorpAttestation --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
+ ]
+}

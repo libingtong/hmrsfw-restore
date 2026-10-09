@@ -1,0 +1,121 @@
+{
+ "id": "shared.uc.metormodal",
+ "chunk": "legacy-dist/usercenter/assets/metormodal.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "J": "defineComponent",
+  "X": "reactive",
+  "Y": "onMounted",
+  "k": "resolveComponent",
+  "l": "openBlock",
+  "r": "createElementBlock",
+  "m": "createVNode",
+  "y": "withCtx",
+  "e": "createElementVNode",
+  "d": "unref",
+  "v": "toDisplayString",
+  "Z": "Fragment",
+  "G": "renderList",
+  "w": "createCommentVNode",
+  "N": "createBlock",
+  "P": "createTextVNode",
+  "T": "h",
+  "H": "pushScopeId",
+  "K": "popScopeId"
+ },
+ "entry": {
+  "R": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "O": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "B": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "U": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "S": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "C": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "D": {
+   "original": "index.api.17516156075454.js#e",
+   "path": "@/api/sysConsult",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-job/job/xfSysConsult/queryById"
+  },
+  "$": {
+   "original": "index.api.17516156075454.js#a",
+   "path": "@/api/sysConsult",
+   "export": "queryOneForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobUserTutorExpand/queryOneForUserCenter"
+  },
+  "j": {
+   "original": "index.api.17516156075454.js#f",
+   "path": "@/api/sysConsult",
+   "export": "checkIzCanReply",
+   "status": "reserved",
+   "url": "/xf-job/job/xfSysConsultReply/checkIzCanReply"
+  },
+  "A": {
+   "original": "index.api.17516156075454.js#h",
+   "path": "@/api/sysConsult",
+   "export": "saveOne",
+   "status": "reserved",
+   "url": "/xf-job/job/xfSysConsultReply/saveOne"
+  }
+ },
+ "shared": {
+  "V": {
+   "original": "unfold.1751615607545.js#u",
+   "path": "@/shared/unfold.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "E": {
+   "original": "default.1751615607545.js#_",
+   "value": "/assets/default.1751615607545.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "defaultImg",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

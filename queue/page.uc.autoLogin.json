@@ -1,0 +1,56 @@
+{
+ "id": "page.uc.autoLogin",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/autoLogin.1751615607545.js",
+ "components": [
+  {
+   "name": "autoLogin",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/views/autoLogin.vue",
+ "subComponentDir": "apps/uc/src/views/autoLogin/",
+ "routes": [
+  {
+   "path": "/autoLogin",
+   "name": "autoLogin"
+  }
+ ],
+ "recordPath": "/autoLogin",
+ "maps": "out/maps/page.uc.autoLogin.json",
+ "hints": "out/hints/page.uc.autoLogin.md",
+ "deps": {
+  "entry": [
+   "bC",
+   "bD",
+   "bE",
+   "bF",
+   "bG",
+   "c",
+   "d",
+   "e",
+   "f",
+   "j",
+   "k",
+   "l",
+   "n",
+   "v"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E4",
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

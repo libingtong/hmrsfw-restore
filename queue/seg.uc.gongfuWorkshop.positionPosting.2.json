@@ -1,0 +1,90 @@
+{
+ "id": "seg.uc.gongfuWorkshop.positionPosting.2",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.gongfuWorkshop.positionPosting",
+ "index": 2,
+ "of": 2,
+ "assemble": true,
+ "after": [
+  "seg.uc.gongfuWorkshop.positionPosting.1"
+ ],
+ "kb": 17.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754523.js",
+ "range": [
+  13143,
+  30698
+ ],
+ "components": [
+  {
+   "name": "workPositionAddOrEditModel",
+   "scopeId": "data-v-4378db7d"
+  },
+  {
+   "name": "workPositionInfoModel",
+   "scopeId": "data-v-50063266"
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-55f3158e"
+  }
+ ],
+ "parts": [],
+ "outputs": [
+  "apps/uc/src/views/gongfuWorkshop/positionPosting/workPositionAddOrEditModel.vue",
+  "apps/uc/src/views/gongfuWorkshop/positionPosting/workPositionInfoModel.vue",
+  "apps/uc/src/views/gongfuWorkshop/positionPosting.vue"
+ ],
+ "target": "apps/uc/src/views/gongfuWorkshop/positionPosting.vue",
+ "subComponentDir": "apps/uc/src/views/gongfuWorkshop/positionPosting/",
+ "scopeIds": [
+  "data-v-1d37b1c5",
+  "data-v-2b6ba6e8",
+  "data-v-4378db7d",
+  "data-v-50063266",
+  "data-v-55f3158e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754526.css",
+  "legacy-dist/usercenter/assets/index.175161560754523.css"
+ ],
+ "routes": [
+  {
+   "path": "/gongfuWorkshop/positionPosting",
+   "name": "positionPosting"
+  }
+ ],
+ "recordPath": "/gongfuWorkshop/positionPosting",
+ "maps": "out/maps/page.uc.gongfuWorkshop.positionPosting.json",
+ "hints": "out/hints/page.uc.gongfuWorkshop.positionPosting.md",
+ "deps": {
+  "entry": [
+   "M",
+   "d",
+   "m",
+   "w",
+   "x"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "mapInfo.1751615607545.js",
+   "workshopNews.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.mapInfo",
+   "shared.uc.workshopNews"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [13143, 30698)（约 17.2KB），其余部分由同页的其他分段负责。",
+  "完整还原这些组件并写成 SFC：workPositionAddOrEditModel → apps/uc/src/views/gongfuWorkshop/positionPosting/workPositionAddOrEditModel.vue；workPositionInfoModel → apps/uc/src/views/gongfuWorkshop/positionPosting/workPositionInfoModel.vue；index → apps/uc/src/views/gongfuWorkshop/positionPosting.vue。",
+  "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.uc.gongfuWorkshop.positionPosting --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
+ ]
+}

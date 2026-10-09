@@ -1,0 +1,125 @@
+{
+ "id": "page.portal.region.findworker.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620065.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "xe": "defineComponent",
+  "ke": "useRouter (vue-router)",
+  "Se": "useRoute (vue-router)",
+  "A": "ref",
+  "E": "reactive",
+  "be": "onMounted",
+  "we": "watch",
+  "L": "resolveComponent",
+  "a": "openBlock",
+  "l": "createElementBlock",
+  "g": "createVNode",
+  "c": "withCtx",
+  "S": "createBlock",
+  "v": "Fragment",
+  "C": "renderList",
+  "i": "createElementVNode",
+  "N": "normalizeClass",
+  "T": "unref",
+  "h": "createCommentVNode",
+  "Ie": "resolveDynamicComponent",
+  "d": "toDisplayString",
+  "b": "createTextVNode",
+  "Le": "pushScopeId",
+  "Ce": "popScopeId"
+ },
+ "entry": {
+  "de": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "ue": {
+   "original": "i",
+   "path": "swiper",
+   "export": "default",
+   "status": "npm",
+   "as": "SwiperCore"
+  },
+  "ve": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "me": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "ge": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "fe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Ne": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "M": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "Be": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "Je": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "Oe": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  },
+  "R": {
+   "original": "grid.1783320636200.js#G",
+   "path": "swiper",
+   "export": "Grid"
+  },
+  "qe": {
+   "original": "effect-coverflow.1783320636200.js#E",
+   "path": "swiper",
+   "export": "EffectCoverflow"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

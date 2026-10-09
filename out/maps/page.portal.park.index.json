@@ -1,0 +1,166 @@
+{
+ "id": "page.portal.park.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620055.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "wt": "defineComponent",
+  "O": "reactive",
+  "bt": "useRouter (vue-router)",
+  "z": "ref",
+  "yt": "onMounted",
+  "xt": "onBeforeUnmount",
+  "kt": "nextTick",
+  "k": "resolveComponent",
+  "n": "openBlock",
+  "p": "createElementBlock",
+  "t": "createElementVNode",
+  "r": "createVNode",
+  "f": "withCtx",
+  "_t": "withDirectives",
+  "d": "unref",
+  "U": "createCommentVNode",
+  "E": "normalizeClass",
+  "y": "Fragment",
+  "_": "renderList",
+  "Q": "withModifiers",
+  "A": "createBlock",
+  "X": "createTextVNode",
+  "Tt": "pushScopeId",
+  "St": "popScopeId",
+  "Lt": "vShow",
+  "w": "toDisplayString",
+  "Pt": "getCurrentInstance"
+ },
+ "entry": {
+  "Z": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "Ct": {
+   "original": "i",
+   "path": "swiper",
+   "export": "default",
+   "status": "npm",
+   "as": "SwiperCore"
+  },
+  "It": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Et": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Dt": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "S": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "L": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "te": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "ae": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "qt": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "jt": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Bt": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ne": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Vt": {
+   "original": "icon.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/icon.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.icon"
+  }
+ },
+ "views": {},
+ "modules": {
+  "le": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "se": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "Ut": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "ie": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  },
+  "oe": {
+   "original": "grid.1783320636200.js#G",
+   "path": "swiper",
+   "export": "Grid"
+  },
+  "$t": {
+   "original": "effect-coverflow.1783320636200.js#E",
+   "path": "swiper",
+   "export": "EffectCoverflow"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

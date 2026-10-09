@@ -1,0 +1,165 @@
+{
+ "id": "page.portal.zzgj.trainCourse.index",
+ "chunk": "legacy-dist/portal/assets/index.1783320636200115.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "re": "defineComponent",
+  "ue": "reactive",
+  "ce": "watch",
+  "N": "ref",
+  "pe": "onMounted",
+  "se": "nextTick",
+  "yt": "onUnmounted",
+  "f": "resolveComponent",
+  "d": "openBlock",
+  "u": "createElementBlock",
+  "p": "createVNode",
+  "m": "withCtx",
+  "n": "createElementVNode",
+  "P": "withDirectives",
+  "R": "vShow",
+  "ve": "withModifiers",
+  "I": "createCommentVNode",
+  "x": "toDisplayString",
+  "U": "unref",
+  "k": "createTextVNode",
+  "z": "createBlock",
+  "ie": "normalizeClass",
+  "he": "normalizeStyle",
+  "H": "Fragment",
+  "me": "pushScopeId",
+  "fe": "popScopeId",
+  "bt": "useRouter (vue-router)",
+  "wt": "useRoute (vue-router)",
+  "ge": "renderList",
+  "xt": "resolveDynamicComponent"
+ },
+ "entry": {
+  "A": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "te": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "rt": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "ne": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ut": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "de": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "ct": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "pt": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "vt": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "ht": {
+   "original": "aB",
+   "path": "@/legacy/api",
+   "export": "getChildArticleTypeList",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "mt": {
+   "original": "aV",
+   "path": "@/legacy/api",
+   "export": "getAllLevelArticleListByTypeId",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ae": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "le": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ft": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "ye": {
+   "original": "index.api.17833206362008.js#e",
+   "path": "@/api/api-08",
+   "export": "updateViewTimes",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/updateViewTimes"
+  }
+ },
+ "shared": {
+  "kt": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "nt": {
+   "original": "videoNull.1783320636200.js#_",
+   "value": "/default/videoNull.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "videoNullImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "dt": {
+   "original": "btn.1783320636200.js#_",
+   "value": "/assets/btn.1783320636200.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "btnImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

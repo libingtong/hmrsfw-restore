@@ -1,0 +1,42 @@
+{
+ "id": "shared.uc.dictCodeTreeOne",
+ "chunk": "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "f": "defineComponent",
+  "k": "onMounted",
+  "_": "reactive",
+  "l": "resolveComponent",
+  "y": "openBlock",
+  "b": "createBlock",
+  "m": "withCtx",
+  "p": "createVNode",
+  "x": "createElementVNode",
+  "F": "createTextVNode"
+ },
+ "entry": {
+  "h": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "v": {
+   "original": "an",
+   "path": "@/legacy",
+   "export": "uniqueByValue",
+   "status": "restored"
+  },
+  "C": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

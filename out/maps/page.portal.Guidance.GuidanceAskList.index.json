@@ -1,0 +1,132 @@
+{
+ "id": "page.portal.Guidance.GuidanceAskList.index",
+ "chunk": "legacy-dist/portal/assets/index.17833206362004.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ye": "defineComponent",
+  "R": "ref",
+  "he": "useRouter (vue-router)",
+  "F": "reactive",
+  "_e": "onMounted",
+  "m": "resolveComponent",
+  "l": "openBlock",
+  "r": "createElementBlock",
+  "e": "createElementVNode",
+  "u": "unref",
+  "k": "createBlock",
+  "o": "withCtx",
+  "t": "createVNode",
+  "g": "createTextVNode",
+  "f": "toDisplayString",
+  "z": "createCommentVNode",
+  "N": "Fragment",
+  "j": "renderList",
+  "xe": "resolveDynamicComponent",
+  "Le": "pushScopeId",
+  "we": "popScopeId",
+  "x": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "q": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Be": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Pe": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ie": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "G": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "ke": {
+   "original": "ask.1783320636200.js#_",
+   "value": "/assets/ask.1783320636200.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "askImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ge": {
+   "original": "da.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.5KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "daImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "be": {
+   "original": "da.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.5KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "daImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,71 @@
+{
+ "id": "page.portal.talents.cityHome.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 12.2,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620094.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-8da88415"
+  }
+ ],
+ "scopeIds": [
+  "data-v-8da88415"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/navigation.1783320636200.css",
+  "legacy-dist/portal/assets/titles.17833206362005.css",
+  "legacy-dist/portal/assets/homeList.17833206362002.css",
+  "legacy-dist/portal/assets/index.178332063620081.css",
+  "legacy-dist/portal/assets/index.178332063620094.css"
+ ],
+ "target": "apps/portal/src/views/talents/cityHome/index.vue",
+ "subComponentDir": "apps/portal/src/views/talents/cityHome/index/",
+ "routes": [
+  {
+   "path": "/talents/cityHome/:areaId",
+   "name": "/talents/cityHome",
+   "title": "高层次系统人才地市频道"
+  }
+ ],
+ "recordPath": "/talents/cityHome/:areaId",
+ "maps": "out/maps/page.portal.talents.cityHome.index.json",
+ "hints": "out/hints/page.portal.talents.cityHome.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "aA",
+   "ae",
+   "an",
+   "ao",
+   "c",
+   "cn",
+   "f",
+   "u"
+  ],
+  "shared": [
+   "adsCenter.1783320636200.js",
+   "empty.1783320636200.js",
+   "homeRight.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620014.js#g"
+  ],
+  "modules": [],
+  "views": [
+   "page.portal.talents.cityHome.talentArea"
+  ],
+  "orders": [
+   "entry.portal.E6",
+   "page.portal.talents.cityHome.talentArea",
+   "shared.portal.adsCenter",
+   "shared.portal.homeRight"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

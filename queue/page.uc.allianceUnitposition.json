@@ -1,0 +1,53 @@
+{
+ "id": "page.uc.allianceUnitposition",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 11.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/AllianceUnitposition.1751615607545.js",
+ "components": [
+  {
+   "name": "AllianceUnitposition",
+   "scopeId": "data-v-ff6b0ce5"
+  }
+ ],
+ "scopeIds": [
+  "data-v-ff6b0ce5"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/AllianceUnitposition.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/allianceUnitposition.vue",
+ "subComponentDir": "apps/uc/src/views/allianceUnitposition/",
+ "routes": [
+  {
+   "path": "/allianceUnitposition",
+   "name": "allianceUnitposition"
+  }
+ ],
+ "recordPath": "/allianceUnitposition",
+ "maps": "out/maps/page.uc.allianceUnitposition.json",
+ "hints": "out/hints/page.uc.allianceUnitposition.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "b5",
+   "bq",
+   "br",
+   "d",
+   "h",
+   "m"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,108 @@
+{
+ "id": "page.uc.collectme",
+ "chunk": "legacy-dist/usercenter/assets/collectme.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "A": "defineComponent",
+  "L": "ref",
+  "E": "reactive",
+  "Q": "onMounted",
+  "l": "resolveComponent",
+  "r": "openBlock",
+  "f": "createElementBlock",
+  "i": "createVNode",
+  "o": "withCtx",
+  "w": "createBlock",
+  "z": "createCommentVNode",
+  "c": "createTextVNode",
+  "b": "toDisplayString",
+  "oe": "unref",
+  "ie": "pushScopeId",
+  "ne": "popScopeId",
+  "k": "createElementVNode",
+  "j": "inject",
+  "le": "useRouter (vue-router)",
+  "D": "Fragment",
+  "q": "h"
+ },
+ "entry": {
+  "V": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "as",
+   "path": "@/legacy/api",
+   "export": "interviewTemplate",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "G": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "K": {
+   "original": "at",
+   "path": "@/legacy/api",
+   "export": "getInterviewPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "T": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "ee": {
+   "original": "av",
+   "path": "@/legacy/api",
+   "export": "interviewInvitation",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "B": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "O": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "te": {
+   "original": "aM",
+   "path": "@/legacy/api",
+   "export": "getCareListForCompany",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ae": {
+   "original": "a7",
+   "path": "@/legacy/api",
+   "export": "isPublishingPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {},
+ "shared": {
+  "se": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

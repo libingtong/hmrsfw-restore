@@ -1,0 +1,52 @@
+{
+ "id": "page.uc.audit",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/audit.1751615607545.js",
+ "components": [
+  {
+   "name": "nation",
+   "scopeId": null
+  },
+  {
+   "name": "audit",
+   "scopeId": "data-v-a3f77077"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a3f77077"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/audit.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/audit.vue",
+ "subComponentDir": "apps/uc/src/views/audit/",
+ "routes": [
+  {
+   "path": "/audit",
+   "name": "audit"
+  }
+ ],
+ "recordPath": "/audit",
+ "maps": "out/maps/page.uc.audit.json",
+ "hints": "out/hints/page.uc.audit.md",
+ "deps": {
+  "entry": [
+   "d",
+   "k"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.1751615607545.js#g",
+   "index.api.17516156075454.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

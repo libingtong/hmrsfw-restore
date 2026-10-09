@@ -1,0 +1,54 @@
+{
+ "id": "page.portal.talents.index.review",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 16.8,
+ "sourceChunk": "legacy-dist/portal/assets/review.1783320636200.js",
+ "components": [
+  {
+   "name": "review",
+   "scopeId": "data-v-06062322"
+  }
+ ],
+ "scopeIds": [
+  "data-v-06062322"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/review.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/index/review.vue",
+ "subComponentDir": "apps/portal/src/views/talents/index/review/",
+ "routes": [],
+ "recordPath": "/talents/index",
+ "maps": "out/maps/page.portal.talents.index.review.json",
+ "hints": "out/hints/page.portal.talents.index.review.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "a6",
+   "an",
+   "ao",
+   "cn",
+   "f",
+   "m"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [
+   "moreInfo.1783320636200.js",
+   "yjfk.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.index.index"
+}

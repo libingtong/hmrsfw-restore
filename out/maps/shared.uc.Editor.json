@@ -1,0 +1,46 @@
+{
+ "id": "shared.uc.Editor",
+ "chunk": "legacy-dist/usercenter/assets/Editor.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "HU": "onMounted",
+  "x$": "nextTick",
+  "LU": "onActivated",
+  "VU": "getCurrentInstance",
+  "R5": "ref",
+  "N5": "computed",
+  "kF": "watch",
+  "Op": "unref",
+  "UU": "onBeforeUnmount",
+  "WU": "onDeactivated",
+  "p$": "openBlock",
+  "b$": "createElementBlock",
+  "jU": "createCommentVNode",
+  "qU": "normalizeStyle"
+ },
+ "entry": {
+  "F5": {
+   "original": "T",
+   "path": "@/legacy",
+   "export": "commonjsGlobal",
+   "status": "restored"
+  },
+  "$U": {
+   "original": "V",
+   "path": "@/legacy",
+   "export": "getDefaultExportFromCjs",
+   "status": "restored"
+  },
+  "IU": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

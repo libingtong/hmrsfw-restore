@@ -1,0 +1,159 @@
+{
+ "id": "page.portal.sjz.job.jobList",
+ "chunk": "legacy-dist/portal/assets/jobList.17833206362003.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ae": "defineComponent",
+  "De": "useRouter (vue-router)",
+  "Be": "useRoute (vue-router)",
+  "Pe": "ref",
+  "Ue": "reactive",
+  "je": "computed",
+  "Me": "onMounted",
+  "y": "resolveComponent",
+  "Fe": "resolveDirective",
+  "u": "openBlock",
+  "v": "createElementBlock",
+  "n": "createElementVNode",
+  "s": "createVNode",
+  "r": "withCtx",
+  "U": "withDirectives",
+  "j": "toDisplayString",
+  "E": "vShow",
+  "M": "createTextVNode",
+  "F": "unref",
+  "L": "Fragment",
+  "O": "renderList",
+  "w": "createBlock",
+  "z": "createCommentVNode",
+  "Oe": "resolveDynamicComponent",
+  "Re": "pushScopeId",
+  "Je": "popScopeId",
+  "Ge": "RouterLink (vue-router)",
+  "Ve": "normalizeClass"
+ },
+ "entry": {
+  "Ye": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "We": {
+   "original": "L",
+   "path": "@/legacy",
+   "export": "getDictListByType",
+   "status": "restored"
+  },
+  "He": {
+   "original": "t",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "R": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "W": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "Ze": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "$e": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Ke": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ea": {
+   "original": "index.api.17833206362006.js#a",
+   "path": "@/api/job",
+   "export": "findJobListForWebRedis",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/findJobListForWebRedis"
+  },
+  "aa": {
+   "original": "index.api.17833206362006.js#f",
+   "path": "@/api/job",
+   "export": "findJobListForDistance",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/findJobListForDistance"
+  }
+ },
+ "shared": {
+  "g": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "sa": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ra": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "oa": {
+   "original": "workItem.17833206362002.js#w",
+   "path": "@/shared/workItem.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.workItem"
+  },
+  "na": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "pa": {
+   "original": "map.17833206362002.js#m",
+   "path": "@/shared/map.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.map"
+  },
+  "ya": {
+   "original": "GetLocationMap.vue_vue_type_script_setup_true_lang.1783320636200.js#_",
+   "path": "@/shared/GetLocationMap.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.GetLocationMap"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

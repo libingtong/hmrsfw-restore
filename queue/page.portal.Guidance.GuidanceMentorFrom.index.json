@@ -1,0 +1,49 @@
+{
+ "id": "page.portal.Guidance.GuidanceMentorFrom.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.8,
+ "sourceChunk": "legacy-dist/portal/assets/index.17833206362009.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-5e8bf108"
+  }
+ ],
+ "scopeIds": [
+  "data-v-5e8bf108"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620012.css",
+  "legacy-dist/portal/assets/index.17833206362009.css"
+ ],
+ "target": "apps/portal/src/views/Guidance/GuidanceMentorFrom/index.vue",
+ "subComponentDir": "apps/portal/src/views/Guidance/GuidanceMentorFrom/index/",
+ "routes": [
+  {
+   "path": "/GuidanceMentorFrom",
+   "name": "GuidanceMentorFrom",
+   "title": "职业指导 我要咨询"
+  }
+ ],
+ "recordPath": "/GuidanceMentorFrom",
+ "maps": "out/maps/page.portal.Guidance.GuidanceMentorFrom.index.json",
+ "hints": "out/hints/page.portal.Guidance.GuidanceMentorFrom.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "S",
+   "c",
+   "z"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

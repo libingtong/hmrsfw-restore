@@ -1,0 +1,52 @@
+{
+ "id": "page.uc.industrySkillTree",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754517.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-9f875e87"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9f875e87"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754520.css",
+  "legacy-dist/usercenter/assets/index.175161560754517.css"
+ ],
+ "target": "apps/uc/src/views/industrySkillTree.vue",
+ "subComponentDir": "apps/uc/src/views/industrySkillTree/",
+ "routes": [
+  {
+   "path": "/industrySkillTree",
+   "name": "industrySkillTree"
+  }
+ ],
+ "recordPath": "/industrySkillTree",
+ "maps": "out/maps/page.uc.industrySkillTree.json",
+ "hints": "out/hints/page.uc.industrySkillTree.md",
+ "deps": {
+  "entry": [
+   "M",
+   "d",
+   "m",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/industrySkillTree",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

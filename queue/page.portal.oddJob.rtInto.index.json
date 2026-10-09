@@ -1,0 +1,52 @@
+{
+ "id": "page.portal.oddJob.rtInto.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.8,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620051.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-18490b2a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-18490b2a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620035.css",
+  "legacy-dist/portal/assets/index.178332063620051.css"
+ ],
+ "target": "apps/portal/src/views/oddJob/rtInto/index.vue",
+ "subComponentDir": "apps/portal/src/views/oddJob/rtInto/index/",
+ "routes": [],
+ "recordPath": "/Jobshortage",
+ "maps": "out/maps/page.portal.oddJob.rtInto.index.json",
+ "hints": "out/hints/page.portal.oddJob.rtInto.index.md",
+ "deps": {
+  "entry": [
+   "C",
+   "E",
+   "Q",
+   "m",
+   "o",
+   "p",
+   "r",
+   "v",
+   "x"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.oddJob.Jobshortage.index"
+}

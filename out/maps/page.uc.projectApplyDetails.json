@@ -1,0 +1,35 @@
+{
+ "id": "page.uc.projectApplyDetails",
+ "chunk": "legacy-dist/usercenter/assets/projectApplyDetails.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "o": "defineComponent",
+  "l": "useRouter (vue-router)",
+  "_": "useRoute (vue-router)",
+  "r": "ref",
+  "n": "onMounted",
+  "p": "openBlock",
+  "c": "createElementBlock",
+  "u": "createVNode"
+ },
+ "entry": {
+  "s": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "t": {
+   "original": "ZgIframe.1751615607545.js#Z",
+   "path": "@/shared/ZgIframe.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

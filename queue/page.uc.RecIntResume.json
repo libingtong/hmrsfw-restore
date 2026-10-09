@@ -1,0 +1,57 @@
+{
+ "id": "page.uc.RecIntResume",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 7.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/RecIntResume.1751615607545.js",
+ "components": [
+  {
+   "name": "RecIntResume",
+   "scopeId": "data-v-42812a3b"
+  }
+ ],
+ "scopeIds": [
+  "data-v-42812a3b"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/RecIntResume.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/RecIntResume.vue",
+ "subComponentDir": "apps/uc/src/views/RecIntResume/",
+ "routes": [
+  {
+   "path": "/RecIntResume",
+   "name": "RecIntResume"
+  }
+ ],
+ "recordPath": "/RecIntResume",
+ "maps": "out/maps/page.uc.RecIntResume.json",
+ "hints": "out/hints/page.uc.RecIntResume.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a2",
+   "a7",
+   "a8",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "InterviewInvitation.17516156075452.js",
+   "dictCode.1751615607545.js",
+   "setStatusinterview.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

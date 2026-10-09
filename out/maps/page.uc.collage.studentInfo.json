@@ -1,0 +1,79 @@
+{
+ "id": "page.uc.collage.studentInfo",
+ "chunk": "legacy-dist/usercenter/assets/info.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "te": "defineComponent",
+  "A": "reactive",
+  "oe": "ref",
+  "re": "computed",
+  "_": "resolveComponent",
+  "o": "openBlock",
+  "i": "createElementBlock",
+  "W": "createElementVNode",
+  "t": "createVNode",
+  "a": "withCtx",
+  "g": "createTextVNode",
+  "u": "toDisplayString",
+  "s": "createBlock",
+  "D": "Fragment",
+  "V": "createCommentVNode",
+  "ne": "pushScopeId",
+  "se": "popScopeId"
+ },
+ "entry": {
+  "j": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "L": {
+   "original": "index.api.175161560754513.js#s",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "getStudentInfoById",
+   "status": "reserved",
+   "url": "/xf-college/student/xfCollegeStudent/getStudentInfoById"
+  },
+  "Q": {
+   "original": "index.api.175161560754513.js#e",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "edit",
+   "status": "reserved",
+   "url": "/xf-college/student/xfCollegeStudent/edit"
+  }
+ },
+ "shared": {
+  "v": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "le": {
+   "original": "dictCodeByType.1751615607545.js#d",
+   "path": "@/shared/dictCodeByType.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

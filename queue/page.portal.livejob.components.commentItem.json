@@ -1,0 +1,42 @@
+{
+ "id": "page.portal.livejob.components.commentItem",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.4,
+ "sourceChunk": "legacy-dist/portal/assets/commentItem.1783320636200.js",
+ "components": [
+  {
+   "name": "commentItem",
+   "scopeId": "data-v-f46291a0"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f46291a0"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/commentItem.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/livejob/components/commentItem.vue",
+ "subComponentDir": "apps/portal/src/views/livejob/components/commentItem/",
+ "routes": [],
+ "recordPath": "/livedetail",
+ "maps": "out/maps/page.portal.livejob.components.commentItem.json",
+ "hints": "out/hints/page.portal.livejob.components.commentItem.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f",
+   "u"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.livejob.detail"
+}

@@ -1,0 +1,90 @@
+{
+ "id": "page.uc.Createaresume",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 58.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/Createaresume.1751615607545.js",
+ "components": [
+  {
+   "name": "Createaresume",
+   "scopeId": "data-v-de44b269"
+  }
+ ],
+ "scopeIds": [
+  "data-v-de44b269"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/Createaresume.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/Createaresume.vue",
+ "subComponentDir": "apps/uc/src/views/Createaresume/",
+ "routes": [
+  {
+   "path": "/Createaresume",
+   "name": "Createaresume"
+  }
+ ],
+ "recordPath": "/Createaresume",
+ "maps": "out/maps/page.uc.Createaresume.json",
+ "hints": "out/hints/page.uc.Createaresume.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "a",
+   "ad",
+   "b4",
+   "c",
+   "d",
+   "h",
+   "m",
+   "p",
+   "v",
+   "x",
+   "z"
+  ],
+  "shared": [
+   "cropperjs.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "dictCodeByType.1751615607545.js",
+   "resumemodal.1751615607545.js",
+   "unfold.1751615607545.js",
+   "workType.1751615607545.js",
+   "wxyy.hook.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075456.js#A",
+   "index.api.17516156075456.js#B",
+   "index.api.17516156075456.js#C",
+   "index.api.17516156075456.js#D",
+   "index.api.17516156075456.js#E",
+   "index.api.17516156075456.js#F",
+   "index.api.17516156075456.js#G",
+   "index.api.17516156075456.js#H",
+   "index.api.17516156075456.js#I",
+   "index.api.17516156075456.js#J",
+   "index.api.17516156075456.js#K",
+   "index.api.17516156075456.js#L",
+   "index.api.17516156075456.js#M",
+   "index.api.17516156075456.js#N",
+   "index.api.17516156075456.js#O",
+   "index.api.17516156075456.js#i",
+   "index.api.17516156075456.js#m",
+   "index.api.17516156075456.js#x",
+   "index.api.17516156075456.js#y",
+   "index.api.17516156075456.js#z"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/Createaresume",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

@@ -1,0 +1,61 @@
+{
+ "id": "shared.portal.complaint",
+ "chunk": "legacy-dist/portal/assets/complaint.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "A": "defineComponent",
+  "H": "ref",
+  "R": "reactive",
+  "n": "resolveComponent",
+  "D": "resolveDirective",
+  "k": "openBlock",
+  "E": "createElementBlock",
+  "l": "createVNode",
+  "a": "withCtx",
+  "v": "createElementVNode",
+  "K": "createBlock",
+  "V": "toDisplayString",
+  "G": "createCommentVNode",
+  "J": "withDirectives",
+  "y": "createTextVNode"
+ },
+ "entry": {
+  "N": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "P": {
+   "original": "Y",
+   "path": "@/legacy/components/Phone.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Y": {
+   "original": "Z",
+   "path": "@/legacy/api",
+   "export": "add",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Z": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "$": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

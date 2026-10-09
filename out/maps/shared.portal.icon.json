@@ -1,0 +1,20 @@
+{
+ "id": "shared.portal.icon",
+ "chunk": "legacy-dist/portal/assets/icon.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "e": "defineComponent",
+  "t": "computed",
+  "r": "openBlock",
+  "i": "createElementBlock",
+  "a": "unref"
+ },
+ "entry": {},
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

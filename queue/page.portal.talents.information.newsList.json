@@ -1,0 +1,61 @@
+{
+ "id": "page.portal.talents.information.newsList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5,
+ "sourceChunk": "legacy-dist/portal/assets/newsList.17833206362004.js",
+ "components": [
+  {
+   "name": "newsList",
+   "scopeId": "data-v-10e8503e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-10e8503e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/newsList.17833206362003.css"
+ ],
+ "target": "apps/portal/src/views/talents/information/newsList.vue",
+ "subComponentDir": "apps/portal/src/views/talents/information/newsList/",
+ "routes": [
+  {
+   "path": "/talents/information",
+   "name": "talents/information",
+   "title": "资讯"
+  },
+  {
+   "path": "/talents/brilliant",
+   "name": "talents/brilliant",
+   "title": "出彩包头"
+  }
+ ],
+ "recordPath": "/talents/information",
+ "maps": "out/maps/page.portal.talents.information.newsList.json",
+ "hints": "out/hints/page.portal.talents.information.newsList.md",
+ "deps": {
+  "entry": [
+   "aj",
+   "c",
+   "cn",
+   "cu",
+   "h"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620040.js#c",
+   "index.api.178332063620040.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

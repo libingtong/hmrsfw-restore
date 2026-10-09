@@ -1,0 +1,144 @@
+{
+ "id": "page.uc.fairsList",
+ "chunk": "legacy-dist/usercenter/assets/fairsList.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "G": "defineComponent",
+  "Q": "useRouter (vue-router)",
+  "Y": "reactive",
+  "K": "onMounted",
+  "y": "resolveComponent",
+  "g": "openBlock",
+  "S": "createElementBlock",
+  "n": "createVNode",
+  "l": "withCtx",
+  "s": "createElementVNode",
+  "F": "toDisplayString",
+  "v": "createTextVNode",
+  "r": "unref",
+  "k": "createCommentVNode",
+  "he": "RouterLink (vue-router)",
+  "be": "pushScopeId",
+  "_e": "popScopeId",
+  "V": "inject",
+  "me": "useRoute (vue-router)",
+  "ge": "Fragment",
+  "E": "createBlock"
+ },
+ "entry": {
+  "B": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "H": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "de": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getSettingValueByCodes",
+   "status": "restored"
+  },
+  "j": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "X": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "ue": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "fe": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "ve": {
+   "original": "index.api.175161560754512.js#g",
+   "path": "@/api/api-175161560754512",
+   "export": "checkIzShowApplySameNetworkFair",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair"
+  },
+  "ye": {
+   "original": "index.api.175161560754512.js#a",
+   "path": "@/api/api-175161560754512",
+   "export": "queryFairRegions",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/queryFairRegions"
+  },
+  "we": {
+   "original": "index.api.175161560754512.js#s",
+   "path": "@/api/api-175161560754512",
+   "export": "updateCompIntroduc",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/updateCompIntroduc"
+  },
+  "Te": {
+   "original": "index.api.175161560754512.js#f",
+   "path": "@/api/api-175161560754512",
+   "export": "list",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFair/list"
+  },
+  "ke": {
+   "original": "index.api.175161560754512.js#c",
+   "path": "@/api/api-175161560754512",
+   "export": "checkIzDishonesty",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairApplyInfo/checkIzDishonesty"
+  }
+ },
+ "shared": {
+  "O": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "positionmodal.1751615607545.js#p",
+   "path": "@/shared/positionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ie": {
+   "original": "beonmodal.1751615607545.js#b",
+   "path": "@/shared/beonmodal.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

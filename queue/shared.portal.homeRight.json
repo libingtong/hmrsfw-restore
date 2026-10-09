@@ -1,0 +1,55 @@
+{
+ "id": "shared.portal.homeRight",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 12.9,
+ "chunkKb": 12.9,
+ "sourceChunk": "legacy-dist/portal/assets/homeRight.1783320636200.js",
+ "components": [
+  {
+   "name": "homeRight",
+   "scopeId": "data-v-85da16f2"
+  }
+ ],
+ "scopeIds": [
+  "data-v-85da16f2"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/homeRight.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/homeRight.vue",
+ "exports": {
+  "h": {
+   "export": "default"
+  }
+ },
+ "registryKey": "homeRight.1783320636200.js",
+ "usedBy": [
+  "page.portal.talents.index.index",
+  "page.portal.talents.cityHome.index"
+ ],
+ "maps": "out/maps/shared.portal.homeRight.json",
+ "hints": "out/hints/shared.portal.homeRight.md",
+ "deps": {
+  "entry": [
+   "S",
+   "a6",
+   "aW",
+   "c",
+   "cn",
+   "m"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

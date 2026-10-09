@@ -1,0 +1,49 @@
+{
+ "id": "shared.portal.oddType",
+ "chunk": "legacy-dist/portal/assets/oddType.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "se": "defineComponent",
+  "ne": "reactive",
+  "ie": "onMounted",
+  "b": "resolveComponent",
+  "r": "openBlock",
+  "o": "createElementBlock",
+  "d": "createVNode",
+  "v": "withCtx",
+  "w": "createTextVNode",
+  "n": "createElementVNode",
+  "B": "Fragment",
+  "W": "renderList",
+  "P": "createCommentVNode",
+  "y": "toDisplayString",
+  "R": "normalizeClass",
+  "re": "pushScopeId",
+  "oe": "popScopeId"
+ },
+ "entry": {
+  "ae": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "le": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "ee": {
+   "original": "main.1783320636200.js#t",
+   "path": "pinyin-match",
+   "export": "default"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

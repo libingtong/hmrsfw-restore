@@ -1,0 +1,95 @@
+{
+ "id": "page.uc.liveApply",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754514.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "U": "defineComponent",
+  "F": "reactive",
+  "W": "watch",
+  "ee": "onBeforeMount",
+  "E": "onMounted",
+  "_": "resolveComponent",
+  "y": "openBlock",
+  "w": "createElementBlock",
+  "o": "createVNode",
+  "s": "withCtx",
+  "t": "createElementVNode",
+  "d": "toDisplayString",
+  "B": "createBlock",
+  "C": "createCommentVNode",
+  "h": "createTextVNode",
+  "te": "unref",
+  "ae": "pushScopeId",
+  "se": "popScopeId",
+  "q": "inject",
+  "oe": "useRouter (vue-router)",
+  "ne": "useRoute (vue-router)",
+  "ie": "Fragment"
+ },
+ "entry": {
+  "H": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "J": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "re": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  }
+ },
+ "api": {
+  "le": {
+   "original": "index.api.175161560754516.js#a",
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "list2",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLiveTelecastApplyPosition/list"
+  },
+  "ce": {
+   "original": "index.api.175161560754516.js#q",
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "list",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLiveTelecastApply/list"
+  },
+  "de": {
+   "original": "index.api.175161560754516.js#d",
+   "path": "@/api/jobLiveTelecastApply",
+   "export": "deleteBatch",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLiveTelecastApply/deleteBatch"
+  }
+ },
+ "shared": {
+  "V": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "dictCodeTreeOne.1751615607545.js#d",
+   "path": "@/shared/dictCodeTreeOne.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

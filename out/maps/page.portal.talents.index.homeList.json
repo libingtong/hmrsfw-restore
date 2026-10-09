@@ -1,0 +1,68 @@
+{
+ "id": "page.portal.talents.index.homeList",
+ "chunk": "legacy-dist/portal/assets/homeList.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ie": "defineComponent",
+  "ke": "useRouter (vue-router)",
+  "Ae": "watch",
+  "Le": "reactive",
+  "_e": "onBeforeUnmount",
+  "Ce": "onMounted",
+  "Be": "resolveComponent",
+  "p": "openBlock",
+  "m": "createElementBlock",
+  "t": "createElementVNode",
+  "F": "unref",
+  "P": "normalizeClass",
+  "d": "toDisplayString",
+  "_": "Fragment",
+  "C": "renderList",
+  "Re": "createBlock",
+  "Se": "createVNode",
+  "B": "withCtx",
+  "Te": "createCommentVNode",
+  "De": "pushScopeId",
+  "Ne": "popScopeId"
+ },
+ "entry": {
+  "R": {
+   "original": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "S": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "Q": {
+   "original": "aj",
+   "path": "@/legacy/utils",
+   "export": "openLink",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ze": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Ke": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

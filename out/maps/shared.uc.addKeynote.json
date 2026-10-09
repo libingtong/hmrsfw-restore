@@ -1,0 +1,88 @@
+{
+ "id": "shared.uc.addKeynote",
+ "chunk": "legacy-dist/usercenter/assets/addKeynote.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "M": "defineComponent",
+  "R": "ref",
+  "$": "reactive",
+  "j": "onMounted",
+  "p": "resolveComponent",
+  "E": "openBlock",
+  "K": "createElementBlock",
+  "e": "createVNode",
+  "s": "withCtx",
+  "O": "unref"
+ },
+ "entry": {
+  "P": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "S": {
+   "original": "aj",
+   "path": "@/legacy/api",
+   "export": "certificationBeforeDetailId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "T": {
+   "original": "ak",
+   "path": "@/legacy/api",
+   "export": "certificationUser",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "q": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "F": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "U": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "N": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "w": {
+   "original": "corporganic.1751615607545.js#c",
+   "path": "@/shared/corporganic.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.corporganic"
+  },
+  "z": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "v": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

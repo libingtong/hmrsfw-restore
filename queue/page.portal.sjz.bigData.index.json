@@ -1,0 +1,45 @@
+{
+ "id": "page.portal.sjz.bigData.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.9,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620073.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-5c804ad0"
+  }
+ ],
+ "scopeIds": [
+  "data-v-5c804ad0"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620064.css",
+  "legacy-dist/portal/assets/index.178332063620073.css"
+ ],
+ "target": "apps/portal/src/views/sjz/bigData/index.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/bigData/index/",
+ "routes": [],
+ "recordPath": "/sjzbigData",
+ "maps": "out/maps/page.portal.sjz.bigData.index.json",
+ "hints": "out/hints/page.portal.sjz.bigData.index.md",
+ "deps": {
+  "entry": [
+   "ar"
+  ],
+  "shared": [
+   "index.1783320636200120.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.sjz.bigData.screen"
+}

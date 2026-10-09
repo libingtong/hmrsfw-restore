@@ -1,0 +1,79 @@
+{
+ "id": "shared.portal.homeRight",
+ "chunk": "legacy-dist/portal/assets/homeRight.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ce": "defineComponent",
+  "re": "useRouter (vue-router)",
+  "de": "reactive",
+  "ge": "onMounted",
+  "ue": "onBeforeUnmount",
+  "we": "ref",
+  "be": "watch",
+  "me": "resolveComponent",
+  "c": "openBlock",
+  "b": "createElementBlock",
+  "A": "createElementVNode",
+  "pe": "toDisplayString",
+  "N": "createVNode",
+  "ve": "withCtx",
+  "F": "createCommentVNode",
+  "Ie": "normalizeClass",
+  "he": "createBlock",
+  "ye": "pushScopeId",
+  "ke": "popScopeId",
+  "I": "createTextVNode"
+ },
+ "entry": {
+  "ie": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "le": {
+   "original": "a6",
+   "path": "@/legacy",
+   "export": "FeedbackModal",
+   "status": "restored"
+  },
+  "oe": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "ae": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "se": {
+   "original": "aW",
+   "path": "@/legacy/api",
+   "export": "queryAllInfoById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "te": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

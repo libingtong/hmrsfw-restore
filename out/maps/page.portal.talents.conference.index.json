@@ -1,0 +1,92 @@
+{
+ "id": "page.portal.talents.conference.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620095.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ne": "defineComponent",
+  "se": "useRoute (vue-router)",
+  "ce": "useRouter (vue-router)",
+  "de": "watch",
+  "me": "reactive",
+  "ue": "onBeforeMount",
+  "pe": "onMounted",
+  "_e": "onBeforeUnmount",
+  "j": "ref",
+  "d": "openBlock",
+  "m": "createElementBlock",
+  "o": "createElementVNode",
+  "n": "createVNode",
+  "ve": "createCommentVNode",
+  "T": "Fragment",
+  "H": "renderList",
+  "ge": "unref",
+  "y": "toDisplayString",
+  "z": "normalizeClass",
+  "he": "pushScopeId",
+  "fe": "popScopeId"
+ },
+ "entry": {
+  "ye": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "L": {
+   "original": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "be": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "we": {
+   "original": "bs",
+   "path": "@/legacy/utils",
+   "export": "openLinkAddress",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Ce": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ze": {
+   "original": "index.api.178332063620039.js#g",
+   "path": "@/api/sysMeeting",
+   "export": "getMeetingInfo",
+   "status": "reserved",
+   "url": "xf-job/communal/licenseFree/xfSysMeeting/getMeetingInfo"
+  }
+ },
+ "shared": {
+  "Ge": {
+   "original": "icon.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/icon.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.icon"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "grid.1783320636200.js"
+ ],
+ "missing": []
+}

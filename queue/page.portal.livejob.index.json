@@ -1,0 +1,51 @@
+{
+ "id": "page.portal.livejob.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 7.3,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620040.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-6e6c85a0"
+  }
+ ],
+ "scopeIds": [
+  "data-v-6e6c85a0"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620040.css"
+ ],
+ "target": "apps/portal/src/views/livejob/index.vue",
+ "subComponentDir": "apps/portal/src/views/livejob/index/",
+ "routes": [],
+ "recordPath": "/fairList",
+ "maps": "out/maps/page.portal.livejob.index.json",
+ "hints": "out/hints/page.portal.livejob.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620013.js#g"
+  ],
+  "modules": [
+   "liveNull.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.sjz.fair.fairList"
+}

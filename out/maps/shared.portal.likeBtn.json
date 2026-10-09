@@ -1,0 +1,53 @@
+{
+ "id": "shared.portal.likeBtn",
+ "chunk": "legacy-dist/portal/assets/likeBtn.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "O": "defineComponent",
+  "K": "reactive",
+  "W": "ref",
+  "b": "onMounted",
+  "q": "onUnmounted",
+  "f": "openBlock",
+  "I": "createElementBlock",
+  "c": "createElementVNode",
+  "Y": "toDisplayString",
+  "T": "createCommentVNode",
+  "X": "pushScopeId",
+  "j": "popScopeId"
+ },
+ "entry": {
+  "U": {
+   "original": "ar",
+   "path": "lodash-es",
+   "export": "debounce",
+   "status": "npm"
+  },
+  "R": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "G": {
+   "original": "index.api.178332063620013.js#a",
+   "path": "@/api/jobLiveTelecast",
+   "export": "queryVoById",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/queryVoById"
+  },
+  "z": {
+   "original": "index.api.178332063620013.js#h",
+   "path": "@/api/jobLiveTelecast",
+   "export": "updateLikeNum",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/updateLikeNum"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

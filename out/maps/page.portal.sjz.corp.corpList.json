@@ -1,0 +1,109 @@
+{
+ "id": "page.portal.sjz.corp.corpList",
+ "chunk": "legacy-dist/portal/assets/corpList.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "he": "defineComponent",
+  "ve": "useRouter (vue-router)",
+  "_e": "useRoute (vue-router)",
+  "ge": "reactive",
+  "M": "ref",
+  "ke": "onUnmounted",
+  "we": "onBeforeMount",
+  "Fe": "onMounted",
+  "h": "resolveComponent",
+  "t": "openBlock",
+  "o": "createElementBlock",
+  "c": "createElementVNode",
+  "s": "createVNode",
+  "i": "withCtx",
+  "p": "createTextVNode",
+  "v": "Fragment",
+  "P": "renderList",
+  "k": "createBlock",
+  "xe": "resolveDynamicComponent",
+  "Se": "pushScopeId",
+  "be": "popScopeId",
+  "z": "unref",
+  "A": "RouterLink (vue-router)",
+  "d": "toDisplayString",
+  "w": "createCommentVNode"
+ },
+ "entry": {
+  "O": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "L",
+   "path": "@/legacy",
+   "export": "getDictListByType",
+   "status": "restored"
+  },
+  "Ie": {
+   "original": "t",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "Ue": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Ce": {
+   "original": "index.api.178332063620014.js#g",
+   "path": "@/api/article",
+   "export": "freeCompanyList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeCompanyList"
+  },
+  "Te": {
+   "original": "index.api.178332063620014.js#f",
+   "path": "@/api/article",
+   "export": "freeCompanyListByTags",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeCompanyListByTags"
+  }
+ },
+ "shared": {
+  "Y": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "industryCode.1783320636200.js#i",
+   "path": "@/shared/industryCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "G": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

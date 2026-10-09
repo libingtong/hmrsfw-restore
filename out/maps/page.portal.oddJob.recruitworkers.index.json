@@ -1,0 +1,188 @@
+{
+ "id": "page.portal.oddJob.recruitworkers.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620050.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Xe": "defineComponent",
+  "$e": "useRouter (vue-router)",
+  "ea": "useRoute (vue-router)",
+  "aa": "ref",
+  "ta": "reactive",
+  "sa": "onMounted",
+  "u": "resolveComponent",
+  "n": "openBlock",
+  "y": "createElementBlock",
+  "o": "createElementVNode",
+  "s": "createVNode",
+  "i": "withCtx",
+  "b": "createTextVNode",
+  "Y": "Fragment",
+  "A": "renderList",
+  "g": "createBlock",
+  "la": "resolveDynamicComponent",
+  "M": "createCommentVNode",
+  "ia": "pushScopeId",
+  "oa": "popScopeId",
+  "p": "toDisplayString",
+  "S": "unref"
+ },
+ "entry": {
+  "Me": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "He": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "P": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "q": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Pe": {
+   "original": "bU",
+   "path": "@/legacy/utils",
+   "export": "checkTokenLogin",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "I": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "qe": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Ye": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "pa": {
+   "original": "index.api.178332063620024.js#n",
+   "path": "@/api/api-24",
+   "export": "needJoblist",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/needJoblist"
+  },
+  "ma": {
+   "original": "index.api.178332063620024.js#e",
+   "path": "@/api/api-24",
+   "export": "add3",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddPositionApply/add"
+  },
+  "ya": {
+   "original": "index.api.178332063620024.js#h",
+   "path": "@/api/api-24",
+   "export": "add4",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/callRecord/add"
+  },
+  "ba": {
+   "original": "index.api.178332063620024.js#i",
+   "path": "@/api/api-24",
+   "export": "add",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddUserCollect/add"
+  },
+  "fa": {
+   "original": "index.api.178332063620024.js#j",
+   "path": "@/api/api-24",
+   "export": "deleteItem",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddUserCollect/delete"
+  },
+  "ga": {
+   "original": "index.api.178332063620024.js#x",
+   "path": "@/api/api-24",
+   "export": "add2",
+   "status": "restored",
+   "url": "/xf-oddjob/oddjob/xfOddUserBrowse/add"
+  }
+ },
+ "shared": {
+  "R": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "na": {
+   "original": "oddType.1783320636200.js#o",
+   "path": "@/shared/oddType.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.oddType"
+  },
+  "ra": {
+   "original": "nowContact.vue_vue_type_script_setup_true_lang.1783320636200.js#_",
+   "path": "@/shared/nowContact.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.nowContact"
+  },
+  "ua": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

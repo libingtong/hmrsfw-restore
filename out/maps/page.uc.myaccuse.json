@@ -1,0 +1,73 @@
+{
+ "id": "page.uc.myaccuse",
+ "chunk": "legacy-dist/usercenter/assets/myaccuse.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "J": "defineComponent",
+  "y": "inject",
+  "K": "reactive",
+  "M": "onMounted",
+  "i": "resolveComponent",
+  "c": "openBlock",
+  "r": "createElementBlock",
+  "n": "createVNode",
+  "o": "withCtx",
+  "p": "createTextVNode",
+  "m": "createElementVNode",
+  "h": "Fragment",
+  "f": "createCommentVNode",
+  "x": "toDisplayString"
+ },
+ "entry": {
+  "B": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "F": {
+   "original": "b8",
+   "path": "@/legacy/api",
+   "export": "volist",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "P": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "$": {
+   "original": "b9",
+   "path": "@/legacy/api",
+   "export": "undoComplaint",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "L": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "E": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

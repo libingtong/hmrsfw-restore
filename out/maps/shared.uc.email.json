@@ -1,0 +1,25 @@
+{
+ "id": "shared.uc.email",
+ "chunk": "legacy-dist/usercenter/assets/email.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "u": "defineComponent",
+  "s": "reactive",
+  "i": "resolveComponent",
+  "c": "openBlock",
+  "m": "createBlock"
+ },
+ "entry": {
+  "l": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

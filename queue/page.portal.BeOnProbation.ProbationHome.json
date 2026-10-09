@@ -1,0 +1,91 @@
+{
+ "id": "page.portal.BeOnProbation.ProbationHome",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 27.7,
+ "sourceChunk": "legacy-dist/portal/assets/ProbationHome.1783320636200.js",
+ "components": [
+  {
+   "name": "Gigmarketgetjob",
+   "scopeId": "data-v-d619e363"
+  },
+  {
+   "name": "GigmarketgetjobBasestyle",
+   "scopeId": "data-v-89c817f8"
+  },
+  {
+   "name": "ProbationHome",
+   "scopeId": "data-v-801ceba2"
+  }
+ ],
+ "scopeIds": [
+  "data-v-d619e363",
+  "data-v-89c817f8",
+  "data-v-801ceba2"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/ProbationHome.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/BeOnProbation/ProbationHome.vue",
+ "subComponentDir": "apps/portal/src/views/BeOnProbation/ProbationHome/",
+ "routes": [
+  {
+   "path": "/ProbationHome",
+   "name": "ProbationHome",
+   "title": "就业见习"
+  }
+ ],
+ "recordPath": "/ProbationHome",
+ "maps": "out/maps/page.portal.BeOnProbation.ProbationHome.json",
+ "hints": "out/hints/page.portal.BeOnProbation.ProbationHome.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "M",
+   "a",
+   "b",
+   "c",
+   "d",
+   "f",
+   "g",
+   "h",
+   "i",
+   "j",
+   "k",
+   "l",
+   "m",
+   "n",
+   "o",
+   "p",
+   "q",
+   "r",
+   "s",
+   "t",
+   "v"
+  ],
+  "shared": [
+   "Gigmarketgetjobpost.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.1783320636200.js#a",
+   "index.api.1783320636200.js#b",
+   "index.api.1783320636200.js#c",
+   "index.api.1783320636200.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/ProbationHome",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

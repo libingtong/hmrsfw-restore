@@ -1,0 +1,71 @@
+{
+ "id": "page.portal.customerService.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 26.4,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620030.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-2af1febf"
+  }
+ ],
+ "scopeIds": [
+  "data-v-2af1febf"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620032.css",
+  "legacy-dist/portal/assets/index.178332063620030.css"
+ ],
+ "target": "apps/portal/src/views/customerService/index.vue",
+ "subComponentDir": "apps/portal/src/views/customerService/index/",
+ "routes": [
+  {
+   "path": "/customerService",
+   "name": "customerService",
+   "title": "智能客服"
+  },
+  {
+   "path": "/talents/customerService",
+   "name": "talents/customerService",
+   "title": "智能客服"
+  }
+ ],
+ "recordPath": "/customerService",
+ "maps": "out/maps/page.portal.customerService.index.json",
+ "hints": "out/hints/page.portal.customerService.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "S",
+   "aW",
+   "ag",
+   "ah",
+   "ao",
+   "av",
+   "b2",
+   "b3",
+   "b4",
+   "b5",
+   "b6",
+   "b7",
+   "b8",
+   "b9",
+   "f"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

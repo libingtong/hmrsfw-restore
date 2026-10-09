@@ -1,0 +1,38 @@
+{
+ "id": "shared.portal.ellipsisText",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2,
+ "chunkKb": 2,
+ "sourceChunk": "legacy-dist/portal/assets/ellipsisText.1783320636200.js",
+ "components": [],
+ "scopeIds": [],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/ellipsisText.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/ellipsisText.vue",
+ "exports": {
+  "e": {
+   "export": "default"
+  }
+ },
+ "registryKey": "ellipsisText.1783320636200.js",
+ "usedBy": [
+  "page.portal.Guidance.GuidanceHome.index",
+  "page.portal.BeOnProbation.ProbationBaseDetail"
+ ],
+ "maps": "out/maps/shared.portal.ellipsisText.json",
+ "hints": "out/hints/shared.portal.ellipsisText.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

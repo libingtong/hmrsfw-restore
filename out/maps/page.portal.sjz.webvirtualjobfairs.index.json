@@ -1,0 +1,37 @@
+{
+ "id": "page.portal.sjz.webvirtualjobfairs.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620088.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "p": "defineComponent",
+  "f": "useRouter (vue-router)",
+  "x": "useRoute (vue-router)",
+  "v": "reactive",
+  "y": "onUnmounted",
+  "B": "onMounted",
+  "b": "openBlock",
+  "j": "createElementBlock",
+  "g": "createElementVNode",
+  "u": "withDirectives",
+  "h": "vShow"
+ },
+ "entry": {
+  "k": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "C": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

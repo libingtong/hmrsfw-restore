@@ -1,0 +1,59 @@
+{
+ "id": "page.uc.recruitmentSignMng",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754520.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "T": "defineComponent",
+  "D": "useRouter (vue-router)",
+  "$": "reactive",
+  "U": "onMounted",
+  "P": "resolveComponent",
+  "k": "openBlock",
+  "N": "createElementBlock",
+  "p": "createElementVNode",
+  "R": "createVNode",
+  "r": "withCtx",
+  "V": "createCommentVNode",
+  "y": "toDisplayString",
+  "q": "createTextVNode",
+  "A": "pushScopeId",
+  "B": "popScopeId"
+ },
+ "entry": {
+  "I": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "M": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "j": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "z": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "L": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

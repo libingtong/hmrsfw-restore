@@ -1,0 +1,140 @@
+{
+ "id": "page.uc.gongfuWorkshop.jobPosting",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754524.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Z": "defineComponent",
+  "C": "ref",
+  "ne": "getCurrentInstance",
+  "G": "useRouter (vue-router)",
+  "W": "useRoute (vue-router)",
+  "j": "inject",
+  "ee": "onMounted",
+  "Q": "reactive",
+  "m": "resolveComponent",
+  "y": "openBlock",
+  "q": "createElementBlock",
+  "a": "createVNode",
+  "t": "withCtx",
+  "ie": "unref",
+  "p": "createElementVNode",
+  "I": "createCommentVNode",
+  "k": "createTextVNode",
+  "h": "toDisplayString",
+  "ae": "pushScopeId",
+  "le": "popScopeId",
+  "J": "createBlock",
+  "me": "onBeforeMount",
+  "ge": "Fragment"
+ },
+ "entry": {
+  "A": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "R": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ue": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "X": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "te": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "re": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "parseIdCard",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "l",
+   "path": "@/legacy/utils",
+   "export": "setLocalStorage",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "be": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "ve": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "he": {
+   "original": "bw",
+   "path": "@/legacy/utils",
+   "export": "maskPhone",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ke": {
+   "original": "idCard.1751615607545.js#i",
+   "path": "@/shared/idCard.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "xe": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "workshopNews.1751615607545.js#w",
+   "path": "@/shared/workshopNews/WorkshopType.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.workshopNews"
+  },
+  "Ie": {
+   "original": "workshopNews.1751615607545.js#a",
+   "path": "@/shared/workshopNews/WorkshopNews.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.workshopNews"
+  },
+  "we": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

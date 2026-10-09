@@ -1,0 +1,111 @@
+{
+ "id": "page.portal.BeOnProbation.ProbationElegantList",
+ "chunk": "legacy-dist/portal/assets/ProbationElegantList.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "te": "defineComponent",
+  "se": "useRouter (vue-router)",
+  "le": "useRoute (vue-router)",
+  "re": "reactive",
+  "ne": "onMounted",
+  "i": "resolveComponent",
+  "u": "openBlock",
+  "k": "createElementBlock",
+  "t": "createVNode",
+  "a": "withCtx",
+  "h": "unref",
+  "g": "createTextVNode",
+  "B": "toDisplayString",
+  "b": "createBlock",
+  "ce": "createCommentVNode",
+  "ie": "Fragment",
+  "ue": "renderList",
+  "oe": "resolveDynamicComponent",
+  "de": "pushScopeId",
+  "pe": "popScopeId",
+  "I": "createElementVNode",
+  "D": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "R": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "$": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "J": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "C": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "K": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "W": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "X": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "fe": {
+   "original": "index.api.1783320636200.js#g",
+   "path": "@/api/api-1783320636200",
+   "export": "getArticleList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getArticleList"
+  }
+ },
+ "shared": {
+  "he": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

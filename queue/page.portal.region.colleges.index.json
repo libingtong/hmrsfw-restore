@@ -1,0 +1,71 @@
+{
+ "id": "page.portal.region.colleges.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 16.6,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620064.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-c1332a42"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c1332a42"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/homeNews.17833206362002.css",
+  "legacy-dist/portal/assets/index.178332063620063.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css",
+  "legacy-dist/portal/assets/index.178332063620064.css"
+ ],
+ "target": "apps/portal/src/views/region/colleges/index.vue",
+ "subComponentDir": "apps/portal/src/views/region/colleges/index/",
+ "routes": [
+  {
+   "path": "/region/colleges",
+   "name": "colleges",
+   "title": "高校毕业生专区"
+  }
+ ],
+ "recordPath": "/region/colleges",
+ "maps": "out/maps/page.portal.region.colleges.index.json",
+ "hints": "out/hints/page.portal.region.colleges.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "S",
+   "aD",
+   "ae",
+   "c",
+   "d",
+   "f",
+   "h",
+   "m",
+   "n",
+   "o",
+   "p",
+   "q",
+   "r",
+   "v",
+   "z"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "homeNews.17833206362003.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.homeNews3"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

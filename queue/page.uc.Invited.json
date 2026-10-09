@@ -1,0 +1,49 @@
+{
+ "id": "page.uc.Invited",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/Invited.1751615607545.js",
+ "components": [
+  {
+   "name": "Invited",
+   "scopeId": "data-v-54687dda"
+  }
+ ],
+ "scopeIds": [
+  "data-v-54687dda"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/Invited.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/Invited.vue",
+ "subComponentDir": "apps/uc/src/views/Invited/",
+ "routes": [
+  {
+   "path": "/Invited",
+   "name": "Invited"
+  }
+ ],
+ "recordPath": "/Invited",
+ "maps": "out/maps/page.uc.Invited.json",
+ "hints": "out/hints/page.uc.Invited.md",
+ "deps": {
+  "entry": [
+   "M",
+   "d",
+   "m"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17516156075456.js#d",
+   "index.api.17516156075456.js#p"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,44 @@
+{
+ "id": "page.portal.talents.newPark.servicePark",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.8,
+ "sourceChunk": "legacy-dist/portal/assets/servicePark.1783320636200.js",
+ "components": [
+  {
+   "name": "servicePark",
+   "scopeId": "data-v-6f53337d"
+  }
+ ],
+ "scopeIds": [
+  "data-v-6f53337d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/servicePark.1783320636200.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/newPark/servicePark.vue",
+ "subComponentDir": "apps/portal/src/views/talents/newPark/servicePark/",
+ "routes": [],
+ "recordPath": "/talents/park",
+ "maps": "out/maps/page.portal.talents.newPark.servicePark.json",
+ "hints": "out/hints/page.portal.talents.newPark.servicePark.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.newPark.index"
+}

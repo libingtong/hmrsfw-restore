@@ -1,0 +1,69 @@
+{
+ "id": "page.portal.oddJob.rtInto.odd",
+ "chunk": "legacy-dist/portal/assets/odd.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "N": "defineComponent",
+  "R": "reactive",
+  "S": "resolveComponent",
+  "c": "openBlock",
+  "d": "createElementBlock",
+  "l": "createElementVNode",
+  "x": "createVNode",
+  "U": "createBlock",
+  "V": "createCommentVNode",
+  "$": "Fragment",
+  "M": "pushScopeId",
+  "Q": "popScopeId"
+ },
+ "entry": {
+  "q": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "z": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "A": {
+   "original": "C",
+   "path": "@/legacy",
+   "export": "TEXT_GO_PERFECT",
+   "status": "restored"
+  },
+  "G": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "H": {
+   "original": "E",
+   "path": "@/legacy",
+   "export": "IDENTITY_PERSON",
+   "status": "restored"
+  },
+  "k": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "J": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

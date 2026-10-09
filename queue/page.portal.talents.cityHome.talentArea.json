@@ -1,0 +1,61 @@
+{
+ "id": "page.portal.talents.cityHome.talentArea",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.7,
+ "sourceChunk": "legacy-dist/portal/assets/talentArea.1783320636200.js",
+ "components": [
+  {
+   "name": "talentArea",
+   "scopeId": "data-v-c45867e5"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c45867e5"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/talentArea.1783320636200.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/cityHome/talentArea.vue",
+ "subComponentDir": "apps/portal/src/views/talents/cityHome/talentArea/",
+ "routes": [],
+ "recordPath": "/talents/cityHome/:areaId",
+ "maps": "out/maps/page.portal.talents.cityHome.talentArea.json",
+ "hints": "out/hints/page.portal.talents.cityHome.talentArea.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "Q",
+   "S",
+   "f",
+   "m",
+   "o",
+   "p",
+   "q",
+   "r",
+   "v",
+   "z"
+  ],
+  "shared": [
+   "InterviewInvitation.1783320636200.js",
+   "empty.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.InterviewInvitation"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.cityHome.index"
+}

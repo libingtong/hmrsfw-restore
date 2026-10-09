@@ -1,0 +1,93 @@
+{
+ "id": "page.portal.talents.cityHome.helpCenter",
+ "chunk": "legacy-dist/portal/assets/helpCenter.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "M": "defineComponent",
+  "V": "useRoute (vue-router)",
+  "W": "useRouter (vue-router)",
+  "X": "reactive",
+  "$": "onBeforeMount",
+  "ee": "onMounted",
+  "T": "resolveComponent",
+  "d": "openBlock",
+  "u": "createElementBlock",
+  "e": "createElementVNode",
+  "y": "createVNode",
+  "ae": "withCtx",
+  "z": "Fragment",
+  "L": "renderList",
+  "se": "createBlock",
+  "ie": "createCommentVNode",
+  "le": "pushScopeId",
+  "te": "popScopeId",
+  "ne": "createTextVNode",
+  "q": "toDisplayString"
+ },
+ "entry": {
+  "oe": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "re": {
+   "original": "a6",
+   "path": "@/legacy",
+   "export": "FeedbackModal",
+   "status": "restored"
+  },
+  "ce": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "de": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "E": {
+   "original": "moreInfo.1783320636200.js#_",
+   "value": "/assets/moreInfo.1783320636200.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "moreInfoImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "J": {
+   "original": "yjfk.1783320636200.js#_",
+   "value": "/sjz/newHome/wjdc.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "yjfkImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "K": {
+   "original": "yjfk.1783320636200.js#a",
+   "value": "/sjz/newHome/yjfk.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "yjfkImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,245 @@
+{
+ "id": "page.uc.zcyzCorpAttestationapprove",
+ "chunk": "legacy-dist/usercenter/assets/zcyzCorpAttestationapprove.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Je": "defineComponent",
+  "$e": "useRoute (vue-router)",
+  "Me": "useRouter (vue-router)",
+  "p": "ref",
+  "fl": "watch",
+  "se": "reactive",
+  "Ee": "onBeforeMount",
+  "Ye": "onMounted",
+  "y": "resolveComponent",
+  "h": "openBlock",
+  "O": "createElementBlock",
+  "l": "createVNode",
+  "t": "withCtx",
+  "f": "createElementVNode",
+  "V": "createTextVNode",
+  "De": "Fragment",
+  "He": "renderList",
+  "w": "createBlock",
+  "x": "createCommentVNode",
+  "v": "unref",
+  "We": "toDisplayString",
+  "Ze": "pushScopeId",
+  "Xe": "popScopeId",
+  "vl": "computed",
+  "bl": "inject"
+ },
+ "entry": {
+  "xe": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ue": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "we": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "F",
+   "path": "@/legacy",
+   "export": "izAlreadySubmitCompany",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Ve": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "ll": {
+   "original": "b",
+   "path": "vuex",
+   "export": "useStore",
+   "status": "npm"
+  },
+  "tl": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "rl": {
+   "original": "E",
+   "path": "@/legacy",
+   "export": "queryFormSettingByCode",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "A": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "z": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "sl": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "ul": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "Re": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "il": {
+   "original": "O",
+   "path": "@/legacy",
+   "export": "getAreaInfoByAreaId",
+   "status": "restored"
+  },
+  "q": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Pe": {
+   "original": "U",
+   "path": "ant-design-vue",
+   "export": "Upload",
+   "status": "npm"
+  },
+  "nl": {
+   "original": "z",
+   "path": "@/legacy",
+   "export": "getDictValueByCodes",
+   "status": "restored"
+  },
+  "ol": {
+   "original": "Q",
+   "path": "@/legacy",
+   "export": "sumbitVerifyInfo",
+   "status": "restored"
+  },
+  "dl": {
+   "original": "R",
+   "path": "@/legacy",
+   "export": "queryCompanyInfo",
+   "status": "restored"
+  },
+  "le": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "te": {
+   "original": "P",
+   "path": "@ant-design/icons-vue",
+   "export": "PlusOutlined",
+   "status": "npm"
+  },
+  "gl": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ve": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "L": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "je": {
+   "original": "gaode.1751615607545.js#i",
+   "path": "@/shared/gaode.ts",
+   "export": "MultiDictNationSelect",
+   "status": "restored"
+  },
+  "cl": {
+   "original": "gaode.1751615607545.js#M",
+   "path": "@/shared/gaode.ts",
+   "export": "BaiduMapModal",
+   "status": "restored"
+  },
+  "ml": {
+   "original": "gaode.1751615607545.js#g",
+   "path": "@/shared/gaode.ts",
+   "export": "GaodeMapModal",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "idCard.1751615607545.js#i",
+   "path": "@/shared/idCard.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "pl": {
+   "original": "email.1751615607545.js#e",
+   "path": "@/shared/email.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  },
+  "hl": {
+   "original": "XfLoaing.1751615607545.js#_",
+   "path": "@/shared/XfLoaing.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

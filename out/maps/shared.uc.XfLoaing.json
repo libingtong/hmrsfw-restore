@@ -1,0 +1,22 @@
+{
+ "id": "shared.uc.XfLoaing",
+ "chunk": "legacy-dist/usercenter/assets/XfLoaing.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "a": "withDirectives",
+  "o": "vShow",
+  "t": "openBlock",
+  "s": "createElementBlock",
+  "n": "toDisplayString",
+  "i": "createCommentVNode",
+  "c": "createElementVNode"
+ },
+ "entry": {},
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,311 @@
+{
+ "id": "page.portal.fair.sceneFair.detail",
+ "chunk": "legacy-dist/portal/assets/detail.17833206362003.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ss": "defineComponent",
+  "os": "useRouter (vue-router)",
+  "ls": "useRoute (vue-router)",
+  "rs": "ref",
+  "_e": "reactive",
+  "is": "computed",
+  "ns": "onUnmounted",
+  "ps": "onMounted",
+  "K": "nextTick",
+  "v": "resolveComponent",
+  "i": "openBlock",
+  "n": "createElementBlock",
+  "s": "createVNode",
+  "c": "unref",
+  "r": "createElementVNode",
+  "l": "withCtx",
+  "u": "createTextVNode",
+  "p": "toDisplayString",
+  "h": "createBlock",
+  "re": "normalizeClass",
+  "f": "createCommentVNode",
+  "W": "withDirectives",
+  "T": "vShow",
+  "I": "Fragment",
+  "ds": "normalizeStyle",
+  "j": "renderList",
+  "Ie": "resolveDynamicComponent",
+  "cs": "pushScopeId",
+  "us": "popScopeId",
+  "P": "RouterLink (vue-router)",
+  "hs": "getCurrentInstance"
+ },
+ "entry": {
+  "xe": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "ys": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "vs": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "checkBtnPermission",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "K",
+   "path": "@/legacy",
+   "export": "getSettingValueByCodes",
+   "status": "restored"
+  },
+  "V": {
+   "original": "J",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "gs": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "ks": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "zs": {
+   "original": "ap",
+   "path": "@/legacy",
+   "export": "getArticleListByTypeIds",
+   "status": "restored"
+  },
+  "bs": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "ws": {
+   "original": "O",
+   "path": "@/legacy",
+   "export": "checkIdentity",
+   "status": "restored"
+  },
+  "_s": {
+   "original": "aD",
+   "path": "@/legacy",
+   "export": "checkIzDishonesty",
+   "status": "restored"
+  },
+  "Is": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "xs": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Cs": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Ss": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "Ns": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "Ws": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "Ts": {
+   "original": "ba",
+   "path": "@/legacy",
+   "export": "MSG_CORP_PENDING",
+   "status": "restored"
+  },
+  "L": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "B": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "Ls": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Es": {
+   "original": "index.api.178332063620017.js#b",
+   "path": "@/api/api-17",
+   "export": "updateBrowseCount",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFair/updateBrowseCount"
+  },
+  "Rs": {
+   "original": "index.api.178332063620017.js#c",
+   "path": "@/api/api-17",
+   "export": "queryById",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFair/queryById"
+  },
+  "Ms": {
+   "original": "index.api.178332063620017.js#d",
+   "path": "@/api/api-17",
+   "export": "queryJobFairStatistics",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/statistics/queryJobFairStatistics"
+  },
+  "Ds": {
+   "original": "index.api.178332063620017.js#e",
+   "path": "@/api/api-17",
+   "export": "scrollBarData",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/scrollBarData"
+  },
+  "Us": {
+   "original": "index.api.178332063620017.js#f",
+   "path": "@/api/api-17",
+   "export": "queryAttendeesCompany",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesCompany"
+  },
+  "As": {
+   "original": "index.api.178332063620017.js#h",
+   "path": "@/api/api-17",
+   "export": "queryAttendeesPosition",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesPosition"
+  },
+  "Os": {
+   "original": "index.api.178332063620017.js#i",
+   "path": "@/api/api-17",
+   "export": "queryBoothPlaceInfo",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFair/queryBoothPlaceInfo"
+  },
+  "qs": {
+   "original": "index.api.178332063620017.js#j",
+   "path": "@/api/api-17",
+   "export": "queryBoothView",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFair/queryBoothView"
+  },
+  "ao": {
+   "original": "index.1783320636200117.js#g",
+   "path": "@/api/api-117",
+   "export": "getQrcodeImgByObjectId",
+   "status": "restored",
+   "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"
+  }
+ },
+ "shared": {
+  "Fs": {
+   "original": "industryCode.1783320636200.js#i",
+   "path": "@/shared/industryCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "M": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ys": {
+   "original": "vue3-seamless-scroll.es.1783320636200.js#V",
+   "path": "vue3-seamless-scroll",
+   "export": "Vue3SeamlessScroll",
+   "status": "npm"
+  },
+  "Ks": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "We": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Zs": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Qs": {
+   "original": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js#_",
+   "path": "@/shared/qrcode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "fs": {
+   "original": "down.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.2KB）",
+   "inline": true,
+   "path": "@/shared/down",
+   "export": "_",
+   "status": "restored"
+  },
+  "ms": {
+   "original": "down.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.3KB）",
+   "inline": true,
+   "path": "@/shared/down",
+   "export": "a",
+   "status": "restored"
+  }
+ },
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

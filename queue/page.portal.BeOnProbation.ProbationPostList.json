@@ -1,0 +1,55 @@
+{
+ "id": "page.portal.BeOnProbation.ProbationPostList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8.2,
+ "sourceChunk": "legacy-dist/portal/assets/ProbationPostList.1783320636200.js",
+ "components": [
+  {
+   "name": "ProbationPostList",
+   "scopeId": "data-v-cf7b45cc"
+  }
+ ],
+ "scopeIds": [
+  "data-v-cf7b45cc"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/ProbationPostList.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/BeOnProbation/ProbationPostList.vue",
+ "subComponentDir": "apps/portal/src/views/BeOnProbation/ProbationPostList/",
+ "routes": [
+  {
+   "path": "/ProbationPostList",
+   "name": "ProbationPostList",
+   "title": "就业见习基地"
+  }
+ ],
+ "recordPath": "/ProbationPostList",
+ "maps": "out/maps/page.portal.BeOnProbation.ProbationPostList.json",
+ "hints": "out/hints/page.portal.BeOnProbation.ProbationPostList.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "c",
+   "d",
+   "e",
+   "f",
+   "g"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.1783320636200.js#a"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

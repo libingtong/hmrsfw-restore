@@ -1,0 +1,44 @@
+{
+ "id": "page.portal.talents.index.frendLinks",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.9,
+ "sourceChunk": "legacy-dist/portal/assets/frendLinks.17833206362002.js",
+ "components": [
+  {
+   "name": "frendLinks",
+   "scopeId": "data-v-0b7f2f66"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0b7f2f66"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/frendLinks.17833206362002.css"
+ ],
+ "target": "apps/portal/src/views/talents/index/frendLinks.vue",
+ "subComponentDir": "apps/portal/src/views/talents/index/frendLinks/",
+ "routes": [],
+ "recordPath": "/talents/index",
+ "maps": "out/maps/page.portal.talents.index.frendLinks.json",
+ "hints": "out/hints/page.portal.talents.index.frendLinks.md",
+ "deps": {
+  "entry": [
+   "aj",
+   "c",
+   "cn"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.index.index"
+}

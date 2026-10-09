@@ -1,0 +1,52 @@
+{
+ "id": "page.uc.userFairs",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 7.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/userFairs.1751615607545.js",
+ "components": [
+  {
+   "name": "userFairs",
+   "scopeId": "data-v-3449b7b8"
+  }
+ ],
+ "scopeIds": [
+  "data-v-3449b7b8"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/userFairs.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/userFairs.vue",
+ "subComponentDir": "apps/uc/src/views/userFairs/",
+ "routes": [
+  {
+   "path": "/userFairs",
+   "name": "userFairs"
+  }
+ ],
+ "recordPath": "/userFairs",
+ "maps": "out/maps/page.uc.userFairs.json",
+ "hints": "out/hints/page.uc.userFairs.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "confPass.1751615607545.js",
+   "dictCode.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.confPass"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,101 @@
+{
+ "id": "shared.portal.init",
+ "chunk": "legacy-dist/portal/assets/init.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Y": "defineComponent",
+  "S": "ref",
+  "C": "reactive",
+  "H": "onMounted",
+  "w": "nextTick",
+  "X": "onBeforeUnmount",
+  "G": "watch",
+  "V": "onBeforeMount",
+  "Z": "openBlock",
+  "K": "createElementBlock"
+ },
+ "entry": {
+  "R": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "q": {
+   "original": "c7",
+   "path": "@/legacy/api",
+   "export": "getAreaInfoById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "I": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "J": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "M": {
+   "original": "c8",
+   "path": "axios",
+   "export": "AxiosHeaders",
+   "status": "npm"
+  },
+  "m": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "b": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {
+  "_": {
+   "original": "timeOut.1783320636200.js#a",
+   "path": "@/shared/timeOut.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "N": {
+   "original": "timeOut.1783320636200.js#l",
+   "path": "@/shared/timeOut.ts",
+   "export": "l",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "views": {},
+ "modules": {
+  "O": {
+   "original": "index.1783320636200118.js#i",
+   "path": "echarts",
+   "export": "init"
+  },
+  "D": {
+   "original": "index.1783320636200118.js#r",
+   "path": "echarts",
+   "export": "registerMap"
+  },
+  "u": {
+   "original": "index.1783320636200118.js#L",
+   "path": "echarts",
+   "export": "graphic",
+   "member": "LinearGradient"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

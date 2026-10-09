@@ -1,0 +1,138 @@
+{
+ "id": "shared.portal.workItemNew",
+ "chunk": "legacy-dist/portal/assets/workItemNew.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ba": "defineComponent",
+  "_a": "reactive",
+  "ha": "computed",
+  "u": "resolveComponent",
+  "s": "openBlock",
+  "y": "createElementBlock",
+  "o": "createVNode",
+  "m": "withCtx",
+  "i": "createElementVNode",
+  "xa": "normalizeClass",
+  "r": "toDisplayString",
+  "g": "createBlock",
+  "l": "createTextVNode",
+  "f": "createCommentVNode",
+  "h": "Fragment",
+  "q": "unref"
+ },
+ "entry": {
+  "la": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "ra": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "oa": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "da": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "na": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "F": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "R": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "P": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "B": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "U": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "j": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "ca": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "ua": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ga": {
+   "original": "index.api.17833206362002.js#e",
+   "path": "@/api/api-17833206362002",
+   "export": "add",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobUserCare/add"
+  },
+  "pa": {
+   "original": "index.api.17833206362002.js#h",
+   "path": "@/api/api-17833206362002",
+   "export": "cancel",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobUserCare/cancel"
+  },
+  "va": {
+   "original": "index.api.17833206362002.js#q",
+   "path": "@/api/api-17833206362002",
+   "export": "queryIzCanDeliver",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver"
+  }
+ },
+ "shared": {
+  "ma": {
+   "original": "resumemodal.1783320636200.js#r",
+   "path": "@/shared/resumemodal.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

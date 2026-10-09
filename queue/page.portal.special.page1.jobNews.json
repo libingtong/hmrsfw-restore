@@ -1,0 +1,47 @@
+{
+ "id": "page.portal.special.page1.jobNews",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.5,
+ "sourceChunk": "legacy-dist/portal/assets/jobNews.1783320636200.js",
+ "components": [
+  {
+   "name": "jobNews",
+   "scopeId": "data-v-1bbf6d04"
+  }
+ ],
+ "scopeIds": [
+  "data-v-1bbf6d04"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/jobNews.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/jobNews.vue",
+ "subComponentDir": "apps/portal/src/shared/jobNews/",
+ "routes": [],
+ "recordPath": "/archivesSearch",
+ "maps": "out/maps/page.portal.special.page1.jobNews.json",
+ "hints": "out/hints/page.portal.special.page1.jobNews.md",
+ "deps": {
+  "entry": [
+   "d",
+   "n"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": null,
+  "in": "hmrsfw-vue @/shared/jobNews.vue（POC 放在共享层；registry-cleanup 方案里迁回 views/special/page1/jobNews.vue）"
+ },
+ "recordVia": "page.portal.sjz.archivesSearch.index"
+}

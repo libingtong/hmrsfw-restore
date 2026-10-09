@@ -1,0 +1,53 @@
+{
+ "id": "page.portal.talents.newPark.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 4.9,
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200100.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-0c3711cc"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0c3711cc"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/navigation.1783320636200.css",
+  "legacy-dist/portal/assets/homeList.1783320636200.css",
+  "legacy-dist/portal/assets/index.178332063620077.css",
+  "legacy-dist/portal/assets/index.1783320636200100.css"
+ ],
+ "target": "apps/portal/src/views/talents/newPark/index.vue",
+ "subComponentDir": "apps/portal/src/views/talents/newPark/index/",
+ "routes": [
+  {
+   "path": "/talents/park",
+   "name": "talents/park",
+   "title": "产业园区"
+  }
+ ],
+ "recordPath": "/talents/park",
+ "maps": "out/maps/page.portal.talents.newPark.index.json",
+ "hints": "out/hints/page.portal.talents.newPark.index.md",
+ "deps": {
+  "entry": [
+   "ae",
+   "c",
+   "cn",
+   "u"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,51 @@
+{
+ "id": "shared.portal.industryCode",
+ "type": "shared",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.7,
+ "chunkKb": 1.7,
+ "sourceChunk": "legacy-dist/portal/assets/industryCode.1783320636200.js",
+ "components": [
+  {
+   "name": "nation",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/industryCode.vue",
+ "exports": {
+  "i": {
+   "export": "default"
+  }
+ },
+ "registryKey": "industryCode.1783320636200.js",
+ "usedBy": [
+  "page.portal.recruitMarket.corpList.index",
+  "page.portal.fair.webFair.detail",
+  "page.portal.fair.sceneFair.detail",
+  "page.portal.fair.outFair.detail",
+  "page.portal.sjz.corp.corpList",
+  "page.portal.guide.index",
+  "page.portal.talents.fair.webFair.detail",
+  "page.portal.talents.fair.outFair.detail"
+ ],
+ "maps": "out/maps/shared.portal.industryCode.json",
+ "hints": "out/hints/shared.portal.industryCode.md",
+ "deps": {
+  "entry": [
+   "G",
+   "H",
+   "bb"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

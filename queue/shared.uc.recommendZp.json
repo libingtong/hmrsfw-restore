@@ -1,0 +1,66 @@
+{
+ "id": "shared.uc.recommendZp",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.3,
+ "chunkKb": 5.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/recommendZp.1751615607545.js",
+ "components": [
+  {
+   "name": "stateCard",
+   "scopeId": "data-v-53902b4a"
+  },
+  {
+   "name": "recommendZp",
+   "scopeId": "data-v-063eb494"
+  }
+ ],
+ "scopeIds": [
+  "data-v-53902b4a",
+  "data-v-063eb494"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/recommendZp.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/recommendZp/StateCard.vue",
+ "subComponentDir": "apps/uc/src/shared/recommendZp/",
+ "exports": {
+  "r": {
+   "path": "@/shared/recommendZp/RecommendZp.vue",
+   "export": "default"
+  },
+  "s": {
+   "path": "@/shared/recommendZp/StateCard.vue",
+   "export": "default"
+  }
+ },
+ "registryKey": "recommendZp.1751615607545.js",
+ "usedBy": [
+  "page.uc.CorpCenter",
+  "page.uc.jobhunterhome"
+ ],
+ "maps": "out/maps/shared.uc.recommendZp.json",
+ "hints": "out/hints/shared.uc.recommendZp.md",
+ "deps": {
+  "entry": [
+   "M",
+   "c",
+   "v"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.1751615607545.js#h"
+  ],
+  "modules": [
+   "stateCard.vue_vue_type_style_index_0_scoped_53902b4a_lang.1751615607545.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.uc.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

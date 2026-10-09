@@ -1,0 +1,72 @@
+{
+ "id": "page.uc.feedback",
+ "chunk": "legacy-dist/usercenter/assets/feedback.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "A": "defineComponent",
+  "G": "inject",
+  "H": "reactive",
+  "ee": "onMounted",
+  "d": "resolveComponent",
+  "l": "openBlock",
+  "j": "createBlock",
+  "r": "withCtx",
+  "s": "createVNode",
+  "n": "createElementVNode",
+  "c": "createElementBlock",
+  "y": "renderList",
+  "f": "Fragment",
+  "te": "createTextVNode",
+  "x": "createCommentVNode",
+  "h": "normalizeClass",
+  "m": "toDisplayString",
+  "ae": "withDirectives",
+  "oe": "vShow",
+  "se": "pushScopeId",
+  "le": "popScopeId"
+ },
+ "entry": {
+  "K": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "ne": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ie": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "q": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "re": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "F": {
+   "original": "unfold.1751615607545.js#u",
+   "path": "@/shared/unfold.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

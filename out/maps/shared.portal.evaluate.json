@@ -1,0 +1,39 @@
+{
+ "id": "shared.portal.evaluate",
+ "chunk": "legacy-dist/portal/assets/evaluate.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "L": "defineComponent",
+  "M": "ref",
+  "D": "reactive",
+  "m": "resolveComponent",
+  "p": "openBlock",
+  "v": "createElementBlock",
+  "g": "createVNode",
+  "k": "withCtx",
+  "n": "createElementVNode",
+  "x": "toDisplayString",
+  "N": "Fragment",
+  "P": "renderList",
+  "V": "createTextVNode"
+ },
+ "entry": {
+  "O": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "j": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

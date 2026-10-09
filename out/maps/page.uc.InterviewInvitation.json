@@ -1,0 +1,77 @@
+{
+ "id": "page.uc.InterviewInvitation",
+ "chunk": "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Q": "defineComponent",
+  "F": "inject",
+  "X": "useRouter (vue-router)",
+  "Y": "reactive",
+  "Z": "onMounted",
+  "d": "resolveComponent",
+  "p": "openBlock",
+  "x": "createElementBlock",
+  "s": "createVNode",
+  "o": "withCtx",
+  "T": "createTextVNode",
+  "h": "createElementVNode",
+  "G": "Fragment",
+  "b": "createCommentVNode",
+  "w": "toDisplayString",
+  "P": "createBlock",
+  "V": "h"
+ },
+ "entry": {
+  "W": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "te": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ae": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "H": {
+   "original": "index.api.175161560754510.js#b",
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "queryPageInterviewListByCompanyId",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobInterviewInvitation/queryPageInterviewListByCompanyId"
+  },
+  "J": {
+   "original": "index.api.175161560754510.js#a",
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "addTalent",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
+  }
+ },
+ "shared": {
+  "K": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

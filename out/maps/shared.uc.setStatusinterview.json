@@ -1,0 +1,74 @@
+{
+ "id": "shared.uc.setStatusinterview",
+ "chunk": "legacy-dist/usercenter/assets/setStatusinterview.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "j": "defineComponent",
+  "F": "ref",
+  "U": "reactive",
+  "q": "onMounted",
+  "p": "resolveComponent",
+  "k": "openBlock",
+  "y": "createElementBlock",
+  "f": "createVNode",
+  "u": "withCtx",
+  "D": "Fragment",
+  "N": "renderList",
+  "E": "unref",
+  "O": "createBlock",
+  "R": "createTextVNode",
+  "V": "toDisplayString"
+ },
+ "entry": {
+  "x": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "I": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "g": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "L": {
+   "original": "ar",
+   "path": "@/legacy/api",
+   "export": "jobCurriculumVitaeDeliverSetStatus",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "T": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "B": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "M": {
+   "original": "index.api.175161560754510.js#s",
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "setStatus",
+   "status": "reserved",
+   "url": "/job/licenseFree/xfJobLiveCurriculumVitaeDeliver/setStatus"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

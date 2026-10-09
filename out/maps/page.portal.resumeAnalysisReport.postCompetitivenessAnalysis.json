@@ -1,0 +1,118 @@
+{
+ "id": "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis",
+ "chunk": "legacy-dist/portal/assets/postCompetitivenessAnalysis.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "de": "defineComponent",
+  "ye": "useRouter (vue-router)",
+  "be": "reactive",
+  "me": "onMounted",
+  "R": "resolveComponent",
+  "a": "openBlock",
+  "l": "createElementBlock",
+  "s": "createElementVNode",
+  "A": "createVNode",
+  "z": "withCtx",
+  "r": "Fragment",
+  "k": "renderList",
+  "I": "createBlock",
+  "d": "createCommentVNode",
+  "n": "toDisplayString",
+  "y": "unref",
+  "_": "createTextVNode"
+ },
+ "entry": {
+  "ne": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "oe": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "re": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ce": {
+   "original": "ab",
+   "path": "@/legacy/api",
+   "export": "getArticleListNoCheck",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ve": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "q": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "S": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "j": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ke": {
+   "original": "index.api.178332063620033.js#g",
+   "path": "@/api/api-178332063620033",
+   "export": "queryForCompetitiveAnalysis",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/queryForCompetitiveAnalysis"
+  },
+  "ge": {
+   "original": "index.api.178332063620033.js#f",
+   "path": "@/api/api-178332063620033",
+   "export": "recommendJobList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"
+  }
+ },
+ "shared": {
+  "fe": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "he": {
+   "original": "statusPlace.1783320636200.js#s",
+   "path": "@/shared/statusPlace.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.statusPlace"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "noResumeR.1783320636200.js"
+ ],
+ "missing": []
+}

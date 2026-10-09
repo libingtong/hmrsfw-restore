@@ -1,0 +1,61 @@
+{
+ "id": "page.uc.recruitmentStatis",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754519.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "F": "defineComponent",
+  "T": "inject",
+  "J": "useRouter (vue-router)",
+  "O": "reactive",
+  "Q": "onMounted",
+  "m": "resolveComponent",
+  "U": "openBlock",
+  "j": "createElementBlock",
+  "o": "createVNode",
+  "l": "withCtx",
+  "b": "createTextVNode",
+  "w": "createElementVNode",
+  "X": "createCommentVNode",
+  "D": "toDisplayString",
+  "Y": "pushScopeId",
+  "G": "popScopeId"
+ },
+ "entry": {
+  "N": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "R": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "H": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "K": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "P": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

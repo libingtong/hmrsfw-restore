@@ -1,0 +1,69 @@
+{
+ "id": "page.uc.activitySign",
+ "chunk": "legacy-dist/usercenter/assets/activitySign.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "J": "defineComponent",
+  "f": "inject",
+  "K": "reactive",
+  "M": "onMounted",
+  "o": "resolveComponent",
+  "l": "openBlock",
+  "c": "createElementBlock",
+  "n": "createVNode",
+  "i": "withCtx",
+  "k": "createTextVNode",
+  "g": "createElementVNode",
+  "v": "Fragment",
+  "y": "toDisplayString",
+  "x": "createCommentVNode",
+  "X": "pushScopeId",
+  "Y": "popScopeId"
+ },
+ "entry": {
+  "$": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "q": {
+   "original": "bi",
+   "path": "@/legacy/api",
+   "export": "listByUserId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "L": {
+   "original": "bj",
+   "path": "@/legacy/api",
+   "export": "jobEventReleaseSignUpCancel",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "O": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "S": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

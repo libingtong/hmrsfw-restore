@@ -1,0 +1,46 @@
+{
+ "id": "shared.portal.dictCode",
+ "chunk": "legacy-dist/portal/assets/dictCode.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "w": "defineComponent",
+  "y": "onMounted",
+  "v": "reactive",
+  "h": "resolveComponent",
+  "_": "openBlock",
+  "L": "createBlock",
+  "P": "withCtx",
+  "k": "createVNode"
+ },
+ "entry": {
+  "g": {
+   "original": "L",
+   "path": "@/legacy",
+   "export": "getDictListByType",
+   "status": "restored"
+  },
+  "C": {
+   "original": "t",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "b": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "S": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

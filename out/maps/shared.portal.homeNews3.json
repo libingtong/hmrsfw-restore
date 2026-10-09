@@ -1,0 +1,110 @@
+{
+ "id": "shared.portal.homeNews3",
+ "chunk": "legacy-dist/portal/assets/homeNews.17833206362003.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "re": "defineComponent",
+  "ue": "useRouter (vue-router)",
+  "pe": "ref",
+  "G": "watch",
+  "we": "onBeforeMount",
+  "J": "reactive",
+  "me": "onMounted",
+  "_": "resolveComponent",
+  "i": "openBlock",
+  "d": "createElementBlock",
+  "c": "createElementVNode",
+  "T": "createBlock",
+  "M": "normalizeStyle",
+  "j": "withCtx",
+  "v": "Fragment",
+  "N": "renderList",
+  "m": "createCommentVNode",
+  "b": "normalizeClass",
+  "F": "createVNode",
+  "y": "toDisplayString",
+  "C": "unref",
+  "R": "createTextVNode",
+  "he": "withDirectives",
+  "ye": "vShow",
+  "fe": "pushScopeId",
+  "ge": "popScopeId"
+ },
+ "entry": {
+  "ve": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Ie": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "am",
+   "path": "@/legacy",
+   "export": "getArticleList",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "a$",
+   "path": "@/legacy/api",
+   "export": "getArticleListByTypeCodes",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Ae": {
+   "original": "ap",
+   "path": "@/legacy",
+   "export": "getArticleListByTypeIds",
+   "status": "restored"
+  },
+  "K": {
+   "original": "aj",
+   "path": "@/legacy/utils",
+   "export": "openLink",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "xe": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "be": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Re": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

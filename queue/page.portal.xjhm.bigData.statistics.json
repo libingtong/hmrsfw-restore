@@ -1,0 +1,69 @@
+{
+ "id": "page.portal.xjhm.bigData.statistics",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 28.5,
+ "sourceChunk": "legacy-dist/portal/assets/statistics.17833206362002.js",
+ "components": [
+  {
+   "name": "statistics",
+   "scopeId": "data-v-42677d47"
+  }
+ ],
+ "scopeIds": [
+  "data-v-42677d47"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/lines.1783320636200.css",
+  "legacy-dist/portal/assets/pieCommon.17833206362004.css",
+  "legacy-dist/portal/assets/bars.1783320636200.css",
+  "legacy-dist/portal/assets/statistics.17833206362002.css"
+ ],
+ "target": "apps/portal/src/views/xjhm/bigData/statistics.vue",
+ "subComponentDir": "apps/portal/src/views/xjhm/bigData/statistics/",
+ "routes": [
+  {
+   "path": "/statistics",
+   "name": "statistics",
+   "title": "新大屏"
+  }
+ ],
+ "recordPath": "/statistics",
+ "maps": "out/maps/page.portal.xjhm.bigData.statistics.json",
+ "hints": "out/hints/page.portal.xjhm.bigData.statistics.md",
+ "deps": {
+  "entry": [
+   "B",
+   "aQ",
+   "av",
+   "c",
+   "d",
+   "e",
+   "f",
+   "h",
+   "u"
+  ],
+  "shared": [
+   "bars.vue_vue_type_style_index_0_lang.1783320636200.js",
+   "commonInit.1783320636200.js",
+   "dateUtil.1783320636200.js",
+   "index.1783320636200120.js",
+   "init.17833206362002.js",
+   "initData.1783320636200.js",
+   "maps.vue_vue_type_style_index_0_lang.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.bars",
+   "shared.portal.init",
+   "shared.portal.maps",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

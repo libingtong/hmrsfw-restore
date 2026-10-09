@@ -1,0 +1,61 @@
+{
+ "id": "page.portal.sjz.enterpriserecruitment.enterpriserecruitment",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 9.2,
+ "sourceChunk": "legacy-dist/portal/assets/enterpriserecruitment.1783320636200.js",
+ "components": [
+  {
+   "name": "enterpriserecruitment",
+   "scopeId": "data-v-76065268"
+  }
+ ],
+ "scopeIds": [
+  "data-v-76065268"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/enterpriserecruitment.1783320636200.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/sjz/enterpriserecruitment/enterpriserecruitment.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/enterpriserecruitment/enterpriserecruitment/",
+ "routes": [
+  {
+   "path": "/enterpriserecruitment",
+   "name": "enterpriserecruitment",
+   "title": "企业招聘"
+  }
+ ],
+ "recordPath": "/enterpriserecruitment",
+ "maps": "out/maps/page.portal.sjz.enterpriserecruitment.enterpriserecruitment.json",
+ "hints": "out/hints/page.portal.sjz.enterpriserecruitment.enterpriserecruitment.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "a6",
+   "aa",
+   "c",
+   "f",
+   "m",
+   "n",
+   "v",
+   "z"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/enterpriserecruitment",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

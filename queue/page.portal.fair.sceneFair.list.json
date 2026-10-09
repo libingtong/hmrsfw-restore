@@ -1,0 +1,69 @@
+{
+ "id": "page.portal.fair.sceneFair.list",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 11.8,
+ "sourceChunk": "legacy-dist/portal/assets/list.17833206362004.js",
+ "components": [
+  {
+   "name": "list",
+   "scopeId": "data-v-91b3865d"
+  }
+ ],
+ "scopeIds": [
+  "data-v-91b3865d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.17833206362004.css"
+ ],
+ "target": "apps/portal/src/views/fair/sceneFair/list.vue",
+ "subComponentDir": "apps/portal/src/views/fair/sceneFair/list/",
+ "routes": [
+  {
+   "path": "/sceneFairList",
+   "name": "sceneFairList",
+   "title": "固定展位招聘会"
+  }
+ ],
+ "recordPath": "/sceneFairList",
+ "maps": "out/maps/page.portal.fair.sceneFair.list.json",
+ "hints": "out/hints/page.portal.fair.sceneFair.list.md",
+ "deps": {
+  "entry": [
+   "A",
+   "I",
+   "O",
+   "S",
+   "aD",
+   "aQ",
+   "ba",
+   "bc",
+   "c",
+   "d",
+   "e",
+   "h",
+   "m",
+   "p",
+   "q",
+   "r",
+   "u",
+   "v"
+  ],
+  "shared": [
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620017.js#w"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

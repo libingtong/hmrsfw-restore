@@ -1,0 +1,4864 @@
+{
+ "orders": [
+  {
+   "id": "page.portal.xjhm.home.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 10.5,
+   "deps": [
+    "entry.portal.E5",
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c04",
+    "entry.portal.c09",
+    "shared.portal.FriendLinks",
+    "shared.portal.homeNews3",
+    "shared.portal.homeRight2",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.cityHome.index",
+   "type": "page",
+   "status": "segmented",
+   "app": "portal",
+   "kb": 32.8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c04",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.region.innovation.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.4,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c09",
+    "shared.portal.homeNews3",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.region.innovation.innovationDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2,
+   "deps": [
+    "entry.portal.c03",
+    "entry.portal.c05"
+   ]
+  },
+  {
+   "id": "page.portal.region.colleges.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 16.6,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.homeNews3"
+   ]
+  },
+  {
+   "id": "page.portal.region.findworker.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.2,
+   "deps": []
+  },
+  {
+   "id": "page.portal.region.skill.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.9,
+   "deps": [
+    "shared.portal.homeNews3",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.index",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 13.9,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.recruitworkers.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 12.1,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.nowContact",
+    "shared.portal.oddType"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 11.1,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.complaint",
+    "shared.portal.map2",
+    "shared.portal.nowContact"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.Jobsearch.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 11.8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.modules",
+    "shared.portal.nowContact",
+    "shared.portal.oddType"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.Jobsearch.JobsearchDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 9.4,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.complaint",
+    "shared.portal.modules",
+    "shared.portal.nowContact"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.Jobshortage.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.9,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.Jobshortage.JobshortageDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.4,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.complaint"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.Sparework.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.4,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.Sparework.SpareworkDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.2,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.complaint"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.shareUser.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7.7,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.shareUser.detail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.complaint"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.news.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.2,
+   "deps": []
+  },
+  {
+   "id": "page.portal.live.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.3,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.livejob.detail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 14.2,
+   "deps": [
+    "entry.portal.E6",
+    "shared.portal.likeBtn",
+    "shared.portal.workItem"
+   ]
+  },
+  {
+   "id": "page.portal.video.zbdg",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 9.8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c05",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.recruitMarket.marketHome.home",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 18.8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.workItem"
+   ]
+  },
+  {
+   "id": "page.portal.recruitMarket.marketDetail.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 21,
+   "deps": [
+    "entry.portal.c03",
+    "shared.portal.map2",
+    "shared.portal.modules",
+    "shared.portal.unfold"
+   ]
+  },
+  {
+   "id": "page.portal.train.trainOrganList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.6,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.train.trainOrganDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.7,
+   "deps": [
+    "shared.portal.modules",
+    "shared.portal.unfold"
+   ]
+  },
+  {
+   "id": "page.portal.recruitMarket.corpList.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7,
+   "deps": []
+  },
+  {
+   "id": "page.portal.Guidance.GuidanceHome.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 18.4,
+   "deps": [
+    "entry.portal.c03",
+    "entry.portal.c05",
+    "shared.portal.ellipsisText",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.Guidance.GuidanceVideo.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 4.6,
+   "deps": [
+    "shared.portal.modules",
+    "shared.portal.videoModal"
+   ]
+  },
+  {
+   "id": "page.portal.Guidance.GuidanceAskList.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.4,
+   "deps": [
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.Guidance.GuidanceAskDetail.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.4,
+   "deps": [
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.Guidance.GuidanceMentorList.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 10.6,
+   "deps": [
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.Guidance.GuidanceMentorDetail.index",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 8.1,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.Guidance.GuidanceMentorFrom.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.8,
+   "deps": []
+  },
+  {
+   "id": "page.portal.Guidance.GuidanceConsult.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.4,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.school.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 24,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.modules",
+    "shared.portal.tagcanvas"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.enterpriserecruitment.enterpriserecruitment",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 9.2,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.unitMain.unitMain",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 13.6,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.news.newsList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.3,
+   "deps": []
+  },
+  {
+   "id": "page.portal.News.newsDetail",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 8.7,
+   "deps": [
+    "entry.portal.c03",
+    "entry.portal.c05"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.job.jobList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 13.7,
+   "deps": [
+    "shared.portal.GetLocationMap",
+    "shared.portal.map",
+    "shared.portal.workItem"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.talent.talentList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 14.3,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.InterviewInvitation"
+   ]
+  },
+  {
+   "id": "page.portal.RecruitTalents.ResumePreview",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 12.3,
+   "deps": [
+    "entry.portal.E6",
+    "shared.portal.InterviewInvitation"
+   ]
+  },
+  {
+   "id": "page.portal.PDFPreview.PDFPreview",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 1.5,
+   "deps": []
+  },
+  {
+   "id": "page.portal.LookForJob.PostDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 24.6,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.addResume",
+    "shared.portal.complaint",
+    "shared.portal.evaluate",
+    "shared.portal.gaode",
+    "shared.portal.map2"
+   ]
+  },
+  {
+   "id": "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.7,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.statusPlace"
+   ]
+  },
+  {
+   "id": "page.portal.resumeAnalysisReport.resumeAnalysisReport",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 13.9,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 17.1,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.InterviewInvitation"
+   ]
+  },
+  {
+   "id": "page.portal.park.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 15.2,
+   "deps": [
+    "shared.portal.icon"
+   ]
+  },
+  {
+   "id": "page.portal.setUp.setupList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7.8,
+   "deps": [
+    "shared.portal.modules",
+    "shared.portal.tagcanvas"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.setUp.setupDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.5,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.complaint",
+    "shared.portal.modules",
+    "shared.portal.signSetup"
+   ]
+  },
+  {
+   "id": "page.portal.train.trainList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 10.3,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.train.trainDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.4,
+   "deps": [
+    "entry.portal.c03",
+    "shared.portal.complaint",
+    "shared.portal.modules",
+    "shared.portal.signSetup"
+   ]
+  },
+  {
+   "id": "page.portal.BeOnProbation.ProbationHome",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 27.7,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.BeOnProbation.UserAdminJobPlacement",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 4.8,
+   "deps": []
+  },
+  {
+   "id": "page.portal.BeOnProbation.ProbationPostList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.2,
+   "deps": []
+  },
+  {
+   "id": "page.portal.BeOnProbation.ProbationPostDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7.7,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.BeOnProbation.ProbationBaseList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.6,
+   "deps": []
+  },
+  {
+   "id": "page.portal.BeOnProbation.ProbationBaseDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7.7,
+   "deps": [
+    "shared.portal.ellipsisText"
+   ]
+  },
+  {
+   "id": "page.portal.BeOnProbation.ProbationElegantList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 4.8,
+   "deps": []
+  },
+  {
+   "id": "page.portal.eMap.index",
+   "type": "page",
+   "status": "segmented",
+   "app": "portal",
+   "kb": 30.8,
+   "deps": [
+    "entry.portal.E6",
+    "shared.portal.gaode2",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.outLink.index",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 1.4,
+   "deps": []
+  },
+  {
+   "id": "page.portal.sjz.fair.fairList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.8,
+   "deps": []
+  },
+  {
+   "id": "page.portal.fair.webFair.list",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 10.4,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.fair.webFair.detail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 29.7,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.fair.sceneFair.list",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 11.8,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.fair.sceneFair.detail",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 35.1,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.fair.outFair.list",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 12,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.fair.outFair.detail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 29.6,
+   "deps": [
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.service.filesSearch.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 4.6,
+   "deps": []
+  },
+  {
+   "id": "page.portal.sjz.corp.corpList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.1,
+   "deps": []
+  },
+  {
+   "id": "page.portal.LookForJob.CorpDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 19,
+   "deps": [
+    "entry.portal.c03",
+    "shared.portal.GetLocationMap",
+    "shared.portal.complaint",
+    "shared.portal.unfold"
+   ]
+  },
+  {
+   "id": "page.portal.login",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 21.1,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c02",
+    "entry.portal.c03",
+    "shared.portal.thirdParty"
+   ]
+  },
+  {
+   "id": "page.portal.loginviews.siginbig",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c02",
+    "shared.portal.thirdParty"
+   ]
+  },
+  {
+   "id": "page.portal.loginviews.passwordhintbig",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7.7,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c02"
+   ]
+  },
+  {
+   "id": "page.portal.answer.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.7,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.answer.details",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 19.7,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.jobMarket.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 14.9,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.jobMarket.marketDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.1,
+   "deps": [
+    "shared.portal.map2"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.archivesSearch.index",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 15.5,
+   "deps": [
+    "entry.portal.c02",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.customerService.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 26.4,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.bigData.screen",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.1,
+   "deps": []
+  },
+  {
+   "id": "page.portal.xjhm.bigData.statistics",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 28.5,
+   "deps": [
+    "shared.portal.bars",
+    "shared.portal.init",
+    "shared.portal.maps",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.xjhm.bigData.newBigdata",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 19.7,
+   "deps": [
+    "entry.portal.E6",
+    "shared.portal.bars",
+    "shared.portal.init",
+    "shared.portal.lines",
+    "shared.portal.modules",
+    "shared.portal.pie"
+   ]
+  },
+  {
+   "id": "page.portal.zzgj.trainCourse.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 13.3,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.xjhm.cityHome.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c06",
+    "shared.portal.FriendLink",
+    "shared.portal.homeRight2",
+    "shared.portal.jobArea",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.personnelAssessment.index",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 3.5,
+   "deps": []
+  },
+  {
+   "id": "page.portal.sjz.virtualjobfairs.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 0.9,
+   "deps": []
+  },
+  {
+   "id": "page.portal.sjz.webvirtualjobfairs.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.1,
+   "deps": []
+  },
+  {
+   "id": "page.portal.guide.jobHunt",
+   "type": "page",
+   "status": "segmented",
+   "app": "portal",
+   "kb": 41.2,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.auth"
+   ]
+  },
+  {
+   "id": "page.portal.guide.index",
+   "type": "page",
+   "status": "segmented",
+   "app": "portal",
+   "kb": 30.6,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.InterviewInvitation",
+    "shared.portal.auth"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.bigData.mobile.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 12.9,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.talents.homeView",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.5,
+   "deps": [
+    "entry.portal.E4",
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c07",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.talents.index.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.5,
+   "deps": [
+    "entry.portal.E6",
+    "shared.portal.adsCenter",
+    "shared.portal.homeRight"
+   ]
+  },
+  {
+   "id": "page.portal.talents.cityHome.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 12.2,
+   "deps": [
+    "entry.portal.E6",
+    "page.portal.talents.cityHome.talentArea",
+    "shared.portal.adsCenter",
+    "shared.portal.homeRight"
+   ]
+  },
+  {
+   "id": "page.portal.talents.setUp.setupList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7.9,
+   "deps": [
+    "shared.portal.adsCenter",
+    "shared.portal.homeNews3",
+    "shared.portal.hotProject",
+    "shared.portal.modules",
+    "shared.portal.tagcanvas"
+   ]
+  },
+  {
+   "id": "page.portal.talents.setUp.setupDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7.9,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.complaint",
+    "shared.portal.hotProject",
+    "shared.portal.modules",
+    "shared.portal.signSetup"
+   ]
+  },
+  {
+   "id": "page.portal.talents.information.newsList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "page.portal.talents.information.newsDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.1,
+   "deps": [
+    "entry.portal.c05"
+   ]
+  },
+  {
+   "id": "page.portal.talents.job.jobList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 12,
+   "deps": [
+    "shared.portal.map",
+    "shared.portal.workItemNew"
+   ]
+  },
+  {
+   "id": "page.portal.talents.fair.fairList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.9,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.fair.webFair.detail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 26.2,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.talents.fair.outFair.detail",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 29.2,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.talents.talentnew.talentList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 14.1,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c05",
+    "shared.portal.InterviewInvitation"
+   ]
+  },
+  {
+   "id": "page.portal.talents.conference.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.1,
+   "deps": [
+    "entry.portal.E6",
+    "shared.portal.icon"
+   ]
+  },
+  {
+   "id": "page.portal.talents.conference.detail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.5,
+   "deps": [
+    "entry.portal.c05"
+   ]
+  },
+  {
+   "id": "page.portal.talents.eMap.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 26.7,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.talents.newPark.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 4.9,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "page.portal.talents.greenchannel.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.8,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.talents.overseasRecruitment.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.5,
+   "deps": [
+    "shared.portal.homeNews3"
+   ]
+  },
+  {
+   "id": "page.portal.talents.overseasRecruitment.antDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.6,
+   "deps": [
+    "entry.portal.c03",
+    "entry.portal.c05"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.bigData.components.Dashboard1",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.6,
+   "deps": []
+  },
+  {
+   "id": "page.portal.sjz.bigData.components.Dashboard2",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.1,
+   "deps": []
+  },
+  {
+   "id": "page.portal.fair.webFair.NumVideo",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.9,
+   "deps": []
+  },
+  {
+   "id": "page.portal.sjz.bigData.TopTitle",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.4,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.conference.abouts",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.4,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.index.advertTop",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.9,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "page.portal.xjhm.home.advertTop",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 11.8,
+   "deps": [
+    "entry.portal.E4",
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "page.portal.talents.conference.cTitles",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1,
+   "deps": []
+  },
+  {
+   "id": "page.portal.livejob.components.commentItem",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.4,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.cityHome.corp",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.2,
+   "deps": []
+  },
+  {
+   "id": "page.portal.sjz.fair.fairs",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.8,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.fair.fairsList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.talents.index.frendLinks",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.9,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "page.portal.talents.cityHome.helpCenter",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.8,
+   "deps": [
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.talents.index.homeList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.7,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "page.portal.talents.newPark.homeList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.3,
+   "deps": []
+  },
+  {
+   "id": "page.portal.livejob.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7.3,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.oddJob.rtInto.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.bigData.index",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.9,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.talents.newPark.industry",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 14.4,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.index.infoRecommend",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.8,
+   "deps": [
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.talents.cityHome.job",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.7,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.index.jobFair",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 15.4,
+   "deps": []
+  },
+  {
+   "id": "page.portal.special.page1.jobNews",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 1.5,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.index.jobRecommend",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.8,
+   "deps": [
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.talents.fair.outFair.list",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 9.6,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.talents.fair.webFair.list",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.5,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.eMap.list",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.6,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.fair.outFair.list",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 10.6,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.fair.sceneFair.list",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 11,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.fair.webFair.list",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 11,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.talents.eMap.list",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.6,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.talents.conference.medias",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.4,
+   "deps": []
+  },
+  {
+   "id": "page.portal.oddJob.rtInto.odd",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.6,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "page.portal.answer.passwordModal",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.8,
+   "deps": []
+  },
+  {
+   "id": "page.portal.zcyz.bigData.components.pieCommon",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.1,
+   "deps": [
+    "shared.portal.pie"
+   ]
+  },
+  {
+   "id": "page.portal.zcyz.bigData.components.pieRader",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.2,
+   "deps": [
+    "shared.portal.pie"
+   ]
+  },
+  {
+   "id": "page.portal.sjz.newHome.resource",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 2.8,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.index.review",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 16.8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.talents.conference.scrollList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.1,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "page.portal.zcyz.bigData.components.scrollList",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.2,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.newPark.servicePark",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.8,
+   "deps": []
+  },
+  {
+   "id": "page.portal.fair.signModal",
+   "type": "page",
+   "status": "regression",
+   "app": "portal",
+   "kb": 8.7,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.conference.swperSlides",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.cityHome.talentArea",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.7,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.InterviewInvitation"
+   ]
+  },
+  {
+   "id": "page.portal.talents.newPark.talentPark",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7.2,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.index.talentRecommend",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.9,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "page.portal.cityHome.titles",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.1,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.cityHome.titles",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.9,
+   "deps": []
+  },
+  {
+   "id": "page.portal.talents.newPark.titles",
+   "type": "page",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.FriendLink",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.7,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.FriendLinks",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 13.2,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "shared.portal.GetLocationMap",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.8,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "shared.portal.Gigmarketgetjobpost",
+   "type": "shared",
+   "status": "regression",
+   "app": "portal",
+   "kb": 2.6,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.InterviewInvitation",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.8,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "shared.portal.addResume",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 9,
+   "deps": [
+    "entry.portal.E5",
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "shared.portal.adsCenter",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.7,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "shared.portal.auth",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.2,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.bars",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.5,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "shared.portal.city",
+   "type": "shared",
+   "status": "regression",
+   "app": "portal",
+   "kb": 9.8,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.complaint",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 4.2,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "shared.portal.dictCode",
+   "type": "shared",
+   "status": "regression",
+   "app": "portal",
+   "kb": 1.9,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.ellipsisText",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.empty",
+   "type": "shared",
+   "status": "regression",
+   "app": "portal",
+   "kb": 1.3,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.evaluate",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.3,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.gaode",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.2,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.gaode2",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.1,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.homeNews",
+   "type": "shared",
+   "status": "regression",
+   "app": "portal",
+   "kb": 10.3,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.homeNews3",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.9,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "shared.portal.homeRight",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 12.9,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "shared.portal.homeRight2",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 4.4,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "shared.portal.hotProject",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.4,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "shared.portal.icon",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 0.1,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.industryCode",
+   "type": "shared",
+   "status": "regression",
+   "app": "portal",
+   "kb": 1.7,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.init",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 10.4,
+   "deps": [
+    "entry.portal.E6",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "shared.portal.jobArea",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 9.4,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "shared.portal.likeBtn",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.1,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.lines",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.6,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "shared.portal.map",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.9,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.map2",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 0.9,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.maps",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.4,
+   "deps": [
+    "entry.portal.E6",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "shared.portal.nowContact",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.4,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.oddType",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 4.9,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.pie",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.2,
+   "deps": [
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "shared.portal.qrcode",
+   "type": "shared",
+   "status": "regression",
+   "app": "portal",
+   "kb": 21.4,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.resumemodal",
+   "type": "shared",
+   "status": "regression",
+   "app": "portal",
+   "kb": 4.7,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.signSetup",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.9,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "shared.portal.statusPlace",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.6,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.tagcanvas",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.9,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.thirdParty",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 2.3,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.unfold",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.2,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.videoModal",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 3.4,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.vue-countup-v3",
+   "type": "shared",
+   "status": "npm",
+   "app": "portal",
+   "kb": 7.4,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.vue3-seamless-scroll",
+   "type": "shared",
+   "status": "npm",
+   "app": "portal",
+   "kb": 5.2,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.workItem",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 9.6,
+   "deps": [
+    "entry.portal.E4",
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.addResume"
+   ]
+  },
+  {
+   "id": "shared.portal.workItemNew",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 5.9,
+   "deps": [
+    "entry.portal.c03"
+   ]
+  },
+  {
+   "id": "shared.portal.workType",
+   "type": "shared",
+   "status": "regression",
+   "app": "portal",
+   "kb": 6.2,
+   "deps": []
+  },
+  {
+   "id": "shared.portal.modules",
+   "type": "shared",
+   "status": "todo",
+   "app": "portal",
+   "kb": 90.3,
+   "deps": [
+    "entry.portal.E6"
+   ]
+  },
+  {
+   "id": "entry.portal.E1",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": null,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.E2",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": null,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.E3",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": null,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.E4",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 0.8,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.E5",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.6,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.E6",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 43.2,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.E7",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": null,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.c01",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 12.8,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.c02",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.c03",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 10.2,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.c04",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 8.8,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.c05",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 7.2,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.c06",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.7,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.c07",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 9.5,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.c08",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 6.8,
+   "deps": []
+  },
+  {
+   "id": "entry.portal.c09",
+   "type": "entry",
+   "status": "todo",
+   "app": "portal",
+   "kb": 1.1,
+   "deps": []
+  },
+  {
+   "id": "seg.portal.cityHome.index.1",
+   "type": "segment",
+   "status": "todo",
+   "app": "portal",
+   "kb": 15.8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c04",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "seg.portal.cityHome.index.2",
+   "type": "segment",
+   "status": "todo",
+   "app": "portal",
+   "kb": 17,
+   "after": [
+    "seg.portal.cityHome.index.1"
+   ],
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c04",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "seg.portal.eMap.index.1",
+   "type": "segment",
+   "status": "todo",
+   "app": "portal",
+   "kb": 18.8,
+   "deps": [
+    "entry.portal.E6",
+    "shared.portal.gaode2",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "seg.portal.eMap.index.2",
+   "type": "segment",
+   "status": "todo",
+   "app": "portal",
+   "kb": 12,
+   "after": [
+    "seg.portal.eMap.index.1"
+   ],
+   "deps": [
+    "entry.portal.E6",
+    "shared.portal.gaode2",
+    "shared.portal.modules"
+   ]
+  },
+  {
+   "id": "seg.portal.guide.jobHunt.1",
+   "type": "segment",
+   "status": "todo",
+   "app": "portal",
+   "kb": 18.8,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.auth"
+   ]
+  },
+  {
+   "id": "seg.portal.guide.jobHunt.2",
+   "type": "segment",
+   "status": "todo",
+   "app": "portal",
+   "kb": 22.5,
+   "after": [
+    "seg.portal.guide.jobHunt.1"
+   ],
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.auth"
+   ]
+  },
+  {
+   "id": "seg.portal.guide.index.1",
+   "type": "segment",
+   "status": "todo",
+   "app": "portal",
+   "kb": 17.1,
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.InterviewInvitation",
+    "shared.portal.auth"
+   ]
+  },
+  {
+   "id": "seg.portal.guide.index.2",
+   "type": "segment",
+   "status": "todo",
+   "app": "portal",
+   "kb": 13.4,
+   "after": [
+    "seg.portal.guide.index.1"
+   ],
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "shared.portal.InterviewInvitation",
+    "shared.portal.auth"
+   ]
+  },
+  {
+   "id": "page.uc.oddjob.need",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.2,
+   "deps": []
+  },
+  {
+   "id": "page.uc.oddjob.need.add",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 15.2,
+   "deps": [
+    "shared.uc.Content"
+   ]
+  },
+  {
+   "id": "page.uc.oddjob.lack",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.4,
+   "deps": []
+  },
+  {
+   "id": "page.uc.oddjob.lack.add",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 16.1,
+   "deps": [
+    "shared.uc.Content"
+   ]
+  },
+  {
+   "id": "page.uc.oddjob.sharepage",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.6,
+   "deps": [
+    "shared.uc.Content"
+   ]
+  },
+  {
+   "id": "page.uc.jobhunterhomeZzgj",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 12.3,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.modules",
+    "shared.uc.recommendZp2"
+   ]
+  },
+  {
+   "id": "page.uc.CorpCenterZ",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 18.5,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.addKeynote",
+    "shared.uc.modules",
+    "shared.uc.recommendZp2",
+    "shared.uc.setStatus"
+   ]
+  },
+  {
+   "id": "page.uc.unRegister",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 1.7,
+   "deps": []
+  },
+  {
+   "id": "page.uc.zgAccount",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 1.6,
+   "deps": []
+  },
+  {
+   "id": "page.uc.changeRole",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4.5,
+   "deps": [
+    "entry.uc.E4",
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.projectApplyDetails",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 0.5,
+   "deps": []
+  },
+  {
+   "id": "page.uc.main",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 19.9,
+   "deps": [
+    "entry.uc.E4",
+    "entry.uc.E6",
+    "shared.uc.addKeynote",
+    "shared.uc.market",
+    "shared.uc.mymsg",
+    "shared.uc.right"
+   ]
+  },
+  {
+   "id": "page.uc.StorageChgPassword",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 7.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.accountBind",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 2.5,
+   "deps": []
+  },
+  {
+   "id": "page.uc.changephone",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.changeavatar",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 2.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.nom",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 12.7,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.userImg",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 2.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.corpImg",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.2,
+   "deps": []
+  },
+  {
+   "id": "page.uc.audit",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.doneList",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 35.8,
+   "deps": []
+  },
+  {
+   "id": "page.uc.myPoints",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.1,
+   "deps": []
+  },
+  {
+   "id": "page.uc.needList",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.6,
+   "deps": []
+  },
+  {
+   "id": "page.uc.needDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 18.9,
+   "deps": [
+    "shared.uc.mapInfo",
+    "shared.uc.oddNews"
+   ]
+  },
+  {
+   "id": "page.uc.findList",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.4,
+   "deps": []
+  },
+  {
+   "id": "page.uc.findDetail",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 12,
+   "deps": [
+    "shared.uc.oddNews"
+   ]
+  },
+  {
+   "id": "page.uc.formDone",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 113.6,
+   "deps": []
+  },
+  {
+   "id": "page.uc.mentor",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.7,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.expert",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.1,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.graduates",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4.9,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.mentorhome",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.4,
+   "deps": [
+    "shared.uc.metormodal",
+    "shared.uc.right",
+    "shared.uc.usercard"
+   ]
+  },
+  {
+   "id": "page.uc.experthome",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 2.5,
+   "deps": [
+    "shared.uc.metormodal",
+    "shared.uc.right",
+    "shared.uc.usercard"
+   ]
+  },
+  {
+   "id": "page.uc.CorpAttestation",
+   "type": "page",
+   "status": "segmented",
+   "app": "uc",
+   "kb": 63.1,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.zcyzCorpAttestation",
+   "type": "page",
+   "status": "segmented",
+   "app": "uc",
+   "kb": 46.8,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.corpLoan",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.3,
+   "deps": [
+    "entry.uc.c01"
+   ]
+  },
+  {
+   "id": "page.uc.corpLoan.corpLoanInfo",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 23.2,
+   "deps": [
+    "entry.uc.c01"
+   ]
+  },
+  {
+   "id": "page.uc.CorpAttestationapprove",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 71.7,
+   "deps": []
+  },
+  {
+   "id": "page.uc.zcyzCorpAttestationapprove",
+   "type": "page",
+   "status": "segmented",
+   "app": "uc",
+   "kb": 63.4,
+   "deps": []
+  },
+  {
+   "id": "page.uc.CorpCenter",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 25.1,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.addKeynote",
+    "shared.uc.authCompany",
+    "shared.uc.modules",
+    "shared.uc.mymsg",
+    "shared.uc.recommendZp",
+    "shared.uc.right",
+    "shared.uc.setStatus"
+   ]
+  },
+  {
+   "id": "page.uc.marketCenter",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 17.9,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.addKeynote",
+    "shared.uc.authCompany",
+    "shared.uc.right",
+    "shared.uc.setStatus"
+   ]
+  },
+  {
+   "id": "page.uc.PositionRelease",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 23.4,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.modules"
+   ]
+  },
+  {
+   "id": "page.uc.PositionReleaseAbroad",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 22,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.modules"
+   ]
+  },
+  {
+   "id": "page.uc.BeOnAdmin",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 7.1,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.BeOnProbation",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 9.4,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.RecIntResume",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 7.2,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.noviciateInvited",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.7,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.downnoviciate",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.PositionAdmin",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 29.9,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.TalentSearch",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 9.8,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.pool",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.2,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.trash",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4.6,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.collectme",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 11.1,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.InterviewInvitation",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.1,
+   "deps": []
+  },
+  {
+   "id": "page.uc.DownloadResume",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4.3,
+   "deps": []
+  },
+  {
+   "id": "page.uc.ReceivedResume",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 13.7,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.iframeModal"
+   ]
+  },
+  {
+   "id": "page.uc.ReceivedResumeLive",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4.1,
+   "deps": []
+  },
+  {
+   "id": "page.uc.WebWorkResume",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.4,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.iframeModal"
+   ]
+  },
+  {
+   "id": "page.uc.CenterFairResume",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 1,
+   "deps": []
+  },
+  {
+   "id": "page.uc.WorkStyleAdmin",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.6,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.workVideo"
+   ]
+  },
+  {
+   "id": "page.uc.BeOnProbationAdmin",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 13.4,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.corporganic",
+    "shared.uc.workVideo"
+   ]
+  },
+  {
+   "id": "page.uc.userFairs",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 7.6,
+   "deps": [
+    "shared.uc.confPass"
+   ]
+  },
+  {
+   "id": "page.uc.corpFairs",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 70.6,
+   "deps": [
+    "shared.uc.confPass"
+   ]
+  },
+  {
+   "id": "page.uc.JobFairsHome",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 15.5,
+   "deps": []
+  },
+  {
+   "id": "page.uc.fairsList",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.5,
+   "deps": []
+  },
+  {
+   "id": "page.uc.fairsOutList",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.7,
+   "deps": []
+  },
+  {
+   "id": "page.uc.webFairWork",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 26.4,
+   "deps": []
+  },
+  {
+   "id": "page.uc.sceneFairSign",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 16.2,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.JobFairRelease",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 23.6,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.myconsult",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.1,
+   "deps": [
+    "shared.uc.metormodal"
+   ]
+  },
+  {
+   "id": "page.uc.allconsult",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.7,
+   "deps": [
+    "shared.uc.metormodal"
+   ]
+  },
+  {
+   "id": "page.uc.jobhunterhome",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 11.8,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.modules",
+    "shared.uc.mymsg",
+    "shared.uc.recommendZp",
+    "shared.uc.right"
+   ]
+  },
+  {
+   "id": "page.uc.Createaresume",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 58.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.myresume",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 9.7,
+   "deps": []
+  },
+  {
+   "id": "page.uc.resumetemplate",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 2.1,
+   "deps": []
+  },
+  {
+   "id": "page.uc.enterprisetemplate",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.Invited",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.3,
+   "deps": []
+  },
+  {
+   "id": "page.uc.send",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 7.2,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.complaint"
+   ]
+  },
+  {
+   "id": "page.uc.allianceSend",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.2,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.complaint"
+   ]
+  },
+  {
+   "id": "page.uc.trainCourseHis",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 9.7,
+   "deps": []
+  },
+  {
+   "id": "page.uc.lookresume",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.4,
+   "deps": []
+  },
+  {
+   "id": "page.uc.maskunit",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 7.1,
+   "deps": []
+  },
+  {
+   "id": "page.uc.collage.studentInfo",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 17.7,
+   "deps": []
+  },
+  {
+   "id": "page.uc.collage.studentApply",
+   "type": "page",
+   "status": "segmented",
+   "app": "uc",
+   "kb": 35.2,
+   "deps": []
+  },
+  {
+   "id": "page.uc.collage.nojob",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 11.8,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.sign.corpInfo",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.8,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.sign.corpApply",
+   "type": "page",
+   "status": "segmented",
+   "app": "uc",
+   "kb": 37.2,
+   "deps": []
+  },
+  {
+   "id": "page.uc.corpNoJob",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 10,
+   "deps": []
+  },
+  {
+   "id": "page.uc.personalstyle",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 8.9,
+   "deps": [
+    "shared.uc.workVideo"
+   ]
+  },
+  {
+   "id": "page.uc.mysubscribe",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.5,
+   "deps": []
+  },
+  {
+   "id": "page.uc.addmysubscribe",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.7,
+   "deps": []
+  },
+  {
+   "id": "page.uc.myaccuse",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4.8,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.myRegistration",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 10.8,
+   "deps": []
+  },
+  {
+   "id": "page.uc.personLoan",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.2,
+   "deps": [
+    "entry.uc.c01"
+   ]
+  },
+  {
+   "id": "page.uc.personLoan.detailInfo",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 23.9,
+   "deps": [
+    "entry.uc.c01"
+   ]
+  },
+  {
+   "id": "page.uc.mynews",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.6,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.signUp",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 15,
+   "deps": []
+  },
+  {
+   "id": "page.uc.overseasRecruitment",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.2,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.activitySign",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.1,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.businessSingUp",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4,
+   "deps": []
+  },
+  {
+   "id": "page.uc.courseSingUp",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.projectSingUp",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.Personalonlineservice",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 11.9,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.addKeynote",
+    "shared.uc.market"
+   ]
+  },
+  {
+   "id": "page.uc.Enterpriseonlineservices",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 11.9,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.addKeynote",
+    "shared.uc.market"
+   ]
+  },
+  {
+   "id": "page.uc.inSurvey",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.8,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.collectmentor",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.4,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.modules"
+   ]
+  },
+  {
+   "id": "page.uc.Unitposition",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 13.8,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.allianceUnitposition",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 11.5,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.collectOdd",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.9,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.consult",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.3,
+   "deps": [
+    "shared.uc.metormodal"
+   ]
+  },
+  {
+   "id": "page.uc.feedback",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 7.3,
+   "deps": []
+  },
+  {
+   "id": "page.uc.liveApply",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 10.5,
+   "deps": []
+  },
+  {
+   "id": "page.uc.liveApplyAdd",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 16.7,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.teachIn",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.7,
+   "deps": []
+  },
+  {
+   "id": "page.uc.teachInManage",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.9,
+   "deps": [
+    "shared.uc.appointment"
+   ]
+  },
+  {
+   "id": "page.uc.teachInCancel",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.9,
+   "deps": [
+    "shared.uc.appointment"
+   ]
+  },
+  {
+   "id": "page.uc.industrySkillTree",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 4.2,
+   "deps": []
+  },
+  {
+   "id": "page.uc.recruitmentInformation",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.addNewsDetails",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.6,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.Editor"
+   ]
+  },
+  {
+   "id": "page.uc.recruitmentStatis",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.2,
+   "deps": []
+  },
+  {
+   "id": "page.uc.recruitmentSignMng",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.4,
+   "deps": []
+  },
+  {
+   "id": "page.uc.zcyzPositionRelease",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 17.6,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.modules"
+   ]
+  },
+  {
+   "id": "page.uc.zcyzJobFairRelease",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 17,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.zcyzwebFairWork",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 19.3,
+   "deps": []
+  },
+  {
+   "id": "page.uc.converList",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.8,
+   "deps": []
+  },
+  {
+   "id": "page.uc.lookList",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.9,
+   "deps": []
+  },
+  {
+   "id": "page.uc.gongfuWorkshop.positionPosting",
+   "type": "page",
+   "status": "segmented",
+   "app": "uc",
+   "kb": 31.6,
+   "deps": [
+    "shared.uc.mapInfo",
+    "shared.uc.workshopNews"
+   ]
+  },
+  {
+   "id": "page.uc.gongfuWorkshop.jobPosting",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 22.4,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.workshopNews"
+   ]
+  },
+  {
+   "id": "page.uc.trainCertificate",
+   "type": "page",
+   "status": "regression",
+   "app": "uc",
+   "kb": 1.4,
+   "deps": []
+  },
+  {
+   "id": "page.uc.404",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 0.8,
+   "deps": []
+  },
+  {
+   "id": "page.uc.previewresume",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 25,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.login",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 0.6,
+   "deps": [
+    "entry.uc.E4",
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "page.uc.403",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 0.8,
+   "deps": []
+  },
+  {
+   "id": "page.uc.autoLogin",
+   "type": "page",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4.3,
+   "deps": [
+    "entry.uc.E4",
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.Content",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 1.7,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.Editor",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.2,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.InterviewInvitation",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 7.2,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.SlideCaptcha",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 1.3,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.XfLoaing",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 0.5,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.ZgIframe",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 0.8,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.addKeynote",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 9,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.corporganic"
+   ]
+  },
+  {
+   "id": "shared.uc.appointment",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 22.3,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.Editor"
+   ]
+  },
+  {
+   "id": "shared.uc.authCompany",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.4,
+   "deps": [
+    "entry.uc.E6",
+    "shared.uc.addKeynote",
+    "shared.uc.market"
+   ]
+  },
+  {
+   "id": "shared.uc.beonmodal",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 4.3,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.complaint",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.confPass",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.7,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.corporganic",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 1.7,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.cropperjs",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 5.5,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.dictCheckBoxAll",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 2.1,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.dictCode",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 1.4,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.dictCodeByType",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 2,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.dictCodeTreeOne",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 1.8,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.email",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 0.8,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.extractpositionmodal",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 5,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.gaode",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 12.8,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.idCard",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 1,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.iframeModal",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 0.9,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.ReceivedResumeList",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 14,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.CancelReasonModal",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 1.5,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.mapInfo",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 3.1,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.market",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 1.9,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.metormodal",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.4,
+   "deps": [
+    "shared.uc.modules"
+   ]
+  },
+  {
+   "id": "shared.uc.mymsg",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 2.3,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.oddNews",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.4,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.phone",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 0.8,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.positionmodal",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 7.9,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.recommendZp",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.3,
+   "deps": [
+    "shared.uc.modules"
+   ]
+  },
+  {
+   "id": "shared.uc.recommendZp2",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 39.6,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.resumemodal",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 3.7,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.right",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 1.5,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.setStatus",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 4.3,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.setStatusinterview",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 2.6,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.unfold",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 0.8,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.usercard",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 2,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "shared.uc.workType",
+   "type": "shared",
+   "status": "regression",
+   "app": "uc",
+   "kb": 9,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.workVideo",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 6.3,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.workshopNews",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 5.4,
+   "deps": []
+  },
+  {
+   "id": "shared.uc.modules",
+   "type": "shared",
+   "status": "todo",
+   "app": "uc",
+   "kb": 1,
+   "deps": []
+  },
+  {
+   "id": "entry.uc.E1",
+   "type": "entry",
+   "status": "todo",
+   "app": "uc",
+   "kb": null,
+   "deps": []
+  },
+  {
+   "id": "entry.uc.E2",
+   "type": "entry",
+   "status": "todo",
+   "app": "uc",
+   "kb": null,
+   "deps": []
+  },
+  {
+   "id": "entry.uc.E3",
+   "type": "entry",
+   "status": "todo",
+   "app": "uc",
+   "kb": 0.4,
+   "deps": []
+  },
+  {
+   "id": "entry.uc.E4",
+   "type": "entry",
+   "status": "todo",
+   "app": "uc",
+   "kb": 1.6,
+   "deps": []
+  },
+  {
+   "id": "entry.uc.E5",
+   "type": "entry",
+   "status": "todo",
+   "app": "uc",
+   "kb": 1.6,
+   "deps": []
+  },
+  {
+   "id": "entry.uc.E6",
+   "type": "entry",
+   "status": "todo",
+   "app": "uc",
+   "kb": 58,
+   "deps": []
+  },
+  {
+   "id": "entry.uc.E7",
+   "type": "entry",
+   "status": "todo",
+   "app": "uc",
+   "kb": null,
+   "deps": []
+  },
+  {
+   "id": "entry.uc.c01",
+   "type": "entry",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.6,
+   "deps": []
+  },
+  {
+   "id": "entry.uc.c02",
+   "type": "entry",
+   "status": "todo",
+   "app": "uc",
+   "kb": 9.7,
+   "deps": []
+  },
+  {
+   "id": "entry.uc.c03",
+   "type": "entry",
+   "status": "todo",
+   "app": "uc",
+   "kb": 10.9,
+   "deps": []
+  },
+  {
+   "id": "seg.uc.CorpAttestation.1",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 31.2,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "seg.uc.CorpAttestation.2",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 28.9,
+   "after": [
+    "seg.uc.CorpAttestation.1"
+   ],
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "seg.uc.zcyzCorpAttestation.1",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 21.7,
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "seg.uc.zcyzCorpAttestation.2",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 22.6,
+   "after": [
+    "seg.uc.zcyzCorpAttestation.1"
+   ],
+   "deps": [
+    "entry.uc.E6"
+   ]
+  },
+  {
+   "id": "seg.uc.zcyzCorpAttestationapprove.1",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 15.3,
+   "deps": []
+  },
+  {
+   "id": "seg.uc.zcyzCorpAttestationapprove.2",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 20.6,
+   "deps": []
+  },
+  {
+   "id": "seg.uc.zcyzCorpAttestationapprove.3",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 23.6,
+   "after": [
+    "seg.uc.zcyzCorpAttestationapprove.1",
+    "seg.uc.zcyzCorpAttestationapprove.2"
+   ],
+   "deps": []
+  },
+  {
+   "id": "seg.uc.collage.studentApply.1",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 17.7,
+   "deps": []
+  },
+  {
+   "id": "seg.uc.collage.studentApply.2",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 14.9,
+   "after": [
+    "seg.uc.collage.studentApply.1"
+   ],
+   "deps": []
+  },
+  {
+   "id": "seg.uc.sign.corpApply.1",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 19.1,
+   "deps": []
+  },
+  {
+   "id": "seg.uc.sign.corpApply.2",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 15.7,
+   "after": [
+    "seg.uc.sign.corpApply.1"
+   ],
+   "deps": []
+  },
+  {
+   "id": "seg.uc.gongfuWorkshop.positionPosting.1",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 12.8,
+   "deps": [
+    "shared.uc.mapInfo",
+    "shared.uc.workshopNews"
+   ]
+  },
+  {
+   "id": "seg.uc.gongfuWorkshop.positionPosting.2",
+   "type": "segment",
+   "status": "todo",
+   "app": "uc",
+   "kb": 17.2,
+   "after": [
+    "seg.uc.gongfuWorkshop.positionPosting.1"
+   ],
+   "deps": [
+    "shared.uc.mapInfo",
+    "shared.uc.workshopNews"
+   ]
+  }
+ ],
+ "dependents": {
+  "entry.portal.E5": [
+   "page.portal.xjhm.home.index",
+   "shared.portal.addResume"
+  ],
+  "entry.portal.E6": [
+   "page.portal.xjhm.home.index",
+   "page.portal.cityHome.index",
+   "page.portal.region.innovation.index",
+   "page.portal.region.colleges.index",
+   "page.portal.oddJob.recruitworkers.index",
+   "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+   "page.portal.oddJob.Jobsearch.index",
+   "page.portal.oddJob.Jobsearch.JobsearchDetail",
+   "page.portal.oddJob.Jobshortage.JobshortageDetail",
+   "page.portal.oddJob.Sparework.SpareworkDetail",
+   "page.portal.oddJob.shareUser.index",
+   "page.portal.oddJob.shareUser.detail",
+   "page.portal.livejob.detail",
+   "page.portal.video.zbdg",
+   "page.portal.recruitMarket.marketHome.home",
+   "page.portal.sjz.school.index",
+   "page.portal.sjz.unitMain.unitMain",
+   "page.portal.sjz.talent.talentList",
+   "page.portal.RecruitTalents.ResumePreview",
+   "page.portal.LookForJob.PostDetail",
+   "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis",
+   "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
+   "page.portal.sjz.setUp.setupDetail",
+   "page.portal.eMap.index",
+   "page.portal.login",
+   "page.portal.loginviews.siginbig",
+   "page.portal.loginviews.passwordhintbig",
+   "page.portal.answer.index",
+   "page.portal.answer.details",
+   "page.portal.customerService.index",
+   "page.portal.xjhm.bigData.newBigdata",
+   "page.portal.zzgj.trainCourse.index",
+   "page.portal.xjhm.cityHome.index",
+   "page.portal.guide.jobHunt",
+   "page.portal.guide.index",
+   "page.portal.talents.homeView",
+   "page.portal.talents.index.index",
+   "page.portal.talents.cityHome.index",
+   "page.portal.talents.setUp.setupDetail",
+   "page.portal.talents.information.newsList",
+   "page.portal.talents.fair.webFair.detail",
+   "page.portal.talents.talentnew.talentList",
+   "page.portal.talents.conference.index",
+   "page.portal.talents.newPark.index",
+   "page.portal.talents.index.advertTop",
+   "page.portal.xjhm.home.advertTop",
+   "page.portal.talents.index.frendLinks",
+   "page.portal.talents.index.homeList",
+   "page.portal.oddJob.rtInto.index",
+   "page.portal.talents.index.review",
+   "page.portal.talents.conference.scrollList",
+   "page.portal.talents.cityHome.talentArea",
+   "page.portal.talents.index.talentRecommend",
+   "shared.portal.FriendLinks",
+   "shared.portal.GetLocationMap",
+   "shared.portal.addResume",
+   "shared.portal.adsCenter",
+   "shared.portal.complaint",
+   "shared.portal.homeNews3",
+   "shared.portal.homeRight",
+   "shared.portal.homeRight2",
+   "shared.portal.init",
+   "shared.portal.maps",
+   "shared.portal.signSetup",
+   "shared.portal.workItem",
+   "shared.portal.modules",
+   "seg.portal.cityHome.index.1",
+   "seg.portal.cityHome.index.2",
+   "seg.portal.eMap.index.1",
+   "seg.portal.eMap.index.2",
+   "seg.portal.guide.jobHunt.1",
+   "seg.portal.guide.jobHunt.2",
+   "seg.portal.guide.index.1",
+   "seg.portal.guide.index.2"
+  ],
+  "entry.portal.c03": [
+   "page.portal.xjhm.home.index",
+   "page.portal.cityHome.index",
+   "page.portal.region.innovation.index",
+   "page.portal.region.innovation.innovationDetail",
+   "page.portal.region.colleges.index",
+   "page.portal.oddJob.index",
+   "page.portal.oddJob.recruitworkers.index",
+   "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+   "page.portal.oddJob.Jobsearch.index",
+   "page.portal.oddJob.Jobsearch.JobsearchDetail",
+   "page.portal.oddJob.Jobshortage.index",
+   "page.portal.oddJob.Jobshortage.JobshortageDetail",
+   "page.portal.oddJob.Sparework.index",
+   "page.portal.oddJob.Sparework.SpareworkDetail",
+   "page.portal.oddJob.shareUser.detail",
+   "page.portal.recruitMarket.marketHome.home",
+   "page.portal.recruitMarket.marketDetail.index",
+   "page.portal.Guidance.GuidanceHome.index",
+   "page.portal.Guidance.GuidanceAskList.index",
+   "page.portal.Guidance.GuidanceAskDetail.index",
+   "page.portal.Guidance.GuidanceMentorList.index",
+   "page.portal.Guidance.GuidanceMentorDetail.index",
+   "page.portal.Guidance.GuidanceConsult.index",
+   "page.portal.sjz.school.index",
+   "page.portal.sjz.enterpriserecruitment.enterpriserecruitment",
+   "page.portal.sjz.unitMain.unitMain",
+   "page.portal.News.newsDetail",
+   "page.portal.sjz.talent.talentList",
+   "page.portal.LookForJob.PostDetail",
+   "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis",
+   "page.portal.resumeAnalysisReport.resumeAnalysisReport",
+   "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
+   "page.portal.sjz.setUp.setupDetail",
+   "page.portal.train.trainDetail",
+   "page.portal.BeOnProbation.ProbationHome",
+   "page.portal.BeOnProbation.ProbationPostDetail",
+   "page.portal.fair.webFair.list",
+   "page.portal.fair.webFair.detail",
+   "page.portal.fair.sceneFair.list",
+   "page.portal.fair.sceneFair.detail",
+   "page.portal.fair.outFair.list",
+   "page.portal.fair.outFair.detail",
+   "page.portal.LookForJob.CorpDetail",
+   "page.portal.login",
+   "page.portal.answer.index",
+   "page.portal.answer.details",
+   "page.portal.zzgj.trainCourse.index",
+   "page.portal.xjhm.cityHome.index",
+   "page.portal.guide.jobHunt",
+   "page.portal.guide.index",
+   "page.portal.talents.homeView",
+   "page.portal.talents.setUp.setupDetail",
+   "page.portal.talents.fair.webFair.detail",
+   "page.portal.talents.fair.outFair.detail",
+   "page.portal.talents.talentnew.talentList",
+   "page.portal.talents.greenchannel.index",
+   "page.portal.talents.overseasRecruitment.antDetail",
+   "page.portal.sjz.fair.fairs",
+   "page.portal.sjz.fair.fairsList",
+   "page.portal.talents.cityHome.helpCenter",
+   "page.portal.oddJob.rtInto.index",
+   "page.portal.talents.index.infoRecommend",
+   "page.portal.talents.index.jobRecommend",
+   "page.portal.talents.fair.outFair.list",
+   "page.portal.talents.fair.webFair.list",
+   "page.portal.sjz.fair.outFair.list",
+   "page.portal.sjz.fair.sceneFair.list",
+   "page.portal.sjz.fair.webFair.list",
+   "page.portal.oddJob.rtInto.odd",
+   "page.portal.talents.index.review",
+   "page.portal.talents.cityHome.talentArea",
+   "page.portal.talents.index.talentRecommend",
+   "shared.portal.complaint",
+   "shared.portal.homeRight",
+   "shared.portal.homeRight2",
+   "shared.portal.signSetup",
+   "shared.portal.workItem",
+   "shared.portal.workItemNew",
+   "seg.portal.cityHome.index.1",
+   "seg.portal.cityHome.index.2",
+   "seg.portal.guide.jobHunt.1",
+   "seg.portal.guide.jobHunt.2",
+   "seg.portal.guide.index.1",
+   "seg.portal.guide.index.2"
+  ],
+  "entry.portal.c04": [
+   "page.portal.xjhm.home.index",
+   "page.portal.cityHome.index",
+   "seg.portal.cityHome.index.1",
+   "seg.portal.cityHome.index.2"
+  ],
+  "entry.portal.c09": [
+   "page.portal.xjhm.home.index",
+   "page.portal.region.innovation.index"
+  ],
+  "shared.portal.FriendLinks": [
+   "page.portal.xjhm.home.index"
+  ],
+  "shared.portal.homeNews3": [
+   "page.portal.xjhm.home.index",
+   "page.portal.region.innovation.index",
+   "page.portal.region.colleges.index",
+   "page.portal.region.skill.index",
+   "page.portal.talents.setUp.setupList",
+   "page.portal.talents.overseasRecruitment.index"
+  ],
+  "shared.portal.homeRight2": [
+   "page.portal.xjhm.home.index",
+   "page.portal.xjhm.cityHome.index"
+  ],
+  "shared.portal.modules": [
+   "page.portal.xjhm.home.index",
+   "page.portal.cityHome.index",
+   "page.portal.region.innovation.index",
+   "page.portal.region.skill.index",
+   "page.portal.oddJob.Jobsearch.index",
+   "page.portal.oddJob.Jobsearch.JobsearchDetail",
+   "page.portal.live.index",
+   "page.portal.video.zbdg",
+   "page.portal.recruitMarket.marketDetail.index",
+   "page.portal.train.trainOrganList",
+   "page.portal.train.trainOrganDetail",
+   "page.portal.Guidance.GuidanceHome.index",
+   "page.portal.Guidance.GuidanceVideo.index",
+   "page.portal.Guidance.GuidanceAskList.index",
+   "page.portal.Guidance.GuidanceAskDetail.index",
+   "page.portal.Guidance.GuidanceMentorList.index",
+   "page.portal.sjz.school.index",
+   "page.portal.setUp.setupList",
+   "page.portal.sjz.setUp.setupDetail",
+   "page.portal.train.trainList",
+   "page.portal.train.trainDetail",
+   "page.portal.eMap.index",
+   "page.portal.fair.outFair.detail",
+   "page.portal.answer.index",
+   "page.portal.answer.details",
+   "page.portal.jobMarket.index",
+   "page.portal.sjz.archivesSearch.index",
+   "page.portal.xjhm.bigData.statistics",
+   "page.portal.xjhm.bigData.newBigdata",
+   "page.portal.zzgj.trainCourse.index",
+   "page.portal.xjhm.cityHome.index",
+   "page.portal.sjz.bigData.mobile.index",
+   "page.portal.talents.homeView",
+   "page.portal.talents.setUp.setupList",
+   "page.portal.talents.setUp.setupDetail",
+   "page.portal.talents.eMap.index",
+   "page.portal.talents.cityHome.helpCenter",
+   "page.portal.livejob.index",
+   "page.portal.sjz.bigData.index",
+   "page.portal.talents.index.infoRecommend",
+   "page.portal.talents.index.jobRecommend",
+   "page.portal.eMap.list",
+   "page.portal.talents.eMap.list",
+   "page.portal.talents.index.review",
+   "page.portal.talents.index.talentRecommend",
+   "shared.portal.InterviewInvitation",
+   "shared.portal.bars",
+   "shared.portal.hotProject",
+   "shared.portal.init",
+   "shared.portal.jobArea",
+   "shared.portal.lines",
+   "shared.portal.maps",
+   "shared.portal.pie",
+   "seg.portal.cityHome.index.1",
+   "seg.portal.cityHome.index.2",
+   "seg.portal.eMap.index.1",
+   "seg.portal.eMap.index.2"
+  ],
+  "entry.portal.c05": [
+   "page.portal.region.innovation.innovationDetail",
+   "page.portal.video.zbdg",
+   "page.portal.Guidance.GuidanceHome.index",
+   "page.portal.News.newsDetail",
+   "page.portal.talents.information.newsDetail",
+   "page.portal.talents.talentnew.talentList",
+   "page.portal.talents.conference.detail",
+   "page.portal.talents.overseasRecruitment.antDetail"
+  ],
+  "shared.portal.nowContact": [
+   "page.portal.oddJob.recruitworkers.index",
+   "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+   "page.portal.oddJob.Jobsearch.index",
+   "page.portal.oddJob.Jobsearch.JobsearchDetail"
+  ],
+  "shared.portal.oddType": [
+   "page.portal.oddJob.recruitworkers.index",
+   "page.portal.oddJob.Jobsearch.index"
+  ],
+  "shared.portal.complaint": [
+   "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+   "page.portal.oddJob.Jobsearch.JobsearchDetail",
+   "page.portal.oddJob.Jobshortage.JobshortageDetail",
+   "page.portal.oddJob.Sparework.SpareworkDetail",
+   "page.portal.oddJob.shareUser.detail",
+   "page.portal.LookForJob.PostDetail",
+   "page.portal.sjz.setUp.setupDetail",
+   "page.portal.train.trainDetail",
+   "page.portal.LookForJob.CorpDetail",
+   "page.portal.talents.setUp.setupDetail"
+  ],
+  "shared.portal.map2": [
+   "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+   "page.portal.recruitMarket.marketDetail.index",
+   "page.portal.LookForJob.PostDetail",
+   "page.portal.jobMarket.marketDetail"
+  ],
+  "shared.portal.likeBtn": [
+   "page.portal.livejob.detail"
+  ],
+  "shared.portal.workItem": [
+   "page.portal.livejob.detail",
+   "page.portal.recruitMarket.marketHome.home",
+   "page.portal.sjz.job.jobList"
+  ],
+  "shared.portal.unfold": [
+   "page.portal.recruitMarket.marketDetail.index",
+   "page.portal.train.trainOrganDetail",
+   "page.portal.LookForJob.CorpDetail"
+  ],
+  "shared.portal.ellipsisText": [
+   "page.portal.Guidance.GuidanceHome.index",
+   "page.portal.BeOnProbation.ProbationBaseDetail"
+  ],
+  "shared.portal.videoModal": [
+   "page.portal.Guidance.GuidanceVideo.index"
+  ],
+  "shared.portal.tagcanvas": [
+   "page.portal.sjz.school.index",
+   "page.portal.setUp.setupList",
+   "page.portal.talents.setUp.setupList"
+  ],
+  "shared.portal.GetLocationMap": [
+   "page.portal.sjz.job.jobList",
+   "page.portal.LookForJob.CorpDetail"
+  ],
+  "shared.portal.map": [
+   "page.portal.sjz.job.jobList",
+   "page.portal.talents.job.jobList"
+  ],
+  "shared.portal.InterviewInvitation": [
+   "page.portal.sjz.talent.talentList",
+   "page.portal.RecruitTalents.ResumePreview",
+   "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
+   "page.portal.guide.index",
+   "page.portal.talents.talentnew.talentList",
+   "page.portal.talents.cityHome.talentArea",
+   "seg.portal.guide.index.1",
+   "seg.portal.guide.index.2"
+  ],
+  "shared.portal.addResume": [
+   "page.portal.LookForJob.PostDetail",
+   "shared.portal.workItem"
+  ],
+  "shared.portal.evaluate": [
+   "page.portal.LookForJob.PostDetail"
+  ],
+  "shared.portal.gaode": [
+   "page.portal.LookForJob.PostDetail"
+  ],
+  "shared.portal.statusPlace": [
+   "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis"
+  ],
+  "shared.portal.icon": [
+   "page.portal.park.index",
+   "page.portal.talents.conference.index"
+  ],
+  "shared.portal.signSetup": [
+   "page.portal.sjz.setUp.setupDetail",
+   "page.portal.train.trainDetail",
+   "page.portal.talents.setUp.setupDetail"
+  ],
+  "shared.portal.gaode2": [
+   "page.portal.eMap.index",
+   "seg.portal.eMap.index.1",
+   "seg.portal.eMap.index.2"
+  ],
+  "entry.portal.c02": [
+   "page.portal.login",
+   "page.portal.loginviews.siginbig",
+   "page.portal.loginviews.passwordhintbig",
+   "page.portal.sjz.archivesSearch.index"
+  ],
+  "shared.portal.thirdParty": [
+   "page.portal.login",
+   "page.portal.loginviews.siginbig"
+  ],
+  "shared.portal.bars": [
+   "page.portal.xjhm.bigData.statistics",
+   "page.portal.xjhm.bigData.newBigdata"
+  ],
+  "shared.portal.init": [
+   "page.portal.xjhm.bigData.statistics",
+   "page.portal.xjhm.bigData.newBigdata"
+  ],
+  "shared.portal.maps": [
+   "page.portal.xjhm.bigData.statistics"
+  ],
+  "shared.portal.lines": [
+   "page.portal.xjhm.bigData.newBigdata"
+  ],
+  "shared.portal.pie": [
+   "page.portal.xjhm.bigData.newBigdata",
+   "page.portal.zcyz.bigData.components.pieCommon",
+   "page.portal.zcyz.bigData.components.pieRader"
+  ],
+  "entry.portal.c06": [
+   "page.portal.xjhm.cityHome.index"
+  ],
+  "shared.portal.FriendLink": [
+   "page.portal.xjhm.cityHome.index"
+  ],
+  "shared.portal.jobArea": [
+   "page.portal.xjhm.cityHome.index"
+  ],
+  "shared.portal.auth": [
+   "page.portal.guide.jobHunt",
+   "page.portal.guide.index",
+   "seg.portal.guide.jobHunt.1",
+   "seg.portal.guide.jobHunt.2",
+   "seg.portal.guide.index.1",
+   "seg.portal.guide.index.2"
+  ],
+  "entry.portal.E4": [
+   "page.portal.talents.homeView",
+   "page.portal.xjhm.home.advertTop",
+   "shared.portal.workItem"
+  ],
+  "entry.portal.c07": [
+   "page.portal.talents.homeView"
+  ],
+  "shared.portal.adsCenter": [
+   "page.portal.talents.index.index",
+   "page.portal.talents.cityHome.index",
+   "page.portal.talents.setUp.setupList"
+  ],
+  "shared.portal.homeRight": [
+   "page.portal.talents.index.index",
+   "page.portal.talents.cityHome.index"
+  ],
+  "page.portal.talents.cityHome.talentArea": [
+   "page.portal.talents.cityHome.index"
+  ],
+  "shared.portal.hotProject": [
+   "page.portal.talents.setUp.setupList",
+   "page.portal.talents.setUp.setupDetail"
+  ],
+  "shared.portal.workItemNew": [
+   "page.portal.talents.job.jobList"
+  ],
+  "shared.uc.Content": [
+   "page.uc.oddjob.need.add",
+   "page.uc.oddjob.lack.add",
+   "page.uc.oddjob.sharepage"
+  ],
+  "entry.uc.E6": [
+   "page.uc.jobhunterhomeZzgj",
+   "page.uc.CorpCenterZ",
+   "page.uc.changeRole",
+   "page.uc.main",
+   "page.uc.nom",
+   "page.uc.mentor",
+   "page.uc.expert",
+   "page.uc.graduates",
+   "page.uc.CorpAttestation",
+   "page.uc.zcyzCorpAttestation",
+   "page.uc.CorpCenter",
+   "page.uc.marketCenter",
+   "page.uc.PositionRelease",
+   "page.uc.PositionReleaseAbroad",
+   "page.uc.BeOnAdmin",
+   "page.uc.BeOnProbation",
+   "page.uc.RecIntResume",
+   "page.uc.noviciateInvited",
+   "page.uc.downnoviciate",
+   "page.uc.PositionAdmin",
+   "page.uc.TalentSearch",
+   "page.uc.pool",
+   "page.uc.trash",
+   "page.uc.collectme",
+   "page.uc.ReceivedResume",
+   "page.uc.WebWorkResume",
+   "page.uc.WorkStyleAdmin",
+   "page.uc.BeOnProbationAdmin",
+   "page.uc.sceneFairSign",
+   "page.uc.JobFairRelease",
+   "page.uc.jobhunterhome",
+   "page.uc.send",
+   "page.uc.allianceSend",
+   "page.uc.collage.nojob",
+   "page.uc.sign.corpInfo",
+   "page.uc.myaccuse",
+   "page.uc.mynews",
+   "page.uc.overseasRecruitment",
+   "page.uc.activitySign",
+   "page.uc.Personalonlineservice",
+   "page.uc.Enterpriseonlineservices",
+   "page.uc.inSurvey",
+   "page.uc.collectmentor",
+   "page.uc.Unitposition",
+   "page.uc.allianceUnitposition",
+   "page.uc.collectOdd",
+   "page.uc.liveApplyAdd",
+   "page.uc.addNewsDetails",
+   "page.uc.zcyzPositionRelease",
+   "page.uc.zcyzJobFairRelease",
+   "page.uc.gongfuWorkshop.jobPosting",
+   "page.uc.previewresume",
+   "page.uc.login",
+   "page.uc.autoLogin",
+   "shared.uc.InterviewInvitation",
+   "shared.uc.addKeynote",
+   "shared.uc.appointment",
+   "shared.uc.authCompany",
+   "shared.uc.corporganic",
+   "shared.uc.cropperjs",
+   "shared.uc.ReceivedResumeList",
+   "shared.uc.mymsg",
+   "shared.uc.recommendZp2",
+   "shared.uc.right",
+   "shared.uc.setStatus",
+   "shared.uc.setStatusinterview",
+   "shared.uc.usercard",
+   "seg.uc.CorpAttestation.1",
+   "seg.uc.CorpAttestation.2",
+   "seg.uc.zcyzCorpAttestation.1",
+   "seg.uc.zcyzCorpAttestation.2"
+  ],
+  "shared.uc.modules": [
+   "page.uc.jobhunterhomeZzgj",
+   "page.uc.CorpCenterZ",
+   "page.uc.CorpCenter",
+   "page.uc.PositionRelease",
+   "page.uc.PositionReleaseAbroad",
+   "page.uc.jobhunterhome",
+   "page.uc.collectmentor",
+   "page.uc.zcyzPositionRelease",
+   "shared.uc.metormodal",
+   "shared.uc.recommendZp"
+  ],
+  "shared.uc.recommendZp2": [
+   "page.uc.jobhunterhomeZzgj",
+   "page.uc.CorpCenterZ"
+  ],
+  "shared.uc.addKeynote": [
+   "page.uc.CorpCenterZ",
+   "page.uc.main",
+   "page.uc.CorpCenter",
+   "page.uc.marketCenter",
+   "page.uc.Personalonlineservice",
+   "page.uc.Enterpriseonlineservices",
+   "shared.uc.authCompany"
+  ],
+  "shared.uc.setStatus": [
+   "page.uc.CorpCenterZ",
+   "page.uc.CorpCenter",
+   "page.uc.marketCenter"
+  ],
+  "entry.uc.E4": [
+   "page.uc.changeRole",
+   "page.uc.main",
+   "page.uc.login",
+   "page.uc.autoLogin"
+  ],
+  "shared.uc.market": [
+   "page.uc.main",
+   "page.uc.Personalonlineservice",
+   "page.uc.Enterpriseonlineservices",
+   "shared.uc.authCompany"
+  ],
+  "shared.uc.mymsg": [
+   "page.uc.main",
+   "page.uc.CorpCenter",
+   "page.uc.jobhunterhome"
+  ],
+  "shared.uc.right": [
+   "page.uc.main",
+   "page.uc.mentorhome",
+   "page.uc.experthome",
+   "page.uc.CorpCenter",
+   "page.uc.marketCenter",
+   "page.uc.jobhunterhome"
+  ],
+  "shared.uc.mapInfo": [
+   "page.uc.needDetail",
+   "page.uc.gongfuWorkshop.positionPosting",
+   "seg.uc.gongfuWorkshop.positionPosting.1",
+   "seg.uc.gongfuWorkshop.positionPosting.2"
+  ],
+  "shared.uc.oddNews": [
+   "page.uc.needDetail",
+   "page.uc.findDetail"
+  ],
+  "shared.uc.metormodal": [
+   "page.uc.mentorhome",
+   "page.uc.experthome",
+   "page.uc.myconsult",
+   "page.uc.allconsult",
+   "page.uc.consult"
+  ],
+  "shared.uc.usercard": [
+   "page.uc.mentorhome",
+   "page.uc.experthome"
+  ],
+  "entry.uc.c01": [
+   "page.uc.corpLoan",
+   "page.uc.corpLoan.corpLoanInfo",
+   "page.uc.personLoan",
+   "page.uc.personLoan.detailInfo"
+  ],
+  "shared.uc.authCompany": [
+   "page.uc.CorpCenter",
+   "page.uc.marketCenter"
+  ],
+  "shared.uc.recommendZp": [
+   "page.uc.CorpCenter",
+   "page.uc.jobhunterhome"
+  ],
+  "shared.uc.iframeModal": [
+   "page.uc.ReceivedResume",
+   "page.uc.WebWorkResume"
+  ],
+  "shared.uc.workVideo": [
+   "page.uc.WorkStyleAdmin",
+   "page.uc.BeOnProbationAdmin",
+   "page.uc.personalstyle"
+  ],
+  "shared.uc.corporganic": [
+   "page.uc.BeOnProbationAdmin",
+   "shared.uc.addKeynote"
+  ],
+  "shared.uc.confPass": [
+   "page.uc.userFairs",
+   "page.uc.corpFairs"
+  ],
+  "shared.uc.complaint": [
+   "page.uc.send",
+   "page.uc.allianceSend"
+  ],
+  "shared.uc.appointment": [
+   "page.uc.teachInManage",
+   "page.uc.teachInCancel"
+  ],
+  "shared.uc.Editor": [
+   "page.uc.addNewsDetails",
+   "shared.uc.appointment"
+  ],
+  "shared.uc.workshopNews": [
+   "page.uc.gongfuWorkshop.positionPosting",
+   "page.uc.gongfuWorkshop.jobPosting",
+   "seg.uc.gongfuWorkshop.positionPosting.1",
+   "seg.uc.gongfuWorkshop.positionPosting.2"
+  ]
+ }
+}

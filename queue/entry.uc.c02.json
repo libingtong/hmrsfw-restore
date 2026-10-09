@@ -1,0 +1,49 @@
+{
+ "id": "entry.uc.c02",
+ "type": "entry",
+ "area": "component",
+ "title": "入口全局组件：tags、headers、home",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "sourceChunk": "legacy-dist/usercenter/assets/index.1751615607545.js",
+ "kb": 9.7,
+ "appCode": "018",
+ "components": [
+  {
+   "name": "tags",
+   "binding": "Xpt",
+   "scopeId": null,
+   "kb": 3,
+   "exportedAs": [],
+   "file": "apps/uc/src/legacy/components/Tags.vue"
+  },
+  {
+   "name": "headers",
+   "binding": "wht",
+   "scopeId": "data-v-3b73416b",
+   "kb": 5.2,
+   "exportedAs": [],
+   "file": "apps/uc/src/legacy/components/Headers.vue"
+  },
+  {
+   "name": "home",
+   "binding": "Pht",
+   "scopeId": "data-v-34be80b2",
+   "kb": 1.5,
+   "exportedAs": [],
+   "file": "apps/uc/src/legacy/components/Home.vue"
+  }
+ ],
+ "files": [
+  "apps/uc/src/legacy/components/Tags.vue",
+  "apps/uc/src/legacy/components/Headers.vue",
+  "apps/uc/src/legacy/components/Home.vue"
+ ],
+ "owns": [],
+ "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",
+ "deps": {
+  "orders": []
+ }
+}

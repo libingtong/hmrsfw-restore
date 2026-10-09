@@ -1,0 +1,23 @@
+{
+ "id": "entry.portal.E7",
+ "type": "entry",
+ "area": "E7",
+ "title": "样式与依赖版本",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": null,
+ "appCode": "018",
+ "files": [
+  "apps/portal/src/styles/",
+  "package.json"
+ ],
+ "owns": [],
+ "note": "拆回 ant-design-vue 依赖与全局样式源文件；按站点锁版本（门户 Vue 3.2.47 / antd 3.2.15，用户中心 Vue 3.3.4 / antd 3.2.20）",
+ "deps": {
+  "orders": []
+ },
+ "kbEstimated": true
+}

@@ -1,0 +1,51 @@
+{
+ "id": "shared.uc.idCard",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1,
+ "chunkKb": 1,
+ "sourceChunk": "legacy-dist/usercenter/assets/idCard.1751615607545.js",
+ "components": [
+  {
+   "name": "idCard",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/idCard.vue",
+ "exports": {
+  "i": {
+   "export": "default"
+  }
+ },
+ "registryKey": "idCard.1751615607545.js",
+ "usedBy": [
+  "page.uc.nom",
+  "page.uc.formDone",
+  "page.uc.CorpAttestation",
+  "page.uc.zcyzCorpAttestation",
+  "page.uc.corpLoan.corpLoanInfo",
+  "page.uc.CorpAttestationapprove",
+  "page.uc.zcyzCorpAttestationapprove",
+  "page.uc.myRegistration",
+  "page.uc.personLoan.detailInfo",
+  "page.uc.gongfuWorkshop.jobPosting"
+ ],
+ "maps": "out/maps/shared.uc.idCard.json",
+ "hints": "out/hints/shared.uc.idCard.md",
+ "deps": {
+  "entry": [
+   "o"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

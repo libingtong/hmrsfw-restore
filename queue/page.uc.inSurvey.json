@@ -1,0 +1,48 @@
+{
+ "id": "page.uc.inSurvey",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/inSurvey.1751615607545.js",
+ "components": [
+  {
+   "name": "inSurvey",
+   "scopeId": "data-v-0b587cf9"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0b587cf9"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/inSurvey.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/inSurvey.vue",
+ "subComponentDir": "apps/uc/src/views/inSurvey/",
+ "routes": [
+  {
+   "path": "/inSurvey",
+   "name": "inSurvey"
+  }
+ ],
+ "recordPath": "/inSurvey",
+ "maps": "out/maps/page.uc.inSurvey.json",
+ "hints": "out/hints/page.uc.inSurvey.md",
+ "deps": {
+  "entry": [
+   "bm",
+   "d",
+   "k"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

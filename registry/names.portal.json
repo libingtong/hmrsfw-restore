@@ -1,0 +1,587 @@
+{
+ "_doc": "入口导出的可读名（人工核定）。来源：shim-map = POC 对照表（20 页确认后的版本）；curated = 按入口定义核定。接口函数、组件、图标不在此表，由 tools/registry.mjs 按 URL、组件名、图标定义推导。改名会改变所有页面工单的导入，只能在入口单还原之前改。",
+ "entry": {
+  "_": {
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`",
+   "source": "shim-map"
+  },
+  "a": {
+   "export": "Swiper",
+   "path": "swiper/vue",
+   "npm": true,
+   "source": "shim-map",
+   "note": "组件"
+  },
+  "A": {
+   "export": "message",
+   "path": "ant-design-vue",
+   "npm": true,
+   "source": "shim-map",
+   "note": "ant-design-vue，用法 `message.success(...)`"
+  },
+  "a1": {
+   "export": "decryptSm4",
+   "path": "@/utils/crypto-adapter",
+   "source": "curated",
+   "note": "SM4 解密（密钥只从环境变量读）"
+  },
+  "a2": {
+   "export": "validateIdCard",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "id)`"
+  },
+  "a6": {
+   "export": "FeedbackModal",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "组件（全局组件 `featback`，意见反馈弹窗；props `visible/title/businessType/alertType…`，事件 `okclick/cancelClick`"
+  },
+  "a8": {
+   "export": "formatDateSlash",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "日期 → YYYY/M/D"
+  },
+  "a9": {
+   "export": "UPLOAD_URL",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "上传接口地址 API_BASE + /jeecg-system/sys/common/upload"
+  },
+  "aa": {
+   "export": "getBusinessDictItems",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "`（取 `appConfig.businessDict` 的全部字典项"
+  },
+  "ad": {
+   "export": "listChildrenTreeByTypeId",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "aD": {
+   "export": "checkIzDishonesty",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "data)`"
+  },
+  "aE": {
+   "export": "SlideCaptcha",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "组件（滑块验证，桩"
+  },
+  "ag": {
+   "export": "formatDateTime",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "日期 → YYYY-M-D HH:mm:ss"
+  },
+  "aj": {
+   "export": "openLink",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "按 linkAddress 打开站内/站外链接（3 参数版）"
+  },
+  "am": {
+   "export": "getArticleList",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "ap": {
+   "export": "getArticleListByTypeIds",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "aq": {
+   "export": "useStoreGetters",
+   "path": "@/legacy/store",
+   "source": "curated",
+   "note": "把 vuex getters 包成 computed"
+  },
+  "aQ": {
+   "export": "getWeekDay",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "date, short?)`（`short==0` 返回\"周X\"，否则\"星期X\""
+  },
+  "ar": {
+   "export": "debounce",
+   "path": "lodash-es",
+   "npm": true,
+   "source": "curated"
+  },
+  "aR": {
+   "export": "isMobilePhone",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "手机号校验"
+  },
+  "as": {
+   "export": "getUserInfo",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "store.userInfo 或 userStorage.getUser()"
+  },
+  "au": {
+   "export": "randomColor",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "随机 HSL 颜色"
+  },
+  "av": {
+   "export": "cloneDeep",
+   "path": "lodash-es",
+   "npm": true,
+   "source": "curated"
+  },
+  "aY": {
+   "export": "ENTRY_IMAGE_AY",
+   "path": "@/legacy/images",
+   "source": "curated",
+   "note": "内联 base64 图片，由后处理抽成资源文件"
+  },
+  "aZ": {
+   "export": "getCurrentSysUser",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "userStorage.getSysUser()"
+  },
+  "b": {
+   "export": "SwiperSlide",
+   "path": "swiper/vue",
+   "npm": true,
+   "source": "shim-map",
+   "note": "组件"
+  },
+  "B": {
+   "export": "API_BASE",
+   "path": "@/utils/request",
+   "source": "shim-map",
+   "note": "\"/xf-api\""
+  },
+  "ba": {
+   "export": "MSG_CORP_PENDING",
+   "path": "@/legacy",
+   "source": "shim-map"
+  },
+  "bb": {
+   "export": "getCorpIndustryListByType",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`（`/xf-job/job/licenseFree/getDictListByType`；与 `L` 同名但不是同一接口"
+  },
+  "bc": {
+   "export": "DownOutlined",
+   "path": "@ant-design/icons-vue",
+   "npm": true,
+   "source": "shim-map",
+   "note": "a-select 的后缀图标"
+  },
+  "bC": {
+   "export": "toInteger",
+   "path": "lodash-es",
+   "npm": true,
+   "source": "curated"
+  },
+  "be": {
+   "export": "MSG_CORP_NOT_AUTH_RESUME",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "提示文案：认证通过后方可预览简历"
+  },
+  "bf": {
+   "export": "isObject",
+   "path": "lodash-es",
+   "npm": true,
+   "source": "curated"
+  },
+  "bF": {
+   "export": "handleLoginSuccess",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "登录成功后写 token、用户信息"
+  },
+  "bg": {
+   "export": "Form",
+   "path": "ant-design-vue",
+   "npm": true,
+   "source": "curated"
+  },
+  "bG": {
+   "export": "handleXfSysUserLoaded",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "登录后写 xfSysUser 并合并用户信息"
+  },
+  "bh": {
+   "export": "parseIdCard",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "身份证号 → 年龄、性别、生日"
+  },
+  "bm": {
+   "export": "PAGE_LOAD_TIMESTAMP",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "Date.parse(new Date)，模块加载时取值"
+  },
+  "bn": {
+   "export": "validatePassword",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "a-form 密码校验器"
+  },
+  "bs": {
+   "export": "openLinkAddress",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "按 linkAddress 打开站内/站外链接（2 参数版）"
+  },
+  "bt": {
+   "export": "store",
+   "path": "@/legacy/store",
+   "source": "curated",
+   "note": "vuex store 实例"
+  },
+  "bT": {
+   "export": "maskPhone",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "手机号打码 3****4"
+  },
+  "bU": {
+   "export": "checkTokenLogin",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "有 token 返回 1，否则 3"
+  },
+  "bV": {
+   "export": "maskName",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "姓名打码"
+  },
+  "bW": {
+   "export": "listAuthenticateIdentity",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "bX": {
+   "export": "toHonorific",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "姓 + 先生/女士"
+  },
+  "by": {
+   "export": "ENTRY_IMAGE_BY",
+   "path": "@/legacy/images",
+   "source": "curated",
+   "note": "内联 base64 图片，由后处理抽成资源文件"
+  },
+  "bY": {
+   "ignore": "Babel 的 typeof 辅助函数，源码里直接写 typeof",
+   "source": "curated"
+  },
+  "bZ": {
+   "ignore": "Vite 的 __vitePreload 辅助函数，源码里直接写 import()",
+   "source": "curated"
+  },
+  "c": {
+   "export": "getAppConfig",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "`（sessionStorage 里的租户配置"
+  },
+  "C": {
+   "export": "TEXT_GO_PERFECT",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "\"去完善\""
+  },
+  "c1": {
+   "export": "LOGIN_CHECK_TYPE_4",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "checkLogin 的 type 参数 4"
+  },
+  "c5": {
+   "export": "MSG_CORP_PENDING_2",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "提示文案：资料未完善或审核中（第二处定义）"
+  },
+  "c8": {
+   "export": "AxiosHeaders",
+   "path": "axios",
+   "npm": true,
+   "source": "curated",
+   "note": "原包 m_(AxiosHeaders)，待入口单核对"
+  },
+  "cC": {
+   "export": "notification",
+   "path": "ant-design-vue",
+   "npm": true,
+   "source": "curated"
+  },
+  "ck": {
+   "export": "checkOtherLoginLink",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "业务配置 login_other_link"
+  },
+  "d": {
+   "export": "default",
+   "local": "dayjs",
+   "path": "dayjs",
+   "npm": true,
+   "source": "shim-map",
+   "note": "日期格式化，`dayjs(x).format(...)`；原包是 moment 风格 API"
+  },
+  "D": {
+   "export": "BusinessDictLabels",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "业务字典 label 枚举，如 `BusinessDictLabels.GUIDANCE_AREA`；原 TS enum"
+  },
+  "e": {
+   "export": "getAreaInfo",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "E": {
+   "export": "IDENTITY_PERSON",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "0"
+  },
+  "f": {
+   "export": "STATIC_BASE",
+   "path": "@/utils/request",
+   "source": "shim-map",
+   "note": "\"/jeecg-system/sys/common/static\""
+  },
+  "F": {
+   "export": "checkPerfect",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "`"
+  },
+  "g": {
+   "export": "getDictValueByCodeAndItems",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`（常与 `{dictCode: getAppConfig().businessDict, labels: BusinessDictLabels.X}` 连用"
+  },
+  "G": {
+   "export": "SmileOutlined",
+   "path": "@ant-design/icons-vue",
+   "npm": true,
+   "source": "shim-map"
+  },
+  "h": {
+   "export": "getDictItemsByCode",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`（带缓存的字典查询"
+  },
+  "H": {
+   "export": "MehOutlined",
+   "path": "@ant-design/icons-vue",
+   "npm": true,
+   "source": "shim-map"
+  },
+  "i": {
+   "export": "default",
+   "local": "SwiperCore",
+   "path": "swiper",
+   "npm": true,
+   "source": "shim-map",
+   "note": "swiper 核心类（import SwiperCore from \"swiper\"）"
+  },
+  "I": {
+   "export": "checkBtnPermission",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "{type})`"
+  },
+  "j": {
+   "export": "getCurrentUser",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "`（= `userStorage.getUser()`"
+  },
+  "J": {
+   "export": "SettingCodes",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "业务配置码枚举，如 `SettingCodes.BTN_PERMISS`"
+  },
+  "k": {
+   "export": "getCurrentCorp",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "`（= `userStorage.getCorp()`"
+  },
+  "K": {
+   "export": "getSettingValueByCodes",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "l": {
+   "export": "getAreaInfo",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`（与 `e` 是同一接口的重复定义，直接用同一个函数"
+  },
+  "L": {
+   "export": "getDictListByType",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "m": {
+   "export": "LoginModal",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "组件（登录弹窗，桩"
+  },
+  "M": {
+   "export": "Modal",
+   "path": "ant-design-vue",
+   "npm": true,
+   "source": "shim-map",
+   "note": "ant-design-vue"
+  },
+  "n": {
+   "export": "openArticle",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "article, noDetail?, {pre}?)`"
+  },
+  "N": {
+   "export": "getCurrentLocation",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "navigator.geolocation 取经纬度"
+  },
+  "o": {
+   "export": "checkLogin",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "type, content?, okText?, cancelText?)`（返回 Promise<number>：3 未登录，1 通过，0 阻止"
+  },
+  "O": {
+   "export": "checkIdentity",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "{type, content, …})`"
+  },
+  "p": {
+   "export": "TEXT_GO_AUTH",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "\"去认证\""
+  },
+  "q": {
+   "export": "MSG_CORP_NOT_AUTH",
+   "path": "@/legacy",
+   "source": "shim-map"
+  },
+  "Q": {
+   "export": "MSG_CORP_NOT_CERTIFIED",
+   "path": "@/legacy/utils",
+   "source": "curated",
+   "note": "提示文案：当前账户未认证单位信息"
+  },
+  "r": {
+   "export": "IDENTITY_CORP",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "1"
+  },
+  "s": {
+   "export": "queryIdentityByCompanyId",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "S": {
+   "export": "userStorage",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "`getUser/getToken/getCorp/setCorp/getXfSysUser…`"
+  },
+  "t": {
+   "export": "listToTree",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "list)`"
+  },
+  "u": {
+   "export": "useStore",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "`（vuex；页面里一般读 `store.getters.userInfo/userUrl/dictList`"
+  },
+  "U": {
+   "ignore": "globalThis：只有内联的二维码库用，换成 npm 包后不需要",
+   "source": "shim-map"
+  },
+  "v": {
+   "export": "openUserCenter",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "path, target?)`"
+  },
+  "V": {
+   "export": "VideoPlayer",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "组件（视频，桩"
+  },
+  "w": {
+   "export": "getSettingValueByCode",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "W": {
+   "export": "queryAreaChildrenTreeListById",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "x": {
+   "export": "MSG_PERFECT_PERSONAL",
+   "path": "@/legacy",
+   "source": "shim-map"
+  },
+  "X": {
+   "export": "getInfoByAreaId",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "params)`"
+  },
+  "y": {
+   "export": "IDENTITY_OTHER",
+   "path": "@/legacy",
+   "source": "shim-map",
+   "note": "2"
+  },
+  "z": {
+   "export": "request",
+   "path": "@/utils/request",
+   "source": "shim-map",
+   "note": "axios 实例，`request({url,method,params|data})`"
+  }
+ },
+ "chunks": {}
+}

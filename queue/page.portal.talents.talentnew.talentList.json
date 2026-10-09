@@ -1,0 +1,72 @@
+{
+ "id": "page.portal.talents.talentnew.talentList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 14.1,
+ "sourceChunk": "legacy-dist/portal/assets/talentList.17833206362002.js",
+ "components": [
+  {
+   "name": "talentList",
+   "scopeId": "data-v-0cf261ff"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0cf261ff"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/talentList.17833206362002.css"
+ ],
+ "target": "apps/portal/src/views/talents/talentnew/talentList.vue",
+ "subComponentDir": "apps/portal/src/views/talents/talentnew/talentList/",
+ "routes": [
+  {
+   "path": "/talents/talentsHome",
+   "name": "talents/talentsHome",
+   "title": "单位招聘"
+  }
+ ],
+ "recordPath": "/talents/talentsHome",
+ "maps": "out/maps/page.portal.talents.talentnew.talentList.json",
+ "hints": "out/hints/page.portal.talents.talentnew.talentList.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "Q",
+   "S",
+   "be",
+   "c",
+   "cv",
+   "f",
+   "h",
+   "m",
+   "o",
+   "p",
+   "r",
+   "u",
+   "v",
+   "z"
+  ],
+  "shared": [
+   "InterviewInvitation.1783320636200.js",
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "entry.portal.c05",
+   "shared.portal.InterviewInvitation"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

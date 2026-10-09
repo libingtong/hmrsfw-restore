@@ -1,0 +1,57 @@
+{
+ "id": "page.portal.oddJob.Sparework.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8.4,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620047.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-a0d2e84a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a0d2e84a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620035.css",
+  "legacy-dist/portal/assets/index.178332063620039.css",
+  "legacy-dist/portal/assets/index.178332063620047.css"
+ ],
+ "target": "apps/portal/src/views/oddJob/Sparework/index.vue",
+ "subComponentDir": "apps/portal/src/views/oddJob/Sparework/index/",
+ "routes": [
+  {
+   "path": "/Sparework",
+   "name": "Sparework",
+   "title": "余工信息"
+  }
+ ],
+ "recordPath": "/Sparework",
+ "maps": "out/maps/page.portal.oddJob.Sparework.index.json",
+ "hints": "out/hints/page.portal.oddJob.Sparework.index.md",
+ "deps": {
+  "entry": [
+   "S",
+   "c",
+   "m"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620024.js#m",
+   "index.api.178332063620024.js#o"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

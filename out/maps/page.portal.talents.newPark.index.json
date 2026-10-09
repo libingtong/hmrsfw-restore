@@ -1,0 +1,59 @@
+{
+ "id": "page.portal.talents.newPark.index",
+ "chunk": "legacy-dist/portal/assets/index.1783320636200100.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Z": "defineComponent",
+  "j": "useRoute (vue-router)",
+  "A": "useRouter (vue-router)",
+  "F": "watch",
+  "H": "reactive",
+  "J": "onBeforeMount",
+  "K": "onMounted",
+  "w": "ref",
+  "M": "openBlock",
+  "R": "createElementBlock",
+  "o": "createVNode",
+  "c": "createElementVNode",
+  "g": "withCtx"
+ },
+ "entry": {
+  "V": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "O": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "m": {
+   "original": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Q": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "U": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

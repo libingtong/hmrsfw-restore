@@ -1,0 +1,59 @@
+{
+ "id": "shared.uc.phone",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 0.8,
+ "chunkKb": 0.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/phone.1751615607545.js",
+ "components": [
+  {
+   "name": "phone",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/phone.vue",
+ "exports": {
+  "p": {
+   "export": "default"
+  }
+ },
+ "registryKey": "phone.1751615607545.js",
+ "usedBy": [
+  "page.uc.oddjob.need.add",
+  "page.uc.oddjob.lack.add",
+  "page.uc.oddjob.sharepage",
+  "page.uc.changephone",
+  "page.uc.CorpAttestation",
+  "page.uc.zcyzCorpAttestation",
+  "page.uc.CorpAttestationapprove",
+  "page.uc.zcyzCorpAttestationapprove",
+  "page.uc.PositionRelease",
+  "page.uc.PositionReleaseAbroad",
+  "page.uc.webFairWork",
+  "page.uc.JobFairRelease",
+  "page.uc.addmysubscribe",
+  "page.uc.liveApplyAdd",
+  "page.uc.zcyzPositionRelease",
+  "page.uc.zcyzJobFairRelease",
+  "page.uc.zcyzwebFairWork",
+  "shared.uc.addKeynote",
+  "shared.uc.complaint",
+  "shared.uc.setStatus"
+ ],
+ "maps": "out/maps/shared.uc.phone.json",
+ "hints": "out/hints/shared.uc.phone.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

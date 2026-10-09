@@ -1,0 +1,142 @@
+{
+ "id": "page.portal.talents.eMap.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620096.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "qt": "defineComponent",
+  "Ut": "reactive",
+  "Mt": "onMounted",
+  "Vt": "ref",
+  "v": "resolveComponent",
+  "d": "openBlock",
+  "f": "createElementBlock",
+  "i": "createElementVNode",
+  "a": "createVNode",
+  "r": "withCtx",
+  "x": "Fragment",
+  "D": "renderList",
+  "k": "unref",
+  "b": "toDisplayString",
+  "w": "createTextVNode",
+  "A": "normalizeClass",
+  "F": "createBlock",
+  "$": "withDirectives",
+  "K": "vShow",
+  "C": "createCommentVNode",
+  "Zt": "pushScopeId",
+  "Wt": "popScopeId",
+  "q": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "Yt": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "Jt": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "de": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "$t": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "X": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Kt": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ue": {
+   "original": "index.api.178332063620020.js#a",
+   "path": "@/api/service",
+   "export": "freeServiceUnitPageListForMap",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeServiceUnitPageListForMap"
+  }
+ },
+ "shared": {
+  "N": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "eo": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "oo": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Rt": {
+   "original": "adr.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.9KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "adrImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Gt": {
+   "original": "adr.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.4KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "adrImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Ht": {
+   "original": "work.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.3KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "workImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

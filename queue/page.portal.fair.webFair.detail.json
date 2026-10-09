@@ -1,0 +1,83 @@
+{
+ "id": "page.portal.fair.webFair.detail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 29.7,
+ "sourceChunk": "legacy-dist/portal/assets/detail.17833206362004.js",
+ "components": [
+  {
+   "name": "detail",
+   "scopeId": "data-v-54a2c6b3"
+  }
+ ],
+ "scopeIds": [
+  "data-v-54a2c6b3"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/detail.17833206362003.css",
+  "legacy-dist/portal/assets/detail.17833206362004.css"
+ ],
+ "target": "apps/portal/src/views/fair/webFair/detail.vue",
+ "subComponentDir": "apps/portal/src/views/fair/webFair/detail/",
+ "routes": [
+  {
+   "path": "/webFairDetail/:zphId",
+   "name": "webFairDetail",
+   "title": "网络招聘会"
+  }
+ ],
+ "recordPath": "/webFairDetail/:zphId",
+ "maps": "out/maps/page.portal.fair.webFair.detail.json",
+ "hints": "out/hints/page.portal.fair.webFair.detail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "D",
+   "I",
+   "J",
+   "K",
+   "O",
+   "S",
+   "aD",
+   "ap",
+   "ba",
+   "c",
+   "d",
+   "f",
+   "g",
+   "h",
+   "m",
+   "p",
+   "q",
+   "r",
+   "u"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "industryCode.1783320636200.js",
+   "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#g",
+   "index.api.178332063620017.js#b",
+   "index.api.178332063620017.js#c",
+   "index.api.178332063620017.js#d",
+   "index.api.178332063620017.js#e",
+   "index.api.178332063620017.js#f",
+   "index.api.178332063620017.js#h"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

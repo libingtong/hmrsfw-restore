@@ -1,0 +1,47 @@
+{
+ "id": "shared.portal.tagcanvas",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.9,
+ "chunkKb": 42.7,
+ "bundled": {
+  "kb": 40.8,
+  "what": "TagCanvas（jQuery 插件，无官方 npm 包，待核对）",
+  "rule": "开头这段是打包进来的库或数据：库改为 npm 依赖（版本按指纹），数据抽成 JSON/资源文件，不得原样拷进 .vue"
+ },
+ "sourceChunk": "legacy-dist/portal/assets/tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "components": [
+  {
+   "name": "tagcanvas",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/tagcanvas.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "usedBy": [
+  "page.portal.sjz.school.index",
+  "page.portal.setUp.setupList",
+  "page.portal.talents.setUp.setupList"
+ ],
+ "maps": "out/maps/shared.portal.tagcanvas.json",
+ "hints": "out/hints/shared.portal.tagcanvas.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

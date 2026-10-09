@@ -1,0 +1,44 @@
+{
+ "id": "page.portal.talents.cityHome.job",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.7,
+ "sourceChunk": "legacy-dist/portal/assets/job.1783320636200.js",
+ "components": [
+  {
+   "name": "job",
+   "scopeId": "data-v-b7b3e6cc"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b7b3e6cc"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/job.1783320636200.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/cityHome/job.vue",
+ "subComponentDir": "apps/portal/src/views/talents/cityHome/job/",
+ "routes": [],
+ "recordPath": "/talents/cityHome/:areaId",
+ "maps": "out/maps/page.portal.talents.cityHome.job.json",
+ "hints": "out/hints/page.portal.talents.cityHome.job.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.cityHome.index"
+}

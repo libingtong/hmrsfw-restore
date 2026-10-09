@@ -1,0 +1,99 @@
+{
+ "id": "page.uc.enterprisetemplate",
+ "chunk": "legacy-dist/usercenter/assets/enterprisetemplate.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "oe": "defineComponent",
+  "x": "ref",
+  "le": "reactive",
+  "ne": "onMounted",
+  "i": "resolveComponent",
+  "k": "openBlock",
+  "j": "createElementBlock",
+  "o": "createVNode",
+  "l": "withCtx",
+  "s": "createElementVNode",
+  "w": "createTextVNode",
+  "se": "Fragment",
+  "ie": "renderList",
+  "N": "createBlock",
+  "P": "createCommentVNode",
+  "U": "unref",
+  "ce": "toDisplayString",
+  "re": "pushScopeId",
+  "de": "popScopeId"
+ },
+ "entry": {
+  "V": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "_": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "G": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "H": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "W": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "ee": {
+   "original": "index.api.17516156075456.js#R",
+   "path": "@/api/api-56",
+   "export": "vitaeTempListByType",
+   "status": "restored",
+   "url": "/job/xfJobVitaeTemplate/vitaeTempListByType"
+  },
+  "te": {
+   "original": "index.api.17516156075456.js#S",
+   "path": "@/api/api-56",
+   "export": "listNewForPoster",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompanyPosition/listNewForPoster"
+  },
+  "ae": {
+   "original": "index.api.17516156075456.js#T",
+   "path": "@/api/api-56",
+   "export": "generatePoster4PC",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/generatePoster4PC"
+  }
+ },
+ "shared": {
+  "Z": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

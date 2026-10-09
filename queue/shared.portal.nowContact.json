@@ -1,0 +1,43 @@
+{
+ "id": "shared.portal.nowContact",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.4,
+ "chunkKb": 1.4,
+ "sourceChunk": "legacy-dist/portal/assets/nowContact.vue_vue_type_script_setup_true_lang.1783320636200.js",
+ "components": [
+  {
+   "name": "nowContact",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/nowContact.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "nowContact.vue_vue_type_script_setup_true_lang.1783320636200.js",
+ "usedBy": [
+  "page.portal.oddJob.recruitworkers.index",
+  "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+  "page.portal.oddJob.Jobsearch.index",
+  "page.portal.oddJob.Jobsearch.JobsearchDetail"
+ ],
+ "maps": "out/maps/shared.portal.nowContact.json",
+ "hints": "out/hints/shared.portal.nowContact.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

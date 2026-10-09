@@ -1,0 +1,76 @@
+{
+ "id": "page.portal.talents.fair.outFair.detail",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 29.2,
+ "sourceChunk": "legacy-dist/portal/assets/detail.178332063620011.js",
+ "components": [
+  {
+   "name": "detail",
+   "scopeId": "data-v-fdf989a4"
+  }
+ ],
+ "scopeIds": [
+  "data-v-fdf989a4"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/detail.17833206362007.css",
+  "legacy-dist/portal/assets/detail.178332063620011.css"
+ ],
+ "target": "apps/portal/src/views/talents/fair/outFair/detail.vue",
+ "subComponentDir": "apps/portal/src/views/talents/fair/outFair/detail/",
+ "routes": [
+  {
+   "path": "/talents/outFairDetail/:zphId",
+   "name": "talents/outFairDetail",
+   "title": "线下招聘会"
+  }
+ ],
+ "recordPath": "/talents/outFairDetail/:zphId",
+ "maps": "out/maps/page.portal.talents.fair.outFair.detail.json",
+ "hints": "out/hints/page.portal.talents.fair.outFair.detail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "J",
+   "K",
+   "S",
+   "aD",
+   "c",
+   "d",
+   "f",
+   "h",
+   "m",
+   "o",
+   "p",
+   "q",
+   "r",
+   "z"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "industryCode.1783320636200.js",
+   "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/talents/outFairDetail/:zphId",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

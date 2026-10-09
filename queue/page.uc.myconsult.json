@@ -1,0 +1,51 @@
+{
+ "id": "page.uc.myconsult",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/myconsult.1751615607545.js",
+ "components": [
+  {
+   "name": "myconsult",
+   "scopeId": "data-v-91dec102"
+  }
+ ],
+ "scopeIds": [
+  "data-v-91dec102"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/myconsult.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/myconsult.vue",
+ "subComponentDir": "apps/uc/src/views/myconsult/",
+ "routes": [
+  {
+   "path": "/myconsult",
+   "name": "myconsult"
+  }
+ ],
+ "recordPath": "/myconsult",
+ "maps": "out/maps/page.uc.myconsult.json",
+ "hints": "out/hints/page.uc.myconsult.md",
+ "deps": {
+  "entry": [
+   "d"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "metormodal.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075454.js#d"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.metormodal"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

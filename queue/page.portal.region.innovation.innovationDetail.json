@@ -1,0 +1,54 @@
+{
+ "id": "page.portal.region.innovation.innovationDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2,
+ "sourceChunk": "legacy-dist/portal/assets/innovationDetail.1783320636200.js",
+ "components": [
+  {
+   "name": "innovationDetail",
+   "scopeId": "data-v-0f153999"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0f153999"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/innovationDetail.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/region/innovation/innovationDetail.vue",
+ "subComponentDir": "apps/portal/src/views/region/innovation/innovationDetail/",
+ "routes": [
+  {
+   "path": "/region/innovationDetail",
+   "name": "innovationDetail",
+   "title": "创业服务活动"
+  }
+ ],
+ "recordPath": "/region/innovationDetail",
+ "maps": "out/maps/page.portal.region.innovation.innovationDetail.json",
+ "hints": "out/hints/page.portal.region.innovation.innovationDetail.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "V",
+   "f",
+   "m"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620032.js#a"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03",
+   "entry.portal.c05"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

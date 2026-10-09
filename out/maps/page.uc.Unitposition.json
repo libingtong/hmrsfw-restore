@@ -1,0 +1,92 @@
+{
+ "id": "page.uc.Unitposition",
+ "chunk": "legacy-dist/usercenter/assets/Unitposition.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "ue": "defineComponent",
+  "G": "inject",
+  "_e": "ref",
+  "he": "reactive",
+  "Ee": "onMounted",
+  "u": "resolveComponent",
+  "s": "openBlock",
+  "c": "createElementBlock",
+  "i": "createVNode",
+  "r": "withCtx",
+  "E": "Fragment",
+  "I": "renderList",
+  "A": "createTextVNode",
+  "t": "createElementVNode",
+  "_": "createCommentVNode",
+  "x": "createBlock",
+  "N": "unref",
+  "l": "toDisplayString",
+  "S": "h",
+  "Qe": "pushScopeId",
+  "ye": "popScopeId"
+ },
+ "entry": {
+  "de": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Ae": {
+   "original": "bo",
+   "path": "@/legacy/api",
+   "export": "getCompanyForMyCare",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ge": {
+   "original": "bp",
+   "path": "@/legacy/api",
+   "export": "getCompanyPositionForMyCare",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "F": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "H": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "L": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "q": {
+   "original": "b5",
+   "path": "@/legacy/api",
+   "export": "cancel",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Z": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "pe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

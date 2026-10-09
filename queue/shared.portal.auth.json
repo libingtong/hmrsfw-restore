@@ -1,0 +1,75 @@
+{
+ "id": "shared.portal.auth",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.2,
+ "chunkKb": 5.2,
+ "sourceChunk": "legacy-dist/portal/assets/auth.1783320636200.js",
+ "components": [
+  {
+   "name": "BackGround",
+   "scopeId": "data-v-b477bb74"
+  },
+  {
+   "name": "OneContent",
+   "scopeId": "data-v-08282971"
+  },
+  {
+   "name": "ColumnContent",
+   "scopeId": "data-v-edf344e0"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b477bb74",
+  "data-v-08282971",
+  "data-v-edf344e0"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/auth.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/auth.ts",
+ "subComponentDir": "apps/portal/src/shared/auth/",
+ "exports": {
+  "B": {
+   "path": "@/shared/auth/BackGround.vue",
+   "export": "default"
+  },
+  "C": {
+   "path": "@/shared/auth/ColumnContent.vue",
+   "export": "default"
+  },
+  "O": {
+   "path": "@/shared/auth/OneContent.vue",
+   "export": "default"
+  },
+  "_": {
+   "export": "_"
+  },
+  "a": {
+   "export": "a"
+  }
+ },
+ "registryKey": "auth.1783320636200.js",
+ "usedBy": [
+  "page.portal.guide.jobHunt",
+  "page.portal.guide.index"
+ ],
+ "maps": "out/maps/shared.portal.auth.json",
+ "hints": "out/hints/shared.portal.auth.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f",
+   "v"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

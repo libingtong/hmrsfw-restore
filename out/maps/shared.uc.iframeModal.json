@@ -1,0 +1,35 @@
+{
+ "id": "shared.uc.iframeModal",
+ "chunk": "legacy-dist/usercenter/assets/iframeModal.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "c": "defineComponent",
+  "d": "reactive",
+  "m": "onMounted",
+  "f": "openBlock",
+  "p": "createElementBlock",
+  "_": "createVNode",
+  "u": "withCtx",
+  "b": "createElementVNode",
+  "v": "unref"
+ },
+ "entry": {
+  "r": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "n": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

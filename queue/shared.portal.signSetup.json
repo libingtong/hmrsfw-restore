@@ -1,0 +1,54 @@
+{
+ "id": "shared.portal.signSetup",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.9,
+ "chunkKb": 3.9,
+ "sourceChunk": "legacy-dist/portal/assets/signSetup.1783320636200.js",
+ "components": [
+  {
+   "name": "signSetup",
+   "scopeId": "data-v-9600d46b"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9600d46b"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/signSetup.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/signSetup.vue",
+ "exports": {
+  "s": {
+   "export": "default"
+  }
+ },
+ "registryKey": "signSetup.1783320636200.js",
+ "usedBy": [
+  "page.portal.sjz.setUp.setupDetail",
+  "page.portal.train.trainDetail",
+  "page.portal.talents.setUp.setupDetail"
+ ],
+ "maps": "out/maps/shared.portal.signSetup.json",
+ "hints": "out/hints/shared.portal.signSetup.md",
+ "deps": {
+  "entry": [
+   "A",
+   "S",
+   "Y",
+   "cj"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

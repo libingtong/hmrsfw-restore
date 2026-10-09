@@ -1,0 +1,78 @@
+{
+ "id": "page.uc.zcyzCorpAttestation",
+ "type": "page",
+ "status": "segmented",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 46.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/zcyzCorpAttestation.1751615607545.js",
+ "components": [
+  {
+   "name": "zcyzCorpAttestation",
+   "scopeId": "data-v-64fd3025"
+  }
+ ],
+ "scopeIds": [
+  "data-v-64fd3025"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/map.1751615607545.css",
+  "legacy-dist/usercenter/assets/zcyzCorpAttestation.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/zcyzCorpAttestation.vue",
+ "subComponentDir": "apps/uc/src/views/zcyzCorpAttestation/",
+ "routes": [
+  {
+   "path": "/zcyzCorpAttestation",
+   "name": "zcyzCorpAttestation"
+  }
+ ],
+ "recordPath": "/zcyzCorpAttestation",
+ "maps": "out/maps/page.uc.zcyzCorpAttestation.json",
+ "hints": "out/hints/page.uc.zcyzCorpAttestation.md",
+ "deps": {
+  "entry": [
+   "B",
+   "E",
+   "F",
+   "I",
+   "L",
+   "M",
+   "P",
+   "U",
+   "a",
+   "c",
+   "d",
+   "e",
+   "f",
+   "h",
+   "m",
+   "p",
+   "v",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "email.1751615607545.js",
+   "gaode.1751615607545.js",
+   "idCard.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "segments": [
+  "seg.uc.zcyzCorpAttestation.1",
+  "seg.uc.zcyzCorpAttestation.2"
+ ]
+}

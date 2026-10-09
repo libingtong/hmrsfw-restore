@@ -1,0 +1,54 @@
+{
+ "id": "shared.portal.adsCenter",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.7,
+ "chunkKb": 2.7,
+ "sourceChunk": "legacy-dist/portal/assets/adsCenter.1783320636200.js",
+ "components": [
+  {
+   "name": "adsCenter",
+   "scopeId": "data-v-25c7a495"
+  }
+ ],
+ "scopeIds": [
+  "data-v-25c7a495"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/adsCenter.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/adsCenter.vue",
+ "exports": {
+  "a": {
+   "export": "default"
+  }
+ },
+ "registryKey": "adsCenter.1783320636200.js",
+ "usedBy": [
+  "page.portal.talents.index.index",
+  "page.portal.talents.cityHome.index",
+  "page.portal.talents.setUp.setupList"
+ ],
+ "maps": "out/maps/shared.portal.adsCenter.json",
+ "hints": "out/hints/shared.portal.adsCenter.md",
+ "deps": {
+  "entry": [
+   "B",
+   "av",
+   "c",
+   "cn",
+   "f"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

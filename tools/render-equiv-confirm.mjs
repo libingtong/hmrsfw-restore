@@ -1,19 +1,25 @@
-// Report-only render-equivalence pass over the confirmation pages (plan §2: not a gate until FP ≤ 10%).
-// Usage: node tools/render-equiv-confirm.mjs <ids...>  → out/render-equiv-confirm.json (merged)
-import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
+// Report-only render-equivalence (batch-plan.md §3.2: not a gate until the false-positive rate is ≤ 10%). Runs
+// render-equiv.mjs on the files a work order delivers against its original chunk, with the original and the restored
+// render functions compiled by the same Vue version (tools/vuefp: 3.2.47, tools/vuefp33: 3.3.4).
+// Usage: node tools/render-equiv-confirm.mjs <order id> [<order id> ...] --app <hmrsfw-vue>   → one JSON line per order
+// self-check.mjs calls renderEquiv(); its result goes to `reports.renderEquiv`, never to `failed`.
 import { execFileSync } from "node:child_process";
 import path from "node:path";
-const ids = process.argv.slice(2);
-const orders = JSON.parse(readFileSync("tools/confirm-orders.json", "utf8")).filter((o) => ids.includes(o.id));
-const outF = "out/render-equiv-confirm.json"; const R = existsSync(outF) ? JSON.parse(readFileSync(outF, "utf8")) : {};
-for (const o of orders) for (const g of ["s", "h"]) {
-  const main = `restore-${g}/${o.target}`; const sub = `restore-${g}/${o.subComponentDir}`;
-  const files = [main, ...(existsSync(sub) ? readdirSync(sub).filter((f) => f.endsWith(".vue")).map((f) => path.join(sub, f)) : [])];
-  let res; try { const out = execFileSync("node", ["tools/render-equiv.mjs", o.site, o.sourceChunk, ...files], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 120000 });
-    res = out.split("\n").filter((l) => l.startsWith("[")).flatMap((l) => JSON.parse(l)).map((x) => ({ c: x.c, r: x.r, t: x.t, o: x.o, x: x.x }));
-  } catch (e) { res = [{ c: "*", r: "ERROR", msg: String(e.stderr || e.message).split("\n").find((l) => /Error/.test(l))?.slice(0, 200) }]; }
-  const v = JSON.parse(readFileSync(`out/verify-confirm/${g}/${o.id}.json`, "utf8"));
-  R[`${o.id}-${g.toUpperCase()}`] = { replayPass: v.pass, ast: res, astAllEqual: res.every((x) => x.r === "EQUAL") };
-  console.log(o.id, g, "replay", v.pass, "ast", res.map((x) => x.c + ":" + x.r).join(" "));
+import { pathToFileURL } from "node:url";
+import { ROOT } from "./scope.mjs";
+import { loadOrder, orderFiles } from "./sfc-util.mjs";
+import { appDir } from "./app-dir.mjs";
+
+export function renderEquiv(order, APP, { files = orderFiles(order, APP).filter((f) => f.endsWith(".vue")) } = {}) {
+  if (!files.length || !order.sourceChunk) return { skipped: "没有可比对的 .vue 文件" };
+  try {
+    const out = execFileSync(process.execPath, [path.join(ROOT, "tools/render-equiv.mjs"), order.site, path.join(ROOT, order.sourceChunk), ...files.map((f) => path.resolve(APP, f))], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 120000, env: { ...process.env, RENDER_EQUIV_NO_FILE: "1" } });
+    const res = out.split("\n").filter((l) => l.startsWith("[")).flatMap((l) => JSON.parse(l)).map((x) => ({ component: x.c, result: x.r, tokens: x.t }));
+    return { allEqual: res.every((x) => x.result === "EQUAL"), components: res };
+  } catch (e) { return { error: String(e.stderr || e.message).split("\n").find((l) => /Error/.test(l))?.slice(0, 200) ?? "render-equiv failed" }; }
 }
-writeFileSync(outF, JSON.stringify(R, null, 1));
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const APP = appDir(); const ids = process.argv.slice(2).filter((a, i, all) => !a.startsWith("--") && all[i - 1] !== "--app");
+  for (const id of ids) console.log(JSON.stringify({ id, ...renderEquiv(loadOrder(id), APP) }));
+}

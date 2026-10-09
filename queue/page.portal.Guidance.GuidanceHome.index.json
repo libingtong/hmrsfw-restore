@@ -1,0 +1,83 @@
+{
+ "id": "page.portal.Guidance.GuidanceHome.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 18.4,
+ "sourceChunk": "legacy-dist/portal/assets/index.17833206362006.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-152075a6"
+  }
+ ],
+ "scopeIds": [
+  "data-v-152075a6"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620011.css",
+  "legacy-dist/portal/assets/index.17833206362006.css"
+ ],
+ "target": "apps/portal/src/views/Guidance/GuidanceHome/index.vue",
+ "subComponentDir": "apps/portal/src/views/Guidance/GuidanceHome/index/",
+ "routes": [
+  {
+   "path": "/GuidanceHome",
+   "name": "GuidanceHome",
+   "title": "职业指导"
+  }
+ ],
+ "recordPath": "/GuidanceHome",
+ "maps": "out/maps/page.portal.Guidance.GuidanceHome.index.json",
+ "hints": "out/hints/page.portal.Guidance.GuidanceHome.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "V",
+   "a",
+   "b",
+   "c",
+   "f",
+   "h",
+   "m",
+   "n",
+   "o",
+   "p",
+   "x",
+   "y"
+  ],
+  "shared": [
+   "Gigmarketgetjobpost.1783320636200.js",
+   "ellipsisText.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.17833206362003.js#a",
+   "index.api.17833206362003.js#b",
+   "index.api.17833206362003.js#c",
+   "index.api.17833206362003.js#g",
+   "index.api.17833206362003.js#l",
+   "index.api.17833206362003.js#q",
+   "index.api.17833206362003.js#t",
+   "index.api.17833206362003.js#x",
+   "index.api.17833206362004.js#g"
+  ],
+  "modules": [
+   "ask.1783320636200.js",
+   "courseNull.1783320636200.js",
+   "da.1783320636200.js",
+   "dianzan.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.c03",
+   "entry.portal.c05",
+   "shared.portal.ellipsisText",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

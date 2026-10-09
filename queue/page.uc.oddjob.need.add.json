@@ -1,0 +1,73 @@
+{
+ "id": "page.uc.oddjob.need.add",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 15.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/need-job-add.1751615607545.js",
+ "components": [
+  {
+   "name": "need-job-add",
+   "scopeId": "data-v-d185e707"
+  }
+ ],
+ "scopeIds": [
+  "data-v-d185e707"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/need-job-add.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/oddjob/need/add.vue",
+ "subComponentDir": "apps/uc/src/views/oddjob/need/add/",
+ "routes": [
+  {
+   "path": "/oddjob/need/add",
+   "name": "OddjobNeedAdd"
+  },
+  {
+   "path": "/oddjob/need/edit",
+   "name": "OddjobNeedEdit"
+  }
+ ],
+ "recordPath": "/oddjob/need/add",
+ "maps": "out/maps/page.uc.oddjob.need.add.json",
+ "hints": "out/hints/page.uc.oddjob.need.add.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a",
+   "ad",
+   "c",
+   "d",
+   "e",
+   "f",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x"
+  ],
+  "shared": [
+   "Content.vue_vue_type_script_setup_true_lang.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "extractpositionmodal.1751615607545.js",
+   "phone.1751615607545.js",
+   "workType.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754519.js#a",
+   "index.api.175161560754519.js#b",
+   "index.api.175161560754519.js#e"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.Content"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

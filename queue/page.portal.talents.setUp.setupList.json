@@ -1,0 +1,74 @@
+{
+ "id": "page.portal.talents.setUp.setupList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 7.9,
+ "sourceChunk": "legacy-dist/portal/assets/setupList.17833206362002.js",
+ "components": [
+  {
+   "name": "projectInfo",
+   "scopeId": "data-v-d1ff834e"
+  },
+  {
+   "name": "setupList",
+   "scopeId": "data-v-254d698a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-d1ff834e",
+  "data-v-254d698a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/navigation.1783320636200.css",
+  "legacy-dist/portal/assets/tagcanvas.1783320636200.css",
+  "legacy-dist/portal/assets/homeNews.17833206362002.css",
+  "legacy-dist/portal/assets/setupList.17833206362002.css"
+ ],
+ "target": "apps/portal/src/views/talents/setUp/setupList.vue",
+ "subComponentDir": "apps/portal/src/views/talents/setUp/setupList/",
+ "routes": [
+  {
+   "path": "/talents/setupList",
+   "name": "talents/setupList",
+   "title": "项目推介"
+  }
+ ],
+ "recordPath": "/talents/setupList",
+ "maps": "out/maps/page.portal.talents.setUp.setupList.json",
+ "hints": "out/hints/page.portal.talents.setUp.setupList.md",
+ "deps": {
+  "entry": [
+   "B",
+   "av",
+   "c",
+   "f",
+   "h",
+   "u",
+   "w"
+  ],
+  "shared": [
+   "adsCenter.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "homeNews.17833206362003.js",
+   "hotProject.1783320636200.js",
+   "tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [
+   "card.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.adsCenter",
+   "shared.portal.homeNews3",
+   "shared.portal.hotProject",
+   "shared.portal.modules",
+   "shared.portal.tagcanvas"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

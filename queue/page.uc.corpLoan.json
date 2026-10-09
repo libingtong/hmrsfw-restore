@@ -1,0 +1,48 @@
+{
+ "id": "page.uc.corpLoan",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.17516156075459.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-09ffe693"
+  }
+ ],
+ "scopeIds": [
+  "data-v-09ffe693"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.17516156075459.css"
+ ],
+ "target": "apps/uc/src/views/corpLoan.vue",
+ "subComponentDir": "apps/uc/src/views/corpLoan/",
+ "routes": [
+  {
+   "path": "/corpLoan",
+   "name": "corpLoan"
+  }
+ ],
+ "recordPath": "/corpLoan",
+ "maps": "out/maps/page.uc.corpLoan.json",
+ "hints": "out/hints/page.uc.corpLoan.md",
+ "deps": {
+  "entry": [
+   "N"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17516156075459.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.c01"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

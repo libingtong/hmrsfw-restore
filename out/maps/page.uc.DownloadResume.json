@@ -1,0 +1,70 @@
+{
+ "id": "page.uc.DownloadResume",
+ "chunk": "legacy-dist/usercenter/assets/DownloadResume.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "O": "defineComponent",
+  "R": "inject",
+  "Q": "useRouter (vue-router)",
+  "X": "reactive",
+  "Y": "onMounted",
+  "r": "resolveComponent",
+  "u": "openBlock",
+  "f": "createElementBlock",
+  "d": "createVNode",
+  "l": "withCtx",
+  "h": "createTextVNode",
+  "v": "createElementVNode",
+  "Z": "Fragment",
+  "C": "createCommentVNode",
+  "T": "toDisplayString",
+  "F": "createBlock",
+  "U": "h"
+ },
+ "entry": {
+  "B": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "K": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "W": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ee": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "G": {
+   "original": "index.api.175161560754510.js#g",
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "getDownloadList",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCompanyCurriculumDownload/getDownloadList"
+  },
+  "H": {
+   "original": "index.api.175161560754510.js#a",
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "addTalent",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

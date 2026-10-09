@@ -1,0 +1,94 @@
+{
+ "id": "page.portal.fair.signModal",
+ "chunk": "legacy-dist/portal/assets/signModal.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "me": "defineComponent",
+  "ye": "useRouter (vue-router)",
+  "we": "reactive",
+  "Ie": "onMounted",
+  "v": "resolveComponent",
+  "I": "openBlock",
+  "T": "createElementBlock",
+  "u": "createVNode",
+  "F": "withCtx",
+  "o": "createElementVNode",
+  "P": "toDisplayString",
+  "f": "createTextVNode",
+  "t": "unref",
+  "_": "createCommentVNode",
+  "Te": "pushScopeId",
+  "Pe": "popScopeId"
+ },
+ "entry": {
+  "pe": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "R": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "A": {
+   "original": "J",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "he": {
+   "original": "K",
+   "path": "@/legacy",
+   "export": "getSettingValueByCodes",
+   "status": "restored"
+  },
+  "w": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "d": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "de": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "fe": {
+   "original": "index.api.178332063620017.js#g",
+   "path": "@/api/api-17",
+   "export": "checkIzShowApplySameNetworkFair",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair"
+  },
+  "be": {
+   "original": "index.api.178332063620017.js#a",
+   "path": "@/api/api-17",
+   "export": "queryFairRegions",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/queryFairRegions"
+  },
+  "ve": {
+   "original": "index.api.178332063620017.js#s",
+   "path": "@/api/api-17",
+   "export": "updateCompIntroduc",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/updateCompIntroduc"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,60 @@
+{
+ "id": "shared.uc.workshopNews",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.4,
+ "chunkKb": 5.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/workshopNews.1751615607545.js",
+ "components": [
+  {
+   "name": "workshopType",
+   "scopeId": "data-v-cde39009"
+  },
+  {
+   "name": "workshopNews",
+   "scopeId": "data-v-623d9692"
+  }
+ ],
+ "scopeIds": [
+  "data-v-cde39009",
+  "data-v-623d9692"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/workshopNews.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/workshopNews/WorkshopType.vue",
+ "subComponentDir": "apps/uc/src/shared/workshopNews/",
+ "exports": {
+  "a": {
+   "path": "@/shared/workshopNews/WorkshopNews.vue",
+   "export": "default"
+  },
+  "w": {
+   "path": "@/shared/workshopNews/WorkshopType.vue",
+   "export": "default"
+  }
+ },
+ "registryKey": "workshopNews.1751615607545.js",
+ "usedBy": [
+  "page.uc.gongfuWorkshop.positionPosting",
+  "page.uc.gongfuWorkshop.jobPosting"
+ ],
+ "maps": "out/maps/shared.uc.workshopNews.json",
+ "hints": "out/hints/shared.uc.workshopNews.md",
+ "deps": {
+  "entry": [
+   "k",
+   "m",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,56 @@
+{
+ "id": "page.portal.talents.conference.medias",
+ "chunk": "legacy-dist/portal/assets/medias.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "y": "defineComponent",
+  "h": "useRoute (vue-router)",
+  "x": "useRouter (vue-router)",
+  "P": "reactive",
+  "E": "onBeforeMount",
+  "k": "onMounted",
+  "m": "ref",
+  "w": "resolveComponent",
+  "o": "openBlock",
+  "p": "createElementBlock",
+  "B": "createVNode",
+  "N": "withCtx",
+  "u": "createElementVNode",
+  "b": "Fragment",
+  "A": "renderList",
+  "F": "createBlock",
+  "g": "unref"
+ },
+ "entry": {
+  "G": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "C": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "I": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "R": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

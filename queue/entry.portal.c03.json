@@ -1,0 +1,76 @@
+{
+ "id": "entry.portal.c03",
+ "type": "entry",
+ "area": "component",
+ "title": "入口全局组件：phone、loginmodal、moveWindow",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": 10.2,
+ "appCode": "018",
+ "components": [
+  {
+   "name": "phone",
+   "binding": "hEt",
+   "scopeId": null,
+   "kb": 0.3,
+   "exportedAs": [
+    "Y"
+   ],
+   "file": "apps/portal/src/legacy/components/Phone.vue"
+  },
+  {
+   "name": "loginmodal",
+   "binding": "nne",
+   "scopeId": "data-v-6ac82971",
+   "kb": 7.8,
+   "exportedAs": [
+    "m"
+   ],
+   "file": "apps/portal/src/legacy/LoginModal.vue",
+   "replacesStub": true
+  },
+  {
+   "name": "moveWindow",
+   "binding": "cne",
+   "scopeId": "data-v-a15b1e15",
+   "kb": 2.1,
+   "exportedAs": [
+    "cd"
+   ],
+   "file": "apps/portal/src/legacy/components/MoveWindow.vue"
+  }
+ ],
+ "files": [
+  "apps/portal/src/legacy/components/Phone.vue",
+  "apps/portal/src/legacy/LoginModal.vue",
+  "apps/portal/src/legacy/components/MoveWindow.vue"
+ ],
+ "owns": [
+  {
+   "alias": "cd",
+   "path": "@/legacy/components/MoveWindow.vue",
+   "export": "default",
+   "status": "reserved"
+  },
+  {
+   "alias": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "stub": "apps/portal/src/legacy/LoginModal.vue"
+  },
+  {
+   "alias": "Y",
+   "path": "@/legacy/components/Phone.vue",
+   "export": "default",
+   "status": "reserved"
+  }
+ ],
+ "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",
+ "deps": {
+  "orders": []
+ }
+}

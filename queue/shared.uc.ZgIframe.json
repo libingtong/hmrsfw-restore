@@ -1,0 +1,48 @@
+{
+ "id": "shared.uc.ZgIframe",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 0.8,
+ "chunkKb": 0.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/ZgIframe.1751615607545.js",
+ "components": [
+  {
+   "name": "ZgIframe",
+   "scopeId": "data-v-82eca9fd"
+  }
+ ],
+ "scopeIds": [
+  "data-v-82eca9fd"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/ZgIframe.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/ZgIframe.vue",
+ "exports": {
+  "Z": {
+   "export": "default"
+  }
+ },
+ "registryKey": "ZgIframe.1751615607545.js",
+ "usedBy": [
+  "page.uc.unRegister",
+  "page.uc.zgAccount",
+  "page.uc.projectApplyDetails"
+ ],
+ "maps": "out/maps/shared.uc.ZgIframe.json",
+ "hints": "out/hints/shared.uc.ZgIframe.md",
+ "deps": {
+  "entry": [
+   "G"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

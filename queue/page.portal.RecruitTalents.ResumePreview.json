@@ -1,0 +1,71 @@
+{
+ "id": "page.portal.RecruitTalents.ResumePreview",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 12.3,
+ "sourceChunk": "legacy-dist/portal/assets/ResumePreview.1783320636200.js",
+ "components": [
+  {
+   "name": "ResumePreview",
+   "scopeId": "data-v-2b3cc73c"
+  }
+ ],
+ "scopeIds": [
+  "data-v-2b3cc73c"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/ResumePreview.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/RecruitTalents/ResumePreview.vue",
+ "subComponentDir": "apps/portal/src/views/RecruitTalents/ResumePreview/",
+ "routes": [
+  {
+   "path": "/ResumePreview",
+   "name": "ResumePreview",
+   "title": "简历预览"
+  },
+  {
+   "path": "/talents/ResumePreview",
+   "name": "talents/ResumePreview",
+   "title": "简历预览"
+  }
+ ],
+ "recordPath": "/ResumePreview",
+ "maps": "out/maps/page.portal.RecruitTalents.ResumePreview.json",
+ "hints": "out/hints/page.portal.RecruitTalents.ResumePreview.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "Q",
+   "S",
+   "f",
+   "h",
+   "o",
+   "p",
+   "r",
+   "u",
+   "v",
+   "w"
+  ],
+  "shared": [
+   "InterviewInvitation.1783320636200.js"
+  ],
+  "api": [
+   "index.api.17833206362007.js#a",
+   "index.api.17833206362007.js#i",
+   "index.api.17833206362007.js#v"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "shared.portal.InterviewInvitation"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

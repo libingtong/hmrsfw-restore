@@ -1,0 +1,85 @@
+{
+ "id": "page.uc.downnoviciate",
+ "chunk": "legacy-dist/usercenter/assets/downnoviciate.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "L": "defineComponent",
+  "X": "inject",
+  "Y": "useRouter (vue-router)",
+  "Z": "reactive",
+  "G": "onMounted",
+  "o": "resolveComponent",
+  "c": "openBlock",
+  "g": "createElementBlock",
+  "a": "createVNode",
+  "n": "withCtx",
+  "S": "createTextVNode",
+  "h": "createElementVNode",
+  "H": "Fragment",
+  "p": "createCommentVNode",
+  "v": "createBlock",
+  "z": "toDisplayString",
+  "N": "h"
+ },
+ "entry": {
+  "P": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "K": {
+   "original": "aC",
+   "path": "@/legacy/api",
+   "export": "queryPageInterviewListByCompanyId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "W": {
+   "original": "a7",
+   "path": "@/legacy/api",
+   "export": "isPublishingPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ee": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "te": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ae": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ie": {
+   "original": "setStatusinterview.1751615607545.js#s",
+   "path": "@/shared/setStatusinterview.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ne": {
+   "original": "InterviewInvitation.17516156075452.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "index.api.175161560754510.js",
+  "message.1751615607545.js"
+ ],
+ "missing": []
+}

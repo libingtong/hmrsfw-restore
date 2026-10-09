@@ -1,0 +1,157 @@
+{
+ "id": "page.portal.livejob.detail",
+ "chunk": "legacy-dist/portal/assets/detail.17833206362005.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Nt": "defineComponent",
+  "$": "computed",
+  "w": "ref",
+  "Mt": "onMounted",
+  "At": "useRouter (vue-router)",
+  "Et": "useRoute (vue-router)",
+  "jt": "reactive",
+  "Ht": "onBeforeUnmount",
+  "Vt": "onUnmounted",
+  "p": "resolveComponent",
+  "l": "openBlock",
+  "o": "createElementBlock",
+  "a": "createElementVNode",
+  "X": "normalizeClass",
+  "m": "toDisplayString",
+  "v": "createTextVNode",
+  "c": "createVNode",
+  "qe": "withDirectives",
+  "Re": "vShow",
+  "A": "createBlock",
+  "b": "withCtx",
+  "u": "createCommentVNode",
+  "d": "unref",
+  "ze": "withModifiers",
+  "z": "Fragment",
+  "J": "renderList",
+  "Ot": "normalizeStyle",
+  "Wt": "withKeys",
+  "Be": "nextTick",
+  "Dt": "pushScopeId",
+  "Jt": "popScopeId"
+ },
+ "entry": {
+  "Kt": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Ut": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Ne": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Ft": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Me": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Gt": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "E": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "j": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Yt": {
+   "original": "as",
+   "path": "@/legacy/utils",
+   "export": "getUserInfo",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Qt": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ea": {
+   "original": "index.api.178332063620013.js#a",
+   "path": "@/api/jobLiveTelecast",
+   "export": "queryVoById",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/queryVoById"
+  },
+  "ta": {
+   "original": "index.api.178332063620013.js#f",
+   "path": "@/api/jobLiveTelecast",
+   "export": "queryCompanyAndPositionList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobLiveTelecastPosition/queryCompanyAndPositionList"
+  },
+  "aa": {
+   "original": "index.api.178332063620013.js#s",
+   "path": "@/api/jobLiveTelecast",
+   "export": "submit",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobComment/submit"
+  }
+ },
+ "shared": {
+  "$t": {
+   "original": "workItem.17833206362002.js#w",
+   "path": "@/shared/workItem.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.workItem"
+  },
+  "la": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "oa": {
+   "original": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js#_",
+   "path": "@/shared/qrcode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ra": {
+   "original": "likeBtn.1783320636200.js#l",
+   "path": "@/shared/likeBtn.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.likeBtn"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

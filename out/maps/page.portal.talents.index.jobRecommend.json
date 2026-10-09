@@ -1,0 +1,120 @@
+{
+ "id": "page.portal.talents.index.jobRecommend",
+ "chunk": "legacy-dist/portal/assets/jobRecommend.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "va": "defineComponent",
+  "_a": "useRoute (vue-router)",
+  "ya": "useRouter (vue-router)",
+  "fa": "computed",
+  "ga": "reactive",
+  "ka": "onBeforeMount",
+  "ha": "onMounted",
+  "F": "ref",
+  "L": "resolveComponent",
+  "s": "openBlock",
+  "t": "createElementBlock",
+  "e": "createElementVNode",
+  "w": "createVNode",
+  "f": "unref",
+  "r": "toDisplayString",
+  "b": "createCommentVNode",
+  "m": "Fragment",
+  "z": "renderList",
+  "P": "withCtx",
+  "D": "createBlock",
+  "wa": "pushScopeId",
+  "ba": "popScopeId",
+  "xa": "normalizeClass",
+  "x": "createTextVNode"
+ },
+ "entry": {
+  "Sa": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Ca": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Ia": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Ta": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Na": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "qa": {
+   "original": "index.api.178332063620037.js#f",
+   "path": "@/api/sysBusinessSetting",
+   "export": "recommendJobList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"
+  }
+ },
+ "shared": {
+  "Fa": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ha": {
+   "original": "vue-countup-v3.es.1783320636200.js#_",
+   "path": "vue-countup-v3",
+   "export": "default",
+   "status": "npm"
+  }
+ },
+ "views": {},
+ "modules": {
+  "ua": {
+   "original": "robot.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 4.4KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "robotImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "za": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "Ra": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "Ga": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "Da": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

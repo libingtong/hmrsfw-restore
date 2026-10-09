@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.changeRole",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js",
+ "components": [
+  {
+   "name": "ChangeRole",
+   "scopeId": "data-v-b3d913db"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b3d913db"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/ChangeRole.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/changeRole.vue",
+ "subComponentDir": "apps/uc/src/views/changeRole/",
+ "routes": [
+  {
+   "path": "/changeRole",
+   "name": "changeRole"
+  }
+ ],
+ "recordPath": "/changeRole",
+ "maps": "out/maps/page.uc.changeRole.json",
+ "hints": "out/hints/page.uc.changeRole.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a",
+   "b",
+   "bN",
+   "d",
+   "e",
+   "l",
+   "q",
+   "u"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E4",
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

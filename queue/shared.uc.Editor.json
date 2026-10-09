@@ -1,0 +1,53 @@
+{
+ "id": "shared.uc.Editor",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.2,
+ "chunkKb": 904.4,
+ "bundled": {
+  "kb": 901.2,
+  "what": "tinymce 5.10.3",
+  "rule": "开头这段是打包进来的库或数据：库改为 npm 依赖（版本按指纹），数据抽成 JSON/资源文件，不得原样拷进 .vue"
+ },
+ "sourceChunk": "legacy-dist/usercenter/assets/Editor.1751615607545.js",
+ "components": [
+  {
+   "name": "Editor",
+   "scopeId": "data-v-4313aa41"
+  }
+ ],
+ "scopeIds": [
+  "data-v-4313aa41"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/Editor.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/Editor.vue",
+ "exports": {
+  "E": {
+   "export": "default"
+  }
+ },
+ "registryKey": "Editor.1751615607545.js",
+ "usedBy": [
+  "page.uc.addNewsDetails",
+  "shared.uc.appointment"
+ ],
+ "maps": "out/maps/shared.uc.Editor.json",
+ "hints": "out/hints/shared.uc.Editor.md",
+ "deps": {
+  "entry": [
+   "T",
+   "V"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

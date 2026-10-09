@@ -1,0 +1,44 @@
+{
+ "id": "page.portal.sjz.fair.fairList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.8,
+ "sourceChunk": "legacy-dist/portal/assets/fairList.1783320636200.js",
+ "components": [
+  {
+   "name": "fairList",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.178332063620011.css",
+  "legacy-dist/portal/assets/fairList.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/sjz/fair/fairList.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/fair/fairList/",
+ "routes": [
+  {
+   "path": "/fairList",
+   "name": "fairList",
+   "title": "招聘会"
+  }
+ ],
+ "recordPath": "/fairList",
+ "maps": "out/maps/page.portal.sjz.fair.fairList.json",
+ "hints": "out/hints/page.portal.sjz.fair.fairList.md",
+ "deps": {
+  "entry": [
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

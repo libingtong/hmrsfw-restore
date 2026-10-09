@@ -1,0 +1,116 @@
+{
+ "id": "page.uc.CorpCenter",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 25.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/CorpCenter.1751615607545.js",
+ "components": [
+  {
+   "name": "recommendpeople",
+   "scopeId": "data-v-c1890775"
+  },
+  {
+   "name": "corpTag",
+   "scopeId": "data-v-eb13a420"
+  },
+  {
+   "name": "corpcard",
+   "scopeId": "data-v-848ae5e7"
+  },
+  {
+   "name": "CorpCenter",
+   "scopeId": "data-v-dbf26990"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c1890775",
+  "data-v-eb13a420",
+  "data-v-848ae5e7",
+  "data-v-dbf26990"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/stateCard.1751615607545.css",
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/setStatus.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css",
+  "legacy-dist/usercenter/assets/right.1751615607545.css",
+  "legacy-dist/usercenter/assets/CorpCenter.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/CorpCenter.vue",
+ "subComponentDir": "apps/uc/src/views/CorpCenter/",
+ "routes": [
+  {
+   "path": "/CorpCenter",
+   "name": "CorpCenter"
+  }
+ ],
+ "recordPath": "/CorpCenter",
+ "maps": "out/maps/page.uc.CorpCenter.json",
+ "hints": "out/hints/page.uc.CorpCenter.md",
+ "deps": {
+  "entry": [
+   "$",
+   "B",
+   "M",
+   "W",
+   "X",
+   "Y",
+   "Z",
+   "a",
+   "a0",
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7",
+   "a8",
+   "b",
+   "c",
+   "d",
+   "g",
+   "h",
+   "k",
+   "m",
+   "q",
+   "v"
+  ],
+  "shared": [
+   "InterviewInvitation.17516156075452.js",
+   "addKeynote.1751615607545.js",
+   "authCompany.1751615607545.js",
+   "dictCheckBoxAll.1751615607545.js",
+   "mymsg.1751615607545.js",
+   "recommendZp.1751615607545.js",
+   "right.vue_vue_type_script_setup_true_lang.1751615607545.js",
+   "setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js",
+   "setStatusinterview.1751615607545.js"
+  ],
+  "api": [
+   "index.api.1751615607545.js#e",
+   "index.api.1751615607545.js#f",
+   "index.api.17516156075456.js#b"
+  ],
+  "modules": [
+   "default.1751615607545.js",
+   "stateCard.vue_vue_type_style_index_0_scoped_53902b4a_lang.1751615607545.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.addKeynote",
+   "shared.uc.authCompany",
+   "shared.uc.modules",
+   "shared.uc.mymsg",
+   "shared.uc.recommendZp",
+   "shared.uc.right",
+   "shared.uc.setStatus"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

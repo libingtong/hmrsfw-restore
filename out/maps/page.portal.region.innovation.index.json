@@ -1,0 +1,235 @@
+{
+ "id": "page.portal.region.innovation.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620066.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Te": "defineComponent",
+  "Ee": "useRouter (vue-router)",
+  "D": "reactive",
+  "je": "ref",
+  "Me": "onMounted",
+  "Pe": "resolveComponent",
+  "l": "openBlock",
+  "o": "createElementBlock",
+  "t": "createElementVNode",
+  "h": "createVNode",
+  "f": "Fragment",
+  "k": "renderList",
+  "S": "normalizeClass",
+  "w": "createBlock",
+  "T": "createCommentVNode",
+  "F": "withCtx",
+  "G": "withModifiers",
+  "c": "unref",
+  "Ue": "pushScopeId",
+  "Ie": "popScopeId",
+  "Ne": "normalizeStyle",
+  "m": "toDisplayString"
+ },
+ "entry": {
+  "qe": {
+   "original": "i",
+   "path": "swiper",
+   "export": "default",
+   "status": "npm",
+   "as": "SwiperCore"
+  },
+  "Ae": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "am",
+   "path": "@/legacy",
+   "export": "getArticleList",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "c2",
+   "path": "@/legacy/components/Notice.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.portal.c09"
+  },
+  "De": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Fe": {
+   "original": "O",
+   "path": "@/legacy",
+   "export": "checkIdentity",
+   "status": "restored"
+  },
+  "Ge": {
+   "original": "c3",
+   "path": "@/legacy/api",
+   "export": "checkIsCanAdd",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "E": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "as",
+   "path": "@/legacy/utils",
+   "export": "getUserInfo",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Ve": {
+   "original": "c4",
+   "path": "@/legacy/api",
+   "export": "jobLoanApplyPersonCheckIsCanAdd",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Ye": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "He": {
+   "original": "Q",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_CERTIFIED",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Qe": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "Ze": {
+   "original": "c5",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_PENDING_2",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "j": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "M": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "$e": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "Je": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "Ke": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "We": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "vt": {
+   "original": "index.api.178332063620031.js#g",
+   "path": "@/api/jobPxCourse2",
+   "export": "listForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
+  },
+  "_t": {
+   "original": "index.api.178332063620032.js#g",
+   "path": "@/api/jobEventReleaseNew",
+   "export": "listCyfwMh",
+   "status": "reserved",
+   "url": "/xf-job/communal/licenseFree/xfJobEventReleaseNew/listCyfwMh"
+  },
+  "ht": {
+   "original": "index.api.17833206362005.js#x",
+   "path": "@/api/jobUserTutorExpand2",
+   "export": "listForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite"
+  }
+ },
+ "shared": {
+  "rt": {
+   "original": "homeNews.17833206362003.js#h",
+   "path": "@/shared/homeNews3.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.homeNews3"
+  },
+  "O": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Re": {
+   "original": "jqqd.1783320636200.js#_",
+   "value": "/sjz/newHome/jqqd.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "jqqdImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "et": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "st": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "it": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  },
+  "nt": {
+   "original": "grid.1783320636200.js#G",
+   "path": "swiper",
+   "export": "Grid"
+  },
+  "ot": {
+   "original": "effect-coverflow.1783320636200.js#E",
+   "path": "swiper",
+   "export": "EffectCoverflow"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

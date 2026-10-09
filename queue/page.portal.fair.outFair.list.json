@@ -1,0 +1,71 @@
+{
+ "id": "page.portal.fair.outFair.list",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 12,
+ "sourceChunk": "legacy-dist/portal/assets/list.17833206362003.js",
+ "components": [
+  {
+   "name": "list",
+   "scopeId": "data-v-34be5353"
+  }
+ ],
+ "scopeIds": [
+  "data-v-34be5353"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.17833206362003.css"
+ ],
+ "target": "apps/portal/src/views/fair/outFair/list.vue",
+ "subComponentDir": "apps/portal/src/views/fair/outFair/list/",
+ "routes": [
+  {
+   "path": "/outFairList",
+   "name": "outFairList",
+   "title": "非固定展位招聘会"
+  }
+ ],
+ "recordPath": "/outFairList",
+ "maps": "out/maps/page.portal.fair.outFair.list.json",
+ "hints": "out/hints/page.portal.fair.outFair.list.md",
+ "deps": {
+  "entry": [
+   "A",
+   "O",
+   "S",
+   "aD",
+   "aQ",
+   "ba",
+   "bc",
+   "c",
+   "d",
+   "e",
+   "h",
+   "m",
+   "p",
+   "q",
+   "r",
+   "u"
+  ],
+  "shared": [
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620017.js#w"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/outFairList",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

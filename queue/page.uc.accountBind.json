@@ -1,0 +1,53 @@
+{
+ "id": "page.uc.accountBind",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 2.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/accountBind.1751615607545.js",
+ "components": [
+  {
+   "name": "accountBind",
+   "scopeId": "data-v-aff1b925"
+  }
+ ],
+ "scopeIds": [
+  "data-v-aff1b925"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/accountBind.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/accountBind.vue",
+ "subComponentDir": "apps/uc/src/views/accountBind/",
+ "routes": [
+  {
+   "path": "/accountBind",
+   "name": "accountBind"
+  }
+ ],
+ "recordPath": "/accountBind",
+ "maps": "out/maps/page.uc.accountBind.json",
+ "hints": "out/hints/page.uc.accountBind.md",
+ "deps": {
+  "entry": [
+   "d",
+   "k",
+   "m"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17516156075453.js#g",
+   "index.api.17516156075453.js#u"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/accountBind",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

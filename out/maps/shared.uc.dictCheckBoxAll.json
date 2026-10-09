@@ -1,0 +1,37 @@
+{
+ "id": "shared.uc.dictCheckBoxAll",
+ "chunk": "legacy-dist/usercenter/assets/dictCheckBoxAll.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "f": "defineComponent",
+  "u": "onMounted",
+  "A": "reactive",
+  "s": "watch",
+  "i": "resolveComponent",
+  "p": "openBlock",
+  "b": "createElementBlock",
+  "h": "createVNode",
+  "C": "withCtx",
+  "L": "createTextVNode",
+  "j": "Fragment"
+ },
+ "entry": {
+  "m": {
+   "original": "an",
+   "path": "@/legacy",
+   "export": "uniqueByValue",
+   "status": "restored"
+  },
+  "g": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

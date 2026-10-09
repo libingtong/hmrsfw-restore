@@ -1,0 +1,31 @@
+{
+ "id": "page.uc.403",
+ "chunk": "legacy-dist/usercenter/assets/403.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "l": "defineComponent",
+  "i": "useRouter (vue-router)",
+  "_": "resolveComponent",
+  "u": "openBlock",
+  "m": "createElementBlock",
+  "o": "createElementVNode",
+  "s": "createVNode",
+  "a": "withCtx",
+  "t": "createTextVNode",
+  "f": "pushScopeId",
+  "h": "popScopeId"
+ },
+ "entry": {
+  "v": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

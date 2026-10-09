@@ -1,0 +1,157 @@
+{
+ "id": "page.portal.jobMarket.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620038.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "la": "defineComponent",
+  "sa": "useRouter (vue-router)",
+  "ia": "useRoute (vue-router)",
+  "ra": "reactive",
+  "na": "toRefs",
+  "oa": "onBeforeMount",
+  "ca": "onMounted",
+  "ma": "nextTick",
+  "da": "ref",
+  "u": "resolveComponent",
+  "r": "openBlock",
+  "o": "createElementBlock",
+  "e": "createElementVNode",
+  "i": "createVNode",
+  "d": "withCtx",
+  "n": "unref",
+  "p": "createTextVNode",
+  "y": "Fragment",
+  "E": "renderList",
+  "V": "withDirectives",
+  "J": "vShow",
+  "w": "createCommentVNode",
+  "pa": "createBlock",
+  "ya": "pushScopeId",
+  "ua": "popScopeId",
+  "c": "toDisplayString"
+ },
+ "entry": {
+  "wa": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Ca": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "xa": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "j": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Sa": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Pa": {
+   "original": "index.api.178332063620020.js#q",
+   "path": "@/api/service",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "/xf-job/school/licenseFree/XfSysArticle/queryById"
+  },
+  "Da": {
+   "original": "index.api.178332063620020.js#g",
+   "path": "@/api/service",
+   "export": "freeServiceUnitPageList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeServiceUnitPageList"
+  },
+  "Ia": {
+   "original": "index.api.178332063620026.js#k",
+   "path": "@/api/sysConsult",
+   "export": "findJobList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/findJobList"
+  }
+ },
+ "shared": {
+  "$": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "ga": {
+   "original": "rightdisab.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "rightdisabImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "fa": {
+   "original": "rightdisab.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "rightdisabImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "va": {
+   "original": "rightdisab.1783320636200.js#b",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "rightdisabImgB",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ka": {
+   "original": "rightdisab.1783320636200.js#c",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "rightdisabImgC",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ha": {
+   "original": "index.1783320636200118.js#i",
+   "path": "echarts",
+   "export": "init"
+  },
+  "Aa": {
+   "original": "index.1783320636200118.js#r",
+   "path": "echarts",
+   "export": "registerMap"
+  },
+  "La": {
+   "original": "henan.1783320636200.js#h",
+   "path": "@/assets/geo/henan.json",
+   "export": "default"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

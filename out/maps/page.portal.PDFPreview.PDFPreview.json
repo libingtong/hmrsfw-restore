@@ -1,0 +1,31 @@
+{
+ "id": "page.portal.PDFPreview.PDFPreview",
+ "chunk": "legacy-dist/portal/assets/PDFPreview.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "f": "defineComponent",
+  "N": "reactive",
+  "P": "onMounted",
+  "k": "onBeforeUnmount",
+  "C": "computed",
+  "x": "openBlock",
+  "y": "createElementBlock",
+  "s": "createElementVNode",
+  "d": "toDisplayString",
+  "h": "pushScopeId",
+  "w": "popScopeId"
+ },
+ "entry": {
+  "B": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

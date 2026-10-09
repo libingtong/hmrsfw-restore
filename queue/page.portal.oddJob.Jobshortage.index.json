@@ -1,0 +1,58 @@
+{
+ "id": "page.portal.oddJob.Jobshortage.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8.9,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620046.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-1324636e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-1324636e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620035.css",
+  "legacy-dist/portal/assets/index.178332063620037.css",
+  "legacy-dist/portal/assets/index.178332063620046.css"
+ ],
+ "target": "apps/portal/src/views/oddJob/Jobshortage/index.vue",
+ "subComponentDir": "apps/portal/src/views/oddJob/Jobshortage/index/",
+ "routes": [
+  {
+   "path": "/Jobshortage",
+   "name": "Jobshortage",
+   "title": "缺工信息"
+  }
+ ],
+ "recordPath": "/Jobshortage",
+ "maps": "out/maps/page.portal.oddJob.Jobshortage.index.json",
+ "hints": "out/hints/page.portal.oddJob.Jobshortage.index.md",
+ "deps": {
+  "entry": [
+   "S",
+   "c",
+   "m",
+   "u"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620024.js#k",
+   "index.api.178332063620024.js#m"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

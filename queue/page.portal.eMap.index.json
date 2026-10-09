@@ -1,0 +1,78 @@
+{
+ "id": "page.portal.eMap.index",
+ "type": "page",
+ "status": "segmented",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 30.8,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620031.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-baaa065e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-baaa065e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.17833206362005.css",
+  "legacy-dist/portal/assets/gaode.17833206362002.css",
+  "legacy-dist/portal/assets/index.1783320636200110.css",
+  "legacy-dist/portal/assets/index.178332063620031.css"
+ ],
+ "target": "apps/portal/src/views/eMap/index.vue",
+ "subComponentDir": "apps/portal/src/views/eMap/index/",
+ "routes": [
+  {
+   "path": "/eMap",
+   "name": "eMap",
+   "title": "就业E图"
+  }
+ ],
+ "recordPath": "/eMap",
+ "maps": "out/maps/page.portal.eMap.index.json",
+ "hints": "out/hints/page.portal.eMap.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "N",
+   "ar",
+   "c",
+   "e",
+   "f",
+   "g",
+   "h",
+   "u",
+   "w"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "gaode.vue_vue_type_style_index_0_lang.17833206362002.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620020.js#a",
+   "index.api.178332063620022.js#g"
+  ],
+  "modules": [
+   "adr.1783320636200.js",
+   "work.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "shared.portal.gaode2",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "segments": [
+  "seg.portal.eMap.index.1",
+  "seg.portal.eMap.index.2"
+ ]
+}

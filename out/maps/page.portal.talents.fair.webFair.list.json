@@ -1,0 +1,116 @@
+{
+ "id": "page.portal.talents.fair.webFair.list",
+ "chunk": "legacy-dist/portal/assets/list.178332063620012.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ca": "defineComponent",
+  "ua": "useRouter (vue-router)",
+  "da": "useRoute (vue-router)",
+  "pa": "reactive",
+  "fa": "onMounted",
+  "h": "resolveComponent",
+  "l": "openBlock",
+  "v": "createElementBlock",
+  "s": "createVNode",
+  "e": "withCtx",
+  "o": "createTextVNode",
+  "E": "Fragment",
+  "ha": "renderList",
+  "i": "createBlock",
+  "ga": "resolveDynamicComponent",
+  "m": "createCommentVNode",
+  "F": "unref",
+  "D": "RouterLink (vue-router)",
+  "g": "createElementVNode",
+  "c": "toDisplayString"
+ },
+ "entry": {
+  "W": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "O": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "X": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "$": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "aa": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "ea": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "ta": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "la": {
+   "original": "aD",
+   "path": "@/legacy",
+   "export": "checkIzDishonesty",
+   "status": "restored"
+  },
+  "sa": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "oa": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "_a": {
+   "original": "index.api.178332063620017.js#w",
+   "path": "@/api/api-17",
+   "export": "getFairList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFair/getFairList"
+  }
+ },
+ "shared": {
+  "ra": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ka": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

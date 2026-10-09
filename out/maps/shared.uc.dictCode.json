@@ -1,0 +1,32 @@
+{
+ "id": "shared.uc.dictCode",
+ "chunk": "legacy-dist/usercenter/assets/dictCode.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "m": "defineComponent",
+  "h": "onMounted",
+  "C": "reactive",
+  "f": "resolveComponent",
+  "g": "openBlock",
+  "b": "createBlock"
+ },
+ "entry": {
+  "u": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "c": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

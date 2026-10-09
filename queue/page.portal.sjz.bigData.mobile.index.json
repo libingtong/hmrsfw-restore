@@ -1,0 +1,69 @@
+{
+ "id": "page.portal.sjz.bigData.mobile.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 12.9,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620075.js",
+ "components": [
+  {
+   "name": "pie",
+   "scopeId": "data-v-423ecd78"
+  },
+  {
+   "name": "lines",
+   "scopeId": null
+  },
+  {
+   "name": "bars",
+   "scopeId": null
+  },
+  {
+   "name": "index",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [
+  "data-v-423ecd78"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620072.css",
+  "legacy-dist/portal/assets/index.178332063620075.css"
+ ],
+ "target": "apps/portal/src/views/sjz/bigData/mobile/index.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/bigData/mobile/index/",
+ "routes": [
+  {
+   "path": "/applet/statistics",
+   "name": "applet/statistics",
+   "title": "可视化统计"
+  }
+ ],
+ "recordPath": "/applet/statistics",
+ "maps": "out/maps/page.portal.sjz.bigData.mobile.index.json",
+ "hints": "out/hints/page.portal.sjz.bigData.mobile.index.md",
+ "deps": {
+  "entry": [
+   "av",
+   "c",
+   "u"
+  ],
+  "shared": [
+   "timeOut.1783320636200.js"
+  ],
+  "api": [
+   "index.apinew.1783320636200.js#q"
+  ],
+  "modules": [
+   "s04.1783320636200.js",
+   "s05.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,53 @@
+{
+ "id": "page.portal.talents.information.newsDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.1,
+ "sourceChunk": "legacy-dist/portal/assets/newsDetail.17833206362003.js",
+ "components": [
+  {
+   "name": "newsDetail",
+   "scopeId": "data-v-4d6fcb3c"
+  }
+ ],
+ "scopeIds": [
+  "data-v-4d6fcb3c"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/newsDetail.17833206362003.css"
+ ],
+ "target": "apps/portal/src/views/talents/information/newsDetail.vue",
+ "subComponentDir": "apps/portal/src/views/talents/information/newsDetail/",
+ "routes": [
+  {
+   "path": "/talents/newsDetail",
+   "name": "talents/newsDetail",
+   "title": "新闻详情"
+  }
+ ],
+ "recordPath": "/talents/newsDetail",
+ "maps": "out/maps/page.portal.talents.information.newsDetail.json",
+ "hints": "out/hints/page.portal.talents.information.newsDetail.md",
+ "deps": {
+  "entry": [
+   "B",
+   "V",
+   "d",
+   "f"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620040.js#q",
+   "index.api.178332063620040.js#u"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c05"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

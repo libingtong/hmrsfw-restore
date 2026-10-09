@@ -1,0 +1,94 @@
+{
+ "id": "page.uc.changephone",
+ "chunk": "legacy-dist/usercenter/assets/changephone.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "K": "defineComponent",
+  "L": "useRouter (vue-router)",
+  "S": "ref",
+  "O": "onMounted",
+  "X": "reactive",
+  "p": "resolveComponent",
+  "n": "openBlock",
+  "u": "createElementBlock",
+  "c": "createElementVNode",
+  "s": "createVNode",
+  "t": "withCtx",
+  "_": "createTextVNode",
+  "Y": "Fragment",
+  "Z": "renderList",
+  "F": "createBlock",
+  "v": "toDisplayString",
+  "r": "unref",
+  "k": "createCommentVNode",
+  "N": "normalizeClass",
+  "J": "pushScopeId",
+  "Q": "popScopeId"
+ },
+ "entry": {
+  "ee": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "$": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "oe": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "se": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "E": {
+   "original": "index.api.17516156075453.js#a",
+   "path": "@/api/api-17516156075453",
+   "export": "check",
+   "status": "restored",
+   "url": "/jeecg-system/sys/duplicate/check"
+  },
+  "G": {
+   "original": "index.api.17516156075453.js#b",
+   "path": "@/api/api-17516156075453",
+   "export": "phoneVerification",
+   "status": "restored",
+   "url": "/jeecg-system/sys/user/phoneVerification"
+  },
+  "H": {
+   "original": "index.api.17516156075453.js#d",
+   "path": "@/api/api-17516156075453",
+   "export": "changePhone",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUser/changePhone"
+  }
+ },
+ "shared": {
+  "M": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "W": {
+   "original": "SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js#_",
+   "path": "@/shared/SlideCaptcha.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

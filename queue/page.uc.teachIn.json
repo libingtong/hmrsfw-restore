@@ -1,0 +1,54 @@
+{
+ "id": "page.uc.teachIn",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754515.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-84847f2d"
+  }
+ ],
+ "scopeIds": [
+  "data-v-84847f2d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754518.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css",
+  "legacy-dist/usercenter/assets/index.175161560754515.css"
+ ],
+ "target": "apps/uc/src/views/teachIn.vue",
+ "subComponentDir": "apps/uc/src/views/teachIn/",
+ "routes": [
+  {
+   "path": "/teachIn",
+   "name": "teachIn"
+  }
+ ],
+ "recordPath": "/teachIn",
+ "maps": "out/maps/page.uc.teachIn.json",
+ "hints": "out/hints/page.uc.teachIn.md",
+ "deps": {
+  "entry": [
+   "d",
+   "m"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754517.js#a",
+   "index.api.175161560754517.js#c",
+   "index.api.175161560754517.js#q",
+   "index.api.175161560754517.js#u"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

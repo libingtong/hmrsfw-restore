@@ -1,0 +1,68 @@
+{
+ "id": "page.uc.myconsult",
+ "chunk": "legacy-dist/usercenter/assets/myconsult.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Z": "defineComponent",
+  "S": "inject",
+  "G": "reactive",
+  "H": "onMounted",
+  "i": "resolveComponent",
+  "p": "openBlock",
+  "f": "createElementBlock",
+  "r": "createElementVNode",
+  "a": "createVNode",
+  "o": "withCtx",
+  "y": "createTextVNode",
+  "w": "Fragment",
+  "T": "createCommentVNode",
+  "I": "withDirectives",
+  "z": "vShow",
+  "F": "toDisplayString",
+  "J": "createBlock"
+ },
+ "entry": {
+  "ee": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "te": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "K": {
+   "original": "index.api.17516156075454.js#d",
+   "path": "@/api/sysConsult",
+   "export": "queryListForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/job/xfSysConsult/queryListForUserCenter"
+  }
+ },
+ "shared": {
+  "x": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "W": {
+   "original": "metormodal.1751615607545.js#m",
+   "path": "@/shared/metormodal.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.metormodal"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "default.1751615607545.js",
+  "unfold.1751615607545.js"
+ ],
+ "missing": []
+}

@@ -1,0 +1,49 @@
+{
+ "id": "entry.portal.c01",
+ "type": "entry",
+ "area": "component",
+ "title": "入口全局组件：cusPagination、sign、register",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": 12.8,
+ "appCode": "018",
+ "components": [
+  {
+   "name": "cusPagination",
+   "binding": "_Mt",
+   "scopeId": null,
+   "kb": 1.9,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/CusPagination.vue"
+  },
+  {
+   "name": "sign",
+   "binding": "YMt",
+   "scopeId": null,
+   "kb": 6.1,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/Sign.vue"
+  },
+  {
+   "name": "register",
+   "binding": "jte",
+   "scopeId": "data-v-9e93d1bb",
+   "kb": 4.8,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/Register.vue"
+  }
+ ],
+ "files": [
+  "apps/portal/src/legacy/components/CusPagination.vue",
+  "apps/portal/src/legacy/components/Sign.vue",
+  "apps/portal/src/legacy/components/Register.vue"
+ ],
+ "owns": [],
+ "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",
+ "deps": {
+  "orders": []
+ }
+}

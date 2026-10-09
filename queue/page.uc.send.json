@@ -1,0 +1,56 @@
+{
+ "id": "page.uc.send",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 7.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/send.1751615607545.js",
+ "components": [
+  {
+   "name": "send",
+   "scopeId": "data-v-feccba33"
+  }
+ ],
+ "scopeIds": [
+  "data-v-feccba33"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/send.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/send.vue",
+ "subComponentDir": "apps/uc/src/views/send/",
+ "routes": [
+  {
+   "path": "/send",
+   "name": "send"
+  }
+ ],
+ "recordPath": "/send",
+ "maps": "out/maps/page.uc.send.json",
+ "hints": "out/hints/page.uc.send.md",
+ "deps": {
+  "entry": [
+   "b5",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "complaint.1751615607545.js",
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075456.js#U",
+   "index.api.17516156075456.js#V",
+   "index.api.17516156075456.js#W"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.complaint"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

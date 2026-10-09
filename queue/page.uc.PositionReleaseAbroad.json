@@ -1,0 +1,72 @@
+{
+ "id": "page.uc.PositionReleaseAbroad",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 22,
+ "sourceChunk": "legacy-dist/usercenter/assets/PositionReleaseAbroad.1751615607545.js",
+ "components": [
+  {
+   "name": "PositionReleaseAbroad",
+   "scopeId": "data-v-7fb7d44b"
+  }
+ ],
+ "scopeIds": [
+  "data-v-7fb7d44b"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css",
+  "legacy-dist/usercenter/assets/PositionReleaseAbroad.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/PositionReleaseAbroad.vue",
+ "subComponentDir": "apps/uc/src/views/PositionReleaseAbroad/",
+ "routes": [
+  {
+   "path": "/PositionReleaseAbroad",
+   "name": "PositionReleaseAbroad"
+  }
+ ],
+ "recordPath": "/PositionReleaseAbroad",
+ "maps": "out/maps/page.uc.PositionReleaseAbroad.json",
+ "hints": "out/hints/page.uc.PositionReleaseAbroad.md",
+ "deps": {
+  "entry": [
+   "M",
+   "O",
+   "a",
+   "a9",
+   "ac",
+   "ae",
+   "c",
+   "d",
+   "e",
+   "f",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x"
+  ],
+  "shared": [
+   "dateUtil.1751615607545.js",
+   "dictCheckBoxAll.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "extractpositionmodal.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js",
+   "workType.1751615607545.js",
+   "wxyy.hook.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

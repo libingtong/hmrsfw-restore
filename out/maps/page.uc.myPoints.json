@@ -1,0 +1,54 @@
+{
+ "id": "page.uc.myPoints",
+ "chunk": "legacy-dist/usercenter/assets/myPoints.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "K": "defineComponent",
+  "L": "inject",
+  "Z": "useRouter (vue-router)",
+  "U": "useRoute (vue-router)",
+  "N": "reactive",
+  "R": "onMounted",
+  "p": "resolveComponent",
+  "i": "openBlock",
+  "n": "createElementBlock",
+  "d": "createVNode",
+  "f": "withCtx",
+  "a": "createElementVNode",
+  "o": "toDisplayString",
+  "_": "Fragment",
+  "h": "renderList",
+  "S": "createBlock",
+  "u": "createTextVNode",
+  "V": "pushScopeId",
+  "B": "popScopeId"
+ },
+ "entry": {
+  "O": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "P": {
+   "original": "index.api.17516156075456.js#g",
+   "path": "@/api/api-56",
+   "export": "queryRuleList",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobIntegralRule/queryRuleList"
+  },
+  "j": {
+   "original": "index.api.17516156075456.js#a",
+   "path": "@/api/api-56",
+   "export": "queryDetailList",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobIntegralDetailRecord/queryDetailList"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

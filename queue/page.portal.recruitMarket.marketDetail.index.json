@@ -1,0 +1,77 @@
+{
+ "id": "page.portal.recruitMarket.marketDetail.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 21,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620063.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-b75d2ac6"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b75d2ac6"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620050.css",
+  "legacy-dist/portal/assets/index.178332063620063.css"
+ ],
+ "target": "apps/portal/src/views/recruitMarket/marketDetail/index.vue",
+ "subComponentDir": "apps/portal/src/views/recruitMarket/marketDetail/index/",
+ "routes": [
+  {
+   "path": "/marketDetail",
+   "name": "marketDetail",
+   "title": "超市详情"
+  }
+ ],
+ "recordPath": "/marketDetail",
+ "maps": "out/maps/page.portal.recruitMarket.marketDetail.index.json",
+ "hints": "out/hints/page.portal.recruitMarket.marketDetail.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "E",
+   "M",
+   "S",
+   "c",
+   "f",
+   "h",
+   "m",
+   "o",
+   "p",
+   "v",
+   "w",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "map.vue_vue_type_script_setup_true_lang.1783320636200.js",
+   "resumemodal.1783320636200.js",
+   "unfold.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [
+   "adrIcon.1783320636200.js",
+   "ditu.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.c03",
+   "shared.portal.map2",
+   "shared.portal.modules",
+   "shared.portal.unfold"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

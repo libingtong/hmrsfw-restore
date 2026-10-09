@@ -1,0 +1,47 @@
+{
+ "id": "shared.portal.oddType",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 4.9,
+ "chunkKb": 4.9,
+ "sourceChunk": "legacy-dist/portal/assets/oddType.1783320636200.js",
+ "components": [
+  {
+   "name": "oddType",
+   "scopeId": "data-v-9ac88e20"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9ac88e20"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/oddType.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/oddType.vue",
+ "exports": {
+  "o": {
+   "export": "default"
+  }
+ },
+ "registryKey": "oddType.1783320636200.js",
+ "usedBy": [
+  "page.portal.oddJob.recruitworkers.index",
+  "page.portal.oddJob.Jobsearch.index"
+ ],
+ "maps": "out/maps/shared.portal.oddType.json",
+ "hints": "out/hints/shared.portal.oddType.md",
+ "deps": {
+  "entry": [
+   "z"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

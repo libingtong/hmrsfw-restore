@@ -1,0 +1,195 @@
+{
+ "id": "page.uc.PositionReleaseAbroad",
+ "chunk": "legacy-dist/usercenter/assets/PositionReleaseAbroad.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Ie": "defineComponent",
+  "Ce": "useRoute (vue-router)",
+  "Se": "useRouter (vue-router)",
+  "d": "ref",
+  "De": "inject",
+  "Ae": "reactive",
+  "Pe": "watch",
+  "je": "onBeforeMount",
+  "Re": "onMounted",
+  "m": "resolveComponent",
+  "j": "openBlock",
+  "Be": "createElementBlock",
+  "t": "createVNode",
+  "s": "withCtx",
+  "R": "createTextVNode",
+  "W": "unref",
+  "X": "withDirectives",
+  "H": "vShow",
+  "w": "createElementVNode",
+  "Ue": "toDisplayString",
+  "Z": "createBlock",
+  "z": "createCommentVNode",
+  "Ye": "pushScopeId",
+  "Fe": "popScopeId"
+ },
+ "entry": {
+  "Ee": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "$": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "B": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "a9",
+   "path": "@/legacy",
+   "export": "detailById",
+   "status": "restored"
+  },
+  "U": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "I": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "p": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "Ve": {
+   "original": "O",
+   "path": "@/legacy",
+   "export": "getAreaInfoByAreaId",
+   "status": "restored"
+  },
+  "We": {
+   "original": "ac",
+   "path": "@/legacy/api",
+   "export": "checkPositionName",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Y": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "S": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "Xe": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "He": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "D": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Ze": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "addOrEdit",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ze": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Me": {
+   "original": "wxyy.hook.1751615607545.js#g",
+   "path": "@/legacy",
+   "export": "askWenXin",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "wxyy.hook.1751615607545.js#_",
+   "path": "@/legacy",
+   "export": "ROBOT_IMG",
+   "status": "restored"
+  },
+  "$e": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "T": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ge": {
+   "original": "extractpositionmodal.1751615607545.js#e",
+   "path": "@/shared/extractpositionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "x": {
+   "original": "dateUtil.1751615607545.js#a",
+   "path": "@/shared/dateUtil.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
+  },
+  "Ke": {
+   "original": "dictCheckBoxAll.1751615607545.js#d",
+   "path": "@/shared/dictCheckBoxAll.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Qe": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "F": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}
