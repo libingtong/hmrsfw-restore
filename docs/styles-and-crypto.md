@@ -42,6 +42,8 @@ node tools/css-by-scope.mjs --chunk legacy-dist/portal/assets/X.js [--css <file>
 node tools/postprocess-vue.mjs <file.vue | 目录> ... [--assets-dir <dir>] [--write]
 ```
 
+资源文件默认写到工单的 `<subComponentDir>/assets/`，和 `css-by-scope` 一致（`check-imports` 只认本页目录内的相对导入）：按 `queue/` 里 `target` 等于该文件、或 `subComponentDir` 包含该文件的工单定位；不属于任何工单的文件用 `<文件所在目录>/<文件名>/assets/`。`--assets-dir` 可以覆盖。
+
 模板里 `src` / `href` / `poster` 的 data: URI 改为相对路径；脚本里的 data: 字符串改为 `import` 资源文件；`<style>` 里的 data: URI 抽成文件，压缩的规则展开为一行一条声明。每个改过的样式块都校验和原来的规则逐条等价，不等价就保持原样并报告。`lang="scss"` 等非 CSS 块不处理。不带 `--write` 时只报告。
 
 ## har-decrypt.mjs

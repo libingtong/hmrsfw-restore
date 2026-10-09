@@ -8,23 +8,43 @@
 // css-by-scope.mjs --write runs this on every component file it writes.
 //
 // Usage: node tools/postprocess-vue.mjs <file.vue | dir> ... [--assets-dir <dir>] [--write]
-//   --assets-dir  where extracted files go (default: <dir of the file>/assets); page orders keep them in the page directory
+//   --assets-dir  where extracted files go. Default: the order's <subComponentDir>/assets, same as css-by-scope.mjs —
+//                 check-imports.mjs only accepts relative imports inside the page's own directory. The order is the one in
+//                 queue/ whose target is the file or whose subComponentDir contains it; a file of no order falls back to
+//                 css-by-scope's derivation <dir of the file>/<file stem>/assets.
 //   without --write: report only (exit 1 when something would change)
 // Library: import { postprocessVue } from "./postprocess-vue.mjs";
-import { readFileSync, writeFileSync, readdirSync, statSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, statSync, mkdirSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { parse } from "@babel/parser";
 import { postcss, EXT, renderCss, roundtrip } from "./css-utils.mjs";
+import { APP_PACKAGE_NAME } from "./app-dir.mjs";
 
 const DATA = /^data:([a-z0-9.+/-]+)((?:;[a-z0-9=.+-]+)*?)(;base64)?,(.*)$/is;
 const decode = (uri) => { const m = uri.match(DATA); if (!m || !EXT[m[1].toLowerCase()]) return null; return { ext: EXT[m[1].toLowerCase()], buf: m[3] ? Buffer.from(m[4], "base64") : Buffer.from(decodeURIComponent(m[4]), "utf8") }; };
 const relUrl = (fromFile, dir) => { const r = path.relative(path.dirname(fromFile), dir).split(path.sep).join("/"); return r === "" ? "." : r.startsWith(".") ? r : "./" + r; };
 const MINIFIED = (css) => css.split("\n").some((l) => l.length > 200 || /\{[^}\n]*;[^}\n]*\}/.test(l));
 
+const QUEUE = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "queue");
+const subDirOf = (o) => (o.subComponentDir ?? o.target.replace(/\.[^./]+$/, "")).replace(/\/$/, "");
+let orderDirs; // [{target, subDir}] of every queue order with a target, paths relative to the hmrsfw-vue root
+const appRootOf = (file) => { for (let d = path.dirname(file); d !== path.dirname(d); d = path.dirname(d)) { try { if (JSON.parse(readFileSync(path.join(d, "package.json"), "utf8")).name === APP_PACKAGE_NAME) return d; } catch {} } return null; };
+/** The page's assets directory for a .vue file: <subComponentDir>/assets of its order (see the usage note above). */
+export function pageAssetsDir(file) {
+  const abs = path.resolve(file); const root = appRootOf(abs);
+  if (root) {
+    orderDirs ??= existsSync(QUEUE) ? readdirSync(QUEUE).filter((n) => n.endsWith(".json")).map((n) => JSON.parse(readFileSync(path.join(QUEUE, n), "utf8"))).filter((o) => o.target).map((o) => ({ target: o.target, subDir: subDirOf(o) })) : [];
+    const rel = path.relative(root, abs).split(path.sep).join("/");
+    const hit = orderDirs.find((o) => o.target === rel) ?? orderDirs.filter((o) => rel.startsWith(o.subDir + "/")).sort((a, b) => b.subDir.length - a.subDir.length)[0];
+    if (hit) return path.join(root, hit.subDir, "assets");
+  }
+  return path.join(path.dirname(abs), path.basename(abs, ".vue"), "assets");
+}
+
 /** Returns {changed, source, assets:[{name, bytes, buf}], notes:[...], styleChecks:[...]} for one .vue file. */
-export function postprocessVue(file, { assetsDir = path.join(path.dirname(file), "assets"), source = readFileSync(file, "utf8") } = {}) {
+export function postprocessVue(file, { assetsDir = pageAssetsDir(file), source = readFileSync(file, "utf8") } = {}) {
   const stem = path.basename(file, ".vue"); const rel = relUrl(file, assetsDir); const assets = new Map(); const notes = []; const styleChecks = [];
   const store = (uri) => { const d = decode(uri); if (!d) return null; const name = `${stem}-${createHash("sha256").update(d.buf).digest("hex").slice(0, 10)}.${d.ext}`; assets.set(name, d.buf); return name; };
   let out = source;
@@ -77,12 +97,12 @@ if (isMain) {
   targets.forEach((t) => walk(path.resolve(t)));
   const report = []; let pending = 0, bad = 0;
   for (const f of files) {
-    const assetsDir = ai >= 0 ? path.resolve(args[ai + 1]) : path.join(path.dirname(f), "assets");
+    const assetsDir = ai >= 0 ? path.resolve(args[ai + 1]) : pageAssetsDir(f);
     const res = postprocessVue(f, { assetsDir });
     if (!res.changed && !res.notes.length) continue;
     if (res.styleChecks.some((c) => !c.ok)) bad++;
     if (args.includes("--write")) writePostprocessed(f, res, assetsDir); else if (res.changed) pending++;
-    report.push({ file: path.relative(process.cwd(), f), changed: res.changed, assets: res.assets.map((a) => ({ name: a.name, bytes: a.bytes })), styleBlocksChecked: res.styleChecks.length, styleBlocksEquivalent: res.styleChecks.filter((c) => c.ok).length, notes: res.notes });
+    report.push({ file: path.relative(process.cwd(), f), changed: res.changed, assetsDir: path.relative(process.cwd(), assetsDir), assets: res.assets.map((a) => ({ name: a.name, bytes: a.bytes })), styleBlocksChecked: res.styleChecks.length, styleBlocksEquivalent: res.styleChecks.filter((c) => c.ok).length, notes: res.notes });
   }
   console.log(JSON.stringify({ files: files.length, changed: report.filter((r) => r.changed).length, written: args.includes("--write"), report }, null, 1));
   process.exitCode = bad || pending ? 1 : 0;
