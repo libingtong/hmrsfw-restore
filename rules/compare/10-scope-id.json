@@ -1,0 +1,19 @@
+{
+ "id": "scope-id",
+ "kind": "html",
+ "enabled": true,
+ "since": "POC",
+ "why": "作用域 id 由构建按文件路径生成，两边必然不同；同一元素上多个作用域属性合并成一个",
+ "subs": [
+  [
+   "data-v-[a-f0-9]+",
+   "g",
+   "data-v-x"
+  ],
+  [
+   "( data-v-x=\"\")+",
+   "g",
+   " data-v-x=\"\""
+  ]
+ ]
+}

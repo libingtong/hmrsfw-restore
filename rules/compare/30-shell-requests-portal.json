@@ -1,0 +1,21 @@
+{
+ "id": "shell-requests-portal",
+ "kind": "shell-requests",
+ "enabled": true,
+ "since": "POC",
+ "site": "portal",
+ "why": "门户外壳（头部、导航、字典、轮询）在定时器上发出的请求，相对交互步骤的时机不确定；POC 按「过半数录制里出现」得出",
+ "requests": [
+  "GET /jeecg-system/sys/dict/getDictItemsByCode",
+  "GET /xf-job/job/licenseFree/xfSysBusinessSetting/getSettingValueByCodes",
+  "POST /xf-job/job/licenseFree/getDictValueByCodeAndItems",
+  "POST /xf-job/school/user/getDictValueByCodes",
+  "GET /xf-job/communal/xfSysUser/getSysUserByToken",
+  "GET /xf-job/job/licenseFree/xfSysBusinessSetting/getSettingValueByCode",
+  "POST /xf-job/job/licenseFree/queryHomeSettingById",
+  "POST /xf-job/job/licenseFree/getArticleListNoCheck",
+  "POST /xf-job/job/licenseFree/queryAreaChildrenTreeListById",
+  "POST /xf-job/job/licenseFree/queryOrganizationByAreaId",
+  "POST /xf-job/communal/licenseFree/xfSysArticleType/listChildrenTreeByTypeId"
+ ]
+}

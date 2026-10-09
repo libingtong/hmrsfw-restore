@@ -1,0 +1,9 @@
+{
+ "id": "pixel",
+ "kind": "param",
+ "enabled": true,
+ "since": "POC",
+ "why": "截图像素差上限与 pixelmatch 颜色阈值（批量还原计划第 4 节）",
+ "maxRatio": 0.005,
+ "threshold": 0.1
+}

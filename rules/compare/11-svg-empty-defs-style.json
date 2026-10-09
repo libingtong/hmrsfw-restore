@@ -1,0 +1,14 @@
+{
+ "id": "svg-empty-defs-style",
+ "kind": "html",
+ "enabled": true,
+ "since": "POC",
+ "why": "图标库在 svg 里插入的空 <defs><style></style></defs>，与版本有关，不属于页面",
+ "subs": [
+  [
+   "<defs><style></style></defs>",
+   "g",
+   ""
+  ]
+ ]
+}

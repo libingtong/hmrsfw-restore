@@ -1,0 +1,18 @@
+{
+ "id": "shell-requests-usercenter",
+ "kind": "shell-requests",
+ "enabled": true,
+ "since": "POC",
+ "site": "usercenter",
+ "why": "用户中心外壳（侧边菜单、权限、未读消息轮询）的请求，理由同上",
+ "requests": [
+  "GET /xf-job/job/licenseFree/xfSysBusinessSetting/getSettingValueByCode",
+  "GET /jeecg-system/sys/dict/getDictItemsByCode",
+  "POST /xf-job/job/licenseFree/queryHomeSettingById",
+  "POST /xf-common/common/xfAnnouncementSendRedcord/queryNoReaded",
+  "GET /xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",
+  "GET /xf-job/communal/xfpermission/getUserPermissionByRoleId",
+  "GET /xf-job/communal/xfSysUserAuthenticateIdentity/list",
+  "POST /xf-job/communal/licenseFree/xfSysArticleType/listChildrenTreeByTypeId"
+ ]
+}
