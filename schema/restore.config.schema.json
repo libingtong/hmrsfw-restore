@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/libingtong/hmrsfw-restore/schema/restore.config.schema.json",
+  "title": "restore.config.json",
+  "description": "一个项目接入 Vue 3 + Vite 还原工作流的静态配置。字段说明见 docs/generic/config-schema.md。只放项目身份与边界，不放密钥、账号、HAR，也不放调度参数（调度参数在 $RESTORE_STATE/scheduler.config.json）。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "project", "repos", "apps", "env", "recording", "escalation", "projectNotes"],
+  "properties": {
+    "$schema": { "type": "string", "description": "编辑器提示用，引擎忽略" },
+    "schemaVersion": { "const": 1, "description": "本 schema 的版本。破坏性变更（如删除 env.appDirAliases）时加 1" },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "owner", "adapter"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,31}$", "description": "项目短名，用于分支前缀、锁名、日志，不随仓库改名而变" },
+        "name": { "type": "string", "minLength": 1, "description": "项目显示名" },
+        "owner": { "$ref": "#/$defs/member", "description": "项目负责人；escalation.assignee 为 owner 时升级给此人" },
+        "adapter": { "enum": ["vue3-vite"], "description": "构建产物适配层。本期只实现 vue3-vite，Vue 2 / webpack 只预留接口" },
+        "multicaProjectId": { "$ref": "#/$defs/uuid", "description": "流水线任务所在的 Multica 项目" }
+      }
+    },
+    "repos": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine", "data", "app"],
+      "properties": {
+        "engine": { "$ref": "#/$defs/repo", "description": "引擎仓库：tools/、通用 pipeline、schema。G2 之前与 data 相同" },
+        "data": { "$ref": "#/$defs/repo", "description": "项目数据仓库：本文件、legacy-dist/、queue/、out/、registry/、receipts/、tests/interact/、项目规则" },
+        "app": { "$ref": "#/$defs/appRepo", "description": "产物工程：还原出的 Vue 源码，最终交付物" }
+      }
+    },
+    "apps": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/app" },
+      "description": "子应用。name 唯一，由 tools/validate-config.mjs 检查"
+    },
+    "env": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appDir"],
+      "properties": {
+        "appDir": { "const": "VR_APP_DIR", "description": "产物工程检出目录的环境变量名，引擎统一用 VR_APP_DIR" },
+        "appDirAliases": {
+          "type": "array",
+          "maxItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["HMRSFW_APP_DIR"] },
+          "description": "兼容别名，只在 schemaVersion 1 保留；schemaVersion 2 删除本字段"
+        },
+        "secrets": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" },
+          "description": "项目密钥所在的环境变量名（只写名字，不写值）。scan-secrets 与角色环境文件按它核对"
+        }
+      }
+    },
+    "recording": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowedHosts"],
+      "properties": {
+        "allowedHosts": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/host" },
+          "description": "录制时浏览器唯一允许访问的主机（精确匹配 host，含端口时写端口，不支持通配）。record-page.mjs 在请求层拦截其余一切请求"
+        }
+      }
+    },
+    "escalation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assignee", "categories"],
+      "properties": {
+        "assignee": {
+          "anyOf": [{ "const": "owner" }, { "$ref": "#/$defs/uuid" }],
+          "description": "升级给谁：owner 表示 project.owner，或直接写 Multica 成员 id"
+        },
+        "categories": {
+          "type": "array",
+          "minItems": 4,
+          "items": { "$ref": "#/$defs/escalationCategory" },
+          "allOf": [
+            { "contains": { "type": "object", "properties": { "id": { "const": "human-presence" } } } },
+            { "contains": { "type": "object", "properties": { "id": { "const": "money" } } } },
+            { "contains": { "type": "object", "properties": { "id": { "const": "compliance-security" } } } },
+            { "contains": { "type": "object", "properties": { "id": { "const": "agent-disagreement" } } } }
+          ],
+          "description": "只有这些事项 blocked 并指派给人。四类都必须出现且各出现一次（id 不重复由 validate-config.mjs 检查），项目只补充例子"
+        },
+        "defaults": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/defaultDecision" },
+          "description": "待决事项的默认值：智能体按此执行并记入每日摘要，人可以随时推翻"
+        }
+      }
+    },
+    "projectNotes": { "$ref": "#/$defs/relPath", "description": "项目专属规则文档，相对 data 仓库根目录" },
+    "machines": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/machine" },
+      "description": "可选：分片（运行机器）。不写表示单机"
+    }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" },
+    "relPath": { "type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))[^\\\\]+$", "description": "相对路径，不以 / 开头，不含 .." },
+    "host": { "type": "string", "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+(:[0-9]{1,5})?$" },
+    "branch": { "type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9._/-]+$" },
+    "member": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["memberId"],
+      "properties": {
+        "memberId": { "$ref": "#/$defs/uuid", "description": "Multica 成员 id（user id），与名册 escalateTo.memberId 同一个值" },
+        "label": { "type": "string", "description": "便于人读的称呼，脚本不使用" }
+      }
+    },
+    "repo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "defaultBranch"],
+      "properties": {
+        "url": { "type": "string", "pattern": "^https://[^\\s/]+/[^\\s/]+/[^\\s/]+?$", "description": "仓库地址，供 multica repo checkout 使用" },
+        "defaultBranch": { "$ref": "#/$defs/branch" },
+        "integrationBranch": { "$ref": "#/$defs/branch", "description": "门槛通过后自动合并的分支（如有）" },
+        "ref": { "type": "string", "minLength": 1, "description": "可选：固定使用的标签或提交（只对 engine 有意义）" }
+      }
+    },
+    "appRepo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "defaultBranch", "integrationBranch", "packageName"],
+      "properties": {
+        "url": { "type": "string", "pattern": "^https://[^\\s/]+/[^\\s/]+/[^\\s/]+?$" },
+        "defaultBranch": { "$ref": "#/$defs/branch" },
+        "integrationBranch": { "$ref": "#/$defs/branch" },
+        "packageName": { "type": "string", "minLength": 1, "description": "产物工程根 package.json 的 name，定位产物目录时用来确认没有指错检出" },
+        "attemptBranchPrefix": { "$ref": "#/$defs/branch", "description": "还原尝试分支前缀，缺省 restore/" }
+      }
+    },
+    "app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "legacyDist", "entryChunk", "target", "versions"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "子应用名：产物工程 apps/<name>/、registry/<name>.json、工单 id 中的应用段" },
+        "site": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "旧产物站点名（legacy-dist 目录名、工单 site 字段），缺省等于 name" },
+        "title": { "type": "string" },
+        "legacyDist": { "$ref": "#/$defs/relPath", "description": "旧构建产物目录，相对 data 仓库根目录" },
+        "entryChunk": { "type": "string", "pattern": "^[^/\\\\]+\\.m?js$", "description": "入口 chunk 文件名，位于 <legacyDist>/assets/" },
+        "vueChunk": { "type": "string", "pattern": "^[^/\\\\]+\\.m?js$", "description": "Vue 运行时 chunk 文件名（单独拆包时）" },
+        "versions": {
+          "type": "object",
+          "required": ["vue"],
+          "additionalProperties": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+" },
+          "properties": { "vue": { "type": "string", "pattern": "^3\\.[0-9]+\\.[0-9]+" } },
+          "description": "按原包指纹锁定的依赖版本，键为 npm 包名"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^(?!/)[^\\\\]*\\{view\\}[^\\\\]*$",
+          "description": "页面落点模板，相对产物工程根目录。占位符：{app}=name，{view}=页面在 views 根下的相对路径（含 .vue）"
+        },
+        "viteConfig": { "$ref": "#/$defs/relPath", "description": "该应用的 vite 配置，相对产物工程根目录" },
+        "testOrigin": { "type": "string", "pattern": "^https://[^/\\s]+$", "description": "该应用的测试环境地址（无路径）。主机必须在 recording.allowedHosts 中" },
+        "apiPrefix": { "type": "string", "pattern": "^/.*/$", "description": "后端接口路径前缀，回放时据此区分接口请求与静态资源" }
+      }
+    },
+    "escalationCategory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "examples"],
+      "properties": {
+        "id": { "enum": ["human-presence", "money", "compliance-security", "agent-disagreement"] },
+        "title": { "type": "string", "minLength": 1 },
+        "examples": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "defaultDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "decision"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "decision": { "type": "string", "minLength": 1 }
+      }
+    },
+    "machine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "分片名，如 mac / office" },
+        "host": { "type": "string", "description": "Multica 运行时所在主机名，只用于核对" },
+        "holdsSecrets": { "type": "boolean", "description": "是否持有 HAR、登录态、密钥。false 的机器不得派门槛、录制、修正" },
+        "roles": { "type": "array", "uniqueItems": true, "items": { "enum": ["dispatcher", "gate", "recorder", "fixer", "arbiter", "restorer", "restorer-core", "reviewer"] }, "description": "该分片承担的角色（名册 role）。holdsSecrets 为 false 时不得含 gate、recorder、fixer、arbiter" }
+      }
+    }
+  }
+}
