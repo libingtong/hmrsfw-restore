@@ -1,0 +1,39 @@
+# 敏感资产：只留在 Mac mini 本机（$RESTORE_ASSETS / $RESTORE_STATE），永不入库
+har/
+*.har
+.auth/
+*.pem
+*.key
+*.p12
+.env*
+!.env.example
+.audit/
+
+# 依赖与构建产物（依赖由 tools/setup-workdir.mjs 准备）
+node_modules
+dist/
+.vite/
+*.timestamp-*.mjs
+*.tsbuildinfo
+
+# out/ 只入库 maps 和 hints，其余是可再生成的分析或门槛产物
+out/*
+!out/maps/
+!out/hints/
+
+# POC 时期的工作目录（对照组输出、wakaru 输出），不属于本仓库
+/restore-*/
+/wakaru-out/
+
+# 临时文件（receipts/ 是交付物，不在此列，见文件末尾）
+tmp/
+.tmp/
+*.tmp
+*.log
+*.swp
+*~
+.DS_Store
+
+# 回执是交付物，不受上面临时文件规则影响
+!receipts/
+!receipts/**

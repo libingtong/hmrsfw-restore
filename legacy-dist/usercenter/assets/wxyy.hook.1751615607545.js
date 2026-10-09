@@ -1,0 +1,1 @@
+import{w as o,m as a}from"./index.1751615607545.js";const m="/assets/j_robot.1751615607545.png",r=e=>{const n=new FormData;return n.append("content",e),o.request({url:"/xf-common/common/wenXin/singleWheel",method:"post",data:n})},p=e=>(e=e.replace(/[\r\n]/g,""),new Promise((n,s)=>{r(e).then(t=>{t.success||a.warning(t.message),n(t)}).catch(t=>{s(t)})}));export{m as _,p as g};

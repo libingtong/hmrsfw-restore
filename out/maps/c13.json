@@ -1,0 +1,58 @@
+{
+ "id": "c13",
+ "site": "usercenter",
+ "chunk": "account.1751615607545.js",
+ "vue": {
+  "I": "defineComponent",
+  "l": "ref",
+  "S": "onMounted",
+  "y": "onBeforeUnmount",
+  "h": "openBlock",
+  "b": "createElementBlock",
+  "w": "createVNode"
+ },
+ "entry": {
+  "u": {
+   "export": "G",
+   "readable": "`getDictValueByCodeAndItems(params)`",
+   "from": "`@/legacy`"
+  },
+  "s": {
+   "export": "bL",
+   "readable": "`userStorage`（userInfo/corpInfo/xfSysUserId 等的读写，`getXfSysUser()` 等）",
+   "from": "`@/legacy`"
+  },
+  "g": {
+   "export": "bM",
+   "readable": "`verifyUserInfoByPhone(params)`",
+   "from": "`@/legacy`"
+  },
+  "m": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略）",
+   "from": "不导入"
+  }
+ },
+ "api": {},
+ "shared": {
+  "_": {
+   "file": "ZgIframe.1751615607545.js",
+   "export": "Z",
+   "base": "ZgIframe",
+   "target": "@shared/ZgIframe.vue"
+  },
+  "v": {
+   "file": "WebSockets.1751615607545.js",
+   "export": "g",
+   "base": "WebSockets",
+   "target": "@shared/WebSockets.ts"
+  },
+  "d": {
+   "file": "WebSockets.1751615607545.js",
+   "export": "c",
+   "base": "WebSockets",
+   "target": "@shared/WebSockets.ts"
+  }
+ },
+ "missing": []
+}

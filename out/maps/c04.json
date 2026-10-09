@@ -1,0 +1,270 @@
+{
+ "id": "c04",
+ "site": "usercenter",
+ "chunk": "CorpAttestationapprove.1751615607545.js",
+ "vue": {
+  "ra": "defineComponent",
+  "sa": "useRoute",
+  "ia": "useRouter",
+  "v": "ref",
+  "Gt": "watch",
+  "he": "reactive",
+  "ua": "onBeforeMount",
+  "na": "onMounted",
+  "P": "resolveComponent",
+  "f": "openBlock",
+  "O": "createElementBlock",
+  "t": "createVNode",
+  "l": "withCtx",
+  "d": "createElementVNode",
+  "V": "createTextVNode",
+  "w": "toDisplayString",
+  "m": "unref",
+  "oa": "pushScopeId",
+  "da": "popScopeId",
+  "Bt": "computed",
+  "Ot": "inject",
+  "C": "createBlock",
+  "b": "createCommentVNode",
+  "Xe": "withDirectives",
+  "Qe": "vShow",
+  "Ke": "Fragment",
+  "Ut": "renderList"
+ },
+ "entry": {
+  "Ge": {
+   "export": "d",
+   "readable": "`decryptStorage(text, key)`（原包：解密 localStorage 里的加密 JSON；POC 里直接 JSON.parse）",
+   "from": "`@/legacy`"
+  },
+  "W": {
+   "export": "p",
+   "readable": "`dayjs`（`dayjs(x).format(\"YYYY-MM\")`）",
+   "from": "`dayjs`"
+  },
+  "Be": {
+   "export": "x",
+   "readable": "`joinAreaNames(obj, kind)`",
+   "from": "`@/legacy`"
+  },
+  "ca": {
+   "export": "F",
+   "readable": "`izAlreadySubmitCompany(params)`",
+   "from": "`@/legacy`"
+  },
+  "$": {
+   "export": "M",
+   "readable": "`Modal`（ant-design-vue）",
+   "from": "`ant-design-vue`"
+  },
+  "ga": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略）",
+   "from": "不导入"
+  },
+  "Rt": {
+   "export": "b",
+   "readable": "`useStore`（vuex；store 已在 `main.ts` 安装）",
+   "from": "`vuex`"
+  },
+  "$t": {
+   "export": "a",
+   "readable": "`useTagsStore`（pinia \"tags\" store）",
+   "from": "`@/legacy`"
+  },
+  "Vt": {
+   "export": "E",
+   "readable": "`queryFormSettingByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "we": {
+   "export": "c",
+   "readable": "`SettingCodes`（业务配置码枚举）",
+   "from": "`@/legacy`"
+  },
+  "Et": {
+   "export": "g",
+   "readable": "`getSettingValueByCodes(params)`",
+   "from": "`@/legacy`"
+  },
+  "G": {
+   "export": "B",
+   "readable": "`API_BASE`（\"/xf-api\"）",
+   "from": "`@/utils/request`"
+  },
+  "B": {
+   "export": "h",
+   "readable": "`STATIC_BASE`（\"/jeecg-system/sys/common/static\"）",
+   "from": "`@/utils/request`"
+  },
+  "Mt": {
+   "export": "e",
+   "readable": "`getCompanyInfo(params)`",
+   "from": "`@/legacy`"
+  },
+  "Ht": {
+   "export": "f",
+   "readable": "`decryptText(text)`（解密接口返回的密文，得到 JSON 文本，调用方再 `JSON.parse`）",
+   "from": "`@/legacy`"
+  },
+  "ea": {
+   "export": "k",
+   "readable": "`getDictItemsByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "Jt": {
+   "export": "O",
+   "readable": "`getAreaInfoByAreaId(params)`",
+   "from": "`@/legacy`"
+  },
+  "Yt": {
+   "export": "G",
+   "readable": "`getDictValueByCodeAndItems(params)`",
+   "from": "`@/legacy`"
+  },
+  "Zt": {
+   "export": "H",
+   "readable": "`companyInfoVerifyForZZJC(params)`",
+   "from": "`@/legacy`"
+  },
+  "_": {
+   "export": "m",
+   "readable": "`message`（ant-design-vue，`message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "xe": {
+   "export": "U",
+   "readable": "`Upload`（ant-design-vue，`Upload.LIST_IGNORE`）",
+   "from": "`ant-design-vue`"
+  },
+  "Fe": {
+   "export": "J",
+   "readable": "`checkFileType(file, exts?)`",
+   "from": "`@/legacy`"
+  },
+  "aa": {
+   "export": "v",
+   "readable": "`getSettingValueByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "Wt": {
+   "export": "z",
+   "readable": "`getDictValueByCodes(params)`",
+   "from": "`@/legacy`"
+  },
+  "ta": {
+   "export": "Q",
+   "readable": "`sumbitVerifyInfo(data)`",
+   "from": "`@/legacy`"
+  },
+  "Xt": {
+   "export": "R",
+   "readable": "`queryCompanyInfo(params)`",
+   "from": "`@/legacy`"
+  },
+  "Y": {
+   "export": "I",
+   "readable": "`formatDateSlash(date)`（\"YYYY/M/D\"）",
+   "from": "`@/legacy`"
+  },
+  "Z": {
+   "export": "P",
+   "readable": "`PlusOutlined`",
+   "from": "`@ant-design/icons-vue`"
+  },
+  "Qt": {
+   "export": "y",
+   "readable": "`UPLOAD_URL`（上传接口地址）",
+   "from": "`@/legacy`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Se": {
+   "file": "phone.1751615607545.js",
+   "export": "p",
+   "base": "phone",
+   "target": "@shared/phone",
+   "import": "default"
+  },
+  "ue": {
+   "file": "dictCode.1751615607545.js",
+   "export": "d",
+   "base": "dictCode",
+   "target": "@shared/dictCode",
+   "import": "default"
+  },
+  "Kt": {
+   "file": "gaode.1751615607545.js",
+   "export": "i",
+   "base": "gaode",
+   "target": "@shared/gaode",
+   "import": "{ MultiDictNationSelect }"
+  },
+  "el": {
+   "file": "gaode.1751615607545.js",
+   "export": "M",
+   "base": "gaode",
+   "target": "@shared/gaode",
+   "import": "{ BaiduMapModal }"
+  },
+  "al": {
+   "file": "gaode.1751615607545.js",
+   "export": "g",
+   "base": "gaode",
+   "target": "@shared/gaode",
+   "import": "default"
+  },
+  "tl": {
+   "file": "dictCodeTreeOne.1751615607545.js",
+   "export": "d",
+   "base": "dictCodeTreeOne",
+   "target": "@shared/dictCodeTreeOne.vue"
+  },
+  "la": {
+   "file": "idCard.1751615607545.js",
+   "export": "i",
+   "base": "idCard",
+   "target": "@shared/idCard",
+   "import": "default"
+  },
+  "ll": {
+   "file": "email.1751615607545.js",
+   "export": "e",
+   "base": "email",
+   "target": "@shared/email",
+   "import": "default"
+  },
+  "rl": {
+   "file": "dictCheckBoxAll.1751615607545.js",
+   "export": "d",
+   "base": "dictCheckBoxAll",
+   "target": "@shared/dictCheckBoxAll.vue"
+  },
+  "sl": {
+   "file": "message.1751615607545.js",
+   "export": "i",
+   "base": "message",
+   "target": "@shared/message.ts"
+  },
+  "je": {
+   "file": "message.1751615607545.js",
+   "export": "s",
+   "base": "message",
+   "target": "@shared/message.ts"
+  },
+  "il": {
+   "file": "XfLoaing.1751615607545.js",
+   "export": "_",
+   "base": "XfLoaing",
+   "target": "@shared/XfLoaing.vue"
+  },
+  "ul": {
+   "file": "DictCodes.1751615607545.js",
+   "export": "D",
+   "base": "DictCodes",
+   "target": "@shared/DictCodes.ts"
+  }
+ },
+ "missing": []
+}

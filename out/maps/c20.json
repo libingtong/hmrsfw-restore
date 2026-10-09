@@ -1,0 +1,174 @@
+{
+ "id": "c20",
+ "site": "portal",
+ "chunk": "detail.178332063620011.js",
+ "vue": {
+  "qt": "defineComponent",
+  "Rt": "useRouter",
+  "Ut": "useRoute",
+  "he": "reactive",
+  "At": "onUnmounted",
+  "Et": "onMounted",
+  "Ot": "nextTick",
+  "m": "resolveComponent",
+  "i": "openBlock",
+  "p": "createElementBlock",
+  "o": "createVNode",
+  "u": "unref",
+  "s": "createElementVNode",
+  "l": "withCtx",
+  "d": "createTextVNode",
+  "n": "toDisplayString",
+  "y": "createCommentVNode",
+  "v": "createBlock",
+  "J": "withDirectives",
+  "M": "vShow",
+  "fe": "normalizeClass",
+  "C": "Fragment",
+  "B": "renderList",
+  "me": "resolveDynamicComponent",
+  "Dt": "pushScopeId",
+  "Yt": "popScopeId",
+  "E": "RouterLink",
+  "Jt": "getCurrentInstance"
+ },
+ "entry": {
+  "N": {
+   "export": "z",
+   "readable": "`request`（axios 实例，`request({url,method,params|data})`）",
+   "from": "`@/utils/request`"
+  },
+  "Mt": {
+   "export": "c",
+   "readable": "`getAppConfig()`（sessionStorage 里的租户配置）",
+   "from": "`@/legacy`"
+  },
+  "ye": {
+   "export": "S",
+   "readable": "`userStorage`（`getUser/getToken/getCorp/setCorp/getXfSysUser…`）",
+   "from": "`@/legacy`"
+  },
+  "ve": {
+   "export": "h",
+   "readable": "`getDictItemsByCode(params)`（带缓存的字典查询）",
+   "from": "`@/legacy`"
+  },
+  "ee": {
+   "export": "J",
+   "readable": "`SettingCodes`（业务配置码枚举，如 `SettingCodes.BTN_PERMISS`）",
+   "from": "`@/legacy`"
+  },
+  "Ht": {
+   "export": "K",
+   "readable": "`getSettingValueByCodes(params)`",
+   "from": "`@/legacy`"
+  },
+  "Kt": {
+   "export": "m",
+   "readable": "`LoginModal` 组件（登录弹窗，桩）",
+   "from": "`@/legacy`"
+  },
+  "Vt": {
+   "export": "o",
+   "readable": "`checkLogin(type, content?, okText?, cancelText?)`（返回 Promise<number>：3 未登录，1 通过，0 阻止）",
+   "from": "`@/legacy`"
+  },
+  "Xt": {
+   "export": "p",
+   "readable": "`TEXT_GO_AUTH`（\"去认证\"）",
+   "from": "`@/legacy`"
+  },
+  "$t": {
+   "export": "q",
+   "readable": "`MSG_CORP_NOT_AUTH`",
+   "from": "`@/legacy`"
+  },
+  "Gt": {
+   "export": "r",
+   "readable": "`IDENTITY_CORP`（1）",
+   "from": "`@/legacy`"
+  },
+  "Zt": {
+   "export": "aD",
+   "readable": "`checkIzDishonesty(data)`",
+   "from": "`@/legacy`"
+  },
+  "Qt": {
+   "export": "A",
+   "readable": "`message`（ant-design-vue，用法 `message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "W": {
+   "export": "B",
+   "readable": "`API_BASE`（\"/xf-api\"）",
+   "from": "`@/utils/request`"
+  },
+  "T": {
+   "export": "f",
+   "readable": "`STATIC_BASE`（\"/jeecg-system/sys/common/static\"）",
+   "from": "`@/utils/request`"
+  },
+  "ke": {
+   "export": "d",
+   "readable": "`dayjs`（日期格式化，`dayjs(x).format(...)`；原包是 moment 风格 API）",
+   "from": "`dayjs`"
+  },
+  "eo": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略；它只是给组件挂 `__scopeId`）",
+   "from": "不导入"
+  }
+ },
+ "api": {
+  "yo": {
+   "file": "index.1783320636200117.js",
+   "export": "g",
+   "fn": "getQrcodeImgByObjectId"
+  }
+ },
+ "shared": {
+  "P": {
+   "file": "dictCode.1783320636200.js",
+   "export": "d",
+   "base": "dictCode",
+   "target": "@shared/dictCode.vue"
+  },
+  "oo": {
+   "file": "industryCode.1783320636200.js",
+   "export": "i",
+   "base": "industryCode",
+   "target": "@shared/industryCode.vue"
+  },
+  "be": {
+   "file": "empty.1783320636200.js",
+   "export": "e",
+   "base": "empty",
+   "target": "@shared/empty.vue"
+  },
+  "ro": {
+   "file": "vue3-seamless-scroll.es.1783320636200.js",
+   "export": "V",
+   "base": "vue3-seamless-scroll.es",
+   "target": "@shared/vue3-seamless-scroll.ts"
+  },
+  "io": {
+   "file": "workType.1783320636200.js",
+   "export": "w",
+   "base": "workType",
+   "target": "@shared/workType.vue"
+  },
+  "uo": {
+   "file": "city.1783320636200.js",
+   "export": "c",
+   "base": "city",
+   "target": "@shared/city.vue"
+  },
+  "fo": {
+   "file": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "export": "_",
+   "base": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang",
+   "target": "@shared/qrcode.vue"
+  }
+ },
+ "missing": []
+}

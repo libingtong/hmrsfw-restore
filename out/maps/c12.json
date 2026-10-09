@@ -1,0 +1,45 @@
+{
+ "id": "c12",
+ "site": "usercenter",
+ "chunk": "index.175161560754525.js",
+ "vue": {
+  "y": "defineComponent",
+  "L": "reactive",
+  "k": "onMounted",
+  "a": "resolveComponent",
+  "s": "openBlock",
+  "o": "createElementBlock",
+  "n": "createVNode",
+  "l": "withCtx",
+  "B": "Fragment",
+  "N": "renderList",
+  "w": "createBlock",
+  "C": "createElementVNode",
+  "_": "unref"
+ },
+ "entry": {
+  "z": {
+   "export": "bx",
+   "readable": "`queryCertificateList(params)`",
+   "from": "`@/legacy`"
+  },
+  "h": {
+   "export": "B",
+   "readable": "`API_BASE`（\"/xf-api\"）",
+   "from": "`@/utils/request`"
+  },
+  "x": {
+   "export": "h",
+   "readable": "`STATIC_BASE`（\"/jeecg-system/sys/common/static\"）",
+   "from": "`@/utils/request`"
+  },
+  "v": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略）",
+   "from": "不导入"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "missing": []
+}

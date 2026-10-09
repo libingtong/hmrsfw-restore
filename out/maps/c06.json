@@ -1,0 +1,128 @@
+{
+ "id": "c06",
+ "site": "usercenter",
+ "chunk": "signUp.1751615607545.js",
+ "vue": {
+  "Q": "defineComponent",
+  "le": "watch",
+  "V": "reactive",
+  "ne": "onBeforeMount",
+  "G": "onMounted",
+  "q": "nextTick",
+  "_": "openBlock",
+  "h": "createElementBlock",
+  "l": "createVNode",
+  "c": "withCtx",
+  "t": "createElementVNode",
+  "r": "toDisplayString",
+  "z": "createTextVNode",
+  "E": "unref",
+  "Y": "pushScopeId",
+  "K": "popScopeId",
+  "v": "resolveComponent",
+  "k": "createCommentVNode",
+  "W": "createBlock",
+  "se": "inject",
+  "U": "ref",
+  "J": "Fragment",
+  "Oe": "normalizeStyle",
+  "Me": "Teleport"
+ },
+ "entry": {
+  "oe": {
+   "export": "M",
+   "readable": "`Modal`（ant-design-vue）",
+   "from": "`ant-design-vue`"
+  },
+  "A": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略）",
+   "from": "不导入"
+  },
+  "te": {
+   "export": "B",
+   "readable": "`API_BASE`（\"/xf-api\"）",
+   "from": "`@/utils/request`"
+  },
+  "ae": {
+   "export": "h",
+   "readable": "`STATIC_BASE`（\"/jeecg-system/sys/common/static\"）",
+   "from": "`@/utils/request`"
+  },
+  "Se": {
+   "export": "aN",
+   "readable": "`downloadFile(url, filename?)`",
+   "from": "`@/legacy`"
+  },
+  "De": {
+   "export": "d",
+   "readable": "`decryptStorage(text, key)`（原包：解密 localStorage 里的加密 JSON；POC 里直接 JSON.parse）",
+   "from": "`@/legacy`"
+  },
+  "Ce": {
+   "export": "bc",
+   "readable": "`pxRegistList(params)`",
+   "from": "`@/legacy`"
+  },
+  "we": {
+   "export": "k",
+   "readable": "`getDictItemsByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "Ne": {
+   "export": "bd",
+   "readable": "`ticketToHtml({noticeId, registrationId, ...})`",
+   "from": "`@/legacy`"
+  },
+  "R": {
+   "export": "m",
+   "readable": "`message`（ant-design-vue，`message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "Ie": {
+   "export": "be",
+   "readable": "`alipayScanPay(params)`",
+   "from": "`@/legacy`"
+  },
+  "Te": {
+   "export": "bf",
+   "readable": "`updateEnrollmentStatus(data)`",
+   "from": "`@/legacy`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Pe": {
+   "file": "dictCode.1751615607545.js",
+   "export": "d",
+   "base": "dictCode",
+   "target": "@shared/dictCode",
+   "import": "default"
+  },
+  "$e": {
+   "file": "WebSockets.1751615607545.js",
+   "export": "g",
+   "base": "WebSockets",
+   "target": "@shared/WebSockets.ts"
+  },
+  "ze": {
+   "file": "WebSockets.1751615607545.js",
+   "export": "c",
+   "base": "WebSockets",
+   "target": "@shared/WebSockets.ts"
+  },
+  "Fe": {
+   "file": "jspdf.es.min.1751615607545.js",
+   "export": "H",
+   "base": "jspdf.es.min",
+   "target": "@shared/jspdf.es.min.ts"
+  },
+  "Re": {
+   "file": "jspdf.es.min.1751615607545.js",
+   "export": "E",
+   "base": "jspdf.es.min",
+   "target": "@shared/jspdf.es.min.ts"
+  }
+ },
+ "missing": []
+}

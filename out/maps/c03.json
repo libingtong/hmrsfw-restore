@@ -1,0 +1,193 @@
+{
+ "id": "c03",
+ "site": "usercenter",
+ "chunk": "formDone.1751615607545.js",
+ "vue": {
+  "Se": "defineComponent",
+  "b": "ref",
+  "qe": "useRouter",
+  "je": "useRoute",
+  "Ge": "inject",
+  "Ae": "onMounted",
+  "Fe": "reactive",
+  "h": "resolveComponent",
+  "x": "openBlock",
+  "B": "createElementBlock",
+  "e": "createVNode",
+  "a": "withCtx",
+  "$": "createTextVNode",
+  "I": "unref",
+  "y": "createElementVNode",
+  "K": "createCommentVNode",
+  "fa": "Fragment",
+  "ba": "renderList",
+  "va": "normalizeClass",
+  "ha": "withDirectives",
+  "_a": "vShow",
+  "Ze": "toDisplayString",
+  "pe": "createBlock",
+  "Be": "pushScopeId",
+  "Xe": "popScopeId"
+ },
+ "entry": {
+  "ce": {
+   "export": "d",
+   "readable": "`decryptStorage(text, key)`（原包：解密 localStorage 里的加密 JSON；POC 里直接 JSON.parse）",
+   "from": "`@/legacy`"
+  },
+  "Oe": {
+   "export": "a",
+   "readable": "`useTagsStore`（pinia \"tags\" store）",
+   "from": "`@/legacy`"
+  },
+  "Ne": {
+   "export": "k",
+   "readable": "`getDictItemsByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "Me": {
+   "export": "A",
+   "readable": "`queryAreaChildrenTreeListById(params)`",
+   "from": "`@/legacy`"
+  },
+  "le": {
+   "export": "p",
+   "readable": "`dayjs`（`dayjs(x).format(\"YYYY-MM\")`）",
+   "from": "`dayjs`"
+  },
+  "ue": {
+   "export": "B",
+   "readable": "`API_BASE`（\"/xf-api\"）",
+   "from": "`@/utils/request`"
+  },
+  "re": {
+   "export": "h",
+   "readable": "`STATIC_BASE`（\"/jeecg-system/sys/common/static\"）",
+   "from": "`@/utils/request`"
+  },
+  "L": {
+   "export": "m",
+   "readable": "`message`（ant-design-vue，`message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "fe": {
+   "export": "I",
+   "readable": "`formatDateSlash(date)`（\"YYYY/M/D\"）",
+   "from": "`@/legacy`"
+  },
+  "ke": {
+   "export": "M",
+   "readable": "`Modal`（ant-design-vue）",
+   "from": "`ant-design-vue`"
+  },
+  "We": {
+   "export": "y",
+   "readable": "`UPLOAD_URL`（上传接口地址）",
+   "from": "`@/legacy`"
+  },
+  "De": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略）",
+   "from": "不导入"
+  },
+  "ya": {
+   "export": "U",
+   "readable": "`Upload`（ant-design-vue，`Upload.LIST_IGNORE`）",
+   "from": "`ant-design-vue`"
+  }
+ },
+ "api": {
+  "Ca": {
+   "file": "index.api.17516156075455.js",
+   "export": "h",
+   "fn": "checkIdCard3"
+  },
+  "xa": {
+   "file": "index.api.17516156075455.js",
+   "export": "i",
+   "fn": "queryById3"
+  },
+  "wa": {
+   "file": "index.api.17516156075455.js",
+   "export": "j",
+   "fn": "saveOrUpdate3"
+  },
+  "ua": {
+   "file": "index.api.17516156075455.js",
+   "export": "k",
+   "fn": "checkIdCard"
+  },
+  "ra": {
+   "file": "index.api.17516156075455.js",
+   "export": "l",
+   "fn": "queryById4"
+  },
+  "ka": {
+   "file": "index.api.17516156075455.js",
+   "export": "m",
+   "fn": "saveOrupdate"
+  },
+  "Ia": {
+   "file": "index.api.17516156075455.js",
+   "export": "n",
+   "fn": "checkIdCard2"
+  },
+  "La": {
+   "file": "index.api.17516156075455.js",
+   "export": "o",
+   "fn": "queryById2"
+  },
+  "Pa": {
+   "file": "index.api.17516156075455.js",
+   "export": "p",
+   "fn": "saveOrUpdate2"
+  },
+  "Na": {
+   "file": "index.api.17516156075455.js",
+   "export": "q",
+   "fn": "queryById"
+  },
+  "Ta": {
+   "file": "index.api.17516156075455.js",
+   "export": "d",
+   "fn": "getCollegeInfo"
+  },
+  "Ua": {
+   "file": "index.api.17516156075455.js",
+   "export": "r",
+   "fn": "saveOrUpdate"
+  },
+  "na": {
+   "file": "index.api.17516156075455.js",
+   "export": "t",
+   "fn": "checkIdCard4"
+  },
+  "ia": {
+   "file": "index.api.17516156075455.js",
+   "export": "u",
+   "fn": "queryById5"
+  },
+  "oa": {
+   "file": "index.api.17516156075455.js",
+   "export": "v",
+   "fn": "saveOrUpdate4"
+  }
+ },
+ "shared": {
+  "Ie": {
+   "file": "dictCode.1751615607545.js",
+   "export": "d",
+   "base": "dictCode",
+   "target": "@shared/dictCode",
+   "import": "default"
+  },
+  "Ve": {
+   "file": "idCard.1751615607545.js",
+   "export": "i",
+   "base": "idCard",
+   "target": "@shared/idCard",
+   "import": "default"
+  }
+ },
+ "missing": []
+}

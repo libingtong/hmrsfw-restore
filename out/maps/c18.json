@@ -1,0 +1,75 @@
+{
+ "id": "c18",
+ "site": "usercenter",
+ "chunk": "changepassword.1751615607545.js",
+ "vue": {
+  "Y": "defineComponent",
+  "Z": "useRouter",
+  "f": "ref",
+  "B": "reactive",
+  "A": "onMounted",
+  "c": "resolveComponent",
+  "v": "openBlock",
+  "h": "createElementBlock",
+  "e": "createVNode",
+  "o": "withCtx",
+  "_": "createTextVNode",
+  "N": "createBlock",
+  "I": "toDisplayString",
+  "T": "createCommentVNode",
+  "S": "createElementVNode"
+ },
+ "entry": {
+  "O": {
+   "export": "d",
+   "readable": "`decryptStorage(text, key)`（原包：解密 localStorage 里的加密 JSON；POC 里直接 JSON.parse）",
+   "from": "`@/legacy`"
+  },
+  "E": {
+   "export": "t",
+   "readable": "`validatePassword(rule, value)`（a-form 密码校验器）",
+   "from": "`@/legacy`"
+  },
+  "L": {
+   "export": "v",
+   "readable": "`getSettingValueByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "q": {
+   "export": "M",
+   "readable": "`Modal`（ant-design-vue）",
+   "from": "`ant-design-vue`"
+  },
+  "$": {
+   "export": "m",
+   "readable": "`message`（ant-design-vue，`message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "X": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略）",
+   "from": "不导入"
+  }
+ },
+ "api": {
+  "H": {
+   "file": "index.api.17516156075453.js",
+   "export": "c",
+   "fn": "changePwdWithSmsCode"
+  },
+  "J": {
+   "file": "index.api.17516156075453.js",
+   "export": "p",
+   "fn": "updatePassword"
+  }
+ },
+ "shared": {
+  "Q": {
+   "file": "SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js",
+   "export": "_",
+   "base": "SlideCaptcha.vue_vue_type_style_index_0_lang",
+   "target": "@shared/SlideCaptcha.vue"
+  }
+ },
+ "missing": []
+}

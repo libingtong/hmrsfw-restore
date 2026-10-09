@@ -1,0 +1,18 @@
+import { chromium } from "playwright";
+import { createServer } from "node:http";
+import { readFileSync, existsSync, statSync, writeFileSync } from "node:fs";
+import path from "node:path";
+const dir = path.resolve("legacy-dist/usercenter");
+const srv = createServer((req, res) => { const u = decodeURIComponent(req.url.split("?")[0]); let f = path.join(dir, u); const missing = !existsSync(f) || statSync(f).isDirectory(); if (missing) f = path.join(dir, "index.html"); res.setHeader("x-fallback", missing ? "1" : "0"); res.end(readFileSync(f)); }).listen(4611, "127.0.0.1");
+const har = JSON.parse(readFileSync("har/usercenter/resumetemplate.har", "utf8")); for (const e of har.log.entries) e.request.url = e.request.url.replace("http://__ORIGIN__", "http://127.0.0.1:4611"); writeFileSync("/tmp/uc.har", JSON.stringify(har));
+const browser = await chromium.launch(); const ctx = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
+const st = JSON.parse(readFileSync(".auth/usercenter-original.json", "utf8"));
+await ctx.addInitScript((s) => { for (const [k, v] of Object.entries(s.localStorage)) localStorage.setItem(k, v); for (const [k, v] of Object.entries(s.sessionStorage)) sessionStorage.setItem(k, v); }, st);
+await ctx.routeFromHAR("/tmp/uc.har", { url: /\/xf-api\//, notFound: "abort", update: false });
+const page = await ctx.newPage(); const log = [];
+page.on("response", async (r) => { const u = r.url().replace("http://127.0.0.1:4611", ""); if (r.headers()["x-fallback"] !== "1" && /\.(js|css|png|jpg|woff2?|ico)$/.test(u.split("?")[0])) return; log.push(`${r.request().method()} ${u.split("?")[0]}${u.includes("?") ? "?…" : ""} -> ${r.status()} fallback=${r.headers()["x-fallback"] ?? "-"}`); });
+page.on("requestfailed", (r) => log.push(`FAILED ${r.method()} ${r.url().replace("http://127.0.0.1:4611", "").split("?")[0]}`));
+page.on("pageerror", (e) => log.push("PAGEERROR " + String(e.message).slice(0, 160)));
+await page.goto("http://127.0.0.1:4611/resumetemplate", { waitUntil: "load" }); await page.waitForTimeout(8000);
+log.push("final url " + page.url().replace("http://127.0.0.1:4611", "")); log.push("app html len " + (await page.evaluate(() => document.getElementById("app").innerHTML.length)));
+console.log(log.join("\n")); await browser.close(); srv.close();

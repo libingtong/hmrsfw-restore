@@ -1,0 +1,576 @@
+[
+ {
+  "id": "c01",
+  "site": "portal",
+  "app": "portal",
+  "vueVersion": "3.2.47",
+  "route": "/ProbationHome",
+  "recordPath": "/ProbationHome",
+  "role": "portal",
+  "sourceChunk": "legacy-dist/portal/assets/ProbationHome.1783320636200.js",
+  "kb": 27.7,
+  "components": [
+   "Gigmarketgetjob",
+   "GigmarketgetjobBasestyle",
+   "ProbationHome"
+  ],
+  "scopeIds": [
+   "data-v-801ceba2",
+   "data-v-89c817f8",
+   "data-v-d619e363"
+  ],
+  "cssCandidates": [
+   "legacy-dist/portal/assets/ProbationHome.1783320636200.css"
+  ],
+  "maps": "out/maps/c01.json",
+  "hints": "out/hints/c01.md",
+  "target": "portal/src/views/BeOnProbation/ProbationHome.vue",
+  "subComponentDir": "portal/src/views/BeOnProbation/ProbationHome/",
+  "segmented": false,
+  "split": "fit",
+  "category": "前缀作用域插槽"
+ },
+ {
+  "id": "c02",
+  "site": "portal",
+  "app": "portal",
+  "vueVersion": "3.2.47",
+  "route": "/enterpriserecruitment",
+  "recordPath": "/enterpriserecruitment",
+  "role": "portal",
+  "sourceChunk": "legacy-dist/portal/assets/enterpriserecruitment.1783320636200.js",
+  "kb": 9.2,
+  "components": [
+   "enterpriserecruitment"
+  ],
+  "scopeIds": [
+   "data-v-76065268"
+  ],
+  "cssCandidates": [
+   "legacy-dist/portal/assets/enterpriserecruitment.1783320636200.css"
+  ],
+  "maps": "out/maps/c02.json",
+  "hints": "out/hints/c02.md",
+  "target": "portal/src/views/sjz/enterpriserecruitment/enterpriserecruitment.vue",
+  "subComponentDir": "portal/src/views/sjz/enterpriserecruitment/enterpriserecruitment/",
+  "segmented": false,
+  "split": "holdout",
+  "category": "前缀作用域插槽"
+ },
+ {
+  "id": "c03",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/formDone/:type",
+  "recordPath": "/formDone/lsajbt",
+  "role": "usercenter-jobseeker",
+  "sourceChunk": "legacy-dist/usercenter/assets/formDone.1751615607545.js",
+  "kb": 108.0,
+  "components": [
+   "bmgjjl",
+   "lsajbt",
+   "zctsjl",
+   "zsgxjl",
+   "bshbt",
+   "bshky",
+   "szftsjt",
+   "formDone"
+  ],
+  "scopeIds": [
+   "data-v-272981db",
+   "data-v-2f021b16",
+   "data-v-37818952",
+   "data-v-4a29201b",
+   "data-v-5396e0f7",
+   "data-v-7d0af864",
+   "data-v-b03e59fc",
+   "data-v-d4179e39"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/formDone.1751615607545.css"
+  ],
+  "maps": "out/maps/c03.json",
+  "hints": "out/hints/c03.md",
+  "target": "uc/src/views/formDone.vue",
+  "subComponentDir": "uc/src/views/formDone/",
+  "segmented": true,
+  "split": "fit",
+  "category": "用户中心大表单"
+ },
+ {
+  "id": "c04",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/CorpAttestationapprove",
+  "recordPath": "/CorpAttestationapprove",
+  "role": "usercenter-corp",
+  "sourceChunk": "legacy-dist/usercenter/assets/CorpAttestationapprove.1751615607545.js",
+  "kb": 67.7,
+  "components": [
+   "BusinessModalDetail",
+   "CorpAttestationapprove"
+  ],
+  "scopeIds": [
+   "data-v-3ee3f5bf",
+   "data-v-a3e6ce79"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/CorpAttestationapprove.1751615607545.css"
+  ],
+  "maps": "out/maps/c04.json",
+  "hints": "out/hints/c04.md",
+  "target": "uc/src/views/CorpAttestationapprove.vue",
+  "subComponentDir": "uc/src/views/CorpAttestationapprove/",
+  "segmented": true,
+  "split": "holdout",
+  "category": "用户中心大表单/其他角色"
+ },
+ {
+  "id": "c05",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/corpFairs/:key?",
+  "recordPath": "/corpFairs",
+  "role": "usercenter-corp",
+  "sourceChunk": "legacy-dist/usercenter/assets/corpFairs.1751615607545.js",
+  "kb": 68.3,
+  "components": [
+   "dataUpload",
+   "receiveResume",
+   "hopeResume",
+   "proofResume",
+   "qrcode",
+   "corpFairs"
+  ],
+  "scopeIds": [
+   "data-v-009debef",
+   "data-v-19434c2a",
+   "data-v-22e4465f",
+   "data-v-daa9a53d",
+   "data-v-f32771ca"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/corpFairs.1751615607545.css"
+  ],
+  "maps": "out/maps/c05.json",
+  "hints": "out/hints/c05.md",
+  "target": "uc/src/views/corpFairs.vue",
+  "subComponentDir": "uc/src/views/corpFairs/",
+  "segmented": true,
+  "split": "holdout",
+  "category": "其他角色"
+ },
+ {
+  "id": "c06",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/signUp",
+  "recordPath": "/signUp",
+  "role": "usercenter-jobseeker",
+  "sourceChunk": "legacy-dist/usercenter/assets/signUp.1751615607545.js",
+  "kb": 14.5,
+  "components": [
+   "PayModal",
+   "DetailModal",
+   "signUp"
+  ],
+  "scopeIds": [
+   "data-v-25d041ba",
+   "data-v-3a188487",
+   "data-v-9598f08c"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/DetailModal.1751615607545.css",
+   "legacy-dist/usercenter/assets/signUp.1751615607545.css"
+  ],
+  "maps": "out/maps/c06.json",
+  "hints": "out/hints/c06.md",
+  "target": "uc/src/views/signUp.vue",
+  "subComponentDir": "uc/src/views/signUp/",
+  "segmented": false,
+  "split": "fit",
+  "category": "操作页"
+ },
+ {
+  "id": "c07",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/JobFairsHome/:key?",
+  "recordPath": "/JobFairsHome",
+  "role": "usercenter-jobseeker",
+  "sourceChunk": "legacy-dist/usercenter/assets/JobFairsHome.1751615607545.js",
+  "kb": 14.7,
+  "components": [
+   "JobFairsHome"
+  ],
+  "scopeIds": [
+   "data-v-55756c3a"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/JobFairsHome.1751615607545.css"
+  ],
+  "maps": "out/maps/c07.json",
+  "hints": "out/hints/c07.md",
+  "target": "uc/src/views/JobFairsHome.vue",
+  "subComponentDir": "uc/src/views/JobFairsHome/",
+  "segmented": false,
+  "split": "holdout",
+  "category": "操作页"
+ },
+ {
+  "id": "c08",
+  "site": "portal",
+  "app": "portal",
+  "vueVersion": "3.2.47",
+  "route": "/sceneFairDetail/:zphId",
+  "recordPath": "/sceneFairDetail/2092885417695219713",
+  "role": "portal",
+  "sourceChunk": "legacy-dist/portal/assets/detail.17833206362003.js",
+  "kb": 35.1,
+  "components": [
+   "detail"
+  ],
+  "scopeIds": [
+   "data-v-aa062d95"
+  ],
+  "cssCandidates": [
+   "legacy-dist/portal/assets/detail.17833206362004.css"
+  ],
+  "maps": "out/maps/c08.json",
+  "hints": "out/hints/c08.md",
+  "target": "portal/src/views/fair/sceneFair/detail.vue",
+  "subComponentDir": "portal/src/views/fair/sceneFair/detail/",
+  "segmented": false,
+  "split": "holdout",
+  "category": "操作页"
+ },
+ {
+  "id": "c09",
+  "site": "portal",
+  "app": "portal",
+  "vueVersion": "3.2.47",
+  "route": "/resumeAnalysisReport",
+  "recordPath": "/resumeAnalysisReport",
+  "role": "portal",
+  "sourceChunk": "legacy-dist/portal/assets/resumeAnalysisReport.1783320636200.js",
+  "kb": 13.9,
+  "components": [
+   "resumeAnalysisReport"
+  ],
+  "scopeIds": [
+   "data-v-798feaf3"
+  ],
+  "cssCandidates": [
+   "legacy-dist/portal/assets/resumeAnalysisReport.1783320636200.css"
+  ],
+  "maps": "out/maps/c09.json",
+  "hints": "out/hints/c09.md",
+  "target": "portal/src/views/resumeAnalysisReport/resumeAnalysisReport.vue",
+  "subComponentDir": "portal/src/views/resumeAnalysisReport/resumeAnalysisReport/",
+  "segmented": false,
+  "split": "holdout",
+  "category": "操作页"
+ },
+ {
+  "id": "c10",
+  "site": "portal",
+  "app": "portal",
+  "vueVersion": "3.2.47",
+  "route": "/outLink",
+  "recordPath": "/outLink?link=https%3A%2F%2Fhamiwebportaltest.rencaidanao.com%2F",
+  "role": "portal",
+  "sourceChunk": "legacy-dist/portal/assets/index.178332063620054.js",
+  "kb": 1.4,
+  "components": [
+   "index"
+  ],
+  "scopeIds": [
+   "data-v-bbbf387a"
+  ],
+  "cssCandidates": [
+   "legacy-dist/portal/assets/index.178332063620053.css"
+  ],
+  "maps": "out/maps/c10.json",
+  "hints": "out/hints/c10.md",
+  "target": "portal/src/views/outLink/index.vue",
+  "subComponentDir": "portal/src/views/outLink/index/",
+  "segmented": false,
+  "split": "holdout",
+  "category": "最简单"
+ },
+ {
+  "id": "c11",
+  "site": "portal",
+  "app": "portal",
+  "vueVersion": "3.2.47",
+  "route": "/PDFPreview",
+  "recordPath": "/PDFPreview",
+  "role": "portal",
+  "sourceChunk": "legacy-dist/portal/assets/PDFPreview.1783320636200.js",
+  "kb": 1.5,
+  "components": [
+   "PDFPreview"
+  ],
+  "scopeIds": [
+   "data-v-8e61dc40"
+  ],
+  "cssCandidates": [
+   "legacy-dist/portal/assets/PDFPreview.1783320636200.css"
+  ],
+  "maps": "out/maps/c11.json",
+  "hints": "out/hints/c11.md",
+  "target": "portal/src/views/PDFPreview/PDFPreview.vue",
+  "subComponentDir": "portal/src/views/PDFPreview/PDFPreview/",
+  "segmented": false,
+  "split": "fit",
+  "category": "最简单"
+ },
+ {
+  "id": "c12",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/trainCertificate",
+  "recordPath": "/trainCertificate",
+  "role": "usercenter-jobseeker",
+  "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754525.js",
+  "kb": 1.4,
+  "components": [
+   "index"
+  ],
+  "scopeIds": [
+   "data-v-1b4eb641"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/index.175161560754528.css"
+  ],
+  "maps": "out/maps/c12.json",
+  "hints": "out/hints/c12.md",
+  "target": "uc/src/views/trainCertificate.vue",
+  "subComponentDir": "uc/src/views/trainCertificate/",
+  "segmented": false,
+  "split": "fit",
+  "category": "最简单"
+ },
+ {
+  "id": "c13",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/zgAccount",
+  "recordPath": "/zgAccount",
+  "role": "usercenter-jobseeker",
+  "sourceChunk": "legacy-dist/usercenter/assets/account.1751615607545.js",
+  "kb": 1.6,
+  "components": [
+   "account"
+  ],
+  "scopeIds": [
+   "data-v-31e0088b"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/account.1751615607545.css"
+  ],
+  "maps": "out/maps/c13.json",
+  "hints": "out/hints/c13.md",
+  "target": "uc/src/views/zgAccount.vue",
+  "subComponentDir": "uc/src/views/zgAccount/",
+  "segmented": false,
+  "split": "fit",
+  "category": "最简单"
+ },
+ {
+  "id": "c14",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/unRegister",
+  "recordPath": "/unRegister",
+  "role": "usercenter-jobseeker",
+  "sourceChunk": "legacy-dist/usercenter/assets/unRegister.1751615607545.js",
+  "kb": 1.7,
+  "components": [
+   "unRegister"
+  ],
+  "scopeIds": [
+   "data-v-628f7ae3"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/unRegister.1751615607545.css"
+  ],
+  "maps": "out/maps/c14.json",
+  "hints": "out/hints/c14.md",
+  "target": "uc/src/views/unRegister.vue",
+  "subComponentDir": "uc/src/views/unRegister/",
+  "segmented": false,
+  "split": "fit",
+  "category": "最简单"
+ },
+ {
+  "id": "c15",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/accountBind",
+  "recordPath": "/accountBind",
+  "role": "usercenter-jobseeker",
+  "sourceChunk": "legacy-dist/usercenter/assets/accountBind.1751615607545.js",
+  "kb": 2.3,
+  "components": [
+   "accountBind"
+  ],
+  "scopeIds": [
+   "data-v-aff1b925"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/accountBind.1751615607545.css"
+  ],
+  "maps": "out/maps/c15.json",
+  "hints": "out/hints/c15.md",
+  "target": "uc/src/views/accountBind.vue",
+  "subComponentDir": "uc/src/views/accountBind/",
+  "segmented": false,
+  "split": "holdout",
+  "category": "分层随机"
+ },
+ {
+  "id": "c16",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/industrySkillTree",
+  "recordPath": "/industrySkillTree",
+  "role": "usercenter-jobseeker",
+  "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754517.js",
+  "kb": 4.0,
+  "components": [
+   "index"
+  ],
+  "scopeIds": [
+   "data-v-9f875e87"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/index.175161560754520.css"
+  ],
+  "maps": "out/maps/c16.json",
+  "hints": "out/hints/c16.md",
+  "target": "uc/src/views/industrySkillTree.vue",
+  "subComponentDir": "uc/src/views/industrySkillTree/",
+  "segmented": false,
+  "split": "fit",
+  "category": "分层随机"
+ },
+ {
+  "id": "c17",
+  "site": "portal",
+  "app": "portal",
+  "vueVersion": "3.2.47",
+  "route": "/outFairList",
+  "recordPath": "/outFairList",
+  "role": "portal",
+  "sourceChunk": "legacy-dist/portal/assets/list.17833206362003.js",
+  "kb": 12.0,
+  "components": [
+   "list"
+  ],
+  "scopeIds": [
+   "data-v-34be5353"
+  ],
+  "cssCandidates": [
+   "legacy-dist/portal/assets/list.17833206362003.css"
+  ],
+  "maps": "out/maps/c17.json",
+  "hints": "out/hints/c17.md",
+  "target": "portal/src/views/fair/outFair/list.vue",
+  "subComponentDir": "portal/src/views/fair/outFair/list/",
+  "segmented": false,
+  "split": "holdout",
+  "category": "分层随机"
+ },
+ {
+  "id": "c18",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/StorageChgPassword",
+  "recordPath": "/StorageChgPassword",
+  "role": "usercenter-jobseeker",
+  "sourceChunk": "legacy-dist/usercenter/assets/changepassword.1751615607545.js",
+  "kb": 7.4,
+  "components": [
+   "changepassword"
+  ],
+  "scopeIds": [
+   "data-v-755b55b6"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/changepassword.1751615607545.css"
+  ],
+  "maps": "out/maps/c18.json",
+  "hints": "out/hints/c18.md",
+  "target": "uc/src/views/StorageChgPassword.vue",
+  "subComponentDir": "uc/src/views/StorageChgPassword/",
+  "segmented": false,
+  "split": "holdout",
+  "category": "分层随机"
+ },
+ {
+  "id": "c19",
+  "site": "usercenter",
+  "app": "uc",
+  "vueVersion": "3.3.4",
+  "route": "/webFairWork/:zphId",
+  "recordPath": "/webFairWork/2100433904057028610",
+  "role": "usercenter-corp",
+  "sourceChunk": "legacy-dist/usercenter/assets/webFairWork.1751615607545.js",
+  "kb": 25.0,
+  "components": [
+   "webFairWork"
+  ],
+  "scopeIds": [
+   "data-v-584cef56"
+  ],
+  "cssCandidates": [
+   "legacy-dist/usercenter/assets/webFairWork.1751615607545.css"
+  ],
+  "maps": "out/maps/c19.json",
+  "hints": "out/hints/c19.md",
+  "target": "uc/src/views/webFairWork.vue",
+  "subComponentDir": "uc/src/views/webFairWork/",
+  "segmented": false,
+  "split": "fit",
+  "category": "分层随机"
+ },
+ {
+  "id": "c20",
+  "site": "portal",
+  "app": "portal",
+  "vueVersion": "3.2.47",
+  "route": "/talents/outFairDetail/:zphId",
+  "recordPath": "/talents/outFairDetail/1891332707671183362",
+  "role": "portal",
+  "sourceChunk": "legacy-dist/portal/assets/detail.178332063620011.js",
+  "kb": 29.2,
+  "components": [
+   "detail"
+  ],
+  "scopeIds": [
+   "data-v-fdf989a4"
+  ],
+  "cssCandidates": [
+   "legacy-dist/portal/assets/detail.17833206362007.css"
+  ],
+  "maps": "out/maps/c20.json",
+  "hints": "out/hints/c20.md",
+  "target": "portal/src/views/talents/fair/outFair/detail.vue",
+  "subComponentDir": "portal/src/views/talents/fair/outFair/detail/",
+  "segmented": false,
+  "split": "fit",
+  "category": "分层随机"
+ }
+]

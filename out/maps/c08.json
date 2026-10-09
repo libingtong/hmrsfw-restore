@@ -1,0 +1,259 @@
+{
+ "id": "c08",
+ "site": "portal",
+ "chunk": "detail.17833206362003.js",
+ "vue": {
+  "ss": "defineComponent",
+  "os": "useRouter",
+  "ls": "useRoute",
+  "rs": "ref",
+  "_e": "reactive",
+  "is": "computed",
+  "ns": "onUnmounted",
+  "ps": "onMounted",
+  "K": "nextTick",
+  "v": "resolveComponent",
+  "i": "openBlock",
+  "n": "createElementBlock",
+  "s": "createVNode",
+  "c": "unref",
+  "r": "createElementVNode",
+  "l": "withCtx",
+  "u": "createTextVNode",
+  "p": "toDisplayString",
+  "h": "createBlock",
+  "re": "normalizeClass",
+  "f": "createCommentVNode",
+  "W": "withDirectives",
+  "T": "vShow",
+  "I": "Fragment",
+  "ds": "normalizeStyle",
+  "j": "renderList",
+  "Ie": "resolveDynamicComponent",
+  "cs": "pushScopeId",
+  "us": "popScopeId",
+  "P": "RouterLink",
+  "hs": "getCurrentInstance"
+ },
+ "entry": {
+  "xe": {
+   "export": "S",
+   "readable": "`userStorage`（`getUser/getToken/getCorp/setCorp/getXfSysUser…`）",
+   "from": "`@/legacy`"
+  },
+  "ys": {
+   "export": "c",
+   "readable": "`getAppConfig()`（sessionStorage 里的租户配置）",
+   "from": "`@/legacy`"
+  },
+  "vs": {
+   "export": "I",
+   "readable": "`checkBtnPermission({type})`",
+   "from": "`@/legacy`"
+  },
+  "Ce": {
+   "export": "h",
+   "readable": "`getDictItemsByCode(params)`（带缓存的字典查询）",
+   "from": "`@/legacy`"
+  },
+  "Se": {
+   "export": "K",
+   "readable": "`getSettingValueByCodes(params)`",
+   "from": "`@/legacy`"
+  },
+  "V": {
+   "export": "J",
+   "readable": "`SettingCodes`（业务配置码枚举，如 `SettingCodes.BTN_PERMISS`）",
+   "from": "`@/legacy`"
+  },
+  "gs": {
+   "export": "D",
+   "readable": "`BusinessDictLabels`（业务字典 label 枚举，如 `BusinessDictLabels.GUIDANCE_AREA`；原 TS enum）",
+   "from": "`@/legacy`"
+  },
+  "ks": {
+   "export": "g",
+   "readable": "`getDictValueByCodeAndItems(params)`（常与 `{dictCode: getAppConfig().businessDict, labels: BusinessDictLabels.X}` 连用）",
+   "from": "`@/legacy`"
+  },
+  "zs": {
+   "export": "ap",
+   "readable": "`getArticleListByTypeIds(params)`",
+   "from": "`@/legacy`"
+  },
+  "bs": {
+   "export": "m",
+   "readable": "`LoginModal` 组件（登录弹窗，桩）",
+   "from": "`@/legacy`"
+  },
+  "ws": {
+   "export": "O",
+   "readable": "`checkIdentity({type, content, …})`",
+   "from": "`@/legacy`"
+  },
+  "_s": {
+   "export": "aD",
+   "readable": "`checkIzDishonesty(data)`",
+   "from": "`@/legacy`"
+  },
+  "Is": {
+   "export": "v",
+   "readable": "`openUserCenter(path, target?)`",
+   "from": "`@/legacy`"
+  },
+  "xs": {
+   "export": "A",
+   "readable": "`message`（ant-design-vue，用法 `message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "Cs": {
+   "export": "u",
+   "readable": "`useStore()`（vuex；页面里一般读 `store.getters.userInfo/userUrl/dictList`）",
+   "from": "`@/legacy`"
+  },
+  "Ss": {
+   "export": "r",
+   "readable": "`IDENTITY_CORP`（1）",
+   "from": "`@/legacy`"
+  },
+  "Ns": {
+   "export": "q",
+   "readable": "`MSG_CORP_NOT_AUTH`",
+   "from": "`@/legacy`"
+  },
+  "Ws": {
+   "export": "p",
+   "readable": "`TEXT_GO_AUTH`（\"去认证\"）",
+   "from": "`@/legacy`"
+  },
+  "Ts": {
+   "export": "ba",
+   "readable": "`MSG_CORP_PENDING`",
+   "from": "`@/legacy`"
+  },
+  "L": {
+   "export": "B",
+   "readable": "`API_BASE`（\"/xf-api\"）",
+   "from": "`@/utils/request`"
+  },
+  "B": {
+   "export": "f",
+   "readable": "`STATIC_BASE`（\"/jeecg-system/sys/common/static\"）",
+   "from": "`@/utils/request`"
+  },
+  "Ne": {
+   "export": "d",
+   "readable": "`dayjs`（日期格式化，`dayjs(x).format(...)`；原包是 moment 风格 API）",
+   "from": "`dayjs`"
+  },
+  "Ls": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略；它只是给组件挂 `__scopeId`）",
+   "from": "不导入"
+  }
+ },
+ "api": {
+  "Es": {
+   "file": "index.api.178332063620017.js",
+   "export": "b",
+   "fn": "updateBrowseCount"
+  },
+  "Rs": {
+   "file": "index.api.178332063620017.js",
+   "export": "c",
+   "fn": "queryById"
+  },
+  "Ms": {
+   "file": "index.api.178332063620017.js",
+   "export": "d",
+   "fn": "queryJobFairStatistics"
+  },
+  "Ds": {
+   "file": "index.api.178332063620017.js",
+   "export": "e",
+   "fn": "scrollBarData"
+  },
+  "Us": {
+   "file": "index.api.178332063620017.js",
+   "export": "f",
+   "fn": "queryAttendeesCompany"
+  },
+  "As": {
+   "file": "index.api.178332063620017.js",
+   "export": "h",
+   "fn": "queryAttendeesPosition"
+  },
+  "Os": {
+   "file": "index.api.178332063620017.js",
+   "export": "i",
+   "fn": "queryBoothPlaceInfo"
+  },
+  "qs": {
+   "file": "index.api.178332063620017.js",
+   "export": "j",
+   "fn": "queryBoothView"
+  },
+  "ao": {
+   "file": "index.1783320636200117.js",
+   "export": "g",
+   "fn": "getQrcodeImgByObjectId"
+  }
+ },
+ "shared": {
+  "fs": {
+   "file": "down.1783320636200.js",
+   "export": "_",
+   "base": "down",
+   "target": "@shared/down.ts"
+  },
+  "ms": {
+   "file": "down.1783320636200.js",
+   "export": "a",
+   "base": "down",
+   "target": "@shared/down.ts"
+  },
+  "Fs": {
+   "file": "industryCode.1783320636200.js",
+   "export": "i",
+   "base": "industryCode",
+   "target": "@shared/industryCode.vue"
+  },
+  "M": {
+   "file": "dictCode.1783320636200.js",
+   "export": "d",
+   "base": "dictCode",
+   "target": "@shared/dictCode.vue"
+  },
+  "Ys": {
+   "file": "vue3-seamless-scroll.es.1783320636200.js",
+   "export": "V",
+   "base": "vue3-seamless-scroll.es",
+   "target": "@shared/vue3-seamless-scroll.ts"
+  },
+  "Ks": {
+   "file": "workType.1783320636200.js",
+   "export": "w",
+   "base": "workType",
+   "target": "@shared/workType.vue"
+  },
+  "We": {
+   "file": "empty.1783320636200.js",
+   "export": "e",
+   "base": "empty",
+   "target": "@shared/empty.vue"
+  },
+  "Zs": {
+   "file": "city.1783320636200.js",
+   "export": "c",
+   "base": "city",
+   "target": "@shared/city.vue"
+  },
+  "Qs": {
+   "file": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "export": "_",
+   "base": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang",
+   "target": "@shared/qrcode.vue"
+  }
+ },
+ "missing": []
+}

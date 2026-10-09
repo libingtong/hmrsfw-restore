@@ -1,0 +1,16 @@
+{
+  "portal": [
+    { "id": "p1", "route": "/personnelAssessment", "key": "src/views/personnelAssessment/index.vue", "why": "最简单页面（基线）：只依赖入口包" },
+    { "id": "p2", "route": "/GuidanceMentorDetail", "key": "src/views/Guidance/GuidanceMentorDetail/index.vue", "why": "自定义指令（resolveDirective）+ store + 登录态判断 + 校验规则，无共享依赖" },
+    { "id": "p3", "route": "/newsDetail", "key": "src/views/News/newsDetail.vue", "why": "自定义指令 + store + 校验，依赖两个接口模块" },
+    { "id": "p4", "route": "/webFairList", "key": "src/views/fair/webFair/list.vue", "why": "登录态/权限判断 + 列表 + 作用域插槽 + 字典 + 弹窗子组件" },
+    { "id": "p5", "route": "/oddJob", "key": "src/views/oddJob/index.vue", "why": "同一 chunk 内多个子组件 + store + swiper 轮播 + 共享组件" },
+    { "id": "p6", "route": "/archivesSearch", "key": "src/views/sjz/archivesSearch/index.vue", "why": "表格 + 作用域插槽 + 带校验的表单 + store + 多个共享组件" }
+  ],
+  "usercenter": [
+    { "id": "u1", "route": "/resumetemplate", "key": "/resumetemplate", "why": "用户中心最简单页面（基线）" },
+    { "id": "u2", "route": "/maskunit", "key": "/maskunit", "why": "ant 表格 + 分页，只依赖接口模块" },
+    { "id": "u3", "route": "/doneList", "key": "/doneList", "why": "表格 + 7 处作用域插槽 + 校验规则 + 字典" },
+    { "id": "u4", "route": "/Createaresume", "key": "/Createaresume", "why": "最大的带校验表单（57KB）+ 多个共享子组件 + 第三方 cropperjs" }
+  ]
+}

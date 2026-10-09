@@ -1,0 +1,1 @@
+import{M as n}from"./index.1751615607545.js";function c(e){let o=5;const t=n.success({title:"提交成功",content:e}),s=setInterval(()=>{o-=1,t.update({content:e})},1e3);setTimeout(()=>{clearInterval(s),t.destroy()},o*1e3)}function l(e,o,t){n.info({title:t||"温馨提示",content:e,okText:o||"确定",onOk(){}})}export{l as i,c as s};

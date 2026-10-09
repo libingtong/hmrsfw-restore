@@ -1,0 +1,219 @@
+{
+ "id": "c01",
+ "site": "portal",
+ "chunk": "ProbationHome.1783320636200.js",
+ "vue": {
+  "fe": "defineComponent",
+  "F": "ref",
+  "ge": "onMounted",
+  "U": "reactive",
+  "x": "resolveComponent",
+  "n": "openBlock",
+  "d": "createElementBlock",
+  "l": "createElementVNode",
+  "t": "createVNode",
+  "s": "withCtx",
+  "L": "Fragment",
+  "E": "renderList",
+  "c": "unref",
+  "Y": "withModifiers",
+  "f": "createBlock",
+  "X": "normalizeClass",
+  "A": "createTextVNode",
+  "r": "toDisplayString",
+  "tt": "useRouter",
+  "T": "createCommentVNode",
+  "st": "pushScopeId",
+  "lt": "popScopeId",
+  "q": "RouterLink"
+ },
+ "entry": {
+  "ve": {
+   "export": "c",
+   "readable": "`getAppConfig()`（sessionStorage 里的租户配置）",
+   "from": "`@/legacy`"
+  },
+  "Ce": {
+   "export": "g",
+   "readable": "`getDictValueByCodeAndItems(params)`（常与 `{dictCode: getAppConfig().businessDict, labels: BusinessDictLabels.X}` 连用）",
+   "from": "`@/legacy`"
+  },
+  "$": {
+   "export": "D",
+   "readable": "`BusinessDictLabels`（业务字典 label 枚举，如 `BusinessDictLabels.GUIDANCE_AREA`；原 TS enum）",
+   "from": "`@/legacy`"
+  },
+  "Le": {
+   "export": "l",
+   "readable": "`getAreaInfo(params)`（与 `e` 是同一接口的重复定义，直接用同一个函数）",
+   "from": "`@/legacy`"
+  },
+  "Ee": {
+   "export": "t",
+   "readable": "`listToTree(list)`",
+   "from": "`@/legacy`"
+  },
+  "ee": {
+   "export": "b",
+   "readable": "`SwiperSlide` 组件",
+   "from": "`swiper/vue`"
+  },
+  "ae": {
+   "export": "a",
+   "readable": "`Swiper` 组件",
+   "from": "`swiper/vue`"
+  },
+  "we": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略；它只是给组件挂 `__scopeId`）",
+   "from": "不导入"
+  },
+  "it": {
+   "export": "i",
+   "readable": "`SwiperCore`（swiper 核心类）",
+   "from": "`swiper`"
+  },
+  "nt": {
+   "export": "j",
+   "readable": "`getCurrentUser()`（= `userStorage.getUser()`）",
+   "from": "`@/legacy`"
+  },
+  "ot": {
+   "export": "k",
+   "readable": "`getCurrentCorp()`（= `userStorage.getCorp()`）",
+   "from": "`@/legacy`"
+  },
+  "ct": {
+   "export": "h",
+   "readable": "`getDictItemsByCode(params)`（带缓存的字典查询）",
+   "from": "`@/legacy`"
+  },
+  "rt": {
+   "export": "m",
+   "readable": "`LoginModal` 组件（登录弹窗，桩）",
+   "from": "`@/legacy`"
+  },
+  "dt": {
+   "export": "o",
+   "readable": "`checkLogin(type, content?, okText?, cancelText?)`（返回 Promise<number>：3 未登录，1 通过，0 阻止）",
+   "from": "`@/legacy`"
+  },
+  "pt": {
+   "export": "p",
+   "readable": "`TEXT_GO_AUTH`（\"去认证\"）",
+   "from": "`@/legacy`"
+  },
+  "ut": {
+   "export": "q",
+   "readable": "`MSG_CORP_NOT_AUTH`",
+   "from": "`@/legacy`"
+  },
+  "At": {
+   "export": "r",
+   "readable": "`IDENTITY_CORP`（1）",
+   "from": "`@/legacy`"
+  },
+  "ft": {
+   "export": "s",
+   "readable": "`queryIdentityByCompanyId(params)`",
+   "from": "`@/legacy`"
+  },
+  "Ie": {
+   "export": "v",
+   "readable": "`openUserCenter(path, target?)`",
+   "from": "`@/legacy`"
+  },
+  "Se": {
+   "export": "M",
+   "readable": "`Modal`（ant-design-vue）",
+   "from": "`ant-design-vue`"
+  },
+  "V": {
+   "export": "B",
+   "readable": "`API_BASE`（\"/xf-api\"）",
+   "from": "`@/utils/request`"
+  },
+  "K": {
+   "export": "f",
+   "readable": "`STATIC_BASE`（\"/jeecg-system/sys/common/static\"）",
+   "from": "`@/utils/request`"
+  },
+  "Fe": {
+   "export": "n",
+   "readable": "`openArticle(article, noDetail?, {pre}?)`",
+   "from": "`@/legacy`"
+  },
+  "Oe": {
+   "export": "d",
+   "readable": "`dayjs`（日期格式化，`dayjs(x).format(...)`；原包是 moment 风格 API）",
+   "from": "`dayjs`"
+  }
+ },
+ "api": {
+  "kt": {
+   "file": "index.api.1783320636200.js",
+   "export": "a",
+   "fn": "freeCompanyExpandPositionList"
+  },
+  "xt": {
+   "file": "index.api.1783320636200.js",
+   "export": "b",
+   "fn": "freeCompanyExpandList"
+  },
+  "Bt": {
+   "file": "index.api.1783320636200.js",
+   "export": "c",
+   "fn": "freeCompanyAttachmentList"
+  },
+  "ie": {
+   "file": "index.api.1783320636200.js",
+   "export": "g",
+   "fn": "getArticleList"
+  }
+ },
+ "shared": {
+  "te": {
+   "file": "navigation.1783320636200.js",
+   "export": "N",
+   "base": "navigation",
+   "target": "npm:swiper"
+  },
+  "se": {
+   "file": "pagination.1783320636200.js",
+   "export": "P",
+   "base": "pagination",
+   "target": "npm:swiper"
+  },
+  "be": {
+   "file": "scrollbar.1783320636200.js",
+   "export": "S",
+   "base": "scrollbar",
+   "target": "npm:swiper"
+  },
+  "le": {
+   "file": "autoplay.1783320636200.js",
+   "export": "A",
+   "base": "autoplay",
+   "target": "npm:swiper"
+  },
+  "yt": {
+   "file": "effect-coverflow.1783320636200.js",
+   "export": "E",
+   "base": "effect-coverflow",
+   "target": "npm:swiper"
+  },
+  "Lt": {
+   "file": "Gigmarketgetjobpost.1783320636200.js",
+   "export": "G",
+   "base": "Gigmarketgetjobpost",
+   "target": "@shared/Gigmarketgetjobpost.vue"
+  },
+  "W": {
+   "file": "empty.1783320636200.js",
+   "export": "e",
+   "base": "empty",
+   "target": "@shared/empty.vue"
+  }
+ },
+ "missing": []
+}

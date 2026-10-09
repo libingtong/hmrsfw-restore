@@ -1,0 +1,53 @@
+{
+ "id": "c16",
+ "site": "usercenter",
+ "chunk": "index.175161560754517.js",
+ "vue": {
+  "j": "defineComponent",
+  "T": "inject",
+  "L": "useRouter",
+  "O": "useRoute",
+  "Q": "reactive",
+  "W": "onMounted",
+  "r": "resolveComponent",
+  "g": "openBlock",
+  "f": "createElementBlock",
+  "s": "createVNode",
+  "i": "withCtx",
+  "v": "createTextVNode",
+  "p": "createElementVNode",
+  "X": "Fragment",
+  "I": "createCommentVNode",
+  "w": "toDisplayString"
+ },
+ "entry": {
+  "N": {
+   "export": "w",
+   "readable": "`http`（入口请求实例，`http.request(config)`；转给 `request`）",
+   "from": "`@/legacy`（底层 `@/utils/request`）"
+  },
+  "C": {
+   "export": "d",
+   "readable": "`decryptStorage(text, key)`（原包：解密 localStorage 里的加密 JSON；POC 里直接 JSON.parse）",
+   "from": "`@/legacy`"
+  },
+  "Y": {
+   "export": "M",
+   "readable": "`Modal`（ant-design-vue）",
+   "from": "`ant-design-vue`"
+  },
+  "A": {
+   "export": "m",
+   "readable": "`message`（ant-design-vue，`message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "G": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略）",
+   "from": "不导入"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "missing": []
+}

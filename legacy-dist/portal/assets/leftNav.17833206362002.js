@@ -1,0 +1,1 @@
+import{d as a,ac as t,a8 as e,G as s,o as r}from"./vue.1783320636200.js";const l=a({__name:"leftNav",props:{loading:!1,active:{type:Number,default:0},list:{type:Array,default:()=>[]}},emits:[],setup(o,{emit:p}){return t(),e(),s(()=>{}),r(()=>{}),(u,i)=>null}});export{l as default};

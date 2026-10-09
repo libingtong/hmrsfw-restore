@@ -1,0 +1,29 @@
+{
+ "id": "c10",
+ "site": "portal",
+ "chunk": "index.178332063620054.js",
+ "vue": {
+  "y": "defineComponent",
+  "I": "useRoute",
+  "_": "resolveComponent",
+  "v": "openBlock",
+  "g": "createBlock",
+  "k": "withCtx",
+  "C": "createVNode",
+  "s": "createElementVNode",
+  "f": "unref",
+  "x": "toDisplayString",
+  "R": "pushScopeId",
+  "q": "popScopeId"
+ },
+ "entry": {
+  "U": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略；它只是给组件挂 `__scopeId`）",
+   "from": "不导入"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "missing": []
+}

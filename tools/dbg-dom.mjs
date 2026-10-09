@@ -1,0 +1,17 @@
+import { chromium } from "playwright";
+import { createServer } from "node:http";
+import { readFileSync, existsSync, statSync, writeFileSync } from "node:fs";
+import path from "node:path";
+const MIME = { ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml", ".woff": "font/woff", ".woff2": "font/woff2", ".html": "text/html" };
+const dir = path.resolve("legacy-dist/usercenter");
+const srv = createServer((req, res) => { const u = decodeURIComponent(req.url.split("?")[0]); let f = path.join(dir, u); if (!existsSync(f) || statSync(f).isDirectory()) f = path.join(dir, "index.html"); res.setHeader("content-type", MIME[path.extname(f)] ?? "application/octet-stream"); res.end(readFileSync(f)); }).listen(4611, "127.0.0.1");
+const har = JSON.parse(readFileSync("har/usercenter/resumetemplate.har", "utf8")); for (const e of har.log.entries) e.request.url = e.request.url.replace("http://__ORIGIN__", "http://127.0.0.1:4611"); writeFileSync("/tmp/uc.har", JSON.stringify(har));
+const browser = await chromium.launch(); const ctx = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
+const st = JSON.parse(readFileSync(".auth/usercenter-original.json", "utf8"));
+await ctx.addInitScript((s) => { for (const [k, v] of Object.entries(s.localStorage)) localStorage.setItem(k, v); for (const [k, v] of Object.entries(s.sessionStorage)) sessionStorage.setItem(k, v); }, st);
+await ctx.route(/\/xf-api\//, (r) => r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ success: false, code: 404, result: null, message: "not in HAR" }) }));
+await ctx.routeFromHAR("/tmp/uc.har", { url: /\/xf-api\//, notFound: "fallback", update: false });
+const page = await ctx.newPage();
+await page.goto("http://127.0.0.1:4611/resumetemplate", { waitUntil: "load" }); await page.waitForTimeout(8000);
+console.log(await page.evaluate(() => { const c = document.querySelector("main.ant-layout-content .overscoll > div"); const o = document.querySelector("main.ant-layout-content .overscoll"); const cs = (el) => { const st = getComputedStyle(el); const r = el.getBoundingClientRect(); return { w: r.width, x: r.left, pad: st.padding, margin: st.margin, bg: st.backgroundColor, overflow: st.overflow, h: r.height }; }; return JSON.stringify({ overscoll: o && cs(o), inner: c && cs(c), child: c && c.firstElementChild && cs(c.firstElementChild), main: cs(document.querySelector("main.ant-layout-content")) }, null, 1); }));
+await browser.close(); srv.close();

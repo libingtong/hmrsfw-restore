@@ -1,0 +1,57 @@
+{
+ "id": "c15",
+ "site": "usercenter",
+ "chunk": "accountBind.1751615607545.js",
+ "vue": {
+  "B": "defineComponent",
+  "C": "reactive",
+  "S": "onMounted",
+  "U": "resolveComponent",
+  "o": "openBlock",
+  "a": "createElementBlock",
+  "n": "createElementVNode",
+  "c": "createCommentVNode",
+  "r": "createTextVNode",
+  "N": "toDisplayString",
+  "A": "createVNode",
+  "V": "withCtx",
+  "D": "pushScopeId",
+  "T": "popScopeId"
+ },
+ "entry": {
+  "p": {
+   "export": "d",
+   "readable": "`decryptStorage(text, key)`（原包：解密 localStorage 里的加密 JSON；POC 里直接 JSON.parse）",
+   "from": "`@/legacy`"
+  },
+  "w": {
+   "export": "k",
+   "readable": "`getDictItemsByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "z": {
+   "export": "m",
+   "readable": "`message`（ant-design-vue，`message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "g": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略）",
+   "from": "不导入"
+  }
+ },
+ "api": {
+  "k": {
+   "file": "index.api.17516156075453.js",
+   "export": "g",
+   "fn": "userBindInfo"
+  },
+  "m": {
+   "file": "index.api.17516156075453.js",
+   "export": "u",
+   "fn": "deleteItem"
+  }
+ },
+ "shared": {},
+ "missing": []
+}

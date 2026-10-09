@@ -1,0 +1,141 @@
+{
+ "id": "c17",
+ "site": "portal",
+ "chunk": "list.17833206362003.js",
+ "vue": {
+  "Va": "defineComponent",
+  "Xa": "useRouter",
+  "ae": "useRoute",
+  "ee": "reactive",
+  "te": "computed",
+  "se": "onMounted",
+  "le": "onUnmounted",
+  "f": "resolveComponent",
+  "l": "openBlock",
+  "y": "createElementBlock",
+  "i": "createElementVNode",
+  "s": "createVNode",
+  "e": "withCtx",
+  "p": "unref",
+  "o": "createTextVNode",
+  "r": "toDisplayString",
+  "J": "Fragment",
+  "ie": "renderList",
+  "n": "createBlock",
+  "oe": "resolveDynamicComponent",
+  "_": "createCommentVNode",
+  "re": "pushScopeId",
+  "ne": "popScopeId",
+  "C": "RouterLink",
+  "Q": "normalizeClass"
+ },
+ "entry": {
+  "Ra": {
+   "export": "c",
+   "readable": "`getAppConfig()`（sessionStorage 里的租户配置）",
+   "from": "`@/legacy`"
+  },
+  "E": {
+   "export": "S",
+   "readable": "`userStorage`（`getUser/getToken/getCorp/setCorp/getXfSysUser…`）",
+   "from": "`@/legacy`"
+  },
+  "Aa": {
+   "export": "h",
+   "readable": "`getDictItemsByCode(params)`（带缓存的字典查询）",
+   "from": "`@/legacy`"
+  },
+  "Da": {
+   "export": "e",
+   "readable": "`getAreaInfo(params)`",
+   "from": "`@/legacy`"
+  },
+  "Ua": {
+   "export": "m",
+   "readable": "`LoginModal` 组件（登录弹窗，桩）",
+   "from": "`@/legacy`"
+  },
+  "Oa": {
+   "export": "u",
+   "readable": "`useStore()`（vuex；页面里一般读 `store.getters.userInfo/userUrl/dictList`）",
+   "from": "`@/legacy`"
+  },
+  "Wa": {
+   "export": "bc",
+   "readable": "`DownOutlined`（a-select 的后缀图标）",
+   "from": "`@ant-design/icons-vue`"
+  },
+  "P": {
+   "export": "aQ",
+   "readable": "`getWeekDay(date, short?)`（`short==0` 返回\"周X\"，否则\"星期X\"）",
+   "from": "`@/legacy`"
+  },
+  "N": {
+   "export": "d",
+   "readable": "`dayjs`（日期格式化，`dayjs(x).format(...)`；原包是 moment 风格 API）",
+   "from": "`dayjs`"
+  },
+  "Ea": {
+   "export": "O",
+   "readable": "`checkIdentity({type, content, …})`",
+   "from": "`@/legacy`"
+  },
+  "qa": {
+   "export": "r",
+   "readable": "`IDENTITY_CORP`（1）",
+   "from": "`@/legacy`"
+  },
+  "Ma": {
+   "export": "q",
+   "readable": "`MSG_CORP_NOT_AUTH`",
+   "from": "`@/legacy`"
+  },
+  "Ha": {
+   "export": "p",
+   "readable": "`TEXT_GO_AUTH`（\"去认证\"）",
+   "from": "`@/legacy`"
+  },
+  "Pa": {
+   "export": "ba",
+   "readable": "`MSG_CORP_PENDING`",
+   "from": "`@/legacy`"
+  },
+  "Ja": {
+   "export": "aD",
+   "readable": "`checkIzDishonesty(data)`",
+   "from": "`@/legacy`"
+  },
+  "Qa": {
+   "export": "A",
+   "readable": "`message`（ant-design-vue，用法 `message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "Za": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略；它只是给组件挂 `__scopeId`）",
+   "from": "不导入"
+  }
+ },
+ "api": {
+  "ce": {
+   "file": "index.api.178332063620017.js",
+   "export": "w",
+   "fn": "getFairList"
+  }
+ },
+ "shared": {
+  "Ga": {
+   "file": "dictCode.1783320636200.js",
+   "export": "d",
+   "base": "dictCode",
+   "target": "@shared/dictCode.vue"
+  },
+  "fe": {
+   "file": "empty.1783320636200.js",
+   "export": "e",
+   "base": "empty",
+   "target": "@shared/empty.vue"
+  }
+ },
+ "missing": []
+}

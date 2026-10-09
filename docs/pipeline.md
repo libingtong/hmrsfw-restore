@@ -1,0 +1,364 @@
+# Vue 反编译多 Agent 编排：Multica 创建说明（v3）
+
+Oct 9, 2026 · @Dylan Lee · 修订：Mika
+
+v3 的目标是**尽可能并行、尽快完成**。和 v2 相比的改动见文末「修订记录」。第十二节「接口约定」是几个并行工程子任务共同遵守的契约，改动它要先在父任务里说明。
+
+## 一、已定项
+
+| 项 | 取值 |
+| --- | --- |
+| 仓库 | `https://github.com/libingtong/hmrsfw-restore`（私有） |
+| 分支 | `main`（人工合并）、`integration`（门槛通过后自动合并）、`restore/<工单id>-a<attempt>`（每次尝试） |
+| Mac mini（`DylandeMac-mini.local`） | 调度员、门槛员、录制员、修正员、少量还原员。持有 HAR、登录态、SM2 私钥 |
+| Office-Server（`Dylan-Office-Server`） | 主力还原员、审计员。**不放**任何 HAR、登录态、私钥 |
+| `RESTORE_ASSETS`（仅 Mac mini） | `/Users/dylan/Projects/hmrsfw-restore-poc` |
+| `RESTORE_STATE`（仅 Mac mini） | `/Users/dylan/Projects/hmrsfw-restore-state`：账本、能力表、锁、门槛产物、原版基线、修正 diff |
+| 模型 | Sonnet 5.5、Opus 5.5（修正）、DeepSeek `deepseek-official/deepseek-flash`、GLM `zhipuai-coding-plan/glm-5.3-flash`、Codex（审计）。**不用 Haiku** |
+| 交互比对 | 写请求不发出，返回 HAR 里录制的响应；按解密后的请求体匹配 |
+| 白名单 | 取消 |
+| 范围 | 哈密：门户 161 页 + 用户中心 128 页 + 16 段大页分段 + 共享组件 90 + 入口包 ≤ 48 |
+| 【裁定人】 | 李炳通 |
+| 【漏检率阈值】 | 10% |
+| 【预算上限】 | 暂不设，前 50 页跑完后按实际用量定 |
+
+## 二、前置工程（并行拆分）
+
+由父任务「Vue 还原流水线：前置工程」统一推进，分三个阶段：
+
+| 阶段 | 子任务 | 产出 |
+| --- | --- | --- |
+| 1 | S1 仓库初始化 | 仓库主干、`integration` 分支、`.gitignore`、`tools/setup-workdir.mjs`、本文档入库为 `docs/pipeline.md` |
+| 2 | A 门槛 | `gate.mjs`（并发安全、只跑还原版一侧、先快后慢、单页构建、解密体匹配 HAR、共享组件顶替、集成模式）、`baseline.mjs`（原版基线） |
+| 2 | B 调度 | `tick.mjs`、`route.mjs`、`ledger.mjs`、`handoff.mjs`、自动合并到 `integration` |
+| 2 | C 工单与自检 | `work-orders.mjs`、`scan-shared-gaps.mjs`、大页分段、`self-check.mjs`（还原员交付前跑的静态检查，含 `check-text-nodes`、`check-directives`） |
+| 2 | D 录制 | `record-page.mjs`：交互脚本格式、HAR 录制，录完调用 `baseline.mjs` |
+| 2 | E 样式与加密 | `css-by-scope.mjs`、`har-decrypt.mjs`、E5 用的密文 HAR 回放比对 |
+| 3 | F 联调 | 用 20 张确认页把整条脚本链端到端跑通，给出门槛耗时和内存数据 |
+
+阶段 2 的 5 个子任务同时进行，彼此只通过第十二节的接口约定衔接。
+
+另外两件事由人在「工作区设置 → 任务状态」完成：新建 `audit`（审计中）和 `human_check`（待人工确认），都属于 started 类。
+
+## 三、整体流程
+
+入口包、共享组件、页面**三条线同时开工**，录制线也同时进行。不再有阶段之间的等待。
+
+```mermaid
+flowchart LR
+  R[录制员：交互脚本、HAR、原版基线] --> G
+  E[入口包] --> W
+  S[共享组件] --> W
+  P[页面] --> W
+  W[还原员：两台机器，交付前跑 self-check] -->|handoff.mjs| G
+  G[门槛员：只跑还原版一侧，先快后慢] -->|通过| I[自动合入 integration]
+  G -->|失败| F[修正员 1 轮 / Sonnet 重做]
+  F --> G
+  I --> A[审计：后台并行]
+  I --> H[人工分批审查 → main]
+  I --> X[集成门槛：零引用全开，全量重跑]
+```
+
+1. **派单**：调度员每 5 分钟运行一次 `tick.mjs`，给每个还原员保持「正在跑 + 1 张排队」。大页先派，小页打包。
+2. **还原**：还原员拉代码、在新分支还原、跑 `self-check.mjs` 直到静态检查全过（最多 3 次），推分支、写回执，最后运行 `handoff.mjs` 把任务交给门槛员。
+3. **门槛**：门槛员跑 `gate.mjs`（页面门槛模式），写结果，运行 `tick.mjs advance` 推进。
+   - 该页的录制还没完成：任务留在 `in_review`，`advance` 记为「等录制」，录制完成后由调度员重新送门槛。
+4. **通过**：自动合入 `integration`，状态改为 `human_check`。按抽检率同时送审计员，审计不阻塞。
+5. **失败**：按第九节的失败规则处理。
+6. **审计发现问题**：把任务从 `human_check` 拉回，按失败处理，从 `integration` 回退该页的提交。
+7. **人工审查**：你按批次审查 `integration`，合入 `main`，把对应任务改为 done。
+8. **集成门槛**：入口包、共享组件全部合入 `integration` 后，对所有页面以集成模式重跑一遍（零引用全开、不再顶替）。失败的页按共享组件或入口包的问题追溯，而不是重做页面。
+
+## 四、智能体清单
+
+共 11 个。一个智能体只能绑一台机器的运行时，所以两台机器上的还原员各建一个。权限全部设为「仅自己」。
+
+| 名称 | 机器 | 运行时 | 模型 | 思考强度 | 并发 | 职责 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 调度员 | Mac mini | Claude Code | Sonnet 5.5 | 低 | 3 | 运行 `tick.mjs`，处理异常 |
+| 门槛员 | Mac mini | Claude Code | Sonnet 5.5 | 低 | 3 → 5–6 | 跑门槛，调用 `advance`。联调测完内存后再提 |
+| 录制员 | Mac mini | Claude Code | Sonnet 5.5 | 中 | 2 | 写交互脚本、录 HAR、算原版基线 |
+| 修正员 | Mac mini | Claude Code | Opus 5.5 | 高 | 2 | 读门槛 diff 修复。diff 可能含测试数据，所以留在 Mac mini |
+| 还原-Sonnet@Mac | Mac mini | Claude Code | Sonnet 5.5 | 中 | 1 | 复杂页、入口包、共享组件、重做 |
+| 还原-DeepSeek@Mac | Mac mini | dsh | `deepseek-official/deepseek-flash` | 默认 | 1 | 普通页面 |
+| 还原-GLM@Mac | Mac mini | Opencode | `zhipuai-coding-plan/glm-5.3-flash` | 默认 | 1 | 普通页面 |
+| 还原-Sonnet@Office | Office-Server | Claude Code | Sonnet 5.5 | 中 | 3 | 同上 |
+| 还原-DeepSeek@Office | Office-Server | dsh | 同上，创建时核对 profile | 默认 | 3 | 同上 |
+| 还原-GLM@Office | Office-Server | Opencode | 同上，创建时核对 provider 前缀 | 默认 | 3 | 同上 |
+| 审计员 | Office-Server | Codex | 运行时默认，创建时记下模型 ID | 高 | 3 | 抽检，只读 |
+
+并发合计：还原 12（v2 是 6），门槛 3 起步，联调后提到 5–6。Mac mini 的 16GB 留给门槛和录制，所以 Mac mini 上的还原员各只开 1。Office-Server 的内存余量在联调时确认，够的话还原员提到 4–5。
+
+**家族与路由**：`route.mjs` 按家族路由，同家族的两台机器的智能体共享能力数据，各自计算空闲并发。
+
+**环境变量**（`--custom-env-file`，0600）：
+
+| 变量 | 谁有 |
+| --- | --- |
+| `RESTORE_STATE` | Mac mini 上的全部智能体 |
+| `RESTORE_ASSETS`、`SM2_PRIVATE_KEY`、`HMRSFW_NO_WHITELIST=1` | 只有门槛员、录制员 |
+| `RESTORE_DEPS_CACHE` | 所有还原员和审计员：本机依赖缓存目录 |
+
+## 五、还原员统一指令
+
+主体原样使用 `tools/prompt-template-confirm.md`，只追加 Multica 段。
+
+```markdown
+<此处原样粘贴 tools/prompt-template-confirm.md 全文，不做任何删改>
+
+---
+
+## Multica 运行约定（追加）
+
+### 开工
+1. multica issue metadata list <任务id> --output json，取 workOrders（数组，可能一单含多页）、branch、attempt。
+2. multica repo checkout https://github.com/libingtong/hmrsfw-restore --ref integration，然后 git checkout -b <branch>。
+3. 运行 node tools/setup-workdir.mjs。
+4. 逐张读 queue/<工单id>.json 及其中列出的文件。不要读工单以外的页面和产物，不要读本仓库以外的目录。
+
+### 交付前自检
+对每张工单运行 node tools/self-check.mjs <工单id>。有失败项就按输出修改，再跑，最多 3 次。3 次后仍失败也照常交付，把剩余失败项写进回执 unresolved。
+
+### 交付
+1. 在 <branch> 上提交并 git push origin <branch>。
+2. 每张工单一份回执 receipts/<工单id>.json，格式沿用上文模板，另加 "id"、"branch"、"selfCheck"（最后一次自检结果）。随分支提交。
+3. 运行 node tools/handoff.mjs <任务id>。它会写元数据、评论 [RECEIPT] 并把任务交给门槛员。不要自己改状态或负责人。
+
+### 禁止
+- 不要修改工单、tools/ 下的脚本、其他页面或骨架共享文件。
+- 不要 @ 任何智能体，不要把状态改为 done。
+- 除了 git push 到上述仓库，不要访问任何网络服务。
+
+### 卡住时
+仍然写回执，把原因写进 unresolved，推分支，运行 handoff.mjs。不要编造空实现来凑数。
+```
+
+## 六、修正员、审计员、录制员指令
+
+### 修正员（Mac mini）
+
+```markdown
+# 角色：Vue 还原修正员
+
+你修复没有通过门槛的还原结果，只改错的地方，不重写整个文件。
+
+## 输入
+- 元数据 workOrders、branch、fixRound、gate.<attempt>.diff（$RESTORE_STATE/gate/ 下的本机路径）。
+- 工单里的 target、subComponentDir、sourceChunk、maps。
+
+## 开工
+multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkout <branch>，运行 node tools/setup-workdir.mjs。
+
+## 要求
+1. 先对照 sourceChunk 确认 diff 指出的每一处差异的原因，再改。
+2. 只修改 target 和 subComponentDir 下的文件。
+3. 差异来自骨架、共享层或门槛脚本自身时不要改，在回执 needsFromSkeleton 里写明，notes 写“疑似共享层问题”和依据。
+4. 跑 self-check.mjs 通过后提交并 push。
+
+## 输出
+1. 更新回执，notes 追加本轮修改要点，每处一行。
+2. 运行 node tools/handoff.mjs <任务id> --fix。
+
+## 禁止
+- 不要 @ 任何智能体，不要改为 done，不要改门槛脚本或归一化规则。
+- 只读 $RESTORE_STATE/gate/ 下本任务的 diff，不读 $RESTORE_ASSETS。
+- diff 里的测试数据不得写进代码、回执或评论。
+```
+
+### 审计员（Office-Server）
+
+和 v2 相同，只改两处：拉代码用 `--ref integration` 再 checkout 分支；审计不阻塞，结论写进元数据 `audit.<attempt>` 后评论 `[AUDIT]`，由调度员下一轮处理。
+
+### 录制员（Mac mini）
+
+```markdown
+# 角色：页面录制员
+
+你为一张页面工单准备门槛所需的测试资产。你不写还原代码。
+
+## 步骤
+1. 读元数据 workOrders，取工单的 recordPath、sourceChunk。
+2. 读原 chunk，找出页面上的交互：查询、重置、翻页、表单校验、提交、弹窗、tab 切换。
+   按 docs/pipeline.md 第十二节的交互脚本格式写 tests/interact/<工单id>.json。
+   - 优先覆盖会发请求的操作，每页 3–8 步。
+   - 填写值用明显的测试值（如“测试”“Tst-0001”），不要用真实姓名、手机号、身份证号。
+3. 运行 node tools/record-page.mjs <工单id>。它会：
+   - 在测试环境真实执行一遍，录 HAR 到 $RESTORE_ASSETS/har/pages/<工单id>.har；
+   - 用 HAR 回放原版并缓存原版基线到 $RESTORE_STATE/baseline/<工单id>/；
+   - 把交互脚本提交到仓库 integration 分支（只提交脚本，不提交 HAR）。
+4. 脚本报告某一步在原版上就无法稳定复现（两次回放结果不同）：删掉这一步，重跑。
+5. 需要其他角色账号才能访问的页面：元数据写 record=blocked:<原因>，评论 [RECORD] blocked，结束。
+6. 成功：元数据写 record=ok，评论 [RECORD] ok <步数>。
+
+## 禁止
+- 不要把 HAR、登录态、接口返回的数据写进仓库、评论或元数据。
+- 不要 @ 任何智能体，不要改为 done。
+```
+
+录制会对测试环境真实写入。全部录完后，人工重置一次测试环境。门槛运行时不需要测试环境。
+
+## 七、门槛员指令与门槛要求
+
+### 门槛员指令
+
+```markdown
+# 角色：还原门槛员
+
+你对一张已交付的还原任务跑机器门槛。你不写也不改任何还原代码。
+
+## 步骤
+1. 读元数据 workOrders、branch、attempt。
+2. multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkout <branch>，运行 node tools/setup-workdir.mjs。
+3. 运行 node tools/gate.mjs --task <任务id> --branch <branch> --mode page。
+4. 运行 node tools/tick.mjs advance <任务id>。gate.mjs 已经写好元数据和 [GATE] 评论，不需要你再写。
+
+## 异常
+- gate.mjs 输出 {"error":...}（构建环境、端口、浏览器启动等门槛自身的问题）：评论 [GATE] ERROR <一行原因>，不调用 advance，结束。
+- 不要为了让门槛通过而修改门槛脚本、归一化规则或 HAR。
+- 不要 @ 任何智能体，不要改为 done。
+```
+
+### gate.mjs 要求
+
+1. **并发安全**：服务器监听端口 0；全部产物写 `$RESTORE_STATE/gate/<工单id>-a<attempt>/`；构建产物写在各自工作目录；不写任何共用的追加文件；HAR 和基线只读。
+2. **只跑还原版一侧**：原版一侧的 DOM、文本、截图、请求序列由录制阶段缓存在 `$RESTORE_STATE/baseline/<工单id>/`，门槛直接读取。基线不存在时输出 `{"pending":"record"}`。
+3. **先快后慢，失败即停**：
+   1. 静态：编译、组件数、文本节点、指令、render AST、复制内容、个人信息扫描（复用 `self-check.mjs`）；
+   2. 构建：只构建本页（单页入口或 Vite 按需编译），不构建整站；
+   3. 浏览器：HAR 回放、交互比对，同一进程内复用一个浏览器实例。
+4. **写请求匹配**：先按「方法 + 路径 + 解密并归一化后的请求体」找 HAR 记录；找不到时退回按「方法 + 路径」取第一条；都找不到返回统一的「not in HAR」。
+5. **共享组件顶替（page 模式）**：本页依赖的共享组件或入口导出在 `integration` 上还没有还原版时，用原编译 chunk 的薄包装顶替。零引用检查只对本页自己的文件生效。输出里列出本次顶替了哪些模块。
+6. **集成模式（`--mode integration`）**：不顶替，零引用检查全开，可以一次跑多页。
+7. **输出**（stdout 一行 JSON，同时写入元数据 `gate.<attempt>`）：`{pass, failed:[...], stage:"static|build|browser", diff, shimmed:[...], durationMs}`。
+
+## 八、路由规则与抽检率
+
+与 v2 相同，补充以下几点：
+
+- **冷启动期两个便宜模型同做一页**：普通页面同时派给 DeepSeek 和 GLM 各一次（两张任务，同一工单，分支后缀分别为 `-d`、`-g`）。先通过门槛的那个合入 `integration`，另一个跑完门槛只记账、不合并；还没开始的直接取消。冷启动期结束后恢复单派。
+- **大页先派**：同一优先级内按 chunk 大小降序派单。
+- **小页打包**：< 5KB 的页面 3–5 张打成一单（`workOrders` 数组），同一还原员一次做完。门槛逐页判定，失败的页拆成单页工单重做，通过的页照常合并。
+- **预排队**：每个还原员保持「正在跑的 + 1 张排队」。
+- **入口包、共享组件、页面同时派**：三类工单之间不再有先后约束。入口包和共享组件的优先级高于页面，能更早减少顶替。
+
+## 九、调度员指令与状态机
+
+调度员指令与 v2 相同，触发间隔改为 5 分钟。`tick.mjs` 每轮的步骤：
+
+1. **同步**：任务列表、账本、智能体状态（冷却、降级）。
+2. **处理失败的运行**：限流或额度不足 → 冷却 30 分钟并改派同家族另一台机器的智能体，没有就改派下一个候选。环境类失败 → 同一智能体重跑一次，再失败换候选。
+3. **兜底送门槛**：`in_review` 但负责人仍是还原员或修正员的任务（说明 `handoff.mjs` 没跑成）→ 交给门槛员。
+4. **等录制的任务**：录制已完成的 → 重新交给门槛员。
+5. **处理审计结果**：ok → 不动。有 high 或 medium → 把任务拉回，从 `integration` 回退该页提交，按失败规则处理，计一次漏检。只有 low → 评论提示人工关注。
+6. **派录制单**：给录制员保持「正在跑的 + 1 张排队」，按页面派单顺序录制，保证录制领先于还原。
+7. **派新单**：按第八节。
+8. **集成门槛**：入口包和共享组件全部合入 `integration` 后，建一张集成门槛任务交给门槛员。
+9. **记账与监控**：停止条件与 v2 相同（暂停自动化 + 建人工任务），另加一条：集成门槛失败率 > 10%。
+
+**`advance` 的失败规则**（按顺序取第一条适用的）：
+
+1. 修正员还没修过这次尝试的分支 → 修正员在同一分支修 1 轮。
+2. Sonnet 还没试过 → 还原-Sonnet 重做（新分支）。
+3. Sonnet 分支的修正轮数 < 2 → 修正员再修一轮。
+4. 否则 → `blocked`，指派【裁定人】，评论摘要。
+
+**`advance` 通过时**：加锁合入 `integration`（`git merge --no-ff`；冲突则放弃合并，按失败处理并标记 `merge_conflict`），状态改为 `human_check`，按抽检率抽中时把负责人改为审计员（状态仍是 `human_check`）；审计员写完元数据后，由调度员下一轮把负责人清空。
+
+**并发安全**：与 v2 相同（工单锁、账本锁、幂等创建），另加 `locks/integration`：合并和回退 `integration` 时持有。
+
+## 十、任务约定与人工裁定
+
+| 状态 | 含义 | 谁设置 |
+| --- | --- | --- |
+| todo | 已派单 | 调度员 |
+| in\_progress | 执行中 | 还原员 / 修正员 / 录制员 |
+| in\_review | 已交付，等门槛、等录制或正在跑门槛 | `handoff.mjs` |
+| human\_check | 门槛已过、已合入 `integration`，等人工审查（可能同时在审计） | `tick.mjs` |
+| audit | 保留，暂不使用（审计不再阻塞） | — |
+| blocked | 自动流程无法继续 | `tick.mjs` |
+| done | 已合入 `main` | 仅人 |
+
+- 评论标签：`[RECEIPT]`、`[FIX]`、`[GATE]`、`[AUDIT]`、`[RECORD]`、`[REDO]`、`[BLOCKED]`。脚本只读元数据，评论给人看。
+- 录制工单单独成任务，标题 `[record] <工单id>`；还原工单标题 `[restore] <工单id>`。
+- 自动化：「还原调度轮次」，执行者调度员，仅运行，每 5 分钟一次 + webhook。
+- 「调度日志」任务：调度员每轮评论摘要，你订阅。
+- 人工审查：按批次看 `integration` 上新合入的页面，合入 `main`，把对应任务改为 done。
+
+**已知风险**（v2 的 1–6 仍然成立，以下为新增或变化）：
+
+1. 风险 1（本机隔离）缩小到 Mac mini 上的少量还原员。
+2. **顶替带来的假通过**：page 模式下用原编译产物顶替共享组件，页面通过不代表接上还原版共享组件后也通过。集成门槛兜底。
+3. **双派浪费**：冷启动期便宜模型用量约翻倍。
+4. **录制写测试环境**：录制期间的写入会改变测试数据，影响后续页面的录制内容，但每页的 HAR 自洽，不影响比对。全部录完后人工重置一次。
+5. **`integration` 回退**：审计发现问题时要回退已合入的页面。页面只改自己的文件，回退一般不冲突。
+
+## 十一、自检
+
+前置工程阶段 3（F 联调）完成后，Mika 再创建智能体和自动化，然后按下面的步骤自检：
+
+- [ ] 11 个智能体都在指定机器上在线，模型 ID 与第四节一致，还原员指令逐字相同。
+- [ ] 自定义状态 `audit`、`human_check` 已创建。
+- [ ] 每台机器的每个还原员各做一张最小的页面工单：`self-check` 跑了、分支推了、回执合规、`handoff` 把任务交给了门槛员。
+- [ ] 门槛员同时跑 3 张，无冲突；记录单张耗时和 Mac mini 内存峰值，据此把门槛员并发提到 5–6。
+- [ ] 至少一张页面包含写操作，确认写请求命中了 HAR 里的真实响应，页面走了成功分支。
+- [ ] 故意制造一次门槛失败，确认先交给修正员在原分支修 1 轮。
+- [ ] 双派：同一工单的两个便宜模型都跑完，只有先通过的那个合入了 `integration`。
+- [ ] 同时手工触发 3 轮调度员，确认没有重复建任务。
+- [ ] 一轮由定时触发的派单能成功指派。
+- [ ] 观察智能体自己的评论会不会再次触发它。
+
+## 十二、接口约定（并行子任务共用）
+
+**目录与文件**
+
+| 路径 | 内容 | 谁写 |
+| --- | --- | --- |
+| `queue/<工单id>.json` | 工单，字段见 `batch-plan.md` 第 3 节，另加 `type`（entry/shared/page/segment）、`kb`、`deps`（依赖的共享组件和入口导出）、`recordPath`、`site` | C |
+| `tests/interact/<工单id>.json` | 交互脚本：`[{"fill":[placeholder,value]} \| {"click":text} \| {"clickSel":css,"optional":bool} \| {"wait":ms}]`，与 POC 的 `interact-scripts.mjs` 同义 | 录制员 |
+| `receipts/<工单id>.json` | 回执 | 还原员、修正员 |
+| `$RESTORE_ASSETS/har/pages/<工单id>.har` | 页面 HAR | `record-page.mjs` |
+| `$RESTORE_STATE/baseline/<工单id>/` | 原版基线：`dom.html`、`text.txt`、`shot.png`、`seq.json`（请求序列，请求体只存 SHA-256） | `baseline.mjs`（A），由 `record-page.mjs`（D）调用 |
+| `$RESTORE_STATE/gate/<工单id>-a<attempt>/` | 门槛产物和 diff | `gate.mjs` |
+| `$RESTORE_STATE/ledger/` | `capability.json`、`agents.json`、`runs.jsonl` | `ledger.mjs` |
+| `$RESTORE_STATE/locks/` | `wo-<工单id>`、`ledger`、`integration` | `tick.mjs`、`handoff.mjs` |
+
+**任务元数据键**
+
+| 键 | 值 |
+| --- | --- |
+| `workOrders` | 工单 id 数组 |
+| `kind` | `restore` / `record` / `integration` |
+| `branch`、`attempt`、`fixRound` | 当前尝试 |
+| `history` | 历次尝试：`[{attempt, agent, family, branch, result, failed}]` |
+| `twin` | 双派时另一张任务的 id |
+| `gate.<attempt>` | `gate.mjs` 的输出 |
+| `audit.<attempt>` | 审计结论 |
+| `record` | `ok` / `blocked:<原因>` |
+
+**命令行**
+
+| 命令 | 输出 |
+| --- | --- |
+| `self-check.mjs <工单id>` | `{pass, failed:[{check, where, hint}]}`，不需要 `RESTORE_ASSETS` |
+| `gate.mjs --task <id> --branch <b> --mode page\|integration` | 见第七节 |
+| `handoff.mjs <任务id> [--fix]` | 写元数据、评论、状态 `in_review`、负责人改为门槛员 |
+| `tick.mjs tick` / `tick.mjs advance <任务id>` | `{ok, summary, anomalies:[{issue, what, suggestedAction}]}`；拿不到锁输出 `{"locked":true}` |
+| `route.mjs <工单id>` | `{candidates:[{family, agents:[...], expectedCost, reason}], features, dual:bool}` |
+| `record-page.mjs <工单id>` | `{ok, steps, unstable:[...], blocked?}` |
+| `baseline.mjs <工单id> [--har <path>]` | 用 HAR 回放原版两次，写基线；两次不一致的步骤列入 `unstable` |
+| `setup-workdir.mjs` | 依赖就绪；有 `RESTORE_DEPS_CACHE` 时软链，否则首次在缓存目录 `npm ci`（加锁） |
+
+## 修订记录（相对 v2）
+
+| 位置 | 改动 | 原因 |
+| --- | --- | --- |
+| 第三、八节 | 入口包、共享组件、页面同时派；page 门槛用原编译产物顶替未还原的共享组件；最后加集成门槛 | 去掉三段串行和中间的人工等待 |
+| 第三、九、十节 | 门槛通过自动合入 `integration`，人工分批审查后合 `main`；审计不阻塞 | 人工确认和审计移出关键路径 |
+| 第二、六节 | 新增录制员和 `record-page.mjs`，与还原并行 | 289 页里只有 20 页有回放 HAR 和交互脚本 |
+| 第七节 | 门槛只跑还原版一侧、先快后慢、单页构建、复用浏览器；并发 3 → 5–6 | 门槛是吞吐瓶颈 |
+| 第四节 | 主力还原员和审计员放到 Office-Server，智能体 7 → 11 | 还原并发 6 → 12，Mac mini 内存留给门槛；HAR 与还原员物理隔离 |
+| 第九节 | 失败后先修正 1 轮，再 Sonnet 重做；修正上限 3 → 2 轮 | POC 6 次修正全部一轮通过，修正比重做快且便宜 |
+| 第八节 | 冷启动期 DeepSeek、GLM 双派，先通过者合并 | 更快，同时得到同页对照数据 |
+| 第三、五、九节 | 交付后 `handoff.mjs` 直接送门槛；调度 15 → 5 分钟；预排队；大页先派；小页打包 | 去掉轮询等待和空闲槽位 |
+| 第五节 | 还原员交付前跑 `self-check.mjs` | 静态问题在本地修掉，减少门槛来回 |
+| 第二节 | 前置工程拆成 3 个阶段、7 个子任务，阶段 2 的 5 个并行 | 前置工程本身也要并行 |

@@ -1,0 +1,11 @@
+import { chromium } from "playwright";
+import { createServer } from "node:http";
+import { readFileSync, existsSync, statSync } from "node:fs";
+import path from "node:path";
+const [dir, url] = process.argv.slice(2);
+const MIME = { ".js": "text/javascript", ".css": "text/css", ".html": "text/html" };
+const s = createServer((req, res) => { const u = decodeURIComponent(req.url.split("?")[0]); let f = path.join(dir, u); if (!existsSync(f) || statSync(f).isDirectory()) f = path.join(dir, "index.html"); res.setHeader("content-type", MIME[path.extname(f)] ?? "application/octet-stream"); res.end(readFileSync(f)); }).listen(4799);
+const b = await chromium.launch(); const ctx = await b.newContext(); const st = process.argv[4] ? JSON.parse(readFileSync(process.argv[4], 'utf8')) : null; const ls = st ? Object.fromEntries((st.origins.find((x) => x.origin.includes('usercenter'))?.localStorage ?? []).map((x) => [x.name, x.value])) : {}; await ctx.addInitScript((s) => { for (const [k, v] of Object.entries(s)) localStorage.setItem(k, v); }, ls); await ctx.route(/\/xf-api\//, (r) => r.fulfill({ status: 200, contentType: "application/json", body: '{"success":false,"result":null}' }));
+const p = await ctx.newPage(); p.on("console", (m) => { if (m.type() === "error" || m.type() === "warning") console.log(m.type(), m.text().slice(0, 300)); }); p.on("pageerror", (e) => console.log("pageerror", String(e.stack).slice(0, 900)));
+await p.goto("http://127.0.0.1:4799" + url); await p.waitForTimeout(4000); console.log("main:", (await p.evaluate(() => document.querySelector("#poc-main")?.innerHTML.length ?? -1)));
+await b.close(); s.close();

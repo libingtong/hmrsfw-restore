@@ -1,0 +1,190 @@
+{
+ "id": "c05",
+ "site": "usercenter",
+ "chunk": "corpFairs.1751615607545.js",
+ "vue": {
+  "fe": "defineComponent",
+  "ke": "useRouter",
+  "ce": "reactive",
+  "me": "onMounted",
+  "x": "resolveComponent",
+  "w": "openBlock",
+  "P": "createElementBlock",
+  "o": "createVNode",
+  "r": "withCtx",
+  "v": "unref",
+  "F": "createElementVNode",
+  "q": "createTextVNode",
+  "Se": "pushScopeId",
+  "De": "popScopeId",
+  "be": "inject",
+  "Q": "ref",
+  "te": "Fragment",
+  "Be": "renderList",
+  "J": "createBlock",
+  "U": "createCommentVNode",
+  "ee": "toDisplayString",
+  "st": "nextTick",
+  "nt": "useRoute",
+  "rt": "withModifiers"
+ },
+ "entry": {
+  "ae": {
+   "export": "m",
+   "readable": "`message`（ant-design-vue，`message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "ie": {
+   "export": "M",
+   "readable": "`Modal`（ant-design-vue）",
+   "from": "`ant-design-vue`"
+  },
+  "we": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略）",
+   "from": "不导入"
+  },
+  "ye": {
+   "export": "d",
+   "readable": "`decryptStorage(text, key)`（原包：解密 localStorage 里的加密 JSON；POC 里直接 JSON.parse）",
+   "from": "`@/legacy`"
+  },
+  "Ne": {
+   "export": "I",
+   "readable": "`formatDateSlash(date)`（\"YYYY/M/D\"）",
+   "from": "`@/legacy`"
+  },
+  "ze": {
+   "export": "y",
+   "readable": "`UPLOAD_URL`（上传接口地址）",
+   "from": "`@/legacy`"
+  },
+  "qe": {
+   "export": "B",
+   "readable": "`API_BASE`（\"/xf-api\"）",
+   "from": "`@/utils/request`"
+  },
+  "He": {
+   "export": "h",
+   "readable": "`STATIC_BASE`（\"/jeecg-system/sys/common/static\"）",
+   "from": "`@/utils/request`"
+  },
+  "_t": {
+   "export": "T",
+   "readable": "`commonjsGlobal`（Rollup 帮助值；页面里内联的 CJS 库改从 npm 导入时不需要）",
+   "from": "`@/legacy`"
+  },
+  "yt": {
+   "export": "V",
+   "readable": "`getDefaultExportFromCjs`（Rollup 帮助函数；同上）",
+   "from": "`@/legacy`"
+  },
+  "kt": {
+   "export": "a",
+   "readable": "`useTagsStore`（pinia \"tags\" store）",
+   "from": "`@/legacy`"
+  },
+  "Me": {
+   "export": "k",
+   "readable": "`getDictItemsByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "xe": {
+   "export": "v",
+   "readable": "`getSettingValueByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "Te": {
+   "export": "c",
+   "readable": "`SettingCodes`（业务配置码枚举）",
+   "from": "`@/legacy`"
+  }
+ },
+ "api": {
+  "dt": {
+   "file": "index.api.175161560754511.js",
+   "export": "c",
+   "fn": "companyDataReport"
+  },
+  "pt": {
+   "file": "index.api.175161560754511.js",
+   "export": "b",
+   "fn": "queryCompanyIntentionResumeInfo"
+  },
+  "Ke": {
+   "file": "index.api.175161560754511.js",
+   "export": "d",
+   "fn": "queryCompanyPositionSelected"
+  },
+  "ct": {
+   "file": "index.api.175161560754511.js",
+   "export": "e",
+   "fn": "companyIntentionResumeUpload"
+  },
+  "ft": {
+   "file": "index.api.175161560754511.js",
+   "export": "f",
+   "fn": "queryCompanyFileDataInfo"
+  },
+  "mt": {
+   "file": "index.api.175161560754511.js",
+   "export": "g",
+   "fn": "companyFileDataUpload"
+  },
+  "ht": {
+   "file": "index.api.175161560754511.js",
+   "export": "h",
+   "fn": "addOrUpdate"
+  },
+  "gt": {
+   "file": "index.api.175161560754511.js",
+   "export": "i",
+   "fn": "queryCompanyJobFairInfo"
+  },
+  "vt": {
+   "file": "index.api.175161560754511.js",
+   "export": "j",
+   "fn": "queryCompanyDataReport"
+  }
+ },
+ "shared": {
+  "ut": {
+   "file": "confPass.1751615607545.js",
+   "export": "c",
+   "base": "confPass",
+   "target": "@shared/confPass.vue"
+  },
+  "_e": {
+   "file": "dictCode.1751615607545.js",
+   "export": "d",
+   "base": "dictCode",
+   "target": "@shared/dictCode",
+   "import": "default"
+  },
+  "bt": {
+   "file": "index.175161560754529.js",
+   "export": "p",
+   "base": "CancelReasonModal",
+   "target": "@shared/CancelReasonModal.vue"
+  },
+  "wt": {
+   "file": "index.175161560754528.js",
+   "export": "f",
+   "base": "ReceivedResumeList",
+   "target": "@shared/ReceivedResumeList.vue"
+  },
+  "Ct": {
+   "file": "workType.1751615607545.js",
+   "export": "w",
+   "base": "workType",
+   "target": "@shared/workType.vue"
+  },
+  "Le": {
+   "file": "message.1751615607545.js",
+   "export": "s",
+   "base": "message",
+   "target": "@shared/message.ts"
+  }
+ },
+ "missing": []
+}

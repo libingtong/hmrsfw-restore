@@ -1,0 +1,92 @@
+{
+ "id": "c02",
+ "site": "portal",
+ "chunk": "enterpriserecruitment.1783320636200.js",
+ "vue": {
+  "Re": "defineComponent",
+  "Fe": "useRouter",
+  "N": "reactive",
+  "j": "ref",
+  "De": "onUnmounted",
+  "Ze": "onMounted",
+  "g": "resolveComponent",
+  "i": "openBlock",
+  "r": "createElementBlock",
+  "t": "createElementVNode",
+  "p": "createVNode",
+  "y": "withCtx",
+  "m": "Fragment",
+  "J": "renderList",
+  "v": "unref",
+  "o": "toDisplayString",
+  "u": "createTextVNode",
+  "T": "createBlock",
+  "A": "createCommentVNode",
+  "We": "resolveDynamicComponent",
+  "qe": "pushScopeId",
+  "Ge": "popScopeId",
+  "Je": "normalizeStyle",
+  "Pe": "withDirectives",
+  "Ue": "vShow"
+ },
+ "entry": {
+  "R": {
+   "export": "z",
+   "readable": "`request`（axios 实例，`request({url,method,params|data})`）",
+   "from": "`@/utils/request`"
+  },
+  "Oe": {
+   "export": "c",
+   "readable": "`getAppConfig()`（sessionStorage 里的租户配置）",
+   "from": "`@/legacy`"
+  },
+  "P": {
+   "export": "S",
+   "readable": "`userStorage`（`getUser/getToken/getCorp/setCorp/getXfSysUser…`）",
+   "from": "`@/legacy`"
+  },
+  "Ve": {
+   "export": "a6",
+   "readable": "`FeedbackModal` 组件（全局组件 `featback`，意见反馈弹窗；props `visible/title/businessType/alertType…`，事件 `okclick/cancelClick`）",
+   "from": "`@/legacy`"
+  },
+  "He": {
+   "export": "m",
+   "readable": "`LoginModal` 组件（登录弹窗，桩）",
+   "from": "`@/legacy`"
+  },
+  "Ke": {
+   "export": "aa",
+   "readable": "`getBusinessDictItems()`（取 `appConfig.businessDict` 的全部字典项）",
+   "from": "`@/legacy`"
+  },
+  "Qe": {
+   "export": "v",
+   "readable": "`openUserCenter(path, target?)`",
+   "from": "`@/legacy`"
+  },
+  "Xe": {
+   "export": "n",
+   "readable": "`openArticle(article, noDetail?, {pre}?)`",
+   "from": "`@/legacy`"
+  },
+  "U": {
+   "export": "B",
+   "readable": "`API_BASE`（\"/xf-api\"）",
+   "from": "`@/utils/request`"
+  },
+  "O": {
+   "export": "f",
+   "readable": "`STATIC_BASE`（\"/jeecg-system/sys/common/static\"）",
+   "from": "`@/utils/request`"
+  },
+  "Ye": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略；它只是给组件挂 `__scopeId`）",
+   "from": "不导入"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "missing": []
+}

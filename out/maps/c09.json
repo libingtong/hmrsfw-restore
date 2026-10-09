@@ -1,0 +1,140 @@
+{
+ "id": "c09",
+ "site": "portal",
+ "chunk": "resumeAnalysisReport.1783320636200.js",
+ "vue": {
+  "vt": "defineComponent",
+  "ft": "useRoute",
+  "xt": "reactive",
+  "p": "ref",
+  "E": "watch",
+  "yt": "onBeforeMount",
+  "gt": "onMounted",
+  "At": "onBeforeUnmount",
+  "h": "resolveComponent",
+  "r": "openBlock",
+  "m": "createElementBlock",
+  "t": "createElementVNode",
+  "bt": "withDirectives",
+  "ht": "vShow",
+  "Z": "createVNode",
+  "D": "withCtx",
+  "d": "createTextVNode",
+  "v": "createBlock",
+  "o": "toDisplayString",
+  "fe": "unref",
+  "xe": "Fragment",
+  "kt": "renderList",
+  "g": "createCommentVNode",
+  "Ct": "onUnmounted",
+  "wt": "pushScopeId",
+  "Lt": "popScopeId",
+  "Tt": "normalizeClass"
+ },
+ "entry": {
+  "_t": {
+   "export": "S",
+   "readable": "`userStorage`（`getUser/getToken/getCorp/setCorp/getXfSysUser…`）",
+   "from": "`@/legacy`"
+  },
+  "Bt": {
+   "export": "m",
+   "readable": "`LoginModal` 组件（登录弹窗，桩）",
+   "from": "`@/legacy`"
+  },
+  "Pt": {
+   "export": "h",
+   "readable": "`getDictItemsByCode(params)`（带缓存的字典查询）",
+   "from": "`@/legacy`"
+  },
+  "Et": {
+   "export": "A",
+   "readable": "`message`（ant-design-vue，用法 `message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "Dt": {
+   "export": "o",
+   "readable": "`checkLogin(type, content?, okText?, cancelText?)`（返回 Promise<number>：3 未登录，1 通过，0 阻止）",
+   "from": "`@/legacy`"
+  },
+  "zt": {
+   "export": "p",
+   "readable": "`TEXT_GO_AUTH`（\"去认证\"）",
+   "from": "`@/legacy`"
+  },
+  "Vt": {
+   "export": "x",
+   "readable": "`MSG_PERFECT_PERSONAL`",
+   "from": "`@/legacy`"
+  },
+  "St": {
+   "export": "y",
+   "readable": "`IDENTITY_OTHER`（2）",
+   "from": "`@/legacy`"
+  },
+  "Ft": {
+   "export": "B",
+   "readable": "`API_BASE`（\"/xf-api\"）",
+   "from": "`@/utils/request`"
+  },
+  "Mt": {
+   "export": "f",
+   "readable": "`STATIC_BASE`（\"/jeecg-system/sys/common/static\"）",
+   "from": "`@/utils/request`"
+  },
+  "Yt": {
+   "export": "d",
+   "readable": "`dayjs`（日期格式化，`dayjs(x).format(...)`；原包是 moment 风格 API）",
+   "from": "`dayjs`"
+  },
+  "jt": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略；它只是给组件挂 `__scopeId`）",
+   "from": "不导入"
+  }
+ },
+ "api": {
+  "Jt": {
+   "file": "index.api.178332063620033.js",
+   "export": "a",
+   "fn": "freeCompanyPositionDetail"
+  },
+  "Zt": {
+   "file": "index.api.178332063620033.js",
+   "export": "b",
+   "fn": "viewVoByIdFromPerson"
+  },
+  "qt": {
+   "file": "index.api.178332063620033.js",
+   "export": "c",
+   "fn": "getMatchingDegree"
+  }
+ },
+ "shared": {
+  "It": {
+   "file": "noResumeR.1783320636200.js",
+   "export": "_",
+   "base": "noResumeR",
+   "target": "@shared/noResumeR.ts"
+  },
+  "q": {
+   "file": "index.1783320636200118.js",
+   "export": "i",
+   "base": "echarts",
+   "target": "@shared/echarts.ts"
+  },
+  "Ot": {
+   "file": "jspdf.es.min.1783320636200.js",
+   "export": "E",
+   "base": "jspdf.es.min",
+   "target": "npm:jspdf"
+  },
+  "Ht": {
+   "file": "resumemodal.1783320636200.js",
+   "export": "r",
+   "base": "resumemodal",
+   "target": "@shared/resumemodal.vue"
+  }
+ },
+ "missing": []
+}

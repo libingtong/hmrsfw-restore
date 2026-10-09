@@ -1,0 +1,172 @@
+{
+ "id": "c19",
+ "site": "usercenter",
+ "chunk": "webFairWork.1751615607545.js",
+ "vue": {
+  "Je": "defineComponent",
+  "W": "ref",
+  "Oe": "useRoute",
+  "Xe": "useRouter",
+  "$e": "inject",
+  "Ge": "reactive",
+  "Qe": "onMounted",
+  "y": "resolveComponent",
+  "b": "openBlock",
+  "q": "createElementBlock",
+  "r": "createVNode",
+  "s": "withCtx",
+  "T": "createElementVNode",
+  "P": "createBlock",
+  "g": "createTextVNode",
+  "I": "createCommentVNode",
+  "C": "toDisplayString",
+  "Z": "Fragment",
+  "Ke": "withDirectives",
+  "ea": "vShow",
+  "E": "unref",
+  "Y": "nextTick",
+  "aa": "pushScopeId",
+  "ta": "popScopeId"
+ },
+ "entry": {
+  "na": {
+   "export": "a",
+   "readable": "`useTagsStore`（pinia \"tags\" store）",
+   "from": "`@/legacy`"
+  },
+  "K": {
+   "export": "d",
+   "readable": "`decryptStorage(text, key)`（原包：解密 localStorage 里的加密 JSON；POC 里直接 JSON.parse）",
+   "from": "`@/legacy`"
+  },
+  "J": {
+   "export": "k",
+   "readable": "`getDictItemsByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "ua": {
+   "export": "aa",
+   "readable": "`getExtractPositionConfig()`（→ `{name, alert}`）",
+   "from": "`@/legacy`"
+  },
+  "da": {
+   "export": "ab",
+   "readable": "`confirmExtract(onOk, label)`",
+   "from": "`@/legacy`"
+  },
+  "ee": {
+   "export": "v",
+   "readable": "`getSettingValueByCode(params)`",
+   "from": "`@/legacy`"
+  },
+  "ca": {
+   "export": "c",
+   "readable": "`SettingCodes`（业务配置码枚举）",
+   "from": "`@/legacy`"
+  },
+  "D": {
+   "export": "m",
+   "readable": "`message`（ant-design-vue，`message.success(...)`）",
+   "from": "`ant-design-vue`"
+  },
+  "ma": {
+   "export": "ad",
+   "readable": "`checkSensitive({value})`（敏感词检查，返回 Promise<boolean>）",
+   "from": "`@/legacy`"
+  },
+  "ae": {
+   "export": "M",
+   "readable": "`Modal`（ant-design-vue）",
+   "from": "`ant-design-vue`"
+  },
+  "te": {
+   "export": "x",
+   "readable": "`joinAreaNames(obj, kind)`",
+   "from": "`@/legacy`"
+  },
+  "pa": {
+   "export": "_",
+   "readable": "`_export_sfc`（SFC 里不需要，忽略）",
+   "from": "不导入"
+  }
+ },
+ "api": {
+  "ra": {
+   "file": "index.api.175161560754512.js",
+   "export": "q",
+   "fn": "queryById"
+  },
+  "sa": {
+   "file": "index.api.175161560754512.js",
+   "export": "J",
+   "fn": "list2"
+  },
+  "Q": {
+   "file": "index.api.175161560754512.js",
+   "export": "d",
+   "fn": "companyPositionAdd"
+  },
+  "la": {
+   "file": "index.api.175161560754512.js",
+   "export": "e",
+   "fn": "addPosition"
+  },
+  "ia": {
+   "file": "index.api.175161560754512.js",
+   "export": "h",
+   "fn": "editPosition"
+  },
+  "oa": {
+   "file": "index.api.175161560754512.js",
+   "export": "i",
+   "fn": "detailById"
+  }
+ },
+ "shared": {
+  "fa": {
+   "file": "phone.1751615607545.js",
+   "export": "p",
+   "base": "phone",
+   "target": "@shared/phone",
+   "import": "default"
+  },
+  "z": {
+   "file": "dictCode.1751615607545.js",
+   "export": "d",
+   "base": "dictCode",
+   "target": "@shared/dictCode",
+   "import": "default"
+  },
+  "ya": {
+   "file": "extractpositionmodal.1751615607545.js",
+   "export": "e",
+   "base": "extractpositionmodal",
+   "target": "@shared/extractpositionmodal.vue"
+  },
+  "ga": {
+   "file": "positionmodal.1751615607545.js",
+   "export": "p",
+   "base": "positionmodal",
+   "target": "@shared/positionmodal.vue"
+  },
+  "ba": {
+   "file": "workType.1751615607545.js",
+   "export": "w",
+   "base": "workType",
+   "target": "@shared/workType.vue"
+  },
+  "B": {
+   "file": "message.1751615607545.js",
+   "export": "s",
+   "base": "message",
+   "target": "@shared/message.ts"
+  },
+  "va": {
+   "file": "dictCheckBoxAll.1751615607545.js",
+   "export": "d",
+   "base": "dictCheckBoxAll",
+   "target": "@shared/dictCheckBoxAll.vue"
+  }
+ },
+ "missing": []
+}
