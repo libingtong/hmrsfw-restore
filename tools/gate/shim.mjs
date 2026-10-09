@@ -3,8 +3,9 @@
 // chunk. The wrapper is the chunk itself with
 //   - Vite's top-level-await wrapper removed (tools/unwrap-tla.mjs), so its exports exist when the page imports them;
 //   - `./vue.<hash>.js` imports mapped to "vue" (out/vue-exports.<site>.final.json);
-//   - entry-chunk imports mapped through registry.entry, api-chunk imports through registry.api, other chunks through
-//     registry.shared (restored → its path; reserved or unlisted → another wrapper, recursively);
+//   - entry-chunk imports mapped through registry.entry, api-chunk imports through registry.api, npm / geojson / image
+//     constant chunks through registry.modules, other chunks through registry.shared (restored → its path; reserved or
+//     unlisted → another wrapper, recursively); named, default and namespace imports alike;
 //   - the chunk's own stylesheet imported;
 //   - `export default` added for the export the registry names.
 // Wrappers are written under the gate's temp dir only and never enter a repository. A chunk that cannot be wrapped
@@ -19,7 +20,7 @@ const require = createRequire(import.meta.url);
 const { parse } = require("@babel/parser");
 const generate = (require("@babel/generator").default ?? require("@babel/generator"));
 
-export class ShimError extends Error {}
+export class ShimError extends Error { constructor(m) { super(`[shim] ${m}`); } } // the prefix survives Vite's error wrapping
 
 export function loadRegistry(app, file) {
   const f = file ?? path.join(ROOT, "registry", `${app}.json`);
@@ -66,12 +67,12 @@ export function createShimmer({ site, registry, outDir }) {
       }
       if (node.type !== "ImportDeclaration") { body.push(node); continue; }
       const from = path.basename(node.source.value);
-      const specs = node.specifiers.filter((s) => s.type === "ImportSpecifier" && s.imported.name !== "__tla");
-      const bare = node.specifiers.filter((s) => s.type !== "ImportSpecifier");
-      if (bare.length) throw new ShimError(`${chunk}: unsupported import form from ${from}`);
       for (const s of node.specifiers.filter((s) => s.type === "ImportSpecifier" && s.imported.name === "__tla")) helpers.push(`const ${s.local.name} = undefined;`);
-      for (const s of specs) {
-        const name = s.imported.name, local = s.local.name;
+      // [imported name, local]: default imports are "default", namespace imports "*"
+      const specs = node.specifiers.filter((s) => !(s.type === "ImportSpecifier" && s.imported.name === "__tla"))
+        .map((s) => [s.type === "ImportDefaultSpecifier" ? "default" : s.type === "ImportNamespaceSpecifier" ? "*" : s.imported.name, s.local.name]);
+      for (const [name, local] of specs) {
+        const mod = registry?.modules?.[from]?.exports?.[name];
         if (/^vue\.\d+\.js$/.test(from)) {
           const v = vue[name];
           if (!v) throw new ShimError(`${chunk}: Vue runtime export ${name} not in vue-exports map`);
@@ -84,19 +85,21 @@ export function createShimmer({ site, registry, outDir }) {
         } else if (registry?.api?.[`${from}#${name}`]) {
           const a = registry.api[`${from}#${name}`];
           head.push(importLine(a.path, a.export, local));
+        } else if (mod?.path && mod.status !== "reserved") {
+          head.push(importLine(mod.path, mod.export, local)); // registry.modules: npm libraries, geojson, restored image constants
         } else {
           const r = registry?.shared?.[from];
           if (r && r.status !== "reserved" && r.path) {
             const exp = r.exports?.[name] ?? r.export ?? name;
-            head.push(importLine(r.path, exp, local));
-          } else head.push(`import { ${name} as ${local} } from ${JSON.stringify(shim(from))};`);
+            head.push(importLine(typeof exp === "object" ? exp.path ?? r.path : r.path, typeof exp === "object" ? exp.export : exp, local));
+          } else head.push(importLine(shim(from), name, local));
         }
       }
     }
     ast.program.body = body;
     const css = path.join(assets, chunk.replace(/\.js$/, ".css"));
     const reg = registry?.shared?.[chunk];
-    const defaultName = reg?.exports ? Object.entries(reg.exports).find(([, v]) => v === "default")?.[0] : exportNames.length === 1 && (reg?.export ?? "default") === "default" ? exportNames[0] : null;
+    const defaultName = reg?.exports ? Object.entries(reg.exports).find(([, v]) => (v?.export ?? v) === "default")?.[0] : exportNames.length === 1 && (reg?.export ?? "default") === "default" ? exportNames[0] : null;
     const text = [
       `// gate stand-in for legacy-dist/${site}/assets/${chunk} (generated, temporary; not restored code)`,
       ...head,
@@ -132,7 +135,9 @@ export function shimPlugin({ app, appDir, registry, shimmer, shimDir, used }) {
     enforce: "pre",
     configResolved(c) { aliases = c.resolve.alias; },
     async resolveId(source, importer, options) {
-      if (!importer || source.startsWith("\0")) return null;
+      // Not during Vite's dependency scan: a ShimError thrown there leaves the optimizer's promise pending forever (the
+      // run then ends with no output); shims are resolved, and their errors reported, when the page is compiled.
+      if (!importer || source.startsWith("\0") || options?.scan) return null;
       byAbs ??= new Map(reserved.map((r) => [strip(toAbs(r.path) ?? path.resolve(appSrc, r.path)), r]));
       if (importer.startsWith(shimDir) && !source.startsWith(".") && !source.startsWith("/")) return this.resolve(source, mainFile, { ...options, skipSelf: true });
       const res = await this.resolve(source, importer, { ...options, skipSelf: true });

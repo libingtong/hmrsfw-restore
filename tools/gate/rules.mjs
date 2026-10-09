@@ -1,10 +1,11 @@
-// Loads rules/compare/ (normalisation rules) and rules/known-diffs/ (known differences of the original code) and
-// applies them. One JSON file per rule or entry, loaded in file-name order (see the README in each directory).
+// Loads rules/compare/ (normalisation rules; one JSON file per rule, loaded in file-name order, see its README) and the
+// known-differences register in $RESTORE_STATE/known-diffs/ (differences of the original code itself), and applies them.
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { ROOT } from "./common.mjs";
 import { dropEmptyComments, mapTree, serialize, sortAttrs } from "./dom.mjs";
+import { slug } from "../lib/pipeline.mjs";
 
 export function readRuleDir(dir) {
   if (!existsSync(dir)) return [];
@@ -55,21 +56,65 @@ export function normHtml(capture, rules) {
 export const normText = (s, rules) => applySubs(s ?? "", rules.text);
 export const normOverlay = (s, rules) => applySubs(s ?? "", rules.overlay);
 
-// Known differences for one work order; entries whose evidence chunk does not exist are ignored and reported.
-export function loadKnownDiffs(wo, dir = path.join(ROOT, "rules/known-diffs")) {
-  const ok = [], invalid = [];
-  for (const k of readRuleDir(dir)) {
-    if (k.wo !== wo) continue;
-    const chunk = k.evidence?.chunk;
-    if (!k.id || !k.where || !chunk || !k.evidence.pos || !k.by || !existsSync(path.join(ROOT, chunk))) invalid.push(k.id ?? "(no id)");
-    else ok.push(k);
+// Known differences (docs/pipeline.md §15.2 第 3 条): the register kept by tools/known-diff.mjs (HM-5) — the arbiter
+// is the only writer — in $RESTORE_STATE/known-diffs/<slug(work order)>.json, an array of
+// {wo, evidence:"<original chunk file>:<position>", why, diff, by, at}. The gate reads `diff` in one of two forms:
+//   "<where>.<check>"                          waive the gate's failure item of that comparison, e.g. "load.overlay",
+//                                              "steps.requests", "load.pixel", "steps.step-error" (coarse);
+//   {"where":"load.html","orig":"…","rest":"…"} (as a JSON string) replace that fragment on each side by one placeholder
+//                                              before comparing; requests: drop that request ("GET /xf-job/x") (precise).
+// An entry is applied only when `by` is set, the evidence file exists (relative to this repo, or a file name under
+// legacy-dist/<site>/assets/) and `diff` is one of the forms above; other entries are reported as unusable, not applied.
+// Entries get the id <slug>#<n> (n = position in the append-only array).
+export const KNOWN_WHERE = ["load.html", "load.text", "load.overlay", "load.requests", "steps.requests", "final.html", "final.text", "final.overlay"];
+const WAIVABLE = /^(load|steps|final)\.[a-z-]+$/;
+export function loadKnownDiffs(wo, { state, site }) {
+  const file = path.join(state, "known-diffs", `${slug(wo)}.json`);
+  const raw = existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : [];
+  const list = [], unusable = [];
+  for (const [i, k] of (Array.isArray(raw) ? raw : []).entries()) {
+    const id = `${slug(wo)}#${i + 1}`;
+    const why = knownProblem(k, wo, site);
+    if (why) { unusable.push({ id, why }); continue; }
+    const d = String(k.diff).trim();
+    if (d.startsWith("{")) { const o = JSON.parse(d); list.push({ id, where: o.where, orig: o.orig ?? null, rest: o.rest ?? null }); }
+    else list.push({ id, waive: d });
   }
-  return { list: ok, invalid };
+  return { list, unusable, file };
+}
+function knownProblem(k, wo, site) {
+  if (!k || typeof k !== "object") return "not an object";
+  if (k.wo !== undefined && k.wo !== wo) return `entry is for ${k.wo}`;
+  if (!k.by) return "no by";
+  const m = /^(.+?):(\d.*)$/.exec(String(k.evidence ?? ""));
+  if (!m) return "evidence is not <file>:<position>";
+  const f = m[1];
+  if (!existsSync(path.join(ROOT, f)) && !existsSync(path.join(ROOT, "legacy-dist", site, "assets", path.basename(f)))) return `evidence file ${f} not found`;
+  if (k.diff == null || String(k.diff).trim() === "") return "no diff (known-diff.mjs add … --diff)";
+  const d = String(k.diff).trim();
+  if (d.startsWith("{")) {
+    let o;
+    try { o = JSON.parse(d); } catch { return "diff is not valid JSON"; }
+    if (!KNOWN_WHERE.includes(o.where)) return `diff.where must be one of ${KNOWN_WHERE.join(", ")}`;
+    const isList = o.where.endsWith(".requests");
+    if (isList ? o.orig == null && o.rest == null : typeof o.orig !== "string" || typeof o.rest !== "string" || !o.orig || !o.rest) return isList ? "diff needs orig or rest" : "diff needs both orig and rest strings";
+    return null;
+  }
+  return WAIVABLE.test(d) ? null : 'diff must be "<where>.<check>" or a JSON fragment';
+}
+// Gate failure items covered by "<where>.<check>" entries: [kept, waived].
+export function waiveKnown(failed, known, used) {
+  const keep = [], waived = [];
+  for (const f of failed) {
+    const k = known.find((x) => x.waive && x.waive === `${f.where}.${f.check}`);
+    if (k) { used.add(k.id); waived.push({ ...f, known: k.id }); } else keep.push(f);
+  }
+  return [keep, waived];
 }
 // Replace the registered fragments on both sides by one placeholder (strings), or drop the request (request lists).
 export function applyKnown(where, side, value, known, used) {
   for (const k of known) {
-    if (k.where !== where) continue;
+    if (!k.where || k.where !== where) continue;
     const frag = side === "orig" ? k.orig : k.rest;
     if (frag == null) continue;
     if (Array.isArray(value)) { const n = value.length; value = value.filter((x) => x !== frag); if (value.length !== n) used.add(k.id); }

@@ -1,6 +1,6 @@
 // Restoration gate (docs/pipeline.md §7). Runs only the restored side and compares it with the original baseline
 // recorded by baseline.mjs. Fast checks first, stop at the first failing stage:
-//   static  — self-check.mjs (or its placeholder) + zero-reference check (page files only in page mode)
+//   static  — self-check.mjs (anything but a clean pass fails) + zero-reference check (page files only in page mode)
 //   build   — page mode: the page compiled on demand by Vite with production semantics (tools/gate/appserver.mjs);
 //             integration mode: a full `vite build` of the app
 //   browser — HAR replay of the restored page in one shared browser, compared with the baseline
@@ -127,7 +127,6 @@ export async function gate(argv) {
     // ── static ──
     const st = await staticStage({ wos: judged, appDir, mode });
     stages.static = st.ms;
-    out.selfCheck = st.impl;
     const pageFail = {};
     for (const wo of judged) pageFail[wo.id] = [...(st.failed[wo.id] ?? [])];
     if (st.global.length) out.failed.push(...st.global);
@@ -193,7 +192,7 @@ export async function gate(argv) {
       const dir = path.join(gateDir, wo.id);
       mkdirSync(dir, { recursive: true });
       const steps = await interactScript(wo.id);
-      const known = loadKnownDiffs(wo.id);
+      const known = loadKnownDiffs(wo.id, { state, site: wo.site });
       const har = loadHar(base.har.path);
       const once = async (tag) => {
         const rest = await runPage(browser, { origin: servers[wo.app].origin, url: wo.recordPath, storage: restStorage(wo, assets, base.storagePatch), har, sel: REST_SEL, steps, shotDir: dir, tag });
@@ -204,11 +203,10 @@ export async function gate(argv) {
       let { rest, cmp } = await once("rest");
       let firstFailed = null;
       if (cmp.failed.length) { firstFailed = cmp.failed; ({ rest, cmp } = await once("rest.retry")); }
-      if (known.invalid.length) cmp.failed.push({ check: "known-diffs", where: "rules/known-diffs/", hint: "invalid entries ignored: " + known.invalid.join(", ") });
       const pass = cmp.failed.length === 0;
       // Local report with the full projections (page text included): stays in $RESTORE_STATE, never in metadata.
-      writeFileSync(path.join(dir, "report.json"), JSON.stringify({ wo: wo.id, pass, failed: cmp.failed, firstFailed, pixel: cmp.pixel, knownUsed: cmp.knownUsed, unstable: base.unstable, settleMs: rest.settleMs, errors: rest.errors, restRequests: [...(rest.load?.requests ?? []), ...(rest.stepLog ?? [])].map((x) => `${x.phase} ${x.method} ${x.path} ${x.tier}`), orig: cmp.projections.orig.map(strip), rest: strip(cmp.projections.rest) }, null, 1));
-      out.pages.push({ wo: wo.id, pass, stage: pass ? null : "browser", failed: cmp.failed, pixel: cmp.pixel, ...(firstFailed ? { retried: true } : {}), ...(cmp.knownUsed.length ? { knownDiffs: cmp.knownUsed } : {}), ...(base.unstable?.length ? { unstable: base.unstable } : {}), ms: rest.totalMs, ...(skipStatic && pageFail[wo.id].length ? { staticFailed: pageFail[wo.id].map((f) => `${f.check} ${f.hint}`) } : {}) });
+      writeFileSync(path.join(dir, "report.json"), JSON.stringify({ wo: wo.id, pass, failed: cmp.failed, firstFailed, pixel: cmp.pixel, knownUsed: cmp.knownUsed, waived: cmp.waived, knownUnusable: known.unusable, unstable: base.unstable, settleMs: rest.settleMs, errors: rest.errors, restRequests: [...(rest.load?.requests ?? []), ...(rest.stepLog ?? [])].map((x) => `${x.phase} ${x.method} ${x.path} ${x.tier}`), orig: cmp.projections.orig.map(strip), rest: strip(cmp.projections.rest) }, null, 1));
+      out.pages.push({ wo: wo.id, pass, stage: pass ? null : "browser", failed: cmp.failed, pixel: cmp.pixel, ...(firstFailed ? { retried: true } : {}), ...(cmp.knownUsed.length ? { knownDiffs: cmp.knownUsed } : {}), ...(known.unusable.length ? { knownUnusable: known.unusable } : {}), ...(base.unstable?.length ? { unstable: base.unstable } : {}), ms: rest.totalMs, ...(skipStatic && pageFail[wo.id].length ? { staticFailed: pageFail[wo.id].map((f) => `${f.check} ${f.hint}`) } : {}) });
     }
     stages.browser = Date.now() - tw;
     for (const a of apps) if (servers[a]?.publishDeps && out.pages.every((p) => p.stage !== "build")) out.depsCachePublished = servers[a].publishDeps() || undefined;
@@ -254,13 +252,24 @@ function report(task, attempt, out, ids) {
 // only printed: the gate agent comments "[GATE] ERROR …" itself (docs/pipeline.md §7), so it is never posted twice.
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const argv = process.argv.slice(2);
+  let printed = false;
+  // Every run ends with one JSON line: if the event loop drains while a step is still pending (it happened inside Vite's
+  // dependency optimizer), that is the gate's own error, not a silent exit 0.
+  process.on("beforeExit", () => {
+    if (printed) return;
+    printed = true;
+    console.log(JSON.stringify({ error: "gate ended without a result (a pending step never settled)" }));
+    process.exitCode = 2;
+  });
   gate(argv).then((r) => {
+    printed = true;
     console.log(JSON.stringify(r));
     const task = opt(argv, "--task");
     if (task && !flag(argv, "--dry-run")) report(task, r.attempt ?? Number(opt(argv, "--attempt", 1)), r, r.pages?.map((p) => p.wo) ?? r.missing?.map((m) => m.wo) ?? []);
     process.exitCode = r.pending ? 0 : r.pass ? 0 : 1;
   }, (e) => {
+    printed = true;
     console.log(JSON.stringify({ error: String(e.message).split("\n")[0].slice(0, 300) }));
     process.exitCode = 2;
-  });
+  }).finally(() => setTimeout(() => process.exit(), 3000).unref()); // left-over Vite / esbuild handles must not keep it alive
 }

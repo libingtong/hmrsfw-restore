@@ -90,6 +90,68 @@ function singleRoutePlugin({ appDir, app, routes }) {
   };
 }
 
+// Plugin: asset imports (`import x from "./a.png"`, template src="./a.png", `?url`) resolve to the URL `vite build`
+// gives them, not to the dev URL /src/…/a.png (c01 failed in page mode only, because of that). Mirrors Vite 4.4.9
+// fileToBuiltUrl + Rollup 3 generateAssetFileName: files under build.assetsInlineLimit (except .svg, .html, Git LFS
+// placeholders) become `data:<mime>;base64,…`, the rest `<base><assetFileNames>` with [hash] = sha256(content) hex,
+// first 8; the server answers those URLs from the source file. Files in public/ and ?raw / ?inline / ?worker imports
+// are left to Vite (same URL in both). Not mirrored: Rollup's de-duplication of two differently named files with
+// identical content (the build names both after the first one emitted). CSS url() keeps dev URLs: it is not part of
+// the compared DOM and the pixels are the same.
+const SKIP_QUERY = /[?&](raw|inline|worker|sharedworker)\b/;
+const INVALID_CHAR = /[\u0000-\u001F"#$&*+,:;<=>?[\]^`{|}\u007F]/g; // Rollup sanitizeFileName
+function viteMimes(appDir) {
+  const dir = path.join(appDir, "node_modules/vite/dist/node/chunks");
+  for (const f of readdirSync(dir)) {
+    const src = readFileSync(path.join(dir, f), "utf8");
+    const m = /\nconst mimes\$1 = (\{[^}]*\});/.exec(src);
+    if (m) return JSON.parse(m[1].replace(/,\s*\}$/, "}"));
+  }
+  throw new Error("gate: mime table not found in vite's chunks (vite version changed?)");
+}
+export function buildAssetsPlugin({ appDir }) {
+  let config, mimes;
+  const emitted = new Map(); // "/assets/a-1234abcd.png" → source file
+  return {
+    name: "gate-build-assets",
+    enforce: "pre",
+    configResolved(c) { config = c; },
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const file = emitted.get(decodeURIComponent((req.url ?? "").split("?")[0]));
+        if (!file) return next();
+        res.setHeader("Content-Type", (mimes ??= viteMimes(appDir))[path.extname(file).slice(1).toLowerCase()] ?? "application/octet-stream");
+        res.setHeader("Cache-Control", "no-cache");
+        res.end(readFileSync(file));
+      });
+    },
+    load(id) {
+      if (id[0] === "\0" || SKIP_QUERY.test(id)) return null;
+      const file = id.split(/[?#]/)[0];
+      if (!/[?&]url\b/.test(id) && !config.assetsInclude(file)) return null;
+      if (!existsSync(file) || (config.publicDir && file.startsWith(config.publicDir + path.sep))) return null;
+      return `export default ${JSON.stringify(builtUrl(file))}`;
+    },
+  };
+  function builtUrl(file) {
+    const content = readFileSync(file);
+    const lfs = content.subarray(0, 100).toString().startsWith("version https://git-lfs.github.com");
+    if (!file.endsWith(".svg") && !file.endsWith(".html") && content.length < Number(config.build.assetsInlineLimit) && !lfs) {
+      mimes ??= viteMimes(appDir);
+      return `data:${mimes[path.extname(file).slice(1).toLowerCase()] ?? "application/octet-stream"};base64,${content.toString("base64")}`;
+    }
+    const out = [config.build.rollupOptions?.output].flat()[0]?.assetFileNames ?? path.posix.join(config.build.assetsDir, "[name]-[hash].[ext]");
+    const name = path.basename(file).replace(INVALID_CHAR, "_");
+    const ext = path.extname(name);
+    const pattern = typeof out === "function" ? out({ name: path.basename(file), source: content, type: "asset" }) : out;
+    const hash = sha(content);
+    const fileName = pattern.replace(/\[(\w+)(?::(\d+))?\]/g, (_, k, n) => ({ name: name.slice(0, name.length - ext.length), ext: ext.slice(1), extname: ext, hash: hash.slice(0, Number(n) || 8) })[k] ?? _);
+    const url = config.base + fileName;
+    emitted.set(url, file);
+    return url;
+  }
+}
+
 // opts: { appDir, app, gateDir, stateRoot, routes:[{route, recordPath, file}], plugins:[] }
 export async function startOnDemand(opts) {
   const { appDir, app, gateDir } = opts;
@@ -114,7 +176,7 @@ export async function startOnDemand(opts) {
     },
   };
   const server = await vite.createServer(vite.mergeConfig(config, {
-    plugins: [seedHash, routePlugin(opts), ...(opts.plugins ?? [])],
+    plugins: [seedHash, buildAssetsPlugin(opts), routePlugin(opts), ...(opts.plugins ?? [])],
     mode: "production", cacheDir, customLogger: logger, clearScreen: false,
     server: { port: 0, host: "127.0.0.1", strictPort: false, hmr: false, watch: { ignored: ["**/*"] }, fs: { strict: true, allow: [appDir, gateDir, realpathSync(path.join(appDir, "node_modules")), ...(opts.allow ?? [])] } },
   }));
@@ -155,7 +217,9 @@ export async function startOnDemand(opts) {
       try { renameSync(tmp, shared); return true; } catch { rmSync(tmp, { recursive: true, force: true }); return false; }
     },
     depHash: () => depHash(server.config),
-    close: () => server.close(),
+    // Closing while the dependency optimizer is still bundling (a page that failed early) cancels esbuild, and Vite's
+    // close() then never settles: give it 5 s, the CLI exits after printing anyway.
+    close: () => { let t; return Promise.race([server.close().catch(() => {}), new Promise((r) => { t = setTimeout(r, 5000); })]).finally(() => clearTimeout(t)); },
   };
 }
 

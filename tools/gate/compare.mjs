@@ -11,7 +11,7 @@ import { PNG } from "pngjs";
 import pixelmatch from "pixelmatch";
 import { sha256 } from "./har.mjs";
 import { firstDiff } from "./dom.mjs";
-import { applyKnown, normHtml, normOverlay, normText } from "./rules.mjs";
+import { applyKnown, normHtml, normOverlay, normText, waiveKnown } from "./rules.mjs";
 
 export const loadSet = (requests, shell) => [...new Set(requests.map((r) => (typeof r === "string" ? r : r.method + " " + r.path)))].filter((k) => !k.includes("EXTERNAL ") && !shell.has(k)).sort();
 export const seqKey = (x) => `${x.phase} ${x.method} ${x.path} ${x.query} ${x.bodyKind === "sm2" ? "sm2:" : ""}${x.bodySha ?? sha256(x.body ?? "")}`;
@@ -114,7 +114,7 @@ function hint(where, a, b) {
   return "";
 }
 
-// baseline: { runs:[run, run?], shell:{requests} }, rest: restored run. Returns { pass, failed, pixel, knownUsed }.
+// baseline: { runs:[run, run?], shell:{requests} }, rest: restored run. Returns { pass, failed, waived, pixel, knownUsed }.
 export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }) {
   const shell = new Set(baseline.shell?.requests ?? []);
   const exclude = rules.shellRequests(site);
@@ -142,7 +142,8 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }
     }
     if (pixel && pixel.ratio > rules.pixel.maxRatio) failed.push({ check: "pixel", where: "load", hint: `${(pixel.ratio * 100).toFixed(3)}% of pixels differ (max ${(rules.pixel.maxRatio * 100).toFixed(1)}%), size ${pixel.sizeA.join("x")} vs ${pixel.sizeB.join("x")}` });
   }
-  return { pass: failed.length === 0, failed, pixel: pixel && +(pixel.ratio * 100).toFixed(3), knownUsed: [...used], projections: { orig: O, rest: R } };
+  const [kept, waived] = waiveKnown(failed, known, used);
+  return { pass: kept.length === 0, failed: kept, waived, pixel: pixel && +(pixel.ratio * 100).toFixed(3), knownUsed: [...used], projections: { orig: O, rest: R } };
 }
 
 // Which comparison keys differ between two original runs (→ baseline "unstable").

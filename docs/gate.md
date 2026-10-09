@@ -32,9 +32,13 @@ hint 只含检查名、元素路径（标签名 + 第一个 class）、接口路
 
 | 阶段 | 内容 | 典型耗时 |
 | --- | --- | --- |
-| static | `self-check.mjs <工单id>`（C 的自检；未合并前用占位：编译本页 SFC + 文本节点检查）；零引用 `check-no-legacy`（page 模式只查本页文件） | 0.1–3 s |
+| static | `self-check.mjs <工单id> --app … --no-render-equiv`（HM-6 的自检；只作报告的 render-equiv 不跑）；零引用 `check-no-legacy`（page 模式只查本页文件） | 0.4–1.4 s |
 | build | page 模式：Vite 按需编译（生产语义），先把本页及其导入的应用内模块编译一遍，编译或导入解析错误在这里报；integration 模式：整站 `vite build` | 2 s（依赖缓存命中） |
 | browser | 一个浏览器实例，HAR 回放还原版，与基线比对；失败时还原版重跑一次 | 4–15 s / 页 |
+
+self-check 的结论只认干净的通过（`pass:true`、退出码 0）。以下一律判 static 失败（`check: "self-check"`）：退出码 2、带 `error` 字段（如工单不在 `queue/`）、`pass:false` 却没有失败项、`pass` 与退出码矛盾、没有 JSON 输出、进程崩溃或超时。`severity: "warn"` 的条目不判失败（self-check 自己的 `pass` 也不计它们）。测试：`node --test tools/test/gate-static.test.mjs`。
+
+每次运行都以一行 JSON 结束：Vite 依赖优化器还在打包时关服务器，`close()` 可能永不返回（只等 5 秒）；事件循环在某一步未完成时清空，输出 `{"error":"gate ended without a result …"}`，退出码 2，不会无输出地以 0 退出。
 
 ## 单页构建：为什么用按需编译
 
@@ -49,7 +53,9 @@ hint 只含检查名、元素路径（标签名 + 第一个 class）、接口路
 
 依赖预打包（antd、图标、echarts 等）只取决于锁文件、vite 配置和 node_modules 位置，第一次运行后发布到 `$RESTORE_STATE/gate-cache/vite-deps/<键>/`（原子改名，先到先得），之后每次复制到本次运行自己的 `cacheDir`（`$RESTORE_STATE/gate/<run>/vite`），不写共用依赖缓存，也不改 `hmrsfw-vue` 的 vite 配置。
 
-一致性的保证：`--mode integration`（及 `--regress`）用整站 `vite build`，`--build full` 用同一页的真实单页 `vite build`，比对完全相同。实测 30 页：按需编译与整站构建的结论一致（见下文「验证」）。
+**资源与 `vite build` 一致**（`tools/gate/appserver.mjs` 的 `buildAssetsPlugin`）：按需编译时，资源导入（`import x from "./a.png"`、模板里的 `src="./a.png"`、`?url`）得到的是 `vite build` 会给的 URL，不是开发服务器的 `/src/…/a.png`。照 Vite 4.4.9 `fileToBuiltUrl` 和 Rollup 3 `generateAssetFileName`：小于 `build.assetsInlineLimit`（默认 4096 字节；`.svg`、`.html`、Git LFS 占位文件除外）的内联成 `data:<mime>;base64,…`，mime 表取自 Vite 自带的那份；其余是 `<base><assetFileNames>`（默认 `assets/[name]-[hash].[ext]`，`[hash]` = 内容 SHA-256 前 8 位，文件名按 Rollup 规则清洗），开发服务器按这个 URL 返回源文件。`public/` 里的文件和 `?raw`、`?inline`、`?worker` 仍交给 Vite，两种构建结果本来相同。CSS 里的 `url()` 保留开发 URL：它不在比对的 DOM 里，像素也相同。没有照做的一处：内容完全相同、文件名不同的两个资源，Rollup 会合并成先发出的那个名字。测试：`HMRSFW_APP_DIR=… node --test tools/test/gate-assets.test.mjs`，对两个应用的全部图片和三个合成文件（超过上限、刚好 4096、4095 字节）各做一次真实 `vite build`，逐个比 URL。
+
+一致性的保证：`--mode integration`（及 `--regress`）用整站 `vite build`，`--build full` 用同一页的真实单页 `vite build`，比对完全相同。实测 30 页：按需编译与整站构建逐页结论相同，失败项的检查名和位置也相同（见下文「验证」）。
 
 ## 原版基线（baseline.mjs）
 
@@ -87,13 +93,17 @@ DOM 存成 JSON 树而不是只存字符串，所以规范化规则以后变了�
 ## 规则文件化
 
 - `rules/compare/`：所有比对规范化规则，**每条一个文件**（`NN-<id>.json`，按文件名顺序加载），每条一个提交，可单独 `git revert`。原计划是「一份规则文件」，但实测同一个文件里逐条追加的规则，回退中间一条时 git 会因相邻改动报冲突，所以改为一个目录。规则只能走第十五节第 3 条「规则变更单」改。字段说明见目录里的 README。
-- `rules/known-diffs/`：已知差异登记（原代码本身的问题），只能由裁定员写，每条一个文件。条目按工单生效，两边的片段换成同一个占位符再比；证据 chunk 必须存在，否则条目作废并在结果里报出。
+- 已知差异登记只有一套：HM-5 的 `tools/known-diff.mjs`（只有裁定员能写），存在 `$RESTORE_STATE/known-diffs/<工单 slug>.json`，数组 `{wo, evidence:"<原 chunk 文件>:<位置>", why, diff, by, at}`。门槛按 `diff` 的两种写法生效：
+  - `"<where>.<check>"`，如 `load.overlay`、`steps.requests`、`load.pixel`、`steps.step-error`：豁免门槛这一项比对的失败（粗）；
+  - JSON 字符串 `{"where":"load.html","orig":"…","rest":"…"}`：比对前两边的这段片段换成同一个占位符；`where` 是 `*.requests` 时去掉这条请求（如 `"GET /xf-job/x"`）（细）。`where` 取 `load.html|text|overlay|requests`、`steps.requests`、`final.html|text|overlay`。
+  - 条目编号 `<slug>#<序号>`。缺 `by`、证据文件不存在（相对本仓库，或 `legacy-dist/<site>/assets/` 下的文件名）、没有 `diff` 或写法不对的条目不生效，在页面结果的 `knownUnusable` 里列出原因，不判失败。生效的条目列在 `knownDiffs`，被豁免的失败项留在本地 `report.json` 的 `waived`。
+  - 登记：`node tools/known-diff.mjs add <工单id> --evidence "<chunk>:<位置>" --why "…" --diff "load.overlay"`。测试：`node --test tools/test/gate-known-diffs.test.mjs`（用 `known-diff.mjs` 真实写入，再由门槛读取）。
 
 ## 共享组件顶替（--mode page）
 
-`registry/<app>.json` 里 `status: "reserved"` 的共享组件，本次运行临时用原编译 chunk 的薄包装顶替（`tools/gate/shim.mjs`）：去掉 Vite 顶层 await 包装（复用 `tools/unwrap-tla.mjs`），`./vue.<哈希>.js` 的导入映射到 `vue`，入口 chunk 的导入按清单 `entry`、接口 chunk 按 `api`、其他 chunk 按 `shared`（已还原用其路径，未还原就再包一层），带上原 chunk 的样式，补 `export default`。包装文件只写在 `$RESTORE_STATE/gate/<run>/shims/`，输出 `shimmed`。
+`registry/<app>.json` 里 `status: "reserved"` 的共享组件，本次运行临时用原编译 chunk 的薄包装顶替（`tools/gate/shim.mjs`）：去掉 Vite 顶层 await 包装（复用 `tools/unwrap-tla.mjs`），`./vue.<哈希>.js` 的导入映射到 `vue`，入口 chunk 的导入按清单 `entry`、接口 chunk 按 `api`、npm 库 / geojson / 图片常量 chunk 按 `modules`、其他 chunk 按 `shared`（已还原用其路径，未还原就再包一层）；具名、默认、命名空间三种导入都支持；带上原 chunk 的样式，补 `export default`（清单 `exports` 里导出为 `default` 的那个）。包装文件只写在 `$RESTORE_STATE/gate/<run>/shims/`，输出 `shimmed`。顶替出错报 `check: "shim"`（build 阶段）。Vite 的依赖扫描阶段不做顶替。
 
-已在 c01 上证明：把 `@shared/empty.vue`、`@shared/Gigmarketgetjobpost.vue` 标成 reserved 后，两者被顶替，c01 仍然通过。
+已在 c01 上证明：把 `@shared/empty.vue`、`@shared/Gigmarketgetjobpost.vue` 标成 reserved 后，两者被顶替，c01 仍然通过。按 `main` 上的清单，c05 依赖的 `@/shared/confPass.ts` 是 reserved，被原 chunk 顶替（它默认导入 `html2canvas` 的 chunk，经 `modules` 映射到 npm 包）后 c05 通过。
 
 限制：入口 chunk 本身是应用启动代码，不能单独加载；页面依赖的入口导出若在清单里没有已还原的映射，包装会失败，该页在 build 阶段报 `shim`。
 
@@ -101,31 +111,42 @@ DOM 存成 JSON 树而不是只存字符串，所以规范化规则以后变了�
 
 端口一律 0；本次运行的所有产物（含 vite cacheDir、顶替文件、截图、报告）在 `$RESTORE_STATE/gate/<工单>-a<attempt>/`（`--dry-run` 另加 `-dry<pid>`）；`--branch` 时在该目录里建 `hmrsfw-vue` 的独立 worktree；不写任何共用的追加文件；HAR、基线、`legacy-dist` 只读。唯一的共享写入是依赖预打包缓存（临时目录 + 原子改名，从不覆盖）和 `--regress` 的上次结果（原子替换）。
 
-## 验证（2026-10-09，Mac mini，同时还有其他智能体在跑，负载 15–33）
+## 验证（2026-10-10，Mac mini，同时有其他智能体在跑，负载 4–10）
 
-**30 页回归**（`hmrsfw-vue` d943eb5，基线来自 POC 的回放 HAR：20 张确认页 `har/confirm-replay/`，前 10 页 `har/portal|usercenter/`）：
+`hmrsfw-vue` `6e95728`（当前 `main`），`hmrsfw-restore` 本分支（已合入 `main` 52147cc）。基线用 `baseline.mjs` 从 POC 的回放 HAR 重录（20 张确认页 `har/confirm-replay/`，前 10 页 `har/portal|usercenter/`），30/30 录成，c04 的 `load.html` 两次不同，列入 `unstable`。全部带 `--dry-run`，`RESTORE_STATE` 用临时目录。
 
-| | 按需编译（page 模式，`--from build` 跳过零引用以对照 POC） | 整站构建（`--regress`） | POC / README |
-| --- | --- | --- | --- |
-| 20 张确认页 | 18/20 | 18/20 | 回放 20/20，交互 8/8 |
-| 前 10 页 | 8/10 | 8/10 | 9/10 |
+**30 页：page 模式与 integration 模式逐页对比**（`--from build`：POC 的 30 页不在 `queue/`，self-check 会按上面的规则判 static 失败；零引用另有清理单）
 
-两种构建的结论逐页相同，失败的是同 4 页，都是真实差异：
+| | page 模式（按需编译，每页一个进程，3 个并发） | integration 模式（整站 `vite build`，一个进程跑 30 页） |
+| --- | --- | --- |
+| 通过 | 26/30 | 26/30 |
+| 失败 | c09、c12、u3（`load.overlay`），p6（`load.html` `div.setAb2`） | 相同 4 页，检查名和位置相同 |
+| c05 | 通过，`shimmed: @/shared/confPass.ts ← legacy-dist confPass.1751615607545.js` | 通过（用 `hmrsfw-vue` 里的文件） |
+
+失败的 4 页都是真实差异，与上一版结论相同：
 
 | 页 | 门槛的结论 | 与 POC 不同的原因 |
 | --- | --- | --- |
-| c09、c12（确认页）、u3 | 原版加载时弹出错误 toast（服务端失败信息、`请求地址出错: <url>`），还原版没有 | 还原版 `apps/*/src/utils/request.ts` 的响应拦截器只 reject、不弹提示，原版入口里有。POC 只看截取那一刻的浮层，toast 3 秒就消失，所以没比到；门槛改为记录阶段内出现过的全部 toast。属于公共库问题 |
+| c09、c12（确认页）、u3 | 原版加载时弹出错误 toast（服务端失败信息、`请求地址出错: <url>`），还原版没有 | 还原版 `apps/*/src/utils/request.ts` 的响应拦截器只 reject、不弹提示，原版入口里有。POC 只看截取那一刻的浮层，toast 3 秒就消失，所以没比到；门槛记录阶段内出现过的全部 toast。属于公共库问题 |
 | p6 | `.setAb2` 滑块验证码：还原版是桩（`legacy/SlideCaptcha.vue`） | POC 的 `verify.mjs` 显式把 `.setAb2` 排除在比对外。属于公共库缺口 |
 | u4（通过） | README 记为不通过（头部依赖账号加密数据） | POC 给还原版用了另一份登录态；门槛对两边用同一份登录态，加上原版外壳在页面挂载前对存储的改动，差异消失 |
 
-**故意改坏**（在 `hmrsfw-vue` 的副本里）：c01 改一处文字 → static 阶段 `text-nodes`（指出文件和行号）；c16 删一个按钮 → static 阶段 `text-nodes`（原 chunk 的中文字符串缺失）。没有文字的纯结构改动静态查不到，由浏览器阶段的 HTML 比对报出。
+三条待复核规则（`42-antd-click-wave`、`43-style-transition`、`44-motion-state`）已停用；上表就是停用后的结果，c02、c07、c19 仍通过（c02 第一次失败、重跑通过）。
 
-**单张耗时**（单独跑，负载约 18–28）：c17（门户，4 步交互）21–33 s：static 0.7–2.3 s、build 2.7–4.4 s、browser 15.6–22.3 s（含浏览器启动 0.6–1.5 s）；c16（用户中心，3 步）32.6 s：static 0.8、build 4.1、browser 26.9。30 页连续跑（一个进程）中位数约 9–11 s / 页。
+**c01 复现（审查第 1 条）**：`node tools/gate.mjs --wo c01 --dry-run --from build` 通过（修改前 browser 阶段 `html … div.Quickentryli` 失败）；加 `--mode integration`，c01 这一页同样通过（整体 FAIL 只因零引用的 516 条全局命中）。
 
-**3 个门槛同时跑**（c09、c16、c17）：无端口、文件冲突，结论与单独跑相同；各 91–101 s（负载 21–33）；内存峰值每个 320–570 MB（门槛进程 + Vite + Chromium），合计 1.2 GB。
+**故意改坏**（`queue/` 里真实工单 `page.uc.signUp`，在 `hmrsfw-vue` 检出里改后复原）：模板里「查询」改成「搜索」→ static `text-nodes` 两条（缺「查询」、多「搜索」）；删掉「重置」按钮那一行 → static `text-nodes`（缺「重置」）。都由 HM-6 的 `self-check.mjs` 报出，1.7–1.9 s。
 
-**POC 原流程对照**（同一台机器）：每次修正都要整站构建（门户 73 s、用户中心 92 s，高负载下合计 3–6 分钟），`verify-confirm` 每页约 29 s（原版 1–4 次 + 外壳探测 + 还原版），`interact-confirm` 再跑原版、还原版、外壳各一次；两者用固定端口（4701–4714）和共用输出文件，不能并发。入库的 POC `interact-confirm.mjs` 在 `shellStorage` 里引用了未定义的 `storageOverride`，现在运行即报错。
+**单张耗时与内存**（page 模式，30 页，3 个并发）：总耗时中位数 13.5 s（8.3–30.1 s）；static 0.6 s（0.4–1.4）、build 1.8 s（1.2–3.6，依赖缓存命中）、browser 10.4 s（5.6–25.8，含浏览器启动约 0.5 s，有交互的页面和重跑的页面在上端）。门槛进程（含 Vite）内存峰值中位数 262 MB（208–330 MB），不含 Chromium 子进程。integration 模式 30 页一个进程 500 s：static 17 s、整站构建两个应用 87 s、browser 395 s，进程峰值 899 MB。
 
-**写请求匹配**：`node tools/gate/har.mjs --selftest` 5/5（加密体换了密文和键顺序仍按请求体命中、未录到的体退回路径、未知路径 not in HAR、无私钥退回路径）。SM2 私钥不在本机环境里，真实页面上的请求体匹配没有跑到。
+**3 个门槛同时跑**：上面 30 次 page 模式就是 3 个并发跑完的，没有端口或文件冲突，结论与单独跑相同。
 
-**与录制（D）的衔接**：用 D 实录的 `$RESTORE_ASSETS/har/pages/c16.har` 跑 `baseline.mjs c16 --har … --app …`（record-page 的调用方式），再跑门槛，c16 通过。
+**POC 原流程对照**（2026-10-09 测，同一台机器）：每次修正都要整站构建（门户 73 s、用户中心 92 s，高负载下合计 3–6 分钟），`verify-confirm` 每页约 29 s（原版 1–4 次 + 外壳探测 + 还原版），`interact-confirm` 再跑原版、还原版、外壳各一次；两者用固定端口（4701–4714）和共用输出文件，不能并发。
+
+**无输出退出的复现与修复**：依赖缓存为空时顶替出错，build 阶段失败后关服务器，Vite 的依赖优化器还在打包，`close()` 永不返回，进程以 0 退出且无输出。修复后同一场景（`--registry` 指向一份把 confPass 的 chunk 名改成不存在的清单）输出 `{"pass":false,"failed":[{"check":"shim",…}],"stage":"build",…}`，退出码 1。
+
+**测试**：`node --test tools/test/gate-static.test.mjs tools/test/gate-known-diffs.test.mjs`；`HMRSFW_APP_DIR=… node --test tools/test/gate-assets.test.mjs`；`node tools/gate/har.mjs --selftest`。
+
+**写请求匹配**：SM2 私钥不在本机环境里，真实页面上的「按请求体匹配」没有跑到，只有自测。
+
+**与录制（D）的衔接**：用 D 实录的 `$RESTORE_ASSETS/har/pages/c16.har` 跑 `baseline.mjs c16 --har … --app …`（record-page 的调用方式），再跑门槛，c16 通过（2026-10-09）。
