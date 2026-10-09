@@ -22,6 +22,7 @@ import { scanSite, scanAppProject, normPath } from "./lib/apiinv-frontend.mjs";
 import { scanBackend } from "./lib/apiinv-backend.mjs";
 import { scanHars } from "./lib/apiinv-har.mjs";
 import { loadWorkOrders } from "./lib/workorders.mjs";
+import { parseApiChunk } from "./restore-api.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const argv = process.argv.slice(2);
@@ -130,7 +131,7 @@ function frontendInventory() {
       const locals = uniq(fns.map((x) => x.local));
       const ra = /\.api\.|apinew/.test(f) ? restoreApiLocals(path.join(dir, "assets", f)) : null;
       // functions the per-module restorer (restore-api.mjs) does not pick up, with the reason
-      const raMissed = ra ? locals.filter((l) => !ra.has(l)).map((l) => { const fn = fns.find((x) => x.local === l); const why = fn.form === "config-conditional" ? "url 是条件表达式" : fn.headers.length ? "headers 里有分号，正则在分号处截断" : "写法与正则不符"; return `${fn.exported}（${fn.path}，${why}）`; }) : [];
+      const raMissed = ra ? locals.filter((l) => !ra.has(l)).map((l) => { const fn = fns.find((x) => x.local === l); return `${fn.exported}（${fn.path}）`; }) : [];
       return { chunk: f, isApiChunk: /\.api\.|apinew/.test(f), functions: locals.length, requests: fns.length, exports: c.exportsCount, nonExportedConfigs: c.direct.length, raMissed,
         hami: uniq(fns.filter((fn) => fnIndex[`${f}#${fn.exported}`].uses.some((u) => u.scope === "hami")).map((fn) => fn.local)).length,
         entryOnly: fns.filter((fn) => { const us = fnIndex[`${f}#${fn.exported}`].uses; return us.length && !us.some((u) => u.scope === "hami") && us.some((u) => u.scope === "entry"); }).length,
@@ -150,12 +151,8 @@ function frontendInventory() {
   const appProject = APP_DIR && existsSync(APP_DIR) ? scanAppProject(APP_DIR, CONFIG.apps, CONFIG.apps[0].apiPrefix) : null;
   return { appCode, apps, appProject };
 }
-// Same match the per-module restorer (tools/restore-api.mjs) uses, to show both counts side by side.
-function restoreApiLocals(file) {
-  const src = readFileSync(file, "utf8");
-  const re = /([A-Za-z_$][\w$]*)=(\(?[^=]*?\)?)=>([a-zA-Z_$][\w$]*)\.request\((\{[^;]*?\})\)(?=,[A-Za-z_$][\w$]*=|;|\)|$)/g;
-  return new Set([...src.matchAll(re)].filter((m) => /url:"[^"]+"|url:`[^`]+`/.test(m[4])).map((m) => m[1]));
-}
+// The functions the per-module restorer (tools/restore-api.mjs) writes for this chunk — its own parser, not a copy.
+const restoreApiLocals = (file) => new Set(parseApiChunk(readFileSync(file, "utf8")).fns.map((f) => f.local));
 
 // ---------------------------------------------------------------- reconcile
 // Spring patterns: `{var}` one segment, `*` within a segment, `/**` any tail (also none).
@@ -385,7 +382,7 @@ function renderReport(fe, be, har, rec) {
   }
   L.push("### 前端接口模块逐一对账（门户 44 + 用户中心 20 = 64，另加导出请求函数的其他 chunk）", "");
   L.push(`调用追踪自检（本清单算出的「哈密页面用到的 api 模块导出」对工单 \`deps.api\`）：${fe.apps.map((a) => `${a.app} ${a.depsCheck.ours} / ${a.depsCheck.ordersDeps}${a.depsCheck.onlyInOrders.length || a.depsCheck.onlyOurs.length ? `（只在工单：${a.depsCheck.onlyInOrders.join("、") || "无"}；只在本清单：${a.depsCheck.onlyOurs.join("、") || "无"}）` : "，完全一致"}`).join("；")}。`, "");
-  L.push("「函数」是导出的请求函数个数，「请求」把条件 url 的两个分支分开计；「restore-api」是 `tools/restore-api.mjs` 的正则能取到的函数数，差的逐条列在最后一列。「哈密用到 / 仅其他租户」按调用方 chunk 是否属于哈密工单计。", "");
+  L.push("「函数」是导出的请求函数个数，「请求」把条件 url 的两个分支分开计；「restore-api」是 `tools/restore-api.mjs`（`parseApiChunk`，按语法树解析）取到的函数数，与「函数」不一致时差的逐条列在最后一列。「哈密用到 / 仅其他租户」按调用方 chunk 是否属于哈密工单计。", "");
   L.push("| 应用 | chunk | 函数 | 请求 | restore-api | 导出数 | 哈密用到 | 仅其他租户 | 无调用 | hmrsfw-vue 已还原 | 差异说明 |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |");
   for (const a of fe.apps) for (const m of a.modules) {
     const rest = fe.appProject?.modules.find((x) => x.app === a.app && x.fromChunk === m.chunk);

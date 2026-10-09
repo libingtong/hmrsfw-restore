@@ -11,13 +11,19 @@ const RESERVED = new Set("delete default export import new class function return
 // function name from the url: last path segment, non-word characters → "_", reserved words get "Item"
 export const nameFromUrl = (url) => { const n = url.split("?")[0].split("/").filter(Boolean).pop().replace(/[^\w]/g, "_"); return RESERVED.has(n) ? n + "Item" : n; };
 
-// Every `X = (params) => <instance>.request({ url, method, … })` of the chunk, in source order (AST, so configs that
-// contain ";" — e.g. a Content-Type header — or a conditional url are found too). The url of a conditional
-// (`url: id ? ".../edit" : ".../add"`) is its first branch, of a concatenation (`".../x?id=" + p.id`) its leading string;
-// the whole config is kept verbatim in `cfg`.
+// Every `X = (params) => <instance>.request({ url, method, … })` of the chunk, in source order. Functions and the export
+// table both come from the AST, never from a regex over the text, so a ";" or "}" inside a string — e.g. the header
+// `"Content-Type":"application/json; application/octet-stream"` — cannot cut a config short, and a conditional url is
+// found too. The url of a conditional (`url: id ? ".../edit" : ".../add"`) is its first branch, of a concatenation
+// (`".../x?id=" + p.id`) its leading string; the whole config is kept verbatim in `cfg`.
 export function parseApiChunk(src) {
-  const exp = {}; for (const e of src.matchAll(/export\{([^}]+)\}/g)) for (const part of e[1].split(",")) { const [l, n] = part.trim().split(/\s+as\s+/); exp[l] = n ?? l; }
   const ast = parse(src, { sourceType: "module", plugins: ["topLevelAwait"] });
+  const exp = {}; // local binding → exported name
+  for (const n of ast.program.body) {
+    if (n.type !== "ExportNamedDeclaration") continue;
+    for (const s of n.specifiers) if (s.type === "ExportSpecifier") exp[s.local.name ?? s.local.value] = s.exported.name ?? s.exported.value;
+    for (const d of n.declaration?.declarations ?? []) if (d.id.type === "Identifier") exp[d.id.name] = d.id.name;
+  }
   const fns = [];
   const take = (local, fn) => {
     if (!fn || !/ArrowFunctionExpression|FunctionExpression/.test(fn.type)) return;

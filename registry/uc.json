@@ -22,8 +22,8 @@
    "restored": 27
   },
   "api": {
-   "reserved": 117,
-   "restored": 121
+   "reserved": 115,
+   "restored": 123
   }
  },
  "vue": {
@@ -4092,7 +4092,7 @@
    "export": "downPdf",
    "url": "/xf-job/job/xfJobCurriculumVitae/downPdf",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17516156075456.js#d": {
    "path": "@/api/api-56",
@@ -4246,7 +4246,7 @@
    "export": "downPdf2",
    "url": "/xf-job/job/xfJobCompanyCurriculumDownload/downPdf",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17516156075456.js#P": {
    "path": "@/api/api-56",
