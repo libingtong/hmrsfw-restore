@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/changephone",
+ "role": "general",
  "maps": "out/maps/page.uc.changephone.json",
  "hints": "out/hints/page.uc.changephone.md",
  "deps": {

@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/talents/index/jobRecommend/",
  "routes": [],
  "recordPath": "/talents/index",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.index.jobRecommend.json",
  "hints": "out/hints/page.portal.talents.index.jobRecommend.md",
  "deps": {

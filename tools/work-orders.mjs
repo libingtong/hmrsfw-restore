@@ -3,6 +3,7 @@
 //   queue/index.json         all orders in one list (id, type, status, kb, deps.orders) + reverse dependency index
 //   queue/routes.json        in-scope routes → order (input of check-coverage.mjs), plus the routes blocked up front
 //   queue/summary.json       counts, size bands (30–60KB pages), comparison with batch-plan.md §6.3
+//   queue/roles.json         identity (role) of every page order and why (uc-roles.mjs); undecided ones with the reason
 //   out/maps/<id>.json       per-order import map, generated from registry/<app>.json (same symbol → same path everywhere)
 //   out/hints/<id>.md        per-order import hint sheet (definition snippets)
 // Pages already accepted in hmrsfw-vue (its router.ts) get status "regression": no restore order is dispatched for them.
@@ -16,6 +17,7 @@ import { loadRegistry, chunkBase, appExportIndex, seedIndex } from "./registry.m
 import { segmentPlan, SEGMENT_KB } from "./segments.mjs";
 import { describe } from "./describe-imports.mjs";
 import { appDir } from "./app-dir.mjs";
+import { ucRoles } from "./uc-roles.mjs";
 
 const SMALL_KB = 5;
 const ENTRY_AREAS = {
@@ -85,7 +87,7 @@ function depsOf(maps, selfId) {
 }
 
 export function buildOrders(APP) {
-  const orders = []; const routes = []; const blockedRoutes = []; const summary = { generatedFrom: {}, sites: {} };
+  const orders = []; const routes = []; const blockedRoutes = []; const roles = {}; const summary = { generatedFrom: {}, sites: {} };
   for (const site of Object.keys(SITES)) {
     const app = APP_OF[site]; const cfg = SITES[site]; const reg = loadRegistry(app); const scope = hamiScope(site); const g = siteGraph(site);
     const gaps = scanSharedGaps(site);
@@ -114,7 +116,7 @@ export function buildOrders(APP) {
       const comps = componentsOf(site, p.chunk);
       const o = { id: `page.${app}.${slug(rel)}`, type: "page", status: acc ? "regression" : "todo", site, app, vueVersion: cfg.vueVersion, kb: kbOf(site, p.chunk), sourceChunk: chunkPath(site, p.chunk),
         components: comps.map((c) => ({ name: c.name, scopeId: c.scopeId })), scopeIds: comps.map((c) => c.scopeId).filter(Boolean), cssCandidates: cssOf(site, p.chunk),
-        target, subComponentDir: target.replace(/\.vue$/, "/"), routes: p.routes.map((r) => ({ path: r.path, name: r.name ?? null, ...(r.meta?.title ? { title: r.meta.title } : {}) })), recordPath: p.routes[0]?.path ?? null,
+        target, subComponentDir: target.replace(/\.vue$/, "/"), routes: p.routes.map((r) => ({ path: r.path, name: r.name ?? null, ...(r.meta?.title ? { title: r.meta.title } : {}) })), recordPath: p.routes[0]?.path ?? null, role: site === "portal" ? "general" : null,
         maps: null, hints: null, deps: null, stylesProvidedByScript: true, ...(acc ? { accepted: { route: acc.route, in: acc.in ?? "hmrsfw-vue router.ts（已验收，只做回归）" } } : {}) };
       byChunk.set(`${site}/${p.chunk}`, o); siteOrders.push(o);
       for (const r of p.routes) routes.push({ site, app, route: r.path, chunk: p.chunk, order: o.id });
@@ -125,6 +127,9 @@ export function buildOrders(APP) {
       while (q.length && !via) { const next = []; for (const c of q) for (const imp of scope.importedBy.get(c) ?? []) { if (seen.has(imp)) continue; seen.add(imp); const po = byChunk.get(`${site}/${imp}`); if (po?.recordPath) { via = po; break; } next.push(imp); } q = next; }
       if (via) { o.recordPath = via.recordPath; o.recordVia = via.id; }
     }
+    // identity to record with: portal needs none; user center by route and chunk, undecided → null + notes (never guessed)
+    if (site === "usercenter") for (const [id, r] of ucRoles(siteOrders.filter((x) => x.type === "page"))) { const o = siteOrders.find((x) => x.id === id); o.role = r.role; if (!r.role) o.notes = r.notes; roles[id] = r; }
+    else for (const o of siteOrders) if (o.type === "page") roles[o.id] = { role: "general", by: "门户不需要身份" };
     for (const b of scope.blocked) blockedRoutes.push({ site, app, route: b.route, component: b.component, reason: b.reason });
 
     // ---- shared (components + small app modules) ----
@@ -198,7 +203,7 @@ export function buildOrders(APP) {
         const last = s.index === s.of;
         siteOrders.push({ id, type: "segment", status: "todo", site, app, vueVersion: o.vueVersion, page: o.id, index: s.index, of: s.of, assemble: last, after: last ? o.segments.slice(0, -1).concat(plan.slice(s.index).map((x) => `seg.${o.id.slice(5)}.${x.index}`)).filter((x) => x !== id) : [],
           kb: s.kb, oversize: s.oversize || undefined, sourceChunk: o.sourceChunk, range: s.range, components: s.components.map((n) => o.components.find((c) => c.name === n) ?? { name: n }), parts: s.parts.map((p) => ({ ...p, file: `${o.subComponentDir}_seg/${p.component}.${p.part === "script" ? "script.ts" : "template.html"}` })),
-          outputs, target: o.target, subComponentDir: o.subComponentDir, scopeIds: o.scopeIds, cssCandidates: o.cssCandidates, routes: o.routes, recordPath: o.recordPath, ...(o.recordVia ? { recordVia: o.recordVia } : {}),
+          outputs, target: o.target, subComponentDir: o.subComponentDir, scopeIds: o.scopeIds, cssCandidates: o.cssCandidates, routes: o.routes, recordPath: o.recordPath, ...(o.recordVia ? { recordVia: o.recordVia } : {}), role: o.role, ...(o.notes ? { notes: o.notes } : {}),
           maps: o.maps, hints: o.hints, deps: o.deps, stylesProvidedByScript: true,
           instructions: [
             `本单只还原原 chunk 的字节区间 [${s.range[0]}, ${s.range[1]})（约 ${s.kb}KB），其余部分由同页的其他分段负责。`,
@@ -235,12 +240,12 @@ export function buildOrders(APP) {
     pages: t("page"), pageOrders: t("page", (o) => o.status === "todo"), regression: orders.filter((o) => o.status === "regression").length, segmentedPages: t("page", (o) => o.status === "segmented"), segments: t("segment"),
     shared: t("shared", (o) => o.subtype !== "modules"), sharedTodo: t("shared", (o) => o.subtype !== "modules" && o.status === "todo"), sharedModules: t("shared", (o) => o.subtype === "modules"), entry: t("entry"),
   };
-  return { orders, routes, blockedRoutes, summary };
+  return { orders, routes, blockedRoutes, roles, summary };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const APP = appDir(); const dry = process.argv.includes("--dry-run");
-  const { orders, routes, blockedRoutes, summary } = buildOrders(APP);
+  const { orders, routes, blockedRoutes, roles, summary } = buildOrders(APP);
   if (!dry) {
     const q = path.join(ROOT, "queue"); rmSync(q, { recursive: true, force: true }); mkdirSync(q, { recursive: true });
     mkdirSync(path.join(ROOT, "out/maps"), { recursive: true }); mkdirSync(path.join(ROOT, "out/hints"), { recursive: true });
@@ -256,6 +261,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     writeFileSync(path.join(q, "index.json"), JSON.stringify({ orders: orders.map((o) => ({ id: o.id, type: o.type, status: o.status, app: o.app, kb: o.kb, ...(o.after?.length ? { after: o.after } : {}), deps: o.deps?.orders ?? [] })), dependents: reverse }, null, 1) + "\n");
     writeFileSync(path.join(q, "routes.json"), JSON.stringify({ routes, blocked: blockedRoutes }, null, 1) + "\n");
     writeFileSync(path.join(q, "summary.json"), JSON.stringify(summary, null, 1) + "\n");
+    writeFileSync(path.join(q, "roles.json"), JSON.stringify(roles, null, 1) + "\n");
   }
   console.log(JSON.stringify(summary.totals));
   for (const [site, s] of Object.entries(summary.sites)) console.log(site, JSON.stringify({ pages: s.pages, accepted: s.accepted, pageOrders: s.pageOrders, segmented: s.segmentedPages.length, segments: s.segments, bands: s.sizeBands, shared: s.shared, sharedTodo: s.sharedTodo, modules: s.sharedModulesOrders, entry: s.entry }));

@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/fairList",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.fair.fairList.json",
  "hints": "out/hints/page.portal.sjz.fair.fairList.md",
  "deps": {

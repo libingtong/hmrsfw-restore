@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/collage/studentInfo",
+ "role": null,
  "maps": "out/maps/page.uc.collage.studentInfo.json",
  "hints": "out/hints/page.uc.collage.studentInfo.md",
  "deps": {
@@ -47,5 +48,6 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "notes": "「在校生」身份（userroledata type 120）的主页，record-page 能切的身份（general / jobseeker / corp / mentor）里没有它"
 }

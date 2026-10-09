@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/Jobsearch",
+ "role": "general",
  "maps": "out/maps/page.portal.oddJob.Jobsearch.index.json",
  "hints": "out/hints/page.portal.oddJob.Jobsearch.index.md",
  "deps": {

@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/talents/index/jobFair/",
  "routes": [],
  "recordPath": "/talents/index",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.index.jobFair.json",
  "hints": "out/hints/page.portal.talents.index.jobFair.md",
  "deps": {

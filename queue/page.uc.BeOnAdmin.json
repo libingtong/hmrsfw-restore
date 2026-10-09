@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/BeOnAdmin",
+ "role": "corp",
  "maps": "out/maps/page.uc.BeOnAdmin.json",
  "hints": "out/hints/page.uc.BeOnAdmin.md",
  "deps": {

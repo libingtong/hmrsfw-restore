@@ -56,6 +56,7 @@
   }
  ],
  "recordPath": "/corpFairs/:key?",
+ "role": "corp",
  "maps": "out/maps/page.uc.corpFairs.json",
  "hints": "out/hints/page.uc.corpFairs.md",
  "deps": {

@@ -32,6 +32,7 @@
   }
  ],
  "recordPath": "/statistics",
+ "role": "general",
  "maps": "out/maps/page.portal.xjhm.bigData.statistics.json",
  "hints": "out/hints/page.portal.xjhm.bigData.statistics.md",
  "deps": {

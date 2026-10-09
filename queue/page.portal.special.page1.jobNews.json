@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/shared/jobNews/",
  "routes": [],
  "recordPath": "/archivesSearch",
+ "role": "general",
  "maps": "out/maps/page.portal.special.page1.jobNews.json",
  "hints": "out/hints/page.portal.special.page1.jobNews.md",
  "deps": {

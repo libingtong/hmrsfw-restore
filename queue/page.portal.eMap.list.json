@@ -24,6 +24,7 @@
  "subComponentDir": "apps/portal/src/views/eMap/list/",
  "routes": [],
  "recordPath": "/eMap",
+ "role": "general",
  "maps": "out/maps/page.portal.eMap.list.json",
  "hints": "out/hints/page.portal.eMap.list.md",
  "deps": {

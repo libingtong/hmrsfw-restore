@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/oddJob/rtInto/odd/",
  "routes": [],
  "recordPath": "/recruitworkers",
+ "role": "general",
  "maps": "out/maps/page.portal.oddJob.rtInto.odd.json",
  "hints": "out/hints/page.portal.oddJob.rtInto.odd.md",
  "deps": {

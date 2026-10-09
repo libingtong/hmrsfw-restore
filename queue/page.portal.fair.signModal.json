@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/shared/signModal/",
  "routes": [],
  "recordPath": "/cityHome/:cityCode",
+ "role": "general",
  "maps": "out/maps/page.portal.fair.signModal.json",
  "hints": "out/hints/page.portal.fair.signModal.md",
  "deps": {

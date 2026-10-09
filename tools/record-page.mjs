@@ -4,7 +4,8 @@
 //      login-expired);
 //   2. user center: switches the account to the work order's identity (role: general / jobseeker / corp / mentor) in the
 //      header dropdown, like a person would, and checks it (the login state does NOT fix the identity; an identity the
-//      account cannot switch to → blocked need-role:<identity>). Identities of one account are session state, so runs of
+//      account cannot switch to → blocked need-role:<identity>; an order whose role is null, i.e. work-orders.mjs could not
+//      decide the identity → blocked need-role-decision before anything runs, never a guessed identity). Identities of one account are session state, so runs of
 //      different identities queue on an account lock (lockIdentity), runs of the same identity may go together;
 //   3. pins account + identity (全局说明 §6「流程」3): they must match the first recording of that identity;
 //   4. opens <test site><recordPath> headless and runs tests/interact/<id>.json for real; the identity is checked again
@@ -247,6 +248,10 @@ try {
   if (OFFLINE && !opt("--out")) throw fail("--offline <har> needs --out <file.har>: an offline self-test never writes the page HAR");
   if (!baselineOnly && !OFFLINE && process.env.HMRSFW_NO_WHITELIST !== "1") throw fail("HMRSFW_NO_WHITELIST=1 is required: recording sends every request, writes included, to the test environment");
   const order = resolveOrder(id, opt("--order"));
+  if (order.role == null) {
+    emit({ ok: false, id, steps: null, unstable: [], blocked: "need-role-decision", hint: `工单没有判定身份（role 为 null）：先裁定该页面属于哪个身份（${Object.keys(IDENTITIES).join(" / ")}），写进工单的 role 后重跑 record-page。不按默认身份录制。`, ...(order.notes ? { evidence: [order.notes] } : {}) }, 2);
+    throw null;
+  }
   const scriptFile = opt("--script") ? path.resolve(opt("--script")) : scriptPath(id);
   let steps = loadScript(scriptFile);
   if (!steps) {

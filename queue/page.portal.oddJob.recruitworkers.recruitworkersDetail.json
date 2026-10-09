@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/recruitworkersDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.oddJob.recruitworkers.recruitworkersDetail.json",
  "hints": "out/hints/page.portal.oddJob.recruitworkers.recruitworkersDetail.md",
  "deps": {

@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/GuidanceAskDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.Guidance.GuidanceAskDetail.index.json",
  "hints": "out/hints/page.portal.Guidance.GuidanceAskDetail.index.md",
  "deps": {

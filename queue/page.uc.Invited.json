@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/Invited",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.Invited.json",
  "hints": "out/hints/page.uc.Invited.md",
  "deps": {

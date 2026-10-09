@@ -27,6 +27,7 @@
   }
  ],
  "recordPath": "/sjzbigData",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.bigData.screen.json",
  "hints": "out/hints/page.portal.sjz.bigData.screen.md",
  "deps": {

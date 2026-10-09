@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/newsDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.News.newsDetail.json",
  "hints": "out/hints/page.portal.News.newsDetail.md",
  "deps": {

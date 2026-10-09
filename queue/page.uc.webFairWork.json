@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/webFairWork/:zphId",
+ "role": "corp",
  "maps": "out/maps/page.uc.webFairWork.json",
  "hints": "out/hints/page.uc.webFairWork.md",
  "deps": {

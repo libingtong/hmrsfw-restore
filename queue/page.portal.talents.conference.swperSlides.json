@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/talents/conference/swperSlides/",
  "routes": [],
  "recordPath": "/talents/conference",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.conference.swperSlides.json",
  "hints": "out/hints/page.portal.talents.conference.swperSlides.md",
  "deps": {

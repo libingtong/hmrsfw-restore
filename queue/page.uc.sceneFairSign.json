@@ -35,6 +35,7 @@
   }
  ],
  "recordPath": "/sceneFairSign/:zphId",
+ "role": "corp",
  "maps": "out/maps/page.uc.sceneFairSign.json",
  "hints": "out/hints/page.uc.sceneFairSign.md",
  "deps": {

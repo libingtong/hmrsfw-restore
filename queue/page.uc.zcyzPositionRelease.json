@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/zcyzPositionRelease",
+ "role": "corp",
  "maps": "out/maps/page.uc.zcyzPositionRelease.json",
  "hints": "out/hints/page.uc.zcyzPositionRelease.md",
  "deps": {

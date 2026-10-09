@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/sjz/bigData/components/Dashboard1/",
  "routes": [],
  "recordPath": "/sjzbigData",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.bigData.components.Dashboard1.json",
  "hints": "out/hints/page.portal.sjz.bigData.components.Dashboard1.md",
  "deps": {

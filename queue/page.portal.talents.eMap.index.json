@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/talents/eMap",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.eMap.index.json",
  "hints": "out/hints/page.portal.talents.eMap.index.md",
  "deps": {

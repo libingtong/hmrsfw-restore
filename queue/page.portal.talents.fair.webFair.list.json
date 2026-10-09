@@ -24,6 +24,7 @@
  "subComponentDir": "apps/portal/src/views/talents/fair/webFair/list/",
  "routes": [],
  "recordPath": "/talents/fairList",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.fair.webFair.list.json",
  "hints": "out/hints/page.portal.talents.fair.webFair.list.md",
  "deps": {

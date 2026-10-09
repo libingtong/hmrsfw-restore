@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/outLink",
+ "role": "general",
  "maps": "out/maps/page.portal.outLink.index.json",
  "hints": "out/hints/page.portal.outLink.index.md",
  "deps": {

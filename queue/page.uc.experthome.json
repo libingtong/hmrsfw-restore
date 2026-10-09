@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/experthome",
+ "role": null,
  "maps": "out/maps/page.uc.experthome.json",
  "hints": "out/hints/page.uc.experthome.md",
  "deps": {
@@ -53,5 +54,6 @@
    "shared.uc.usercard"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "notes": "「专家」身份（userroledata type 60）的主页，record-page 能切的身份（general / jobseeker / corp / mentor）里没有它"
 }

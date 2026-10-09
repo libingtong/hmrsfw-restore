@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/Createaresume",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.Createaresume.json",
  "hints": "out/hints/page.uc.Createaresume.md",
  "deps": {

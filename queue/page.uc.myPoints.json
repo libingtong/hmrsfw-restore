@@ -32,6 +32,7 @@
   }
  ],
  "recordPath": "/myPoints",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.myPoints.json",
  "hints": "out/hints/page.uc.myPoints.md",
  "deps": {

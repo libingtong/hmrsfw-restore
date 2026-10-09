@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/CorpAttestation",
+ "role": "corp",
  "maps": "out/maps/page.uc.CorpAttestation.json",
  "hints": "out/hints/page.uc.CorpAttestation.md",
  "deps": {

@@ -25,6 +25,7 @@
  "subComponentDir": "apps/portal/src/views/sjz/fair/fairsList/",
  "routes": [],
  "recordPath": "/fairList",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.fair.fairsList.json",
  "hints": "out/hints/page.portal.sjz.fair.fairsList.md",
  "deps": {

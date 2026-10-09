@@ -46,6 +46,7 @@
   }
  ],
  "recordPath": "/jobhunterhome",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.jobhunterhome.json",
  "hints": "out/hints/page.uc.jobhunterhome.md",
  "deps": {
