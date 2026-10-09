@@ -1,0 +1,19 @@
+{
+  "about": "复制内容检测（tools/check-copied.mjs）的登记豁免表。只登记配置数据，代码不豁免（全局说明 D3；docs/pipeline.md 第十五节第 4 条的默认值，李炳通可以推翻）。豁免绑定登记时的 SHA-256（写成 sha256:<十六进制>）：文件改动后豁免自动失效，要重新登记。路径相对 hmrsfw-vue 检出根目录。改这张表属于规则变更，走规则变更单。",
+  "decision": "D3",
+  "decisionStatus": "default-v3.2",
+  "kinds": {
+    "config-data": "运行时配置或数据表，原样保留才能和后端、租户配置对上"
+  },
+  "entries": [
+    { "path": "apps/portal/public/router/router-xjhm.json", "archived": "portal/router/router-xjhm.json", "sha256": "sha256:6cf91e08aa713448cd98c2b9c0ffa601d0f2ac27b594c73eae56ee005f2c21e8", "kind": "config-data", "reason": "门户哈密路由表（动态路由数据）" },
+    { "path": "apps/portal/public/config.js", "archived": "portal/config.js", "sha256": "sha256:5b820c03e06cdb89bf173ff4c24a605ee4aae11981bc34ad9353e9a53602b76b", "kind": "config-data", "reason": "门户运行时配置（租户、接口地址），只有赋值没有逻辑" },
+    { "path": "apps/uc/public/config.json", "archived": "usercenter/config.json", "sha256": "sha256:30a223089eaf6b80142532384d512d1f19bf8b8701748696e9fbea0a8a838b1a", "kind": "config-data", "reason": "用户中心运行时配置（App 根组件启动时读取）" },
+    { "path": "apps/uc/public/xfusercenter/config.json", "archived": "usercenter/xfusercenter/config.json", "sha256": "sha256:90db738dbf89aa441e2ae02dfeebefa0ecdd32c31c4297f745e8da3c8ecee0a0", "kind": "config-data", "reason": "用户中心子路径下的运行时配置" }
+  ],
+  "notExempt": [
+    { "path": "apps/*/src/legacy.css", "reason": "编译样式表，E7 拆回 ant-design-vue 依赖和全局样式源文件" },
+    { "path": "apps/portal/public/third/*", "reason": "第三方脚本：不属于 D3 的配置数据，由 E1 / E7 改为按指纹锁定的 npm 依赖，或另行裁定" },
+    { "path": "apps/*/src/shared/*、apps/portal/src/legacy/*", "reason": "共享组件和入口导出是代码，由对应工单重新还原" }
+  ]
+}
