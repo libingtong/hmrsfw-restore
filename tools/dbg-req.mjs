@@ -1,15 +1,18 @@
-// Show /xf-api requests (with query) for one page on original vs restored build, HAR match status. Usage: node tools/dbg-req.mjs portal b p5
+// Show /xf-api requests (with query) for one page on original vs restored build, HAR match status (POC debugging aid).
+// Usage: node tools/dbg-req.mjs <portal|usercenter> <id> [--app <hmrsfw-vue checkout>]   restored build: <app>/dist/<portal|uc>
+// Run from the POC directory (reads out/capture-routes.json, har/, .auth/ there).
 import { chromium } from "playwright";
 import { createServer } from "node:http";
 import { readFileSync, existsSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
-const [site, group, id] = process.argv.slice(2);
+import { appDir } from "./app-dir.mjs";
+const [site, id] = process.argv.slice(2).filter((a, i, all) => !a.startsWith("--") && all[i - 1] !== "--app");
 const app = site === "portal" ? "portal" : "uc";
 const route = JSON.parse(readFileSync("out/capture-routes.json", "utf8"))[site][id];
 const harId = route.replace(/[^\w]+/g, "_").replace(/^_|_$/g, "");
 const MIME = { ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml", ".html": "text/html" };
 const serve = (dir, port) => createServer((req, res) => { const u = decodeURIComponent(req.url.split("?")[0]); let f = path.join(dir, u); if (!existsSync(f) || statSync(f).isDirectory()) f = path.join(dir, "index.html"); res.setHeader("content-type", MIME[path.extname(f)] ?? "application/octet-stream"); res.end(readFileSync(f)); }).listen(port, "127.0.0.1");
-const s1 = serve(path.resolve(`legacy-dist/${site}`), 4621), s2 = serve(path.resolve(`skeleton/dist/${app}-${group}`), 4622);
+const s1 = serve(path.resolve(`legacy-dist/${site}`), 4621), s2 = serve(path.join(appDir(), "dist", app), 4622);
 const browser = await chromium.launch();
 for (const [kind, port] of [["orig", 4621], ["rest", 4622]]) {
   const origin = `http://127.0.0.1:${port}`;

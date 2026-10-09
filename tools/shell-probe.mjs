@@ -1,6 +1,6 @@
 // Shell baseline per (site, role): load the ORIGINAL build on an unknown route, under the union of that site's
 // confirmation HARs and the role's original storage state, and record which /xf-api/ requests the app shell
-// (header, footer, nav, polling) sends by itself. The restored skeleton has no shell, so these requests are
+// (header, footer, nav, polling) sends by itself. The restored project (hmrsfw-vue) has no shell yet, so these requests are
 // excluded from the page comparison in verify-confirm / interact-confirm.
 // Usage: node tools/shell-probe.mjs   → out/shell-baseline.json  { "<site>|<role>": { finalUrl, requests: [...] } }
 import { chromium } from "playwright";

@@ -1,0 +1,14 @@
+{
+ "id": "whitespace",
+ "kind": "html",
+ "enabled": true,
+ "since": "POC",
+ "why": "HTML 中连续空白折叠成一个空格（文本比对另走 innerText，逐字比较）",
+ "subs": [
+  [
+   "\\s+",
+   "g",
+   " "
+  ]
+ ]
+}

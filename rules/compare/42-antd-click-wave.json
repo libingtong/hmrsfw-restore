@@ -1,0 +1,10 @@
+{
+ "id": "antd-click-wave",
+ "kind": "drop-attrs",
+ "enabled": false,
+ "since": "HM-4",
+ "attrs": [
+  "ant-click-animating-without-extra-node"
+ ],
+ "why": "antd 按钮点击波纹动画的临时标记（动画中为 true、结束后为 false），值只取决于截取时刻；c07、c19 交互后两边仅此不同"
+}

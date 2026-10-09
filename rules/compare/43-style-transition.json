@@ -1,0 +1,7 @@
+{
+ "id": "style-transition",
+ "kind": "tree",
+ "enabled": false,
+ "since": "HM-4",
+ "why": "行内 style 里的 transition 声明只在动画进行中存在（如轮播自动播放），不影响静止状态的渲染；c02 交互后两边仅此不同"
+}

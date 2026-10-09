@@ -1,0 +1,7 @@
+{
+ "id": "motion-state",
+ "kind": "tree",
+ "enabled": false,
+ "since": "HM-4",
+ "why": "过渡中的元素带 Vue / rc-motion 的状态类（x-enter-from、x-leave-active、x-appear-prepare 等）、动画基类 x 和那一刻的行内高度、透明度，动画结束后只留下空的 style=\"\"；去掉这些状态类、基类和该元素的行内 style，空 style 视同没有。c03 交互后、c04 加载后两边仅此不同"
+}

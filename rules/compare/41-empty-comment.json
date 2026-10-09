@@ -1,0 +1,7 @@
+{
+ "id": "empty-comment",
+ "kind": "tree",
+ "enabled": true,
+ "since": "v3.2 D2",
+ "why": "空注释节点 <!----> 是 v-if 恒假分支的占位，源码不留 v-if=\"false\"（D2 默认值：规范化）"
+}
