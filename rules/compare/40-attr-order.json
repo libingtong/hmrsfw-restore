@@ -1,0 +1,7 @@
+{
+ "id": "attr-order",
+ "kind": "tree",
+ "enabled": true,
+ "since": "v3.1",
+ "why": "属性顺序不同是等价写法（全局说明第六节「比对工具」第 6 条）"
+}
