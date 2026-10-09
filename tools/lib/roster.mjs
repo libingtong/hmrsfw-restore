@@ -50,6 +50,12 @@ export const DEFAULT_CONFIG = {
   priceFactor: { "claude-opus-5-5": 5, "claude-sonnet-5-5": 1, "deepseek-official/deepseek-flash": 0.1, "zhipuai-coding-plan/glm-5.3-flash": 0.1 },
   audit: { coldAudits: 20, coldRate: 0.5, normalRate: 0.2, relaxedRate: 0.1, relaxedAfter: 50, relaxedMissRate: 0.03, strictRate: 1, missRateThreshold: 0.1 },
   stop: { sameFailureStreak: 5, integrationFailRate: 0.1, unknownErrorsPerHour: 3, minAuditsForMissRate: 10 },
+  // Cross-machine claims (tools/lib/claims.mjs): branch of the tool repo, leader lease, stats snapshot cadence, and how
+  // long a silent machine must have been gone before `claims reclaim` takes its work orders without --force.
+  // enabled:false turns claims off — only safe while a single tick runs anywhere.
+  claims: { enabled: true, remote: "origin", branch: "claims", leaderTtlMin: 30, publishEveryMin: 10, deadAfterMin: 60 },
+  // Assets a stage needs on the agent's machine (roster machines.<id>.assets). No `machines` in the roster = no limit.
+  requires: { record: ["login"], gate: ["har", "baseline"] },
 };
 
 export function loadConfig(paths = P()) {

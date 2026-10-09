@@ -17,6 +17,10 @@
 | `tools/lib/roster.mjs` | 名册与调度配置 |
 | `tools/lib/error-classes.mjs` | 运行失败类别映射表（**猜测**，见下文） |
 | `tools/lib/workorders.mjs` | 读工单、公共库清单、`deps` 反向索引 |
+| `tools/lib/claims.mjs` | 跨机领取：工具仓库 `claims` 分支上的工单归属、主控租约、各机统计快照（git 比较并交换） |
+| `tools/lib/machine.mjs` | 本进程在哪台机器、每台机器有哪些资产、某一步需要哪些资产 |
+
+`tick.mjs` 另有 `claims list`（各机领取数、主控、心跳）和 `claims reclaim --from <机器> [--wo <工单id>] [--force]`（接管停用机器的工单），见「两台机器」。
 
 所有命令输出一行 JSON。`tick.mjs` 的输出是 `{ok, summary, anomalies:[{issue, what, suggestedAction}]}`，拿不到锁时输出 `{"locked":true}`。
 
@@ -61,7 +65,9 @@
  "receiptsBranch": "integration",
  "priceFactor": { "claude-opus-5-5": 5, "claude-sonnet-5-5": 1, "deepseek-official/deepseek-flash": 0.1, "zhipuai-coding-plan/glm-5.3-flash": 0.1 },
  "audit": { "coldAudits": 20, "coldRate": 0.5, "normalRate": 0.2, "relaxedRate": 0.1, "relaxedAfter": 50, "relaxedMissRate": 0.03, "strictRate": 1, "missRateThreshold": 0.1 },
- "stop": { "sameFailureStreak": 5, "integrationFailRate": 0.1, "unknownErrorsPerHour": 3, "minAuditsForMissRate": 10 }
+ "stop": { "sameFailureStreak": 5, "integrationFailRate": 0.1, "unknownErrorsPerHour": 3, "minAuditsForMissRate": 10 },
+ "claims": { "enabled": true, "remote": "origin", "branch": "claims", "leaderTtlMin": 30, "publishEveryMin": 10, "deadAfterMin": 60 },
+ "requires": { "record": ["login"], "gate": ["har", "baseline"] }
 }
 ```
 
@@ -91,6 +97,11 @@
 | `purpose`、`sha`、`mainSha`、`bisect`、`libTask`、`libMergeSha`、`ruleChange`、`ruleSha` | tick | `kind=integration` 任务的用途和参数 |
 | `branch`、`round`、`reviewer` | open-rule-review | `kind=rule-review` 任务 |
 | `reason`、`details` | tick | `kind=incident` 任务 |
+| `createKey`、`createdOn` | tick | 创建键和创建它的机器。本机账本没有这个键时（另一台机器建的、账本丢了），按 `createKey` 认领已有任务，不重建 |
+| `claimedBy` | tick | 派单时工单的领取者（机器）。和 `claims` 分支对不上就报「重复派单」 |
+| `advanceRequested`、`regateDone` | advance | 在不拥有该工单的机器上调用 `advance` 时只写这个键，由工单所属机器的下一轮 tick 推进 |
+| `reopenRequest`、`reopenHandled` | tick | 主控回退了别的机器的合并（回归二分、公共库回归）时写给该任务，由所属机器重开 |
+| `paused`、`resumed`、`resumedAt`、`resumedOn` | tick / resume | `kind=incident`：`paused=true` 且未 `resumed` 时，两台机器都停止派新单 |
 
 对象和数组一律按 JSON 字符串写入（`--type string`），读的时候解码；也接受服务端原生存的对象。清空一个键用 `metadata delete`，不写空字符串。
 
@@ -124,11 +135,64 @@
 
 **失败类别映射表是猜测**。`tools/lib/error-classes.mjs` 里的文案是各家的常见写法，还没见过 Multica 对 Claude Code、dsh、Opencode 限流时实际返回什么。联调或上线后看到真实的失败，以 `multica issue runs <id>` 返回的 `error` / `result` 原文为准替换。
 
+## 两台机器
+
+两台机器可以各跑一个 `tick`（每台同时只跑一个，`locks/tick` 保证）。分片按能力和负载：每台只为**本机**还原员的空位领工单（拉取模式），门槛、录制、复核按资产和负载在两台之间选人，不按工单在哪台。
+
+### 本机是哪台
+
+`--machine <id>` > 环境变量 `HMRSFW_MACHINE` > 名册 `machines.<id>.hosts` 与主机名匹配 > 名册里只有一台机器时就是它 > `*`（不分片：一个 tick 驱动全部工单，和分片前一样）。`<id>` 是名册里智能体的 `machine` 值，可以写唯一前缀（`mac` → `mac-mini`，`office` → `office-server`）。不看智能体名字里的 `@Mac` / `@Office`。
+
+名册可以加 `machines`（可选，不删现有字段）：
+
+```json
+"machines": {
+ "mac-mini": { "hosts": ["DylandeMac-mini.local"], "assets": ["login", "har", "baseline"] },
+ "office-server": { "hosts": ["Dylan-Office-Server"], "assets": ["har", "baseline"] }
+}
+```
+
+`assets` 是这台机器上有的东西：`login`（人登录过的浏览器登录态，只在有人能亲手登录的机器上）、`har`、`baseline`（随常态同步到两台）。某一步需要什么写在 `scheduler.config.json` 的 `requires`：默认录制要 `login`，门槛要 `har` 和 `baseline`。**名册没有 `machines` 时不做任何资产限制**，门槛员在哪台由名册决定，没有写死在 Mac。HM-9 定了门槛归属后只改名册（门槛员的 `machine`、各机 `assets`），不改代码。
+
+工单自己的额外要求读 `requires` 字段（数组 = 每一步都要；对象 = 按步骤，如 `{"record": ["login:enterprise"]}`）。这个字段名是向 C 提的建议，C 的工单目前没有机器或资产字段；C 定了别的名字，只改 `tools/lib/machine.mjs` 的 `woRequires` 一处。
+
+### 原子领取：为什么用 git 分支
+
+领取记录在工具仓库的 `claims` 分支（`wo/<工单>.json`：`{key, machine, at, by}`）。一轮领取 = 在刚拉到的分支头上做一个提交，不带 `--force` 推送。远端分支头变了（对方先推了），git 拒绝非快进推送，这一步就是比较并交换：先推上去的赢。落败方重新拉取，去掉已被占的工单，随机退避（150ms 起指数增长，上限 2s）后只重领剩下的，最多 12 次。
+
+没有选「任务 assignee / metadata 当租约」：领取发生在建任务之前，这时还没有任务可写；而且 `issue metadata set` 是后写覆盖，没有条件写，两台同时写再读回都可能以为自己赢了。git 推送在服务端是原子的，失败可以明确识别。
+
+一次 `tick` 先按本机还原员的空位排出要派的单元（大页先、小页打包），把这些单元的全部工单**一次推送**领下来，只为整组都领到的单元建任务。双派的两张任务在同一台机器上一起建（同一个领取），所以双派仍由 `twin` 互指来识别。
+
+### 谁写什么（控制面单写）
+
+| 对象 | 唯一写者 | 跨机可见的真相 |
+| --- | --- | --- |
+| 工单归属 | 先领到的机器 | `claims` 分支 `wo/*` |
+| 有工单的任务（还原、升级、审计、裁定）的推进：门槛结果、失败规则、合并、抽审、重开 | 工单所属机器 | 任务元数据 |
+| 任务交付（`handoff.mjs`） | 当时的负责人（在哪台都行） | 任务元数据 |
+| 没有工单的任务（集成、规则复核、排障、录制）和全局步骤：派录制、集成门槛、集成回归与二分、规则复核、停止条件、重复派单检查 | 主控（`claims` 分支 `leader.json` 租约，30 分钟，剩一半时续） | 任务元数据、git |
+| 合入 `integration` | 工单所属机器 | git（合并提交说明里带任务 id；回退提交保留 `This reverts commit <sha>`） |
+
+- `advance` 在不拥有该工单的机器上调用（门槛员可能在任一台）：只写 `advanceRequested`，返回 `{"ok":true,"deferred":true}`；所属机器下一轮立即推进，不等 10 分钟的兜底。`--regate` 同理。
+- 主控回退了别的机器的合并：写 `reopenRequest`，由所属机器重开。
+- 暂停：停止条件建的排障单带 `paused=true`，两台都看到；`resume` 在任一台运行都把它标成 `resumed`。
+- 本机账本只当明细和缓存。已通过的页、合并的 sha、录制是否完成、回归是否在进行、某工单是否已有任务，都从任务元数据或 git 推出来；回归计数改为数 `main..integration` 之间的合并提交。
+- 能力表、漏检、冷却、最近的事件各机只记自己推进的那部分，每 `publishEveryMin` 分钟写到 `claims` 分支 `stats/<机器>.json`（同时是心跳）。路由、抽检档位、停止条件、每日摘要读「本机账本 + 另一台的快照」之和，所以两台的同家族智能体仍共享能力数据。POC 播种只算一次。
+- 主控每轮检查：同一工单有两张以上未结束的任务且不是双派，或任务的 `claimedBy` 和领取记录不符 → 报「重复派单」anomaly 并记入每日摘要，由裁定员决定留哪张。
+
+### 停用一台机器、从不分片切到分片
+
+`claims reclaim --from <机器>`：对方心跳（`stats/<机器>.json` 的 `at`）超过 `deadAfterMin`（60 分钟）才接管，`--force` 跳过这个检查；接管后按任务元数据重建本机账本里这些工单的记录，已有任务的工单不会重派。不分片（`*`）跑过的工单要交给某台机器时也用它：`claims reclaim --from '*' --machine mac-mini`。
+
+只有一个 tick 时可以把 `claims.enabled` 设为 `false`（不推 `claims` 分支）；两个 tick 同时跑时不能关。
+
 ## 测试
 
 ```bash
 node --test tools/test/scheduler.test.mjs     # 场景：完整链路、双派、打包、等录制、升级单、回归二分、规则复核、限流、dry-run、路由、已知差异
 node --test tools/test/concurrency.test.mjs   # 3 个 tick 并发 × 20 轮，两种锁模式
+node --test tools/test/machines.test.mjs      # 两台机器：并发领取、先到先得与退避、两个 --machine 的 tick 并发、advance 只在所属机器、暂停/接管、资产判断、C 的工单格式
 ```
 
 测试只用假 CLI（`MULTICA_FAKE_STATE`）和临时目录里的 git 仓库（本地裸仓库当 `origin`），不访问真实工作区和 GitHub。`HMRSFW_TOOL_ROOT` 让脚本指向测试用的工具仓库，`HMRSFW_TICK_NO_GLOBAL_LOCK=1` 关掉 `tick` 的全局锁、只靠工单锁和账本锁（只用于测试）。

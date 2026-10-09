@@ -103,6 +103,21 @@ export function familyCapability(cap, family, model, tier) {
   return { ...agg, firstPassRate: agg.runs ? agg.firstPass / agg.runs : null, tokensMean: agg.runs ? agg.tokens / agg.runs : null };
 }
 
+// Sum capability tables: this machine's live one plus other machines' snapshots (claims branch stats/<machine>.json).
+// Each run is counted on exactly one machine (the one that advanced it), so counters add up; the POC seed is taken once.
+export function mergeCapability(...caps) {
+  const out = { version: 1, keys: {}, audits: {} };
+  for (const c of caps) {
+    for (const [key, k] of Object.entries(c.keys || {})) {
+      if (k.seed && out.keys[key]) continue;
+      const o = (out.keys[key] ??= { ...k, tiers: {} });
+      for (const [tier, t] of Object.entries(k.tiers || {})) { const ot = (o.tiers[tier] ??= emptyTier()); for (const f of Object.keys(ot)) ot[f] += t[f] || 0; }
+    }
+    for (const [k, v] of Object.entries(c.audits || {})) { const a = (out.audits[k] ??= { audits: 0, misses: 0 }); a.audits += v.audits || 0; a.misses += v.misses || 0; }
+  }
+  return out;
+}
+
 export function recordAudit(L, genFamily, revFamily, miss) {
   const k = `${genFamily}|${revFamily}`;
   const a = (L.capability.audits[k] ??= { audits: 0, misses: 0 });

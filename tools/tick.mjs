@@ -7,14 +7,20 @@
 //   open-upgrade <任务id> --reason "<依据>"  public-library upgrade order; the page is suspended until it merges
 //   open-rule-review <分支>                 rule change review by two reviewers of families other than the arbiter's
 //   resplit <工单id> / rerecord <工单id>      re-segment the order / send it back to the recorder
-//   resume                                 lift the dispatch pause after an incident
-// Common flags: --app <hmrsfw-vue dir> (or HMRSFW_APP_DIR; needed for merges), --dry-run (print Multica and git writes
-// instead of doing them). Fake Multica for tests: MULTICA_FAKE_STATE=<file.json>.
+//   resume                                 lift the dispatch pause after an incident (on both machines)
+//   claims list                            work orders per machine, leader lease, heartbeats
+//   claims reclaim --from <machine> [--wo <工单id> ...] [--force]
+//                                          take over a dead machine's work orders (refused while its heartbeat is fresh)
+// Common flags: --app <hmrsfw-vue dir> (or HMRSFW_APP_DIR; needed for merges), --machine <id> (or HMRSFW_MACHINE, or
+// roster machines.<id>.hosts; see tools/lib/machine.mjs), --dry-run (print Multica and git writes instead of doing them).
+// Fake Multica for tests: MULTICA_FAKE_STATE=<file.json>.
 import { Pipeline } from "./lib/pipeline.mjs";
 import { appDir } from "./app-dir.mjs";
 
 function optApp(argv) { try { return appDir(argv); } catch (e) { if (argv.some((a) => a === "--app" || a.startsWith("--app="))) throw e; return null; } }
-const positional = (argv) => argv.filter((a, i) => !a.startsWith("--") && !["--app", "--reason"].includes(argv[i - 1]));
+const VALUED = ["--app", "--reason", "--machine", "--from", "--wo"];
+const positional = (argv) => argv.filter((a, i) => !a.startsWith("--") && !VALUED.includes(argv[i - 1]));
+const all = (argv, name) => argv.flatMap((a, i) => (a === name && argv[i + 1] ? [argv[i + 1]] : []));
 const flag = (argv, name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : undefined; };
 
 export function run(argv) {
@@ -41,13 +47,14 @@ export function run(argv) {
     case "resplit": if (!target) throw new Error("usage: tick.mjs resplit <工单id>"); return pl.resplit(target);
     case "rerecord": if (!target) throw new Error("usage: tick.mjs rerecord <工单id>"); return pl.rerecord(target);
     case "resume": return pl.resume();
-    default: throw new Error("usage: tick.mjs tick | advance <任务id> [--regate] | digest | open-upgrade <任务id> --reason .. | open-rule-review <分支> | resplit <工单id> | rerecord <工单id> | resume");
+    case "claims": { const wo = all(argv, "--wo"); return pl.claimsCmd(target, { from: flag(argv, "--from"), keys: wo.length ? wo : null, force: argv.includes("--force") }); }
+    default: throw new Error("usage: tick.mjs tick | advance <任务id> [--regate] | digest | open-upgrade <任务id> --reason .. | open-rule-review <分支> | resplit <工单id> | rerecord <工单id> | resume | claims list|reclaim");
   }
 }
 
 try {
   const out = run(process.argv.slice(2));
-  console.log(JSON.stringify(out.locked ? { locked: true } : { ok: out.ok !== false, summary: out.summary ?? "", anomalies: out.anomalies ?? [], ...(out.actions?.length ? { actions: out.actions } : {}) }));
+  console.log(JSON.stringify(out.locked ? { locked: true } : { ok: out.ok !== false, summary: out.summary ?? "", anomalies: out.anomalies ?? [], ...(out.deferred ? { deferred: true } : {}), ...(out.actions?.length ? { actions: out.actions } : {}) }));
 } catch (e) {
   console.log(JSON.stringify({ ok: false, summary: `error: ${e.message}`, anomalies: [{ issue: null, what: e.message, suggestedAction: "评论 [ERROR]，建排障单交给裁定员" }] }));
   process.exitCode = 1;

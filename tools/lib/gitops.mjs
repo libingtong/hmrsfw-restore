@@ -43,6 +43,11 @@ export class Git {
     return null;
   }
   remoteRef(b) { return `${this.remote}/${b}`; }
+  // Commits reverted on the first-parent line (from, to]: the "This reverts commit <sha>" trailer of each revert.
+  revertedIn(from, to) {
+    const log = this.out(["log", "--first-parent", "--format=%B%x1e", from ? `${from}..${to}` : to]);
+    return new Set([...log.matchAll(/This reverts commit ([0-9a-f]{40})/g)].map((m) => m[1]));
+  }
   revParse(ref) { return this.raw(["rev-parse", "--verify", "--quiet", `${ref}^{commit}`], { allowFail: true }).out || null; }
   isAncestor(a, b) { return this.raw(["merge-base", "--is-ancestor", a, b], { allowFail: true }).ok; }
   changedFiles(base, head) { return this.out(["diff", "--name-only", `${base}...${head}`]).split("\n").filter(Boolean); }
@@ -109,7 +114,8 @@ export class Git {
       const res = this.withWorktree(base, (wt) => {
         const r = this.raw([...this.identity(wt), "revert", "--no-edit", ...(parents > 1 ? ["-m", "1"] : []), sha], { cwd: wt, allowFail: true });
         if (!r.ok) { this.raw(["revert", "--abort"], { cwd: wt, allowFail: true }); return { reverted: false, conflict: true }; }
-        if (message) this.raw([...this.identity(wt), "commit", "--amend", "--quiet", "--no-verify", "-m", message], { cwd: wt });
+        // keep git's trailer: revertedIn() finds reverted merges by it, whichever machine reverted them
+        if (message) this.raw([...this.identity(wt), "commit", "--amend", "--quiet", "--no-verify", "-m", `${message}\n\nThis reverts commit ${this.out(["rev-parse", sha])}.`], { cwd: wt });
         const out = this.out(["rev-parse", "HEAD"], { cwd: wt });
         if (!this.push(wt, into)) return { reverted: false, pushRejected: true };
         return { reverted: true, sha: out };

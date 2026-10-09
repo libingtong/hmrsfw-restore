@@ -27,8 +27,9 @@ export function loadWorkOrder(id, root = TOOL_ROOT) {
 
 export const isCore = (wo) => wo && (wo.type === "entry" || wo.type === "shared");
 export const isPage = (wo) => wo && !isCore(wo);
-// Pages already accepted in hmrsfw-vue are regression-only (§1 范围).
-export const isAccepted = (wo) => wo.accepted === true || wo.status === "accepted" || wo.regressionOnly === true;
+// Pages already accepted in hmrsfw-vue are regression-only (§1 范围). C writes `status: "regression"` and an `accepted`
+// object ({route, in}); a bare `accepted: true` is accepted too.
+export const isAccepted = (wo) => !!wo.accepted || wo.status === "accepted" || wo.status === "regression" || wo.regressionOnly === true;
 export const appOf = (wo) => wo.app || (wo.site === "usercenter" || wo.site === "uc" ? "uc" : wo.site || "portal");
 
 // Validation rules in the original chunk: explicit field from the generator, else count `trigger:` entries of
@@ -70,7 +71,7 @@ export function reverseDeps(orders, root = TOOL_ROOT) {
   for (const wo of orders) {
     const app = appOf(wo);
     regs[app] ??= loadRegistry(app, root);
-    for (const d of wo.deps || []) {
+    for (const d of depList(wo.deps)) {
       const files = depFiles(d, app, regs[app]);
       for (const f of files) { if (!idx.has(f)) idx.set(f, new Set()); idx.get(f).add(wo.id); }
     }
@@ -78,13 +79,25 @@ export function reverseDeps(orders, root = TOOL_ROOT) {
   return idx;
 }
 
-// A dep is either a registry path ("@/shared/X.vue"), a repo path, or a registry key (chunk name / export name).
+// deps is an array, or C's object {entry:[export], shared:[key], api:["file.js#export"], modules, views, orders}; `orders`
+// are work-order ids (dispatch order), not files.
+export function depList(deps) {
+  if (Array.isArray(deps)) return deps;
+  if (!deps || typeof deps !== "object") return [];
+  return Object.entries(deps).filter(([k, v]) => k !== "orders" && Array.isArray(v)).flatMap(([, v]) => v);
+}
+
+// A dep is either a registry path ("@/shared/X.vue"), a repo path, a registry key (chunk name / export name), or the
+// original symbol a registry entry records ("index.api.x.js#P").
 export function depFiles(dep, app, reg) {
   const d = typeof dep === "string" ? dep : dep.path || dep.key || "";
   if (!d) return [];
   if (d.startsWith("@/")) return [registryToRepoPath(app, d)];
   if (d.startsWith("apps/")) return [d];
-  if (reg) for (const sec of ["shared", "entry", "api"]) if (reg[sec]?.[d]?.path) return [registryToRepoPath(app, reg[sec][d].path)];
+  if (reg) {
+    for (const sec of ["shared", "entry", "api"]) if (reg[sec]?.[d]?.path) return [registryToRepoPath(app, reg[sec][d].path)];
+    for (const sec of ["shared", "entry", "api"]) for (const v of Object.values(reg[sec] || {})) if (v?.original === d && v.path) return [registryToRepoPath(app, v.path)];
+  }
   return [];
 }
 
