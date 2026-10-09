@@ -1,0 +1,73 @@
+{
+ "id": "page.portal.talents.conference.detail",
+ "chunk": "legacy-dist/portal/assets/detail.178332063620010.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "G": "defineComponent",
+  "J": "ref",
+  "K": "useRoute (vue-router)",
+  "Q": "reactive",
+  "U": "onMounted",
+  "v": "resolveComponent",
+  "M": "openBlock",
+  "b": "createElementBlock",
+  "a": "createElementVNode",
+  "m": "toDisplayString",
+  "c": "createVNode",
+  "x": "withCtx",
+  "h": "unref",
+  "X": "withDirectives",
+  "$": "createCommentVNode",
+  "aa": "pushScopeId",
+  "ea": "popScopeId",
+  "l": "createTextVNode",
+  "sa": "vShow"
+ },
+ "entry": {
+  "ta": {
+   "original": "V",
+   "path": "@/legacy",
+   "export": "VideoPlayer",
+   "status": "reserved",
+   "owner": "entry.portal.c05"
+  },
+  "na": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "la": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "oa": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ia": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ra": {
+   "original": "index.api.178332063620039.js#q",
+   "path": "@/api/sysMeeting",
+   "export": "queryById",
+   "status": "reserved",
+   "url": "xf-job/communal/licenseFree/xfSysMeeting/queryById"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

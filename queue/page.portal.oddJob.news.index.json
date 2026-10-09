@@ -1,0 +1,58 @@
+{
+ "id": "page.portal.oddJob.news.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.2,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620049.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-a1211b55"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a1211b55"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620041.css",
+  "legacy-dist/portal/assets/index.178332063620049.css"
+ ],
+ "target": "apps/portal/src/views/oddJob/news/index.vue",
+ "subComponentDir": "apps/portal/src/views/oddJob/news/index/",
+ "routes": [
+  {
+   "path": "/oddjobnews",
+   "name": "oddjobnews",
+   "title": "零工资讯"
+  }
+ ],
+ "recordPath": "/oddjobnews",
+ "maps": "out/maps/page.portal.oddJob.news.index.json",
+ "hints": "out/hints/page.portal.oddJob.news.index.md",
+ "deps": {
+  "entry": [
+   "D",
+   "a",
+   "b",
+   "c",
+   "g",
+   "n",
+   "t"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620024.js#a",
+   "index.api.178332063620024.js#b",
+   "index.api.17833206362008.js#a"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

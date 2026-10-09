@@ -1,0 +1,160 @@
+{
+ "id": "page.portal.sjz.setUp.setupDetail",
+ "chunk": "legacy-dist/portal/assets/setupDetail.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ae": "defineComponent",
+  "Fe": "useRouter (vue-router)",
+  "He": "useRoute (vue-router)",
+  "Ue": "reactive",
+  "De": "onMounted",
+  "w": "resolveComponent",
+  "s": "openBlock",
+  "a": "createElementBlock",
+  "t": "createElementVNode",
+  "r": "createVNode",
+  "m": "withCtx",
+  "l": "toDisplayString",
+  "d": "unref",
+  "j": "createTextVNode",
+  "f": "createCommentVNode",
+  "L": "Fragment",
+  "F": "renderList",
+  "h": "createBlock",
+  "Ge": "pushScopeId",
+  "Je": "popScopeId"
+ },
+ "entry": {
+  "O": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "Ze": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "We": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ye": {
+   "original": "aB",
+   "path": "@/legacy/api",
+   "export": "getChildArticleTypeList",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "$e": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "H": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "U": {
+   "original": "C",
+   "path": "@/legacy",
+   "export": "TEXT_GO_PERFECT",
+   "status": "restored"
+  },
+  "D": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "G": {
+   "original": "E",
+   "path": "@/legacy",
+   "export": "IDENTITY_PERSON",
+   "status": "restored"
+  },
+  "J": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ke": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "E": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "et": {
+   "original": "signSetup.1783320636200.js#s",
+   "path": "@/shared/signSetup.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.signSetup"
+  },
+  "st": {
+   "original": "complaint.1783320636200.js#c",
+   "path": "@/shared/complaint.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.complaint"
+  }
+ },
+ "views": {},
+ "modules": {
+  "qe": {
+   "original": "card.1783320636200.js#_",
+   "value": "/sjz/setup/good.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Se": {
+   "original": "card.1783320636200.js#a",
+   "value": "/sjz/setup/card.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,53 @@
+{
+ "id": "page.portal.special.page1.jobNews",
+ "chunk": "legacy-dist/portal/assets/jobNews.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "I": "defineComponent",
+  "g": "onMounted",
+  "c": "openBlock",
+  "v": "createElementBlock",
+  "j": "Fragment",
+  "A": "renderList",
+  "L": "createBlock",
+  "y": "unref",
+  "t": "createElementVNode",
+  "M": "createTextVNode",
+  "d": "toDisplayString",
+  "N": "pushScopeId",
+  "B": "popScopeId"
+ },
+ "entry": {
+  "D": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "h": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "T": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Y": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

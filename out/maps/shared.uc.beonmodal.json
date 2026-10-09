@@ -1,0 +1,57 @@
+{
+ "id": "shared.uc.beonmodal",
+ "chunk": "legacy-dist/usercenter/assets/beonmodal.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "M": "defineComponent",
+  "Y": "reactive",
+  "D": "onMounted",
+  "d": "resolveComponent",
+  "B": "openBlock",
+  "N": "createElementBlock",
+  "e": "createVNode",
+  "a": "withCtx",
+  "o": "createElementVNode",
+  "u": "toDisplayString",
+  "g": "unref",
+  "R": "createTextVNode"
+ },
+ "entry": {
+  "q": {
+   "original": "a9",
+   "path": "@/legacy",
+   "export": "detailById",
+   "status": "restored"
+  },
+  "T": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "x": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "w": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "h": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

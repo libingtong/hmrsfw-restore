@@ -1,0 +1,123 @@
+{
+ "id": "shared.uc.ReceivedResumeList",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754528.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "ge": "defineComponent",
+  "he": "inject",
+  "Te": "useRouter (vue-router)",
+  "Ne": "useRoute (vue-router)",
+  "we": "reactive",
+  "Se": "onMounted",
+  "y": "resolveComponent",
+  "n": "openBlock",
+  "d": "createElementBlock",
+  "I": "createElementVNode",
+  "s": "createVNode",
+  "r": "withCtx",
+  "U": "Fragment",
+  "D": "renderList",
+  "b": "createBlock",
+  "_": "createCommentVNode",
+  "C": "createTextVNode",
+  "R": "toDisplayString",
+  "V": "h",
+  "Ce": "pushScopeId",
+  "Fe": "popScopeId"
+ },
+ "entry": {
+  "P": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "je": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Ke": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "a7",
+   "path": "@/legacy/api",
+   "export": "isPublishingPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Z": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "q": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Ue": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Re": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "aN",
+   "path": "@/legacy",
+   "export": "downloadFile",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "qe": {
+   "original": "index.api.175161560754511.js#q",
+   "path": "@/api/api-175161560754511",
+   "export": "queryCompanyPersonInfoRegister",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/queryCompanyPersonInfoRegister"
+  }
+ },
+ "shared": {
+  "O": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Pe": {
+   "original": "setStatusinterview.1751615607545.js#s",
+   "path": "@/shared/setStatusinterview.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "$e": {
+   "original": "InterviewInvitation.17516156075452.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

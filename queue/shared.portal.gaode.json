@@ -1,0 +1,43 @@
+{
+ "id": "shared.portal.gaode",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.2,
+ "chunkKb": 6.2,
+ "sourceChunk": "legacy-dist/portal/assets/gaode.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "components": [
+  {
+   "name": "gaode",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/gaode.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "gaode.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "usedBy": [
+  "page.portal.LookForJob.PostDetail"
+ ],
+ "maps": "out/maps/shared.portal.gaode.json",
+ "hints": "out/hints/shared.portal.gaode.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

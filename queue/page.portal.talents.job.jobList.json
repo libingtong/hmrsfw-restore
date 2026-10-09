@@ -1,0 +1,62 @@
+{
+ "id": "page.portal.talents.job.jobList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 12,
+ "sourceChunk": "legacy-dist/portal/assets/jobList.17833206362004.js",
+ "components": [
+  {
+   "name": "jobList",
+   "scopeId": "data-v-14f20c31"
+  }
+ ],
+ "scopeIds": [
+  "data-v-14f20c31"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/map.1783320636200.css",
+  "legacy-dist/portal/assets/jobList.17833206362003.css",
+  "legacy-dist/portal/assets/jobList.17833206362004.css"
+ ],
+ "target": "apps/portal/src/views/talents/job/jobList.vue",
+ "subComponentDir": "apps/portal/src/views/talents/job/jobList/",
+ "routes": [
+  {
+   "path": "/talents/jobList",
+   "name": "talents/jobList",
+   "title": "我要求职"
+  }
+ ],
+ "recordPath": "/talents/jobList",
+ "maps": "out/maps/page.portal.talents.job.jobList.json",
+ "hints": "out/hints/page.portal.talents.job.jobList.md",
+ "deps": {
+  "entry": [
+   "L",
+   "S",
+   "h",
+   "t",
+   "u",
+   "z"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "map.17833206362002.js",
+   "workItemNew.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.map",
+   "shared.portal.workItemNew"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,60 @@
+{
+ "id": "page.portal.jobMarket.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 14.9,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620038.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-08604d01"
+  }
+ ],
+ "scopeIds": [
+  "data-v-08604d01"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620033.css",
+  "legacy-dist/portal/assets/index.178332063620038.css"
+ ],
+ "target": "apps/portal/src/views/jobMarket/index.vue",
+ "subComponentDir": "apps/portal/src/views/jobMarket/index/",
+ "routes": [
+  {
+   "path": "/jobMarket",
+   "name": "jobMarket",
+   "title": "零工市场"
+  }
+ ],
+ "recordPath": "/jobMarket",
+ "maps": "out/maps/page.portal.jobMarket.index.json",
+ "hints": "out/hints/page.portal.jobMarket.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "c",
+   "e",
+   "f",
+   "h"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620020.js#g",
+   "index.api.178332063620020.js#q",
+   "index.api.178332063620026.js#k"
+  ],
+  "modules": [
+   "rightdisab.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

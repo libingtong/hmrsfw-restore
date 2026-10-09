@@ -1,0 +1,59 @@
+{
+ "id": "shared.uc.extractpositionmodal",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5,
+ "chunkKb": 5,
+ "sourceChunk": "legacy-dist/usercenter/assets/extractpositionmodal.1751615607545.js",
+ "components": [
+  {
+   "name": "extractpositionmodal",
+   "scopeId": "data-v-f343505a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f343505a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/extractpositionmodal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/extractpositionmodal.vue",
+ "exports": {
+  "e": {
+   "export": "default"
+  }
+ },
+ "registryKey": "extractpositionmodal.1751615607545.js",
+ "usedBy": [
+  "page.uc.oddjob.need.add",
+  "page.uc.oddjob.lack.add",
+  "page.uc.oddjob.sharepage",
+  "page.uc.PositionRelease",
+  "page.uc.PositionReleaseAbroad",
+  "page.uc.webFairWork",
+  "page.uc.JobFairRelease",
+  "page.uc.zcyzPositionRelease",
+  "page.uc.zcyzJobFairRelease",
+  "page.uc.zcyzwebFairWork"
+ ],
+ "maps": "out/maps/shared.uc.extractpositionmodal.json",
+ "hints": "out/hints/shared.uc.extractpositionmodal.md",
+ "deps": {
+  "entry": [
+   "M",
+   "aw",
+   "d"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

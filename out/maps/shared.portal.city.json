@@ -1,0 +1,66 @@
+{
+ "id": "shared.portal.city",
+ "chunk": "legacy-dist/portal/assets/city.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "pe": "defineComponent",
+  "ve": "ref",
+  "ue": "reactive",
+  "de": "onMounted",
+  "Ae": "watch",
+  "he": "resolveComponent",
+  "i": "openBlock",
+  "s": "createElementBlock",
+  "r": "createElementVNode",
+  "d": "createCommentVNode",
+  "me": "createTextVNode",
+  "h": "Fragment",
+  "m": "renderList",
+  "v": "normalizeClass",
+  "C": "toDisplayString",
+  "L": "createVNode"
+ },
+ "entry": {
+  "ie": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "k": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "se": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "re": {
+   "original": "W",
+   "path": "@/legacy",
+   "export": "queryAreaChildrenTreeListById",
+   "status": "restored"
+  },
+  "ne": {
+   "original": "X",
+   "path": "@/legacy",
+   "export": "getInfoByAreaId",
+   "status": "restored"
+  },
+  "oe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

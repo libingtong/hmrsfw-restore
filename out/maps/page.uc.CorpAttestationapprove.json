@@ -1,0 +1,295 @@
+{
+ "id": "page.uc.CorpAttestationapprove",
+ "chunk": "legacy-dist/usercenter/assets/CorpAttestationapprove.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "ra": "defineComponent",
+  "sa": "useRoute (vue-router)",
+  "ia": "useRouter (vue-router)",
+  "v": "ref",
+  "Gt": "watch",
+  "he": "reactive",
+  "ua": "onBeforeMount",
+  "na": "onMounted",
+  "P": "resolveComponent",
+  "f": "openBlock",
+  "O": "createElementBlock",
+  "t": "createVNode",
+  "l": "withCtx",
+  "d": "createElementVNode",
+  "V": "createTextVNode",
+  "w": "toDisplayString",
+  "m": "unref",
+  "oa": "pushScopeId",
+  "da": "popScopeId",
+  "Bt": "computed",
+  "Ot": "inject",
+  "C": "createBlock",
+  "b": "createCommentVNode",
+  "Xe": "withDirectives",
+  "Qe": "vShow",
+  "Ke": "Fragment",
+  "Ut": "renderList"
+ },
+ "entry": {
+  "Ge": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "W": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "Be": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "ca": {
+   "original": "F",
+   "path": "@/legacy",
+   "export": "izAlreadySubmitCompany",
+   "status": "restored"
+  },
+  "$": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "ga": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "Rt": {
+   "original": "b",
+   "path": "vuex",
+   "export": "useStore",
+   "status": "npm"
+  },
+  "$t": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "Vt": {
+   "original": "E",
+   "path": "@/legacy",
+   "export": "queryFormSettingByCode",
+   "status": "restored"
+  },
+  "we": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "Et": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getSettingValueByCodes",
+   "status": "restored"
+  },
+  "G": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "B": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Mt": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "Ht": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "ea": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Jt": {
+   "original": "O",
+   "path": "@/legacy",
+   "export": "getAreaInfoByAreaId",
+   "status": "restored"
+  },
+  "Yt": {
+   "original": "G",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "Zt": {
+   "original": "H",
+   "path": "@/legacy",
+   "export": "companyInfoVerifyForZZJC",
+   "status": "restored"
+  },
+  "_": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "xe": {
+   "original": "U",
+   "path": "ant-design-vue",
+   "export": "Upload",
+   "status": "npm"
+  },
+  "Fe": {
+   "original": "J",
+   "path": "@/legacy",
+   "export": "checkFileType",
+   "status": "restored"
+  },
+  "aa": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Wt": {
+   "original": "z",
+   "path": "@/legacy",
+   "export": "getDictValueByCodes",
+   "status": "restored"
+  },
+  "ta": {
+   "original": "Q",
+   "path": "@/legacy",
+   "export": "sumbitVerifyInfo",
+   "status": "restored"
+  },
+  "Xt": {
+   "original": "R",
+   "path": "@/legacy",
+   "export": "queryCompanyInfo",
+   "status": "restored"
+  },
+  "Y": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "P",
+   "path": "@ant-design/icons-vue",
+   "export": "PlusOutlined",
+   "status": "npm"
+  },
+  "Qt": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Se": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ue": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Kt": {
+   "original": "gaode.1751615607545.js#i",
+   "path": "@/shared/gaode.ts",
+   "export": "MultiDictNationSelect",
+   "status": "restored"
+  },
+  "el": {
+   "original": "gaode.1751615607545.js#M",
+   "path": "@/shared/gaode.ts",
+   "export": "BaiduMapModal",
+   "status": "restored"
+  },
+  "al": {
+   "original": "gaode.1751615607545.js#g",
+   "path": "@/shared/gaode.ts",
+   "export": "GaodeMapModal",
+   "status": "restored"
+  },
+  "tl": {
+   "original": "dictCodeTreeOne.1751615607545.js#d",
+   "path": "@/shared/dictCodeTreeOne.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "la": {
+   "original": "idCard.1751615607545.js#i",
+   "path": "@/shared/idCard.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ll": {
+   "original": "email.1751615607545.js#e",
+   "path": "@/shared/email.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "rl": {
+   "original": "dictCheckBoxAll.1751615607545.js#d",
+   "path": "@/shared/dictCheckBoxAll.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "sl": {
+   "original": "message.1751615607545.js#i",
+   "path": "@/shared/message.ts",
+   "export": "infoAlert",
+   "status": "restored"
+  },
+  "je": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  },
+  "il": {
+   "original": "XfLoaing.1751615607545.js#_",
+   "path": "@/shared/XfLoaing.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ul": {
+   "original": "DictCodes.1751615607545.js#D",
+   "path": "@/shared/DictCodes.ts",
+   "export": "DictCodes",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

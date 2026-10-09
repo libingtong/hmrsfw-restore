@@ -1,0 +1,31 @@
+{
+ "id": "page.uc.corpNoJob",
+ "chunk": "legacy-dist/usercenter/assets/nojob.17516156075452.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "E": "defineComponent",
+  "y": "reactive",
+  "m": "resolveComponent",
+  "o": "openBlock",
+  "t": "createElementBlock",
+  "l": "createVNode",
+  "a": "withCtx",
+  "p": "createTextVNode",
+  "u": "toDisplayString",
+  "s": "createBlock",
+  "T": "createElementVNode"
+ },
+ "entry": {
+  "x": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

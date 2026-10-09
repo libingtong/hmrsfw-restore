@@ -1,0 +1,56 @@
+{
+ "id": "shared.uc.right",
+ "chunk": "legacy-dist/usercenter/assets/right.vue_vue_type_script_setup_true_lang.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "w": "defineComponent",
+  "y": "useRoute (vue-router)",
+  "m": "useRouter (vue-router)",
+  "v": "reactive",
+  "C": "onBeforeMount",
+  "P": "onMounted",
+  "n": "openBlock",
+  "o": "createElementBlock",
+  "A": "Fragment",
+  "B": "renderList",
+  "a": "createCommentVNode",
+  "L": "normalizeClass",
+  "l": "unref"
+ },
+ "entry": {
+  "f": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "k": {
+   "original": "al",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "g": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "h": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "right.vue_vue_type_style_index_0_scopes_true_lang.1751615607545.js"
+ ],
+ "missing": []
+}

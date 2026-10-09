@@ -1,0 +1,347 @@
+{
+ "id": "page.portal.guide.jobHunt",
+ "chunk": "legacy-dist/portal/assets/jobHunt.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "re": "defineComponent",
+  "ye": "useRoute (vue-router)",
+  "xe": "useRouter (vue-router)",
+  "ne": "watch",
+  "$": "ref",
+  "H": "reactive",
+  "be": "onBeforeMount",
+  "pe": "onMounted",
+  "y": "resolveComponent",
+  "v": "openBlock",
+  "O": "createElementBlock",
+  "a": "createVNode",
+  "l": "withCtx",
+  "U": "mergeProps",
+  "n": "unref",
+  "h": "createElementVNode",
+  "W": "createCommentVNode",
+  "Ne": "pushScopeId",
+  "Ae": "popScopeId",
+  "Oe": "getCurrentInstance",
+  "G": "createBlock",
+  "R": "createTextVNode",
+  "z": "toDisplayString",
+  "de": "Fragment",
+  "ee": "withDirectives",
+  "ae": "vShow",
+  "Ga": "computed",
+  "Ha": "renderList",
+  "za": "withModifiers",
+  "Ja": "normalizeClass"
+ },
+ "entry": {
+  "Se": {
+   "original": "bg",
+   "path": "ant-design-vue",
+   "export": "Form",
+   "status": "npm"
+  },
+  "M": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "De": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "at": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "tt": {
+   "original": "a2",
+   "path": "@/legacy",
+   "export": "validateIdCard",
+   "status": "restored"
+  },
+  "lt": {
+   "original": "bh",
+   "path": "@/legacy/utils",
+   "export": "parseIdCard",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "st": {
+   "original": "aR",
+   "path": "@/legacy/utils",
+   "export": "isMobilePhone",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ge": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "me": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "it": {
+   "original": "bi",
+   "path": "@/legacy/api",
+   "export": "getAllInfo",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Re": {
+   "original": "L",
+   "path": "@/legacy",
+   "export": "getDictListByType",
+   "status": "restored"
+  },
+  "Me": {
+   "original": "t",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "ot": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "rt": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "nt": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Ue": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "Pe": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Ve": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "dt": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "ct": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ut": {
+   "original": "a5",
+   "path": "@/legacy/api",
+   "export": "listOneForWebSite",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "pt": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "mt": {
+   "original": "aU",
+   "path": "@/legacy/api",
+   "export": "recommendJobList",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  }
+ },
+ "api": {
+  "gt": {
+   "original": "index.1783320636200117.js#c",
+   "path": "@/api/api-117",
+   "export": "checkIdCard",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUser/checkIdCard"
+  },
+  "fe": {
+   "original": "index.1783320636200117.js#s",
+   "path": "@/api/api-117",
+   "export": "saveForUserCenter",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUser/saveForUserCenter"
+  },
+  "Qe": {
+   "original": "index.1783320636200117.js#b",
+   "path": "@/api/api-117",
+   "export": "setCompleteStatus",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysGuideRecord/setCompleteStatus"
+  },
+  "ft": {
+   "original": "index.1783320636200117.js#d",
+   "path": "@/api/api-117",
+   "export": "save",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/save"
+  },
+  "vt": {
+   "original": "index.1783320636200117.js#v",
+   "path": "@/api/api-117",
+   "export": "list2",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/list"
+  },
+  "yt": {
+   "original": "index.1783320636200117.js#e",
+   "path": "@/api/api-117",
+   "export": "beJobSeeker",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/beJobSeeker"
+  },
+  "xt": {
+   "original": "index.1783320636200117.js#f",
+   "path": "@/api/api-117",
+   "export": "addBatch",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/addBatch"
+  },
+  "At": {
+   "original": "index.api.17833206362002.js#e",
+   "path": "@/api/api-17833206362002",
+   "export": "add",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobUserCare/add"
+  },
+  "St": {
+   "original": "index.api.17833206362002.js#h",
+   "path": "@/api/api-17833206362002",
+   "export": "cancel",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobUserCare/cancel"
+  },
+  "Ut": {
+   "original": "index.api.17833206362002.js#q",
+   "path": "@/api/api-17833206362002",
+   "export": "queryIzCanDeliver",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver"
+  }
+ },
+ "shared": {
+  "Xa": {
+   "original": "auth.1783320636200.js#O",
+   "path": "@/shared/auth/OneContent.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.auth"
+  },
+  "Fe": {
+   "original": "auth.1783320636200.js#B",
+   "path": "@/shared/auth/BackGround.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.auth"
+  },
+  "Ka": {
+   "original": "auth.1783320636200.js#C",
+   "path": "@/shared/auth/ColumnContent.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.auth"
+  },
+  "$a": {
+   "original": "auth.1783320636200.js#_",
+   "path": "@/shared/auth.ts",
+   "export": "_",
+   "status": "reserved",
+   "owner": "shared.portal.auth"
+  },
+  "Za": {
+   "original": "auth.1783320636200.js#a",
+   "path": "@/shared/auth.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.auth"
+  },
+  "Tt": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "se": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ct": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "wt": {
+   "original": "resumemodal.1783320636200.js#r",
+   "path": "@/shared/resumemodal.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

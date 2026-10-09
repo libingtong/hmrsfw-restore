@@ -1,0 +1,125 @@
+{
+ "id": "page.portal.talents.index.infoRecommend",
+ "chunk": "legacy-dist/portal/assets/infoRecommend.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ge": "defineComponent",
+  "he": "useRoute (vue-router)",
+  "we": "useRouter (vue-router)",
+  "ye": "computed",
+  "M": "reactive",
+  "xe": "onBeforeMount",
+  "ke": "onMounted",
+  "S": "ref",
+  "be": "resolveComponent",
+  "i": "openBlock",
+  "c": "createElementBlock",
+  "e": "createElementVNode",
+  "_": "unref",
+  "n": "toDisplayString",
+  "E": "createCommentVNode",
+  "V": "Fragment",
+  "B": "renderList",
+  "P": "createVNode",
+  "N": "withCtx",
+  "T": "createBlock",
+  "Se": "pushScopeId",
+  "Ee": "popScopeId",
+  "Ne": "normalizeClass"
+ },
+ "entry": {
+  "Le": {
+   "original": "i",
+   "path": "swiper",
+   "export": "default",
+   "status": "npm",
+   "as": "SwiperCore"
+  },
+  "Fe": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Ie": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Me": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "Ve": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "Be": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Ye": {
+   "original": "index.api.178332063620037.js#b",
+   "path": "@/api/sysBusinessSetting",
+   "export": "listForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
+  }
+ },
+ "shared": {
+  "Te": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "_e": {
+   "original": "robot.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 4.4KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "robotImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Re": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "Ge": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "ze": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  },
+  "qe": {
+   "original": "grid.1783320636200.js#G",
+   "path": "swiper",
+   "export": "Grid"
+  },
+  "He": {
+   "original": "effect-coverflow.1783320636200.js#E",
+   "path": "swiper",
+   "export": "EffectCoverflow"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

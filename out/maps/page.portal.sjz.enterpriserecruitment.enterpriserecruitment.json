@@ -1,0 +1,106 @@
+{
+ "id": "page.portal.sjz.enterpriserecruitment.enterpriserecruitment",
+ "chunk": "legacy-dist/portal/assets/enterpriserecruitment.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Re": "defineComponent",
+  "Fe": "useRouter (vue-router)",
+  "N": "reactive",
+  "j": "ref",
+  "De": "onUnmounted",
+  "Ze": "onMounted",
+  "g": "resolveComponent",
+  "i": "openBlock",
+  "r": "createElementBlock",
+  "t": "createElementVNode",
+  "p": "createVNode",
+  "y": "withCtx",
+  "m": "Fragment",
+  "J": "renderList",
+  "v": "unref",
+  "o": "toDisplayString",
+  "u": "createTextVNode",
+  "T": "createBlock",
+  "A": "createCommentVNode",
+  "We": "resolveDynamicComponent",
+  "qe": "pushScopeId",
+  "Ge": "popScopeId",
+  "Je": "normalizeStyle",
+  "Pe": "withDirectives",
+  "Ue": "vShow"
+ },
+ "entry": {
+  "R": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "P": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "a6",
+   "path": "@/legacy",
+   "export": "FeedbackModal",
+   "status": "restored"
+  },
+  "He": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Ke": {
+   "original": "aa",
+   "path": "@/legacy",
+   "export": "getBusinessDictItems",
+   "status": "restored"
+  },
+  "Qe": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "Xe": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "U": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "O": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ye": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

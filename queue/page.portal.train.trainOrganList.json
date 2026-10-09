@@ -1,0 +1,54 @@
+{
+ "id": "page.portal.train.trainOrganList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.6,
+ "sourceChunk": "legacy-dist/portal/assets/trainOrganList.1783320636200.js",
+ "components": [
+  {
+   "name": "trainOrganList",
+   "scopeId": "data-v-0f940ce8"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0f940ce8"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/trainOrganList.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/train/trainOrganList.vue",
+ "subComponentDir": "apps/portal/src/views/train/trainOrganList/",
+ "routes": [
+  {
+   "path": "/trainOrganList",
+   "name": "trainOrganList",
+   "title": "培训机构"
+  }
+ ],
+ "recordPath": "/trainOrganList",
+ "maps": "out/maps/page.portal.train.trainOrganList.json",
+ "hints": "out/hints/page.portal.train.trainOrganList.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620021.js#e"
+  ],
+  "modules": [
+   "map.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

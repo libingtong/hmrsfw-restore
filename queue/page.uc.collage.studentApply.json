@@ -1,0 +1,90 @@
+{
+ "id": "page.uc.collage.studentApply",
+ "type": "page",
+ "status": "segmented",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 35.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/apply.1751615607545.js",
+ "components": [
+  {
+   "name": "approve",
+   "scopeId": "data-v-5ffb5602"
+  },
+  {
+   "name": "unapply",
+   "scopeId": null
+  },
+  {
+   "name": "cpyInfo",
+   "scopeId": null
+  },
+  {
+   "name": "refuse",
+   "scopeId": "data-v-60225454"
+  },
+  {
+   "name": "refuse2",
+   "scopeId": null
+  },
+  {
+   "name": "protocol",
+   "scopeId": null
+  },
+  {
+   "name": "apply",
+   "scopeId": "data-v-9662b120"
+  }
+ ],
+ "scopeIds": [
+  "data-v-5ffb5602",
+  "data-v-60225454",
+  "data-v-9662b120"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/apply.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/collage/studentApply.vue",
+ "subComponentDir": "apps/uc/src/views/collage/studentApply/",
+ "routes": [
+  {
+   "path": "/collage/studentApply",
+   "name": "studentApply"
+  }
+ ],
+ "recordPath": "/collage/studentApply",
+ "maps": "out/maps/page.uc.collage.studentApply.json",
+ "hints": "out/hints/page.uc.collage.studentApply.md",
+ "deps": {
+  "entry": [
+   "I",
+   "M",
+   "d",
+   "m",
+   "y"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754513.js#a",
+   "index.api.175161560754513.js#b",
+   "index.api.175161560754513.js#c",
+   "index.api.175161560754513.js#d",
+   "index.api.175161560754513.js#f",
+   "index.api.175161560754513.js#g",
+   "index.api.175161560754513.js#s",
+   "index.api.175161560754513.js#u",
+   "index.api.175161560754514.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "segments": [
+  "seg.uc.collage.studentApply.1",
+  "seg.uc.collage.studentApply.2"
+ ]
+}

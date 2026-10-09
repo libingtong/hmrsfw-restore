@@ -1,0 +1,47 @@
+{
+ "id": "shared.uc.iframeModal",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 0.9,
+ "chunkKb": 0.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/iframeModal.1751615607545.js",
+ "components": [
+  {
+   "name": "iframeModal",
+   "scopeId": "data-v-ceee5e90"
+  }
+ ],
+ "scopeIds": [
+  "data-v-ceee5e90"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/iframeModal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/iframeModal.vue",
+ "exports": {
+  "i": {
+   "export": "default"
+  }
+ },
+ "registryKey": "iframeModal.1751615607545.js",
+ "usedBy": [
+  "page.uc.ReceivedResume",
+  "page.uc.WebWorkResume"
+ ],
+ "maps": "out/maps/shared.uc.iframeModal.json",
+ "hints": "out/hints/shared.uc.iframeModal.md",
+ "deps": {
+  "entry": [
+   "M"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

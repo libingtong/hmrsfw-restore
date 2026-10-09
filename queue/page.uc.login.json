@@ -1,0 +1,54 @@
+{
+ "id": "page.uc.login",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 0.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754526.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-080fd7af"
+  },
+  {
+   "name": "index",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [
+  "data-v-080fd7af"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754529.css",
+  "legacy-dist/usercenter/assets/index.175161560754510.css",
+  "legacy-dist/usercenter/assets/index.175161560754526.css"
+ ],
+ "target": "apps/uc/src/views/login.vue",
+ "subComponentDir": "apps/uc/src/views/login/",
+ "routes": [
+  {
+   "path": "/login",
+   "name": "Login"
+  }
+ ],
+ "recordPath": "/login",
+ "maps": "out/maps/page.uc.login.json",
+ "hints": "out/hints/page.uc.login.md",
+ "deps": {
+  "entry": [
+   "bA",
+   "bB"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E4",
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

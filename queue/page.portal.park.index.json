@@ -1,0 +1,63 @@
+{
+ "id": "page.portal.park.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 15.2,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620055.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-69443cf7"
+  }
+ ],
+ "scopeIds": [
+  "data-v-69443cf7"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/icon.1783320636200.css",
+  "legacy-dist/portal/assets/index.178332063620058.css",
+  "legacy-dist/portal/assets/index.178332063620055.css"
+ ],
+ "target": "apps/portal/src/views/park/index.vue",
+ "subComponentDir": "apps/portal/src/views/park/index/",
+ "routes": [
+  {
+   "path": "/hrpark",
+   "name": "hrpark",
+   "title": "产业园区"
+  }
+ ],
+ "recordPath": "/hrpark",
+ "maps": "out/maps/page.portal.park.index.json",
+ "hints": "out/hints/page.portal.park.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "a",
+   "b",
+   "c",
+   "d",
+   "f",
+   "h",
+   "i",
+   "n",
+   "z"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "icon.vue_vue_type_style_index_0_lang.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.icon"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

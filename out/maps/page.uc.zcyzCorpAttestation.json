@@ -1,0 +1,209 @@
+{
+ "id": "page.uc.zcyzCorpAttestation",
+ "chunk": "legacy-dist/usercenter/assets/zcyzCorpAttestation.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Oa": "defineComponent",
+  "Ja": "useRouter (vue-router)",
+  "Ea": "useRoute (vue-router)",
+  "p": "ref",
+  "me": "reactive",
+  "Wa": "computed",
+  "Ya": "onBeforeMount",
+  "$a": "inject",
+  "Ma": "onMounted",
+  "I": "resolveComponent",
+  "f": "openBlock",
+  "S": "createElementBlock",
+  "l": "createVNode",
+  "t": "withCtx",
+  "Q": "createTextVNode",
+  "Za": "Fragment",
+  "Qa": "renderList",
+  "_": "createBlock",
+  "b": "createCommentVNode",
+  "m": "createElementVNode",
+  "c": "unref",
+  "Xa": "toDisplayString",
+  "Ka": "pushScopeId",
+  "er": "popScopeId"
+ },
+ "entry": {
+  "Ta": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "za": {
+   "original": "E",
+   "path": "@/legacy",
+   "export": "queryFormSettingByCode",
+   "status": "restored"
+  },
+  "ge": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Na": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "F": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "G": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Fa": {
+   "original": "F",
+   "path": "@/legacy",
+   "export": "izAlreadySubmitCompany",
+   "status": "restored"
+  },
+  "Ga": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "Aa": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "Sa": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "le": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "v": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ce": {
+   "original": "U",
+   "path": "ant-design-vue",
+   "export": "Upload",
+   "status": "npm"
+  },
+  "La": {
+   "original": "z",
+   "path": "@/legacy",
+   "export": "getDictValueByCodes",
+   "status": "restored"
+  },
+  "Ua": {
+   "original": "L",
+   "path": "@/legacy/api",
+   "export": "sumbitImportantCompanyInfo",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "R": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "V": {
+   "original": "P",
+   "path": "@ant-design/icons-vue",
+   "export": "PlusOutlined",
+   "status": "npm"
+  },
+  "O": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "ja": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  },
+  "Ha": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "pe": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Ba": {
+   "original": "gaode.1751615607545.js#i",
+   "path": "@/shared/gaode.ts",
+   "export": "MultiDictNationSelect",
+   "status": "restored"
+  },
+  "Da": {
+   "original": "gaode.1751615607545.js#M",
+   "path": "@/shared/gaode.ts",
+   "export": "BaiduMapModal",
+   "status": "restored"
+  },
+  "Ra": {
+   "original": "gaode.1751615607545.js#g",
+   "path": "@/shared/gaode.ts",
+   "export": "GaodeMapModal",
+   "status": "restored"
+  },
+  "xe": {
+   "original": "idCard.1751615607545.js#i",
+   "path": "@/shared/idCard.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Va": {
+   "original": "email.1751615607545.js#e",
+   "path": "@/shared/email.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

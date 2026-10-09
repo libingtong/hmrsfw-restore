@@ -1,0 +1,42 @@
+{
+ "id": "page.portal.zcyz.bigData.components.scrollList",
+ "chunk": "legacy-dist/portal/assets/scrollList.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "w": "defineComponent",
+  "L": "reactive",
+  "b": "watch",
+  "k": "onMounted",
+  "_": "openBlock",
+  "F": "createBlock",
+  "I": "withCtx",
+  "m": "createElementBlock",
+  "V": "renderList",
+  "A": "Fragment",
+  "B": "unref",
+  "i": "createElementVNode",
+  "u": "toDisplayString",
+  "C": "pushScopeId",
+  "M": "popScopeId"
+ },
+ "entry": {
+  "P": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "g": {
+   "original": "vue3-seamless-scroll.es.1783320636200.js#V",
+   "path": "vue3-seamless-scroll",
+   "export": "Vue3SeamlessScroll",
+   "status": "npm"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

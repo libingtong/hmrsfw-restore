@@ -1,0 +1,62 @@
+{
+ "id": "page.portal.Guidance.GuidanceAskList.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.4,
+ "sourceChunk": "legacy-dist/portal/assets/index.17833206362004.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-9f116034"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9f116034"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620010.css",
+  "legacy-dist/portal/assets/index.17833206362004.css"
+ ],
+ "target": "apps/portal/src/views/Guidance/GuidanceAskList/index.vue",
+ "subComponentDir": "apps/portal/src/views/Guidance/GuidanceAskList/index/",
+ "routes": [
+  {
+   "path": "/GuidanceAskList",
+   "name": "GuidanceAskList",
+   "title": "职业指导问答列表"
+  }
+ ],
+ "recordPath": "/GuidanceAskList",
+ "maps": "out/maps/page.portal.Guidance.GuidanceAskList.index.json",
+ "hints": "out/hints/page.portal.Guidance.GuidanceAskList.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "c",
+   "f",
+   "m",
+   "o",
+   "p",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [
+   "ask.1783320636200.js",
+   "da.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.c03",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

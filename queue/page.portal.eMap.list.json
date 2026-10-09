@@ -1,0 +1,45 @@
+{
+ "id": "page.portal.eMap.list",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.6,
+ "sourceChunk": "legacy-dist/portal/assets/list.17833206362002.js",
+ "components": [
+  {
+   "name": "list",
+   "scopeId": "data-v-37b82948"
+  }
+ ],
+ "scopeIds": [
+  "data-v-37b82948"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.17833206362005.css",
+  "legacy-dist/portal/assets/list.17833206362002.css"
+ ],
+ "target": "apps/portal/src/views/eMap/list.vue",
+ "subComponentDir": "apps/portal/src/views/eMap/list/",
+ "routes": [],
+ "recordPath": "/eMap",
+ "maps": "out/maps/page.portal.eMap.list.json",
+ "hints": "out/hints/page.portal.eMap.list.md",
+ "deps": {
+  "entry": [],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [
+   "adr.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.eMap.index"
+}

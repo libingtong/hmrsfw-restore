@@ -1,0 +1,199 @@
+{
+ "id": "page.portal.talents.fair.outFair.detail",
+ "chunk": "legacy-dist/portal/assets/detail.178332063620011.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "qt": "defineComponent",
+  "Rt": "useRouter (vue-router)",
+  "Ut": "useRoute (vue-router)",
+  "he": "reactive",
+  "At": "onUnmounted",
+  "Et": "onMounted",
+  "Ot": "nextTick",
+  "m": "resolveComponent",
+  "i": "openBlock",
+  "p": "createElementBlock",
+  "o": "createVNode",
+  "u": "unref",
+  "s": "createElementVNode",
+  "l": "withCtx",
+  "d": "createTextVNode",
+  "n": "toDisplayString",
+  "y": "createCommentVNode",
+  "v": "createBlock",
+  "J": "withDirectives",
+  "M": "vShow",
+  "fe": "normalizeClass",
+  "C": "Fragment",
+  "B": "renderList",
+  "me": "resolveDynamicComponent",
+  "Dt": "pushScopeId",
+  "Yt": "popScopeId",
+  "E": "RouterLink (vue-router)",
+  "Jt": "getCurrentInstance"
+ },
+ "entry": {
+  "N": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "Mt": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "ve": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "J",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "Ht": {
+   "original": "K",
+   "path": "@/legacy",
+   "export": "getSettingValueByCodes",
+   "status": "restored"
+  },
+  "Kt": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Vt": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Xt": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "$t": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "Gt": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "Zt": {
+   "original": "aD",
+   "path": "@/legacy",
+   "export": "checkIzDishonesty",
+   "status": "restored"
+  },
+  "Qt": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "W": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "T": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "eo": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "yo": {
+   "original": "index.1783320636200117.js#g",
+   "path": "@/api/api-117",
+   "export": "getQrcodeImgByObjectId",
+   "status": "restored",
+   "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"
+  }
+ },
+ "shared": {
+  "P": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "oo": {
+   "original": "industryCode.1783320636200.js#i",
+   "path": "@/shared/industryCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "be": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ro": {
+   "original": "vue3-seamless-scroll.es.1783320636200.js#V",
+   "path": "vue3-seamless-scroll",
+   "export": "Vue3SeamlessScroll",
+   "status": "npm"
+  },
+  "io": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "uo": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "fo": {
+   "original": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js#_",
+   "path": "@/shared/qrcode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

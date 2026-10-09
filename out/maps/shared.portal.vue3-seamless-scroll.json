@@ -1,0 +1,25 @@
+{
+ "id": "shared.portal.vue3-seamless-scroll",
+ "chunk": "legacy-dist/portal/assets/vue3-seamless-scroll.es.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "K": "defineComponent",
+  "o": "ref",
+  "m": "computed",
+  "C": "watch",
+  "P": "onBeforeMount",
+  "Q": "onMounted",
+  "p": "createVNode",
+  "X": "Fragment",
+  "Z": "nextTick",
+  "_": "getCurrentInstance"
+ },
+ "entry": {},
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

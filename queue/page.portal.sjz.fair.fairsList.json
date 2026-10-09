@@ -1,0 +1,50 @@
+{
+ "id": "page.portal.sjz.fair.fairsList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3,
+ "sourceChunk": "legacy-dist/portal/assets/fairsList.1783320636200.js",
+ "components": [
+  {
+   "name": "fairsList",
+   "scopeId": "data-v-32f8b57d"
+  }
+ ],
+ "scopeIds": [
+  "data-v-32f8b57d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.178332063620011.css",
+  "legacy-dist/portal/assets/list.17833206362006.css",
+  "legacy-dist/portal/assets/fairsList.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/sjz/fair/fairsList.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/fair/fairsList/",
+ "routes": [],
+ "recordPath": "/fairList",
+ "maps": "out/maps/page.portal.sjz.fair.fairsList.json",
+ "hints": "out/hints/page.portal.sjz.fair.fairsList.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "c",
+   "cd",
+   "f",
+   "g",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.sjz.fair.fairList"
+}

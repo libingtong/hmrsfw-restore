@@ -1,0 +1,49 @@
+{
+ "id": "shared.uc.SlideCaptcha",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1.3,
+ "chunkKb": 157.3,
+ "bundled": {
+  "kb": 156,
+  "what": "jquery 3.7.0 + tianai-captcha",
+  "rule": "开头这段是打包进来的库或数据：库改为 npm 依赖（版本按指纹），数据抽成 JSON/资源文件，不得原样拷进 .vue"
+ },
+ "sourceChunk": "legacy-dist/usercenter/assets/SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js",
+ "components": [
+  {
+   "name": "SlideCaptcha",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/SlideCaptcha.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js",
+ "usedBy": [
+  "page.uc.StorageChgPassword",
+  "page.uc.changephone"
+ ],
+ "maps": "out/maps/shared.uc.SlideCaptcha.json",
+ "hints": "out/hints/shared.uc.SlideCaptcha.md",
+ "deps": {
+  "entry": [
+   "B",
+   "m"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

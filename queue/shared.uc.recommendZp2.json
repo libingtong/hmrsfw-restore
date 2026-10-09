@@ -1,0 +1,91 @@
+{
+ "id": "shared.uc.recommendZp2",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 39.6,
+ "chunkKb": 39.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/recommendZp.17516156075452.js",
+ "components": [
+  {
+   "name": "BusinessCard",
+   "scopeId": "data-v-b69a6d94"
+  },
+  {
+   "name": "MsgAndTip",
+   "scopeId": "data-v-2b6fd5d4"
+  },
+  {
+   "name": "MyBusiness",
+   "scopeId": "data-v-d7102ea2"
+  },
+  {
+   "name": "recommendZp",
+   "scopeId": "data-v-7ff1e0fe"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b69a6d94",
+  "data-v-2b6fd5d4",
+  "data-v-d7102ea2",
+  "data-v-7ff1e0fe"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/recommendZp.17516156075452.css"
+ ],
+ "target": "apps/uc/src/shared/recommendZp2/RecommendZp.vue",
+ "subComponentDir": "apps/uc/src/shared/recommendZp2/",
+ "exports": {
+  "B": {
+   "path": "@/shared/recommendZp2/BusinessCard.vue",
+   "export": "default"
+  },
+  "M": {
+   "path": "@/shared/recommendZp2/MsgAndTip.vue",
+   "export": "default"
+  },
+  "a": {
+   "path": "@/shared/recommendZp2/MyBusiness.vue",
+   "export": "default"
+  },
+  "r": {
+   "path": "@/shared/recommendZp2/RecommendZp.vue",
+   "export": "default"
+  }
+ },
+ "registryKey": "recommendZp.17516156075452.js",
+ "usedBy": [
+  "page.uc.jobhunterhomeZzgj",
+  "page.uc.CorpCenterZ"
+ ],
+ "maps": "out/maps/shared.uc.recommendZp2.json",
+ "hints": "out/hints/shared.uc.recommendZp2.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "ah",
+   "c",
+   "d",
+   "e",
+   "f",
+   "h",
+   "k",
+   "p",
+   "s",
+   "v"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.1751615607545.js#h"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

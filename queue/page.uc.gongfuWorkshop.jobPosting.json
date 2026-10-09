@@ -1,0 +1,72 @@
+{
+ "id": "page.uc.gongfuWorkshop.jobPosting",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 22.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754524.js",
+ "components": [
+  {
+   "name": "BaseInfoModel",
+   "scopeId": "data-v-fe3a10e7"
+  },
+  {
+   "name": "JobPublicModel",
+   "scopeId": "data-v-3456fd75"
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-379276b3"
+  }
+ ],
+ "scopeIds": [
+  "data-v-fe3a10e7",
+  "data-v-3456fd75",
+  "data-v-379276b3"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754527.css",
+  "legacy-dist/usercenter/assets/index.175161560754524.css"
+ ],
+ "target": "apps/uc/src/views/gongfuWorkshop/jobPosting.vue",
+ "subComponentDir": "apps/uc/src/views/gongfuWorkshop/jobPosting/",
+ "routes": [
+  {
+   "path": "/gongfuWorkshop/jobPosting",
+   "name": "jobPosting"
+  }
+ ],
+ "recordPath": "/gongfuWorkshop/jobPosting",
+ "maps": "out/maps/page.uc.gongfuWorkshop.jobPosting.json",
+ "hints": "out/hints/page.uc.gongfuWorkshop.jobPosting.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a",
+   "bw",
+   "d",
+   "f",
+   "l",
+   "m",
+   "o",
+   "w",
+   "x"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "idCard.1751615607545.js",
+   "message.1751615607545.js",
+   "workshopNews.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.workshopNews"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

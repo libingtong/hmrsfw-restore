@@ -1,0 +1,51 @@
+{
+ "id": "page.uc.trainCertificate",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754525.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-1b4eb641"
+  }
+ ],
+ "scopeIds": [
+  "data-v-1b4eb641"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754528.css",
+  "legacy-dist/usercenter/assets/index.175161560754525.css"
+ ],
+ "target": "apps/uc/src/views/trainCertificate.vue",
+ "subComponentDir": "apps/uc/src/views/trainCertificate/",
+ "routes": [
+  {
+   "path": "/trainCertificate",
+   "name": "trainCertificate"
+  }
+ ],
+ "recordPath": "/trainCertificate",
+ "maps": "out/maps/page.uc.trainCertificate.json",
+ "hints": "out/hints/page.uc.trainCertificate.md",
+ "deps": {
+  "entry": [
+   "B",
+   "bx",
+   "h"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/trainCertificate",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

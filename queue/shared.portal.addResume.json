@@ -1,0 +1,62 @@
+{
+ "id": "shared.portal.addResume",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 9,
+ "chunkKb": 9,
+ "sourceChunk": "legacy-dist/portal/assets/addResume.1783320636200.js",
+ "components": [
+  {
+   "name": "addResume",
+   "scopeId": "data-v-a6009624"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a6009624"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/addResume.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/addResume.vue",
+ "exports": {
+  "a": {
+   "export": "default"
+  }
+ },
+ "registryKey": "addResume.1783320636200.js",
+ "usedBy": [
+  "page.portal.LookForJob.PostDetail",
+  "shared.portal.workItem"
+ ],
+ "maps": "out/maps/shared.portal.addResume.json",
+ "hints": "out/hints/shared.portal.addResume.md",
+ "deps": {
+  "entry": [
+   "A",
+   "S",
+   "a0",
+   "a1",
+   "a2",
+   "h"
+  ],
+  "shared": [
+   "dictCode.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#c",
+   "index.api.17833206362002.js#t",
+   "index.api.17833206362002.js#u"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E5",
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

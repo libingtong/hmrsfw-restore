@@ -1,0 +1,87 @@
+{
+ "id": "page.uc.sign.corpInfo",
+ "chunk": "legacy-dist/usercenter/assets/info.17516156075452.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Z": "defineComponent",
+  "C": "reactive",
+  "$": "ref",
+  "O": "onMounted",
+  "p": "resolveComponent",
+  "t": "openBlock",
+  "u": "createElementBlock",
+  "r": "createVNode",
+  "l": "withCtx",
+  "b": "createTextVNode",
+  "m": "toDisplayString",
+  "i": "createBlock",
+  "D": "createElementVNode"
+ },
+ "entry": {
+  "S": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "J": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "T": {
+   "original": "b7",
+   "path": "@/legacy/utils",
+   "export": "isPhoneOrTel",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "q": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "V": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "L": {
+   "original": "index.api.175161560754514.js#a",
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "getWqCompanyExpandInfoByJob",
+   "status": "reserved",
+   "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/getWqCompanyExpandInfoByJob"
+  },
+  "F": {
+   "original": "index.api.175161560754514.js#s",
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "add",
+   "status": "reserved",
+   "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/add"
+  },
+  "B": {
+   "original": "index.api.175161560754514.js#e",
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "edit",
+   "status": "reserved",
+   "url": "xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/edit"
+  }
+ },
+ "shared": {
+  "h": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

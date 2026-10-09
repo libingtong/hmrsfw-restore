@@ -1,0 +1,100 @@
+{
+ "id": "seg.uc.collage.studentApply.1",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.collage.studentApply",
+ "index": 1,
+ "of": 2,
+ "assemble": false,
+ "after": [],
+ "kb": 17.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/apply.1751615607545.js",
+ "range": [
+  0,
+  18105
+ ],
+ "components": [
+  {
+   "name": "approve",
+   "scopeId": "data-v-5ffb5602"
+  },
+  {
+   "name": "unapply",
+   "scopeId": null
+  },
+  {
+   "name": "cpyInfo",
+   "scopeId": null
+  },
+  {
+   "name": "refuse",
+   "scopeId": "data-v-60225454"
+  },
+  {
+   "name": "refuse2",
+   "scopeId": null
+  }
+ ],
+ "parts": [],
+ "outputs": [
+  "apps/uc/src/views/collage/studentApply/approve.vue",
+  "apps/uc/src/views/collage/studentApply/unapply.vue",
+  "apps/uc/src/views/collage/studentApply/cpyInfo.vue",
+  "apps/uc/src/views/collage/studentApply/refuse.vue",
+  "apps/uc/src/views/collage/studentApply/refuse2.vue"
+ ],
+ "target": "apps/uc/src/views/collage/studentApply.vue",
+ "subComponentDir": "apps/uc/src/views/collage/studentApply/",
+ "scopeIds": [
+  "data-v-5ffb5602",
+  "data-v-60225454",
+  "data-v-9662b120"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/apply.1751615607545.css"
+ ],
+ "routes": [
+  {
+   "path": "/collage/studentApply",
+   "name": "studentApply"
+  }
+ ],
+ "recordPath": "/collage/studentApply",
+ "maps": "out/maps/page.uc.collage.studentApply.json",
+ "hints": "out/hints/page.uc.collage.studentApply.md",
+ "deps": {
+  "entry": [
+   "I",
+   "M",
+   "d",
+   "m",
+   "y"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754513.js#a",
+   "index.api.175161560754513.js#b",
+   "index.api.175161560754513.js#c",
+   "index.api.175161560754513.js#d",
+   "index.api.175161560754513.js#f",
+   "index.api.175161560754513.js#g",
+   "index.api.175161560754513.js#s",
+   "index.api.175161560754513.js#u",
+   "index.api.175161560754514.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [0, 18105)（约 17.7KB），其余部分由同页的其他分段负责。",
+  "完整还原这些组件并写成 SFC：approve → apps/uc/src/views/collage/studentApply/approve.vue；unapply → apps/uc/src/views/collage/studentApply/unapply.vue；cpyInfo → apps/uc/src/views/collage/studentApply/cpyInfo.vue；refuse → apps/uc/src/views/collage/studentApply/refuse.vue；refuse2 → apps/uc/src/views/collage/studentApply/refuse2.vue。",
+  "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
+ ]
+}

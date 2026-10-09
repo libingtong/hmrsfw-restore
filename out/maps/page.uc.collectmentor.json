@@ -1,0 +1,93 @@
+{
+ "id": "page.uc.collectmentor",
+ "chunk": "legacy-dist/usercenter/assets/collectmentor.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "ae": "defineComponent",
+  "I": "inject",
+  "ne": "ref",
+  "oe": "reactive",
+  "se": "onMounted",
+  "p": "resolveComponent",
+  "r": "openBlock",
+  "d": "createElementBlock",
+  "c": "createVNode",
+  "u": "withCtx",
+  "y": "createTextVNode",
+  "t": "createElementVNode",
+  "w": "Fragment",
+  "N": "renderList",
+  "U": "unref",
+  "_": "toDisplayString",
+  "B": "h",
+  "ie": "pushScopeId",
+  "le": "popScopeId"
+ },
+ "entry": {
+  "K": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "X": {
+   "original": "bn",
+   "path": "@/legacy/api",
+   "export": "getTutorExpandForMyCare",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Y": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "H": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "W": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Z": {
+   "original": "b5",
+   "path": "@/legacy/api",
+   "export": "cancel",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ee": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "te": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "J": {
+   "original": "default.1751615607545.js#_",
+   "value": "/assets/default.1751615607545.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "defaultImg",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,46 @@
+{
+ "id": "shared.portal.industryCode",
+ "chunk": "legacy-dist/portal/assets/industryCode.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "C": "defineComponent",
+  "_": "onMounted",
+  "y": "reactive",
+  "u": "resolveComponent",
+  "v": "openBlock",
+  "w": "createBlock",
+  "P": "withCtx",
+  "F": "createVNode"
+ },
+ "entry": {
+  "m": {
+   "original": "G",
+   "path": "@ant-design/icons-vue",
+   "export": "SmileOutlined",
+   "status": "npm"
+  },
+  "b": {
+   "original": "H",
+   "path": "@ant-design/icons-vue",
+   "export": "MehOutlined",
+   "status": "npm"
+  },
+  "g": {
+   "original": "bb",
+   "path": "@/legacy",
+   "export": "getCorpIndustryListByType",
+   "status": "restored"
+  },
+  "S": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

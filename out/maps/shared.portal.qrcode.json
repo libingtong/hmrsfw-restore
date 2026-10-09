@@ -1,0 +1,25 @@
+{
+ "id": "shared.portal.qrcode",
+ "chunk": "legacy-dist/portal/assets/qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "V": "defineComponent",
+  "at": "onMounted",
+  "st": "nextTick",
+  "ht": "openBlock",
+  "ut": "createElementBlock"
+ },
+ "entry": {
+  "it": {
+   "original": "U",
+   "ignore": "globalThis：只有内联的二维码库用，换成 npm 包后不需要"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

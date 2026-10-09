@@ -1,0 +1,72 @@
+{
+ "id": "shared.uc.gaode",
+ "chunk": "legacy-dist/usercenter/assets/gaode.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "j": "defineComponent",
+  "B": "onMounted",
+  "$": "reactive",
+  "k": "resolveComponent",
+  "I": "openBlock",
+  "T": "createBlock",
+  "_": "ref",
+  "x": "nextTick",
+  "U": "createElementBlock",
+  "h": "createVNode",
+  "C": "withCtx",
+  "S": "createElementVNode",
+  "P": "unref",
+  "E": "createCommentVNode",
+  "J": "onUnmounted",
+  "K": "withKeys",
+  "W": "createTextVNode",
+  "H": "Fragment",
+  "Z": "renderList",
+  "X": "toDisplayString",
+  "Y": "pushScopeId",
+  "Q": "popScopeId"
+ },
+ "entry": {
+  "O": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "getDictListByType",
+   "status": "restored"
+  },
+  "G": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "R": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "V": {
+   "original": "T",
+   "path": "@/legacy",
+   "export": "commonjsGlobal",
+   "status": "restored"
+  },
+  "D": {
+   "original": "V",
+   "path": "@/legacy",
+   "export": "getDefaultExportFromCjs",
+   "status": "restored"
+  },
+  "N": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

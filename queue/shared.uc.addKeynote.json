@@ -1,0 +1,75 @@
+{
+ "id": "shared.uc.addKeynote",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 9,
+ "chunkKb": 9,
+ "sourceChunk": "legacy-dist/usercenter/assets/addKeynote.1751615607545.js",
+ "components": [
+  {
+   "name": "addBeOnProbation",
+   "scopeId": "data-v-de576056"
+  },
+  {
+   "name": "addKeynote",
+   "scopeId": "data-v-a5cea3e0"
+  }
+ ],
+ "scopeIds": [
+  "data-v-de576056",
+  "data-v-a5cea3e0"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/addKeynote.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/addKeynote/AddKeynote.vue",
+ "subComponentDir": "apps/uc/src/shared/addKeynote/",
+ "exports": {
+  "a": {
+   "path": "@/shared/addKeynote/AddBeOnProbation.vue",
+   "export": "default"
+  },
+  "b": {
+   "path": "@/shared/addKeynote/AddKeynote.vue",
+   "export": "default"
+  }
+ },
+ "registryKey": "addKeynote.1751615607545.js",
+ "usedBy": [
+  "page.uc.CorpCenterZ",
+  "page.uc.main",
+  "page.uc.CorpCenter",
+  "page.uc.marketCenter",
+  "page.uc.Personalonlineservice",
+  "page.uc.Enterpriseonlineservices",
+  "shared.uc.authCompany"
+ ],
+ "maps": "out/maps/shared.uc.addKeynote.json",
+ "hints": "out/hints/shared.uc.addKeynote.md",
+ "deps": {
+  "entry": [
+   "M",
+   "aj",
+   "ak",
+   "c",
+   "d",
+   "v"
+  ],
+  "shared": [
+   "corporganic.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.corporganic"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

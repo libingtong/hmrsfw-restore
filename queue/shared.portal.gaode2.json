@@ -1,0 +1,43 @@
+{
+ "id": "shared.portal.gaode2",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.1,
+ "chunkKb": 6.1,
+ "sourceChunk": "legacy-dist/portal/assets/gaode.vue_vue_type_style_index_0_lang.17833206362002.js",
+ "components": [
+  {
+   "name": "gaode",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/gaode2.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "gaode.vue_vue_type_style_index_0_lang.17833206362002.js",
+ "usedBy": [
+  "page.portal.eMap.index"
+ ],
+ "maps": "out/maps/shared.portal.gaode2.json",
+ "hints": "out/hints/shared.portal.gaode2.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

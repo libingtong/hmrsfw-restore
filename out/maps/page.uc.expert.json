@@ -1,0 +1,132 @@
+{
+ "id": "page.uc.expert",
+ "chunk": "legacy-dist/usercenter/assets/index.17516156075457.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "L": "defineComponent",
+  "A": "onMounted",
+  "B": "reactive",
+  "g": "ref",
+  "p": "resolveComponent",
+  "h": "openBlock",
+  "C": "createBlock",
+  "le": "inject",
+  "te": "useRoute (vue-router)",
+  "se": "useRouter (vue-router)",
+  "re": "computed",
+  "O": "createElementBlock",
+  "r": "createElementVNode",
+  "z": "createTextVNode",
+  "d": "toDisplayString",
+  "x": "createCommentVNode",
+  "a": "createVNode",
+  "ue": "unref",
+  "l": "withCtx",
+  "oe": "Fragment",
+  "ne": "renderList",
+  "ie": "pushScopeId",
+  "de": "popScopeId"
+ },
+ "entry": {
+  "M": {
+   "original": "D",
+   "path": "@/legacy/api",
+   "export": "getTreeData",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "$": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "me": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "V": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "fe": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ge": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "he": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ve": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ye": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  }
+ },
+ "api": {
+  "be": {
+   "original": "index.api.17516156075458.js#g",
+   "path": "@/api/jobUserSchoolExpert",
+   "export": "queryOneForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobUserSchoolExpert/queryOneForUserCenter"
+  },
+  "Ce": {
+   "original": "index.api.17516156075458.js#p",
+   "path": "@/api/jobUserSchoolExpert",
+   "export": "saveOneForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobUserSchoolExpert/saveOneForUserCenter"
+  }
+ },
+ "shared": {
+  "ce": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "dictCodeTreeOne.1751615607545.js#d",
+   "path": "@/shared/dictCodeTreeOne.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "cropperjs.1751615607545.js#c",
+   "path": "@/shared/cropperjs.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

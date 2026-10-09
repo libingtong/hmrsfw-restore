@@ -1,0 +1,82 @@
+{
+ "id": "shared.uc.cropperjs",
+ "chunk": "legacy-dist/usercenter/assets/cropperjs.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "de": "defineComponent",
+  "P": "ref",
+  "ue": "onMounted",
+  "ze": "onBeforeUnmount",
+  "et": "resolveComponent",
+  "mt": "openBlock",
+  "fe": "createBlock",
+  "H": "withCtx",
+  "V": "createElementVNode",
+  "X": "createVNode",
+  "xt": "createTextVNode",
+  "We": "normalizeStyle",
+  "Ye": "watch",
+  "Dt": "reactive",
+  "Ft": "createElementBlock",
+  "Ct": "createCommentVNode",
+  "Xe": "unref",
+  "je": "pushScopeId",
+  "Ue": "popScopeId"
+ },
+ "entry": {
+  "Ie": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "am",
+   "path": "@/legacy/utils",
+   "export": "formatDateDash",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Et": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Tt": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "qt": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Pe": {
+   "original": "U",
+   "path": "ant-design-vue",
+   "export": "Upload",
+   "status": "npm"
+  },
+  "ke": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "He": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

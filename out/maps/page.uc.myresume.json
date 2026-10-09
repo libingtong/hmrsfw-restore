@@ -1,0 +1,189 @@
+{
+ "id": "page.uc.myresume",
+ "chunk": "legacy-dist/usercenter/assets/myresume.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "ue": "defineComponent",
+  "D": "ref",
+  "re": "useRouter (vue-router)",
+  "de": "useRoute (vue-router)",
+  "pe": "inject",
+  "fe": "reactive",
+  "_e": "onMounted",
+  "r": "h",
+  "f": "resolveComponent",
+  "a": "openBlock",
+  "c": "createElementBlock",
+  "l": "createVNode",
+  "u": "withCtx",
+  "t": "createElementVNode",
+  "q": "normalizeClass",
+  "m": "toDisplayString",
+  "g": "createCommentVNode",
+  "w": "createTextVNode",
+  "z": "Fragment",
+  "B": "renderList",
+  "E": "createBlock",
+  "M": "unref",
+  "me": "withModifiers",
+  "he": "pushScopeId",
+  "ve": "popScopeId"
+ },
+ "entry": {
+  "O": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "x": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "d": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ke": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "Ce": {
+   "original": "index.api.17516156075456.js#i",
+   "path": "@/api/api-56",
+   "export": "getVitaeNumByXfSysUserId",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/getVitaeNumByXfSysUserId"
+  },
+  "be": {
+   "original": "index.api.17516156075456.js#j",
+   "path": "@/api/api-56",
+   "export": "isRefreshed",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/isRefreshed"
+  },
+  "we": {
+   "original": "index.api.17516156075456.js#k",
+   "path": "@/api/api-56",
+   "export": "refreshByXfUserId",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/refreshByXfUserId"
+  },
+  "xe": {
+   "original": "index.api.17516156075456.js#f",
+   "path": "@/api/api-56",
+   "export": "listNoPage",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/listNoPage"
+  },
+  "Ie": {
+   "original": "index.api.17516156075456.js#b",
+   "path": "@/api/api-56",
+   "export": "getSettingValueByCode",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"
+  },
+  "Se": {
+   "original": "index.api.17516156075456.js#l",
+   "path": "@/api/api-56",
+   "export": "list",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/list"
+  },
+  "Te": {
+   "original": "index.api.17516156075456.js#m",
+   "path": "@/api/api-56",
+   "export": "queryIzCanCreatVitae",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanCreatVitae"
+  },
+  "Ue": {
+   "original": "index.api.17516156075456.js#n",
+   "path": "@/api/api-56",
+   "export": "saveName",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/saveName"
+  },
+  "ze": {
+   "original": "index.api.17516156075456.js#o",
+   "path": "@/api/api-56",
+   "export": "izPublic",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/izPublic"
+  },
+  "Oe": {
+   "original": "index.api.17516156075456.js#q",
+   "path": "@/api/api-56",
+   "export": "showElegant",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/showElegant"
+  },
+  "$e": {
+   "original": "index.api.17516156075456.js#r",
+   "path": "@/api/api-56",
+   "export": "refresh",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/refresh"
+  },
+  "P": {
+   "original": "index.api.17516156075456.js#s",
+   "path": "@/api/api-56",
+   "export": "entrust",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/entrust"
+  },
+  "Le": {
+   "original": "index.api.17516156075456.js#t",
+   "path": "@/api/api-56",
+   "export": "downPdf",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCurriculumVitae/downPdf"
+  },
+  "Ne": {
+   "original": "index.api.17516156075456.js#u",
+   "path": "@/api/api-56",
+   "export": "queryIzCanDeleteViares",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeleteViares"
+  },
+  "Ve": {
+   "original": "index.api.17516156075456.js#v",
+   "path": "@/api/api-56",
+   "export": "deleteItem",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/delete"
+  },
+  "De": {
+   "original": "index.api.17516156075456.js#w",
+   "path": "@/api/api-56",
+   "export": "showDefault",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/showDefault"
+  }
+ },
+ "shared": {
+  "ge": {
+   "original": "resumemodal.1751615607545.js#r",
+   "path": "@/shared/resumemodal.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

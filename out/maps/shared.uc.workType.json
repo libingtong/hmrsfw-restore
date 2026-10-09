@@ -1,0 +1,61 @@
+{
+ "id": "shared.uc.workType",
+ "chunk": "legacy-dist/usercenter/assets/workType.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "y": "defineComponent",
+  "M": "reactive",
+  "N": "onMounted",
+  "g": "resolveComponent",
+  "i": "openBlock",
+  "r": "createElementBlock",
+  "C": "createVNode",
+  "u": "withCtx",
+  "o": "createElementVNode",
+  "B": "Fragment",
+  "d": "renderList",
+  "T": "createCommentVNode",
+  "j": "unref",
+  "h": "toDisplayString",
+  "m": "normalizeClass",
+  "O": "pushScopeId",
+  "z": "popScopeId"
+ },
+ "entry": {
+  "J": {
+   "original": "ax",
+   "path": "@/legacy",
+   "export": "getMultiDictListByType",
+   "status": "restored"
+  },
+  "D": {
+   "original": "ay",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "F": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "L": {
+   "original": "main.1751615607545.js#t",
+   "path": "pinyin-match",
+   "export": "default"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

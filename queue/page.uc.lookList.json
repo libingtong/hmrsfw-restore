@@ -1,0 +1,51 @@
+{
+ "id": "page.uc.lookList",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754522.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-dc18d308"
+  }
+ ],
+ "scopeIds": [
+  "data-v-dc18d308"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754525.css",
+  "legacy-dist/usercenter/assets/index.175161560754522.css"
+ ],
+ "target": "apps/uc/src/views/lookList.vue",
+ "subComponentDir": "apps/uc/src/views/lookList/",
+ "routes": [
+  {
+   "path": "/lookList",
+   "name": "lookList"
+  },
+  {
+   "path": "/lookList",
+   "name": "lookList"
+  }
+ ],
+ "recordPath": "/lookList",
+ "maps": "out/maps/page.uc.lookList.json",
+ "hints": "out/hints/page.uc.lookList.md",
+ "deps": {
+  "entry": [
+   "d"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17516156075457.js#i"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

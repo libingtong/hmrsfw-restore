@@ -1,0 +1,75 @@
+{
+ "id": "shared.portal.dictCode",
+ "type": "shared",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.9,
+ "chunkKb": 1.9,
+ "sourceChunk": "legacy-dist/portal/assets/dictCode.1783320636200.js",
+ "components": [
+  {
+   "name": "nation",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/dictCode.vue",
+ "exports": {
+  "d": {
+   "export": "default"
+  }
+ },
+ "registryKey": "dictCode.1783320636200.js",
+ "usedBy": [
+  "page.portal.oddJob.recruitworkers.index",
+  "page.portal.oddJob.Jobsearch.index",
+  "page.portal.live.index",
+  "page.portal.video.zbdg",
+  "page.portal.recruitMarket.marketDetail.index",
+  "page.portal.recruitMarket.corpList.index",
+  "page.portal.sjz.job.jobList",
+  "page.portal.sjz.talent.talentList",
+  "page.portal.BeOnProbation.ProbationBaseList",
+  "page.portal.eMap.index",
+  "page.portal.fair.webFair.list",
+  "page.portal.fair.webFair.detail",
+  "page.portal.fair.sceneFair.list",
+  "page.portal.fair.sceneFair.detail",
+  "page.portal.fair.outFair.list",
+  "page.portal.fair.outFair.detail",
+  "page.portal.sjz.corp.corpList",
+  "page.portal.guide.jobHunt",
+  "page.portal.guide.index",
+  "page.portal.talents.setUp.setupList",
+  "page.portal.talents.job.jobList",
+  "page.portal.talents.fair.webFair.detail",
+  "page.portal.talents.fair.outFair.detail",
+  "page.portal.talents.talentnew.talentList",
+  "page.portal.talents.eMap.index",
+  "page.portal.livejob.index",
+  "page.portal.talents.fair.outFair.list",
+  "page.portal.talents.fair.webFair.list",
+  "page.portal.sjz.fair.outFair.list",
+  "page.portal.sjz.fair.sceneFair.list",
+  "page.portal.sjz.fair.webFair.list",
+  "shared.portal.addResume"
+ ],
+ "maps": "out/maps/shared.portal.dictCode.json",
+ "hints": "out/hints/shared.portal.dictCode.md",
+ "deps": {
+  "entry": [
+   "L",
+   "h",
+   "t"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

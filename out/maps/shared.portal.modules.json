@@ -1,0 +1,201 @@
+{
+ "id": "shared.portal.modules",
+ "chunk": [
+  "legacy-dist/portal/assets/commonInit.1783320636200.js",
+  "legacy-dist/portal/assets/dateUtil.1783320636200.js",
+  "legacy-dist/portal/assets/index.1783320636200120.js",
+  "legacy-dist/portal/assets/initData.1783320636200.js",
+  "legacy-dist/portal/assets/message.1783320636200.js",
+  "legacy-dist/portal/assets/timeOut.1783320636200.js",
+  "legacy-dist/portal/assets/adr.1783320636200.js",
+  "legacy-dist/portal/assets/adrIcon.1783320636200.js",
+  "legacy-dist/portal/assets/ask.1783320636200.js",
+  "legacy-dist/portal/assets/bg.1783320636200.js",
+  "legacy-dist/portal/assets/btn.1783320636200.js",
+  "legacy-dist/portal/assets/card.1783320636200.js",
+  "legacy-dist/portal/assets/courseNull.1783320636200.js",
+  "legacy-dist/portal/assets/da.1783320636200.js",
+  "legacy-dist/portal/assets/denglunew.1783320636200.js",
+  "legacy-dist/portal/assets/dianzan.1783320636200.js",
+  "legacy-dist/portal/assets/ditu.1783320636200.js",
+  "legacy-dist/portal/assets/down.1783320636200.js",
+  "legacy-dist/portal/assets/jobfair_arrow.1783320636200.js",
+  "legacy-dist/portal/assets/jqqd.1783320636200.js",
+  "legacy-dist/portal/assets/liveNull.1783320636200.js",
+  "legacy-dist/portal/assets/map.1783320636200.js",
+  "legacy-dist/portal/assets/moreInfo.1783320636200.js",
+  "legacy-dist/portal/assets/news.1783320636200.js",
+  "legacy-dist/portal/assets/noResumeR.1783320636200.js",
+  "legacy-dist/portal/assets/outIcon.1783320636200.js",
+  "legacy-dist/portal/assets/rightdisab.1783320636200.js",
+  "legacy-dist/portal/assets/robot.1783320636200.js",
+  "legacy-dist/portal/assets/s04.1783320636200.js",
+  "legacy-dist/portal/assets/s05.1783320636200.js",
+  "legacy-dist/portal/assets/s05b.1783320636200.js",
+  "legacy-dist/portal/assets/s10.1783320636200.js",
+  "legacy-dist/portal/assets/sm.1783320636200.js",
+  "legacy-dist/portal/assets/three.1783320636200.js",
+  "legacy-dist/portal/assets/type.1783320636200.js",
+  "legacy-dist/portal/assets/videoNull.1783320636200.js",
+  "legacy-dist/portal/assets/wenjuan.1783320636200.js",
+  "legacy-dist/portal/assets/woman.1783320636200.js",
+  "legacy-dist/portal/assets/work.1783320636200.js",
+  "legacy-dist/portal/assets/yjfk.1783320636200.js",
+  "legacy-dist/portal/assets/zph.1783320636200.js"
+ ],
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "entry": {
+  "S": {
+   "original": "au",
+   "path": "@/legacy/utils",
+   "export": "randomColor",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "k": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "i": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "m": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  }
+ },
+ "shared": {},
+ "api": {},
+ "modules": {
+  "m": {
+   "original": "s04.1783320636200.js#s",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgS",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "p": {
+   "original": "s04.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "u": {
+   "original": "s04.1783320636200.js#b",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgB",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "w": {
+   "original": "s04.1783320636200.js#c",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgC",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "y": {
+   "original": "s04.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "C": {
+   "original": "s04.1783320636200.js#b",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgB",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "A": {
+   "original": "s10.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s10ImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "v": {
+   "original": "s10.1783320636200.js#b",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.9KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s10ImgB",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "L": {
+   "original": "s10.1783320636200.js#c",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s10ImgC",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "G": {
+   "original": "s10.1783320636200.js#d",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s10ImgD",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "c": {
+   "original": "s04.1783320636200.js#s",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgS",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "O": {
+   "original": "s04.1783320636200.js#c",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s04ImgC",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "f": {
+   "original": "s05b.1783320636200.js#s",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "s05bImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "views": {},
+ "vue": {},
+ "missing": [],
+ "sideEffects": []
+}

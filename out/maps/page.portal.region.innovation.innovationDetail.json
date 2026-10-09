@@ -1,0 +1,79 @@
+{
+ "id": "page.portal.region.innovation.innovationDetail",
+ "chunk": "legacy-dist/portal/assets/innovationDetail.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "L": "defineComponent",
+  "v": "ref",
+  "S": "useRouter (vue-router)",
+  "q": "useRoute (vue-router)",
+  "h": "reactive",
+  "A": "onMounted",
+  "y": "openBlock",
+  "g": "createElementBlock",
+  "t": "createElementVNode",
+  "D": "toDisplayString",
+  "H": "withDirectives",
+  "M": "createVNode",
+  "k": "unref",
+  "x": "createCommentVNode",
+  "O": "createBlock",
+  "j": "Fragment",
+  "z": "pushScopeId",
+  "F": "popScopeId",
+  "I": "vShow"
+ },
+ "entry": {
+  "R": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "U": {
+   "original": "V",
+   "path": "@/legacy",
+   "export": "VideoPlayer",
+   "status": "reserved",
+   "owner": "entry.portal.c05"
+  },
+  "V": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "W": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "E": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "J": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Y": {
+   "original": "index.api.178332063620032.js#a",
+   "path": "@/api/jobEventReleaseNew",
+   "export": "queryByIdMh",
+   "status": "reserved",
+   "url": "/xf-job/communal/licenseFree/xfJobEventReleaseNew/queryByIdMh"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

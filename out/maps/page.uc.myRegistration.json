@@ -1,0 +1,74 @@
+{
+ "id": "page.uc.myRegistration",
+ "chunk": "legacy-dist/usercenter/assets/innovation.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Q": "defineComponent",
+  "ae": "ref",
+  "H": "onMounted",
+  "M": "reactive",
+  "d": "resolveComponent",
+  "b": "openBlock",
+  "q": "createElementBlock",
+  "l": "createVNode",
+  "r": "withCtx",
+  "T": "createTextVNode",
+  "te": "toDisplayString",
+  "U": "createBlock",
+  "D": "createCommentVNode",
+  "le": "unref",
+  "L": "Fragment",
+  "ne": "renderList",
+  "N": "createElementVNode"
+ },
+ "entry": {
+  "k": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "v": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "W": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "parseIdCard",
+   "status": "restored"
+  },
+  "P": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "O": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ee": {
+   "original": "idCard.1751615607545.js#i",
+   "path": "@/shared/idCard.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "B": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,48 @@
+{
+ "id": "shared.portal.thirdParty",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.3,
+ "chunkKb": 2.3,
+ "sourceChunk": "legacy-dist/portal/assets/thirdParty.1783320636200.js",
+ "components": [
+  {
+   "name": "thirdParty",
+   "scopeId": "data-v-3786db17"
+  }
+ ],
+ "scopeIds": [
+  "data-v-3786db17"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/thirdParty.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/thirdParty.vue",
+ "exports": {
+  "t": {
+   "export": "default"
+  }
+ },
+ "registryKey": "thirdParty.1783320636200.js",
+ "usedBy": [
+  "page.portal.login",
+  "page.portal.loginviews.siginbig"
+ ],
+ "maps": "out/maps/shared.portal.thirdParty.json",
+ "hints": "out/hints/shared.portal.thirdParty.md",
+ "deps": {
+  "entry": [
+   "c",
+   "h"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

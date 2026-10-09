@@ -1,0 +1,106 @@
+{
+ "id": "seg.uc.zcyzCorpAttestationapprove.3",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.zcyzCorpAttestationapprove",
+ "index": 3,
+ "of": 3,
+ "assemble": true,
+ "after": [
+  "seg.uc.zcyzCorpAttestationapprove.1",
+  "seg.uc.zcyzCorpAttestationapprove.2"
+ ],
+ "kb": 23.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/zcyzCorpAttestationapprove.1751615607545.js",
+ "range": [
+  36757,
+  60874
+ ],
+ "components": [],
+ "parts": [
+  {
+   "component": "zcyzCorpAttestationapprove",
+   "part": "template",
+   "range": [
+    36757,
+    60874
+   ],
+   "kb": 23.6,
+   "file": "apps/uc/src/views/zcyzCorpAttestationapprove/_seg/zcyzCorpAttestationapprove.template.html"
+  }
+ ],
+ "outputs": [
+  "apps/uc/src/views/zcyzCorpAttestationapprove/_seg/zcyzCorpAttestationapprove.template.html"
+ ],
+ "target": "apps/uc/src/views/zcyzCorpAttestationapprove.vue",
+ "subComponentDir": "apps/uc/src/views/zcyzCorpAttestationapprove/",
+ "scopeIds": [
+  "data-v-00292fa9",
+  "data-v-e472039d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/map.1751615607545.css",
+  "legacy-dist/usercenter/assets/zcyzCorpAttestationapprove.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "routes": [
+  {
+   "path": "/zcyzCorpAttestationapprove",
+   "name": "zcyzCorpAttestationapprove"
+  }
+ ],
+ "recordPath": "/zcyzCorpAttestationapprove",
+ "maps": "out/maps/page.uc.zcyzCorpAttestationapprove.json",
+ "hints": "out/hints/page.uc.zcyzCorpAttestationapprove.md",
+ "deps": {
+  "entry": [
+   "B",
+   "E",
+   "F",
+   "I",
+   "M",
+   "O",
+   "P",
+   "Q",
+   "R",
+   "U",
+   "a",
+   "b",
+   "c",
+   "d",
+   "e",
+   "f",
+   "h",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [
+   "XfLoaing.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "email.1751615607545.js",
+   "gaode.1751615607545.js",
+   "idCard.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [36757, 60874)（约 23.6KB），其余部分由同页的其他分段负责。",
+  "组件 zcyzCorpAttestationapprove 只还原 <template> 部分（setup 最后 return 的渲染函数），写成 apps/uc/src/views/zcyzCorpAttestationapprove/_seg/zcyzCorpAttestationapprove.template.html，内容就是将来 <template> 里的模板。",
+  "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.uc.zcyzCorpAttestationapprove --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
+ ]
+}

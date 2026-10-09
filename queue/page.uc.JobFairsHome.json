@@ -1,0 +1,66 @@
+{
+ "id": "page.uc.JobFairsHome",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 15.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/JobFairsHome.1751615607545.js",
+ "components": [
+  {
+   "name": "JobFairsHome",
+   "scopeId": "data-v-55756c3a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-55756c3a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/index.175161560754514.css",
+  "legacy-dist/usercenter/assets/JobFairsHome.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/JobFairsHome.vue",
+ "subComponentDir": "apps/uc/src/views/JobFairsHome/",
+ "routes": [
+  {
+   "path": "/JobFairsHome/:key?",
+   "name": "JobFairsHome"
+  }
+ ],
+ "recordPath": "/JobFairsHome/:key?",
+ "maps": "out/maps/page.uc.JobFairsHome.json",
+ "hints": "out/hints/page.uc.JobFairsHome.md",
+ "deps": {
+  "entry": [
+   "a",
+   "c",
+   "d",
+   "k",
+   "m",
+   "v"
+  ],
+  "shared": [
+   "beonmodal.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "index.175161560754529.js",
+   "jspdf.es.min.1751615607545.js",
+   "message.1751615607545.js",
+   "positionmodal.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754511.js#h",
+   "index.api.175161560754511.js#k",
+   "index.api.175161560754511.js#m"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/JobFairsHome/:key?",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

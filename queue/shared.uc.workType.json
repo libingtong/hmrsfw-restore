@@ -1,0 +1,60 @@
+{
+ "id": "shared.uc.workType",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 9,
+ "chunkKb": 9,
+ "sourceChunk": "legacy-dist/usercenter/assets/workType.1751615607545.js",
+ "components": [
+  {
+   "name": "workType",
+   "scopeId": "data-v-13870526"
+  }
+ ],
+ "scopeIds": [
+  "data-v-13870526"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/workType.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/workType.vue",
+ "exports": {
+  "w": {
+   "export": "default"
+  }
+ },
+ "registryKey": "workType.1751615607545.js",
+ "usedBy": [
+  "page.uc.oddjob.need.add",
+  "page.uc.oddjob.lack.add",
+  "page.uc.oddjob.sharepage",
+  "page.uc.PositionRelease",
+  "page.uc.PositionReleaseAbroad",
+  "page.uc.corpFairs",
+  "page.uc.webFairWork",
+  "page.uc.JobFairRelease",
+  "page.uc.Createaresume",
+  "page.uc.collage.studentInfo",
+  "page.uc.zcyzPositionRelease",
+  "page.uc.zcyzJobFairRelease",
+  "page.uc.zcyzwebFairWork"
+ ],
+ "maps": "out/maps/shared.uc.workType.json",
+ "hints": "out/hints/shared.uc.workType.md",
+ "deps": {
+  "entry": [
+   "M",
+   "ax",
+   "ay"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

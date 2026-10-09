@@ -1,0 +1,92 @@
+{
+ "id": "page.uc.userFairs",
+ "chunk": "legacy-dist/usercenter/assets/userFairs.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "G": "defineComponent",
+  "C": "inject",
+  "H": "useRouter (vue-router)",
+  "W": "useRoute (vue-router)",
+  "ee": "reactive",
+  "ae": "onMounted",
+  "w": "ref",
+  "d": "resolveComponent",
+  "n": "openBlock",
+  "r": "createElementBlock",
+  "y": "createElementVNode",
+  "i": "createVNode",
+  "o": "withCtx",
+  "x": "createTextVNode",
+  "g": "Fragment",
+  "p": "createCommentVNode",
+  "S": "createBlock",
+  "_": "toDisplayString"
+ },
+ "entry": {
+  "oe": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "z": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ne": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "le": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "re": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "te": {
+   "original": "confPass.1751615607545.js#m",
+   "path": "@/shared/confPass.ts",
+   "export": "m",
+   "status": "reserved",
+   "owner": "shared.uc.confPass"
+  },
+  "se": {
+   "original": "confPass.1751615607545.js#c",
+   "path": "@/shared/confPass.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.confPass"
+  },
+  "ie": {
+   "original": "confPass.1751615607545.js#o",
+   "path": "@/shared/confPass.ts",
+   "export": "o",
+   "status": "reserved",
+   "owner": "shared.uc.confPass"
+  },
+  "T": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "html2canvas.esm.1751615607545.js"
+ ],
+ "missing": []
+}

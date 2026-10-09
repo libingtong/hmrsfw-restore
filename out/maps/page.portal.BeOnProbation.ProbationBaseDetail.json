@@ -1,0 +1,132 @@
+{
+ "id": "page.portal.BeOnProbation.ProbationBaseDetail",
+ "chunk": "legacy-dist/portal/assets/ProbationBaseDetail.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "fe": "defineComponent",
+  "_e": "useRouter (vue-router)",
+  "me": "useRoute (vue-router)",
+  "C": "ref",
+  "ye": "reactive",
+  "ge": "onMounted",
+  "h": "resolveComponent",
+  "l": "openBlock",
+  "_": "createElementBlock",
+  "n": "createElementVNode",
+  "t": "createVNode",
+  "a": "withCtx",
+  "d": "createTextVNode",
+  "r": "toDisplayString",
+  "he": "withDirectives",
+  "c": "unref",
+  "f": "createBlock",
+  "L": "createCommentVNode",
+  "Y": "Fragment",
+  "N": "renderList",
+  "F": "withModifiers",
+  "ve": "resolveDynamicComponent",
+  "we": "pushScopeId",
+  "xe": "popScopeId",
+  "be": "vShow"
+ },
+ "entry": {
+  "Te": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "D": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "q": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "Ie": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "R": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "Be": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Ee": {
+   "original": "index.api.1783320636200.js#f",
+   "path": "@/api/api-1783320636200",
+   "export": "freeDetailById",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/freeDetailById"
+  },
+  "Me": {
+   "original": "index.api.1783320636200.js#a",
+   "path": "@/api/api-1783320636200",
+   "export": "freeCompanyExpandPositionList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/freeCompanyExpandPositionList"
+  }
+ },
+ "shared": {
+  "V": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Re": {
+   "original": "ellipsisText.1783320636200.js#e",
+   "path": "@/shared/ellipsisText.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.ellipsisText"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Pe": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "Ce": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "Ye": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "qe": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,69 @@
+{
+ "id": "page.portal.Guidance.GuidanceMentorDetail.index",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8.1,
+ "sourceChunk": "legacy-dist/portal/assets/index.17833206362008.js",
+ "components": [
+  {
+   "name": "loginnone",
+   "scopeId": "data-v-c2a459a2"
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-11f087bf"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c2a459a2",
+  "data-v-11f087bf"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.17833206362009.css",
+  "legacy-dist/portal/assets/index.17833206362008.css"
+ ],
+ "target": "apps/portal/src/views/Guidance/GuidanceMentorDetail/index.vue",
+ "subComponentDir": "apps/portal/src/views/Guidance/GuidanceMentorDetail/index/",
+ "routes": [
+  {
+   "path": "/GuidanceMentorDetail",
+   "name": "GuidanceMentorDetail",
+   "title": "职业指导导师详情"
+  }
+ ],
+ "recordPath": "/GuidanceMentorDetail",
+ "maps": "out/maps/page.portal.Guidance.GuidanceMentorDetail.index.json",
+ "hints": "out/hints/page.portal.Guidance.GuidanceMentorDetail.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "F",
+   "S",
+   "c",
+   "f",
+   "m",
+   "o",
+   "p",
+   "w",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/GuidanceMentorDetail",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

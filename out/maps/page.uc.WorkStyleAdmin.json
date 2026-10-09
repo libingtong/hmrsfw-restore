@@ -1,0 +1,144 @@
+{
+ "id": "page.uc.WorkStyleAdmin",
+ "chunk": "legacy-dist/usercenter/assets/WorkStyleAdmin.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "me": "defineComponent",
+  "pe": "reactive",
+  "$": "ref",
+  "fe": "onMounted",
+  "b": "resolveComponent",
+  "c": "openBlock",
+  "w": "createElementBlock",
+  "l": "createVNode",
+  "a": "withCtx",
+  "v": "unref",
+  "T": "createTextVNode",
+  "u": "createElementVNode",
+  "f": "toDisplayString",
+  "Ie": "inject",
+  "we": "useRouter (vue-router)",
+  "xe": "Fragment",
+  "Pe": "renderList",
+  "C": "createBlock",
+  "m": "createCommentVNode",
+  "Se": "pushScopeId",
+  "ze": "popScopeId"
+ },
+ "entry": {
+  "se": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "_": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Ne": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "Re": {
+   "original": "aO",
+   "path": "@ant-design/icons-vue",
+   "export": "UploadOutlined",
+   "status": "npm"
+  },
+  "D": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Ve": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "G": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "aP",
+   "path": "@/legacy/api",
+   "export": "getCompanyAttachmentMax",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "te": {
+   "original": "aQ",
+   "path": "@/legacy/api",
+   "export": "getCompanyAttachmentList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Ae": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "ie": {
+   "original": "aR",
+   "path": "@/legacy/api",
+   "export": "addBatchCompanyAttachment",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ae": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ne": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "oe": {
+   "original": "aS",
+   "path": "@/legacy/api",
+   "export": "deleteAttachment",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Oe": {
+   "original": "workVideo.1751615607545.js#w",
+   "path": "@/shared/workVideo/WorkImg.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.workVideo"
+  },
+  "Me": {
+   "original": "workVideo.1751615607545.js#a",
+   "path": "@/shared/workVideo/WorkVideo.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.workVideo"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

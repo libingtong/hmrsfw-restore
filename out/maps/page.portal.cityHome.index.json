@@ -1,0 +1,338 @@
+{
+ "id": "page.portal.cityHome.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620024.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ot": "defineComponent",
+  "rt": "useRouter (vue-router)",
+  "nt": "useRoute (vue-router)",
+  "ge": "reactive",
+  "ct": "ref",
+  "dt": "onMounted",
+  "z": "resolveComponent",
+  "l": "openBlock",
+  "d": "createElementBlock",
+  "c": "createVNode",
+  "o": "unref",
+  "s": "createElementVNode",
+  "m": "createTextVNode",
+  "n": "toDisplayString",
+  "r": "withCtx",
+  "h": "Fragment",
+  "b": "renderList",
+  "u": "createBlock",
+  "w": "createCommentVNode",
+  "N": "normalizeClass",
+  "Y": "withDirectives",
+  "q": "vShow",
+  "pt": "pushScopeId",
+  "ut": "popScopeId",
+  "C": "RouterLink (vue-router)",
+  "yt": "withModifiers"
+ },
+ "entry": {
+  "he": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "bt": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "te": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "kt": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Lt": {
+   "original": "ab",
+   "path": "@/legacy/api",
+   "export": "getArticleListNoCheck",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "_t": {
+   "original": "aF",
+   "path": "@/legacy/components/TopHead.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.portal.c04"
+  },
+  "xt": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "T": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "I": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ie": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "Ct": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "we": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "be": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "At": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Tt": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "It": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "St": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "jt": {
+   "original": "aD",
+   "path": "@/legacy",
+   "export": "checkIzDishonesty",
+   "status": "restored"
+  },
+  "zt": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "Nt": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Bt": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Qt": {
+   "original": "index.api.17833206362004.js#g",
+   "path": "@/api/jobUserTutorExpand",
+   "export": "queryOrganizationByAreaId",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/queryOrganizationByAreaId"
+  },
+  "ke": {
+   "original": "index.api.17833206362004.js#a",
+   "path": "@/api/jobUserTutorExpand",
+   "export": "getArticleList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/getArticleList"
+  },
+  "Wt": {
+   "original": "index.api.17833206362004.js#x",
+   "path": "@/api/jobUserTutorExpand",
+   "export": "listForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite"
+  },
+  "Mt": {
+   "original": "index.api.17833206362004.js#f",
+   "path": "@/api/jobUserTutorExpand",
+   "export": "freeCompanyAllAttachmentList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeCompanyAllAttachmentList"
+  },
+  "Ot": {
+   "original": "index.api.17833206362004.js#q",
+   "path": "@/api/jobUserTutorExpand",
+   "export": "queryMoreClassicQandA",
+   "status": "reserved",
+   "url": "/xf-job/communal/licenseFree/xfSysConsult/queryMoreClassicQandA"
+  },
+  "Ht": {
+   "original": "index.api.17833206362004.js#b",
+   "path": "@/api/jobUserTutorExpand",
+   "export": "freeCompanyExpandPositionList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeCompanyExpandPositionList"
+  },
+  "Kt": {
+   "original": "index.api.17833206362004.js#c",
+   "path": "@/api/jobUserTutorExpand",
+   "export": "freeCompanyExpandList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeCompanyExpandList"
+  },
+  "Zt": {
+   "original": "index.api.17833206362004.js#r",
+   "path": "@/api/jobUserTutorExpand",
+   "export": "recommendJobList",
+   "status": "reserved",
+   "url": "/job/licenseFree/xfJobCompanyPosition/recommendJobList"
+  },
+  "Gt": {
+   "original": "index.api.17833206362004.js#d",
+   "path": "@/api/jobUserTutorExpand",
+   "export": "freeKeynoteCompanySeeMoreList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeKeynoteCompanySeeMoreList"
+  },
+  "Xt": {
+   "original": "index.api.178332063620020.js#g",
+   "path": "@/api/service",
+   "export": "freeServiceUnitPageList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeServiceUnitPageList"
+  },
+  "si": {
+   "original": "index.api.178332063620017.js#w",
+   "path": "@/api/api-17",
+   "export": "getFairList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobFair/getFairList"
+  },
+  "Le": {
+   "original": "index.api.178332063620021.js#g",
+   "path": "@/api/jobPxCourse",
+   "export": "listForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
+  }
+ },
+ "shared": {
+  "S": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "mt": {
+   "original": "card.1783320636200.js#_",
+   "value": "/sjz/setup/good.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ft": {
+   "original": "card.1783320636200.js#a",
+   "value": "/sjz/setup/card.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "vt": {
+   "original": "rightdisab.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "rightdisabImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "gt": {
+   "original": "rightdisab.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "rightdisabImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ht": {
+   "original": "rightdisab.1783320636200.js#b",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "rightdisabImgB",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "wt": {
+   "original": "rightdisab.1783320636200.js#c",
+   "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "rightdisabImgC",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Pt": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "Et": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "Ut": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "qt": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

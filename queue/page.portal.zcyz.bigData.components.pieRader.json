@@ -1,0 +1,43 @@
+{
+ "id": "page.portal.zcyz.bigData.components.pieRader",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 2.2,
+ "sourceChunk": "legacy-dist/portal/assets/pieRader.1783320636200.js",
+ "components": [
+  {
+   "name": "pieRader",
+   "scopeId": "data-v-b7e5d184"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b7e5d184"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/lines.1783320636200.css",
+  "legacy-dist/portal/assets/pieRader.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/zcyz/bigData/components/pieRader.vue",
+ "subComponentDir": "apps/portal/src/views/zcyz/bigData/components/pieRader/",
+ "routes": [],
+ "recordPath": "/statistics",
+ "maps": "out/maps/page.portal.zcyz.bigData.components.pieRader.json",
+ "hints": "out/hints/page.portal.zcyz.bigData.components.pieRader.md",
+ "deps": {
+  "entry": [],
+  "shared": [
+   "pie.vue_vue_type_style_index_0_lang.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.pie"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.xjhm.bigData.statistics"
+}

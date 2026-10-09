@@ -1,0 +1,92 @@
+{
+ "id": "shared.portal.init",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 10.4,
+ "chunkKb": 10.4,
+ "sourceChunk": "legacy-dist/portal/assets/init.17833206362002.js",
+ "components": [
+  {
+   "name": "mapCommon",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/init.ts",
+ "subComponentDir": "apps/portal/src/shared/init/",
+ "exports": {
+  "_": {
+   "path": "@/shared/init/MapCommon.vue",
+   "export": "default"
+  },
+  "a": {
+   "export": "a"
+  },
+  "b": {
+   "export": "b"
+  },
+  "c": {
+   "export": "c"
+  },
+  "d": {
+   "export": "d"
+  },
+  "e": {
+   "export": "e"
+  },
+  "f": {
+   "export": "f"
+  },
+  "g": {
+   "export": "g"
+  },
+  "h": {
+   "export": "h"
+  },
+  "i": {
+   "export": "i"
+  },
+  "j": {
+   "export": "j"
+  },
+  "q": {
+   "export": "q"
+  },
+  "r": {
+   "export": "r"
+  }
+ },
+ "registryKey": "init.17833206362002.js",
+ "usedBy": [
+  "page.portal.xjhm.bigData.statistics",
+  "page.portal.xjhm.bigData.newBigdata"
+ ],
+ "maps": "out/maps/shared.portal.init.json",
+ "hints": "out/hints/shared.portal.init.md",
+ "deps": {
+  "entry": [
+   "B",
+   "av",
+   "c7",
+   "c8",
+   "f",
+   "g",
+   "z"
+  ],
+  "shared": [
+   "timeOut.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

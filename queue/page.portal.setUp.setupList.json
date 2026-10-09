@@ -1,0 +1,63 @@
+{
+ "id": "page.portal.setUp.setupList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 7.8,
+ "sourceChunk": "legacy-dist/portal/assets/setupList.1783320636200.js",
+ "components": [
+  {
+   "name": "setupList",
+   "scopeId": "data-v-0acc484f"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0acc484f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/tagcanvas.1783320636200.css",
+  "legacy-dist/portal/assets/setupList.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/setUp/setupList.vue",
+ "subComponentDir": "apps/portal/src/views/setUp/setupList/",
+ "routes": [
+  {
+   "path": "/setupList",
+   "name": "setupList",
+   "title": "创业列表"
+  }
+ ],
+ "recordPath": "/setupList",
+ "maps": "out/maps/page.portal.setUp.setupList.json",
+ "hints": "out/hints/page.portal.setUp.setupList.md",
+ "deps": {
+  "entry": [
+   "B",
+   "W",
+   "c",
+   "f",
+   "h",
+   "w"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620031.js#c",
+   "index.api.178332063620031.js#g"
+  ],
+  "modules": [
+   "card.1783320636200.js",
+   "three.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules",
+   "shared.portal.tagcanvas"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

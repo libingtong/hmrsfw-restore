@@ -1,0 +1,80 @@
+{
+ "id": "page.portal.region.innovation.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8.4,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620066.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-137a0d30"
+  }
+ ],
+ "scopeIds": [
+  "data-v-137a0d30"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/homeNews.17833206362002.css",
+  "legacy-dist/portal/assets/index.178332063620052.css",
+  "legacy-dist/portal/assets/index.178332063620066.css"
+ ],
+ "target": "apps/portal/src/views/region/innovation/index.vue",
+ "subComponentDir": "apps/portal/src/views/region/innovation/index/",
+ "routes": [
+  {
+   "path": "/region/innovation",
+   "name": "innovation",
+   "title": "创业服务专区"
+  }
+ ],
+ "recordPath": "/region/innovation",
+ "maps": "out/maps/page.portal.region.innovation.index.json",
+ "hints": "out/hints/page.portal.region.innovation.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "O",
+   "Q",
+   "a",
+   "am",
+   "as",
+   "b",
+   "c2",
+   "c3",
+   "c4",
+   "c5",
+   "f",
+   "h",
+   "i",
+   "m",
+   "n",
+   "p",
+   "r",
+   "v"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "homeNews.17833206362003.js"
+  ],
+  "api": [
+   "index.api.178332063620031.js#g",
+   "index.api.178332063620032.js#g",
+   "index.api.17833206362005.js#x"
+  ],
+  "modules": [
+   "jqqd.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "entry.portal.c09",
+   "shared.portal.homeNews3",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

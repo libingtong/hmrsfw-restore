@@ -1,0 +1,879 @@
+{
+ "id": "shared.portal.modules",
+ "type": "shared",
+ "subtype": "modules",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 90.3,
+ "chunks": [
+  {
+   "chunk": "legacy-dist/portal/assets/commonInit.1783320636200.js",
+   "file": "apps/portal/src/shared/commonInit.ts",
+   "status": "reserved",
+   "exports": {
+    "a": {
+     "export": "a"
+    },
+    "b": {
+     "export": "b"
+    },
+    "c": {
+     "export": "c"
+    },
+    "d": {
+     "export": "d"
+    },
+    "e": {
+     "export": "e"
+    },
+    "f": {
+     "export": "f"
+    },
+    "i": {
+     "export": "i"
+    }
+   },
+   "kb": 14.6
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/dateUtil.1783320636200.js",
+   "file": "apps/portal/src/shared/dateUtil.ts",
+   "status": "reserved",
+   "exports": {
+    "a": {
+     "export": "a"
+    },
+    "b": {
+     "export": "b"
+    },
+    "f": {
+     "export": "f"
+    }
+   },
+   "kb": 0.6
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/index.1783320636200120.js",
+   "file": "apps/portal/src/shared/index120.ts",
+   "status": "reserved",
+   "exports": {
+    "g": {
+     "export": "g"
+    }
+   },
+   "kb": 0.2
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/initData.1783320636200.js",
+   "file": "apps/portal/src/shared/initData.ts",
+   "status": "reserved",
+   "exports": {
+    "a": {
+     "export": "a"
+    },
+    "b": {
+     "export": "b"
+    },
+    "c": {
+     "export": "c"
+    },
+    "i": {
+     "export": "i"
+    }
+   },
+   "kb": 41.2
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/message.1783320636200.js",
+   "file": "apps/portal/src/shared/message.ts",
+   "status": "reserved",
+   "exports": {
+    "s": {
+     "export": "s"
+    }
+   },
+   "kb": 0.6
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/timeOut.1783320636200.js",
+   "file": "apps/portal/src/shared/timeOut.ts",
+   "status": "reserved",
+   "exports": {
+    "a": {
+     "export": "a"
+    },
+    "l": {
+     "export": "l"
+    }
+   },
+   "kb": 1.2
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/adr.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.9KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "adrImg_",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "a": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.4KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "adrImgA",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 1.4
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/adrIcon.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/home/adrIcon.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "adrIconImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/ask.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/assets/ask.1783320636200.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "askImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/bg.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/assets/bg.178332063620012.jpg",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "bgImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/btn.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/assets/btn.1783320636200.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "btnImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/card.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/sjz/setup/good.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "cardImg_",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "a": {
+     "value": "/sjz/setup/card.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "cardImgA",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/courseNull.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/default/courseNull.jpg",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "courseNullImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/da.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.5KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "daImg_",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "a": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.5KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "daImgA",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/denglunew.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.9KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "denglunewImg_",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "a": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.7KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "denglunewImgA",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 1.6
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/dianzan.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.4KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "dianzanImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.4
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/ditu.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.5KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "dituImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.6
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/down.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.2KB）",
+     "inline": true,
+     "path": "@/shared/down",
+     "export": "_",
+     "status": "restored"
+    },
+    "a": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1.3KB）",
+     "inline": true,
+     "path": "@/shared/down",
+     "export": "a",
+     "status": "restored"
+    }
+   },
+   "kb": 1.6
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/jobfair_arrow.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/sjz/home/jobfair_arrow.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "jobfairArrowImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/jqqd.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/sjz/newHome/jqqd.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "jqqdImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/liveNull.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/default/liveNull.jpg",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "liveNullImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/map.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/xjhm/innovation/map.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "mapImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/moreInfo.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/assets/moreInfo.1783320636200.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "moreInfoImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/news.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/sjz/home/news.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "newsImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/noResumeR.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/assets/noResumeR.1783320636200.png",
+     "inline": false,
+     "path": "@/shared/noResumeR",
+     "export": "_",
+     "status": "restored"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/outIcon.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/default/outIcon.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "outIconImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/rightdisab.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "rightdisabImg_",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "a": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "rightdisabImgA",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "b": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "rightdisabImgB",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "c": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1.2KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "rightdisabImgC",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 5
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/robot.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 4.4KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "robotImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 4.4
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/s04.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "a": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s04ImgA",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "b": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s04ImgB",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "c": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s04ImgC",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "s": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s04ImgS",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 3.9
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/s05.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "s": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s05Img",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 1.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/s05b.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "s": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s05bImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.9
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/s10.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "a": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s10ImgA",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "b": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.9KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s10ImgB",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "c": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s10ImgC",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "d": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.8KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s10ImgD",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "s": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.9KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "s10ImgS",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 4.3
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/sm.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1.6KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "smImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 1.6
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/three.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/sjz/setup/one.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "threeImg_",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "a": {
+     "value": "/sjz/setup/two.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "threeImgA",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "b": {
+     "value": "/sjz/setup/three.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "threeImgB",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/type.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.2KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "typeImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.2
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/videoNull.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/default/videoNull.jpg",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "videoNullImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/wenjuan.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/zcyz/wenjuan.jpg",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "wenjuanImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/woman.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "m": {
+     "value": "/assets/man.1783320636200.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "womanImgM",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "w": {
+     "value": "/assets/woman.1783320636200.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "womanImgW",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/work.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.3KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "workImg",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.4
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/yjfk.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/sjz/newHome/wjdc.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "yjfkImg_",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "a": {
+     "value": "/sjz/newHome/yjfk.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "yjfkImgA",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/portal/assets/zph.1783320636200.js",
+   "file": "apps/portal/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.3KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "zphImg_",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "a": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.7KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "zphImgA",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "b": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.5KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "zphImgB",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    },
+    "c": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 1KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "zphImgC",
+     "status": "reserved",
+     "owner": "shared.portal.modules"
+    }
+   },
+   "kb": 2.5
+  }
+ ],
+ "files": [
+  "apps/portal/src/shared/commonInit.ts",
+  "apps/portal/src/shared/dateUtil.ts",
+  "apps/portal/src/shared/index120.ts",
+  "apps/portal/src/shared/initData.ts",
+  "apps/portal/src/shared/message.ts",
+  "apps/portal/src/shared/timeOut.ts",
+  "apps/portal/src/shared/images.ts"
+ ],
+ "sourceChunk": null,
+ "maps": "out/maps/shared.portal.modules.json",
+ "hints": null,
+ "deps": {
+  "entry": [
+   "M",
+   "au",
+   "av",
+   "d"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [
+   "s04.1783320636200.js",
+   "s05b.1783320636200.js",
+   "s10.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6"
+  ]
+ },
+ "note": "入口和共享组件以外的小模块（工具函数、配置、图片常量），每个 chunk 一个文件；图片常量统一导出到 @/shared/images.ts，内联 base64 抽成资源文件"
+}

@@ -1,0 +1,171 @@
+{
+ "id": "page.portal.train.trainList",
+ "chunk": "legacy-dist/portal/assets/trainList.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Pe": "defineComponent",
+  "Ue": "useRouter (vue-router)",
+  "Ge": "useRoute (vue-router)",
+  "He": "reactive",
+  "$e": "onMounted",
+  "We": "nextTick",
+  "d": "resolveComponent",
+  "s": "openBlock",
+  "l": "createElementBlock",
+  "r": "createElementVNode",
+  "c": "createVNode",
+  "u": "withCtx",
+  "_": "Fragment",
+  "C": "renderList",
+  "w": "createTextVNode",
+  "Ye": "withDirectives",
+  "Je": "vShow",
+  "I": "normalizeClass",
+  "x": "createCommentVNode",
+  "h": "createBlock",
+  "Ke": "resolveDynamicComponent",
+  "g": "unref",
+  "Me": "pushScopeId",
+  "Qe": "popScopeId",
+  "p": "toDisplayString",
+  "Ve": "RouterLink (vue-router)",
+  "Xe": "getCurrentInstance"
+ },
+ "entry": {
+  "ia": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "N": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "ra": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "oa": {
+   "original": "W",
+   "path": "@/legacy",
+   "export": "queryAreaChildrenTreeListById",
+   "status": "restored"
+  },
+  "K": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "M": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "ca": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "na": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "da": {
+   "original": "index.api.17833206362008.js#b",
+   "path": "@/api/api-08",
+   "export": "getChildArticleTypeList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
+  },
+  "va": {
+   "original": "index.api.178332063620021.js#c",
+   "path": "@/api/jobPxCourse",
+   "export": "hotListForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/hotListForWebsite"
+  },
+  "ma": {
+   "original": "index.api.178332063620021.js#b",
+   "path": "@/api/jobPxCourse",
+   "export": "getArticleList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/getArticleList"
+  },
+  "ya": {
+   "original": "index.api.178332063620021.js#g",
+   "path": "@/api/jobPxCourse",
+   "export": "listForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
+  }
+ },
+ "shared": {
+  "A": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "ea": {
+   "original": "card.1783320636200.js#_",
+   "value": "/sjz/setup/good.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "aa": {
+   "original": "card.1783320636200.js#a",
+   "value": "/sjz/setup/card.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "sa": {
+   "original": "three.1783320636200.js#_",
+   "value": "/sjz/setup/one.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "threeImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ta": {
+   "original": "three.1783320636200.js#a",
+   "value": "/sjz/setup/two.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "threeImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "la": {
+   "original": "three.1783320636200.js#b",
+   "value": "/sjz/setup/three.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "threeImgB",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

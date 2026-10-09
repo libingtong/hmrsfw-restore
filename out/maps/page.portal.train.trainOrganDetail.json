@@ -1,0 +1,114 @@
+{
+ "id": "page.portal.train.trainOrganDetail",
+ "chunk": "legacy-dist/portal/assets/trainOrganDetail.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "fe": "defineComponent",
+  "me": "useRouter (vue-router)",
+  "ve": "useRoute (vue-router)",
+  "ye": "reactive",
+  "xe": "onMounted",
+  "g": "resolveComponent",
+  "t": "openBlock",
+  "r": "createElementBlock",
+  "a": "createElementVNode",
+  "n": "createVNode",
+  "p": "withCtx",
+  "w": "unref",
+  "i": "toDisplayString",
+  "S": "normalizeClass",
+  "k": "createBlock",
+  "_e": "Fragment",
+  "ge": "renderList",
+  "ke": "resolveDynamicComponent",
+  "m": "createCommentVNode",
+  "be": "pushScopeId",
+  "Ie": "popScopeId",
+  "he": "createTextVNode"
+ },
+ "entry": {
+  "ne": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "q": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "L": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "de": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "we": {
+   "original": "index.api.178332063620021.js#d",
+   "path": "@/api/jobPxCourse",
+   "export": "queryFreeDetailById",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobPxUnit/queryFreeDetailById"
+  },
+  "Te": {
+   "original": "index.api.178332063620021.js#g",
+   "path": "@/api/jobPxCourse",
+   "export": "listForWebsite",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
+  }
+ },
+ "shared": {
+  "Be": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "je": {
+   "original": "unfold.1783320636200.js#u",
+   "path": "@/shared/unfold.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.unfold"
+  }
+ },
+ "views": {},
+ "modules": {
+  "ce": {
+   "original": "card.1783320636200.js#_",
+   "value": "/sjz/setup/good.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "oe": {
+   "original": "card.1783320636200.js#a",
+   "value": "/sjz/setup/card.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "cardImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

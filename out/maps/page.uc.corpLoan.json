@@ -1,0 +1,50 @@
+{
+ "id": "page.uc.corpLoan",
+ "chunk": "legacy-dist/usercenter/assets/index.17516156075459.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "z": "defineComponent",
+  "P": "useRouter (vue-router)",
+  "q": "reactive",
+  "O": "onMounted",
+  "m": "resolveComponent",
+  "s": "openBlock",
+  "u": "createElementBlock",
+  "k": "createElementVNode",
+  "R": "createVNode",
+  "d": "withCtx",
+  "x": "createBlock",
+  "V": "createTextVNode",
+  "c": "createCommentVNode",
+  "A": "Fragment",
+  "E": "toDisplayString"
+ },
+ "entry": {
+  "B": {
+   "original": "N",
+   "path": "@/legacy/components/Notice.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.uc.c01"
+  },
+  "$": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "M": {
+   "original": "index.api.17516156075459.js#g",
+   "path": "@/api/jobLoanApplyCompany",
+   "export": "listForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLoanApplyCompany/listForUserCenter"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,46 @@
+{
+ "id": "page.uc.corpImg",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.17516156075453.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-5f79354b"
+  }
+ ],
+ "scopeIds": [
+  "data-v-5f79354b"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.17516156075453.css"
+ ],
+ "target": "apps/uc/src/views/corpImg.vue",
+ "subComponentDir": "apps/uc/src/views/corpImg/",
+ "routes": [
+  {
+   "path": "/corpImg",
+   "name": "corpImg"
+  }
+ ],
+ "recordPath": "/corpImg",
+ "maps": "out/maps/page.uc.corpImg.json",
+ "hints": "out/hints/page.uc.corpImg.md",
+ "deps": {
+  "entry": [
+   "d",
+   "f",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

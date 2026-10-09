@@ -1,0 +1,65 @@
+{
+ "id": "page.portal.oddJob.shareUser.detail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.8,
+ "sourceChunk": "legacy-dist/portal/assets/detail.17833206362006.js",
+ "components": [
+  {
+   "name": "detail",
+   "scopeId": "data-v-db528007"
+  }
+ ],
+ "scopeIds": [
+  "data-v-db528007"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/detail.17833206362005.css",
+  "legacy-dist/portal/assets/detail.17833206362006.css"
+ ],
+ "target": "apps/portal/src/views/oddJob/shareUser/detail.vue",
+ "subComponentDir": "apps/portal/src/views/oddJob/shareUser/detail/",
+ "routes": [
+  {
+   "path": "/shareUserDetail",
+   "name": "shareUserDetail",
+   "title": "共享员工"
+  }
+ ],
+ "recordPath": "/shareUserDetail",
+ "maps": "out/maps/page.portal.oddJob.shareUser.detail.json",
+ "hints": "out/hints/page.portal.oddJob.shareUser.detail.md",
+ "deps": {
+  "entry": [
+   "B",
+   "C",
+   "S",
+   "bT",
+   "bX",
+   "f",
+   "m",
+   "o",
+   "u",
+   "w",
+   "x",
+   "y"
+  ],
+  "shared": [
+   "complaint.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620024.js#t"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.complaint"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

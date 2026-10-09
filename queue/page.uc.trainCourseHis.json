@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.trainCourseHis",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 9.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754512.js",
+ "components": [
+  {
+   "name": "scoreVideoModal",
+   "scopeId": "data-v-af3e1079"
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-4c230daa"
+  }
+ ],
+ "scopeIds": [
+  "data-v-af3e1079",
+  "data-v-4c230daa"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754515.css",
+  "legacy-dist/usercenter/assets/index.175161560754512.css"
+ ],
+ "target": "apps/uc/src/views/trainCourseHis.vue",
+ "subComponentDir": "apps/uc/src/views/trainCourseHis/",
+ "routes": [
+  {
+   "path": "/trainCourseHis",
+   "name": "trainCourseHis"
+  }
+ ],
+ "recordPath": "/trainCourseHis",
+ "maps": "out/maps/page.uc.trainCourseHis.json",
+ "hints": "out/hints/page.uc.trainCourseHis.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "d",
+   "h",
+   "m",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

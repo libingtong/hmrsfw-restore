@@ -1,0 +1,61 @@
+{
+ "id": "shared.uc.workshopNews",
+ "chunk": "legacy-dist/usercenter/assets/workshopNews.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "q": "defineComponent",
+  "O": "reactive",
+  "$": "onMounted",
+  "u": "resolveComponent",
+  "c": "openBlock",
+  "r": "createElementBlock",
+  "i": "createVNode",
+  "d": "withCtx",
+  "w": "createTextVNode",
+  "l": "createElementVNode",
+  "I": "Fragment",
+  "L": "renderList",
+  "S": "createCommentVNode",
+  "C": "toDisplayString",
+  "T": "normalizeClass",
+  "R": "pushScopeId",
+  "H": "popScopeId"
+ },
+ "entry": {
+  "z": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "M": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "A": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "P": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "D": {
+   "original": "main.1751615607545.js#t",
+   "path": "pinyin-match",
+   "export": "default"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

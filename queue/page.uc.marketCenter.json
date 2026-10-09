@@ -1,0 +1,76 @@
+{
+ "id": "page.uc.marketCenter",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 17.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/marketCenter.1751615607545.js",
+ "components": [
+  {
+   "name": "corpcard",
+   "scopeId": "data-v-c3fc22cd"
+  },
+  {
+   "name": "marketCenter",
+   "scopeId": "data-v-1940ce47"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c3fc22cd",
+  "data-v-1940ce47"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/setStatus.1751615607545.css",
+  "legacy-dist/usercenter/assets/right.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/marketCenter.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/marketCenter.vue",
+ "subComponentDir": "apps/uc/src/views/marketCenter/",
+ "routes": [
+  {
+   "path": "/marketCenter",
+   "name": "marketCenter"
+  }
+ ],
+ "recordPath": "/marketCenter",
+ "maps": "out/maps/page.uc.marketCenter.json",
+ "hints": "out/hints/page.uc.marketCenter.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "a7",
+   "b",
+   "c",
+   "d",
+   "h",
+   "m",
+   "w"
+  ],
+  "shared": [
+   "InterviewInvitation.17516156075452.js",
+   "addKeynote.1751615607545.js",
+   "authCompany.1751615607545.js",
+   "right.vue_vue_type_script_setup_true_lang.1751615607545.js",
+   "setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js",
+   "setStatusinterview.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075456.js#b"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.addKeynote",
+   "shared.uc.authCompany",
+   "shared.uc.right",
+   "shared.uc.setStatus"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

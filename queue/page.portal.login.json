@@ -1,0 +1,90 @@
+{
+ "id": "page.portal.login",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 21.1,
+ "sourceChunk": "legacy-dist/portal/assets/login.17833206362002.js",
+ "components": [
+  {
+   "name": "IdentityModal",
+   "scopeId": "data-v-053a07b4"
+  },
+  {
+   "name": "loginInformation",
+   "scopeId": "data-v-6df6aab6"
+  },
+  {
+   "name": "login",
+   "scopeId": "data-v-090fc10f"
+  }
+ ],
+ "scopeIds": [
+  "data-v-053a07b4",
+  "data-v-6df6aab6",
+  "data-v-090fc10f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/login.17833206362002.css"
+ ],
+ "target": "apps/portal/src/views/login.vue",
+ "subComponentDir": "apps/portal/src/views/login/",
+ "routes": [
+  {
+   "path": "/login",
+   "name": "login",
+   "title": "登录"
+  }
+ ],
+ "recordPath": "/login",
+ "maps": "out/maps/page.portal.login.json",
+ "hints": "out/hints/page.portal.login.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "J",
+   "M",
+   "S",
+   "Y",
+   "a3",
+   "a5",
+   "aE",
+   "ae",
+   "af",
+   "bC",
+   "bD",
+   "bE",
+   "bF",
+   "bG",
+   "bm",
+   "bo",
+   "c",
+   "f",
+   "g",
+   "h",
+   "u",
+   "v",
+   "w"
+  ],
+  "shared": [
+   "thirdParty.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#b",
+   "index.1783320636200117.js#h",
+   "index.1783320636200117.js#x"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c02",
+   "entry.portal.c03",
+   "shared.portal.thirdParty"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

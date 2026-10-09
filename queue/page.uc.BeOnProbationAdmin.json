@@ -1,0 +1,67 @@
+{
+ "id": "page.uc.BeOnProbationAdmin",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 13.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/BeOnProbationAdmin.1751615607545.js",
+ "components": [
+  {
+   "name": "BeOnProbationAdmin",
+   "scopeId": "data-v-3e0855b0"
+  }
+ ],
+ "scopeIds": [
+  "data-v-3e0855b0"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/BeOnProbationAdmin.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/BeOnProbationAdmin.vue",
+ "subComponentDir": "apps/uc/src/views/BeOnProbationAdmin/",
+ "routes": [
+  {
+   "path": "/BeOnProbationAdmin",
+   "name": "BeOnProbationAdmin"
+  }
+ ],
+ "recordPath": "/BeOnProbationAdmin",
+ "maps": "out/maps/page.uc.BeOnProbationAdmin.json",
+ "hints": "out/hints/page.uc.BeOnProbationAdmin.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "a",
+   "aP",
+   "aQ",
+   "aR",
+   "aS",
+   "aT",
+   "aU",
+   "aV",
+   "aW",
+   "c",
+   "d",
+   "h",
+   "m",
+   "v"
+  ],
+  "shared": [
+   "corporganic.1751615607545.js",
+   "message.1751615607545.js",
+   "workVideo.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.corporganic",
+   "shared.uc.workVideo"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

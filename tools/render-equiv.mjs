@@ -9,7 +9,7 @@
 //   - local bindings are alpha-renamed by first appearance; other free identifiers become "free"
 //   - template-ref/closure references into setup state become "setup:<n>" (alpha by first appearance)
 // and the canonical token streams are compared. Prints per component: equal / first divergence.
-import { readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { parse } from "@babel/parser";
@@ -21,12 +21,15 @@ const req = createRequire(import.meta.url);
 const vuefp = site === "portal" ? "./vuefp/" : "./vuefp33/";
 const sfc = req(vuefp + "node_modules/@vue/compiler-sfc");
 const esbuild = req("./vuefp/node_modules/esbuild");
-const aliases = JSON.parse(readFileSync(`out/vue-exports.${site}.final.json`, "utf8")).aliases;
-// entry-chunk export -> readable name (from the shim map table), api chunk export -> function name (from out/api/*.map.json)
-const shim = {};
-for (const line of readFileSync(`out/shim-map.${site}.md`, "utf8").split("\n")) { const m = line.match(/^\| `([^`]+)` \| `?([A-Za-z_$][\w$]*)/); if (m) shim[m[1]] = m[2]; }
+// Vue runtime aliases, entry export names and API function names come from the public-library registry
+// (registry/<app>.json, tools/registry.mjs), so the comparison needs nothing from the POC's out/ directory.
+const REPO = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const reg = JSON.parse(readFileSync(path.join(REPO, "registry", `${site === "portal" ? "portal" : "uc"}.json`), "utf8"));
+const aliases = reg.vue;
+// entry-chunk export -> readable name, api chunk export -> function name
+const shim = Object.fromEntries(Object.entries(reg.entry).filter(([, e]) => e.export).map(([a, e]) => [a, e.export]));
 const apiMaps = {};
-for (const f of (await import("node:fs")).readdirSync("out/api")) if (f.startsWith(site + ".") && f.endsWith(".map.json")) apiMaps[f.slice(site.length + 1, -".map.json".length)] = JSON.parse(readFileSync("out/api/" + f, "utf8"));
+for (const [k, v] of Object.entries(reg.api)) { const [file, alias] = k.split("#"); (apiMaps[file] ??= {})[alias] = v.export; }
 const baseName = (src) => path.basename(src).replace(/\.vue$/, "").replace(/\.(ts|js)$/, "").replace(/\.\d{10,}\d*$/, "");
 
 async function compileRestored(file) {
@@ -141,4 +144,4 @@ for (const c of orig.comps) {
 }
 for (const name of restByName.keys()) if (!orig.comps.some((c) => c.name === name) && ![...alias.values()].includes(name)) report.push({ component: name, result: "extra in restored" });
 console.log(JSON.stringify(report.map((r) => ({ c: r.component, r: r.result, t: r.tokens, o: r.original?.slice(0, 220), x: r.restored?.slice(0, 220) }))));
-writeFileSync(`out/render-equiv.${path.basename(restoredFiles[0])}.json`, JSON.stringify(report, null, 1));
+if (!process.env.RENDER_EQUIV_NO_FILE) { mkdirSync(path.join(REPO, "out"), { recursive: true }); writeFileSync(path.join(REPO, "out", `render-equiv.${path.basename(restoredFiles[0])}.json`), JSON.stringify(report, null, 1)); }

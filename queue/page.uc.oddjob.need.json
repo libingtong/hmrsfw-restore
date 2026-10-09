@@ -1,0 +1,46 @@
+{
+ "id": "page.uc.oddjob.need",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/need-job.1751615607545.js",
+ "components": [
+  {
+   "name": "need-job",
+   "scopeId": "data-v-f8c316c9"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f8c316c9"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/need-job.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/oddjob/need.vue",
+ "subComponentDir": "apps/uc/src/views/oddjob/need/",
+ "routes": [
+  {
+   "path": "/oddjob/need",
+   "name": "OddjobNeed"
+  }
+ ],
+ "recordPath": "/oddjob/need",
+ "maps": "out/maps/page.uc.oddjob.need.json",
+ "hints": "out/hints/page.uc.oddjob.need.md",
+ "deps": {
+  "entry": [],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754519.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

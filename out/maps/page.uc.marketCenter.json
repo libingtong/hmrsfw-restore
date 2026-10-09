@@ -1,0 +1,159 @@
+{
+ "id": "page.uc.marketCenter",
+ "chunk": "legacy-dist/usercenter/assets/marketCenter.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Z": "defineComponent",
+  "G": "useRouter (vue-router)",
+  "Q": "onMounted",
+  "W": "reactive",
+  "f": "resolveComponent",
+  "n": "openBlock",
+  "I": "createBlock",
+  "_": "withCtx",
+  "e": "createElementVNode",
+  "w": "unref",
+  "l": "toDisplayString",
+  "ee": "pushScopeId",
+  "te": "popScopeId",
+  "be": "inject",
+  "xe": "ref",
+  "i": "createElementBlock",
+  "a": "createVNode",
+  "C": "createCommentVNode",
+  "$": "Fragment",
+  "U": "renderList",
+  "z": "h"
+ },
+ "entry": {
+  "b": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "k": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "se": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "ge": {
+   "original": "b",
+   "path": "vuex",
+   "export": "useStore",
+   "status": "npm"
+  },
+  "Ce": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "A": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Ie": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "H": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Be": {
+   "original": "a7",
+   "path": "@/legacy/api",
+   "export": "isPublishingPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {
+  "Te": {
+   "original": "index.api.17516156075456.js#b",
+   "path": "@/api/api-56",
+   "export": "getSettingValueByCode",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"
+  }
+ },
+ "shared": {
+  "we": {
+   "original": "authCompany.1751615607545.js#a",
+   "path": "@/shared/authCompany.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.authCompany"
+  },
+  "Ne": {
+   "original": "right.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/right.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.right"
+  },
+  "Le": {
+   "original": "setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js#a",
+   "path": "@/shared/setStatus.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.setStatus"
+  },
+  "Pe": {
+   "original": "addKeynote.1751615607545.js#a",
+   "path": "@/shared/addKeynote/AddBeOnProbation.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.addKeynote"
+  },
+  "$e": {
+   "original": "addKeynote.1751615607545.js#b",
+   "path": "@/shared/addKeynote/AddKeynote.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.addKeynote"
+  },
+  "Ue": {
+   "original": "setStatusinterview.1751615607545.js#s",
+   "path": "@/shared/setStatusinterview.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "InterviewInvitation.17516156075452.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "right.vue_vue_type_style_index_0_scopes_true_lang.1751615607545.js",
+  "market.vue_vue_type_script_setup_true_lang.1751615607545.js",
+  "phone.1751615607545.js",
+  "corporganic.1751615607545.js",
+  "message.1751615607545.js",
+  "index.api.175161560754510.js"
+ ],
+ "missing": []
+}

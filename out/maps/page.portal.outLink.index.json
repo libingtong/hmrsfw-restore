@@ -1,0 +1,32 @@
+{
+ "id": "page.portal.outLink.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620054.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "y": "defineComponent",
+  "I": "useRoute (vue-router)",
+  "_": "resolveComponent",
+  "v": "openBlock",
+  "g": "createBlock",
+  "k": "withCtx",
+  "C": "createVNode",
+  "s": "createElementVNode",
+  "f": "unref",
+  "x": "toDisplayString",
+  "R": "pushScopeId",
+  "q": "popScopeId"
+ },
+ "entry": {
+  "U": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

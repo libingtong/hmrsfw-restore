@@ -1,0 +1,43 @@
+{
+ "id": "page.portal.talents.conference.scrollList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.1,
+ "sourceChunk": "legacy-dist/portal/assets/scrollList.1783320636200.js",
+ "components": [
+  {
+   "name": "scrollList",
+   "scopeId": "data-v-9e281131"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9e281131"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/scrollList.1783320636200.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/conference/scrollList.vue",
+ "subComponentDir": "apps/portal/src/views/talents/conference/scrollList/",
+ "routes": [],
+ "recordPath": "/talents/conference",
+ "maps": "out/maps/page.portal.talents.conference.scrollList.json",
+ "hints": "out/hints/page.portal.talents.conference.scrollList.md",
+ "deps": {
+  "entry": [
+   "bs"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.conference.index"
+}

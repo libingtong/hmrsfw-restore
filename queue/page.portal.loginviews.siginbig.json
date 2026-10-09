@@ -1,0 +1,64 @@
+{
+ "id": "page.portal.loginviews.siginbig",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 8,
+ "sourceChunk": "legacy-dist/portal/assets/siginbig.1783320636200.js",
+ "components": [
+  {
+   "name": "siginbig",
+   "scopeId": "data-v-3c452a76"
+  }
+ ],
+ "scopeIds": [
+  "data-v-3c452a76"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/siginbig.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/loginviews/siginbig.vue",
+ "subComponentDir": "apps/portal/src/views/loginviews/siginbig/",
+ "routes": [
+  {
+   "path": "/sigin",
+   "name": "sigin",
+   "title": "注册"
+  },
+  {
+   "path": "/talents/sigin",
+   "name": "talentssigin",
+   "title": "注册"
+  }
+ ],
+ "recordPath": "/sigin",
+ "maps": "out/maps/page.portal.loginviews.siginbig.json",
+ "hints": "out/hints/page.portal.loginviews.siginbig.md",
+ "deps": {
+  "entry": [
+   "A",
+   "M",
+   "aE",
+   "am",
+   "bJ",
+   "bn",
+   "c",
+   "h",
+   "w"
+  ],
+  "shared": [
+   "thirdParty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c02",
+   "shared.portal.thirdParty"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

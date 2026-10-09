@@ -1,0 +1,23 @@
+{
+ "id": "entry.uc.E1",
+ "type": "entry",
+ "area": "E1",
+ "title": "构建配置与 .env",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "sourceChunk": "legacy-dist/usercenter/assets/index.1751615607545.js",
+ "kb": null,
+ "appCode": "018",
+ "files": [
+  "vite.uc.config.ts",
+  ".env.example"
+ ],
+ "owns": [],
+ "note": "别名、代理 /xf-api、base；.env.example 只放占位符（VITE_SM2_PUBLIC_KEY、VITE_SM4_KEY、地图 AK），不得出现真实值",
+ "deps": {
+  "orders": []
+ },
+ "kbEstimated": true
+}

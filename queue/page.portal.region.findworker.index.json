@@ -1,0 +1,54 @@
+{
+ "id": "page.portal.region.findworker.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.2,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620065.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-6f8e8d9e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-6f8e8d9e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620062.css",
+  "legacy-dist/portal/assets/index.178332063620065.css"
+ ],
+ "target": "apps/portal/src/views/region/findworker/index.vue",
+ "subComponentDir": "apps/portal/src/views/region/findworker/index/",
+ "routes": [
+  {
+   "path": "/region/findworker",
+   "name": "findworker",
+   "title": "招工专区"
+  }
+ ],
+ "recordPath": "/region/findworker",
+ "maps": "out/maps/page.portal.region.findworker.index.json",
+ "hints": "out/hints/page.portal.region.findworker.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "a",
+   "b",
+   "f",
+   "h",
+   "i",
+   "z"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

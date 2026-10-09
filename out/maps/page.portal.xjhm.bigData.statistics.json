@@ -1,0 +1,222 @@
+{
+ "id": "page.portal.xjhm.bigData.statistics",
+ "chunk": "legacy-dist/portal/assets/statistics.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Gt": "defineComponent",
+  "J": "ref",
+  "oa": "reactive",
+  "Xt": "watch",
+  "jt": "onBeforeMount",
+  "_t": "onBeforeUnmount",
+  "$t": "onMounted",
+  "da": "nextTick",
+  "G": "resolveComponent",
+  "f": "openBlock",
+  "w": "createElementBlock",
+  "t": "createElementVNode",
+  "N": "createVNode",
+  "X": "normalizeStyle",
+  "x": "unref",
+  "S": "createTextVNode",
+  "m": "toDisplayString",
+  "L": "normalizeClass",
+  "K": "Fragment",
+  "z": "renderList",
+  "D": "createBlock",
+  "ae": "withCtx",
+  "te": "withDirectives",
+  "ee": "vShow",
+  "le": "pushScopeId",
+  "ie": "popScopeId"
+ },
+ "entry": {
+  "se": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "B": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "ne": {
+   "original": "aQ",
+   "path": "@/legacy",
+   "export": "getWeekDay",
+   "status": "restored"
+  },
+  "ca": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "oe": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "R": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "de": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "ce": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "re": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "ra": {
+   "original": "index.1783320636200120.js#g",
+   "path": "@/shared/index120.ts",
+   "export": "g",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "ge": {
+   "original": "bars.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/bars.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.bars"
+  },
+  "ye": {
+   "original": "commonInit.1783320636200.js#f",
+   "path": "@/shared/commonInit.ts",
+   "export": "f",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "xe": {
+   "original": "init.17833206362002.js#q",
+   "path": "@/shared/init.ts",
+   "export": "q",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "De": {
+   "original": "init.17833206362002.js#_",
+   "path": "@/shared/init/MapCommon.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "ke": {
+   "original": "init.17833206362002.js#g",
+   "path": "@/shared/init.ts",
+   "export": "g",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "ma": {
+   "original": "init.17833206362002.js#h",
+   "path": "@/shared/init.ts",
+   "export": "h",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "we": {
+   "original": "init.17833206362002.js#j",
+   "path": "@/shared/init.ts",
+   "export": "j",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "Se": {
+   "original": "maps.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/maps.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.maps"
+  },
+  "Re": {
+   "original": "initData.1783320636200.js#i",
+   "path": "@/shared/initData.ts",
+   "export": "i",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Be": {
+   "original": "initData.1783320636200.js#a",
+   "path": "@/shared/initData.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "j": {
+   "original": "initData.1783320636200.js#b",
+   "path": "@/shared/initData.ts",
+   "export": "b",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "E": {
+   "original": "vue-countup-v3.es.1783320636200.js#_",
+   "path": "vue-countup-v3",
+   "export": "default",
+   "status": "npm"
+  },
+  "Me": {
+   "original": "dateUtil.1783320636200.js#f",
+   "path": "@/shared/dateUtil.ts",
+   "export": "f",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Ye": {
+   "original": "dateUtil.1783320636200.js#a",
+   "path": "@/shared/dateUtil.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Te": {
+   "original": "dateUtil.1783320636200.js#b",
+   "path": "@/shared/dateUtil.ts",
+   "export": "b",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "timeOut.1783320636200.js",
+  "index.1783320636200118.js",
+  "vue3-seamless-scroll.es.1783320636200.js",
+  "s04.1783320636200.js",
+  "s05b.1783320636200.js",
+  "s10.1783320636200.js",
+  "china.1783320636200.js",
+  "henan.1783320636200.js"
+ ],
+ "missing": []
+}

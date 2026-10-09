@@ -1,0 +1,97 @@
+{
+ "id": "shared.uc.InterviewInvitation",
+ "chunk": "legacy-dist/usercenter/assets/InterviewInvitation.17516156075452.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "$": "defineComponent",
+  "F": "ref",
+  "A": "reactive",
+  "W": "onMounted",
+  "f": "resolveComponent",
+  "w": "openBlock",
+  "X": "createElementBlock",
+  "o": "createVNode",
+  "l": "withCtx",
+  "h": "createBlock",
+  "V": "createCommentVNode",
+  "T": "unref",
+  "I": "createTextVNode",
+  "Z": "toDisplayString",
+  "G": "pushScopeId",
+  "J": "popScopeId",
+  "C": "createElementVNode"
+ },
+ "entry": {
+  "k": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "U": {
+   "original": "as",
+   "path": "@/legacy/api",
+   "export": "interviewTemplate",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "N": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "R": {
+   "original": "at",
+   "path": "@/legacy/api",
+   "export": "getInterviewPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "u": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "q": {
+   "original": "au",
+   "path": "@/legacy/api",
+   "export": "interviewInvitationByFair",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "P": {
+   "original": "av",
+   "path": "@/legacy/api",
+   "export": "interviewInvitation",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "O": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "E": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "D": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

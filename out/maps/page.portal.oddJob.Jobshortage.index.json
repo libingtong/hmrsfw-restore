@@ -1,0 +1,99 @@
+{
+ "id": "page.portal.oddJob.Jobshortage.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620046.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "De": "defineComponent",
+  "Ee": "useRouter (vue-router)",
+  "Pe": "useRoute (vue-router)",
+  "Re": "ref",
+  "He": "reactive",
+  "Ve": "computed",
+  "qe": "onMounted",
+  "y": "resolveComponent",
+  "t": "openBlock",
+  "i": "createElementBlock",
+  "s": "createElementVNode",
+  "o": "createVNode",
+  "n": "withCtx",
+  "r": "createTextVNode",
+  "v": "Fragment",
+  "Oe": "renderList",
+  "x": "createBlock",
+  "Ye": "resolveDynamicComponent",
+  "c": "createCommentVNode",
+  "Ze": "pushScopeId",
+  "Ge": "popScopeId",
+  "Ke": "unref",
+  "Qe": "RouterLink (vue-router)",
+  "l": "toDisplayString"
+ },
+ "entry": {
+  "Je": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Me": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Ue": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Fe": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ta": {
+   "original": "index.api.178332063620024.js#k",
+   "path": "@/api/api-24",
+   "export": "appletList",
+   "status": "restored",
+   "url": "/xf-oddjob/oddJob/licenseFree/appletList"
+  },
+  "oa": {
+   "original": "index.api.178332063620024.js#m",
+   "path": "@/api/api-24",
+   "export": "getDictListByType",
+   "status": "restored",
+   "url": "/xf-job/communal/licenseFree/getDictListByType?dictTypeCode=ACA111_C"
+  }
+ },
+ "shared": {
+  "ea": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "sa": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

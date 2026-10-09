@@ -1,0 +1,46 @@
+{
+ "id": "page.uc.userImg",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 2.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.17516156075452.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-f0b84d5f"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f0b84d5f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.17516156075452.css"
+ ],
+ "target": "apps/uc/src/views/userImg.vue",
+ "subComponentDir": "apps/uc/src/views/userImg/",
+ "routes": [
+  {
+   "path": "/userImg",
+   "name": "userImg"
+  }
+ ],
+ "recordPath": "/userImg",
+ "maps": "out/maps/page.uc.userImg.json",
+ "hints": "out/hints/page.uc.userImg.md",
+ "deps": {
+  "entry": [
+   "c",
+   "d",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

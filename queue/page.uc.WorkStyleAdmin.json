@@ -1,0 +1,67 @@
+{
+ "id": "page.uc.WorkStyleAdmin",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 14.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/WorkStyleAdmin.1751615607545.js",
+ "components": [
+  {
+   "name": "workreality",
+   "scopeId": "data-v-6cef20e9"
+  },
+  {
+   "name": "WorkStyleAdmin",
+   "scopeId": "data-v-5021f4de"
+  }
+ ],
+ "scopeIds": [
+  "data-v-6cef20e9",
+  "data-v-5021f4de"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/WorkStyleAdmin.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/WorkStyleAdmin.vue",
+ "subComponentDir": "apps/uc/src/views/WorkStyleAdmin/",
+ "routes": [
+  {
+   "path": "/WorkStyleAdmin",
+   "name": "WorkStyleAdmin"
+  }
+ ],
+ "recordPath": "/WorkStyleAdmin",
+ "maps": "out/maps/page.uc.WorkStyleAdmin.json",
+ "hints": "out/hints/page.uc.WorkStyleAdmin.md",
+ "deps": {
+  "entry": [
+   "B",
+   "I",
+   "M",
+   "aO",
+   "aP",
+   "aQ",
+   "aR",
+   "aS",
+   "c",
+   "d",
+   "h",
+   "m",
+   "v",
+   "y"
+  ],
+  "shared": [
+   "workVideo.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.workVideo"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

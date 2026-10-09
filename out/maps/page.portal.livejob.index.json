@@ -1,0 +1,93 @@
+{
+ "id": "page.portal.livejob.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620040.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "aa": "defineComponent",
+  "ea": "useRouter (vue-router)",
+  "ta": "reactive",
+  "la": "onMounted",
+  "sa": "computed",
+  "c": "resolveComponent",
+  "n": "openBlock",
+  "u": "createElementBlock",
+  "s": "createVNode",
+  "i": "withCtx",
+  "A": "withDirectives",
+  "q": "vShow",
+  "o": "createElementVNode",
+  "x": "unref",
+  "ia": "isRef",
+  "h": "createTextVNode",
+  "O": "Fragment",
+  "oa": "renderList",
+  "B": "createBlock",
+  "na": "resolveDynamicComponent",
+  "ra": "normalizeClass",
+  "m": "toDisplayString",
+  "ca": "pushScopeId",
+  "da": "popScopeId"
+ },
+ "entry": {
+  "_a": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "wa": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "fa": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "ga": {
+   "original": "index.api.178332063620013.js#g",
+   "path": "@/api/jobLiveTelecast",
+   "export": "list",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/list?izFromWebSite=1"
+  }
+ },
+ "shared": {
+  "pa": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "za": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "va": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "ua": {
+   "original": "liveNull.1783320636200.js#_",
+   "value": "/default/liveNull.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "liveNullImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

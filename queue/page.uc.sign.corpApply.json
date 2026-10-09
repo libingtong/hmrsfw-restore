@@ -1,0 +1,88 @@
+{
+ "id": "page.uc.sign.corpApply",
+ "type": "page",
+ "status": "segmented",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 37.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/apply.17516156075452.js",
+ "components": [
+  {
+   "name": "cols",
+   "scopeId": "data-v-0fb350d3"
+  },
+  {
+   "name": "DetailModal",
+   "scopeId": "data-v-1f90ab18"
+  },
+  {
+   "name": "confirms",
+   "scopeId": "data-v-4b6d9249"
+  },
+  {
+   "name": "confirms2",
+   "scopeId": "data-v-dc56c74f"
+  },
+  {
+   "name": "protocol",
+   "scopeId": "data-v-537a5c04"
+  },
+  {
+   "name": "apply",
+   "scopeId": "data-v-b3b040d2"
+  }
+ ],
+ "scopeIds": [
+  "data-v-0fb350d3",
+  "data-v-1f90ab18",
+  "data-v-4b6d9249",
+  "data-v-dc56c74f",
+  "data-v-537a5c04",
+  "data-v-b3b040d2"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/apply.17516156075452.css"
+ ],
+ "target": "apps/uc/src/views/sign/corpApply.vue",
+ "subComponentDir": "apps/uc/src/views/sign/corpApply/",
+ "routes": [
+  {
+   "path": "/sign/corpApply",
+   "name": "corpApply"
+  }
+ ],
+ "recordPath": "/sign/corpApply",
+ "maps": "out/maps/page.uc.sign.corpApply.json",
+ "hints": "out/hints/page.uc.sign.corpApply.md",
+ "deps": {
+  "entry": [
+   "I",
+   "M",
+   "d",
+   "m",
+   "y"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754514.js#a",
+   "index.api.175161560754514.js#b",
+   "index.api.175161560754514.js#c",
+   "index.api.175161560754514.js#d",
+   "index.api.175161560754514.js#f",
+   "index.api.175161560754514.js#g",
+   "index.api.175161560754514.js#n",
+   "index.api.175161560754514.js#q"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "segments": [
+  "seg.uc.sign.corpApply.1",
+  "seg.uc.sign.corpApply.2"
+ ]
+}

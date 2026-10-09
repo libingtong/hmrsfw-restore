@@ -1,0 +1,61 @@
+{
+ "id": "shared.portal.resumemodal",
+ "type": "shared",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 4.7,
+ "chunkKb": 4.7,
+ "sourceChunk": "legacy-dist/portal/assets/resumemodal.1783320636200.js",
+ "components": [
+  {
+   "name": "resumemodal",
+   "scopeId": "data-v-30d15804"
+  }
+ ],
+ "scopeIds": [
+  "data-v-30d15804"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/resumemodal.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/resumemodal.vue",
+ "exports": {
+  "r": {
+   "export": "default"
+  }
+ },
+ "registryKey": "resumemodal.1783320636200.js",
+ "usedBy": [
+  "page.portal.recruitMarket.marketHome.home",
+  "page.portal.recruitMarket.marketDetail.index",
+  "page.portal.LookForJob.PostDetail",
+  "page.portal.resumeAnalysisReport.resumeAnalysisReport",
+  "page.portal.BeOnProbation.ProbationPostDetail",
+  "page.portal.LookForJob.CorpDetail",
+  "page.portal.guide.jobHunt",
+  "shared.portal.workItem",
+  "shared.portal.workItemNew"
+ ],
+ "maps": "out/maps/shared.portal.resumemodal.json",
+ "hints": "out/hints/shared.portal.resumemodal.md",
+ "deps": {
+  "entry": [
+   "A",
+   "S",
+   "v"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17833206362002.js#o",
+   "index.api.17833206362002.js#p",
+   "index.api.17833206362002.js#r",
+   "index.api.17833206362002.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

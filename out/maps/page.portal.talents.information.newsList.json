@@ -1,0 +1,96 @@
+{
+ "id": "page.portal.talents.information.newsList",
+ "chunk": "legacy-dist/portal/assets/newsList.17833206362004.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "M": "defineComponent",
+  "O": "useRoute (vue-router)",
+  "S": "reactive",
+  "Q": "onBeforeMount",
+  "V": "watch",
+  "W": "nextTick",
+  "z": "resolveComponent",
+  "n": "openBlock",
+  "r": "createElementBlock",
+  "x": "createVNode",
+  "I": "withCtx",
+  "c": "createElementVNode",
+  "h": "toDisplayString",
+  "B": "Fragment",
+  "Z": "renderList",
+  "R": "createBlock",
+  "X": "resolveDynamicComponent",
+  "ee": "normalizeClass",
+  "te": "unref",
+  "ae": "createCommentVNode",
+  "se": "createTextVNode"
+ },
+ "entry": {
+  "ce": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "A": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "oe": {
+   "original": "cu",
+   "path": "@/legacy/api",
+   "export": "getChildArticleTypeListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "re": {
+   "original": "aj",
+   "path": "@/legacy/utils",
+   "export": "openLink",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ue": {
+   "original": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "me": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "le": {
+   "original": "index.api.178332063620040.js#c",
+   "path": "@/api/scan",
+   "export": "getArticleTypeByCode",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/getArticleTypeByCode"
+  },
+  "ie": {
+   "original": "index.api.178332063620040.js#g",
+   "path": "@/api/scan",
+   "export": "getArticleList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/getArticleList"
+  }
+ },
+ "shared": {
+  "pe": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

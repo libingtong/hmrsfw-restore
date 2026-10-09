@@ -1,0 +1,167 @@
+{
+ "id": "shared.uc.modules",
+ "type": "shared",
+ "subtype": "modules",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1,
+ "chunks": [
+  {
+   "chunk": "legacy-dist/usercenter/assets/DictCodes.1751615607545.js",
+   "file": "apps/uc/src/shared/DictCodes.ts",
+   "status": "restored",
+   "exports": {
+    "D": {
+     "export": "DictCodes"
+    }
+   },
+   "kb": 0.2
+  },
+  {
+   "chunk": "legacy-dist/usercenter/assets/WebSockets.1751615607545.js",
+   "file": "apps/uc/src/shared/WebSockets.ts",
+   "status": "restored",
+   "exports": {
+    "c": {
+     "export": "createWebSocket"
+    },
+    "g": {
+     "export": "getWsBaseUrl"
+    }
+   },
+   "kb": 0.9
+  },
+  {
+   "chunk": "legacy-dist/usercenter/assets/dateUtil.1751615607545.js",
+   "file": "apps/uc/src/shared/dateUtil.ts",
+   "status": "reserved",
+   "exports": {
+    "a": {
+     "export": "a"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/usercenter/assets/jspdf.es.min.1751615607545.js",
+   "file": "apps/uc/src/shared/jspdf.es.min.ts",
+   "status": "restored",
+   "exports": {
+    "E": {
+     "path": "jspdf",
+     "export": "jsPDF",
+     "npm": true
+    },
+    "H": {
+     "export": "Watermark"
+    }
+   },
+   "kb": 351.6
+  },
+  {
+   "chunk": "legacy-dist/usercenter/assets/message.1751615607545.js",
+   "file": "apps/uc/src/shared/message.ts",
+   "status": "restored",
+   "exports": {
+    "i": {
+     "export": "infoAlert"
+    },
+    "s": {
+     "export": "successCountdown"
+    }
+   },
+   "kb": 0.3
+  },
+  {
+   "chunk": "legacy-dist/usercenter/assets/wxyy.hook.1751615607545.js",
+   "file": "apps/uc/src/shared/wxyy.hook.ts",
+   "status": "restored",
+   "exports": {
+    "_": {
+     "path": "@/legacy",
+     "export": "ROBOT_IMG"
+    },
+    "g": {
+     "path": "@/legacy",
+     "export": "askWenXin"
+    }
+   },
+   "kb": 0.4
+  },
+  {
+   "chunk": "legacy-dist/usercenter/assets/default.1751615607545.js",
+   "file": "apps/uc/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/assets/default.1751615607545.jpg",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "defaultImg",
+     "status": "reserved",
+     "owner": "shared.uc.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/usercenter/assets/newUserCard.vue_vue_type_style_index_0_scoped_399cb1b5_lang.1751615607545.js",
+   "file": "apps/uc/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "/assets/clogo.1751615607545.png",
+     "inline": false,
+     "path": "@/shared/images",
+     "export": "newUserCardImg",
+     "status": "reserved",
+     "owner": "shared.uc.modules"
+    }
+   },
+   "kb": 0.1
+  },
+  {
+   "chunk": "legacy-dist/usercenter/assets/stateCard.vue_vue_type_style_index_0_scoped_53902b4a_lang.1751615607545.js",
+   "file": "apps/uc/src/shared/images.ts",
+   "status": "reserved",
+   "exports": {
+    "_": {
+     "value": "data:image/png;base64,iVBORw0K…（内联 0.7KB）",
+     "inline": true,
+     "path": "@/shared/images",
+     "export": "stateCardImg",
+     "status": "reserved",
+     "owner": "shared.uc.modules"
+    }
+   },
+   "kb": 0.7
+  }
+ ],
+ "files": [
+  "apps/uc/src/shared/DictCodes.ts",
+  "apps/uc/src/shared/WebSockets.ts",
+  "apps/uc/src/shared/dateUtil.ts",
+  "apps/uc/src/shared/jspdf.es.min.ts",
+  "apps/uc/src/shared/message.ts",
+  "apps/uc/src/shared/wxyy.hook.ts",
+  "apps/uc/src/shared/images.ts"
+ ],
+ "sourceChunk": null,
+ "maps": "out/maps/shared.uc.modules.json",
+ "hints": null,
+ "deps": {
+  "entry": [
+   "M",
+   "m",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "note": "入口和共享组件以外的小模块（工具函数、配置、图片常量），每个 chunk 一个文件；图片常量统一导出到 @/shared/images.ts，内联 base64 抽成资源文件"
+}

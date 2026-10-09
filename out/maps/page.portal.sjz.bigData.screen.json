@@ -1,0 +1,23 @@
+{
+ "id": "page.portal.sjz.bigData.screen",
+ "chunk": "legacy-dist/portal/assets/screen.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "b": "defineComponent",
+  "g": "openBlock",
+  "j": "createBlock",
+  "k": "withCtx",
+  "e": "createVNode",
+  "c": "createElementVNode"
+ },
+ "entry": {},
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "index.1783320636200120.js"
+ ],
+ "missing": []
+}

@@ -1,0 +1,61 @@
+{
+ "id": "shared.uc.oddNews",
+ "chunk": "legacy-dist/usercenter/assets/oddNews.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "q": "defineComponent",
+  "O": "reactive",
+  "$": "onMounted",
+  "h": "resolveComponent",
+  "c": "openBlock",
+  "i": "createElementBlock",
+  "r": "createVNode",
+  "d": "withCtx",
+  "N": "createTextVNode",
+  "l": "createElementVNode",
+  "I": "Fragment",
+  "L": "renderList",
+  "S": "createCommentVNode",
+  "C": "toDisplayString",
+  "T": "normalizeClass",
+  "H": "pushScopeId",
+  "P": "popScopeId"
+ },
+ "entry": {
+  "z": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "D": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "A": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "M": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "U": {
+   "original": "main.1751615607545.js#t",
+   "path": "pinyin-match",
+   "export": "default"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

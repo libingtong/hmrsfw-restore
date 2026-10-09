@@ -1,0 +1,44 @@
+{
+ "id": "shared.portal.videoModal",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.4,
+ "chunkKb": 3.4,
+ "sourceChunk": "legacy-dist/portal/assets/videoModal.1783320636200.js",
+ "components": [
+  {
+   "name": "videoModal",
+   "scopeId": "data-v-216d7489"
+  }
+ ],
+ "scopeIds": [
+  "data-v-216d7489"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/videoModal.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/videoModal.vue",
+ "exports": {
+  "v": {
+   "export": "default"
+  }
+ },
+ "registryKey": "videoModal.1783320636200.js",
+ "usedBy": [
+  "page.portal.Guidance.GuidanceVideo.index"
+ ],
+ "maps": "out/maps/shared.portal.videoModal.json",
+ "hints": "out/hints/shared.portal.videoModal.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

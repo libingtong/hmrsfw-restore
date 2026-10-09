@@ -1,0 +1,43 @@
+{
+ "id": "page.portal.zcyz.bigData.components.pieCommon",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.1,
+ "sourceChunk": "legacy-dist/portal/assets/pieCommon.17833206362007.js",
+ "components": [
+  {
+   "name": "pieCommon",
+   "scopeId": "data-v-e9d67e9e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-e9d67e9e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/lines.1783320636200.css",
+  "legacy-dist/portal/assets/pieCommon.17833206362004.css"
+ ],
+ "target": "apps/portal/src/views/zcyz/bigData/components/pieCommon.vue",
+ "subComponentDir": "apps/portal/src/views/zcyz/bigData/components/pieCommon/",
+ "routes": [],
+ "recordPath": "/statistics",
+ "maps": "out/maps/page.portal.zcyz.bigData.components.pieCommon.json",
+ "hints": "out/hints/page.portal.zcyz.bigData.components.pieCommon.md",
+ "deps": {
+  "entry": [],
+  "shared": [
+   "pie.vue_vue_type_style_index_0_lang.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.pie"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.xjhm.bigData.statistics"
+}

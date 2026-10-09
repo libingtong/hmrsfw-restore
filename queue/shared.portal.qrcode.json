@@ -1,0 +1,42 @@
+{
+ "id": "shared.portal.qrcode",
+ "type": "shared",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 21.4,
+ "chunkKb": 21.4,
+ "sourceChunk": "legacy-dist/portal/assets/qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+ "components": [],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/qrcode.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+ "usedBy": [
+  "page.portal.livejob.detail",
+  "page.portal.LookForJob.PostDetail",
+  "page.portal.fair.webFair.detail",
+  "page.portal.fair.sceneFair.detail",
+  "page.portal.fair.outFair.detail",
+  "page.portal.LookForJob.CorpDetail",
+  "page.portal.talents.fair.webFair.detail",
+  "page.portal.talents.fair.outFair.detail"
+ ],
+ "maps": "out/maps/shared.portal.qrcode.json",
+ "hints": "out/hints/shared.portal.qrcode.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

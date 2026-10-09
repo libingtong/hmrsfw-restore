@@ -1,0 +1,113 @@
+{
+ "id": "page.uc.formDone",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 113.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/formDone.1751615607545.js",
+ "components": [
+  {
+   "name": "bmgjjl",
+   "scopeId": "data-v-b03e59fc"
+  },
+  {
+   "name": "lsajbt",
+   "scopeId": "data-v-5396e0f7"
+  },
+  {
+   "name": "zctsjl",
+   "scopeId": "data-v-7d0af864"
+  },
+  {
+   "name": "zsgxjl",
+   "scopeId": "data-v-2f021b16"
+  },
+  {
+   "name": "bshbt",
+   "scopeId": "data-v-37818952"
+  },
+  {
+   "name": "bshky",
+   "scopeId": "data-v-4a29201b"
+  },
+  {
+   "name": "szftsjt",
+   "scopeId": "data-v-272981db"
+  },
+  {
+   "name": "formDone",
+   "scopeId": "data-v-d4179e39"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b03e59fc",
+  "data-v-5396e0f7",
+  "data-v-7d0af864",
+  "data-v-2f021b16",
+  "data-v-37818952",
+  "data-v-4a29201b",
+  "data-v-272981db",
+  "data-v-d4179e39"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/formDone.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/formDone.vue",
+ "subComponentDir": "apps/uc/src/views/formDone/",
+ "routes": [
+  {
+   "path": "/formDone/:type",
+   "name": "formDone"
+  }
+ ],
+ "recordPath": "/formDone/:type",
+ "maps": "out/maps/page.uc.formDone.json",
+ "hints": "out/hints/page.uc.formDone.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "I",
+   "M",
+   "U",
+   "a",
+   "d",
+   "h",
+   "k",
+   "m",
+   "p",
+   "y"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "idCard.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075455.js#d",
+   "index.api.17516156075455.js#h",
+   "index.api.17516156075455.js#i",
+   "index.api.17516156075455.js#j",
+   "index.api.17516156075455.js#k",
+   "index.api.17516156075455.js#l",
+   "index.api.17516156075455.js#m",
+   "index.api.17516156075455.js#n",
+   "index.api.17516156075455.js#o",
+   "index.api.17516156075455.js#p",
+   "index.api.17516156075455.js#q",
+   "index.api.17516156075455.js#r",
+   "index.api.17516156075455.js#t",
+   "index.api.17516156075455.js#u",
+   "index.api.17516156075455.js#v"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/formDone/:type",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

@@ -1,0 +1,238 @@
+{
+ "id": "page.portal.login",
+ "chunk": "legacy-dist/portal/assets/login.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "me": "defineComponent",
+  "Be": "useRoute (vue-router)",
+  "Te": "useRouter (vue-router)",
+  "R": "ref",
+  "ve": "reactive",
+  "ol": "computed",
+  "Ee": "onBeforeMount",
+  "ge": "onMounted",
+  "g": "resolveComponent",
+  "u": "openBlock",
+  "f": "createElementBlock",
+  "s": "createVNode",
+  "n": "withCtx",
+  "t": "createElementVNode",
+  "A": "toDisplayString",
+  "fe": "Fragment",
+  "Ue": "renderList",
+  "C": "unref",
+  "K": "createCommentVNode",
+  "he": "pushScopeId",
+  "ye": "popScopeId",
+  "Re": "normalizeClass",
+  "rl": "createBlock",
+  "E": "createTextVNode",
+  "cl": "watch",
+  "Ne": "inject"
+ },
+ "entry": {
+  "Oa": {
+   "original": "bC",
+   "path": "lodash-es",
+   "export": "toInteger",
+   "status": "npm"
+  },
+  "Za": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "qa": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "xe": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "we": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "pe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "Se": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Wa": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "Y": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Ga": {
+   "original": "bm",
+   "path": "@/legacy/utils",
+   "export": "PAGE_LOAD_TIMESTAMP",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "q": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Qa": {
+   "original": "af",
+   "path": "@/legacy/api",
+   "export": "logout",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Fa": {
+   "original": "bo",
+   "path": "@/legacy/api",
+   "export": "randomImage",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Va": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Xa": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "_e": {
+   "original": "J",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "Ja": {
+   "original": "Y",
+   "path": "@/legacy/components/Phone.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Ya": {
+   "original": "aE",
+   "path": "@/legacy",
+   "export": "SlideCaptcha",
+   "status": "reserved",
+   "owner": "entry.portal.c02"
+  },
+  "Ha": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "H": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Ka": {
+   "original": "bD",
+   "path": "@/legacy/api",
+   "export": "login",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "$a": {
+   "original": "bE",
+   "path": "@/legacy/api",
+   "export": "phoneLogin",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "el": {
+   "original": "bF",
+   "path": "@/legacy/utils",
+   "export": "handleLoginSuccess",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "al": {
+   "original": "a5",
+   "path": "@/legacy/api",
+   "export": "listOneForWebSite",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ll": {
+   "original": "bG",
+   "path": "@/legacy/utils",
+   "export": "handleXfSysUserLoaded",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "tl": {
+   "original": "a3",
+   "path": "@/legacy/api",
+   "export": "getCompanyInfo",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  }
+ },
+ "api": {
+  "ul": {
+   "original": "index.1783320636200117.js#h",
+   "path": "@/api/api-117",
+   "export": "getCompleteStatus",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysGuideRecord/getCompleteStatus"
+  },
+  "dl": {
+   "original": "index.1783320636200117.js#x",
+   "path": "@/api/api-117",
+   "export": "list",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysGuide/list"
+  },
+  "pl": {
+   "original": "index.1783320636200117.js#b",
+   "path": "@/api/api-117",
+   "export": "setCompleteStatus",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysGuideRecord/setCompleteStatus"
+  }
+ },
+ "shared": {
+  "nl": {
+   "original": "thirdParty.1783320636200.js#t",
+   "path": "@/shared/thirdParty.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.thirdParty"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

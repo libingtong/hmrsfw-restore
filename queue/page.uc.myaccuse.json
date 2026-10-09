@@ -1,0 +1,52 @@
+{
+ "id": "page.uc.myaccuse",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/myaccuse.1751615607545.js",
+ "components": [
+  {
+   "name": "myaccuse",
+   "scopeId": "data-v-9b90bb95"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9b90bb95"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/myaccuse.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/myaccuse.vue",
+ "subComponentDir": "apps/uc/src/views/myaccuse/",
+ "routes": [
+  {
+   "path": "/myaccuse",
+   "name": "myaccuse"
+  }
+ ],
+ "recordPath": "/myaccuse",
+ "maps": "out/maps/page.uc.myaccuse.json",
+ "hints": "out/hints/page.uc.myaccuse.md",
+ "deps": {
+  "entry": [
+   "b8",
+   "b9",
+   "d",
+   "k",
+   "m"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,2008 @@
+{
+ "routes": [
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/",
+   "chunk": "index.1783320636200107.js",
+   "order": "page.portal.xjhm.home.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/cityHome/:cityCode",
+   "chunk": "index.178332063620024.js",
+   "order": "page.portal.cityHome.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/region/innovation",
+   "chunk": "index.178332063620066.js",
+   "order": "page.portal.region.innovation.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/region/innovationDetail",
+   "chunk": "innovationDetail.1783320636200.js",
+   "order": "page.portal.region.innovation.innovationDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/region/colleges",
+   "chunk": "index.178332063620064.js",
+   "order": "page.portal.region.colleges.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/region/findworker",
+   "chunk": "index.178332063620065.js",
+   "order": "page.portal.region.findworker.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/region/skill",
+   "chunk": "index.178332063620067.js",
+   "order": "page.portal.region.skill.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/oddJob",
+   "chunk": "index.178332063620048.js",
+   "order": "page.portal.oddJob.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/recruitworkers",
+   "chunk": "index.178332063620050.js",
+   "order": "page.portal.oddJob.recruitworkers.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/recruitworkersDetail",
+   "chunk": "recruitworkersDetail.1783320636200.js",
+   "order": "page.portal.oddJob.recruitworkers.recruitworkersDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/Jobsearch",
+   "chunk": "index.178332063620045.js",
+   "order": "page.portal.oddJob.Jobsearch.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/JobsearchDetail",
+   "chunk": "JobsearchDetail.1783320636200.js",
+   "order": "page.portal.oddJob.Jobsearch.JobsearchDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/Jobshortage",
+   "chunk": "index.178332063620046.js",
+   "order": "page.portal.oddJob.Jobshortage.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/JobshortageDetail",
+   "chunk": "JobshortageDetail.1783320636200.js",
+   "order": "page.portal.oddJob.Jobshortage.JobshortageDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/Sparework",
+   "chunk": "index.178332063620047.js",
+   "order": "page.portal.oddJob.Sparework.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/SpareworkDetail",
+   "chunk": "SpareworkDetail.1783320636200.js",
+   "order": "page.portal.oddJob.Sparework.SpareworkDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/shareUserList",
+   "chunk": "index.178332063620052.js",
+   "order": "page.portal.oddJob.shareUser.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/shareUserDetail",
+   "chunk": "detail.17833206362006.js",
+   "order": "page.portal.oddJob.shareUser.detail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/oddjobnews",
+   "chunk": "index.178332063620049.js",
+   "order": "page.portal.oddJob.news.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/live",
+   "chunk": "index.178332063620039.js",
+   "order": "page.portal.live.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/livedetail",
+   "chunk": "detail.17833206362005.js",
+   "order": "page.portal.livejob.detail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/video",
+   "chunk": "zbdg.1783320636200.js",
+   "order": "page.portal.video.zbdg"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/recruitMarket",
+   "chunk": "home.17833206362002.js",
+   "order": "page.portal.recruitMarket.marketHome.home"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/marketDetail",
+   "chunk": "index.178332063620063.js",
+   "order": "page.portal.recruitMarket.marketDetail.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/trainOrganList",
+   "chunk": "trainOrganList.1783320636200.js",
+   "order": "page.portal.train.trainOrganList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/trainOrganDetail",
+   "chunk": "trainOrganDetail.1783320636200.js",
+   "order": "page.portal.train.trainOrganDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/marketCorp",
+   "chunk": "index.178332063620062.js",
+   "order": "page.portal.recruitMarket.corpList.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/GuidanceHome",
+   "chunk": "index.17833206362006.js",
+   "order": "page.portal.Guidance.GuidanceHome.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/GuidanceVideo",
+   "chunk": "index.178332063620011.js",
+   "order": "page.portal.Guidance.GuidanceVideo.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/GuidanceAskList",
+   "chunk": "index.17833206362004.js",
+   "order": "page.portal.Guidance.GuidanceAskList.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/GuidanceAskDetail",
+   "chunk": "index.17833206362003.js",
+   "order": "page.portal.Guidance.GuidanceAskDetail.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/GuidanceMentorList",
+   "chunk": "index.178332063620010.js",
+   "order": "page.portal.Guidance.GuidanceMentorList.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/GuidanceMentorDetail",
+   "chunk": "index.17833206362008.js",
+   "order": "page.portal.Guidance.GuidanceMentorDetail.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/GuidanceMentorFrom",
+   "chunk": "index.17833206362009.js",
+   "order": "page.portal.Guidance.GuidanceMentorFrom.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/GuidanceConsult",
+   "chunk": "index.17833206362005.js",
+   "order": "page.portal.Guidance.GuidanceConsult.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/schoolHome",
+   "chunk": "index.178332063620084.js",
+   "order": "page.portal.sjz.school.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/enterpriserecruitment",
+   "chunk": "enterpriserecruitment.1783320636200.js",
+   "order": "page.portal.sjz.enterpriserecruitment.enterpriserecruitment"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/unitMain",
+   "chunk": "unitMain.1783320636200.js",
+   "order": "page.portal.sjz.unitMain.unitMain"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/newsList",
+   "chunk": "newsList.17833206362003.js",
+   "order": "page.portal.sjz.news.newsList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/newsDetail",
+   "chunk": "newsDetail.1783320636200.js",
+   "order": "page.portal.News.newsDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/JobList",
+   "chunk": "jobList.17833206362003.js",
+   "order": "page.portal.sjz.job.jobList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/TalentsHome",
+   "chunk": "talentList.1783320636200.js",
+   "order": "page.portal.sjz.talent.talentList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/ResumePreview",
+   "chunk": "ResumePreview.1783320636200.js",
+   "order": "page.portal.RecruitTalents.ResumePreview"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/ResumePreview",
+   "chunk": "ResumePreview.1783320636200.js",
+   "order": "page.portal.RecruitTalents.ResumePreview"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/PDFPreview",
+   "chunk": "PDFPreview.1783320636200.js",
+   "order": "page.portal.PDFPreview.PDFPreview"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/PDFPreview",
+   "chunk": "PDFPreview.1783320636200.js",
+   "order": "page.portal.PDFPreview.PDFPreview"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/PostDetail",
+   "chunk": "PostDetail.1783320636200.js",
+   "order": "page.portal.LookForJob.PostDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/PostDetail",
+   "chunk": "PostDetail.1783320636200.js",
+   "order": "page.portal.LookForJob.PostDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/postCompetitivenessAnalysis",
+   "chunk": "postCompetitivenessAnalysis.1783320636200.js",
+   "order": "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/resumeAnalysisReport",
+   "chunk": "resumeAnalysisReport.1783320636200.js",
+   "order": "page.portal.resumeAnalysisReport.resumeAnalysisReport"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/resumeMatchAnalysisReport",
+   "chunk": "resumeMatchAnalysisReport.1783320636200.js",
+   "order": "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/hrpark",
+   "chunk": "index.178332063620055.js",
+   "order": "page.portal.park.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/setupList",
+   "chunk": "setupList.1783320636200.js",
+   "order": "page.portal.setUp.setupList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/setupDetail",
+   "chunk": "setupDetail.17833206362002.js",
+   "order": "page.portal.sjz.setUp.setupDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/trainList",
+   "chunk": "trainList.1783320636200.js",
+   "order": "page.portal.train.trainList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/trainList",
+   "chunk": "trainList.1783320636200.js",
+   "order": "page.portal.train.trainList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/trainDetail",
+   "chunk": "trainDetail.1783320636200.js",
+   "order": "page.portal.train.trainDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/trainDetail",
+   "chunk": "trainDetail.1783320636200.js",
+   "order": "page.portal.train.trainDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/ProbationHome",
+   "chunk": "ProbationHome.1783320636200.js",
+   "order": "page.portal.BeOnProbation.ProbationHome"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/UserAdminJobPlacement",
+   "chunk": "UserAdminJobPlacement.1783320636200.js",
+   "order": "page.portal.BeOnProbation.UserAdminJobPlacement"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/ProbationPostList",
+   "chunk": "ProbationPostList.1783320636200.js",
+   "order": "page.portal.BeOnProbation.ProbationPostList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/ProbationPostDetail",
+   "chunk": "ProbationPostDetail.1783320636200.js",
+   "order": "page.portal.BeOnProbation.ProbationPostDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/ProbationBaseList",
+   "chunk": "ProbationBaseList.1783320636200.js",
+   "order": "page.portal.BeOnProbation.ProbationBaseList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/ProbationBaseDetail",
+   "chunk": "ProbationBaseDetail.1783320636200.js",
+   "order": "page.portal.BeOnProbation.ProbationBaseDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/ProbationElegantList",
+   "chunk": "ProbationElegantList.1783320636200.js",
+   "order": "page.portal.BeOnProbation.ProbationElegantList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/eMap",
+   "chunk": "index.178332063620031.js",
+   "order": "page.portal.eMap.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/outLink",
+   "chunk": "index.178332063620054.js",
+   "order": "page.portal.outLink.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/fairList",
+   "chunk": "fairList.1783320636200.js",
+   "order": "page.portal.sjz.fair.fairList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/webFairList",
+   "chunk": "list.17833206362005.js",
+   "order": "page.portal.fair.webFair.list"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/webFairDetail/:zphId",
+   "chunk": "detail.17833206362004.js",
+   "order": "page.portal.fair.webFair.detail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/sceneFairList",
+   "chunk": "list.17833206362004.js",
+   "order": "page.portal.fair.sceneFair.list"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/sceneFairDetail/:zphId",
+   "chunk": "detail.17833206362003.js",
+   "order": "page.portal.fair.sceneFair.detail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/outFairList",
+   "chunk": "list.17833206362003.js",
+   "order": "page.portal.fair.outFair.list"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/outFairDetail/:zphId",
+   "chunk": "detail.17833206362002.js",
+   "order": "page.portal.fair.outFair.detail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/filesSearch",
+   "chunk": "index.178332063620069.js",
+   "order": "page.portal.service.filesSearch.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/CompanyList",
+   "chunk": "corpList.1783320636200.js",
+   "order": "page.portal.sjz.corp.corpList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/CompanyList",
+   "chunk": "corpList.1783320636200.js",
+   "order": "page.portal.sjz.corp.corpList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/CorpDetail",
+   "chunk": "CorpDetail.1783320636200.js",
+   "order": "page.portal.LookForJob.CorpDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/CorpDetail",
+   "chunk": "CorpDetail.1783320636200.js",
+   "order": "page.portal.LookForJob.CorpDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/login",
+   "chunk": "login.17833206362002.js",
+   "order": "page.portal.login"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/sigin",
+   "chunk": "siginbig.1783320636200.js",
+   "order": "page.portal.loginviews.siginbig"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/sigin",
+   "chunk": "siginbig.1783320636200.js",
+   "order": "page.portal.loginviews.siginbig"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/passwordhint",
+   "chunk": "passwordhintbig.1783320636200.js",
+   "order": "page.portal.loginviews.passwordhintbig"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/answer",
+   "chunk": "index.178332063620016.js",
+   "order": "page.portal.answer.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/answer",
+   "chunk": "index.178332063620016.js",
+   "order": "page.portal.answer.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/details",
+   "chunk": "details.1783320636200.js",
+   "order": "page.portal.answer.details"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/jobMarket",
+   "chunk": "index.178332063620038.js",
+   "order": "page.portal.jobMarket.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/jobMarketDetail",
+   "chunk": "marketDetail.1783320636200.js",
+   "order": "page.portal.jobMarket.marketDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/archivesSearch",
+   "chunk": "index.178332063620071.js",
+   "order": "page.portal.sjz.archivesSearch.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/customerService",
+   "chunk": "index.178332063620030.js",
+   "order": "page.portal.customerService.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/customerService",
+   "chunk": "index.178332063620030.js",
+   "order": "page.portal.customerService.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/sjzbigData",
+   "chunk": "screen.1783320636200.js",
+   "order": "page.portal.sjz.bigData.screen"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/statistics",
+   "chunk": "statistics.17833206362002.js",
+   "order": "page.portal.xjhm.bigData.statistics"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/newBigdata",
+   "chunk": "newBigdata.1783320636200.js",
+   "order": "page.portal.xjhm.bigData.newBigdata"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/trainCourse",
+   "chunk": "index.1783320636200115.js",
+   "order": "page.portal.zzgj.trainCourse.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/areaHome/:cityCode",
+   "chunk": "index.1783320636200106.js",
+   "order": "page.portal.xjhm.cityHome.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/personnelAssessment",
+   "chunk": "index.178332063620059.js",
+   "order": "page.portal.personnelAssessment.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/virtualjobfairs",
+   "chunk": "index.178332063620087.js",
+   "order": "page.portal.sjz.virtualjobfairs.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/webvirtualjobfairs",
+   "chunk": "index.178332063620088.js",
+   "order": "page.portal.sjz.webvirtualjobfairs.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/guide/jobHunt",
+   "chunk": "jobHunt.1783320636200.js",
+   "order": "page.portal.guide.jobHunt"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/guide/corp",
+   "chunk": "index.178332063620034.js",
+   "order": "page.portal.guide.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/applet/statistics",
+   "chunk": "index.178332063620075.js",
+   "order": "page.portal.sjz.bigData.mobile.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents",
+   "chunk": "homeView.1783320636200.js",
+   "order": "page.portal.talents.homeView"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/index",
+   "chunk": "index.178332063620098.js",
+   "order": "page.portal.talents.index.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/cityHome/:areaId",
+   "chunk": "index.178332063620094.js",
+   "order": "page.portal.talents.cityHome.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/setupList",
+   "chunk": "setupList.17833206362002.js",
+   "order": "page.portal.talents.setUp.setupList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/setupDetail",
+   "chunk": "setupDetail.17833206362003.js",
+   "order": "page.portal.talents.setUp.setupDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/information",
+   "chunk": "newsList.17833206362004.js",
+   "order": "page.portal.talents.information.newsList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/brilliant",
+   "chunk": "newsList.17833206362004.js",
+   "order": "page.portal.talents.information.newsList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/newsDetail",
+   "chunk": "newsDetail.17833206362003.js",
+   "order": "page.portal.talents.information.newsDetail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/jobList",
+   "chunk": "jobList.17833206362004.js",
+   "order": "page.portal.talents.job.jobList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/fairList",
+   "chunk": "fairList.17833206362002.js",
+   "order": "page.portal.talents.fair.fairList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/webFairDetail/:zphId",
+   "chunk": "detail.178332063620012.js",
+   "order": "page.portal.talents.fair.webFair.detail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/outFairDetail/:zphId",
+   "chunk": "detail.178332063620011.js",
+   "order": "page.portal.talents.fair.outFair.detail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/talentsHome",
+   "chunk": "talentList.17833206362002.js",
+   "order": "page.portal.talents.talentnew.talentList"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/conference",
+   "chunk": "index.178332063620095.js",
+   "order": "page.portal.talents.conference.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/conference/detail",
+   "chunk": "detail.178332063620010.js",
+   "order": "page.portal.talents.conference.detail"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/eMap",
+   "chunk": "index.178332063620096.js",
+   "order": "page.portal.talents.eMap.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/park",
+   "chunk": "index.1783320636200100.js",
+   "order": "page.portal.talents.newPark.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/greenchannel",
+   "chunk": "index.178332063620097.js",
+   "order": "page.portal.talents.greenchannel.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/overseasRecruitment",
+   "chunk": "index.1783320636200101.js",
+   "order": "page.portal.talents.overseasRecruitment.index"
+  },
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/antDetail",
+   "chunk": "antDetail.1783320636200.js",
+   "order": "page.portal.talents.overseasRecruitment.antDetail"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/oddjob/need",
+   "chunk": "need-job.1751615607545.js",
+   "order": "page.uc.oddjob.need"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/oddjob/need/add",
+   "chunk": "need-job-add.1751615607545.js",
+   "order": "page.uc.oddjob.need.add"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/oddjob/need/edit",
+   "chunk": "need-job-add.1751615607545.js",
+   "order": "page.uc.oddjob.need.add"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/oddjob/lack",
+   "chunk": "lack-job.1751615607545.js",
+   "order": "page.uc.oddjob.lack"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/oddjob/lack/add",
+   "chunk": "lack-job-add.1751615607545.js",
+   "order": "page.uc.oddjob.lack.add"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/oddjob/lack/edit",
+   "chunk": "lack-job-add.1751615607545.js",
+   "order": "page.uc.oddjob.lack.add"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/oddjob/sharepage",
+   "chunk": "share-job.1751615607545.js",
+   "order": "page.uc.oddjob.sharepage"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/jobhunterhomeZzgj",
+   "chunk": "homeZzgj.1751615607545.js",
+   "order": "page.uc.jobhunterhomeZzgj"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/jobhunterhomeZ",
+   "chunk": "homeZzgj.1751615607545.js",
+   "order": "page.uc.jobhunterhomeZzgj"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/CorpCenterZ",
+   "chunk": "CorpCenterZzgj.1751615607545.js",
+   "order": "page.uc.CorpCenterZ"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/unRegister",
+   "chunk": "unRegister.1751615607545.js",
+   "order": "page.uc.unRegister"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/zgAccount",
+   "chunk": "account.1751615607545.js",
+   "order": "page.uc.zgAccount"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/changeRole",
+   "chunk": "ChangeRole.1751615607545.js",
+   "order": "page.uc.changeRole"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/projectApplyDetails",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/financeorgDetailsNew",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/incubatorsManage",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/cominfo",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/indicatorSystemList",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/projectMg",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/projectMgList",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/activitiesMgBook",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/companyReceiveBook",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/companyInitiateBook",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/personinfo",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/perApplyDetails",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/projectApply",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/perProjectMgList",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/mentorsRecruit",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/personReceiveBook",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/personInitiateBook",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/personReceiveLeaveMsg",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/rc04MemberZx",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/rc05Good",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/rc06Party",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/applyDifficulty",
+   "chunk": "projectApplyDetails.1751615607545.js",
+   "order": "page.uc.projectApplyDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/main",
+   "chunk": "dashboard.1751615607545.js",
+   "order": "page.uc.main"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/StorageChgPassword",
+   "chunk": "changepassword.1751615607545.js",
+   "order": "page.uc.StorageChgPassword"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/accountBind",
+   "chunk": "accountBind.1751615607545.js",
+   "order": "page.uc.accountBind"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/changephone",
+   "chunk": "changephone.1751615607545.js",
+   "order": "page.uc.changephone"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/changeavatar",
+   "chunk": "changeavatar.1751615607545.js",
+   "order": "page.uc.changeavatar"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/nom",
+   "chunk": "nom.1751615607545.js",
+   "order": "page.uc.nom"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/userImg",
+   "chunk": "index.17516156075452.js",
+   "order": "page.uc.userImg"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/corpImg",
+   "chunk": "index.17516156075453.js",
+   "order": "page.uc.corpImg"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/audit",
+   "chunk": "audit.1751615607545.js",
+   "order": "page.uc.audit"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/doneList",
+   "chunk": "doneList.1751615607545.js",
+   "order": "page.uc.doneList"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/myPoints",
+   "chunk": "myPoints.1751615607545.js",
+   "order": "page.uc.myPoints"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/pointsAdmin",
+   "chunk": "myPoints.1751615607545.js",
+   "order": "page.uc.myPoints"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/needList",
+   "chunk": "index.17516156075454.js",
+   "order": "page.uc.needList"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/needDetail",
+   "chunk": "detail.1751615607545.js",
+   "order": "page.uc.needDetail"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/findList",
+   "chunk": "index.17516156075455.js",
+   "order": "page.uc.findList"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/findDetail",
+   "chunk": "detail.17516156075452.js",
+   "order": "page.uc.findDetail"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/formDone/:type",
+   "chunk": "formDone.1751615607545.js",
+   "order": "page.uc.formDone"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/mentor",
+   "chunk": "index.17516156075456.js",
+   "order": "page.uc.mentor"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/expert",
+   "chunk": "index.17516156075457.js",
+   "order": "page.uc.expert"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/graduates",
+   "chunk": "index.17516156075458.js",
+   "order": "page.uc.graduates"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/mentorhome",
+   "chunk": "home.1751615607545.js",
+   "order": "page.uc.mentorhome"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/experthome",
+   "chunk": "home.17516156075452.js",
+   "order": "page.uc.experthome"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/CorpAttestation",
+   "chunk": "CorpAttestation.1751615607545.js",
+   "order": "page.uc.CorpAttestation"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/supermarket",
+   "chunk": "CorpAttestation.1751615607545.js",
+   "order": "page.uc.CorpAttestation"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/zcyzCorpAttestation",
+   "chunk": "zcyzCorpAttestation.1751615607545.js",
+   "order": "page.uc.zcyzCorpAttestation"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/corpLoan",
+   "chunk": "index.17516156075459.js",
+   "order": "page.uc.corpLoan"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/corpLoan/corpLoanInfo",
+   "chunk": "corpLoanInfo.1751615607545.js",
+   "order": "page.uc.corpLoan.corpLoanInfo"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/CorpAttestationapprove",
+   "chunk": "CorpAttestationapprove.1751615607545.js",
+   "order": "page.uc.CorpAttestationapprove"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/zcyzCorpAttestationapprove",
+   "chunk": "zcyzCorpAttestationapprove.1751615607545.js",
+   "order": "page.uc.zcyzCorpAttestationapprove"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/CorpCenter",
+   "chunk": "CorpCenter.1751615607545.js",
+   "order": "page.uc.CorpCenter"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/marketCenter",
+   "chunk": "marketCenter.1751615607545.js",
+   "order": "page.uc.marketCenter"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/PositionRelease",
+   "chunk": "PositionRelease.1751615607545.js",
+   "order": "page.uc.PositionRelease"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/PositionReleaseAbroad",
+   "chunk": "PositionReleaseAbroad.1751615607545.js",
+   "order": "page.uc.PositionReleaseAbroad"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/BeOnAdmin",
+   "chunk": "BeOnAdmin.1751615607545.js",
+   "order": "page.uc.BeOnAdmin"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/BeOnProbation",
+   "chunk": "BeOnProbation.1751615607545.js",
+   "order": "page.uc.BeOnProbation"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/RecIntResume",
+   "chunk": "RecIntResume.1751615607545.js",
+   "order": "page.uc.RecIntResume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/noviciateInvited",
+   "chunk": "noviciateInvited.1751615607545.js",
+   "order": "page.uc.noviciateInvited"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/downnoviciate",
+   "chunk": "downnoviciate.1751615607545.js",
+   "order": "page.uc.downnoviciate"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/PositionAdmin",
+   "chunk": "PositionAdmin.1751615607545.js",
+   "order": "page.uc.PositionAdmin"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/TalentSearch",
+   "chunk": "TalentSearch.1751615607545.js",
+   "order": "page.uc.TalentSearch"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/pool",
+   "chunk": "pool.1751615607545.js",
+   "order": "page.uc.pool"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/trash",
+   "chunk": "trash.1751615607545.js",
+   "order": "page.uc.trash"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/collectme",
+   "chunk": "collectme.1751615607545.js",
+   "order": "page.uc.collectme"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/InterviewInvitation",
+   "chunk": "InterviewInvitation.1751615607545.js",
+   "order": "page.uc.InterviewInvitation"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/DownloadResume",
+   "chunk": "DownloadResume.1751615607545.js",
+   "order": "page.uc.DownloadResume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/ReceivedResume",
+   "chunk": "ReceivedResume.1751615607545.js",
+   "order": "page.uc.ReceivedResume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/ReceivedResumeLive",
+   "chunk": "ReceivedResumeLive.1751615607545.js",
+   "order": "page.uc.ReceivedResumeLive"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/WebWorkResume",
+   "chunk": "index.175161560754510.js",
+   "order": "page.uc.WebWorkResume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/CenterFairResume",
+   "chunk": "index.175161560754511.js",
+   "order": "page.uc.CenterFairResume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/AreaOutFairResume",
+   "chunk": "index.175161560754511.js",
+   "order": "page.uc.CenterFairResume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/CityOutFairResume",
+   "chunk": "index.175161560754511.js",
+   "order": "page.uc.CenterFairResume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/WorkStyleAdmin",
+   "chunk": "WorkStyleAdmin.1751615607545.js",
+   "order": "page.uc.WorkStyleAdmin"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/BeOnProbationAdmin",
+   "chunk": "BeOnProbationAdmin.1751615607545.js",
+   "order": "page.uc.BeOnProbationAdmin"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/userFairs",
+   "chunk": "userFairs.1751615607545.js",
+   "order": "page.uc.userFairs"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/corpFairs/:key?",
+   "chunk": "corpFairs.1751615607545.js",
+   "order": "page.uc.corpFairs"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/JobFairsHome/:key?",
+   "chunk": "JobFairsHome.1751615607545.js",
+   "order": "page.uc.JobFairsHome"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/fairsList",
+   "chunk": "fairsList.1751615607545.js",
+   "order": "page.uc.fairsList"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/fairsOutList",
+   "chunk": "fairsOutList.1751615607545.js",
+   "order": "page.uc.fairsOutList"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/webFairWork/:zphId",
+   "chunk": "webFairWork.1751615607545.js",
+   "order": "page.uc.webFairWork"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/sceneFairSign/:zphId",
+   "chunk": "sceneFairSign.1751615607545.js",
+   "order": "page.uc.sceneFairSign"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/JobFairRelease",
+   "chunk": "JobFairRelease.1751615607545.js",
+   "order": "page.uc.JobFairRelease"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/myconsult",
+   "chunk": "myconsult.1751615607545.js",
+   "order": "page.uc.myconsult"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/allconsult",
+   "chunk": "allconsult.1751615607545.js",
+   "order": "page.uc.allconsult"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/jobhunterhome",
+   "chunk": "home.17516156075453.js",
+   "order": "page.uc.jobhunterhome"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/schoolgraduatehome",
+   "chunk": "home.17516156075453.js",
+   "order": "page.uc.jobhunterhome"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/Createaresume",
+   "chunk": "Createaresume.1751615607545.js",
+   "order": "page.uc.Createaresume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/myresume",
+   "chunk": "myresume.1751615607545.js",
+   "order": "page.uc.myresume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/resumetemplate",
+   "chunk": "resumetemplate.1751615607545.js",
+   "order": "page.uc.resumetemplate"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/enterprisetemplate",
+   "chunk": "enterprisetemplate.1751615607545.js",
+   "order": "page.uc.enterprisetemplate"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/Invited",
+   "chunk": "Invited.1751615607545.js",
+   "order": "page.uc.Invited"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/send",
+   "chunk": "send.1751615607545.js",
+   "order": "page.uc.send"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/allianceSend",
+   "chunk": "AllianceSend.1751615607545.js",
+   "order": "page.uc.allianceSend"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/trainCourseHis",
+   "chunk": "index.175161560754512.js",
+   "order": "page.uc.trainCourseHis"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/lookresume",
+   "chunk": "lookresume.1751615607545.js",
+   "order": "page.uc.lookresume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/maskunit",
+   "chunk": "maskunit.1751615607545.js",
+   "order": "page.uc.maskunit"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/collage/studentInfo",
+   "chunk": "info.1751615607545.js",
+   "order": "page.uc.collage.studentInfo"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/collage/studentApply",
+   "chunk": "apply.1751615607545.js",
+   "order": "page.uc.collage.studentApply"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/collage/nojob",
+   "chunk": "nojob.1751615607545.js",
+   "order": "page.uc.collage.nojob"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/sign/corpInfo",
+   "chunk": "info.17516156075452.js",
+   "order": "page.uc.sign.corpInfo"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/sign/corpApply",
+   "chunk": "apply.17516156075452.js",
+   "order": "page.uc.sign.corpApply"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/corpNoJob",
+   "chunk": "nojob.17516156075452.js",
+   "order": "page.uc.corpNoJob"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/personalstyle",
+   "chunk": "personalstyle.1751615607545.js",
+   "order": "page.uc.personalstyle"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/mysubscribe",
+   "chunk": "mysubscribe.1751615607545.js",
+   "order": "page.uc.mysubscribe"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/addmysubscribe",
+   "chunk": "addmysubscribe.1751615607545.js",
+   "order": "page.uc.addmysubscribe"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/myaccuse",
+   "chunk": "myaccuse.1751615607545.js",
+   "order": "page.uc.myaccuse"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/myRegistration",
+   "chunk": "innovation.1751615607545.js",
+   "order": "page.uc.myRegistration"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/personLoan",
+   "chunk": "index.175161560754513.js",
+   "order": "page.uc.personLoan"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/personLoan/detailInfo",
+   "chunk": "detailInfo.1751615607545.js",
+   "order": "page.uc.personLoan.detailInfo"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/mynews",
+   "chunk": "mynews.1751615607545.js",
+   "order": "page.uc.mynews"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/signUp",
+   "chunk": "signUp.1751615607545.js",
+   "order": "page.uc.signUp"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/overseasRecruitment",
+   "chunk": "overseasRecruitment.1751615607545.js",
+   "order": "page.uc.overseasRecruitment"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/activitySign",
+   "chunk": "activitySign.1751615607545.js",
+   "order": "page.uc.activitySign"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/businessSingUp",
+   "chunk": "businessSingUp.1751615607545.js",
+   "order": "page.uc.businessSingUp"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/courseSingUp",
+   "chunk": "courseSingUp.1751615607545.js",
+   "order": "page.uc.courseSingUp"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/projectSingUp",
+   "chunk": "projectSingUp.1751615607545.js",
+   "order": "page.uc.projectSingUp"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/Personalonlineservice",
+   "chunk": "Personalonlineservice.1751615607545.js",
+   "order": "page.uc.Personalonlineservice"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/Enterpriseonlineservices",
+   "chunk": "Enterpriseonlineservices.1751615607545.js",
+   "order": "page.uc.Enterpriseonlineservices"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/inSurvey",
+   "chunk": "inSurvey.1751615607545.js",
+   "order": "page.uc.inSurvey"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/collectmentor",
+   "chunk": "collectmentor.1751615607545.js",
+   "order": "page.uc.collectmentor"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/Unitposition",
+   "chunk": "Unitposition.1751615607545.js",
+   "order": "page.uc.Unitposition"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/allianceUnitposition",
+   "chunk": "AllianceUnitposition.1751615607545.js",
+   "order": "page.uc.allianceUnitposition"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/collectOdd",
+   "chunk": "collectOdd.1751615607545.js",
+   "order": "page.uc.collectOdd"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/consult",
+   "chunk": "consult.1751615607545.js",
+   "order": "page.uc.consult"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/feedback",
+   "chunk": "feedback.1751615607545.js",
+   "order": "page.uc.feedback"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/liveApply",
+   "chunk": "index.175161560754514.js",
+   "order": "page.uc.liveApply"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/liveApplyAdd",
+   "chunk": "add.1751615607545.js",
+   "order": "page.uc.liveApplyAdd"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/teachIn",
+   "chunk": "index.175161560754515.js",
+   "order": "page.uc.teachIn"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/teachInManage",
+   "chunk": "index.175161560754516.js",
+   "order": "page.uc.teachInManage"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/teachInCancel",
+   "chunk": "cancelList.1751615607545.js",
+   "order": "page.uc.teachInCancel"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/industrySkillTree",
+   "chunk": "index.175161560754517.js",
+   "order": "page.uc.industrySkillTree"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/recruitmentInformation",
+   "chunk": "index.175161560754518.js",
+   "order": "page.uc.recruitmentInformation"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/addNewsDetails",
+   "chunk": "addNewsDetails.1751615607545.js",
+   "order": "page.uc.addNewsDetails"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/recruitmentStatis",
+   "chunk": "index.175161560754519.js",
+   "order": "page.uc.recruitmentStatis"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/recruitmentSignMng",
+   "chunk": "index.175161560754520.js",
+   "order": "page.uc.recruitmentSignMng"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/zcyzPositionRelease",
+   "chunk": "zcyzPositionRelease.1751615607545.js",
+   "order": "page.uc.zcyzPositionRelease"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/zcyzJobFairRelease",
+   "chunk": "zcyzJobFairRelease.1751615607545.js",
+   "order": "page.uc.zcyzJobFairRelease"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/zcyzwebFairWork/:zphId",
+   "chunk": "zcyzwebFairWork.1751615607545.js",
+   "order": "page.uc.zcyzwebFairWork"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/converList",
+   "chunk": "index.175161560754521.js",
+   "order": "page.uc.converList"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/lookList",
+   "chunk": "index.175161560754522.js",
+   "order": "page.uc.lookList"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/lookList",
+   "chunk": "index.175161560754522.js",
+   "order": "page.uc.lookList"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/gongfuWorkshop/positionPosting",
+   "chunk": "index.175161560754523.js",
+   "order": "page.uc.gongfuWorkshop.positionPosting"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/gongfuWorkshop/jobPosting",
+   "chunk": "index.175161560754524.js",
+   "order": "page.uc.gongfuWorkshop.jobPosting"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/trainCertificate",
+   "chunk": "index.175161560754525.js",
+   "order": "page.uc.trainCertificate"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/404",
+   "chunk": "404.1751615607545.js",
+   "order": "page.uc.404"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/previewresume",
+   "chunk": "previewresume.1751615607545.js",
+   "order": "page.uc.previewresume"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/login",
+   "chunk": "index.175161560754526.js",
+   "order": "page.uc.login"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/403",
+   "chunk": "403.1751615607545.js",
+   "order": "page.uc.403"
+  },
+  {
+   "site": "usercenter",
+   "app": "uc",
+   "route": "/autoLogin",
+   "chunk": "autoLogin.1751615607545.js",
+   "order": "page.uc.autoLogin"
+  }
+ ],
+ "blocked": [
+  {
+   "site": "portal",
+   "app": "portal",
+   "route": "/talents/talentScreen",
+   "component": "src/views/talents/cockPit/talentScreen",
+   "reason": "原包里不存在该页面（入口 glob 中没有对应 chunk）"
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "id": "shared.uc.modules",
+ "chunk": [
+  "legacy-dist/usercenter/assets/DictCodes.1751615607545.js",
+  "legacy-dist/usercenter/assets/WebSockets.1751615607545.js",
+  "legacy-dist/usercenter/assets/dateUtil.1751615607545.js",
+  "legacy-dist/usercenter/assets/jspdf.es.min.1751615607545.js",
+  "legacy-dist/usercenter/assets/message.1751615607545.js",
+  "legacy-dist/usercenter/assets/wxyy.hook.1751615607545.js",
+  "legacy-dist/usercenter/assets/default.1751615607545.js",
+  "legacy-dist/usercenter/assets/newUserCard.vue_vue_type_style_index_0_scoped_399cb1b5_lang.1751615607545.js",
+  "legacy-dist/usercenter/assets/stateCard.vue_vue_type_style_index_0_scoped_53902b4a_lang.1751615607545.js"
+ ],
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "entry": {
+  "ve": {
+   "original": "aX",
+   "ignore": "Babel 的 typeof 辅助函数，源码里直接写 typeof"
+  },
+  "fs": {
+   "original": "aY",
+   "ignore": "Vite 的 __vitePreload 辅助函数，源码里直接写 import()"
+  },
+  "n": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "o": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "a": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  }
+ },
+ "shared": {},
+ "api": {},
+ "modules": {},
+ "views": {},
+ "vue": {},
+ "missing": [],
+ "sideEffects": []
+}

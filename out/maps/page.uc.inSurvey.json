@@ -1,0 +1,56 @@
+{
+ "id": "page.uc.inSurvey",
+ "chunk": "legacy-dist/usercenter/assets/inSurvey.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "T": "defineComponent",
+  "x": "inject",
+  "C": "reactive",
+  "N": "onMounted",
+  "c": "resolveComponent",
+  "i": "openBlock",
+  "o": "createElementBlock",
+  "p": "createElementVNode",
+  "B": "Fragment",
+  "u": "createVNode",
+  "g": "withCtx",
+  "l": "toDisplayString",
+  "m": "createCommentVNode",
+  "R": "normalizeStyle",
+  "F": "createTextVNode",
+  "q": "pushScopeId",
+  "A": "popScopeId"
+ },
+ "entry": {
+  "v": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "w": {
+   "original": "bm",
+   "path": "@/legacy/api",
+   "export": "getMyAnswerRecord",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "z": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "I": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

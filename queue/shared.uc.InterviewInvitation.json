@@ -1,0 +1,67 @@
+{
+ "id": "shared.uc.InterviewInvitation",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 7.2,
+ "chunkKb": 7.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/InterviewInvitation.17516156075452.js",
+ "components": [
+  {
+   "name": "InterviewInvitation",
+   "scopeId": "data-v-85ce95bb"
+  }
+ ],
+ "scopeIds": [
+  "data-v-85ce95bb"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/InterviewInvitation.17516156075452.css"
+ ],
+ "target": "apps/uc/src/shared/InterviewInvitation.vue",
+ "exports": {
+  "I": {
+   "export": "default"
+  }
+ },
+ "registryKey": "InterviewInvitation.17516156075452.js",
+ "usedBy": [
+  "page.uc.CorpCenterZ",
+  "page.uc.CorpCenter",
+  "page.uc.marketCenter",
+  "page.uc.RecIntResume",
+  "page.uc.downnoviciate",
+  "page.uc.TalentSearch",
+  "page.uc.pool",
+  "page.uc.trash",
+  "page.uc.ReceivedResume",
+  "page.uc.WebWorkResume",
+  "shared.uc.ReceivedResumeList"
+ ],
+ "maps": "out/maps/shared.uc.InterviewInvitation.json",
+ "hints": "out/hints/shared.uc.InterviewInvitation.md",
+ "deps": {
+  "entry": [
+   "M",
+   "as",
+   "at",
+   "au",
+   "av",
+   "d",
+   "k",
+   "p"
+  ],
+  "shared": [
+   "message.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

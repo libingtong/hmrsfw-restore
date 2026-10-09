@@ -1,0 +1,59 @@
+{
+ "id": "shared.uc.positionmodal",
+ "chunk": "legacy-dist/usercenter/assets/positionmodal.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "S": "defineComponent",
+  "N": "reactive",
+  "R": "onMounted",
+  "g": "resolveComponent",
+  "i": "openBlock",
+  "d": "createElementBlock",
+  "a": "createVNode",
+  "e": "withCtx",
+  "p": "createBlock",
+  "u": "createElementVNode",
+  "r": "toDisplayString",
+  "f": "createCommentVNode",
+  "c": "unref",
+  "A": "createTextVNode"
+ },
+ "entry": {
+  "C": {
+   "original": "a9",
+   "path": "@/legacy",
+   "export": "detailById",
+   "status": "restored"
+  },
+  "D": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "_": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "w": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "B": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

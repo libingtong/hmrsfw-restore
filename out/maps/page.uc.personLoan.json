@@ -1,0 +1,50 @@
+{
+ "id": "page.uc.personLoan",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754513.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "P": "defineComponent",
+  "q": "useRouter (vue-router)",
+  "z": "reactive",
+  "A": "onMounted",
+  "m": "resolveComponent",
+  "s": "openBlock",
+  "u": "createElementBlock",
+  "k": "createElementVNode",
+  "O": "createVNode",
+  "d": "withCtx",
+  "x": "createBlock",
+  "R": "createTextVNode",
+  "r": "createCommentVNode",
+  "V": "Fragment",
+  "E": "toDisplayString"
+ },
+ "entry": {
+  "L": {
+   "original": "N",
+   "path": "@/legacy/components/Notice.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.uc.c01"
+  },
+  "$": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "B": {
+   "original": "index.api.175161560754515.js#g",
+   "path": "@/api/jobLoanApplyPerson",
+   "export": "listForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLoanApplyPerson/listForUserCenter"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

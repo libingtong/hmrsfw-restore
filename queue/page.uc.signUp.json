@@ -1,0 +1,73 @@
+{
+ "id": "page.uc.signUp",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 15,
+ "sourceChunk": "legacy-dist/usercenter/assets/signUp.1751615607545.js",
+ "components": [
+  {
+   "name": "PayModal",
+   "scopeId": "data-v-25d041ba"
+  },
+  {
+   "name": "DetailModal",
+   "scopeId": "data-v-9598f08c"
+  },
+  {
+   "name": "signUp",
+   "scopeId": "data-v-3a188487"
+  }
+ ],
+ "scopeIds": [
+  "data-v-25d041ba",
+  "data-v-9598f08c",
+  "data-v-3a188487"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/signUp.1751615607545.css",
+  "legacy-dist/usercenter/assets/DetailModal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/signUp.vue",
+ "subComponentDir": "apps/uc/src/views/signUp/",
+ "routes": [
+  {
+   "path": "/signUp",
+   "name": "signUp"
+  }
+ ],
+ "recordPath": "/signUp",
+ "maps": "out/maps/page.uc.signUp.json",
+ "hints": "out/hints/page.uc.signUp.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "aN",
+   "bc",
+   "bd",
+   "be",
+   "bf",
+   "d",
+   "h",
+   "k",
+   "m"
+  ],
+  "shared": [
+   "WebSockets.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "jspdf.es.min.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/signUp",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "page.portal.talents.index.homeList",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.7,
+ "sourceChunk": "legacy-dist/portal/assets/homeList.1783320636200.js",
+ "components": [
+  {
+   "name": "homeList",
+   "scopeId": "data-v-9926b2dc"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9926b2dc"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/homeList.17833206362002.css",
+  "legacy-dist/portal/assets/navigation.1783320636200.css",
+  "legacy-dist/portal/assets/homeList.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/index/homeList.vue",
+ "subComponentDir": "apps/portal/src/views/talents/index/homeList/",
+ "routes": [],
+ "recordPath": "/talents/index",
+ "maps": "out/maps/page.portal.talents.index.homeList.json",
+ "hints": "out/hints/page.portal.talents.index.homeList.md",
+ "deps": {
+  "entry": [
+   "aj",
+   "av",
+   "cn"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.index.index"
+}

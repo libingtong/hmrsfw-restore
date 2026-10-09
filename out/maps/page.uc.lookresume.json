@@ -1,0 +1,61 @@
+{
+ "id": "page.uc.lookresume",
+ "chunk": "legacy-dist/usercenter/assets/lookresume.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "I": "defineComponent",
+  "V": "useRouter (vue-router)",
+  "U": "reactive",
+  "b": "onMounted",
+  "u": "resolveComponent",
+  "i": "openBlock",
+  "s": "createElementBlock",
+  "l": "createVNode",
+  "N": "withCtx",
+  "p": "createTextVNode",
+  "r": "createElementVNode",
+  "_": "Fragment",
+  "D": "renderList",
+  "d": "toDisplayString"
+ },
+ "entry": {
+  "K": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "$": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "L": {
+   "original": "index.api.17516156075456.js#e",
+   "path": "@/api/api-56",
+   "export": "listWithSort",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort"
+  },
+  "T": {
+   "original": "index.api.17516156075456.js#f",
+   "path": "@/api/api-56",
+   "export": "listNoPage",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/listNoPage"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

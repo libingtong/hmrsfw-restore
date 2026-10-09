@@ -1,0 +1,216 @@
+{
+ "id": "page.uc.jobhunterhome",
+ "chunk": "legacy-dist/usercenter/assets/home.17516156075453.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "D": "defineComponent",
+  "N": "ref",
+  "V": "useRouter (vue-router)",
+  "Z": "reactive",
+  "E": "onMounted",
+  "k": "resolveComponent",
+  "t": "openBlock",
+  "n": "createElementBlock",
+  "I": "Fragment",
+  "e": "createElementVNode",
+  "r": "createVNode",
+  "h": "unref",
+  "a": "toDisplayString",
+  "$": "createTextVNode",
+  "w": "createCommentVNode",
+  "Y": "withDirectives",
+  "oe": "vShow",
+  "A": "normalizeClass",
+  "ae": "computed",
+  "G": "onBeforeMount",
+  "ne": "resolveDirective",
+  "S": "createBlock",
+  "_": "withCtx",
+  "q": "renderList",
+  "X": "pushScopeId",
+  "K": "popScopeId",
+  "ce": "useRoute (vue-router)",
+  "ie": "inject"
+ },
+ "entry": {
+  "Q": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "le": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "re": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "L": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "z": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "W": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "de": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "M": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "_e": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "ue": {
+   "original": "Y",
+   "path": "@/legacy/utils",
+   "export": "closeTag",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "pe": {
+   "original": "s",
+   "path": "@/legacy/api",
+   "export": "queryAnnouncementList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "H": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  }
+ },
+ "api": {
+  "me": {
+   "original": "index.api.17516156075456.js#c",
+   "path": "@/api/api-56",
+   "export": "statics",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/statics"
+  },
+  "fe": {
+   "original": "index.api.17516156075456.js#d",
+   "path": "@/api/api-56",
+   "export": "listNew",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobInterviewInvitation/listNew"
+  },
+  "he": {
+   "original": "index.api.17516156075456.js#e",
+   "path": "@/api/api-56",
+   "export": "listWithSort",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort"
+  },
+  "J": {
+   "original": "index.api.17516156075456.js#p",
+   "path": "@/api/api-56",
+   "export": "acceptOrRefuse",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse"
+  },
+  "we": {
+   "original": "index.api.1751615607545.js#e",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "getRecommendTalentList",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCompany/getRecommendTalentList"
+  },
+  "xe": {
+   "original": "index.api.1751615607545.js#f",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "recommendJobList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"
+  }
+ },
+ "shared": {
+  "ye": {
+   "original": "right.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/right.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.right"
+  },
+  "ve": {
+   "original": "recommendZp.1751615607545.js#s",
+   "path": "@/shared/recommendZp/StateCard.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.recommendZp"
+  },
+  "ge": {
+   "original": "recommendZp.1751615607545.js#r",
+   "path": "@/shared/recommendZp/RecommendZp.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.recommendZp"
+  },
+  "Ie": {
+   "original": "mymsg.1751615607545.js#m",
+   "path": "@/shared/mymsg/Mymsg.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.mymsg"
+  },
+  "Se": {
+   "original": "resumemodal.1751615607545.js#r",
+   "path": "@/shared/resumemodal.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "P": {
+   "original": "newUserCard.vue_vue_type_style_index_0_scoped_399cb1b5_lang.1751615607545.js#_",
+   "value": "/assets/clogo.1751615607545.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "newUserCardImg",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
+  },
+  "ke": {
+   "original": "default.1751615607545.js#_",
+   "value": "/assets/default.1751615607545.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "defaultImg",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
+  }
+ },
+ "sideEffects": [
+  "right.vue_vue_type_style_index_0_scopes_true_lang.1751615607545.js",
+  "stateCard.vue_vue_type_style_index_0_scoped_53902b4a_lang.1751615607545.js"
+ ],
+ "missing": []
+}

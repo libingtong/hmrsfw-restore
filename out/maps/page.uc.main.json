@@ -1,0 +1,289 @@
+{
+ "id": "page.uc.main",
+ "chunk": "legacy-dist/usercenter/assets/dashboard.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "V": "defineComponent",
+  "oe": "inject",
+  "je": "useRoute (vue-router)",
+  "G": "useRouter (vue-router)",
+  "W": "reactive",
+  "Be": "toRefs",
+  "Ae": "computed",
+  "ce": "onBeforeMount",
+  "ie": "onMounted",
+  "z": "resolveComponent",
+  "r": "openBlock",
+  "f": "createElementBlock",
+  "d": "createVNode",
+  "S": "withCtx",
+  "c": "createElementVNode",
+  "q": "Fragment",
+  "Oe": "renderList",
+  "k": "unref",
+  "B": "createBlock",
+  "y": "createCommentVNode",
+  "P": "normalizeClass",
+  "h": "toDisplayString",
+  "ne": "withDirectives",
+  "ae": "vShow",
+  "re": "pushScopeId",
+  "ue": "popScopeId",
+  "_": "h",
+  "D": "ref",
+  "$e": "watch",
+  "se": "createTextVNode"
+ },
+ "entry": {
+  "Ne": {
+   "original": "u",
+   "path": "@/legacy/store",
+   "export": "useCommonStore",
+   "status": "reserved",
+   "owner": "entry.uc.E4"
+  },
+  "pe": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "fe": {
+   "original": "b",
+   "path": "vuex",
+   "export": "useStore",
+   "status": "npm"
+  },
+  "U": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getSettingValueByCodes",
+   "status": "restored"
+  },
+  "F": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "H": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "Y": {
+   "original": "l",
+   "path": "@/legacy/utils",
+   "export": "setLocalStorage",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Z": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "A": {
+   "original": "q",
+   "path": "@/legacy/api",
+   "export": "queryByCompanyId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Re": {
+   "original": "i",
+   "path": "@/legacy/api",
+   "export": "izCompanyComplete",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "le": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "L": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "N": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "O": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Fe": {
+   "original": "j",
+   "path": "@/legacy/api",
+   "export": "sysUserAuthenticateIdentityList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "X": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "Je": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ke": {
+   "original": "n",
+   "path": "@/legacy/api",
+   "export": "listOneForWebSite",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Me": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "parseIdCard",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "De": {
+   "original": "r",
+   "path": "@/legacy/utils",
+   "export": "maskPhone3",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "He": {
+   "original": "s",
+   "path": "@/legacy/api",
+   "export": "queryAnnouncementList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {
+  "Ye": {
+   "original": "index.api.1751615607545.js#g",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "queryByUserId",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId"
+  },
+  "Ze": {
+   "original": "index.api.1751615607545.js#a",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "getAppealFlagByXfSysUserId",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobAppealRecord/getAppealFlagByXfSysUserId"
+  },
+  "Ve": {
+   "original": "index.api.1751615607545.js#b",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "addForClosDown",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobAppealRecord/merchants/addForClosDown"
+  },
+  "Ge": {
+   "original": "index.api.1751615607545.js#c",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "checkIzPerfect",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUser/checkIzPerfect"
+  },
+  "We": {
+   "original": "index.api.1751615607545.js#p",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "beJobSeeker",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/beJobSeeker"
+  },
+  "Xe": {
+   "original": "index.api.1751615607545.js#d",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "apply",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobSupermarketMerchants/apply"
+  },
+  "Qe": {
+   "original": "index.api.1751615607545.js#l",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "logout",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobSupermarketMerchants/logout"
+  },
+  "lt": {
+   "original": "index.api.17516156075452.js#g",
+   "path": "@/api/sysUser",
+   "export": "queryByIdJM",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUser/queryByIdJM"
+  }
+ },
+ "shared": {
+  "Le": {
+   "original": "mymsg.1751615607545.js#m",
+   "path": "@/shared/mymsg/Mymsg.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.mymsg"
+  },
+  "et": {
+   "original": "market.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/market.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.market"
+  },
+  "tt": {
+   "original": "addKeynote.1751615607545.js#a",
+   "path": "@/shared/addKeynote/AddBeOnProbation.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.addKeynote"
+  },
+  "st": {
+   "original": "addKeynote.1751615607545.js#b",
+   "path": "@/shared/addKeynote/AddKeynote.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.addKeynote"
+  },
+  "ot": {
+   "original": "right.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/right.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.right"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "right.vue_vue_type_style_index_0_scopes_true_lang.1751615607545.js",
+  "corporganic.1751615607545.js",
+  "phone.1751615607545.js",
+  "message.1751615607545.js"
+ ],
+ "missing": []
+}

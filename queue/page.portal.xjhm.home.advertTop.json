@@ -1,0 +1,64 @@
+{
+ "id": "page.portal.xjhm.home.advertTop",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 11.8,
+ "sourceChunk": "legacy-dist/portal/assets/advertTop.17833206362006.js",
+ "components": [
+  {
+   "name": "areaCont",
+   "scopeId": "data-v-9dcb5036"
+  },
+  {
+   "name": "advertTop",
+   "scopeId": "data-v-4f3c37cc"
+  }
+ ],
+ "scopeIds": [
+  "data-v-9dcb5036",
+  "data-v-4f3c37cc"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/advertTop.17833206362006.css"
+ ],
+ "target": "apps/portal/src/views/xjhm/home/advertTop.vue",
+ "subComponentDir": "apps/portal/src/views/xjhm/home/advertTop/",
+ "routes": [],
+ "recordPath": "/",
+ "maps": "out/maps/page.portal.xjhm.home.advertTop.json",
+ "hints": "out/hints/page.portal.xjhm.home.advertTop.md",
+ "deps": {
+  "entry": [
+   "B",
+   "D",
+   "W",
+   "ab",
+   "ae",
+   "af",
+   "aq",
+   "bc",
+   "bs",
+   "bt",
+   "c",
+   "cD",
+   "f",
+   "g",
+   "h",
+   "v",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E4",
+   "entry.portal.E6"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.xjhm.home.index"
+}

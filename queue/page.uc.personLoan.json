@@ -1,0 +1,49 @@
+{
+ "id": "page.uc.personLoan",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754513.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-5e61620f"
+  }
+ ],
+ "scopeIds": [
+  "data-v-5e61620f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754516.css",
+  "legacy-dist/usercenter/assets/index.175161560754513.css"
+ ],
+ "target": "apps/uc/src/views/personLoan.vue",
+ "subComponentDir": "apps/uc/src/views/personLoan/",
+ "routes": [
+  {
+   "path": "/personLoan",
+   "name": "personLoan"
+  }
+ ],
+ "recordPath": "/personLoan",
+ "maps": "out/maps/page.uc.personLoan.json",
+ "hints": "out/hints/page.uc.personLoan.md",
+ "deps": {
+  "entry": [
+   "N"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.175161560754515.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.c01"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,48 @@
+{
+ "id": "page.portal.outLink.index",
+ "type": "page",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.4,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620054.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-bbbf387a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-bbbf387a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620053.css",
+  "legacy-dist/portal/assets/index.178332063620054.css"
+ ],
+ "target": "apps/portal/src/views/outLink/index.vue",
+ "subComponentDir": "apps/portal/src/views/outLink/index/",
+ "routes": [
+  {
+   "path": "/outLink",
+   "name": "outLink",
+   "title": "外部链接"
+  }
+ ],
+ "recordPath": "/outLink",
+ "maps": "out/maps/page.portal.outLink.index.json",
+ "hints": "out/hints/page.portal.outLink.index.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/outLink",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

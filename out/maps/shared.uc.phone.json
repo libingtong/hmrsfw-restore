@@ -1,0 +1,25 @@
+{
+ "id": "shared.uc.phone",
+ "chunk": "legacy-dist/usercenter/assets/phone.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "s": "defineComponent",
+  "l": "reactive",
+  "c": "resolveComponent",
+  "i": "openBlock",
+  "h": "createBlock"
+ },
+ "entry": {
+  "u": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

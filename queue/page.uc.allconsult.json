@@ -1,0 +1,51 @@
+{
+ "id": "page.uc.allconsult",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/allconsult.1751615607545.js",
+ "components": [
+  {
+   "name": "allconsult",
+   "scopeId": "data-v-3f130ee7"
+  }
+ ],
+ "scopeIds": [
+  "data-v-3f130ee7"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/allconsult.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/allconsult.vue",
+ "subComponentDir": "apps/uc/src/views/allconsult/",
+ "routes": [
+  {
+   "path": "/allconsult",
+   "name": "allconsult"
+  }
+ ],
+ "recordPath": "/allconsult",
+ "maps": "out/maps/page.uc.allconsult.json",
+ "hints": "out/hints/page.uc.allconsult.md",
+ "deps": {
+  "entry": [
+   "d"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "metormodal.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075454.js#c"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.metormodal"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

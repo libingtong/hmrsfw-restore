@@ -1,0 +1,35 @@
+{
+ "id": "entry.portal.E4",
+ "type": "entry",
+ "area": "E4",
+ "title": "store",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": 0.8,
+ "appCode": "018",
+ "files": [
+  "apps/portal/src/legacy/store.ts"
+ ],
+ "owns": [
+  {
+   "alias": "aq",
+   "path": "@/legacy/store",
+   "export": "useStoreGetters",
+   "status": "reserved"
+  },
+  {
+   "alias": "bt",
+   "path": "@/legacy/store",
+   "export": "store",
+   "status": "reserved"
+  }
+ ],
+ "note": "门户 vuex，用户中心 pinia（+ autoLogin 用的 vuex）",
+ "deps": {
+  "orders": []
+ },
+ "kbEstimated": true
+}

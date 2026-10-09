@@ -1,0 +1,49 @@
+{
+ "id": "page.uc.recruitmentStatis",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754519.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-418a3cfb"
+  }
+ ],
+ "scopeIds": [
+  "data-v-418a3cfb"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754522.css",
+  "legacy-dist/usercenter/assets/index.175161560754519.css"
+ ],
+ "target": "apps/uc/src/views/recruitmentStatis.vue",
+ "subComponentDir": "apps/uc/src/views/recruitmentStatis/",
+ "routes": [
+  {
+   "path": "/recruitmentStatis",
+   "name": "recruitmentStatis"
+  }
+ ],
+ "recordPath": "/recruitmentStatis",
+ "maps": "out/maps/page.uc.recruitmentStatis.json",
+ "hints": "out/hints/page.uc.recruitmentStatis.md",
+ "deps": {
+  "entry": [
+   "d",
+   "m",
+   "w"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

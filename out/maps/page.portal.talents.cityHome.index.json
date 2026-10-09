@@ -1,0 +1,161 @@
+{
+ "id": "page.portal.talents.cityHome.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620094.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ze": "defineComponent",
+  "$e": "useRoute (vue-router)",
+  "ea": "useRouter (vue-router)",
+  "x": "ref",
+  "aa": "watch",
+  "ta": "reactive",
+  "ia": "onBeforeMount",
+  "sa": "onMounted",
+  "W": "resolveComponent",
+  "n": "openBlock",
+  "c": "createElementBlock",
+  "t": "createElementVNode",
+  "b": "unref",
+  "q": "createTextVNode",
+  "N": "toDisplayString",
+  "r": "createVNode",
+  "v": "withCtx",
+  "L": "Fragment",
+  "z": "renderList",
+  "oa": "createCommentVNode",
+  "la": "createBlock",
+  "na": "pushScopeId",
+  "ra": "popScopeId",
+  "ca": "normalizeClass"
+ },
+ "entry": {
+  "Re": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "R": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "We": {
+   "original": "aA",
+   "path": "@/legacy/api",
+   "export": "listForWebsite",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "qe": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "De": {
+   "original": "an",
+   "path": "@/legacy/api",
+   "export": "queryLatestQuestionsList",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Ge": {
+   "original": "ao",
+   "path": "@/legacy/api",
+   "export": "queryQuestionsList",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Xe": {
+   "original": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "je": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "Je": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Ta": {
+   "original": "index.api.178332063620014.js#g",
+   "path": "@/api/article",
+   "export": "freeCompanyList",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/freeCompanyList"
+  }
+ },
+ "shared": {
+  "pa": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ba": {
+   "original": "adsCenter.1783320636200.js#a",
+   "path": "@/shared/adsCenter.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.adsCenter"
+  },
+  "za": {
+   "original": "homeRight.1783320636200.js#h",
+   "path": "@/shared/homeRight.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.homeRight"
+  }
+ },
+ "views": {
+  "_a": {
+   "original": "talentArea.1783320636200.js#f",
+   "path": "@/views/talents/cityHome/talentArea.vue",
+   "export": "default",
+   "order": "page.portal.talents.cityHome.talentArea"
+  },
+  "ya": {
+   "original": "talentArea.1783320636200.js#s",
+   "path": "@/views/talents/cityHome/talentArea.vue",
+   "export": "default",
+   "order": "page.portal.talents.cityHome.talentArea"
+  },
+  "va": {
+   "original": "talentArea.1783320636200.js#t",
+   "path": "@/views/talents/cityHome/talentArea.vue",
+   "export": "default",
+   "order": "page.portal.talents.cityHome.talentArea"
+  }
+ },
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js",
+  "moreInfo.1783320636200.js",
+  "yjfk.1783320636200.js"
+ ],
+ "missing": []
+}

@@ -1,0 +1,44 @@
+{
+ "id": "shared.portal.statusPlace",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 6.6,
+ "chunkKb": 6.6,
+ "sourceChunk": "legacy-dist/portal/assets/statusPlace.1783320636200.js",
+ "components": [
+  {
+   "name": "statusPlace",
+   "scopeId": "data-v-aada8b76"
+  }
+ ],
+ "scopeIds": [
+  "data-v-aada8b76"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/statusPlace.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/statusPlace.vue",
+ "exports": {
+  "s": {
+   "export": "default"
+  }
+ },
+ "registryKey": "statusPlace.1783320636200.js",
+ "usedBy": [
+  "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis"
+ ],
+ "maps": "out/maps/shared.portal.statusPlace.json",
+ "hints": "out/hints/shared.portal.statusPlace.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

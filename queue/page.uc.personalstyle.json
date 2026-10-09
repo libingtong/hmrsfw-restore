@@ -1,0 +1,59 @@
+{
+ "id": "page.uc.personalstyle",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 8.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/personalstyle.1751615607545.js",
+ "components": [
+  {
+   "name": "personalstyle",
+   "scopeId": "data-v-fdc53076"
+  }
+ ],
+ "scopeIds": [
+  "data-v-fdc53076"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/personalstyle.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/personalstyle.vue",
+ "subComponentDir": "apps/uc/src/views/personalstyle/",
+ "routes": [
+  {
+   "path": "/personalstyle",
+   "name": "personalstyle"
+  }
+ ],
+ "recordPath": "/personalstyle",
+ "maps": "out/maps/page.uc.personalstyle.json",
+ "hints": "out/hints/page.uc.personalstyle.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "c",
+   "d",
+   "h",
+   "m",
+   "v"
+  ],
+  "shared": [
+   "workVideo.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075456.js#a1",
+   "index.api.17516156075456.js#a2",
+   "index.api.17516156075456.js#a3",
+   "index.api.17516156075456.js#b"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.workVideo"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

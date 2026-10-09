@@ -1,0 +1,89 @@
+{
+ "id": "seg.uc.sign.corpApply.2",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.sign.corpApply",
+ "index": 2,
+ "of": 2,
+ "assemble": true,
+ "after": [
+  "seg.uc.sign.corpApply.1"
+ ],
+ "kb": 15.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/apply.17516156075452.js",
+ "range": [
+  19548,
+  35570
+ ],
+ "components": [
+  {
+   "name": "protocol",
+   "scopeId": "data-v-537a5c04"
+  },
+  {
+   "name": "apply",
+   "scopeId": "data-v-b3b040d2"
+  }
+ ],
+ "parts": [],
+ "outputs": [
+  "apps/uc/src/views/sign/corpApply/protocol.vue",
+  "apps/uc/src/views/sign/corpApply.vue"
+ ],
+ "target": "apps/uc/src/views/sign/corpApply.vue",
+ "subComponentDir": "apps/uc/src/views/sign/corpApply/",
+ "scopeIds": [
+  "data-v-0fb350d3",
+  "data-v-1f90ab18",
+  "data-v-4b6d9249",
+  "data-v-dc56c74f",
+  "data-v-537a5c04",
+  "data-v-b3b040d2"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/apply.17516156075452.css"
+ ],
+ "routes": [
+  {
+   "path": "/sign/corpApply",
+   "name": "corpApply"
+  }
+ ],
+ "recordPath": "/sign/corpApply",
+ "maps": "out/maps/page.uc.sign.corpApply.json",
+ "hints": "out/hints/page.uc.sign.corpApply.md",
+ "deps": {
+  "entry": [
+   "I",
+   "M",
+   "d",
+   "m",
+   "y"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754514.js#a",
+   "index.api.175161560754514.js#b",
+   "index.api.175161560754514.js#c",
+   "index.api.175161560754514.js#d",
+   "index.api.175161560754514.js#f",
+   "index.api.175161560754514.js#g",
+   "index.api.175161560754514.js#n",
+   "index.api.175161560754514.js#q"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [19548, 35570)（约 15.7KB），其余部分由同页的其他分段负责。",
+  "完整还原这些组件并写成 SFC：protocol → apps/uc/src/views/sign/corpApply/protocol.vue；apply → apps/uc/src/views/sign/corpApply.vue。",
+  "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.uc.sign.corpApply --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
+ ]
+}

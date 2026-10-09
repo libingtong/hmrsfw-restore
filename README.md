@@ -16,12 +16,14 @@
 | 路径 | 内容 |
 | --- | --- |
 | `legacy-dist/` | 线上已发布的前端产物（门户 `portal/`、用户中心 `usercenter/`），还原的唯一依据。只读，不改 |
-| `out/maps/`、`out/hints/` | 每个 chunk 的导入映射与提示表（脚本生成，还原员直接读） |
-| `tools/` | 分析、检查、门槛脚本；`prompt-template-confirm.md` 是还原员指令主体 |
-| `docs/` | `pipeline.md`（编排方案）、`crypto-adapter-spec.md`（加解密适配） |
-| `batch-plan.md` | 批量还原计划 v2，工单字段见第 3 节 |
+| `queue/` | 全部哈密工单（`tools/work-orders.mjs` 生成），`index.json` 一览、`routes.json` 路由清单、`summary.json` 数量 |
+| `registry/` | 公共库清单 `portal.json`、`uc.json`（`tools/registry.mjs` 生成）；`names.<app>.json` 是人工核定的入口导出名 |
+| `out/maps/`、`out/hints/` | 每张工单的导入映射与提示表（由清单生成，还原员直接读）；`c01`–`c20`、`p*` 是 POC 与 20 页确认时期的旧文件 |
+| `tools/` | 分析、检查、门槛脚本；`prompt-template-confirm.md` 是还原员指令主体；交付前自检 `self-check.mjs` |
+| `docs/` | `pipeline.md`（编排方案）、`work-orders.md`（工单、清单、自检）、`registry-cleanup.md`（`hmrsfw-vue` 现状清理方案）、`crypto-adapter-spec.md`（加解密适配） |
+| `batch-plan.md` | 批量还原计划 v2，工单字段见第 3 节（新增字段见 `docs/work-orders.md`） |
 
-`queue/`、`registry/`、`receipts/`、`tests/interact/` 由阶段 2 的子任务按第十二节建立。
+`receipts/`、`tests/interact/` 由阶段 2 的其他子任务按第十二节建立。
 
 本仓库不包含 HAR、登录态、SM2 私钥、后端源码和接口返回的数据。它们只在 Mac mini 本机（`$RESTORE_ASSETS`、`$RESTORE_STATE`），见 `docs/pipeline.md` 第一、四节。提交前运行 `node tools/scan-secrets.mjs`。
 

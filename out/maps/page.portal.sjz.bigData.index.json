@@ -1,0 +1,46 @@
+{
+ "id": "page.portal.sjz.bigData.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620073.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "L": "defineComponent",
+  "X": "reactive",
+  "z": "computed",
+  "I": "onMounted",
+  "W": "openBlock",
+  "k": "createElementBlock",
+  "_": "createElementVNode",
+  "S": "renderSlot",
+  "$": "normalizeStyle",
+  "q": "unref",
+  "B": "pushScopeId",
+  "C": "popScopeId"
+ },
+ "entry": {
+  "E": {
+   "original": "ar",
+   "path": "lodash-es",
+   "export": "debounce",
+   "status": "npm"
+  },
+  "N": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "w": {
+   "original": "index.1783320636200120.js#g",
+   "path": "@/shared/index120.ts",
+   "export": "g",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

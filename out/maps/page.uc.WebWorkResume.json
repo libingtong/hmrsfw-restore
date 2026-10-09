@@ -1,0 +1,122 @@
+{
+ "id": "page.uc.WebWorkResume",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754510.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "xe": "defineComponent",
+  "Ie": "inject",
+  "be": "useRouter (vue-router)",
+  "_e": "reactive",
+  "ge": "ref",
+  "he": "onBeforeMount",
+  "Te": "onMounted",
+  "f": "resolveComponent",
+  "i": "openBlock",
+  "m": "createElementBlock",
+  "s": "createVNode",
+  "n": "withCtx",
+  "R": "Fragment",
+  "Se": "renderList",
+  "we": "normalizeClass",
+  "Ce": "unref",
+  "k": "createBlock",
+  "y": "createCommentVNode",
+  "w": "createTextVNode",
+  "C": "createElementVNode",
+  "F": "toDisplayString",
+  "I": "h",
+  "Ne": "pushScopeId",
+  "Ke": "popScopeId"
+ },
+ "entry": {
+  "N": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "http",
+   "status": "restored"
+  },
+  "Ue": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "je": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "Ve": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "B": {
+   "original": "a7",
+   "path": "@/legacy/api",
+   "export": "isPublishingPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "D": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "$": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Pe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "M": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ze": {
+   "original": "setStatusinterview.1751615607545.js#s",
+   "path": "@/shared/setStatusinterview.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Re": {
+   "original": "InterviewInvitation.17516156075452.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Fe": {
+   "original": "iframeModal.1751615607545.js#i",
+   "path": "@/shared/iframeModal.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.iframeModal"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "index.api.175161560754510.js",
+  "message.1751615607545.js"
+ ],
+ "missing": []
+}

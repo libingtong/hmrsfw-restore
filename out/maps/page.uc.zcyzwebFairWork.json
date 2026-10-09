@@ -1,0 +1,192 @@
+{
+ "id": "page.uc.zcyzwebFairWork",
+ "chunk": "legacy-dist/usercenter/assets/zcyzwebFairWork.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Fe": "defineComponent",
+  "M": "ref",
+  "Pe": "useRoute (vue-router)",
+  "Le": "useRouter (vue-router)",
+  "We": "inject",
+  "Ze": "reactive",
+  "Ye": "onBeforeMount",
+  "Be": "onMounted",
+  "m": "resolveComponent",
+  "_": "openBlock",
+  "De": "createElementBlock",
+  "t": "createVNode",
+  "s": "withCtx",
+  "T": "createElementVNode",
+  "x": "createBlock",
+  "v": "createTextVNode",
+  "I": "createCommentVNode",
+  "W": "toDisplayString",
+  "Me": "withDirectives",
+  "Ue": "vShow",
+  "Ae": "unref",
+  "Z": "nextTick",
+  "je": "pushScopeId",
+  "Ve": "popScopeId"
+ },
+ "entry": {
+  "Qe": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "J": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "O": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "Ge": {
+   "original": "aa",
+   "path": "@/legacy",
+   "export": "getExtractPositionConfig",
+   "status": "restored"
+  },
+  "Ke": {
+   "original": "ab",
+   "path": "@/legacy",
+   "export": "confirmExtract",
+   "status": "restored"
+  },
+  "ea": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "aa": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "U": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ta": {
+   "original": "ad",
+   "path": "@/legacy",
+   "export": "checkSensitive",
+   "status": "restored"
+  },
+  "E": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "$": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "sa": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "He": {
+   "original": "index.api.175161560754512.js#q",
+   "path": "@/api/api-175161560754512",
+   "export": "queryById",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFair/queryById"
+  },
+  "Je": {
+   "original": "index.api.175161560754512.js#J",
+   "path": "@/api/api-175161560754512",
+   "export": "list2",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairPositionRelation/list"
+  },
+  "Oe": {
+   "original": "index.api.175161560754512.js#d",
+   "path": "@/api/api-175161560754512",
+   "export": "companyPositionAdd",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairApplyInfo/companyPositionAdd"
+  },
+  "Ee": {
+   "original": "index.api.175161560754512.js#e",
+   "path": "@/api/api-175161560754512",
+   "export": "addPosition",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairPositionRelation/addPosition"
+  },
+  "$e": {
+   "original": "index.api.175161560754512.js#h",
+   "path": "@/api/api-175161560754512",
+   "export": "editPosition",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobFairPositionRelation/editPosition"
+  },
+  "Xe": {
+   "original": "index.api.175161560754512.js#i",
+   "path": "@/api/api-175161560754512",
+   "export": "detailById",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompanyPosition/detailById"
+  }
+ },
+ "shared": {
+  "oa": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Y": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ra": {
+   "original": "extractpositionmodal.1751615607545.js#e",
+   "path": "@/shared/extractpositionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ia": {
+   "original": "positionmodal.1751615607545.js#p",
+   "path": "@/shared/positionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "la": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "N": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

@@ -1,0 +1,103 @@
+{
+ "id": "seg.uc.zcyzCorpAttestationapprove.2",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.zcyzCorpAttestationapprove",
+ "index": 2,
+ "of": 3,
+ "assemble": false,
+ "after": [],
+ "kb": 20.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/zcyzCorpAttestationapprove.1751615607545.js",
+ "range": [
+  15621,
+  36757
+ ],
+ "components": [],
+ "parts": [
+  {
+   "component": "zcyzCorpAttestationapprove",
+   "part": "script",
+   "range": [
+    15621,
+    36757
+   ],
+   "kb": 20.6,
+   "file": "apps/uc/src/views/zcyzCorpAttestationapprove/_seg/zcyzCorpAttestationapprove.script.ts"
+  }
+ ],
+ "outputs": [
+  "apps/uc/src/views/zcyzCorpAttestationapprove/_seg/zcyzCorpAttestationapprove.script.ts"
+ ],
+ "target": "apps/uc/src/views/zcyzCorpAttestationapprove.vue",
+ "subComponentDir": "apps/uc/src/views/zcyzCorpAttestationapprove/",
+ "scopeIds": [
+  "data-v-00292fa9",
+  "data-v-e472039d"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/map.1751615607545.css",
+  "legacy-dist/usercenter/assets/zcyzCorpAttestationapprove.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "routes": [
+  {
+   "path": "/zcyzCorpAttestationapprove",
+   "name": "zcyzCorpAttestationapprove"
+  }
+ ],
+ "recordPath": "/zcyzCorpAttestationapprove",
+ "maps": "out/maps/page.uc.zcyzCorpAttestationapprove.json",
+ "hints": "out/hints/page.uc.zcyzCorpAttestationapprove.md",
+ "deps": {
+  "entry": [
+   "B",
+   "E",
+   "F",
+   "I",
+   "M",
+   "O",
+   "P",
+   "Q",
+   "R",
+   "U",
+   "a",
+   "b",
+   "c",
+   "d",
+   "e",
+   "f",
+   "h",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [
+   "XfLoaing.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "email.1751615607545.js",
+   "gaode.1751615607545.js",
+   "idCard.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [15621, 36757)（约 20.6KB），其余部分由同页的其他分段负责。",
+  "组件 zcyzCorpAttestationapprove 只还原 <script setup> 部分（setup 函数体，不含最后 return 的渲染函数），写成 apps/uc/src/views/zcyzCorpAttestationapprove/_seg/zcyzCorpAttestationapprove.script.ts，内容就是将来 <script setup lang=\"ts\"> 里的代码。",
+  "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
+ ]
+}

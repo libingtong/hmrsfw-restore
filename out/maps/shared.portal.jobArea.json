@@ -1,0 +1,88 @@
+{
+ "id": "shared.portal.jobArea",
+ "chunk": "legacy-dist/portal/assets/jobArea.vue_vue_type_script_setup_true_lang.17833206362003.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "Ua": "defineComponent",
+  "Va": "useRoute (vue-router)",
+  "$a": "useRouter (vue-router)",
+  "Ja": "onBeforeMount",
+  "Ka": "onMounted",
+  "T": "resolveComponent",
+  "l": "openBlock",
+  "s": "createElementBlock",
+  "k": "createVNode",
+  "p": "withCtx",
+  "e": "createElementVNode",
+  "h": "unref",
+  "r": "Fragment",
+  "_": "renderList",
+  "y": "createBlock",
+  "n": "createCommentVNode",
+  "i": "createTextVNode",
+  "t": "toDisplayString",
+  "Qa": "normalizeClass"
+ },
+ "entry": {
+  "N": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "R": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {
+  "L": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "vue3-seamless-scroll.es.1783320636200.js#V",
+   "path": "vue3-seamless-scroll",
+   "export": "Vue3SeamlessScroll",
+   "status": "npm"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Ga": {
+   "original": "news.1783320636200.js#_",
+   "value": "/sjz/home/news.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "newsImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Oa": {
+   "original": "jobfair_arrow.1783320636200.js#_",
+   "value": "/sjz/home/jobfair_arrow.png",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "jobfairArrowImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "B": {
+   "original": "type.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.2KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "typeImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,46 @@
+{
+ "id": "page.portal.sjz.webvirtualjobfairs.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.1,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620088.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-b976d250"
+  }
+ ],
+ "scopeIds": [
+  "data-v-b976d250"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620069.css",
+  "legacy-dist/portal/assets/index.178332063620088.css"
+ ],
+ "target": "apps/portal/src/views/sjz/webvirtualjobfairs/index.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/webvirtualjobfairs/index/",
+ "routes": [
+  {
+   "path": "/webvirtualjobfairs",
+   "name": "webvirtualjobfairs",
+   "title": "网络虚拟招聘会"
+  }
+ ],
+ "recordPath": "/webvirtualjobfairs",
+ "maps": "out/maps/page.portal.sjz.webvirtualjobfairs.index.json",
+ "hints": "out/hints/page.portal.sjz.webvirtualjobfairs.index.md",
+ "deps": {
+  "entry": [
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

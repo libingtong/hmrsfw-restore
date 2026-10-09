@@ -1,0 +1,62 @@
+{
+ "id": "page.uc.WebWorkResume",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 14.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754510.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-ef4fd83a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-ef4fd83a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/index.175161560754511.css",
+  "legacy-dist/usercenter/assets/index.175161560754510.css"
+ ],
+ "target": "apps/uc/src/views/WebWorkResume.vue",
+ "subComponentDir": "apps/uc/src/views/WebWorkResume/",
+ "routes": [
+  {
+   "path": "/WebWorkResume",
+   "name": "WebWorkResume"
+  }
+ ],
+ "recordPath": "/WebWorkResume",
+ "maps": "out/maps/page.uc.WebWorkResume.json",
+ "hints": "out/hints/page.uc.WebWorkResume.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a7",
+   "c",
+   "d",
+   "k",
+   "m",
+   "v",
+   "w"
+  ],
+  "shared": [
+   "InterviewInvitation.17516156075452.js",
+   "dictCode.1751615607545.js",
+   "iframeModal.1751615607545.js",
+   "setStatusinterview.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.iframeModal"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

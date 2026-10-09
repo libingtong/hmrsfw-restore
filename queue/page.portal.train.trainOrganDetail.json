@@ -1,0 +1,59 @@
+{
+ "id": "page.portal.train.trainOrganDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.7,
+ "sourceChunk": "legacy-dist/portal/assets/trainOrganDetail.1783320636200.js",
+ "components": [
+  {
+   "name": "trainOrganDetail",
+   "scopeId": "data-v-6bc41e89"
+  }
+ ],
+ "scopeIds": [
+  "data-v-6bc41e89"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/trainOrganDetail.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/train/trainOrganDetail.vue",
+ "subComponentDir": "apps/portal/src/views/train/trainOrganDetail/",
+ "routes": [
+  {
+   "path": "/trainOrganDetail",
+   "name": "trainOrganDetail",
+   "title": "培训机构详情"
+  }
+ ],
+ "recordPath": "/trainOrganDetail",
+ "maps": "out/maps/page.portal.train.trainOrganDetail.json",
+ "hints": "out/hints/page.portal.train.trainOrganDetail.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "c",
+   "f"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "unfold.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620021.js#d",
+   "index.api.178332063620021.js#g"
+  ],
+  "modules": [
+   "card.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "shared.portal.modules",
+   "shared.portal.unfold"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

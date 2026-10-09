@@ -1,0 +1,49 @@
+{
+ "id": "shared.uc.dictCheckBoxAll",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 2.1,
+ "chunkKb": 2.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/dictCheckBoxAll.1751615607545.js",
+ "components": [
+  {
+   "name": "nation",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/dictCheckBoxAll.vue",
+ "exports": {
+  "d": {
+   "export": "default"
+  }
+ },
+ "registryKey": "dictCheckBoxAll.1751615607545.js",
+ "usedBy": [
+  "page.uc.oddjob.lack.add",
+  "page.uc.CorpAttestation",
+  "page.uc.CorpAttestationapprove",
+  "page.uc.CorpCenter",
+  "page.uc.PositionRelease",
+  "page.uc.PositionReleaseAbroad",
+  "page.uc.webFairWork",
+  "page.uc.JobFairRelease"
+ ],
+ "maps": "out/maps/shared.uc.dictCheckBoxAll.json",
+ "hints": "out/hints/shared.uc.dictCheckBoxAll.md",
+ "deps": {
+  "entry": [
+   "an"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

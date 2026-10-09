@@ -1,0 +1,42 @@
+{
+ "id": "page.uc.corpNoJob",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 10,
+ "sourceChunk": "legacy-dist/usercenter/assets/nojob.17516156075452.js",
+ "components": [
+  {
+   "name": "nojob",
+   "scopeId": "data-v-25561921"
+  }
+ ],
+ "scopeIds": [
+  "data-v-25561921"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/nojob.17516156075452.css"
+ ],
+ "target": "apps/uc/src/views/corpNoJob.vue",
+ "subComponentDir": "apps/uc/src/views/corpNoJob/",
+ "routes": [
+  {
+   "path": "/corpNoJob",
+   "name": "corpNoJob"
+  }
+ ],
+ "recordPath": "/corpNoJob",
+ "maps": "out/maps/page.uc.corpNoJob.json",
+ "hints": "out/hints/page.uc.corpNoJob.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

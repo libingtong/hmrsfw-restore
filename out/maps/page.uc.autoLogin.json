@@ -1,0 +1,111 @@
+{
+ "id": "page.uc.autoLogin",
+ "chunk": "legacy-dist/usercenter/assets/autoLogin.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "k": "defineComponent",
+  "R": "useRouter (vue-router)",
+  "U": "useRoute (vue-router)",
+  "C": "nextTick"
+ },
+ "entry": {
+  "f": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "v": {
+   "original": "bC",
+   "path": "@/legacy/utils",
+   "export": "getUrlParams",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "_": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "s": {
+   "original": "bD",
+   "path": "@/legacy/store",
+   "export": "vuexStore",
+   "status": "reserved",
+   "owner": "entry.uc.E4"
+  },
+  "N": {
+   "original": "bE",
+   "path": "@/legacy/api",
+   "export": "getSysUserByToken",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "S": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "G": {
+   "original": "bF",
+   "path": "@/utils/crypto-adapter",
+   "export": "encryptStorage",
+   "status": "restored"
+  },
+  "p": {
+   "original": "l",
+   "path": "@/legacy/utils",
+   "export": "setLocalStorage",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "P": {
+   "original": "n",
+   "path": "@/legacy/api",
+   "export": "listOneForWebSite",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "w": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "q": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "B": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "D": {
+   "original": "bG",
+   "path": "@/legacy/api",
+   "export": "queryByIdJM",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "E": {
+   "original": "j",
+   "path": "@/legacy/api",
+   "export": "sysUserAuthenticateIdentityList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,215 @@
+{
+ "id": "page.portal.xjhm.bigData.newBigdata",
+ "chunk": "legacy-dist/portal/assets/newBigdata.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "st": "defineComponent",
+  "Qa": "useRouter (vue-router)",
+  "F": "ref",
+  "M": "reactive",
+  "Tt": "onMounted",
+  "L": "resolveComponent",
+  "l": "openBlock",
+  "i": "createElementBlock",
+  "e": "createElementVNode",
+  "r": "createVNode",
+  "B": "withCtx",
+  "Gt": "createTextVNode",
+  "s": "toDisplayString",
+  "Za": "toRaw",
+  "Bt": "pushScopeId",
+  "Dt": "popScopeId",
+  "Et": "watch",
+  "Va": "onBeforeMount",
+  "Wa": "onBeforeUnmount",
+  "N": "createBlock",
+  "H": "unref",
+  "A": "createCommentVNode",
+  "it": "Fragment",
+  "ot": "renderList",
+  "Xa": "withDirectives",
+  "tl": "vShow",
+  "Y": "normalizeClass",
+  "el": "normalizeStyle",
+  "al": "createStaticVNode"
+ },
+ "entry": {
+  "ll": {
+   "original": "cA",
+   "path": "@/legacy/api",
+   "export": "sysRandomImage",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "sl": {
+   "original": "cB",
+   "path": "@/legacy/api",
+   "export": "login",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Nt": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "il": {
+   "original": "cC",
+   "path": "ant-design-vue",
+   "export": "notification",
+   "status": "npm"
+  },
+  "St": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "ol": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "nl": {
+   "original": "aQ",
+   "path": "@/legacy",
+   "export": "getWeekDay",
+   "status": "restored"
+  },
+  "dl": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  }
+ },
+ "api": {},
+ "shared": {
+  "cl": {
+   "original": "bars.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/bars.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.bars"
+  },
+  "$": {
+   "original": "pie.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/pie.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.pie"
+  },
+  "ml": {
+   "original": "lines.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/lines.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.lines"
+  },
+  "gl": {
+   "original": "init.17833206362002.js#q",
+   "path": "@/shared/init.ts",
+   "export": "q",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "fl": {
+   "original": "init.17833206362002.js#_",
+   "path": "@/shared/init/MapCommon.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "hl": {
+   "original": "init.17833206362002.js#r",
+   "path": "@/shared/init.ts",
+   "export": "r",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "Cl": {
+   "original": "init.17833206362002.js#i",
+   "path": "@/shared/init.ts",
+   "export": "i",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "yl": {
+   "original": "init.17833206362002.js#a",
+   "path": "@/shared/init.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "It": {
+   "original": "init.17833206362002.js#b",
+   "path": "@/shared/init.ts",
+   "export": "b",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "wl": {
+   "original": "init.17833206362002.js#c",
+   "path": "@/shared/init.ts",
+   "export": "c",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "kl": {
+   "original": "init.17833206362002.js#d",
+   "path": "@/shared/init.ts",
+   "export": "d",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "bl": {
+   "original": "init.17833206362002.js#e",
+   "path": "@/shared/init.ts",
+   "export": "e",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "xl": {
+   "original": "init.17833206362002.js#f",
+   "path": "@/shared/init.ts",
+   "export": "f",
+   "status": "reserved",
+   "owner": "shared.portal.init"
+  },
+  "_l": {
+   "original": "dateUtil.1783320636200.js#f",
+   "path": "@/shared/dateUtil.ts",
+   "export": "f",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Tl": {
+   "original": "dateUtil.1783320636200.js#a",
+   "path": "@/shared/dateUtil.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "Gl": {
+   "original": "dateUtil.1783320636200.js#b",
+   "path": "@/shared/dateUtil.ts",
+   "export": "b",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "K": {
+   "original": "vue-countup-v3.es.1783320636200.js#_",
+   "path": "vue-countup-v3",
+   "export": "default",
+   "status": "npm"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "timeOut.1783320636200.js",
+  "index.1783320636200118.js"
+ ],
+ "missing": []
+}

@@ -1,0 +1,26 @@
+{
+ "id": "shared.portal.map",
+ "chunk": "legacy-dist/portal/assets/map.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "d": "defineComponent",
+  "_": "openBlock",
+  "m": "createElementBlock",
+  "w": "pushScopeId",
+  "f": "popScopeId",
+  "v": "createElementVNode"
+ },
+ "entry": {
+  "g": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

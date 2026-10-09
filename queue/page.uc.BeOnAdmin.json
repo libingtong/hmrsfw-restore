@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.BeOnAdmin",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 7.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/BeOnAdmin.1751615607545.js",
+ "components": [
+  {
+   "name": "BeOnAdmin",
+   "scopeId": "data-v-1eef6ce1"
+  }
+ ],
+ "scopeIds": [
+  "data-v-1eef6ce1"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/BeOnAdmin.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/BeOnAdmin.vue",
+ "subComponentDir": "apps/uc/src/views/BeOnAdmin/",
+ "routes": [
+  {
+   "path": "/BeOnAdmin",
+   "name": "BeOnAdmin"
+  }
+ ],
+ "recordPath": "/BeOnAdmin",
+ "maps": "out/maps/page.uc.BeOnAdmin.json",
+ "hints": "out/hints/page.uc.BeOnAdmin.md",
+ "deps": {
+  "entry": [
+   "aA",
+   "az",
+   "d",
+   "k",
+   "m"
+  ],
+  "shared": [
+   "beonmodal.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "positionmodal.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,124 @@
+{
+ "id": "seg.portal.guide.index.2",
+ "type": "segment",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "page": "page.portal.guide.index",
+ "index": 2,
+ "of": 2,
+ "assemble": true,
+ "after": [
+  "seg.portal.guide.index.1"
+ ],
+ "kb": 13.4,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620034.js",
+ "range": [
+  17530,
+  31284
+ ],
+ "components": [
+  {
+   "name": "AlertModalCom",
+   "scopeId": "data-v-fc67a970"
+  },
+  {
+   "name": "TalentItem",
+   "scopeId": "data-v-3fb9d8ac"
+  },
+  {
+   "name": "index",
+   "scopeId": "data-v-6576d825"
+  }
+ ],
+ "parts": [],
+ "outputs": [
+  "apps/portal/src/views/guide/index/AlertModalCom.vue",
+  "apps/portal/src/views/guide/index/TalentItem.vue",
+  "apps/portal/src/views/guide/index.vue"
+ ],
+ "target": "apps/portal/src/views/guide/index.vue",
+ "subComponentDir": "apps/portal/src/views/guide/index/",
+ "scopeIds": [
+  "data-v-a1bf3a52",
+  "data-v-66fbaa3f",
+  "data-v-ea565f2a",
+  "data-v-fc67a970",
+  "data-v-3fb9d8ac",
+  "data-v-6576d825"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620030.css",
+  "legacy-dist/portal/assets/index.178332063620034.css"
+ ],
+ "routes": [
+  {
+   "path": "/guide/corp",
+   "name": "corp",
+   "title": "单位信息维护"
+  }
+ ],
+ "recordPath": "/guide/corp",
+ "maps": "out/maps/page.portal.guide.index.json",
+ "hints": "out/hints/page.portal.guide.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "Q",
+   "S",
+   "a2",
+   "aR",
+   "ae",
+   "ar",
+   "bf",
+   "bg",
+   "bh",
+   "c",
+   "d",
+   "f",
+   "m",
+   "o",
+   "p",
+   "q",
+   "r",
+   "u",
+   "v"
+  ],
+  "shared": [
+   "InterviewInvitation.1783320636200.js",
+   "auth.1783320636200.js",
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "industryCode.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#a",
+   "index.1783320636200117.js#b",
+   "index.1783320636200117.js#c",
+   "index.1783320636200117.js#i",
+   "index.1783320636200117.js#o",
+   "index.1783320636200117.js#q",
+   "index.1783320636200117.js#r",
+   "index.1783320636200117.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.InterviewInvitation",
+   "shared.portal.auth"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [17530, 31284)（约 13.4KB），其余部分由同页的其他分段负责。",
+  "完整还原这些组件并写成 SFC：AlertModalCom → apps/portal/src/views/guide/index/AlertModalCom.vue；TalentItem → apps/portal/src/views/guide/index/TalentItem.vue；index → apps/portal/src/views/guide/index.vue。",
+  "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.portal.guide.index --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
+ ]
+}

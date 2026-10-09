@@ -1,0 +1,60 @@
+{
+ "id": "shared.uc.oddNews",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.4,
+ "chunkKb": 5.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/oddNews.1751615607545.js",
+ "components": [
+  {
+   "name": "oddType",
+   "scopeId": "data-v-8b4d3811"
+  },
+  {
+   "name": "oddNews",
+   "scopeId": "data-v-69c520ac"
+  }
+ ],
+ "scopeIds": [
+  "data-v-8b4d3811",
+  "data-v-69c520ac"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/oddNews.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/oddNews/OddType.vue",
+ "subComponentDir": "apps/uc/src/shared/oddNews/",
+ "exports": {
+  "a": {
+   "path": "@/shared/oddNews/OddNews.vue",
+   "export": "default"
+  },
+  "o": {
+   "path": "@/shared/oddNews/OddType.vue",
+   "export": "default"
+  }
+ },
+ "registryKey": "oddNews.1751615607545.js",
+ "usedBy": [
+  "page.uc.needDetail",
+  "page.uc.findDetail"
+ ],
+ "maps": "out/maps/shared.uc.oddNews.json",
+ "hints": "out/hints/shared.uc.oddNews.md",
+ "deps": {
+  "entry": [
+   "k",
+   "m",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

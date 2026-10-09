@@ -1,0 +1,319 @@
+{
+ "id": "page.portal.guide.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620034.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ae": "defineComponent",
+  "le": "useRoute (vue-router)",
+  "ie": "useRouter (vue-router)",
+  "pe": "watch",
+  "G": "ref",
+  "$": "reactive",
+  "se": "onBeforeMount",
+  "ne": "onMounted",
+  "_": "resolveComponent",
+  "h": "openBlock",
+  "T": "createElementBlock",
+  "l": "createVNode",
+  "s": "withCtx",
+  "L": "mergeProps",
+  "m": "unref",
+  "xe": "pushScopeId",
+  "_e": "popScopeId",
+  "o": "createElementVNode",
+  "Mt": "getCurrentInstance",
+  "C": "toDisplayString",
+  "Rt": "resolveDirective",
+  "Y": "withDirectives",
+  "J": "vShow",
+  "M": "createTextVNode",
+  "R": "createBlock",
+  "V": "createCommentVNode",
+  "Se": "computed",
+  "Z": "Fragment",
+  "ve": "h",
+  "Vt": "renderList"
+ },
+ "entry": {
+  "Kt": {
+   "original": "bf",
+   "path": "lodash-es",
+   "export": "isObject",
+   "status": "npm"
+  },
+  "Qt": {
+   "original": "ar",
+   "path": "lodash-es",
+   "export": "debounce",
+   "status": "npm"
+  },
+  "qe": {
+   "original": "bg",
+   "path": "ant-design-vue",
+   "export": "Form",
+   "status": "npm"
+  },
+  "U": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Xt": {
+   "original": "a2",
+   "path": "@/legacy",
+   "export": "validateIdCard",
+   "status": "restored"
+  },
+  "Gt": {
+   "original": "bh",
+   "path": "@/legacy/utils",
+   "export": "parseIdCard",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Jt": {
+   "original": "aR",
+   "path": "@/legacy/utils",
+   "export": "isMobilePhone",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Wt": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "oe": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "Ae": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "je": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "re": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Ce": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "Pe": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "Ie": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "ke": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "Zt": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "Q",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_CERTIFIED",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "Oe": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ea": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "ta": {
+   "original": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "aa": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "ia": {
+   "original": "index.1783320636200117.js#c",
+   "path": "@/api/api-117",
+   "export": "checkIdCard",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUser/checkIdCard"
+  },
+  "we": {
+   "original": "index.1783320636200117.js#s",
+   "path": "@/api/api-117",
+   "export": "saveForUserCenter",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUser/saveForUserCenter"
+  },
+  "de": {
+   "original": "index.1783320636200117.js#o",
+   "path": "@/api/api-117",
+   "export": "o",
+   "status": "reserved"
+  },
+  "sa": {
+   "original": "index.1783320636200117.js#i",
+   "path": "@/api/api-117",
+   "export": "isPublishingPosition",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/isPublishingPosition"
+  },
+  "na": {
+   "original": "index.1783320636200117.js#a",
+   "path": "@/api/api-117",
+   "export": "addTalent",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
+  },
+  "oa": {
+   "original": "index.1783320636200117.js#r",
+   "path": "@/api/api-117",
+   "export": "cancelTalent",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompanyTalents/cancelTalent"
+  },
+  "ra": {
+   "original": "index.1783320636200117.js#q",
+   "path": "@/api/api-117",
+   "export": "queryById",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUser/queryById"
+  },
+  "da": {
+   "original": "index.1783320636200117.js#b",
+   "path": "@/api/api-117",
+   "export": "setCompleteStatus",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysGuideRecord/setCompleteStatus"
+  }
+ },
+ "shared": {
+  "zt": {
+   "original": "auth.1783320636200.js#a",
+   "path": "@/shared/auth.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.portal.auth"
+  },
+  "Ht": {
+   "original": "auth.1783320636200.js#O",
+   "path": "@/shared/auth/OneContent.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.auth"
+  },
+  "Ue": {
+   "original": "auth.1783320636200.js#B",
+   "path": "@/shared/auth/BackGround.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.auth"
+  },
+  "Yt": {
+   "original": "auth.1783320636200.js#C",
+   "path": "@/shared/auth/ColumnContent.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.auth"
+  },
+  "$t": {
+   "original": "auth.1783320636200.js#_",
+   "path": "@/shared/auth.ts",
+   "export": "_",
+   "status": "reserved",
+   "owner": "shared.portal.auth"
+  },
+  "Fe": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "De": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "pa": {
+   "original": "industryCode.1783320636200.js#i",
+   "path": "@/shared/industryCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "va": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ba": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "ya": {
+   "original": "InterviewInvitation.1783320636200.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.InterviewInvitation"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

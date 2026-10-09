@@ -1,0 +1,39 @@
+{
+ "id": "page.portal.zcyz.bigData.components.pieCommon",
+ "chunk": "legacy-dist/portal/assets/pieCommon.17833206362007.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "c": "defineComponent",
+  "u": "useRoute (vue-router)",
+  "f": "useRouter (vue-router)",
+  "y": "openBlock",
+  "h": "createElementBlock",
+  "d": "createElementVNode",
+  "v": "createVNode",
+  "w": "toDisplayString"
+ },
+ "entry": {
+  "b": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "x": {
+   "original": "pie.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/pie.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.pie"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "timeOut.1783320636200.js",
+  "index.1783320636200118.js"
+ ],
+ "missing": []
+}

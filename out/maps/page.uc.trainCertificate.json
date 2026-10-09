@@ -1,0 +1,51 @@
+{
+ "id": "page.uc.trainCertificate",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754525.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "y": "defineComponent",
+  "L": "reactive",
+  "k": "onMounted",
+  "a": "resolveComponent",
+  "s": "openBlock",
+  "o": "createElementBlock",
+  "n": "createVNode",
+  "l": "withCtx",
+  "B": "Fragment",
+  "N": "renderList",
+  "w": "createBlock",
+  "C": "createElementVNode",
+  "_": "unref"
+ },
+ "entry": {
+  "z": {
+   "original": "bx",
+   "path": "@/legacy",
+   "export": "queryCertificateList",
+   "status": "restored"
+  },
+  "h": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "x": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "v": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

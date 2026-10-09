@@ -1,0 +1,68 @@
+{
+ "id": "entry.portal.c05",
+ "type": "entry",
+ "area": "component",
+ "title": "入口全局组件：recommend、video、headNav",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": 7.2,
+ "appCode": "018",
+ "components": [
+  {
+   "name": "recommend",
+   "binding": "Dae",
+   "scopeId": "data-v-ef35af0a",
+   "kb": 3.7,
+   "exportedAs": [
+    "cv"
+   ],
+   "file": "apps/portal/src/legacy/components/Recommend.vue"
+  },
+  {
+   "name": "video",
+   "binding": "nTt",
+   "scopeId": "data-v-0e6750cb",
+   "kb": 1.9,
+   "exportedAs": [
+    "V"
+   ],
+   "file": "apps/portal/src/legacy/VideoPlayer.vue",
+   "replacesStub": true
+  },
+  {
+   "name": "headNav",
+   "binding": "zoe",
+   "scopeId": "data-v-1f816abb",
+   "kb": 1.6,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/HeadNav.vue"
+  }
+ ],
+ "files": [
+  "apps/portal/src/legacy/components/Recommend.vue",
+  "apps/portal/src/legacy/VideoPlayer.vue",
+  "apps/portal/src/legacy/components/HeadNav.vue"
+ ],
+ "owns": [
+  {
+   "alias": "cv",
+   "path": "@/legacy/components/Recommend.vue",
+   "export": "default",
+   "status": "reserved"
+  },
+  {
+   "alias": "V",
+   "path": "@/legacy",
+   "export": "VideoPlayer",
+   "status": "reserved",
+   "stub": "apps/portal/src/legacy/VideoPlayer.vue"
+  }
+ ],
+ "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",
+ "deps": {
+  "orders": []
+ }
+}

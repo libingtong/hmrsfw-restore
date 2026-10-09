@@ -1,0 +1,80 @@
+{
+ "id": "entry.uc.E2",
+ "type": "entry",
+ "area": "E2",
+ "title": "main：应用创建、插件、全局组件与指令、图标、语言包、wujie 分支",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "sourceChunk": "legacy-dist/usercenter/assets/index.1751615607545.js",
+ "kb": null,
+ "appCode": "018",
+ "files": [
+  "apps/uc/src/main.ts",
+  "apps/uc/src/directives.ts"
+ ],
+ "owns": [],
+ "globals": {
+  "components": [
+   "RouterLink",
+   "RouterView",
+   "baidu-map",
+   "bm-auto-complete",
+   "bm-boundary",
+   "bm-bus",
+   "bm-circle",
+   "bm-city-list",
+   "bm-context-menu",
+   "bm-context-menu-item",
+   "bm-control",
+   "bm-copyright",
+   "bm-driving",
+   "bm-geolocation",
+   "bm-ground",
+   "bm-info-window",
+   "bm-label",
+   "bm-local-search",
+   "bm-map-type",
+   "bm-marker",
+   "bm-navigation",
+   "bm-overlay",
+   "bm-overview-map",
+   "bm-panorama",
+   "bm-point-collection",
+   "bm-polygon",
+   "bm-polyline",
+   "bm-scale",
+   "bm-tile",
+   "bm-traffic",
+   "bm-transit",
+   "bm-walking",
+   "city",
+   "router-link",
+   "router-view"
+  ],
+  "componentPatterns": [
+   "^a-",
+   "^A[A-Z]",
+   "(Outlined|Filled|TwoTone)$",
+   "-(outlined|filled|two-tone)$",
+   "^bm-",
+   "^baidu-map$"
+  ],
+  "directives": [
+   "click-outside",
+   "imgerr"
+  ],
+  "provide": [],
+  "notes": [
+   "ant-design-vue 由 app.use 全量注册（a-* 组件）",
+   "@ant-design/icons-vue 图标全量注册",
+   "vue-baidu-map-3x（baidu-map、bm-*）由入口在取到 ak 后注册"
+  ]
+ },
+ "note": "全局注册必须与 registry 的 globals 一致",
+ "deps": {
+  "orders": []
+ },
+ "kbEstimated": true
+}

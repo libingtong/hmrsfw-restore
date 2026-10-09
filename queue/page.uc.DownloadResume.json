@@ -1,0 +1,49 @@
+{
+ "id": "page.uc.DownloadResume",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/DownloadResume.1751615607545.js",
+ "components": [
+  {
+   "name": "DownloadResume",
+   "scopeId": "data-v-6baf46d3"
+  }
+ ],
+ "scopeIds": [
+  "data-v-6baf46d3"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/DownloadResume.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/DownloadResume.vue",
+ "subComponentDir": "apps/uc/src/views/DownloadResume/",
+ "routes": [
+  {
+   "path": "/DownloadResume",
+   "name": "DownloadResume"
+  }
+ ],
+ "recordPath": "/DownloadResume",
+ "maps": "out/maps/page.uc.DownloadResume.json",
+ "hints": "out/hints/page.uc.DownloadResume.md",
+ "deps": {
+  "entry": [
+   "M",
+   "d",
+   "m"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.175161560754510.js#a",
+   "index.api.175161560754510.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,69 @@
+{
+ "id": "page.uc.overseasRecruitment",
+ "chunk": "legacy-dist/usercenter/assets/overseasRecruitment.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "$": "defineComponent",
+  "x": "inject",
+  "j": "reactive",
+  "J": "onMounted",
+  "i": "resolveComponent",
+  "c": "openBlock",
+  "r": "createElementBlock",
+  "n": "createVNode",
+  "o": "withCtx",
+  "_": "createTextVNode",
+  "d": "createElementVNode",
+  "f": "Fragment",
+  "g": "toDisplayString",
+  "v": "createCommentVNode",
+  "L": "pushScopeId",
+  "Q": "popScopeId"
+ },
+ "entry": {
+  "M": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "V": {
+   "original": "bg",
+   "path": "@/legacy/api",
+   "export": "jobOverseasRecruitRegistrationList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "q": {
+   "original": "bh",
+   "path": "@/legacy/api",
+   "export": "saveOrCancel",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "B": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "F": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "O": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,60 @@
+{
+ "id": "page.portal.talents.cityHome.corp",
+ "chunk": "legacy-dist/portal/assets/corp.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "I": "defineComponent",
+  "L": "useRoute (vue-router)",
+  "q": "useRouter (vue-router)",
+  "z": "reactive",
+  "A": "onBeforeMount",
+  "D": "onMounted",
+  "x": "ref",
+  "w": "resolveComponent",
+  "o": "openBlock",
+  "c": "createElementBlock",
+  "a": "createElementVNode",
+  "F": "renderSlot",
+  "k": "createVNode",
+  "R": "withCtx",
+  "U": "Fragment",
+  "Y": "renderList",
+  "Z": "createBlock",
+  "T": "unref",
+  "d": "toDisplayString",
+  "$": "pushScopeId",
+  "j": "popScopeId"
+ },
+ "entry": {
+  "H": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "J": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "M": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "X": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

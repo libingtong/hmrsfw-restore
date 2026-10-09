@@ -1,0 +1,65 @@
+{
+ "id": "shared.uc.mymsg",
+ "chunk": "legacy-dist/usercenter/assets/mymsg.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "S": "defineComponent",
+  "u": "inject",
+  "v": "useRouter (vue-router)",
+  "b": "reactive",
+  "w": "onMounted",
+  "_": "resolveComponent",
+  "i": "openBlock",
+  "r": "createElementBlock",
+  "e": "createElementVNode",
+  "m": "createVNode",
+  "c": "withCtx",
+  "k": "Fragment",
+  "C": "renderList",
+  "I": "normalizeStyle",
+  "N": "createTextVNode",
+  "d": "toDisplayString",
+  "z": "pushScopeId",
+  "q": "popScopeId"
+ },
+ "entry": {
+  "B": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "A": {
+   "original": "s",
+   "path": "@/legacy/api",
+   "export": "queryAnnouncementList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "L": {
+   "original": "ah",
+   "path": "@/legacy/utils",
+   "export": "stripHtml",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "R": {
+   "original": "ai",
+   "path": "@/legacy/api",
+   "export": "queryNoReaded",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "T": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

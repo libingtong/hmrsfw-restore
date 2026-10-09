@@ -1,0 +1,72 @@
+{
+ "id": "page.portal.Guidance.GuidanceMentorList.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 10.6,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620010.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-15b6e130"
+  }
+ ],
+ "scopeIds": [
+  "data-v-15b6e130"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.17833206362005.css",
+  "legacy-dist/portal/assets/index.178332063620010.css"
+ ],
+ "target": "apps/portal/src/views/Guidance/GuidanceMentorList/index.vue",
+ "subComponentDir": "apps/portal/src/views/Guidance/GuidanceMentorList/index/",
+ "routes": [
+  {
+   "path": "/GuidanceMentorList",
+   "name": "GuidanceMentorList",
+   "title": "职业指导导师列表"
+  }
+ ],
+ "recordPath": "/GuidanceMentorList",
+ "maps": "out/maps/page.portal.Guidance.GuidanceMentorList.index.json",
+ "hints": "out/hints/page.portal.Guidance.GuidanceMentorList.index.md",
+ "deps": {
+  "entry": [
+   "B",
+   "C",
+   "D",
+   "E",
+   "G",
+   "H",
+   "c",
+   "e",
+   "f",
+   "g",
+   "h",
+   "m",
+   "o",
+   "x"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.17833206362004.js#g",
+   "index.api.17833206362005.js#h",
+   "index.api.17833206362005.js#t",
+   "index.api.17833206362005.js#x"
+  ],
+  "modules": [
+   "dianzan.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.c03",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

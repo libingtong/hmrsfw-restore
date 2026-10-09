@@ -1,0 +1,99 @@
+{
+ "id": "page.uc.changeRole",
+ "chunk": "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "D": "defineComponent",
+  "V": "useRouter (vue-router)",
+  "C": "computed",
+  "R": "ref",
+  "A": "reactive",
+  "F": "watch",
+  "j": "onMounted",
+  "f": "resolveComponent",
+  "v": "openBlock",
+  "U": "createElementBlock",
+  "S": "createVNode",
+  "z": "createSlots",
+  "y": "withCtx",
+  "Y": "Fragment",
+  "E": "renderList",
+  "G": "createCommentVNode",
+  "K": "createElementVNode",
+  "N": "createTextVNode",
+  "M": "toDisplayString",
+  "L": "withModifiers",
+  "X": "createBlock"
+ },
+ "entry": {
+  "Z": {
+   "original": "b",
+   "path": "vuex",
+   "export": "useStore",
+   "status": "npm"
+  },
+  "$": {
+   "original": "u",
+   "path": "@/legacy/store",
+   "export": "useCommonStore",
+   "status": "reserved",
+   "owner": "entry.uc.E4"
+  },
+  "H": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "w": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "T": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getCompanyInfo",
+   "status": "restored"
+  },
+  "b": {
+   "original": "l",
+   "path": "@/legacy/utils",
+   "export": "setLocalStorage",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "W": {
+   "original": "bN",
+   "path": "@/legacy/api",
+   "export": "getUserPermissionByRoleId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ee": {
+   "original": "q",
+   "path": "@/legacy/api",
+   "export": "queryByCompanyId",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "te": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

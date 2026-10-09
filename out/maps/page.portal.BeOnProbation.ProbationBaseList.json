@@ -1,0 +1,105 @@
+{
+ "id": "page.portal.BeOnProbation.ProbationBaseList",
+ "chunk": "legacy-dist/portal/assets/ProbationBaseList.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "we": "defineComponent",
+  "Ae": "useRouter (vue-router)",
+  "ke": "useRoute (vue-router)",
+  "xe": "reactive",
+  "Ne": "onMounted",
+  "i": "resolveComponent",
+  "u": "openBlock",
+  "I": "createElementBlock",
+  "a": "createVNode",
+  "t": "withCtx",
+  "_": "unref",
+  "o": "createTextVNode",
+  "d": "toDisplayString",
+  "h": "createBlock",
+  "q": "createCommentVNode",
+  "Y": "Fragment",
+  "Z": "renderList",
+  "Fe": "resolveDynamicComponent",
+  "m": "createElementVNode",
+  "Ce": "pushScopeId",
+  "Be": "popScopeId",
+  "D": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "_e": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "M": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "me": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "B": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "e",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "he": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "ge": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "be": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "$": {
+   "original": "index.api.1783320636200.js#b",
+   "path": "@/api/api-1783320636200",
+   "export": "freeCompanyExpandList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/freeCompanyExpandList"
+  }
+ },
+ "shared": {
+  "V": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "J": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

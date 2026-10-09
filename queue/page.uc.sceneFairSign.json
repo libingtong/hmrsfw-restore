@@ -1,0 +1,69 @@
+{
+ "id": "page.uc.sceneFairSign",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 16.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/sceneFairSign.1751615607545.js",
+ "components": [
+  {
+   "name": "GuideAlert",
+   "scopeId": "data-v-4da1427f"
+  },
+  {
+   "name": "sceneFairSign",
+   "scopeId": "data-v-8d8644a0"
+  }
+ ],
+ "scopeIds": [
+  "data-v-4da1427f",
+  "data-v-8d8644a0"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css",
+  "legacy-dist/usercenter/assets/sceneFairSign.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/sceneFairSign.vue",
+ "subComponentDir": "apps/uc/src/views/sceneFairSign/",
+ "routes": [
+  {
+   "path": "/sceneFairSign/:zphId",
+   "name": "sceneFairSign"
+  }
+ ],
+ "recordPath": "/sceneFairSign/:zphId",
+ "maps": "out/maps/page.uc.sceneFairSign.json",
+ "hints": "out/hints/page.uc.sceneFairSign.md",
+ "deps": {
+  "entry": [
+   "B",
+   "a$",
+   "aZ",
+   "a_",
+   "c",
+   "d",
+   "h",
+   "k",
+   "m",
+   "p",
+   "v"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.175161560754512.js#d",
+   "index.api.175161560754512.js#g",
+   "index.api.175161560754512.js#j",
+   "index.api.175161560754512.js#k",
+   "index.api.175161560754512.js#l"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

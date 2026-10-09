@@ -1,0 +1,62 @@
+{
+ "id": "page.portal.answer.details",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 19.7,
+ "sourceChunk": "legacy-dist/portal/assets/details.1783320636200.js",
+ "components": [
+  {
+   "name": "details",
+   "scopeId": "data-v-7e4fbeb3"
+  }
+ ],
+ "scopeIds": [
+  "data-v-7e4fbeb3"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/details.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/answer/details.vue",
+ "subComponentDir": "apps/portal/src/views/answer/details/",
+ "routes": [
+  {
+   "path": "/details",
+   "name": "details",
+   "title": "问卷调查详情"
+  }
+ ],
+ "recordPath": "/details",
+ "maps": "out/maps/page.portal.answer.details.json",
+ "hints": "out/hints/page.portal.answer.details.md",
+ "deps": {
+  "entry": [
+   "M",
+   "S",
+   "ag",
+   "c",
+   "h",
+   "m"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620011.js#a",
+   "index.api.178332063620011.js#b",
+   "index.api.178332063620011.js#q",
+   "index.api.178332063620011.js#s",
+   "index.api.178332063620011.js#x"
+  ],
+  "modules": [
+   "wenjuan.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

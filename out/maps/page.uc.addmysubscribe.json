@@ -1,0 +1,107 @@
+{
+ "id": "page.uc.addmysubscribe",
+ "chunk": "legacy-dist/usercenter/assets/addmysubscribe.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "ye": "defineComponent",
+  "R": "ref",
+  "ve": "inject",
+  "ke": "useRoute (vue-router)",
+  "xe": "useRouter (vue-router)",
+  "we": "reactive",
+  "Te": "onMounted",
+  "c": "resolveComponent",
+  "v": "openBlock",
+  "N": "createElementBlock",
+  "l": "createVNode",
+  "t": "withCtx",
+  "k": "createTextVNode",
+  "o": "createElementVNode",
+  "Y": "createBlock",
+  "qe": "withDirectives",
+  "Ce": "vShow",
+  "U": "Fragment",
+  "z": "renderList",
+  "A": "toDisplayString",
+  "Ne": "pushScopeId",
+  "Se": "popScopeId"
+ },
+ "entry": {
+  "Ie": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "Re": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "Ye": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "w": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "Pe": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "We": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "Fe": {
+   "original": "index.api.17516156075456.js#a7",
+   "path": "@/api/api-56",
+   "export": "queryById4",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobSubscribeRecord/queryById"
+  },
+  "Me": {
+   "original": "index.api.17516156075456.js#a8",
+   "path": "@/api/api-56",
+   "export": "add5",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobSubscribeRecord/add"
+  }
+ },
+ "shared": {
+  "E": {
+   "original": "dictCodeByType.1751615607545.js#d",
+   "path": "@/shared/dictCodeByType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "De": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "T": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

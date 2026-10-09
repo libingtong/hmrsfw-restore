@@ -1,0 +1,57 @@
+{
+ "id": "page.uc.ReceivedResumeLive",
+ "chunk": "legacy-dist/usercenter/assets/ReceivedResumeLive.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "D": "defineComponent",
+  "E": "inject",
+  "M": "useRouter (vue-router)",
+  "j": "reactive",
+  "q": "onBeforeMount",
+  "H": "onMounted",
+  "r": "resolveComponent",
+  "m": "openBlock",
+  "y": "createElementBlock",
+  "s": "createVNode",
+  "o": "withCtx",
+  "_": "createTextVNode",
+  "b": "createElementVNode",
+  "x": "createCommentVNode",
+  "S": "toDisplayString",
+  "O": "createBlock"
+ },
+ "entry": {
+  "U": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "X": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "Q": {
+   "original": "index.api.175161560754510.js#l",
+   "path": "@/api/jobCurriculumVitaeDeliver",
+   "export": "queryUserPageList",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobLiveCurriculumVitaeDeliver/queryUserPageList"
+  }
+ },
+ "shared": {
+  "Y": {
+   "original": "setStatusinterview.1751615607545.js#s",
+   "path": "@/shared/setStatusinterview.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

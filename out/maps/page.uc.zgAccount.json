@@ -1,0 +1,64 @@
+{
+ "id": "page.uc.zgAccount",
+ "chunk": "legacy-dist/usercenter/assets/account.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "I": "defineComponent",
+  "l": "ref",
+  "S": "onMounted",
+  "y": "onBeforeUnmount",
+  "h": "openBlock",
+  "b": "createElementBlock",
+  "w": "createVNode"
+ },
+ "entry": {
+  "u": {
+   "original": "G",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "s": {
+   "original": "bL",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "g": {
+   "original": "bM",
+   "path": "@/legacy",
+   "export": "verifyUserInfoByPhone",
+   "status": "restored"
+  },
+  "m": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "_": {
+   "original": "ZgIframe.1751615607545.js#Z",
+   "path": "@/shared/ZgIframe.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "v": {
+   "original": "WebSockets.1751615607545.js#g",
+   "path": "@/shared/WebSockets.ts",
+   "export": "getWsBaseUrl",
+   "status": "restored"
+  },
+  "d": {
+   "original": "WebSockets.1751615607545.js#c",
+   "path": "@/shared/WebSockets.ts",
+   "export": "createWebSocket",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,53 @@
+{
+ "id": "page.uc.Unitposition",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 13.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/Unitposition.1751615607545.js",
+ "components": [
+  {
+   "name": "Unitposition",
+   "scopeId": "data-v-33630a5e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-33630a5e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/Unitposition.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/Unitposition.vue",
+ "subComponentDir": "apps/uc/src/views/Unitposition/",
+ "routes": [
+  {
+   "path": "/Unitposition",
+   "name": "Unitposition"
+  }
+ ],
+ "recordPath": "/Unitposition",
+ "maps": "out/maps/page.uc.Unitposition.json",
+ "hints": "out/hints/page.uc.Unitposition.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "b5",
+   "bo",
+   "bp",
+   "d",
+   "h",
+   "m"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

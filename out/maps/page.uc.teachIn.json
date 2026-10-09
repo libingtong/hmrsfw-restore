@@ -1,0 +1,86 @@
+{
+ "id": "page.uc.teachIn",
+ "chunk": "legacy-dist/usercenter/assets/index.175161560754515.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "X": "defineComponent",
+  "b": "inject",
+  "Y": "useRouter (vue-router)",
+  "G": "useRoute (vue-router)",
+  "S": "reactive",
+  "H": "onMounted",
+  "d": "resolveComponent",
+  "_": "openBlock",
+  "g": "createElementBlock",
+  "s": "createVNode",
+  "o": "withCtx",
+  "h": "createTextVNode",
+  "m": "createElementVNode",
+  "K": "Fragment",
+  "k": "createCommentVNode",
+  "f": "toDisplayString",
+  "O": "pushScopeId",
+  "W": "popScopeId"
+ },
+ "entry": {
+  "N": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "T": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "ee": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "te": {
+   "original": "index.api.175161560754517.js#q",
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryTalkStudentListInfo",
+   "status": "reserved",
+   "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/queryTalkStudentListInfo"
+  },
+  "ae": {
+   "original": "index.api.175161560754517.js#c",
+   "path": "@/api/collegeCareerTalk",
+   "export": "cancelStudent",
+   "status": "reserved",
+   "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/cancelStudent"
+  },
+  "ne": {
+   "original": "index.api.175161560754517.js#a",
+   "path": "@/api/collegeCareerTalk",
+   "export": "attendanceAll",
+   "status": "reserved",
+   "url": "/xf-job/attendance/xfJobAttendance/attendanceAll"
+  },
+  "se": {
+   "original": "index.api.175161560754517.js#u",
+   "path": "@/api/collegeCareerTalk",
+   "export": "updateSigninNum",
+   "status": "reserved",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/updateSigninNum"
+  }
+ },
+ "shared": {
+  "Z": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

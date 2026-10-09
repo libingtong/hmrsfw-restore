@@ -1,0 +1,74 @@
+{
+ "id": "shared.uc.recommendZp",
+ "chunk": "legacy-dist/usercenter/assets/recommendZp.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "k": "defineComponent",
+  "f": "useRouter (vue-router)",
+  "n": "openBlock",
+  "d": "createElementBlock",
+  "e": "createElementVNode",
+  "l": "toDisplayString",
+  "u": "createTextVNode",
+  "h": "pushScopeId",
+  "C": "popScopeId",
+  "E": "ref",
+  "I": "onMounted",
+  "y": "resolveComponent",
+  "g": "createBlock",
+  "b": "withCtx",
+  "T": "Fragment",
+  "B": "renderList",
+  "R": "normalizeClass",
+  "x": "createCommentVNode"
+ },
+ "entry": {
+  "F": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "S": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "U": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "$": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "D": {
+   "original": "index.api.1751615607545.js#h",
+   "path": "@/api/jobSupermarketMerchants",
+   "export": "getFairListNew",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobFair/getFairListNew"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {
+  "N": {
+   "original": "stateCard.vue_vue_type_style_index_0_scoped_53902b4a_lang.1751615607545.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.7KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "stateCardImg",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,49 @@
+{
+ "id": "page.uc.feedback",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 7.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/feedback.1751615607545.js",
+ "components": [
+  {
+   "name": "feedback",
+   "scopeId": "data-v-ed9fdf55"
+  }
+ ],
+ "scopeIds": [
+  "data-v-ed9fdf55"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/feedback.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/feedback.vue",
+ "subComponentDir": "apps/uc/src/views/feedback/",
+ "routes": [
+  {
+   "path": "/feedback",
+   "name": "feedback"
+  }
+ ],
+ "recordPath": "/feedback",
+ "maps": "out/maps/page.uc.feedback.json",
+ "hints": "out/hints/page.uc.feedback.md",
+ "deps": {
+  "entry": [
+   "d",
+   "k",
+   "m",
+   "w"
+  ],
+  "shared": [
+   "unfold.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

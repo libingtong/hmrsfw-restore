@@ -1,0 +1,49 @@
+{
+ "id": "page.portal.jobMarket.marketDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.1,
+ "sourceChunk": "legacy-dist/portal/assets/marketDetail.1783320636200.js",
+ "components": [
+  {
+   "name": "marketDetail",
+   "scopeId": "data-v-c621f8c9"
+  }
+ ],
+ "scopeIds": [
+  "data-v-c621f8c9"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/marketDetail.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/jobMarket/marketDetail.vue",
+ "subComponentDir": "apps/portal/src/views/jobMarket/marketDetail/",
+ "routes": [
+  {
+   "path": "/jobMarketDetail",
+   "name": "jobMarketDetail",
+   "title": "零工市场详情"
+  }
+ ],
+ "recordPath": "/jobMarketDetail",
+ "maps": "out/maps/page.portal.jobMarket.marketDetail.json",
+ "hints": "out/hints/page.portal.jobMarket.marketDetail.md",
+ "deps": {
+  "entry": [],
+  "shared": [
+   "map.vue_vue_type_script_setup_true_lang.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620020.js#b"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.map2"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

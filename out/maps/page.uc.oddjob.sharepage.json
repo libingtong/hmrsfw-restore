@@ -1,0 +1,174 @@
+{
+ "id": "page.uc.oddjob.sharepage",
+ "chunk": "legacy-dist/usercenter/assets/share-job.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "Le": "defineComponent",
+  "Re": "useRoute (vue-router)",
+  "Ee": "useRouter (vue-router)",
+  "y": "ref",
+  "$e": "onMounted",
+  "He": "inject",
+  "Fe": "reactive",
+  "m": "resolveComponent",
+  "i": "openBlock",
+  "T": "createElementBlock",
+  "a": "createVNode",
+  "o": "withCtx",
+  "P": "createTextVNode",
+  "q": "toDisplayString",
+  "g": "createBlock",
+  "te": "withDirectives",
+  "ae": "vShow",
+  "oe": "createElementVNode",
+  "ze": "Fragment",
+  "Ke": "renderList",
+  "Xe": "withKeys",
+  "x": "createCommentVNode",
+  "ne": "nextTick"
+ },
+ "entry": {
+  "F": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "R": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "ss": {
+   "original": "f",
+   "path": "@/legacy",
+   "export": "decryptText",
+   "status": "restored"
+  },
+  "ts": {
+   "original": "a",
+   "path": "@/legacy",
+   "export": "useTagsStore",
+   "status": "restored"
+  },
+  "re": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "le": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "SettingCodes",
+   "status": "restored"
+  },
+  "as": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "z": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "E": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "os": {
+   "original": "ad",
+   "path": "@/legacy",
+   "export": "checkSensitive",
+   "status": "restored"
+  },
+  "ns": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "rs": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Ze": {
+   "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#c",
+   "path": "@/shared/Content.ts",
+   "export": "c",
+   "status": "reserved",
+   "owner": "shared.uc.Content"
+  },
+  "Ge": {
+   "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#g",
+   "path": "@/shared/Content.ts",
+   "export": "g",
+   "status": "reserved",
+   "owner": "shared.uc.Content"
+  },
+  "Qe": {
+   "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#d",
+   "path": "@/shared/Content.ts",
+   "export": "d",
+   "status": "reserved",
+   "owner": "shared.uc.Content"
+  },
+  "We": {
+   "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/Content/Content.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.Content"
+  },
+  "je": {
+   "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#a",
+   "path": "@/shared/Content.ts",
+   "export": "a",
+   "status": "reserved",
+   "owner": "shared.uc.Content"
+  },
+  "es": {
+   "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#e",
+   "path": "@/shared/Content.ts",
+   "export": "e",
+   "status": "reserved",
+   "owner": "shared.uc.Content"
+  },
+  "ls": {
+   "original": "phone.1751615607545.js#p",
+   "path": "@/shared/phone.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "is": {
+   "original": "extractpositionmodal.1751615607545.js#e",
+   "path": "@/shared/extractpositionmodal.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "us": {
+   "original": "workType.1751615607545.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "dictCode.1751615607545.js",
+  "main.1751615607545.js"
+ ],
+ "missing": []
+}

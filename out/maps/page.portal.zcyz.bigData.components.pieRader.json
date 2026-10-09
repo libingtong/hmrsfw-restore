@@ -1,0 +1,48 @@
+{
+ "id": "page.portal.zcyz.bigData.components.pieRader",
+ "chunk": "legacy-dist/portal/assets/pieRader.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "$": "defineComponent",
+  "A": "reactive",
+  "E": "watch",
+  "G": "onMounted",
+  "J": "onBeforeUnmount",
+  "z": "ref",
+  "h": "openBlock",
+  "x": "createElementBlock",
+  "a": "createElementVNode",
+  "L": "Fragment",
+  "M": "renderList",
+  "P": "createVNode",
+  "v": "toDisplayString",
+  "B": "createTextVNode",
+  "S": "pushScopeId",
+  "U": "popScopeId",
+  "V": "normalizeClass"
+ },
+ "entry": {
+  "K": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "Y": {
+   "original": "pie.vue_vue_type_style_index_0_lang.1783320636200.js#_",
+   "path": "@/shared/pie.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.pie"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "timeOut.1783320636200.js",
+  "index.1783320636200118.js"
+ ],
+ "missing": []
+}

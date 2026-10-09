@@ -1,0 +1,27 @@
+{
+ "id": "shared.portal.map2",
+ "chunk": "legacy-dist/portal/assets/map.vue_vue_type_script_setup_true_lang.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "d": "defineComponent",
+  "h": "onMounted",
+  "t": "ref",
+  "v": "nextTick",
+  "l": "resolveComponent",
+  "_": "unref",
+  "y": "openBlock",
+  "b": "createBlock",
+  "f": "withCtx",
+  "r": "createVNode",
+  "k": "normalizeStyle",
+  "S": "createCommentVNode"
+ },
+ "entry": {},
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

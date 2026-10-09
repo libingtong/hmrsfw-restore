@@ -1,0 +1,56 @@
+{
+ "id": "page.uc.graduates",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.17516156075458.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-072a3474"
+  }
+ ],
+ "scopeIds": [
+  "data-v-072a3474"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.17516156075458.css"
+ ],
+ "target": "apps/uc/src/views/graduates.vue",
+ "subComponentDir": "apps/uc/src/views/graduates/",
+ "routes": [
+  {
+   "path": "/graduates",
+   "name": "graduates"
+  }
+ ],
+ "recordPath": "/graduates",
+ "maps": "out/maps/page.uc.graduates.json",
+ "hints": "out/hints/page.uc.graduates.md",
+ "deps": {
+  "entry": [
+   "a",
+   "b",
+   "d",
+   "f",
+   "l",
+   "m",
+   "n",
+   "p",
+   "w"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,54 @@
+{
+ "id": "page.uc.enterprisetemplate",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/enterprisetemplate.1751615607545.js",
+ "components": [
+  {
+   "name": "enterprisetemplate",
+   "scopeId": "data-v-141f6972"
+  }
+ ],
+ "scopeIds": [
+  "data-v-141f6972"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/enterprisetemplate.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/enterprisetemplate.vue",
+ "subComponentDir": "apps/uc/src/views/enterprisetemplate/",
+ "routes": [
+  {
+   "path": "/enterprisetemplate",
+   "name": "Enterprisetemplate"
+  }
+ ],
+ "recordPath": "/enterprisetemplate",
+ "maps": "out/maps/page.uc.enterprisetemplate.json",
+ "hints": "out/hints/page.uc.enterprisetemplate.md",
+ "deps": {
+  "entry": [
+   "B",
+   "d",
+   "h",
+   "m",
+   "p"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075456.js#R",
+   "index.api.17516156075456.js#S",
+   "index.api.17516156075456.js#T"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

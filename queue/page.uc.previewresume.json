@@ -1,0 +1,72 @@
+{
+ "id": "page.uc.previewresume",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 25,
+ "sourceChunk": "legacy-dist/usercenter/assets/previewresume.1751615607545.js",
+ "components": [
+  {
+   "name": "InterviewInvitationpreview",
+   "scopeId": "data-v-80ad0f6b"
+  },
+  {
+   "name": "previewresume",
+   "scopeId": "data-v-7e842583"
+  }
+ ],
+ "scopeIds": [
+  "data-v-80ad0f6b",
+  "data-v-7e842583"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/previewresume.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/previewresume.vue",
+ "subComponentDir": "apps/uc/src/views/previewresume/",
+ "routes": [
+  {
+   "path": "/previewresume",
+   "name": "previewresume"
+  }
+ ],
+ "recordPath": "/previewresume",
+ "maps": "out/maps/page.uc.previewresume.json",
+ "hints": "out/hints/page.uc.previewresume.md",
+ "deps": {
+  "entry": [
+   "B",
+   "M",
+   "a7",
+   "as",
+   "at",
+   "au",
+   "av",
+   "by",
+   "bz",
+   "d",
+   "h",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x"
+  ],
+  "shared": [
+   "message.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075456.js#a9",
+   "index.api.17516156075456.js#aa",
+   "index.api.17516156075456.js#t"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

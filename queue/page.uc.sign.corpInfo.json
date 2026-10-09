@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.sign.corpInfo",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 14.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/info.17516156075452.js",
+ "components": [
+  {
+   "name": "info",
+   "scopeId": "data-v-99a6e13e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-99a6e13e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/info.17516156075452.css"
+ ],
+ "target": "apps/uc/src/views/sign/corpInfo.vue",
+ "subComponentDir": "apps/uc/src/views/sign/corpInfo/",
+ "routes": [
+  {
+   "path": "/sign/corpInfo",
+   "name": "corpInfo"
+  }
+ ],
+ "recordPath": "/sign/corpInfo",
+ "maps": "out/maps/page.uc.sign.corpInfo.json",
+ "hints": "out/hints/page.uc.sign.corpInfo.md",
+ "deps": {
+  "entry": [
+   "b7",
+   "d",
+   "m",
+   "x"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754514.js#a",
+   "index.api.175161560754514.js#e",
+   "index.api.175161560754514.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

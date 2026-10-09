@@ -1,0 +1,57 @@
+{
+ "id": "shared.portal.maps",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.4,
+ "chunkKb": 344.1,
+ "bundled": {
+  "kb": 342.7,
+  "what": "地图 geojson 数据",
+  "rule": "开头这段是打包进来的库或数据：库改为 npm 依赖（版本按指纹），数据抽成 JSON/资源文件，不得原样拷进 .vue"
+ },
+ "sourceChunk": "legacy-dist/portal/assets/maps.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "components": [
+  {
+   "name": "maps",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/maps.vue",
+ "exports": {
+  "_": {
+   "export": "default"
+  }
+ },
+ "registryKey": "maps.vue_vue_type_style_index_0_lang.1783320636200.js",
+ "usedBy": [
+  "page.portal.xjhm.bigData.statistics"
+ ],
+ "maps": "out/maps/shared.portal.maps.json",
+ "hints": "out/hints/shared.portal.maps.md",
+ "deps": {
+  "entry": [
+   "B",
+   "av",
+   "c7",
+   "c8",
+   "f",
+   "g"
+  ],
+  "shared": [
+   "timeOut.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

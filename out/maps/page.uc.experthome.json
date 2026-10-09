@@ -1,0 +1,88 @@
+{
+ "id": "page.uc.experthome",
+ "chunk": "legacy-dist/usercenter/assets/home.17516156075452.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "v": "defineComponent",
+  "x": "useRouter (vue-router)",
+  "k": "reactive",
+  "I": "onMounted",
+  "s": "resolveComponent",
+  "l": "openBlock",
+  "b": "createElementBlock",
+  "c": "createElementVNode",
+  "o": "createVNode",
+  "d": "withCtx",
+  "n": "createCommentVNode",
+  "g": "createBlock"
+ },
+ "entry": {
+  "i": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "N": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "h": {
+   "original": "index.api.17516156075458.js#a",
+   "path": "@/api/jobUserSchoolExpert",
+   "export": "statics",
+   "status": "reserved",
+   "url": "/xf-job/job/xfSysConsult/statics"
+  },
+  "C": {
+   "original": "index.api.17516156075458.js#b",
+   "path": "@/api/jobUserSchoolExpert",
+   "export": "queryJoinedForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/job/xfSysConsult/queryJoinedForUserCenter"
+  },
+  "S": {
+   "original": "index.api.17516156075458.js#c",
+   "path": "@/api/jobUserSchoolExpert",
+   "export": "queryListForUserCenter",
+   "status": "reserved",
+   "url": "/xf-job/job/xfSysConsult/queryListForUserCenter"
+  }
+ },
+ "shared": {
+  "U": {
+   "original": "usercard.1751615607545.js#u",
+   "path": "@/shared/usercard.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.usercard"
+  },
+  "w": {
+   "original": "metormodal.1751615607545.js#m",
+   "path": "@/shared/metormodal.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.metormodal"
+  },
+  "B": {
+   "original": "right.vue_vue_type_script_setup_true_lang.1751615607545.js#_",
+   "path": "@/shared/right.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.right"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "right.vue_vue_type_style_index_0_scopes_true_lang.1751615607545.js",
+  "index.api.17516156075452.js",
+  "default.1751615607545.js",
+  "index.api.17516156075454.js",
+  "unfold.1751615607545.js"
+ ],
+ "missing": []
+}

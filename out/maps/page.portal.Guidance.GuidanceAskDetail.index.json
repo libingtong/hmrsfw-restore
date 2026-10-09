@@ -1,0 +1,116 @@
+{
+ "id": "page.portal.Guidance.GuidanceAskDetail.index",
+ "chunk": "legacy-dist/portal/assets/index.17833206362003.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ws": "defineComponent",
+  "Cs": "useRoute (vue-router)",
+  "Bs": "useRouter (vue-router)",
+  "Ls": "reactive",
+  "Ts": "onMounted",
+  "Ss": "watch",
+  "b": "resolveComponent",
+  "n": "openBlock",
+  "v": "createElementBlock",
+  "s": "createElementVNode",
+  "u": "unref",
+  "C": "createBlock",
+  "e": "withCtx",
+  "l": "createVNode",
+  "r": "createTextVNode",
+  "t": "toDisplayString",
+  "h": "createCommentVNode",
+  "z": "Fragment",
+  "E": "renderList",
+  "Ps": "pushScopeId",
+  "As": "popScopeId",
+  "B": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "F": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "qs": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "zs": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "G": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "V": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ns": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "Rs": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "Is": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "MSG_PERFECT_PERSONAL",
+   "status": "restored"
+  },
+  "js": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "IDENTITY_OTHER",
+   "status": "restored"
+  },
+  "Es": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "_s": {
+   "original": "da.1783320636200.js#_",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.5KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "daImg_",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  },
+  "gs": {
+   "original": "da.1783320636200.js#a",
+   "value": "data:image/png;base64,iVBORw0K…（内联 0.5KB）",
+   "inline": true,
+   "path": "@/shared/images",
+   "export": "daImgA",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

@@ -1,0 +1,85 @@
+{
+ "id": "page.portal.sjz.fair.fairs",
+ "chunk": "legacy-dist/portal/assets/fairs.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "C": "defineComponent",
+  "$": "useRoute (vue-router)",
+  "w": "reactive",
+  "z": "onMounted",
+  "G": "onBeforeMount",
+  "l": "openBlock",
+  "o": "createElementBlock",
+  "I": "createElementVNode",
+  "v": "Fragment",
+  "S": "renderList",
+  "D": "normalizeStyle",
+  "d": "createVNode",
+  "R": "createBlock",
+  "P": "createCommentVNode",
+  "W": "normalizeClass",
+  "Y": "toDisplayString"
+ },
+ "entry": {
+  "E": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "M": {
+   "original": "w",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "U": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "V": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "f": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "Z": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "H": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "J": {
+   "original": "cd",
+   "path": "@/legacy/components/MoveWindow.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "K": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

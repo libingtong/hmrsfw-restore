@@ -1,0 +1,61 @@
+{
+ "id": "page.portal.sjz.fair.webFair.list",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 11,
+ "sourceChunk": "legacy-dist/portal/assets/list.17833206362008.js",
+ "components": [
+  {
+   "name": "list",
+   "scopeId": "data-v-410d771f"
+  }
+ ],
+ "scopeIds": [
+  "data-v-410d771f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/list.178332063620011.css",
+  "legacy-dist/portal/assets/list.17833206362008.css"
+ ],
+ "target": "apps/portal/src/views/sjz/fair/webFair/list.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/fair/webFair/list/",
+ "routes": [],
+ "recordPath": "/fairList",
+ "maps": "out/maps/page.portal.sjz.fair.webFair.list.json",
+ "hints": "out/hints/page.portal.sjz.fair.webFair.list.md",
+ "deps": {
+  "entry": [
+   "A",
+   "D",
+   "I",
+   "O",
+   "S",
+   "aD",
+   "ba",
+   "c",
+   "g",
+   "m",
+   "p",
+   "q",
+   "r",
+   "u"
+  ],
+  "shared": [
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620017.js#w"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.sjz.fair.fairList"
+}

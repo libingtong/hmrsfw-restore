@@ -1,0 +1,153 @@
+{
+ "id": "page.portal.sjz.unitMain.unitMain",
+ "chunk": "legacy-dist/portal/assets/unitMain.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ce": "defineComponent",
+  "p": "ref",
+  "A": "reactive",
+  "de": "onMounted",
+  "f": "resolveComponent",
+  "w": "openBlock",
+  "J": "createElementBlock",
+  "l": "createVNode",
+  "s": "withCtx",
+  "d": "createElementVNode",
+  "F": "unref",
+  "X": "createCommentVNode",
+  "O": "createTextVNode",
+  "Xe": "pushScopeId",
+  "Ye": "popScopeId",
+  "Ve": "useRouter (vue-router)",
+  "Ke": "useRoute (vue-router)",
+  "Qe": "onUnmounted",
+  "et": "onBeforeMount",
+  "Y": "toDisplayString",
+  "V": "createBlock",
+  "tt": "Fragment"
+ },
+ "entry": {
+  "H": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "z": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "W": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "qe": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Be": {
+   "original": "av",
+   "path": "lodash-es",
+   "export": "cloneDeep",
+   "status": "npm"
+  },
+  "se": {
+   "original": "a8",
+   "path": "@/legacy/utils",
+   "export": "formatDateSlash",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "$": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Ee": {
+   "original": "a9",
+   "path": "@/legacy/utils",
+   "export": "UPLOAD_URL",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "ne": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "Ae": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Me": {
+   "original": "a6",
+   "path": "@/legacy",
+   "export": "FeedbackModal",
+   "status": "restored"
+  },
+  "Ze": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  }
+ },
+ "api": {
+  "Ge": {
+   "original": "index.api.178332063620035.js#x",
+   "path": "@/api/jobGovRecruitCompany",
+   "export": "noPagelist2",
+   "status": "reserved",
+   "url": "/job/licenseFree/xfJobGovRecruitCompany/noPagelist"
+  },
+  "He": {
+   "original": "index.api.178332063620035.js#n",
+   "path": "@/api/jobGovRecruitCompany",
+   "export": "noPagelist",
+   "status": "reserved",
+   "url": "/job/licenseFree/xfJobGovRecruitPosition/noPagelist"
+  },
+  "We": {
+   "original": "index.api.178332063620035.js#o",
+   "path": "@/api/jobGovRecruitCompany",
+   "export": "add",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobGovRecruitRegistration/add"
+  },
+  "re": {
+   "original": "index.api.178332063620035.js#g",
+   "path": "@/api/jobGovRecruitCompany",
+   "export": "queryByIdNew",
+   "status": "reserved",
+   "url": "/xf-job/job/licenseFree/xfJobGovRecruitNotice/queryByIdNew"
+  },
+  "$e": {
+   "original": "index.api.178332063620035.js#c",
+   "path": "@/api/jobGovRecruitCompany",
+   "export": "checkIzPerfect",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysUser/checkIzPerfect"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

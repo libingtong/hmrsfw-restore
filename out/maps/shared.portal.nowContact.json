@@ -1,0 +1,27 @@
+{
+ "id": "shared.portal.nowContact",
+ "chunk": "legacy-dist/portal/assets/nowContact.vue_vue_type_script_setup_true_lang.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "y": "defineComponent",
+  "g": "reactive",
+  "f": "onMounted",
+  "o": "resolveComponent",
+  "a": "openBlock",
+  "s": "createElementBlock",
+  "n": "createVNode",
+  "C": "withCtx",
+  "i": "createElementVNode",
+  "d": "createTextVNode",
+  "t": "toDisplayString",
+  "h": "createCommentVNode"
+ },
+ "entry": {},
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

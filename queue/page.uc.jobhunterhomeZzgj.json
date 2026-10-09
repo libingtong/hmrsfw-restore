@@ -1,0 +1,83 @@
+{
+ "id": "page.uc.jobhunterhomeZzgj",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 12.3,
+ "sourceChunk": "legacy-dist/usercenter/assets/homeZzgj.1751615607545.js",
+ "components": [
+  {
+   "name": "JobItem",
+   "scopeId": "data-v-5cc85fbb"
+  },
+  {
+   "name": "homeZzgj",
+   "scopeId": "data-v-9d0443d6"
+  }
+ ],
+ "scopeIds": [
+  "data-v-5cc85fbb",
+  "data-v-9d0443d6"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/newUserCard.1751615607545.css",
+  "legacy-dist/usercenter/assets/right.1751615607545.css",
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/homeZzgj.1751615607545.css",
+  "legacy-dist/usercenter/assets/mymsg.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/jobhunterhomeZzgj.vue",
+ "subComponentDir": "apps/uc/src/views/jobhunterhomeZzgj/",
+ "routes": [
+  {
+   "path": "/jobhunterhomeZzgj",
+   "name": "jobhunterhomeZzgj"
+  },
+  {
+   "path": "/jobhunterhomeZ",
+   "name": "jobhunterhomeZ"
+  }
+ ],
+ "recordPath": "/jobhunterhomeZzgj",
+ "maps": "out/maps/page.uc.jobhunterhomeZzgj.json",
+ "hints": "out/hints/page.uc.jobhunterhomeZzgj.md",
+ "deps": {
+  "entry": [
+   "B",
+   "G",
+   "bH",
+   "bI",
+   "bp",
+   "c",
+   "d",
+   "h",
+   "m",
+   "s",
+   "v"
+  ],
+  "shared": [
+   "recommendZp.17516156075452.js",
+   "resumemodal.1751615607545.js"
+  ],
+  "api": [
+   "index.api.1751615607545.js#f",
+   "index.api.17516156075456.js#b",
+   "index.api.17516156075456.js#c",
+   "index.api.17516156075456.js#d",
+   "index.api.17516156075456.js#e",
+   "index.api.17516156075456.js#p"
+  ],
+  "modules": [
+   "newUserCard.vue_vue_type_style_index_0_scoped_399cb1b5_lang.1751615607545.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.uc.E6",
+   "shared.uc.modules",
+   "shared.uc.recommendZp2"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

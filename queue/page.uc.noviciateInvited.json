@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.noviciateInvited",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/noviciateInvited.1751615607545.js",
+ "components": [
+  {
+   "name": "noviciateInvited",
+   "scopeId": "data-v-10344e3a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-10344e3a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/noviciateInvited.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/noviciateInvited.vue",
+ "subComponentDir": "apps/uc/src/views/noviciateInvited/",
+ "routes": [
+  {
+   "path": "/noviciateInvited",
+   "name": "noviciateInvited"
+  }
+ ],
+ "recordPath": "/noviciateInvited",
+ "maps": "out/maps/page.uc.noviciateInvited.json",
+ "hints": "out/hints/page.uc.noviciateInvited.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a8",
+   "aC",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "setStatusinterview.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

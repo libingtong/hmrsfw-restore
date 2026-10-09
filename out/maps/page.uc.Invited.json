@@ -1,0 +1,72 @@
+{
+ "id": "page.uc.Invited",
+ "chunk": "legacy-dist/usercenter/assets/Invited.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "L": "defineComponent",
+  "H": "inject",
+  "J": "reactive",
+  "Q": "onMounted",
+  "d": "resolveComponent",
+  "s": "openBlock",
+  "S": "createBlock",
+  "x": "withCtx",
+  "p": "createVNode",
+  "t": "createElementVNode",
+  "c": "createElementBlock",
+  "I": "renderList",
+  "f": "Fragment",
+  "R": "normalizeClass",
+  "i": "toDisplayString",
+  "r": "createCommentVNode",
+  "h": "h",
+  "X": "pushScopeId",
+  "Y": "popScopeId"
+ },
+ "entry": {
+  "E": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "w": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "k": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "F": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {
+  "q": {
+   "original": "index.api.17516156075456.js#d",
+   "path": "@/api/api-56",
+   "export": "listNew",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobInterviewInvitation/listNew"
+  },
+  "b": {
+   "original": "index.api.17516156075456.js#p",
+   "path": "@/api/api-56",
+   "export": "acceptOrRefuse",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse"
+  }
+ },
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

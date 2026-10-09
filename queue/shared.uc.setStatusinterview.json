@@ -1,0 +1,63 @@
+{
+ "id": "shared.uc.setStatusinterview",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 2.6,
+ "chunkKb": 2.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/setStatusinterview.1751615607545.js",
+ "components": [
+  {
+   "name": "setStatusinterview",
+   "scopeId": "data-v-99a2d30a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-99a2d30a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/setStatusinterview.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/setStatusinterview.vue",
+ "exports": {
+  "s": {
+   "export": "default"
+  }
+ },
+ "registryKey": "setStatusinterview.1751615607545.js",
+ "usedBy": [
+  "page.uc.CorpCenterZ",
+  "page.uc.CorpCenter",
+  "page.uc.marketCenter",
+  "page.uc.RecIntResume",
+  "page.uc.noviciateInvited",
+  "page.uc.downnoviciate",
+  "page.uc.ReceivedResume",
+  "page.uc.ReceivedResumeLive",
+  "page.uc.WebWorkResume",
+  "shared.uc.ReceivedResumeList"
+ ],
+ "maps": "out/maps/shared.uc.setStatusinterview.json",
+ "hints": "out/hints/shared.uc.setStatusinterview.md",
+ "deps": {
+  "entry": [
+   "M",
+   "ar",
+   "d",
+   "k",
+   "m"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.175161560754510.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,56 @@
+{
+ "id": "shared.portal.homeNews",
+ "type": "shared",
+ "status": "regression",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 10.3,
+ "chunkKb": 10.3,
+ "sourceChunk": "legacy-dist/portal/assets/homeNews.17833206362002.js",
+ "components": [
+  {
+   "name": "homeNews",
+   "scopeId": "data-v-51b3470e"
+  }
+ ],
+ "scopeIds": [
+  "data-v-51b3470e"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/homeNews.17833206362002.css"
+ ],
+ "target": "apps/portal/src/shared/homeNews.vue",
+ "exports": {
+  "h": {
+   "export": "default"
+  }
+ },
+ "registryKey": "homeNews.17833206362002.js",
+ "usedBy": [
+  "page.portal.oddJob.index",
+  "page.portal.xjhm.cityHome.index"
+ ],
+ "maps": "out/maps/shared.portal.homeNews.json",
+ "hints": "out/hints/shared.portal.homeNews.md",
+ "deps": {
+  "entry": [
+   "B",
+   "am",
+   "ap",
+   "c",
+   "d",
+   "f",
+   "n",
+   "u"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,23 @@
+{
+ "id": "entry.portal.E1",
+ "type": "entry",
+ "area": "E1",
+ "title": "构建配置与 .env",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": null,
+ "appCode": "018",
+ "files": [
+  "vite.portal.config.ts",
+  ".env.example"
+ ],
+ "owns": [],
+ "note": "别名、代理 /xf-api、base；.env.example 只放占位符（VITE_SM2_PUBLIC_KEY、VITE_SM4_KEY、地图 AK），不得出现真实值",
+ "deps": {
+  "orders": []
+ },
+ "kbEstimated": true
+}

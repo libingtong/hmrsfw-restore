@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.downnoviciate",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6,
+ "sourceChunk": "legacy-dist/usercenter/assets/downnoviciate.1751615607545.js",
+ "components": [
+  {
+   "name": "downnoviciate",
+   "scopeId": "data-v-ed350b32"
+  }
+ ],
+ "scopeIds": [
+  "data-v-ed350b32"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/downnoviciate.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/downnoviciate.vue",
+ "subComponentDir": "apps/uc/src/views/downnoviciate/",
+ "routes": [
+  {
+   "path": "/downnoviciate",
+   "name": "downnoviciate"
+  }
+ ],
+ "recordPath": "/downnoviciate",
+ "maps": "out/maps/page.uc.downnoviciate.json",
+ "hints": "out/hints/page.uc.downnoviciate.md",
+ "deps": {
+  "entry": [
+   "M",
+   "a7",
+   "aC",
+   "d"
+  ],
+  "shared": [
+   "InterviewInvitation.17516156075452.js",
+   "dictCode.1751615607545.js",
+   "setStatusinterview.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

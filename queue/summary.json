@@ -1,0 +1,290 @@
+{
+ "generatedFrom": {},
+ "sites": {
+  "portal": {
+   "app": "portal",
+   "pages": 161,
+   "routeViews": 111,
+   "importedViews": 50,
+   "accepted": 17,
+   "pageOrders": 140,
+   "segmentedPages": [
+    {
+     "id": "page.portal.cityHome.index",
+     "kb": 32.8,
+     "segments": 2
+    },
+    {
+     "id": "page.portal.eMap.index",
+     "kb": 30.8,
+     "segments": 2
+    },
+    {
+     "id": "page.portal.guide.jobHunt",
+     "kb": 41.2,
+     "segments": 2
+    },
+    {
+     "id": "page.portal.guide.index",
+     "kb": 30.6,
+     "segments": 2
+    }
+   ],
+   "segments": 8,
+   "sizeBands": {
+    "<5": 51,
+    "5-30": 105,
+    "30-60": 5,
+    ">=60": 0
+   },
+   "pages30to60": [
+    {
+     "id": "page.portal.cityHome.index",
+     "kb": 32.8,
+     "status": "segmented"
+    },
+    {
+     "id": "page.portal.eMap.index",
+     "kb": 30.8,
+     "status": "segmented"
+    },
+    {
+     "id": "page.portal.fair.sceneFair.detail",
+     "kb": 35.1,
+     "status": "regression"
+    },
+    {
+     "id": "page.portal.guide.jobHunt",
+     "kb": 41.2,
+     "status": "segmented"
+    },
+    {
+     "id": "page.portal.guide.index",
+     "kb": 30.6,
+     "status": "segmented"
+    }
+   ],
+   "shared": 47,
+   "sharedTodo": 36,
+   "sharedNpm": [
+    "shared.portal.vue-countup-v3",
+    "shared.portal.vue3-seamless-scroll"
+   ],
+   "sharedModulesOrders": 1,
+   "entry": 16,
+   "entryComponents": 25,
+   "smallPagesForBundling": 46,
+   "blockedRoutes": 1,
+   "bigChunks": [
+    {
+     "chunk": "appointment.1783320636200.js",
+     "kind": "shared",
+     "kb": 916.3,
+     "inScope": false,
+     "components": [
+      "Editor",
+      "appointment"
+     ],
+     "appCodeFrom": 903.3,
+     "appCodeKb": 13,
+     "library": "tinymce 5.10.3",
+     "imports": 2
+    },
+    {
+     "chunk": "china.1783320636200.js",
+     "kind": "vendor",
+     "kb": 568,
+     "inScope": true,
+     "components": [],
+     "appCodeFrom": 568,
+     "appCodeKb": 0,
+     "library": "geojson",
+     "imports": 1
+    },
+    {
+     "chunk": "index.1783320636200102.js",
+     "kind": "view",
+     "kb": 553.3,
+     "inScope": false,
+     "components": [
+      "index"
+     ],
+     "appCodeFrom": 552,
+     "appCodeKb": 1.3,
+     "library": "three",
+     "imports": 2
+    },
+    {
+     "chunk": "index.1783320636200118.js",
+     "kind": "vendor",
+     "kb": 1018.4,
+     "inScope": true,
+     "components": [],
+     "appCodeFrom": 1018.4,
+     "appCodeKb": 0,
+     "library": "echarts",
+     "imports": 5
+    },
+    {
+     "chunk": "index.178332063620027.js",
+     "kind": "view",
+     "kb": 552.1,
+     "inScope": false,
+     "components": [
+      "ConversationList",
+      "MessageItem",
+      "SendMsg",
+      "EmojisContainer",
+      "index"
+     ],
+     "appCodeFrom": 2.5,
+     "appCodeKb": 549.5,
+     "library": "easemob-websdk",
+     "imports": 2
+    },
+    {
+     "chunk": "index.178332063620028.js",
+     "kind": "view",
+     "kb": 616.1,
+     "inScope": false,
+     "components": [
+      "ConversationList",
+      "MessageItem",
+      "SendMsg",
+      "index"
+     ],
+     "appCodeFrom": 1.8,
+     "appCodeKb": 614.3,
+     "library": null,
+     "imports": 2
+    }
+   ]
+  },
+  "usercenter": {
+   "app": "uc",
+   "pages": 133,
+   "routeViews": 133,
+   "importedViews": 0,
+   "accepted": 16,
+   "pageOrders": 111,
+   "segmentedPages": [
+    {
+     "id": "page.uc.CorpAttestation",
+     "kb": 63.1,
+     "segments": 2
+    },
+    {
+     "id": "page.uc.zcyzCorpAttestation",
+     "kb": 46.8,
+     "segments": 2
+    },
+    {
+     "id": "page.uc.zcyzCorpAttestationapprove",
+     "kb": 63.4,
+     "segments": 3
+    },
+    {
+     "id": "page.uc.collage.studentApply",
+     "kb": 35.2,
+     "segments": 2
+    },
+    {
+     "id": "page.uc.sign.corpApply",
+     "kb": 37.2,
+     "segments": 2
+    },
+    {
+     "id": "page.uc.gongfuWorkshop.positionPosting",
+     "kb": 31.6,
+     "segments": 2
+    }
+   ],
+   "segments": 13,
+   "sizeBands": {
+    "<5": 35,
+    "5-30": 87,
+    "30-60": 6,
+    ">=60": 5
+   },
+   "pages30to60": [
+    {
+     "id": "page.uc.doneList",
+     "kb": 35.8,
+     "status": "regression"
+    },
+    {
+     "id": "page.uc.zcyzCorpAttestation",
+     "kb": 46.8,
+     "status": "segmented"
+    },
+    {
+     "id": "page.uc.Createaresume",
+     "kb": 58.9,
+     "status": "regression"
+    },
+    {
+     "id": "page.uc.collage.studentApply",
+     "kb": 35.2,
+     "status": "segmented"
+    },
+    {
+     "id": "page.uc.sign.corpApply",
+     "kb": 37.2,
+     "status": "segmented"
+    },
+    {
+     "id": "page.uc.gongfuWorkshop.positionPosting",
+     "kb": 31.6,
+     "status": "segmented"
+    }
+   ],
+   "shared": 43,
+   "sharedTodo": 21,
+   "sharedNpm": [],
+   "sharedModulesOrders": 1,
+   "entry": 10,
+   "entryComponents": 8,
+   "smallPagesForBundling": 29,
+   "blockedRoutes": 0,
+   "bigChunks": [
+    {
+     "chunk": "Editor.1751615607545.js",
+     "kind": "shared",
+     "kb": 904.4,
+     "inScope": true,
+     "components": [
+      "Editor"
+     ],
+     "appCodeFrom": 901.2,
+     "appCodeKb": 2.5,
+     "library": "tinymce 5.10.3",
+     "imports": 1
+    },
+    {
+     "chunk": "index.175161560754527.js",
+     "kind": "vendor",
+     "kb": 1010.5,
+     "inScope": true,
+     "components": [],
+     "appCodeFrom": 1009.8,
+     "appCodeKb": 0,
+     "library": "echarts",
+     "imports": 1
+    }
+   ]
+  }
+ },
+ "totals": {
+  "orders": 433,
+  "dispatchable": 357,
+  "pages": 294,
+  "pageOrders": 251,
+  "regression": 64,
+  "segmentedPages": 10,
+  "segments": 21,
+  "shared": 90,
+  "sharedTodo": 57,
+  "sharedModules": 2,
+  "entry": 26
+ }
+}

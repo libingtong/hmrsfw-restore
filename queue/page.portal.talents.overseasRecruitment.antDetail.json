@@ -1,0 +1,61 @@
+{
+ "id": "page.portal.talents.overseasRecruitment.antDetail",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3.6,
+ "sourceChunk": "legacy-dist/portal/assets/antDetail.1783320636200.js",
+ "components": [
+  {
+   "name": "antDetail",
+   "scopeId": "data-v-3ccdc5f7"
+  }
+ ],
+ "scopeIds": [
+  "data-v-3ccdc5f7"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/antDetail.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/overseasRecruitment/antDetail.vue",
+ "subComponentDir": "apps/portal/src/views/talents/overseasRecruitment/antDetail/",
+ "routes": [
+  {
+   "path": "/talents/antDetail",
+   "name": "talents/antDetail",
+   "title": "境外招聘共公告详情"
+  }
+ ],
+ "recordPath": "/talents/antDetail",
+ "maps": "out/maps/page.portal.talents.overseasRecruitment.antDetail.json",
+ "hints": "out/hints/page.portal.talents.overseasRecruitment.antDetail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "V",
+   "d",
+   "f",
+   "m",
+   "u",
+   "v"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620035.js#c",
+   "index.api.178332063620041.js#a",
+   "index.api.178332063620041.js#q",
+   "index.api.178332063620041.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03",
+   "entry.portal.c05"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

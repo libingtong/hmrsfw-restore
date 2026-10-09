@@ -1,0 +1,43 @@
+{
+ "id": "page.portal.sjz.bigData.components.Dashboard2",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.1,
+ "sourceChunk": "legacy-dist/portal/assets/Dashboard2.17833206362002.js",
+ "components": [
+  {
+   "name": "Dashboard2",
+   "scopeId": "data-v-f0564027"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f0564027"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/Dashboard2.17833206362002.css"
+ ],
+ "target": "apps/portal/src/views/sjz/bigData/components/Dashboard2.vue",
+ "subComponentDir": "apps/portal/src/views/sjz/bigData/components/Dashboard2/",
+ "routes": [],
+ "recordPath": "/sjzbigData",
+ "maps": "out/maps/page.portal.sjz.bigData.components.Dashboard2.json",
+ "hints": "out/hints/page.portal.sjz.bigData.components.Dashboard2.md",
+ "deps": {
+  "entry": [
+   "c",
+   "h"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.178332063620034.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.sjz.bigData.screen"
+}

@@ -1,0 +1,159 @@
+{
+ "id": "shared.uc.appointment",
+ "chunk": "legacy-dist/usercenter/assets/appointment.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "L": "defineComponent",
+  "$": "ref",
+  "K": "onBeforeMount",
+  "q": "onMounted",
+  "u": "resolveComponent",
+  "J": "openBlock",
+  "E": "createElementBlock",
+  "t": "createVNode",
+  "o": "withCtx",
+  "r": "createElementVNode",
+  "y": "toDisplayString",
+  "D": "createTextVNode",
+  "U": "unref",
+  "oe": "pushScopeId",
+  "le": "popScopeId",
+  "A": "reactive",
+  "V": "watch",
+  "Ne": "nextTick"
+ },
+ "entry": {
+  "Y": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "R": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "M": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "F": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "X": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "G": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "bu",
+   "path": "@/legacy/utils",
+   "export": "isMobilePhone",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "we": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "Te": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "$e": {
+   "original": "index.api.175161560754517.js#g",
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryListInfoByCareerTalkId",
+   "status": "reserved",
+   "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/queryListInfoByCareerTalkId"
+  },
+  "Pe": {
+   "original": "index.api.175161560754517.js#e",
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryAttendanceListByCareerTalkId",
+   "status": "reserved",
+   "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/queryAttendanceListByCareerTalkId"
+  },
+  "De": {
+   "original": "index.api.175161560754517.js#f",
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryTalkDetailById",
+   "status": "reserved",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/queryTalkDetailById"
+  },
+  "Oe": {
+   "original": "index.api.175161560754517.js#h",
+   "path": "@/api/collegeCareerTalk",
+   "export": "listPositionForCareerTalk",
+   "status": "reserved",
+   "url": "/xf-college/careerTalkPosition/xfCollegeCareerTalkPosition/listPositionForCareerTalk"
+  },
+  "je": {
+   "original": "index.api.175161560754517.js#l",
+   "path": "@/api/collegeCareerTalk",
+   "export": "listNew",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCompanyPosition/listNew"
+  },
+  "Be": {
+   "original": "index.api.175161560754517.js#i",
+   "path": "@/api/collegeCareerTalk",
+   "export": "listByRoomParentOrganizationId",
+   "status": "reserved",
+   "url": "/xf-college/campus/xfCollegeCampus/listByRoomParentOrganizationId"
+  },
+  "ze": {
+   "original": "index.api.175161560754517.js#j",
+   "path": "@/api/collegeCareerTalk",
+   "export": "addCompany",
+   "status": "reserved",
+   "url": "/xf-college/careerTalk/xfCollegeCareerTalk/addCompany"
+  },
+  "Re": {
+   "original": "index.api.175161560754517.js#x",
+   "path": "@/api/collegeCareerTalk",
+   "export": "roomAndTimeList",
+   "status": "reserved",
+   "url": "/xf-college/careerRoom/xfCollegeCareerRoom/roomAndTimeList"
+  },
+  "Ue": {
+   "original": "index.api.175161560754517.js#k",
+   "path": "@/api/collegeCareerTalk",
+   "export": "queryGroupByCtbDate",
+   "status": "reserved",
+   "url": "/xf-college/careerTimeBucket/xfCollegeCareerTimeBucket/queryGroupByCtbDate"
+  }
+ },
+ "shared": {
+  "Me": {
+   "original": "Editor.1751615607545.js#E",
+   "path": "@/shared/Editor.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.uc.Editor"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

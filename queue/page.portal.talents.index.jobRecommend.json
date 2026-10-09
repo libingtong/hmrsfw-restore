@@ -1,0 +1,52 @@
+{
+ "id": "page.portal.talents.index.jobRecommend",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.8,
+ "sourceChunk": "legacy-dist/portal/assets/jobRecommend.1783320636200.js",
+ "components": [
+  {
+   "name": "jobRecommend",
+   "scopeId": "data-v-63775895"
+  }
+ ],
+ "scopeIds": [
+  "data-v-63775895"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/jobRecommend.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/index/jobRecommend.vue",
+ "subComponentDir": "apps/portal/src/views/talents/index/jobRecommend/",
+ "routes": [],
+ "recordPath": "/talents/index",
+ "maps": "out/maps/page.portal.talents.index.jobRecommend.json",
+ "hints": "out/hints/page.portal.talents.index.jobRecommend.md",
+ "deps": {
+  "entry": [
+   "B",
+   "f",
+   "m",
+   "u"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620037.js#f"
+  ],
+  "modules": [
+   "robot.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.c03",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.index.index"
+}

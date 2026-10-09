@@ -1,0 +1,46 @@
+{
+ "id": "page.portal.talents.conference.swperSlides",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 3,
+ "sourceChunk": "legacy-dist/portal/assets/swperSlides.1783320636200.js",
+ "components": [
+  {
+   "name": "swperSlides",
+   "scopeId": "data-v-42bc73f5"
+  }
+ ],
+ "scopeIds": [
+  "data-v-42bc73f5"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/swperSlides.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/talents/conference/swperSlides.vue",
+ "subComponentDir": "apps/portal/src/views/talents/conference/swperSlides/",
+ "routes": [],
+ "recordPath": "/talents/conference",
+ "maps": "out/maps/page.portal.talents.conference.swperSlides.json",
+ "hints": "out/hints/page.portal.talents.conference.swperSlides.md",
+ "deps": {
+  "entry": [
+   "B",
+   "a",
+   "b",
+   "f",
+   "i"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "recordVia": "page.portal.talents.conference.index"
+}

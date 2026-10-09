@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.changephone",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/changephone.1751615607545.js",
+ "components": [
+  {
+   "name": "changephone",
+   "scopeId": "data-v-deca1669"
+  }
+ ],
+ "scopeIds": [
+  "data-v-deca1669"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/SlideCaptcha.1751615607545.css",
+  "legacy-dist/usercenter/assets/changephone.1751615607545.css",
+  "legacy-dist/usercenter/assets/index.175161560754510.css"
+ ],
+ "target": "apps/uc/src/views/changephone.vue",
+ "subComponentDir": "apps/uc/src/views/changephone/",
+ "routes": [
+  {
+   "path": "/changephone",
+   "name": "changephone"
+  }
+ ],
+ "recordPath": "/changephone",
+ "maps": "out/maps/page.uc.changephone.json",
+ "hints": "out/hints/page.uc.changephone.md",
+ "deps": {
+  "entry": [
+   "M",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075453.js#a",
+   "index.api.17516156075453.js#b",
+   "index.api.17516156075453.js#d"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

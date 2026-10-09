@@ -1,0 +1,46 @@
+{
+ "id": "page.uc.businessSingUp",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4,
+ "sourceChunk": "legacy-dist/usercenter/assets/businessSingUp.1751615607545.js",
+ "components": [
+  {
+   "name": "businessSingUp",
+   "scopeId": "data-v-fa16b244"
+  }
+ ],
+ "scopeIds": [
+  "data-v-fa16b244"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/businessSingUp.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/businessSingUp.vue",
+ "subComponentDir": "apps/uc/src/views/businessSingUp/",
+ "routes": [
+  {
+   "path": "/businessSingUp",
+   "name": "businessSingUp"
+  }
+ ],
+ "recordPath": "/businessSingUp",
+ "maps": "out/maps/page.uc.businessSingUp.json",
+ "hints": "out/hints/page.uc.businessSingUp.md",
+ "deps": {
+  "entry": [
+   "bk",
+   "d",
+   "k"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

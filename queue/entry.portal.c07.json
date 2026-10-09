@@ -1,0 +1,66 @@
+{
+ "id": "entry.portal.c07",
+ "type": "entry",
+ "area": "component",
+ "title": "入口全局组件：headNav、headers、foot",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200.js",
+ "kb": 9.5,
+ "appCode": "018",
+ "components": [
+  {
+   "name": "headNav",
+   "binding": "_ce",
+   "scopeId": "data-v-c5bfe009",
+   "kb": 2.2,
+   "exportedAs": [],
+   "file": "apps/portal/src/legacy/components/HeadNav.vue"
+  },
+  {
+   "name": "headers",
+   "binding": "HAt",
+   "scopeId": "data-v-ee377c98",
+   "kb": 6.4,
+   "exportedAs": [
+    "a_"
+   ],
+   "file": "apps/portal/src/legacy/components/Headers.vue"
+  },
+  {
+   "name": "foot",
+   "binding": "Ace",
+   "scopeId": "data-v-e8fe68b2",
+   "kb": 0.9,
+   "exportedAs": [
+    "ct"
+   ],
+   "file": "apps/portal/src/legacy/components/Foot2.vue"
+  }
+ ],
+ "files": [
+  "apps/portal/src/legacy/components/HeadNav.vue",
+  "apps/portal/src/legacy/components/Headers.vue",
+  "apps/portal/src/legacy/components/Foot2.vue"
+ ],
+ "owns": [
+  {
+   "alias": "a_",
+   "path": "@/legacy/components/Headers.vue",
+   "export": "default",
+   "status": "reserved"
+  },
+  {
+   "alias": "ct",
+   "path": "@/legacy/components/Foot2.vue",
+   "export": "default",
+   "status": "reserved"
+  }
+ ],
+ "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",
+ "deps": {
+  "orders": []
+ }
+}

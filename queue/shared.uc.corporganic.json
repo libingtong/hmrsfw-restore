@@ -1,0 +1,46 @@
+{
+ "id": "shared.uc.corporganic",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1.7,
+ "chunkKb": 1.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/corporganic.1751615607545.js",
+ "components": [
+  {
+   "name": "nation",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/shared/corporganic.vue",
+ "exports": {
+  "c": {
+   "export": "default"
+  }
+ },
+ "registryKey": "corporganic.1751615607545.js",
+ "usedBy": [
+  "page.uc.BeOnProbationAdmin",
+  "shared.uc.addKeynote"
+ ],
+ "maps": "out/maps/shared.uc.corporganic.json",
+ "hints": "out/hints/shared.uc.corporganic.md",
+ "deps": {
+  "entry": [
+   "C",
+   "k"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,55 @@
+{
+ "id": "shared.portal.workType",
+ "chunk": "legacy-dist/portal/assets/workType.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ge": "defineComponent",
+  "we": "reactive",
+  "_e": "onMounted",
+  "N": "resolveComponent",
+  "l": "openBlock",
+  "s": "createElementBlock",
+  "p": "createVNode",
+  "y": "withCtx",
+  "P": "createTextVNode",
+  "t": "createElementVNode",
+  "v": "Fragment",
+  "u": "renderList",
+  "Y": "createCommentVNode",
+  "n": "toDisplayString",
+  "L": "normalizeClass",
+  "Ne": "pushScopeId",
+  "Be": "popScopeId"
+ },
+ "entry": {
+  "me": {
+   "original": "L",
+   "path": "@/legacy",
+   "export": "getDictListByType",
+   "status": "restored"
+  },
+  "be": {
+   "original": "t",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "ye": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {
+  "ke": {
+   "original": "main.1783320636200.js#t",
+   "path": "pinyin-match",
+   "export": "default"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

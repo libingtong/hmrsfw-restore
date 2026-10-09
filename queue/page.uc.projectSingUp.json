@@ -1,0 +1,46 @@
+{
+ "id": "page.uc.projectSingUp",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/projectSingUp.1751615607545.js",
+ "components": [
+  {
+   "name": "projectSingUp",
+   "scopeId": "data-v-dbe190cc"
+  }
+ ],
+ "scopeIds": [
+  "data-v-dbe190cc"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/projectSingUp.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/projectSingUp.vue",
+ "subComponentDir": "apps/uc/src/views/projectSingUp/",
+ "routes": [
+  {
+   "path": "/projectSingUp",
+   "name": "projectSingUp"
+  }
+ ],
+ "recordPath": "/projectSingUp",
+ "maps": "out/maps/page.uc.projectSingUp.json",
+ "hints": "out/hints/page.uc.projectSingUp.md",
+ "deps": {
+  "entry": [
+   "bl",
+   "d",
+   "k"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

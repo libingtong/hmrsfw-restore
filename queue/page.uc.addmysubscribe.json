@@ -1,0 +1,55 @@
+{
+ "id": "page.uc.addmysubscribe",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 14.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/addmysubscribe.1751615607545.js",
+ "components": [
+  {
+   "name": "addmysubscribe",
+   "scopeId": "data-v-ef871cf2"
+  }
+ ],
+ "scopeIds": [
+  "data-v-ef871cf2"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/addmysubscribe.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/addmysubscribe.vue",
+ "subComponentDir": "apps/uc/src/views/addmysubscribe/",
+ "routes": [
+  {
+   "path": "/addmysubscribe",
+   "name": "addmysubscribe"
+  }
+ ],
+ "recordPath": "/addmysubscribe",
+ "maps": "out/maps/page.uc.addmysubscribe.json",
+ "hints": "out/hints/page.uc.addmysubscribe.md",
+ "deps": {
+  "entry": [
+   "a",
+   "d",
+   "k",
+   "p",
+   "x"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "dictCodeByType.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075456.js#a7",
+   "index.api.17516156075456.js#a8"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

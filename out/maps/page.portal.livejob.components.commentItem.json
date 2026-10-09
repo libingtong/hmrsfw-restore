@@ -1,0 +1,53 @@
+{
+ "id": "page.portal.livejob.components.commentItem",
+ "chunk": "legacy-dist/portal/assets/commentItem.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "$": "defineComponent",
+  "aa": "reactive",
+  "sa": "computed",
+  "ta": "onMounted",
+  "x": "resolveComponent",
+  "i": "openBlock",
+  "n": "createElementBlock",
+  "l": "createElementVNode",
+  "g": "createVNode",
+  "w": "unref",
+  "p": "createTextVNode",
+  "e": "toDisplayString",
+  "c": "Fragment",
+  "b": "createCommentVNode",
+  "F": "withCtx"
+ },
+ "entry": {
+  "J": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "K": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "M": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

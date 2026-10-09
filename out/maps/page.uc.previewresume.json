@@ -1,0 +1,180 @@
+{
+ "id": "page.uc.previewresume",
+ "chunk": "legacy-dist/usercenter/assets/previewresume.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "ee": "defineComponent",
+  "L": "ref",
+  "te": "reactive",
+  "se": "onMounted",
+  "g": "resolveComponent",
+  "o": "openBlock",
+  "n": "createElementBlock",
+  "l": "createVNode",
+  "y": "withCtx",
+  "C": "createBlock",
+  "x": "createCommentVNode",
+  "I": "createTextVNode",
+  "a": "toDisplayString",
+  "k": "unref",
+  "ie": "pushScopeId",
+  "oe": "popScopeId",
+  "e": "createElementVNode",
+  "O": "inject",
+  "ue": "useRouter (vue-router)",
+  "de": "useRoute (vue-router)",
+  "pe": "onBeforeMount",
+  "A": "Fragment",
+  "S": "renderList",
+  "fe": "withDirectives",
+  "_e": "vShow",
+  "he": "normalizeClass",
+  "W": "h"
+ },
+ "entry": {
+  "R": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "ge": {
+   "original": "as",
+   "path": "@/legacy/api",
+   "export": "interviewTemplate",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "ye": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "me": {
+   "original": "at",
+   "path": "@/legacy/api",
+   "export": "getInterviewPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "q": {
+   "original": "p",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  },
+  "Ae": {
+   "original": "au",
+   "path": "@/legacy/api",
+   "export": "interviewInvitationByFair",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "xe": {
+   "original": "av",
+   "path": "@/legacy/api",
+   "export": "interviewInvitation",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "le": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "ne": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "ve": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "getSettingValueByCode",
+   "status": "restored"
+  },
+  "H": {
+   "original": "x",
+   "path": "@/legacy",
+   "export": "joinAreaNames",
+   "status": "restored"
+  },
+  "be": {
+   "original": "by",
+   "path": "@/legacy/api",
+   "export": "viewVoByIdFromCompany",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Ie": {
+   "original": "bz",
+   "path": "@/legacy/api",
+   "export": "viewCaredSeekerFromCompany",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "X": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Ee": {
+   "original": "a7",
+   "path": "@/legacy/api",
+   "export": "isPublishingPosition",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "Z": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "V": {
+   "original": "h",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "ke": {
+   "original": "index.api.17516156075456.js#a9",
+   "path": "@/api/api-56",
+   "export": "viewVoByIdFromPerson",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromPerson"
+  },
+  "we": {
+   "original": "index.api.17516156075456.js#aa",
+   "path": "@/api/api-56",
+   "export": "downPdf2",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCompanyCurriculumDownload/downPdf"
+  },
+  "Qe": {
+   "original": "index.api.17516156075456.js#t",
+   "path": "@/api/api-56",
+   "export": "downPdf",
+   "status": "reserved",
+   "url": "/xf-job/job/xfJobCurriculumVitae/downPdf"
+  }
+ },
+ "shared": {
+  "$": {
+   "original": "message.1751615607545.js#s",
+   "path": "@/shared/message.ts",
+   "export": "successCountdown",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

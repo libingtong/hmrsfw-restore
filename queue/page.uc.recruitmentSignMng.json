@@ -1,0 +1,48 @@
+{
+ "id": "page.uc.recruitmentSignMng",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.4,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754520.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-7ddd53ee"
+  }
+ ],
+ "scopeIds": [
+  "data-v-7ddd53ee"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754523.css",
+  "legacy-dist/usercenter/assets/index.175161560754520.css"
+ ],
+ "target": "apps/uc/src/views/recruitmentSignMng.vue",
+ "subComponentDir": "apps/uc/src/views/recruitmentSignMng/",
+ "routes": [
+  {
+   "path": "/recruitmentSignMng",
+   "name": "recruitmentSignMng"
+  }
+ ],
+ "recordPath": "/recruitmentSignMng",
+ "maps": "out/maps/page.uc.recruitmentSignMng.json",
+ "hints": "out/hints/page.uc.recruitmentSignMng.md",
+ "deps": {
+  "entry": [
+   "M",
+   "d",
+   "m",
+   "w"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,40 @@
+{
+ "id": "entry.uc.c03",
+ "type": "entry",
+ "area": "component",
+ "title": "入口全局组件：App、city",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "sourceChunk": "legacy-dist/usercenter/assets/index.1751615607545.js",
+ "kb": 10.9,
+ "appCode": "018",
+ "components": [
+  {
+   "name": "App",
+   "binding": "smt",
+   "scopeId": null,
+   "kb": 1.2,
+   "exportedAs": [],
+   "file": "apps/uc/src/legacy/components/App.vue"
+  },
+  {
+   "name": "city",
+   "binding": "Emt",
+   "scopeId": "data-v-f31b818a",
+   "kb": 9.7,
+   "exportedAs": [],
+   "file": "apps/uc/src/legacy/components/City.vue"
+  }
+ ],
+ "files": [
+  "apps/uc/src/legacy/components/App.vue",
+  "apps/uc/src/legacy/components/City.vue"
+ ],
+ "owns": [],
+ "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",
+ "deps": {
+  "orders": []
+ }
+}

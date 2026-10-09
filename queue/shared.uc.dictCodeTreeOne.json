@@ -1,0 +1,51 @@
+{
+ "id": "shared.uc.dictCodeTreeOne",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1.8,
+ "chunkKb": 1.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.js",
+ "components": [
+  {
+   "name": "nation",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/dictCodeTreeOne.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/dictCodeTreeOne.vue",
+ "exports": {
+  "d": {
+   "export": "default"
+  }
+ },
+ "registryKey": "dictCodeTreeOne.1751615607545.js",
+ "usedBy": [
+  "page.uc.mentor",
+  "page.uc.expert",
+  "page.uc.CorpAttestation",
+  "page.uc.CorpAttestationapprove",
+  "page.uc.BeOnProbation",
+  "page.uc.liveApply",
+  "page.uc.liveApplyAdd"
+ ],
+ "maps": "out/maps/shared.uc.dictCodeTreeOne.json",
+ "hints": "out/hints/shared.uc.dictCodeTreeOne.md",
+ "deps": {
+  "entry": [
+   "an",
+   "k"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,252 @@
+{
+ "id": "page.portal.BeOnProbation.ProbationHome",
+ "chunk": "legacy-dist/portal/assets/ProbationHome.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "fe": "defineComponent",
+  "F": "ref",
+  "ge": "onMounted",
+  "U": "reactive",
+  "x": "resolveComponent",
+  "n": "openBlock",
+  "d": "createElementBlock",
+  "l": "createElementVNode",
+  "t": "createVNode",
+  "s": "withCtx",
+  "L": "Fragment",
+  "E": "renderList",
+  "c": "unref",
+  "Y": "withModifiers",
+  "f": "createBlock",
+  "X": "normalizeClass",
+  "A": "createTextVNode",
+  "r": "toDisplayString",
+  "tt": "useRouter (vue-router)",
+  "T": "createCommentVNode",
+  "st": "pushScopeId",
+  "lt": "popScopeId",
+  "q": "RouterLink (vue-router)"
+ },
+ "entry": {
+  "ve": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "g",
+   "path": "@/legacy",
+   "export": "getDictValueByCodeAndItems",
+   "status": "restored"
+  },
+  "$": {
+   "original": "D",
+   "path": "@/legacy",
+   "export": "BusinessDictLabels",
+   "status": "restored"
+  },
+  "Le": {
+   "original": "l",
+   "path": "@/legacy",
+   "export": "getAreaInfo",
+   "status": "restored"
+  },
+  "Ee": {
+   "original": "t",
+   "path": "@/legacy",
+   "export": "listToTree",
+   "status": "restored"
+  },
+  "ee": {
+   "original": "b",
+   "path": "swiper/vue",
+   "export": "SwiperSlide",
+   "status": "npm"
+  },
+  "ae": {
+   "original": "a",
+   "path": "swiper/vue",
+   "export": "Swiper",
+   "status": "npm"
+  },
+  "we": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  },
+  "it": {
+   "original": "i",
+   "path": "swiper",
+   "export": "default",
+   "status": "npm",
+   "as": "SwiperCore"
+  },
+  "nt": {
+   "original": "j",
+   "path": "@/legacy",
+   "export": "getCurrentUser",
+   "status": "restored"
+  },
+  "ot": {
+   "original": "k",
+   "path": "@/legacy",
+   "export": "getCurrentCorp",
+   "status": "restored"
+  },
+  "ct": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "rt": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "dt": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "pt": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "ut": {
+   "original": "q",
+   "path": "@/legacy",
+   "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  "At": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "ft": {
+   "original": "s",
+   "path": "@/legacy",
+   "export": "queryIdentityByCompanyId",
+   "status": "restored"
+  },
+  "Ie": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "Se": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "V": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "K": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "Fe": {
+   "original": "n",
+   "path": "@/legacy",
+   "export": "openArticle",
+   "status": "restored"
+  },
+  "Oe": {
+   "original": "d",
+   "path": "dayjs",
+   "export": "default",
+   "status": "npm",
+   "as": "dayjs"
+  }
+ },
+ "api": {
+  "kt": {
+   "original": "index.api.1783320636200.js#a",
+   "path": "@/api/api-1783320636200",
+   "export": "freeCompanyExpandPositionList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/freeCompanyExpandPositionList"
+  },
+  "xt": {
+   "original": "index.api.1783320636200.js#b",
+   "path": "@/api/api-1783320636200",
+   "export": "freeCompanyExpandList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/freeCompanyExpandList"
+  },
+  "Bt": {
+   "original": "index.api.1783320636200.js#c",
+   "path": "@/api/api-1783320636200",
+   "export": "freeCompanyAttachmentList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/freeCompanyAttachmentList"
+  },
+  "ie": {
+   "original": "index.api.1783320636200.js#g",
+   "path": "@/api/api-1783320636200",
+   "export": "getArticleList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getArticleList"
+  }
+ },
+ "shared": {
+  "Lt": {
+   "original": "Gigmarketgetjobpost.1783320636200.js#G",
+   "path": "@/shared/Gigmarketgetjobpost.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "W": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "te": {
+   "original": "navigation.1783320636200.js#N",
+   "path": "swiper",
+   "export": "Navigation"
+  },
+  "se": {
+   "original": "pagination.1783320636200.js#P",
+   "path": "swiper",
+   "export": "Pagination"
+  },
+  "be": {
+   "original": "scrollbar.1783320636200.js#S",
+   "path": "swiper",
+   "export": "Scrollbar"
+  },
+  "le": {
+   "original": "autoplay.1783320636200.js#A",
+   "path": "swiper",
+   "export": "Autoplay"
+  },
+  "yt": {
+   "original": "effect-coverflow.1783320636200.js#E",
+   "path": "swiper",
+   "export": "EffectCoverflow"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

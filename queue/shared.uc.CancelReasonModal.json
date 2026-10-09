@@ -1,0 +1,47 @@
+{
+ "id": "shared.uc.CancelReasonModal",
+ "type": "shared",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1.5,
+ "chunkKb": 1.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754529.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-db987c98"
+  }
+ ],
+ "scopeIds": [
+  "data-v-db987c98"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754529.css"
+ ],
+ "target": "apps/uc/src/shared/CancelReasonModal.vue",
+ "exports": {
+  "p": {
+   "export": "default"
+  }
+ },
+ "registryKey": "index.175161560754529.js",
+ "usedBy": [
+  "page.uc.corpFairs",
+  "page.uc.JobFairsHome"
+ ],
+ "maps": "out/maps/shared.uc.CancelReasonModal.json",
+ "hints": "out/hints/shared.uc.CancelReasonModal.md",
+ "deps": {
+  "entry": [
+   "M"
+  ],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

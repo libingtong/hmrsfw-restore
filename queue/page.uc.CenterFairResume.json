@@ -1,0 +1,56 @@
+{
+ "id": "page.uc.CenterFairResume",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 1,
+ "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754511.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-7257842a"
+  }
+ ],
+ "scopeIds": [
+  "data-v-7257842a"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/index.175161560754513.css",
+  "legacy-dist/usercenter/assets/index.175161560754512.css",
+  "legacy-dist/usercenter/assets/index.175161560754511.css"
+ ],
+ "target": "apps/uc/src/views/CenterFairResume.vue",
+ "subComponentDir": "apps/uc/src/views/CenterFairResume/",
+ "routes": [
+  {
+   "path": "/CenterFairResume",
+   "name": "CenterFairResume"
+  },
+  {
+   "path": "/AreaOutFairResume",
+   "name": "AreaOutFairResume"
+  },
+  {
+   "path": "/CityOutFairResume",
+   "name": "CityOutFairResume"
+  }
+ ],
+ "recordPath": "/CenterFairResume",
+ "maps": "out/maps/page.uc.CenterFairResume.json",
+ "hints": "out/hints/page.uc.CenterFairResume.md",
+ "deps": {
+  "entry": [],
+  "shared": [
+   "index.175161560754528.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

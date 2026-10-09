@@ -1,0 +1,54 @@
+{
+ "id": "page.portal.talents.overseasRecruitment.index",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.5,
+ "sourceChunk": "legacy-dist/portal/assets/index.1783320636200101.js",
+ "components": [
+  {
+   "name": "index",
+   "scopeId": "data-v-8660eba9"
+  }
+ ],
+ "scopeIds": [
+  "data-v-8660eba9"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/homeNews.17833206362002.css",
+  "legacy-dist/portal/assets/index.178332063620087.css",
+  "legacy-dist/portal/assets/index.1783320636200101.css"
+ ],
+ "target": "apps/portal/src/views/talents/overseasRecruitment/index.vue",
+ "subComponentDir": "apps/portal/src/views/talents/overseasRecruitment/index/",
+ "routes": [
+  {
+   "path": "/talents/overseasRecruitment",
+   "name": "talents/overseasRecruitment",
+   "title": "境外招聘"
+  }
+ ],
+ "recordPath": "/talents/overseasRecruitment",
+ "maps": "out/maps/page.portal.talents.overseasRecruitment.index.json",
+ "hints": "out/hints/page.portal.talents.overseasRecruitment.index.md",
+ "deps": {
+  "entry": [
+   "h"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "homeNews.17833206362003.js"
+  ],
+  "api": [
+   "index.api.178332063620041.js#b"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.portal.homeNews3"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

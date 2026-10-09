@@ -1,0 +1,70 @@
+{
+ "id": "page.uc.mynews",
+ "chunk": "legacy-dist/usercenter/assets/mynews.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "A": "defineComponent",
+  "y": "inject",
+  "M": "reactive",
+  "j": "onMounted",
+  "i": "resolveComponent",
+  "c": "openBlock",
+  "D": "createBlock",
+  "s": "withCtx",
+  "t": "createVNode",
+  "l": "createElementVNode",
+  "u": "createTextVNode",
+  "r": "createElementBlock",
+  "h": "Fragment",
+  "H": "renderList",
+  "v": "normalizeClass",
+  "b": "toDisplayString"
+ },
+ "entry": {
+  "q": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  },
+  "F": {
+   "original": "s",
+   "path": "@/legacy/api",
+   "export": "queryAnnouncementList",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "L": {
+   "original": "ai",
+   "path": "@/legacy/api",
+   "export": "queryNoReaded",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "W": {
+   "original": "ba",
+   "path": "@/legacy/api",
+   "export": "setAllReaded",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "B": {
+   "original": "bb",
+   "path": "@/legacy/api",
+   "export": "setReaded",
+   "status": "reserved",
+   "owner": "entry.uc.E6"
+  },
+  "U": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

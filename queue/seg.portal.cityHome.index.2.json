@@ -1,0 +1,114 @@
+{
+ "id": "seg.portal.cityHome.index.2",
+ "type": "segment",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "page": "page.portal.cityHome.index",
+ "index": 2,
+ "of": 2,
+ "assemble": true,
+ "after": [
+  "seg.portal.cityHome.index.1"
+ ],
+ "kb": 17,
+ "sourceChunk": "legacy-dist/portal/assets/index.178332063620024.js",
+ "range": [
+  16228,
+  33611
+ ],
+ "components": [],
+ "parts": [
+  {
+   "component": "index",
+   "part": "template",
+   "range": [
+    16228,
+    33611
+   ],
+   "kb": 17,
+   "file": "apps/portal/src/views/cityHome/index/_seg/index.template.html"
+  }
+ ],
+ "outputs": [
+  "apps/portal/src/views/cityHome/index/_seg/index.template.html"
+ ],
+ "target": "apps/portal/src/views/cityHome/index.vue",
+ "subComponentDir": "apps/portal/src/views/cityHome/index/",
+ "scopeIds": [
+  "data-v-4c4d8cd8"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/index.178332063620020.css",
+  "legacy-dist/portal/assets/index.178332063620024.css"
+ ],
+ "routes": [
+  {
+   "path": "/cityHome/:cityCode",
+   "name": "cityHome",
+   "title": "地市首页"
+  }
+ ],
+ "recordPath": "/cityHome/:cityCode",
+ "maps": "out/maps/page.portal.cityHome.index.json",
+ "hints": "out/hints/page.portal.cityHome.index.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "S",
+   "a",
+   "aD",
+   "aF",
+   "ab",
+   "ae",
+   "b",
+   "c",
+   "d",
+   "f",
+   "h",
+   "m",
+   "n",
+   "o",
+   "p",
+   "q",
+   "r",
+   "v"
+  ],
+  "shared": [
+   "empty.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620017.js#w",
+   "index.api.178332063620020.js#g",
+   "index.api.178332063620021.js#g",
+   "index.api.17833206362004.js#a",
+   "index.api.17833206362004.js#b",
+   "index.api.17833206362004.js#c",
+   "index.api.17833206362004.js#d",
+   "index.api.17833206362004.js#f",
+   "index.api.17833206362004.js#g",
+   "index.api.17833206362004.js#q",
+   "index.api.17833206362004.js#r",
+   "index.api.17833206362004.js#x"
+  ],
+  "modules": [
+   "card.1783320636200.js",
+   "rightdisab.1783320636200.js"
+  ],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "entry.portal.c04",
+   "shared.portal.modules"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [16228, 33611)（约 17KB），其余部分由同页的其他分段负责。",
+  "组件 index 只还原 <template> 部分（setup 最后 return 的渲染函数），写成 apps/portal/src/views/cityHome/index/_seg/index.template.html，内容就是将来 <template> 里的模板。",
+  "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.portal.cityHome.index --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
+ ]
+}

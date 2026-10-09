@@ -1,0 +1,187 @@
+{
+ "id": "page.portal.talents.talentnew.talentList",
+ "chunk": "legacy-dist/portal/assets/talentList.17833206362002.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "at": "defineComponent",
+  "lt": "useRouter (vue-router)",
+  "st": "useRoute (vue-router)",
+  "it": "reactive",
+  "ot": "computed",
+  "nt": "onMounted",
+  "p": "resolveComponent",
+  "rt": "resolveDirective",
+  "o": "openBlock",
+  "c": "createElementBlock",
+  "n": "createElementVNode",
+  "l": "createVNode",
+  "s": "withCtx",
+  "$": "withDirectives",
+  "k": "toDisplayString",
+  "ut": "vShow",
+  "f": "createTextVNode",
+  "g": "Fragment",
+  "J": "renderList",
+  "v": "createBlock",
+  "L": "unref",
+  "ct": "resolveDynamicComponent",
+  "F": "createCommentVNode",
+  "dt": "pushScopeId",
+  "pt": "popScopeId",
+  "ee": "inject",
+  "j": "h"
+ },
+ "entry": {
+  "B": {
+   "original": "z",
+   "path": "@/utils/request",
+   "export": "request",
+   "status": "restored"
+  },
+  "N": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "ft": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "te": {
+   "original": "h",
+   "path": "@/legacy",
+   "export": "getDictItemsByCode",
+   "status": "restored"
+  },
+  "yt": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "vt": {
+   "original": "cv",
+   "path": "@/legacy/components/Recommend.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "entry.portal.c05"
+  },
+  "ae": {
+   "original": "v",
+   "path": "@/legacy",
+   "export": "openUserCenter",
+   "status": "restored"
+  },
+  "mt": {
+   "original": "u",
+   "path": "@/legacy",
+   "export": "useStore",
+   "status": "restored"
+  },
+  "ht": {
+   "original": "B",
+   "path": "@/utils/request",
+   "export": "API_BASE",
+   "status": "restored"
+  },
+  "kt": {
+   "original": "f",
+   "path": "@/utils/request",
+   "export": "STATIC_BASE",
+   "status": "restored"
+  },
+  "V": {
+   "original": "o",
+   "path": "@/legacy",
+   "export": "checkLogin",
+   "status": "restored"
+  },
+  "H": {
+   "original": "p",
+   "path": "@/legacy",
+   "export": "TEXT_GO_AUTH",
+   "status": "restored"
+  },
+  "le": {
+   "original": "Q",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_CERTIFIED",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "M": {
+   "original": "r",
+   "path": "@/legacy",
+   "export": "IDENTITY_CORP",
+   "status": "restored"
+  },
+  "D": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "se": {
+   "original": "A",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "bt": {
+   "original": "be",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_AUTH_RESUME",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "_t": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {
+  "P": {
+   "original": "dictCode.1783320636200.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Tt": {
+   "original": "city.1783320636200.js#c",
+   "path": "@/shared/city.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "wt": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "St": {
+   "original": "workType.1783320636200.js#w",
+   "path": "@/shared/workType.vue",
+   "export": "default",
+   "status": "restored"
+  },
+  "Wt": {
+   "original": "InterviewInvitation.1783320636200.js#I",
+   "path": "@/shared/InterviewInvitation.vue",
+   "export": "default",
+   "status": "reserved",
+   "owner": "shared.portal.InterviewInvitation"
+  }
+ },
+ "views": {},
+ "modules": {},
+ "sideEffects": [
+  "main.1783320636200.js"
+ ],
+ "missing": []
+}

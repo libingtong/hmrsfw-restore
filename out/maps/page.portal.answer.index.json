@@ -1,0 +1,121 @@
+{
+ "id": "page.portal.answer.index",
+ "chunk": "legacy-dist/portal/assets/index.178332063620016.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "ue": "defineComponent",
+  "pe": "useRouter (vue-router)",
+  "ye": "useRoute (vue-router)",
+  "ge": "ref",
+  "me": "reactive",
+  "ve": "onMounted",
+  "M": "resolveComponent",
+  "i": "openBlock",
+  "n": "createElementBlock",
+  "d": "createElementVNode",
+  "ke": "unref",
+  "fe": "Fragment",
+  "we": "renderList",
+  "L": "createVNode",
+  "N": "withCtx",
+  "S": "createBlock",
+  "he": "resolveDynamicComponent",
+  "B": "createCommentVNode",
+  "_e": "inject",
+  "y": "toDisplayString",
+  "xe": "createTextVNode",
+  "Te": "withModifiers",
+  "U": "normalizeClass",
+  "o": "h"
+ },
+ "entry": {
+  "ze": {
+   "original": "c",
+   "path": "@/legacy",
+   "export": "getAppConfig",
+   "status": "restored"
+  },
+  "O": {
+   "original": "S",
+   "path": "@/legacy",
+   "export": "userStorage",
+   "status": "restored"
+  },
+  "Ce": {
+   "original": "ah",
+   "path": "@/legacy/api",
+   "export": "getXfSysUserInfo",
+   "status": "reserved",
+   "owner": "entry.portal.E6"
+  },
+  "be": {
+   "original": "m",
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "status": "reserved",
+   "owner": "entry.portal.c03"
+  },
+  "j": {
+   "original": "F",
+   "path": "@/legacy",
+   "export": "checkPerfect",
+   "status": "restored"
+  },
+  "l": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Le": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {
+  "Be": {
+   "original": "index.api.178332063620011.js#c",
+   "path": "@/api/quenaire",
+   "export": "List",
+   "status": "reserved",
+   "url": "/xf-job/communal/licenseFree/quenaire/List"
+  },
+  "Oe": {
+   "original": "index.api.178332063620011.js#q",
+   "path": "@/api/quenaire",
+   "export": "izLogin",
+   "status": "reserved",
+   "url": "/xf-job/communal/licenseFree/quenaire/izLogin"
+  },
+  "E": {
+   "original": "index.api.178332063620011.js#r",
+   "path": "@/api/quenaire",
+   "export": "izEnter",
+   "status": "reserved",
+   "url": "/xf-job/communal/xfSysQuenaire/record/izEnter"
+  }
+ },
+ "shared": {
+  "Ie": {
+   "original": "empty.1783320636200.js#e",
+   "path": "@/shared/empty.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "qe": {
+   "original": "wenjuan.1783320636200.js#_",
+   "value": "/zcyz/wenjuan.jpg",
+   "inline": false,
+   "path": "@/shared/images",
+   "export": "wenjuanImg",
+   "status": "reserved",
+   "owner": "shared.portal.modules"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

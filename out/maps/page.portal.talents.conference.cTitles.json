@@ -1,0 +1,31 @@
+{
+ "id": "page.portal.talents.conference.cTitles",
+ "chunk": "legacy-dist/portal/assets/cTitles.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "u": "defineComponent",
+  "y": "useRoute (vue-router)",
+  "C": "useRouter (vue-router)",
+  "h": "reactive",
+  "g": "onBeforeMount",
+  "S": "onMounted",
+  "x": "openBlock",
+  "v": "createElementBlock",
+  "_": "createElementVNode",
+  "i": "toDisplayString",
+  "d": "normalizeClass"
+ },
+ "entry": {
+  "T": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

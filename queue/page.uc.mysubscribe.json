@@ -1,0 +1,46 @@
+{
+ "id": "page.uc.mysubscribe",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 3.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/mysubscribe.1751615607545.js",
+ "components": [
+  {
+   "name": "mysubscribe",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [],
+ "cssCandidates": [],
+ "target": "apps/uc/src/views/mysubscribe.vue",
+ "subComponentDir": "apps/uc/src/views/mysubscribe/",
+ "routes": [
+  {
+   "path": "/mysubscribe",
+   "name": "mysubscribe"
+  }
+ ],
+ "recordPath": "/mysubscribe",
+ "maps": "out/maps/page.uc.mysubscribe.json",
+ "hints": "out/hints/page.uc.mysubscribe.md",
+ "deps": {
+  "entry": [
+   "c",
+   "d"
+  ],
+  "shared": [],
+  "api": [
+   "index.api.17516156075456.js#a4",
+   "index.api.17516156075456.js#a5",
+   "index.api.17516156075456.js#a6",
+   "index.api.17516156075456.js#b"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

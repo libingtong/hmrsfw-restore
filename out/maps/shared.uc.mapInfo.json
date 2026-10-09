@@ -1,0 +1,41 @@
+{
+ "id": "shared.uc.mapInfo",
+ "chunk": "legacy-dist/usercenter/assets/mapInfo.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "R": "defineComponent",
+  "p": "ref",
+  "z": "reactive",
+  "V": "onMounted",
+  "b": "nextTick",
+  "T": "onUnmounted",
+  "i": "resolveComponent",
+  "c": "openBlock",
+  "w": "createElementBlock",
+  "_": "createBlock",
+  "m": "createCommentVNode",
+  "U": "unref",
+  "k": "withCtx",
+  "g": "createVNode",
+  "y": "normalizeStyle"
+ },
+ "entry": {
+  "q": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "$": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

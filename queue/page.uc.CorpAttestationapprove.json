@@ -1,0 +1,93 @@
+{
+ "id": "page.uc.CorpAttestationapprove",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 71.7,
+ "sourceChunk": "legacy-dist/usercenter/assets/CorpAttestationapprove.1751615607545.js",
+ "components": [
+  {
+   "name": "BusinessModalDetail",
+   "scopeId": "data-v-a3e6ce79"
+  },
+  {
+   "name": "CorpAttestationapprove",
+   "scopeId": "data-v-3ee3f5bf"
+  }
+ ],
+ "scopeIds": [
+  "data-v-a3e6ce79",
+  "data-v-3ee3f5bf"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/map.1751615607545.css",
+  "legacy-dist/usercenter/assets/CorpAttestationapprove.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/CorpAttestationapprove.vue",
+ "subComponentDir": "apps/uc/src/views/CorpAttestationapprove/",
+ "routes": [
+  {
+   "path": "/CorpAttestationapprove",
+   "name": "CorpAttestationapprove"
+  }
+ ],
+ "recordPath": "/CorpAttestationapprove",
+ "maps": "out/maps/page.uc.CorpAttestationapprove.json",
+ "hints": "out/hints/page.uc.CorpAttestationapprove.md",
+ "deps": {
+  "entry": [
+   "B",
+   "E",
+   "F",
+   "G",
+   "H",
+   "I",
+   "J",
+   "M",
+   "O",
+   "P",
+   "Q",
+   "R",
+   "U",
+   "a",
+   "b",
+   "c",
+   "d",
+   "e",
+   "f",
+   "g",
+   "h",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [
+   "DictCodes.1751615607545.js",
+   "XfLoaing.1751615607545.js",
+   "dictCheckBoxAll.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "dictCodeTreeOne.1751615607545.js",
+   "email.1751615607545.js",
+   "gaode.1751615607545.js",
+   "idCard.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/CorpAttestationapprove",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

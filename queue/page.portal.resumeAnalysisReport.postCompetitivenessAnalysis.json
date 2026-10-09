@@ -1,0 +1,62 @@
+{
+ "id": "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis",
+ "type": "page",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.7,
+ "sourceChunk": "legacy-dist/portal/assets/postCompetitivenessAnalysis.1783320636200.js",
+ "components": [
+  {
+   "name": "postCompetitivenessAnalysis",
+   "scopeId": "data-v-fea10bf0"
+  }
+ ],
+ "scopeIds": [
+  "data-v-fea10bf0"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/postCompetitivenessAnalysis.1783320636200.css"
+ ],
+ "target": "apps/portal/src/views/resumeAnalysisReport/postCompetitivenessAnalysis.vue",
+ "subComponentDir": "apps/portal/src/views/resumeAnalysisReport/postCompetitivenessAnalysis/",
+ "routes": [
+  {
+   "path": "/postCompetitivenessAnalysis",
+   "name": "postCompetitivenessAnalysis",
+   "title": "岗位竞争力分析"
+  }
+ ],
+ "recordPath": "/postCompetitivenessAnalysis",
+ "maps": "out/maps/page.portal.resumeAnalysisReport.postCompetitivenessAnalysis.json",
+ "hints": "out/hints/page.portal.resumeAnalysisReport.postCompetitivenessAnalysis.md",
+ "deps": {
+  "entry": [
+   "B",
+   "S",
+   "ab",
+   "c",
+   "f",
+   "h",
+   "m",
+   "v"
+  ],
+  "shared": [
+   "empty.1783320636200.js",
+   "statusPlace.1783320636200.js"
+  ],
+  "api": [
+   "index.api.178332063620033.js#f",
+   "index.api.178332063620033.js#g"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "shared.portal.statusPlace"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

@@ -1,0 +1,54 @@
+{
+ "id": "shared.uc.complaint",
+ "type": "shared",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 4,
+ "chunkKb": 4,
+ "sourceChunk": "legacy-dist/usercenter/assets/complaint.1751615607545.js",
+ "components": [
+  {
+   "name": "complaint",
+   "scopeId": "data-v-53260816"
+  }
+ ],
+ "scopeIds": [
+  "data-v-53260816"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/complaint.1751615607545.css"
+ ],
+ "target": "apps/uc/src/shared/complaint.vue",
+ "exports": {
+  "c": {
+   "export": "default"
+  }
+ },
+ "registryKey": "complaint.1751615607545.js",
+ "usedBy": [
+  "page.uc.send",
+  "page.uc.allianceSend"
+ ],
+ "maps": "out/maps/shared.uc.complaint.json",
+ "hints": "out/hints/shared.uc.complaint.md",
+ "deps": {
+  "entry": [
+   "d",
+   "f",
+   "m"
+  ],
+  "shared": [
+   "phone.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075452.js#g",
+   "index.api.17516156075456.js#X"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

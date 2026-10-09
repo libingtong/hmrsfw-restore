@@ -1,0 +1,52 @@
+{
+ "id": "page.uc.overseasRecruitment",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 5.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/overseasRecruitment.1751615607545.js",
+ "components": [
+  {
+   "name": "overseasRecruitment",
+   "scopeId": "data-v-d1613894"
+  }
+ ],
+ "scopeIds": [
+  "data-v-d1613894"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/overseasRecruitment.1751615607545.css",
+  "legacy-dist/usercenter/assets/DetailModal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/overseasRecruitment.vue",
+ "subComponentDir": "apps/uc/src/views/overseasRecruitment/",
+ "routes": [
+  {
+   "path": "/overseasRecruitment",
+   "name": "overseasRecruitment"
+  }
+ ],
+ "recordPath": "/overseasRecruitment",
+ "maps": "out/maps/page.uc.overseasRecruitment.json",
+ "hints": "out/hints/page.uc.overseasRecruitment.md",
+ "deps": {
+  "entry": [
+   "bg",
+   "bh",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

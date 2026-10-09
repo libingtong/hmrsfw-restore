@@ -1,0 +1,107 @@
+{
+ "id": "page.uc.corpFairs",
+ "type": "page",
+ "status": "regression",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 70.6,
+ "sourceChunk": "legacy-dist/usercenter/assets/corpFairs.1751615607545.js",
+ "components": [
+  {
+   "name": "dataUpload",
+   "scopeId": "data-v-f32771ca"
+  },
+  {
+   "name": "receiveResume",
+   "scopeId": "data-v-19434c2a"
+  },
+  {
+   "name": "hopeResume",
+   "scopeId": "data-v-009debef"
+  },
+  {
+   "name": "proofResume",
+   "scopeId": "data-v-daa9a53d"
+  },
+  {
+   "name": "qrcode",
+   "scopeId": "data-v-22e4465f"
+  },
+  {
+   "name": "corpFairs",
+   "scopeId": null
+  }
+ ],
+ "scopeIds": [
+  "data-v-f32771ca",
+  "data-v-19434c2a",
+  "data-v-009debef",
+  "data-v-daa9a53d",
+  "data-v-22e4465f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754514.css",
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/index.175161560754513.css",
+  "legacy-dist/usercenter/assets/corpFairs.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/corpFairs.vue",
+ "subComponentDir": "apps/uc/src/views/corpFairs/",
+ "routes": [
+  {
+   "path": "/corpFairs/:key?",
+   "name": "corpFairs"
+  }
+ ],
+ "recordPath": "/corpFairs/:key?",
+ "maps": "out/maps/page.uc.corpFairs.json",
+ "hints": "out/hints/page.uc.corpFairs.md",
+ "deps": {
+  "entry": [
+   "B",
+   "I",
+   "M",
+   "T",
+   "V",
+   "a",
+   "c",
+   "d",
+   "h",
+   "k",
+   "m",
+   "v",
+   "y"
+  ],
+  "shared": [
+   "confPass.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "index.175161560754528.js",
+   "index.175161560754529.js",
+   "message.1751615607545.js",
+   "workType.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754511.js#b",
+   "index.api.175161560754511.js#c",
+   "index.api.175161560754511.js#d",
+   "index.api.175161560754511.js#e",
+   "index.api.175161560754511.js#f",
+   "index.api.175161560754511.js#g",
+   "index.api.175161560754511.js#h",
+   "index.api.175161560754511.js#i",
+   "index.api.175161560754511.js#j"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.confPass"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/corpFairs/:key?",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
+}

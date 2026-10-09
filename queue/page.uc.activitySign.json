@@ -1,0 +1,52 @@
+{
+ "id": "page.uc.activitySign",
+ "type": "page",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "kb": 6.1,
+ "sourceChunk": "legacy-dist/usercenter/assets/activitySign.1751615607545.js",
+ "components": [
+  {
+   "name": "activitySign",
+   "scopeId": "data-v-cffef981"
+  }
+ ],
+ "scopeIds": [
+  "data-v-cffef981"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/activitySign.1751615607545.css",
+  "legacy-dist/usercenter/assets/DetailModal.1751615607545.css"
+ ],
+ "target": "apps/uc/src/views/activitySign.vue",
+ "subComponentDir": "apps/uc/src/views/activitySign/",
+ "routes": [
+  {
+   "path": "/activitySign",
+   "name": "activitySign"
+  }
+ ],
+ "recordPath": "/activitySign",
+ "maps": "out/maps/page.uc.activitySign.json",
+ "hints": "out/hints/page.uc.activitySign.md",
+ "deps": {
+  "entry": [
+   "bi",
+   "bj",
+   "d",
+   "m"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.uc.E6"
+  ]
+ },
+ "stylesProvidedByScript": true
+}

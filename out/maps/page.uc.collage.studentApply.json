@@ -1,0 +1,149 @@
+{
+ "id": "page.uc.collage.studentApply",
+ "chunk": "legacy-dist/usercenter/assets/apply.1751615607545.js",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "vue": {
+  "K": "defineComponent",
+  "T": "reactive",
+  "n": "resolveComponent",
+  "p": "openBlock",
+  "S": "createBlock",
+  "l": "withCtx",
+  "a": "createVNode",
+  "e": "createElementVNode",
+  "u": "createTextVNode",
+  "U": "ref",
+  "J": "unref",
+  "I": "createElementBlock",
+  "z": "createCommentVNode",
+  "_e": "onMounted",
+  "ge": "renderList",
+  "B": "Fragment",
+  "b": "toDisplayString",
+  "le": "pushScopeId",
+  "se": "popScopeId",
+  "oe": "watch",
+  "Me": "useRouter (vue-router)",
+  "Pe": "onBeforeMount"
+ },
+ "entry": {
+  "G": {
+   "original": "m",
+   "path": "ant-design-vue",
+   "export": "message",
+   "status": "npm"
+  },
+  "Oe": {
+   "original": "I",
+   "path": "@/legacy",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  "te": {
+   "original": "M",
+   "path": "ant-design-vue",
+   "export": "Modal",
+   "status": "npm"
+  },
+  "Fe": {
+   "original": "y",
+   "path": "@/legacy",
+   "export": "UPLOAD_URL",
+   "status": "restored"
+  },
+  "ae": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略"
+  },
+  "fe": {
+   "original": "d",
+   "path": "@/legacy",
+   "export": "decryptStorage",
+   "status": "restored"
+  }
+ },
+ "api": {
+  "Ce": {
+   "original": "index.api.175161560754513.js#a",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "signCompany",
+   "status": "reserved",
+   "url": "/xf-college/collegeWqSignDetail/xfCollegeWqSignDetail/signCompany"
+  },
+  "we": {
+   "original": "index.api.175161560754513.js#u",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "applyForCancel",
+   "status": "reserved",
+   "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/applyForCancel"
+  },
+  "Ie": {
+   "original": "index.api.175161560754513.js#g",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "getWqCompanyExpandInfoByJob",
+   "status": "reserved",
+   "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/getWqCompanyExpandInfoByJob"
+  },
+  "me": {
+   "original": "index.api.175161560754513.js#c",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "studentNotarizeOrRevocationSign",
+   "status": "reserved",
+   "url": "/xf-college/collegeWqSignDetail/xfCollegeWqSignDetail/studentNotarizeOrRevocationSign"
+  },
+  "ue": {
+   "original": "index.api.175161560754513.js#b",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "byNotarizeOrRevocationCancel",
+   "status": "reserved",
+   "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/byNotarizeOrRevocationCancel"
+  },
+  "Te": {
+   "original": "index.api.175161560754513.js#d",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "queryPageList",
+   "status": "reserved",
+   "url": "/xf-college/collegeWqCompanyExpand/xfCollegeWqCompanyExpand/queryPageList"
+  },
+  "Se": {
+   "original": "index.api.175161560754513.js#s",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "getStudentInfoById",
+   "status": "reserved",
+   "url": "/xf-college/student/xfCollegeStudent/getStudentInfoById"
+  },
+  "$e": {
+   "original": "index.api.175161560754513.js#f",
+   "path": "@/api/collegeWqCancelDetail",
+   "export": "queryList",
+   "status": "reserved",
+   "url": "/xf-college/wqCancelDetail/xfCollegeWqCancelDetail/queryList"
+  },
+  "je": {
+   "original": "index.api.175161560754514.js#g",
+   "path": "@/api/collegeWqCompanyExpand",
+   "export": "getWqStudResultInfoById",
+   "status": "reserved",
+   "url": "/xf-college/wqStudResult/xfCollegeWqStudResult/getWqStudResultInfoById"
+  }
+ },
+ "shared": {
+  "pe": {
+   "original": "dictCode.1751615607545.js#d",
+   "path": "@/shared/dictCode.vue",
+   "export": "default",
+   "status": "restored"
+  }
+ },
+ "views": {},
+ "modules": {
+  "Ue": {
+   "original": "print.1751615607545.js#$",
+   "path": "print-js",
+   "export": "default"
+  }
+ },
+ "sideEffects": [],
+ "missing": []
+}

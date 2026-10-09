@@ -1,0 +1,28 @@
+{
+ "id": "page.portal.cityHome.titles",
+ "chunk": "legacy-dist/portal/assets/titles.1783320636200.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "m": "defineComponent",
+  "d": "useRouter (vue-router)",
+  "b": "openBlock",
+  "v": "createElementBlock",
+  "n": "createElementVNode",
+  "y": "toDisplayString",
+  "h": "pushScopeId",
+  "q": "popScopeId"
+ },
+ "entry": {
+  "w": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

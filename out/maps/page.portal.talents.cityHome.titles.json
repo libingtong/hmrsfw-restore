@@ -1,0 +1,33 @@
+{
+ "id": "page.portal.talents.cityHome.titles",
+ "chunk": "legacy-dist/portal/assets/titles.17833206362003.js",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "vue": {
+  "k": "defineComponent",
+  "y": "useRoute (vue-router)",
+  "D": "useRouter (vue-router)",
+  "B": "reactive",
+  "C": "onBeforeMount",
+  "S": "onMounted",
+  "u": "openBlock",
+  "_": "createElementBlock",
+  "r": "createElementVNode",
+  "b": "toDisplayString",
+  "w": "normalizeClass",
+  "v": "pushScopeId",
+  "P": "popScopeId"
+ },
+ "entry": {
+  "Q": {
+   "original": "_",
+   "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`"
+  }
+ },
+ "api": {},
+ "shared": {},
+ "views": {},
+ "modules": {},
+ "sideEffects": [],
+ "missing": []
+}

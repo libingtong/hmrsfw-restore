@@ -1,0 +1,43 @@
+{
+ "id": "shared.portal.map",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 1.9,
+ "chunkKb": 1.9,
+ "sourceChunk": "legacy-dist/portal/assets/map.17833206362002.js",
+ "components": [
+  {
+   "name": "map",
+   "scopeId": "data-v-f61d55fe"
+  }
+ ],
+ "scopeIds": [
+  "data-v-f61d55fe"
+ ],
+ "cssCandidates": [],
+ "target": "apps/portal/src/shared/map.vue",
+ "exports": {
+  "m": {
+   "export": "default"
+  }
+ },
+ "registryKey": "map.17833206362002.js",
+ "usedBy": [
+  "page.portal.sjz.job.jobList",
+  "page.portal.talents.job.jobList"
+ ],
+ "maps": "out/maps/shared.portal.map.json",
+ "hints": "out/hints/shared.portal.map.md",
+ "deps": {
+  "entry": [],
+  "shared": [],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true
+}

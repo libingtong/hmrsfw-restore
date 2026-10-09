@@ -1,0 +1,65 @@
+{
+ "id": "shared.portal.workItemNew",
+ "type": "shared",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "kb": 5.9,
+ "chunkKb": 5.9,
+ "sourceChunk": "legacy-dist/portal/assets/workItemNew.1783320636200.js",
+ "components": [
+  {
+   "name": "workItemNew",
+   "scopeId": "data-v-8497f6c3"
+  }
+ ],
+ "scopeIds": [
+  "data-v-8497f6c3"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/workItemNew.1783320636200.css"
+ ],
+ "target": "apps/portal/src/shared/workItemNew.vue",
+ "exports": {
+  "w": {
+   "export": "default"
+  }
+ },
+ "registryKey": "workItemNew.1783320636200.js",
+ "usedBy": [
+  "page.portal.talents.job.jobList"
+ ],
+ "maps": "out/maps/shared.portal.workItemNew.json",
+ "hints": "out/hints/shared.portal.workItemNew.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "M",
+   "S",
+   "f",
+   "m",
+   "o",
+   "p",
+   "u",
+   "v",
+   "x",
+   "y"
+  ],
+  "shared": [
+   "resumemodal.1783320636200.js"
+  ],
+  "api": [
+   "index.api.17833206362002.js#e",
+   "index.api.17833206362002.js#h",
+   "index.api.17833206362002.js#q"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "entry.portal.c03"
+  ]
+ },
+ "stylesProvidedByScript": true
+}
