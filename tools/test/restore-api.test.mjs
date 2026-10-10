@@ -77,3 +77,43 @@ test("CLI on the real uc chunk behind api-56.ts writes all 65 functions, both do
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+// HM-50: `export{_ as o}` with `_=p({},b)` — p is esbuild's __spreadValues, b the namespace object of six request
+// functions, declared inside the top-level-await wrapper and assigned in its async body (index.1783320636200117.js)
+const SPREAD = "var d=(s,a,t)=>a in s?U(s,a,{enumerable:!0,configurable:!0,writable:!0,value:t}):s[a]=t,p=(s,a)=>{for(var t in a||(a={}))z.call(a,t)&&d(s,t,a[t]);if(f)for(var t of f(a))R.call(a,t)&&d(s,t,a[t]);return s};";
+const nsChunk = (members, { exported = true, copy = "p({},b)" } = {}) => [
+  SPREAD, 'import{z as o}from"./index.1.js";let i,_,A=Promise.resolve().then(()=>{let s,a,b,w;',
+  's=e=>o.request({url:"/xf-job/job/xfJobCompany/queryCompanyInfo",method:"post",params:e}),',
+  'a=e=>o.request({url:"/job/xfJobCompany/getCompanyInfo",method:"get",params:e}),w=1,',
+  `b=Object.freeze(Object.defineProperty({__proto__:null,${members}},Symbol.toStringTag,{value:"Module"})),_=${copy},`,
+  'i=e=>o.request({url:"/xf-job/job/xfJobCompanyTalents/addTalent",method:"post",data:e})});',
+  `export{i as a${exported ? ",_ as o" : ""}};`,
+].join("");
+
+test("an exported spread copy of a namespace of request functions is a namespace copy, keyed like the original", () => {
+  const { fns, copies } = parseApiChunk(nsChunk("getCompanyInfo:a,queryCompanyInfo:s"));
+  assert.deepEqual(fns.map((f) => f.name), ["queryCompanyInfo", "getCompanyInfo", "addTalent"]);
+  assert.deepEqual(copies.map(({ local, exported, namespace, members }) => ({ local, exported, namespace, members })), [{ local: "_", exported: "o", namespace: "b", members: [{ key: "getCompanyInfo", name: "getCompanyInfo" }, { key: "queryCompanyInfo", name: "queryCompanyInfo" }] }]);
+  // `{...b}` (no helper) is the same copy
+  assert.equal(parseApiChunk(nsChunk("getCompanyInfo:a", { copy: "{...b}" })).copies.length, 1);
+});
+
+test("not a namespace copy: a non-function member, an unexported copy, a helper that is not the spread", () => {
+  assert.deepEqual(parseApiChunk(nsChunk("getCompanyInfo:a,flag:w")).copies, []);
+  assert.deepEqual(parseApiChunk(nsChunk("getCompanyInfo:a", { exported: false })).copies, []);
+  assert.deepEqual(parseApiChunk(nsChunk("getCompanyInfo:a", { copy: "d({},b)" })).copies, []);
+});
+
+test("CLI on the real portal chunk behind api-117.ts adds `o` after the 22 functions, with the original keys", () => {
+  const dir = mkdtempSync(path.join(os.tmpdir(), "restore-api-"));
+  try {
+    const out = path.join(dir, "api-117.ts");
+    execFileSync(process.execPath, [path.join(ROOT, "tools/restore-api.mjs"), "portal", "index.1783320636200117.js", out], { cwd: ROOT, stdio: "pipe" });
+    const ts = readFileSync(out, "utf8");
+    assert.equal((ts.match(/^export const /gm) ?? []).length, 23);
+    assert.ok(ts.trimEnd().endsWith("/** 原压缩名 _，导出名 o */\nexport const o = { getCompanyInfo, getRecommendTalentList, izAlreadySubmitCompany, queryCompanyInfo, submitNewGuideCompanyInfo, verifyCompanyInfo };"));
+    assert.equal(JSON.parse(readFileSync(out.replace(/\.ts$/, ".map.json"), "utf8")).o, "o");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});

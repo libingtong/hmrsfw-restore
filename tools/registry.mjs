@@ -318,7 +318,7 @@ export function buildRegistry(site, { APP, gaps = scanSharedGaps(site), vueAlias
   const api = {}; const apiModules = {}; const moduleTaken = new Set();
   const apiChunks = [...scope.api, ...Object.entries(vendor).filter(([, v]) => v.kind === "api").map(([f]) => f)];
   for (const f of apiChunks.sort()) {
-    const { fns } = parseApiChunk(chunkSource(site, f) ?? "");
+    const { fns, copies } = parseApiChunk(chunkSource(site, f) ?? "");
     const existing = existingApiFile(APP, app, f);
     const mod = apiModuleName(fns, moduleTaken); moduleTaken.add(mod);
     const keep = existing[0];
@@ -333,7 +333,11 @@ export function buildRegistry(site, { APP, gaps = scanSharedGaps(site), vueAlias
     }
     // exports of an API chunk that are not request functions (constants, merged objects): keep the original export name
     const ex = exportsOf(site, f); delete ex.__tla;
-    for (const alias of Object.keys(ex)) if (usedBy.has(`${f}#${alias}`) && !api[`${f}#${alias}`]) api[`${f}#${alias}`] = { path: apiModules[f].path, export: alias, status: keep && existingApiExports(APP, app, keep.file).has(alias) ? "restored" : "reserved", note: "不是接口函数（常量或对象），按原导出名导出" };
+    // a copy of the module namespace ({...ns}) is written by restore-api.mjs like the functions
+    for (const alias of Object.keys(ex)) if (usedBy.has(`${f}#${alias}`) && !api[`${f}#${alias}`]) {
+      const copy = copies.find((c) => c.exported === alias);
+      api[`${f}#${alias}`] = { path: apiModules[f].path, export: alias, status: keep && existingApiExports(APP, app, keep.file).has(alias) ? "restored" : "reserved", ...(copy ? { owner: "script:restore-api", note: `本模块 ${copy.members.length} 个接口函数的命名空间对象的浅拷贝（键名 ${copy.members.map((m) => m.key).join("、")}），restore-api.mjs 生成` } : { note: "不是接口函数（常量或对象），按原导出名导出" }) };
+    }
   }
 
   // npm chunks and image constants become direct mappings

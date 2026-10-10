@@ -15,7 +15,7 @@ import path from "node:path";
 import { parse } from "@babel/parser";
 import { ROOT, SITE_OF, chunkSource } from "./scope.mjs";
 import { loadRegistry } from "./registry.mjs";
-import { parseApiChunk } from "./restore-api.mjs";
+import { parseApiChunk, copySource } from "./restore-api.mjs";
 import { appDir } from "./app-dir.mjs";
 
 const APP = appDir(); const apply = process.argv.includes("--apply");
@@ -122,8 +122,8 @@ for (const app of ["portal", "uc"]) {
   for (const m of P.mergeApi) if (apply && existsSync(fileOf(m.drop))) rmSync(fileOf(m.drop));
   for (const a of P.appendApi) {
     if (!apply) continue;
-    const { fns } = parseApiChunk(chunkSource(site, a.chunk));
-    const add = Object.entries(reg.api).filter(([k, v]) => k.startsWith(a.chunk + "#") && v.status === "reserved").map(([k, v]) => { const alias = k.split("#")[1]; const fn = fns.find((x) => (x.exported ?? x.local) === alias); return fn ? `/** 原压缩名 ${fn.local}，导出名 ${alias}（registry-cleanup 补充） */\nexport const ${v.export} = (${fn.params || ""}) => request(${fn.cfg});` : `// TODO:restore 导出名 ${alias} 不是接口函数，按原 chunk 补上（registry-cleanup）`; });
+    const { fns, copies } = parseApiChunk(chunkSource(site, a.chunk));
+    const add = Object.entries(reg.api).filter(([k, v]) => k.startsWith(a.chunk + "#") && v.status === "reserved").map(([k, v]) => { const alias = k.split("#")[1]; const fn = fns.find((x) => (x.exported ?? x.local) === alias); const copy = copies.find((c) => c.exported === alias); return fn ? `/** 原压缩名 ${fn.local}，导出名 ${alias}（registry-cleanup 补充） */\nexport const ${v.export} = (${fn.params || ""}) => request(${fn.cfg});` : copy ? copySource(copy, "（registry-cleanup 补充）") : `// TODO:restore 导出名 ${alias} 不是接口函数，按原 chunk 补上（registry-cleanup）`; });
     const f = fileOf(a.file); writeFileSync(f, readFileSync(f, "utf8").replace(/\s*$/, "\n") + add.join("\n") + "\n");
   }
 
