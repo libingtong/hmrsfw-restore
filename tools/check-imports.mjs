@@ -1,5 +1,5 @@
 // check-imports (docs/pipeline.md §13.2): a page may only use the public library through registry/<app>.json.
-//   1. imports come only from: the page's own files (relative), registry paths (with the registry's export names), npm
+//   1. imports come only from: the page's own files (relative; includes non-code files under subComponentDir), registry paths (with the registry's export names), npm
 //      packages listed in the registry;
 //   2. a page does not redefine a public symbol: no top-level declaration named like a registry export, no request to a
 //      url that a registry function already wraps;
@@ -69,6 +69,10 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
   const sfc = compilerSfc(APP); const idx = registryIndex(reg); const failed = []; const stats = { files: files.length, imports: 0 };
   const rel = (f) => path.relative(APP, f).split(path.sep).join("/");
   const own = new Set(files.map((f) => path.resolve(f)));
+  // a non-code file (image, font, css…) under subComponentDir is the page's own as well — the same directory rule 4's mine()
+  // treats as the page's; code files still have to be in `own`, so everything the page imports is checked by rules 1–3
+  const ownDir = order.subComponentDir ? path.resolve(APP, order.subComponentDir) + path.sep : null;
+  const ownAsset = (p) => ownDir && p.startsWith(ownDir) && !/\.(vue|[cm]?[jt]sx?)$/.test(p);
   const views = new Map(Object.values(maps?.views ?? {}).filter((v) => v.path).map((v) => [normSpec(v.path), v]));
   allTargets ??= new Map(readdirSync(path.join(ROOT, "queue")).filter((f) => /^(page|seg)\./.test(f)).map((f) => JSON.parse(readFileSync(path.join(ROOT, "queue", f), "utf8"))).filter((o) => o.target).map((o) => [path.resolve(APP, o.target), o.id]));
   const pageOrder = order.type === "page" || order.type === "segment";
@@ -92,7 +96,7 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
             const target = path.resolve(path.dirname(f), spec); const cands = [target, `${target}.ts`, `${target}.vue`, path.join(target, "index.ts")];
             const hit = cands.find((c) => own.has(c)) ?? cands.find((c) => existsSync(c));
             if (!hit) { failed.push({ check: "imports", where: rel(f), hint: `相对导入 "${spec}" 找不到文件` }); continue; }
-            if (own.has(hit)) continue;
+            if (own.has(hit) || ownAsset(hit)) continue;
             const other = allTargets.get(hit);
             if (other && [...views.values()].some((v) => v.order === other)) continue;
             failed.push({ check: "imports", where: rel(f), hint: other ? `"${spec}" 是另一张工单（${other}）的页面，maps 里没有这个依赖；页面之间不要互相导入，按 maps 处理` : `"${spec}" 不在本页目录内：页面只能相对导入自己的文件（${order.subComponentDir ?? path.dirname(order.target ?? "")}），公共代码按 maps 的路径导入` });
