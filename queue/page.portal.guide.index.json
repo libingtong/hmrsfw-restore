@@ -55,6 +55,7 @@
   }
  ],
  "recordPath": "/guide/corp",
+ "role": "general",
  "maps": "out/maps/page.portal.guide.index.json",
  "hints": "out/hints/page.portal.guide.index.md",
  "deps": {

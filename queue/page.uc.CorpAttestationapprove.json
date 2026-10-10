@@ -35,6 +35,7 @@
   }
  ],
  "recordPath": "/CorpAttestationapprove",
+ "role": "general",
  "maps": "out/maps/page.uc.CorpAttestationapprove.json",
  "hints": "out/hints/page.uc.CorpAttestationapprove.md",
  "deps": {

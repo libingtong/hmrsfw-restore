@@ -1,0 +1,40 @@
+{
+ "_source": "HM-9 联调录制（2026-10-09，rv-uc-feedback / rv-uc-corpcenter / rv-uc-mentorhome）里，测试账号切到各身份后 localStorage.routermenu 的菜单路径（后端按身份下发）。只记路径，不含账号数据；普通用户（general）身份没有录过。",
+ "jobseeker": [
+  "/jobhunterhome",
+  "/resumetemplate",
+  "/Createaresume",
+  "/lookresume",
+  "/myresume",
+  "/send",
+  "/personalstyle",
+  "/myPoints",
+  "/Invited",
+  "/maskunit"
+ ],
+ "corp": [
+  "/CorpCenter",
+  "/CorpAttestation",
+  "/PositionAdmin",
+  "/enterprisetemplate",
+  "/ReceivedResume",
+  "/DownloadResume",
+  "/TalentSearch",
+  "/corpLoan",
+  "/InterviewInvitation",
+  "/pointsAdmin",
+  "/JobFairsHome",
+  "/fairsOutList",
+  "/fairsList",
+  "/pool",
+  "/layouts/RouteView2",
+  "/WorkStyleAdmin",
+  "/collectme"
+ ],
+ "mentor": [
+  "/mentorhome",
+  "/mentor",
+  "/myconsult",
+  "/allconsult"
+ ]
+}

@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/graduates",
+ "role": null,
  "maps": "out/maps/page.uc.graduates.json",
  "hints": "out/hints/page.uc.graduates.md",
  "deps": {
@@ -52,5 +53,6 @@
    "entry.uc.E6"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "notes": "没有身份线索：/graduates 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
 }

@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/DownloadResume",
+ "role": "corp",
  "maps": "out/maps/page.uc.DownloadResume.json",
  "hints": "out/hints/page.uc.DownloadResume.md",
  "deps": {

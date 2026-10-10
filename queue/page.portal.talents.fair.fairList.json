@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/talents/fairList",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.fair.fairList.json",
  "hints": "out/hints/page.portal.talents.fair.fairList.md",
  "deps": {

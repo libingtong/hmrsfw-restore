@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/outFairList",
+ "role": "general",
  "maps": "out/maps/page.portal.fair.outFair.list.json",
  "hints": "out/hints/page.portal.fair.outFair.list.md",
  "deps": {

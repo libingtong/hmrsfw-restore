@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/fairsOutList",
+ "role": "corp",
  "maps": "out/maps/page.uc.fairsOutList.json",
  "hints": "out/hints/page.uc.fairsOutList.md",
  "deps": {

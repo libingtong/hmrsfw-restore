@@ -36,6 +36,7 @@
   }
  ],
  "recordPath": "/oddJob",
+ "role": "general",
  "maps": "out/maps/page.portal.oddJob.index.json",
  "hints": "out/hints/page.portal.oddJob.index.md",
  "deps": {

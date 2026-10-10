@@ -37,6 +37,7 @@
   }
  ],
  "recordPath": "/talents/setupList",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.setUp.setupList.json",
  "hints": "out/hints/page.portal.talents.setUp.setupList.md",
  "deps": {

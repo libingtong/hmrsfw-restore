@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/BeOnProbationAdmin",
+ "role": null,
  "maps": "out/maps/page.uc.BeOnProbationAdmin.json",
  "hints": "out/hints/page.uc.BeOnProbationAdmin.md",
  "deps": {
@@ -63,5 +64,6 @@
    "shared.uc.workVideo"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "notes": "不同身份的页面都链到它：page.uc.main（普通用户）、page.uc.CorpCenter（招聘单位）、page.uc.marketCenter（「招聘超市」）"
 }

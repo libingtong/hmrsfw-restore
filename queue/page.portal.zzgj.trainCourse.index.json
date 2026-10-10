@@ -38,6 +38,7 @@
   }
  ],
  "recordPath": "/trainCourse",
+ "role": "general",
  "maps": "out/maps/page.portal.zzgj.trainCourse.index.json",
  "hints": "out/hints/page.portal.zzgj.trainCourse.index.md",
  "deps": {

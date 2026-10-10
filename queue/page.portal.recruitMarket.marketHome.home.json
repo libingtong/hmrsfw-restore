@@ -45,6 +45,7 @@
   }
  ],
  "recordPath": "/recruitMarket",
+ "role": "general",
  "maps": "out/maps/page.portal.recruitMarket.marketHome.home.json",
  "hints": "out/hints/page.portal.recruitMarket.marketHome.home.md",
  "deps": {

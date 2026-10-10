@@ -33,6 +33,7 @@
   }
  ],
  "recordPath": "/talents/cityHome/:areaId",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.cityHome.index.json",
  "hints": "out/hints/page.portal.talents.cityHome.index.md",
  "deps": {

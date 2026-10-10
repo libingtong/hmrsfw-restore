@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/talents/cityHome/helpCenter/",
  "routes": [],
  "recordPath": "/talents/cityHome/:areaId",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.cityHome.helpCenter.json",
  "hints": "out/hints/page.portal.talents.cityHome.helpCenter.md",
  "deps": {

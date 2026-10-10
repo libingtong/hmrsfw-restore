@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/shareUserList",
+ "role": "general",
  "maps": "out/maps/page.portal.oddJob.shareUser.index.json",
  "hints": "out/hints/page.portal.oddJob.shareUser.index.md",
  "deps": {

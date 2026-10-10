@@ -37,6 +37,7 @@
   }
  ],
  "recordPath": "/talents",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.homeView.json",
  "hints": "out/hints/page.portal.talents.homeView.md",
  "deps": {

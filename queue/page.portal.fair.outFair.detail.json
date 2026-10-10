@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/outFairDetail/:zphId",
+ "role": "general",
  "maps": "out/maps/page.portal.fair.outFair.detail.json",
  "hints": "out/hints/page.portal.fair.outFair.detail.md",
  "deps": {

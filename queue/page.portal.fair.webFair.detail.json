@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/webFairDetail/:zphId",
+ "role": "general",
  "maps": "out/maps/page.portal.fair.webFair.detail.json",
  "hints": "out/hints/page.portal.fair.webFair.detail.md",
  "deps": {

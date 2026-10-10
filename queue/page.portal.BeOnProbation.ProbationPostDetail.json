@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/ProbationPostDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.BeOnProbation.ProbationPostDetail.json",
  "hints": "out/hints/page.portal.BeOnProbation.ProbationPostDetail.md",
  "deps": {

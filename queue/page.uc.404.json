@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/404",
+ "role": "general",
  "maps": "out/maps/page.uc.404.json",
  "hints": "out/hints/page.uc.404.md",
  "deps": {

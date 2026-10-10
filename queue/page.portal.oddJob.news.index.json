@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/oddjobnews",
+ "role": "general",
  "maps": "out/maps/page.portal.oddJob.news.index.json",
  "hints": "out/hints/page.portal.oddJob.news.index.md",
  "deps": {

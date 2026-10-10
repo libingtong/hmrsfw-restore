@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/talents/newsDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.information.newsDetail.json",
  "hints": "out/hints/page.portal.talents.information.newsDetail.md",
  "deps": {

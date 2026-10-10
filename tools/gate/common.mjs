@@ -105,9 +105,11 @@ export function findHar(id, assets, explicit, wo) {
   return null;
 }
 
-// Recorded login state of a work order, kept in memory: { localStorage, sessionStorage }. Default file:
-// $RESTORE_ASSETS/.auth/pw-<role>.json (Playwright storageState); a work order may name another file (`auth`, relative
-// to $RESTORE_ASSETS) in either that format or the POC's {localStorage, sessionStorage}.
+// Recorded login state of a work order, kept in memory: { localStorage, sessionStorage }. Default file: the site's,
+// $RESTORE_ASSETS/.auth/pw-<site>.json (Playwright storageState, saved by pw-login.mjs); the order's `role` (general /
+// jobseeker / corp / mentor / null) does not pick the file. Only the POC confirmation orders keep their per-identity
+// file, pw-<site>-<identity>.json (role "usercenter-jobseeker" …, README). A work order may name another file (`auth`,
+// relative to $RESTORE_ASSETS) in either that format or the POC's {localStorage, sessionStorage}.
 // With the page's HAR (loadHar): record-page.mjs keeps the localStorage as it was after the identity switch (radiotype,
 // routermenu, …; no token) in log._record; it goes over the login state, so the page replays under the identity it
 // was recorded with, whatever identity the shared login state was last saved under.
@@ -116,9 +118,14 @@ export function authStorage(wo, assets, har) {
   Object.assign(st.localStorage, har?.record?.localStorage ?? {});
   return st;
 }
+function loginStateFile(wo) {
+  if (wo.auth) return wo.auth;
+  const legacy = typeof wo.role === "string" && wo.role.startsWith(`${wo.site}-`);
+  return path.join(".auth", `pw-${legacy ? wo.role : wo.site}.json`);
+}
 function loginStorage(wo, assets) {
-  const f = path.join(assets, wo.auth ?? path.join(".auth", `pw-${wo.role}.json`));
-  if (!existsSync(f)) throw new Error(`login state for ${wo.id} (${wo.auth ?? "role " + wo.role}) not found under $RESTORE_ASSETS`);
+  const f = path.join(assets, loginStateFile(wo));
+  if (!existsSync(f)) throw new Error(`login state for ${wo.id} (${loginStateFile(wo)}) not found under $RESTORE_ASSETS`);
   const st = JSON.parse(readFileSync(f, "utf8"));
   if (st.origins) return { localStorage: Object.fromEntries((st.origins.find((x) => x.origin === SITES[wo.site].host)?.localStorage ?? []).map((x) => [x.name, x.value])), sessionStorage: {} };
   return { localStorage: { ...(st.localStorage ?? {}) }, sessionStorage: { ...(st.sessionStorage ?? {}) } };

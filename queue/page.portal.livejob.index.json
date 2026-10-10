@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/livejob/index/",
  "routes": [],
  "recordPath": "/fairList",
+ "role": "general",
  "maps": "out/maps/page.portal.livejob.index.json",
  "hints": "out/hints/page.portal.livejob.index.md",
  "deps": {

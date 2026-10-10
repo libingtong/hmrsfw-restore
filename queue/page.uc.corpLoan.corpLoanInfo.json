@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/corpLoan/corpLoanInfo",
+ "role": "corp",
  "maps": "out/maps/page.uc.corpLoan.corpLoanInfo.json",
  "hints": "out/hints/page.uc.corpLoan.corpLoanInfo.md",
  "deps": {

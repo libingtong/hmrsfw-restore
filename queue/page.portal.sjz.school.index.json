@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/schoolHome",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.school.index.json",
  "hints": "out/hints/page.portal.sjz.school.index.md",
  "deps": {

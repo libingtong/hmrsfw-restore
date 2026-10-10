@@ -32,6 +32,7 @@
   }
  ],
  "recordPath": "/mentor",
+ "role": "mentor",
  "maps": "out/maps/page.uc.mentor.json",
  "hints": "out/hints/page.uc.mentor.md",
  "deps": {

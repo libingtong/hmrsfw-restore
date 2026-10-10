@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/areaHome/:cityCode",
+ "role": "general",
  "maps": "out/maps/page.portal.xjhm.cityHome.index.json",
  "hints": "out/hints/page.portal.xjhm.cityHome.index.md",
  "deps": {

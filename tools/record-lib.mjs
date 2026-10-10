@@ -24,11 +24,13 @@ export const IDENTITIES = {
   mentor: { type: 20, home: "/mentorhome", label: "职业导师" },
 };
 // Work-order role → identity. Old labels from the POC (tools/confirm-orders.json, one login state per role) still work.
+// Portal orders carry role general (no identity); a user-center order whose identity work-orders.mjs could not decide
+// has role null (its notes say why): it stays null, record-page stops with need-role-decision instead of guessing.
 const ROLE_ALIAS = { "usercenter-general": "general", "usercenter-jobseeker": "jobseeker", "usercenter-corp": "corp", "usercenter-mentor": "mentor" };
-export const DEFAULT_ROLE = { portal: "portal", usercenter: "jobseeker" };
 export function normalizeRole(site, role) {
-  if (site === "portal") return role == null || role === "portal" ? "portal" : null;
-  const r = role == null ? DEFAULT_ROLE.usercenter : ROLE_ALIAS[role] ?? role;
+  if (site === "portal") return role == null || role === "portal" || role === "general" ? "portal" : null;
+  if (role == null) return null;
+  const r = ROLE_ALIAS[role] ?? role;
   return IDENTITIES[r] ? r : null;
 }
 
@@ -63,7 +65,7 @@ export function resolveOrder(id, orderFile) {
   if (!ORIGIN[site]) throw fail(`work order ${id}: unknown site ${site}`);
   if (typeof o.recordPath !== "string" || !o.recordPath.startsWith("/")) throw fail(`work order ${id}: recordPath missing (must start with /)`);
   const role = normalizeRole(site, o.role);
-  if (!role) throw fail(`work order ${id}: unknown role ${o.role} for ${site} (portal: portal; usercenter: ${Object.keys(IDENTITIES).join(" / ")})`);
+  if (!role && !(site === "usercenter" && o.role == null)) throw fail(`work order ${id}: unknown role ${o.role} for ${site} (portal: general; usercenter: ${Object.keys(IDENTITIES).join(" / ")}, or null when undecided)`);
   return { ...o, id, site, role, from };
 }
 

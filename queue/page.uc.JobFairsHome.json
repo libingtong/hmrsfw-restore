@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/JobFairsHome/:key?",
+ "role": "corp",
  "maps": "out/maps/page.uc.JobFairsHome.json",
  "hints": "out/hints/page.uc.JobFairsHome.md",
  "deps": {

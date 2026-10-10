@@ -24,6 +24,7 @@
  "subComponentDir": "apps/portal/src/views/talents/cityHome/talentArea/",
  "routes": [],
  "recordPath": "/talents/cityHome/:areaId",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.cityHome.talentArea.json",
  "hints": "out/hints/page.portal.talents.cityHome.talentArea.md",
  "deps": {

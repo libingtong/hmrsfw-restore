@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/resumetemplate",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.resumetemplate.json",
  "hints": "out/hints/page.uc.resumetemplate.md",
  "deps": {

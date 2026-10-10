@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/lookresume",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.lookresume.json",
  "hints": "out/hints/page.uc.lookresume.md",
  "deps": {

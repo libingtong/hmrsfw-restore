@@ -35,6 +35,7 @@
   }
  ],
  "recordPath": "/unitMain",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.unitMain.unitMain.json",
  "hints": "out/hints/page.portal.sjz.unitMain.unitMain.md",
  "deps": {

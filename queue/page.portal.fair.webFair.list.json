@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/webFairList",
+ "role": "general",
  "maps": "out/maps/page.portal.fair.webFair.list.json",
  "hints": "out/hints/page.portal.fair.webFair.list.md",
  "deps": {

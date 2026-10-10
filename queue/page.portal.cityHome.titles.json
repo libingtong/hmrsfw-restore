@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/cityHome/titles/",
  "routes": [],
  "recordPath": "/cityHome/:cityCode",
+ "role": "general",
  "maps": "out/maps/page.portal.cityHome.titles.json",
  "hints": "out/hints/page.portal.cityHome.titles.md",
  "deps": {

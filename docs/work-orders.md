@@ -70,6 +70,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `components` / `scopeIds` | chunk 内每个组件的 `__name` 和 scopeId（由 `_export_sfc` 包装上的 `__scopeId` 对应到组件变量） |
 | `cssCandidates` | 本页自己的 CSS（入口给的依赖 CSS 里，属于被导入 chunk 的已剔除） |
 | `routes` / `recordPath` / `recordVia` | 路由；只被别的页面当组件引用的页面（50 个）用引用它的页面的路由录制，`recordVia` 写明是哪张 |
+| `role` / `notes` | 录制身份，取值同 `record-page.mjs` 的 `IDENTITIES`：`general` / `jobseeker` / `corp` / `mentor`。门户一律 `general`；用户中心由 `tools/uc-roles.mjs` 按录制路由和原 chunk 判定（系统页和顶栏入口、身份主页、`tools/uc-identity-menus.json` 里各身份的菜单、页面之间的链接），判不出写 `null` 并在 `notes` 写原因，`record-page.mjs` 遇到 `null` 输出 `blocked: need-role-decision`，不猜。每张的判定依据在 `queue/roles.json` |
 | `maps` / `hints` | `out/maps/<id>.json`、`out/hints/<id>.md` |
 | `deps` | `entry`（入口导出名）、`shared`（共享 chunk）、`api`（`chunk#导出名`）、`modules`（小模块、图片常量）、`views`（被导入的其他页面工单）、`orders`（这些依赖里还是 `reserved` 的所属工单，门槛顶替和回归反向索引用） |
 | `accepted` | 已验收页面的来源说明 |
@@ -85,7 +86,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `outputs` | 本段要交付的文件 |
 | `assemble` / `after` | 最后一段 `assemble: true`，`after` 列出它要等的其他段；它负责运行 `assemble-segments.mjs` 合成 SFC，并对整页跑自检和门槛 |
 | `instructions` | 给还原员的中文说明 |
-| 其余 | `target`、`subComponentDir`、`routes`、`recordPath`、`maps`、`hints`、`deps` 同所属页面 |
+| 其余 | `target`、`subComponentDir`、`routes`、`recordPath`、`role`、`notes`、`maps`、`hints`、`deps` 同所属页面 |
 
 分段规则（`tools/segments.mjs`）：段数 `ceil(kb / 30)`；先按组件边界把整组件按源码顺序分进各段，使最大的一段尽量小；单个组件超过 30KB 的，拆成 script / template 两部分。主组件在 chunk 末尾，所以总在最后一段。21 段中只有 CorpAttestation 的 script 部分（31.2KB）略超 30KB。
 
@@ -93,7 +94,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 
 **entry**：`area`（E1–E7 或 `component`）、`title`、`files`、`owns`（本单负责的入口导出：原导出名、清单路径、导出名、状态）、`components`（组件单：组件名、入口里的 binding 名、scopeId、大小、文件；`replacesStub` 表示要替换 `hmrsfw-vue` 里现有的桩）、`globals`（E2：清单的全局组件和指令）。入口单的 `kb` 是估算值（`kbEstimated: true`）。
 
-`queue/index.json` 是所有工单的一览（id、type、status、kb、`after`、`deps.orders`）加反向索引 `dependents`；`queue/routes.json` 是 `check-coverage.mjs` 的输入；`queue/summary.json` 是上面这些数字。
+`queue/index.json` 是所有工单的一览（id、type、status、kb、`after`、`deps.orders`）加反向索引 `dependents`；`queue/routes.json` 是 `check-coverage.mjs` 的输入；`queue/summary.json` 是上面这些数字；`queue/roles.json` 是每张页面单的身份和判定依据（判不出的是原因）。
 
 ## 公共库清单 `registry/<app>.json`
 

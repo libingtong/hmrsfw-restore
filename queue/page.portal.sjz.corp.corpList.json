@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/CompanyList",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.corp.corpList.json",
  "hints": "out/hints/page.portal.sjz.corp.corpList.md",
  "deps": {

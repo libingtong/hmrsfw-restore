@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/userImg",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.userImg.json",
  "hints": "out/hints/page.uc.userImg.md",
  "deps": {

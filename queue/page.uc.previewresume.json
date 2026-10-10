@@ -33,6 +33,7 @@
   }
  ],
  "recordPath": "/previewresume",
+ "role": null,
  "maps": "out/maps/page.uc.previewresume.json",
  "hints": "out/hints/page.uc.previewresume.md",
  "deps": {
@@ -68,5 +69,6 @@
    "entry.uc.E6"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "notes": "不同身份的页面都链到它：page.uc.CorpCenter（招聘单位）、page.uc.marketCenter（「招聘超市」）、page.uc.TalentSearch（招聘单位）、page.uc.pool（招聘单位）、page.uc.collectme（招聘单位）、page.uc.InterviewInvitation（招聘单位）、page.uc.DownloadResume（招聘单位）、page.uc.ReceivedResume（招聘单位）、page.uc.myresume（求职者）、page.uc.lookresume（求职者）"
 }

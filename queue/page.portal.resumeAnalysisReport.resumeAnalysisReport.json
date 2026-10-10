@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/resumeAnalysisReport",
+ "role": "general",
  "maps": "out/maps/page.portal.resumeAnalysisReport.resumeAnalysisReport.json",
  "hints": "out/hints/page.portal.resumeAnalysisReport.resumeAnalysisReport.md",
  "deps": {
