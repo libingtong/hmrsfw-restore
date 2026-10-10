@@ -13,11 +13,14 @@
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { parse } from "@babel/parser";
+import traverseModule from "@babel/traverse";
 import { ROOT, SITES, APP_OF, hamiScope, siteGraph, chunkSource, exportsOf, bindingsFrom, kbOf, componentsOf } from "./scope.mjs";
 import { scanSharedGaps } from "./scan-shared-gaps.mjs";
 import { parseApiChunk, nameFromUrl } from "./restore-api.mjs";
 import { appDir } from "./app-dir.mjs";
 import { symbolsOf } from "./entry-symbols.mjs";
+const traverse = traverseModule.default ?? traverseModule;
 
 export const REGISTRY_DIR = path.join(ROOT, "registry");
 const pascal = (n) => n.replace(/(^|[-_ ])(\w)/g, (_, __, c) => c.toUpperCase()).replace(/[^\w$]/g, "");
@@ -172,6 +175,32 @@ function iconName(src, def) {
   const icon = def?.match(/icon:([\w$]+)\}/)?.[1]; if (!icon) return null;
   let d = icon; for (let i = 0; i < 3; i++) { const m = src.match(new RegExp(`[,;{\\s]${d.replace(/\$/g, "\\$")}=([^;]{0,400})`)); if (!m) return null; const body = m[1]; const nm = body.match(/name:"([\w-]+)",theme:"(\w+)"/); if (nm) return pascal(nm[1]) + pascal(nm[2] === "twotone" ? "TwoTone" : nm[2]); const next = body.match(/^([\w$]+)[,;]/)?.[1]; if (!next) return null; d = next; }
   return null;
+}
+
+// Components a Hami chunk resolves by name (`resolveComponent("el-button")`, the Vue import bound at module level) that
+// nothing registers: not app.component / a plugin pattern (`globals`), not a Vue built-in, not a local `components:{}`
+// of the same chunk. Vue warns and renders them as unknown elements <el-button>. A restored template that writes the same
+// tag compiles to the same resolveComponent call, so check-imports accepts each name in the chunks listed here, and only
+// there. → { name: [chunk, …] }
+const VUE_BUILTIN_COMPONENTS = new Set(["component", "transition", "transition-group", "keep-alive", "teleport", "suspense", "slot", "template", "Transition", "TransitionGroup", "KeepAlive", "Teleport", "Suspense"]);
+export function unregisteredComponents(site, chunks, vue, globals) {
+  const camelize = (n) => n.replace(/-(\w)/g, (_, c) => c.toUpperCase());
+  const forms = (n) => [n, camelize(n), camelize(n).charAt(0).toUpperCase() + camelize(n).slice(1)]; // Vue's resolveAsset
+  const registered = (n) => VUE_BUILTIN_COMPONENTS.has(n) || forms(n).some((x) => globals.components.includes(x)) || globals.componentPatterns.some((p) => new RegExp(p).test(n));
+  const resolvers = new Set(Object.entries(vue).filter(([, a]) => a.name === "resolveComponent" && a.from === "vue").map(([k]) => k));
+  const out = {};
+  for (const f of [...chunks].sort()) {
+    const locals = new Set(bindingsFrom(site, f, SITES[site].vue).filter((b) => resolvers.has(b.imported)).map((b) => b.local));
+    if (!locals.size) continue;
+    const src = chunkSource(site, f) ?? ""; const resolved = new Set(); const local = new Set();
+    let ast; try { ast = parse(src, { sourceType: "module", plugins: ["topLevelAwait"], errorRecovery: true }); } catch { continue; }
+    traverse(ast, {
+      CallExpression(p) { const c = p.node.callee; if (c.type === "Identifier" && locals.has(c.name) && p.scope.getBinding(c.name)?.kind === "module" && p.node.arguments[0]?.type === "StringLiteral") resolved.add(p.node.arguments[0].value); },
+      ObjectProperty(p) { if ((p.node.key.name ?? p.node.key.value) === "components" && p.node.value.type === "ObjectExpression") for (const q of p.node.value.properties) { const k = q.key?.name ?? q.key?.value; if (k) local.add(k); } },
+    });
+    for (const n of resolved) if (!registered(n) && !forms(n).some((x) => local.has(x))) (out[n] ??= []).push(f);
+  }
+  return Object.fromEntries(Object.entries(out).sort(([a], [b]) => a.localeCompare(b)));
 }
 
 export function buildRegistry(site, { APP, gaps = scanSharedGaps(site), vueAliases = null, prev = null } = {}) {
@@ -352,8 +381,12 @@ export function buildRegistry(site, { APP, gaps = scanSharedGaps(site), vueAlias
     components: [...new Set([...g0.components, "router-link", "router-view", "RouterLink", "RouterView"])].sort(),
     componentPatterns: ["^a-", "^A[A-Z]", "(Outlined|Filled|TwoTone)$", "-(outlined|filled|two-tone)$", ...(g0.components.some((c) => c.startsWith("bm-")) ? ["^bm-", "^baidu-map$"] : [])],
     directives: g0.directives, provide: g0.provide,
+    unregistered: {},
     notes: ["ant-design-vue 由 app.use 全量注册（a-* 组件）", "@ant-design/icons-vue 图标全量注册", ...(g0.components.includes("Swiper") ? ["swiper/vue 的 Swiper、SwiperSlide 由入口全局注册"] : []), ...(g0.components.some((c) => c.startsWith("bm-")) ? ["vue-baidu-map-3x（baidu-map、bm-*）由入口在取到 ak 后注册"] : [])],
   };
+
+  globals.unregistered = unregisteredComponents(site, scope.all, vueAliases ?? prev?.vue ?? {}, globals);
+  if (Object.keys(globals.unregistered).length) globals.notes.push("unregistered：原包按名字解析（resolveComponent）但没有任何注册的组件，运行时按未知元素渲染；只在列出的 chunk 对应的页面里放行同名标签");
 
   // npm packages a page may import: hmrsfw-vue dependencies + the ones mapped above
   const pkg = JSON.parse(readFileSync(path.join(APP, "package.json"), "utf8"));

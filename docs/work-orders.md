@@ -109,7 +109,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `apiModules` | 原 chunk | `{path, renameTo?, duplicates?, status, owner, functions}` |
 | `modules` | 原 chunk | npm 库（swiper 各模块、pinyin-match、html2canvas、jspdf、print-js、@amap/amap-jsapi-loader、echarts）、图片常量（→ `@/shared/images`）、geojson |
 | `utils` | `@/utils/*` | 当前导出（request、cachedRequest 等可直接用） |
-| `globals` | | `components`、`componentPatterns`（a-*、图标、bm-*）、`directives`（门户 trim、click-outside；用户中心 imgerr、click-outside）、`provide`（门户 $getUser 等 4 个） |
+| `globals` | | `components`、`componentPatterns`（a-*、图标、bm-*）、`directives`（门户 trim、click-outside；用户中心 imgerr、click-outside）、`provide`（门户 $getUser 等 4 个）、`unregistered`（原包按名字解析但没有任何注册、运行时按未知元素渲染的组件 → 用到它的原 chunk；check-imports 只在这些 chunk 的工单里放行同名标签） |
 | `npm` | 包名 | 版本（`hmrsfw-vue/package.json`；不在里面的标「待 E7 按指纹核对」：print-js、vue-countup-v3） |
 
 状态：`restored`（`hmrsfw-vue` 里已有，且不是桩）、`reserved`（还没还原，路径和名字已定）、`npm`、`ignore`。
@@ -143,7 +143,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `text-nodes` | 原 render 的静态文本（`createTextVNode`、各 vnode 的字符串子节点、`createStaticVNode`、插值旁的字符串）逐字出现在还原版模板里；只差首尾空格的报 warn | `check-text-nodes.mjs` |
 | `directives` | `withDirectives` 的每一项（v-show、原生 v-model、自定义指令，含参数和修饰符）个数一致 | `check-directives.mjs` |
 | `branches` | 没有 v-else 的 v-if 个数一致（每个渲染为空注释占位）；合并独立 v-if、漏分支都会改变它。恒为 false 的分支两边都不计，与 D2 不冲突 | `check-directives.mjs` |
-| `imports` | 第十三节 2 的四条：导入只来自本页文件、清单路径（且导出名对）、清单 npm 包；不重新定义公共函数、不直接请求清单已封装且原 chunk 不是自己定义的 URL；模板里按名字用到的组件和指令必须导入或在 `globals`；本单在 `hmrsfw-vue` 里改动的文件不出本单范围（相对 `origin/integration`）。经由桶文件再导出、重复的接口文件、POC 的 npm 包装、与公共函数同名的本地函数报 warn | `check-imports.mjs` |
+| `imports` | 第十三节 2 的四条：导入只来自本页文件、清单路径（且导出名对）、清单 npm 包；不重新定义公共函数、不直接请求清单已封装且原 chunk 不是自己定义的 URL；模板里按名字用到的组件和指令必须导入或在 `globals`（`globals.unregistered` 只对列出的原 chunk 生效，标签名须与原包完全相同）；本单在 `hmrsfw-vue` 里改动的文件不出本单范围（相对 `origin/integration`）。经由桶文件再导出、重复的接口文件、POC 的 npm 包装、与公共函数同名的本地函数报 warn | `check-imports.mjs` |
 | `copied` | 不得原样拷贝本单原 chunk、它的 CSS 和它导入的 chunk 里的代码（160 字符窗口比对）。30 字符以上的正则字面量（身份证、手机号校验）必须原样保留，两边都先遮掉，不计入 | `check-copied.mjs` |
 | `secrets` | 密钥、token、手机号、证件号、邮箱 | `scan-secrets.mjs` |
 | `no-legacy` | 本单文件（含 `subComponentDir` 里的资源）零引用：源码和注释里没有 `legacy-dist` 路径、带构建哈希的文件名、编译产物；与门槛 page 模式的零引用同一套规则，还原员交付前就能看到（HM-9） | `check-no-legacy.mjs` |

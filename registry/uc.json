@@ -4742,10 +4742,21 @@
    "imgerr"
   ],
   "provide": [],
+  "unregistered": {
+   "el-button": [
+    "403.1751615607545.js",
+    "404.1751615607545.js"
+   ],
+   "tooltip": [
+    "home.17516156075453.js",
+    "homeZzgj.1751615607545.js"
+   ]
+  },
   "notes": [
    "ant-design-vue 由 app.use 全量注册（a-* 组件）",
    "@ant-design/icons-vue 图标全量注册",
-   "vue-baidu-map-3x（baidu-map、bm-*）由入口在取到 ak 后注册"
+   "vue-baidu-map-3x（baidu-map、bm-*）由入口在取到 ak 后注册",
+   "unregistered：原包按名字解析（resolveComponent）但没有任何注册的组件，运行时按未知元素渲染；只在列出的 chunk 对应的页面里放行同名标签"
   ]
  },
  "npm": {
