@@ -63,9 +63,12 @@
    "adr.1783320636200.js",
    "work.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.eMap.list"
+  ],
   "orders": [
    "entry.portal.E6",
+   "page.portal.eMap.list",
    "shared.portal.gaode2",
    "shared.portal.modules"
   ]

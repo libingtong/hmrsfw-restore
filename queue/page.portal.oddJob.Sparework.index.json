@@ -48,9 +48,12 @@
    "index.api.178332063620024.js#o"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.oddJob.rtInto.index"
+  ],
   "orders": [
-   "entry.portal.c03"
+   "entry.portal.c03",
+   "page.portal.oddJob.rtInto.index"
   ]
  },
  "stylesProvidedByScript": true

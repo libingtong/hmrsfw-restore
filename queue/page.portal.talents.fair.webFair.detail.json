@@ -69,10 +69,13 @@
    "index.api.178332063620017.js#h"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.fair.signModal"
+  ],
   "orders": [
    "entry.portal.E6",
-   "entry.portal.c03"
+   "entry.portal.c03",
+   "page.portal.fair.signModal"
   ]
  },
  "stylesProvidedByScript": true

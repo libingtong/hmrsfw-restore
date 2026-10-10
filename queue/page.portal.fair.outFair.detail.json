@@ -74,9 +74,14 @@
   "modules": [
    "outIcon.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo"
+  ],
   "orders": [
    "entry.portal.c03",
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo",
    "shared.portal.modules"
   ]
  },

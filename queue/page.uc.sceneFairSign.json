@@ -60,9 +60,12 @@
    "index.api.175161560754512.js#l"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.uc.webFairWork"
+  ],
   "orders": [
-   "entry.uc.E6"
+   "entry.uc.E6",
+   "page.uc.webFairWork"
   ]
  },
  "stylesProvidedByScript": true

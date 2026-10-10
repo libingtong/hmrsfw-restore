@@ -40,9 +40,16 @@
   "shared": [],
   "api": [],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.livejob.index",
+   "page.portal.sjz.fair.sceneFair.list",
+   "page.portal.sjz.fair.webFair.list"
+  ],
   "orders": [
-   "entry.portal.c03"
+   "entry.portal.c03",
+   "page.portal.livejob.index",
+   "page.portal.sjz.fair.sceneFair.list",
+   "page.portal.sjz.fair.webFair.list"
   ]
  },
  "stylesProvidedByScript": true,

@@ -62,10 +62,13 @@
    "index.api.178332063620024.js#x"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.oddJob.rtInto.odd"
+  ],
   "orders": [
    "entry.portal.E6",
    "entry.portal.c03",
+   "page.portal.oddJob.rtInto.odd",
    "shared.portal.nowContact",
    "shared.portal.oddType"
   ]

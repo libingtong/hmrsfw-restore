@@ -62,9 +62,14 @@
   "modules": [
    "bg.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.sjz.newHome.resource",
+   "page.portal.special.page1.jobNews"
+  ],
   "orders": [
    "entry.portal.c02",
+   "page.portal.sjz.newHome.resource",
+   "page.portal.special.page1.jobNews",
    "shared.portal.modules"
   ]
  },

@@ -44,9 +44,22 @@
   "shared": [],
   "api": [],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.talents.index.advertTop",
+   "page.portal.talents.newPark.homeList",
+   "page.portal.talents.newPark.industry",
+   "page.portal.talents.newPark.servicePark",
+   "page.portal.talents.newPark.talentPark",
+   "page.portal.talents.newPark.titles"
+  ],
   "orders": [
-   "entry.portal.E6"
+   "entry.portal.E6",
+   "page.portal.talents.index.advertTop",
+   "page.portal.talents.newPark.homeList",
+   "page.portal.talents.newPark.industry",
+   "page.portal.talents.newPark.servicePark",
+   "page.portal.talents.newPark.talentPark",
+   "page.portal.talents.newPark.titles"
   ]
  },
  "stylesProvidedByScript": true

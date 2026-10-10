@@ -38,8 +38,14 @@
   "shared": [],
   "api": [],
   "modules": [],
-  "views": [],
-  "orders": []
+  "views": [
+   "page.portal.talents.fair.outFair.list",
+   "page.portal.talents.fair.webFair.list"
+  ],
+  "orders": [
+   "page.portal.talents.fair.outFair.list",
+   "page.portal.talents.fair.webFair.list"
+  ]
  },
  "stylesProvidedByScript": true
 }

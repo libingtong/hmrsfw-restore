@@ -63,9 +63,12 @@
    "index.1783320636200117.js#g"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.fair.signModal"
+  ],
   "orders": [
-   "entry.portal.c03"
+   "entry.portal.c03",
+   "page.portal.fair.signModal"
   ]
  },
  "stylesProvidedByScript": true,

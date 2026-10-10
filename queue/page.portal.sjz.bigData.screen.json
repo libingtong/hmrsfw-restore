@@ -34,8 +34,18 @@
   "shared": [],
   "api": [],
   "modules": [],
-  "views": [],
-  "orders": []
+  "views": [
+   "page.portal.sjz.bigData.TopTitle",
+   "page.portal.sjz.bigData.components.Dashboard1",
+   "page.portal.sjz.bigData.components.Dashboard2",
+   "page.portal.sjz.bigData.index"
+  ],
+  "orders": [
+   "page.portal.sjz.bigData.TopTitle",
+   "page.portal.sjz.bigData.components.Dashboard1",
+   "page.portal.sjz.bigData.components.Dashboard2",
+   "page.portal.sjz.bigData.index"
+  ]
  },
  "stylesProvidedByScript": true
 }

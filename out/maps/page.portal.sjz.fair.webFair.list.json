@@ -143,7 +143,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "Wa": {
+   "original": "signModal.1783320636200.js#default",
+   "path": "@/shared/signModal.vue",
+   "export": "default",
+   "order": "page.portal.fair.signModal"
+  }
+ },
  "modules": {},
  "sideEffects": [],
  "missing": []

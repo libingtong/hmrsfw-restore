@@ -187,7 +187,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "be": {
+   "original": "myresume.1751615607545.js#default",
+   "path": "@/views/myresume.vue",
+   "export": "default",
+   "order": "page.uc.myresume"
+  }
+ },
  "modules": {
   "P": {
    "original": "newUserCard.vue_vue_type_style_index_0_scoped_399cb1b5_lang.1751615607545.js#_",

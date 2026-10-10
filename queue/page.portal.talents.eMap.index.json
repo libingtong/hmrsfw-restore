@@ -54,8 +54,11 @@
    "adr.1783320636200.js",
    "work.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.talents.eMap.list"
+  ],
   "orders": [
+   "page.portal.talents.eMap.list",
    "shared.portal.modules"
   ]
  },

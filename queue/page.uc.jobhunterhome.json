@@ -80,9 +80,12 @@
    "default.1751615607545.js",
    "newUserCard.vue_vue_type_style_index_0_scoped_399cb1b5_lang.1751615607545.js"
   ],
-  "views": [],
+  "views": [
+   "page.uc.myresume"
+  ],
   "orders": [
    "entry.uc.E6",
+   "page.uc.myresume",
    "shared.uc.modules",
    "shared.uc.mymsg",
    "shared.uc.recommendZp",

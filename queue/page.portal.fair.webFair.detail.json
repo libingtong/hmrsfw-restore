@@ -74,9 +74,14 @@
    "index.api.178332063620017.js#h"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo"
+  ],
   "orders": [
-   "entry.portal.c03"
+   "entry.portal.c03",
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo"
   ]
  },
  "stylesProvidedByScript": true

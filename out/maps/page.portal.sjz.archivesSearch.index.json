@@ -167,7 +167,20 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "Ft": {
+   "original": "jobNews.1783320636200.js#default",
+   "path": "@/shared/jobNews.vue",
+   "export": "default",
+   "order": "page.portal.special.page1.jobNews"
+  },
+  "Wt": {
+   "original": "resource.17833206362004.js#default",
+   "path": "@/shared/resource.vue",
+   "export": "default",
+   "order": "page.portal.sjz.newHome.resource"
+  }
+ },
  "modules": {
   "vt": {
    "original": "bg.1783320636200.js#_",

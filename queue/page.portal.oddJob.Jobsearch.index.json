@@ -65,10 +65,13 @@
   "modules": [
    "sm.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.oddJob.rtInto.odd"
+  ],
   "orders": [
    "entry.portal.E6",
    "entry.portal.c03",
+   "page.portal.oddJob.rtInto.odd",
    "shared.portal.modules",
    "shared.portal.nowContact",
    "shared.portal.oddType"

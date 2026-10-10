@@ -48,9 +48,22 @@
    "index.api.178332063620039.js#g"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.talents.conference.abouts",
+   "page.portal.talents.conference.cTitles",
+   "page.portal.talents.conference.medias",
+   "page.portal.talents.conference.scrollList",
+   "page.portal.talents.conference.swperSlides",
+   "page.portal.talents.index.advertTop"
+  ],
   "orders": [
    "entry.portal.E6",
+   "page.portal.talents.conference.abouts",
+   "page.portal.talents.conference.cTitles",
+   "page.portal.talents.conference.medias",
+   "page.portal.talents.conference.scrollList",
+   "page.portal.talents.conference.swperSlides",
+   "page.portal.talents.index.advertTop",
    "shared.portal.icon"
   ]
  },
