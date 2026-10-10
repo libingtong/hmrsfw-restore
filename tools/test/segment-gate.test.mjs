@@ -1,14 +1,18 @@
-// node --test tools/test/segment-gate.test.mjs
+// [HMRSFW_APP_DIR=<hmrsfw-vue checkout>] node --test tools/test/segment-gate.test.mjs   (the check-imports case needs the
+// checkout's node_modules for @vue/compiler-sfc and is skipped without it)
 // The static self-check of segment orders (HM-49) on the real work orders and legacy-dist chunks:
 //   - check-components: a non-assembling segment needs the page target only when it holds the page's main component;
 //   - segments: a component's region starts where the previous definition ends, so its _withScopeId wrapper and hoisted
-//     static vnodes are its own; a script part restores no render calls, a template part also owns the hoisted code.
+//     static vnodes are its own; a script part restores no render calls, a template part also owns the hoisted code;
+//   - check-imports: a relative import in a _seg/ fragment resolves from the assembled file's directory, and the page's
+//     component files (delivered by other segments) are the segment's own.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { checkComponents } from "../check-components.mjs";
+import { checkImports } from "../check-imports.mjs";
 import { loadOrder, loadJson, originalNameOf, renderFacts } from "../sfc-util.mjs";
 import { componentRegions, segmentPlan } from "../segments.mjs";
 import { chunkSource } from "../scope.mjs";
@@ -57,4 +61,19 @@ test("text-nodes original side: hoisted texts are counted for the segment that r
   assert.ok(!s1.includes("元/月") && s2.filter((t) => t === "元/月").length === 2, "元/月 is workPositionAddOrEditModel's (segment 2)");
   assert.ok(!texts("seg.uc.collage.studentApply.1").includes("就业协议合同"), "the main component's hoisted texts are not segment 1's");
   assert.deepEqual(texts("seg.uc.zcyzCorpAttestationapprove.2"), [], "script part: no template texts");
+});
+
+const APP = process.env.HMRSFW_APP_DIR && path.resolve(process.env.HMRSFW_APP_DIR);
+test("check-imports: fragment imports resolve from the assembled file; siblings' components are the page's own", { skip: !APP && "HMRSFW_APP_DIR not set" }, () => {
+  const seg = loadOrder("seg.uc.zcyzCorpAttestationapprove.2"); // main component's script part; BusinessModal is segment 1's
+  const dir = app(["apps/uc/src/views/CorpAttestation.vue"]); // another page's file
+  writeFileSync(path.join(dir, "package.json"), JSON.stringify({ name: "hmrsfw-vue" })); symlinkSync(path.join(APP, "node_modules"), path.join(dir, "node_modules"));
+  const frag = path.join(dir, seg.parts[0].file); mkdirSync(path.dirname(frag), { recursive: true });
+  const specs = { ok: "./zcyzCorpAttestationapprove/BusinessModal.vue", bad: ["./BusinessModal.vue", "../zcyzCorpAttestationapprove/BusinessModal.vue", "./zcyzCorpAttestationapprove/Nope.vue", "./CorpAttestation.vue"] };
+  writeFileSync(frag, [specs.ok, ...specs.bad].map((s, i) => `import C${i} from "${s}";`).join("\n") + "\n");
+  try {
+    const hits = (spec) => checkImports(seg, dir, { files: [frag] }).failed.filter((f) => f.hint.includes(`"${spec}"`));
+    assert.deepEqual(hits(specs.ok), [], "written as in the assembled SFC, BusinessModal not delivered yet");
+    for (const spec of specs.bad) assert.equal(hits(spec).length, 1, spec);
+  } finally { rmSync(dir, { recursive: true }); }
 });
