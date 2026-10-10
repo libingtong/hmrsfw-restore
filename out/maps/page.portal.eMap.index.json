@@ -152,7 +152,14 @@
    "owner": "shared.portal.gaode2"
   }
  },
- "views": {},
+ "views": {
+  "ke": {
+   "original": "list.17833206362002.js#default",
+   "path": "@/views/eMap/list.vue",
+   "export": "default",
+   "order": "page.portal.eMap.list"
+  }
+ },
  "modules": {
   "oo": {
    "original": "adr.1783320636200.js#_",

@@ -58,8 +58,15 @@
   ],
   "api": [],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.zcyz.bigData.components.pieCommon",
+   "page.portal.zcyz.bigData.components.pieRader",
+   "page.portal.zcyz.bigData.components.scrollList"
+  ],
   "orders": [
+   "page.portal.zcyz.bigData.components.pieCommon",
+   "page.portal.zcyz.bigData.components.pieRader",
+   "page.portal.zcyz.bigData.components.scrollList",
    "shared.portal.bars",
    "shared.portal.init",
    "shared.portal.maps",

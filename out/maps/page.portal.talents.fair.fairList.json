@@ -23,7 +23,20 @@
  },
  "api": {},
  "shared": {},
- "views": {},
+ "views": {
+  "v": {
+   "original": "list.178332063620012.js#default",
+   "path": "@/views/talents/fair/webFair/list.vue",
+   "export": "default",
+   "order": "page.portal.talents.fair.webFair.list"
+  },
+  "b": {
+   "original": "list.178332063620010.js#default",
+   "path": "@/views/talents/fair/outFair/list.vue",
+   "export": "default",
+   "order": "page.portal.talents.fair.outFair.list"
+  }
+ },
  "modules": {},
  "sideEffects": [],
  "missing": []

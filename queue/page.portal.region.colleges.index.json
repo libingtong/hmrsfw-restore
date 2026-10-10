@@ -61,10 +61,13 @@
   ],
   "api": [],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.fair.signModal"
+  ],
   "orders": [
    "entry.portal.E6",
    "entry.portal.c03",
+   "page.portal.fair.signModal",
    "shared.portal.homeNews3"
   ]
  },

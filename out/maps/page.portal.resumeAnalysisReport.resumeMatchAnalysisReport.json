@@ -184,6 +184,11 @@
    "original": "index.1783320636200118.js#i",
    "path": "echarts",
    "export": "init"
+  },
+  "ja": {
+   "original": "html2canvas.esm.1783320636200.js#default",
+   "path": "html2canvas",
+   "export": "default"
   }
  },
  "sideEffects": [],

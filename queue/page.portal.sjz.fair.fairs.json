@@ -41,9 +41,16 @@
   "shared": [],
   "api": [],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.sjz.fair.outFair.list",
+   "page.portal.sjz.fair.sceneFair.list",
+   "page.portal.sjz.fair.webFair.list"
+  ],
   "orders": [
-   "entry.portal.c03"
+   "entry.portal.c03",
+   "page.portal.sjz.fair.outFair.list",
+   "page.portal.sjz.fair.sceneFair.list",
+   "page.portal.sjz.fair.webFair.list"
   ]
  },
  "stylesProvidedByScript": true,

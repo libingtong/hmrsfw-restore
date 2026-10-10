@@ -67,10 +67,13 @@
   "modules": [
    "videoNull.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.fair.signModal"
+  ],
   "orders": [
    "entry.portal.E6",
    "entry.portal.c03",
+   "page.portal.fair.signModal",
    "shared.portal.modules",
    "shared.portal.tagcanvas"
   ]

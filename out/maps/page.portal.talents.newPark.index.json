@@ -52,7 +52,44 @@
  },
  "api": {},
  "shared": {},
- "views": {},
+ "views": {
+  "X": {
+   "original": "industry.1783320636200.js#default",
+   "path": "@/views/talents/newPark/industry.vue",
+   "export": "default",
+   "order": "page.portal.talents.newPark.industry"
+  },
+  "y": {
+   "original": "titles.17833206362004.js#default",
+   "path": "@/views/talents/newPark/titles.vue",
+   "export": "default",
+   "order": "page.portal.talents.newPark.titles"
+  },
+  "et": {
+   "original": "homeList.17833206362002.js#default",
+   "path": "@/views/talents/newPark/homeList.vue",
+   "export": "default",
+   "order": "page.portal.talents.newPark.homeList"
+  },
+  "st": {
+   "original": "talentPark.1783320636200.js#default",
+   "path": "@/views/talents/newPark/talentPark.vue",
+   "export": "default",
+   "order": "page.portal.talents.newPark.talentPark"
+  },
+  "nt": {
+   "original": "servicePark.1783320636200.js#default",
+   "path": "@/views/talents/newPark/servicePark.vue",
+   "export": "default",
+   "order": "page.portal.talents.newPark.servicePark"
+  },
+  "ot": {
+   "original": "advertTop.17833206362005.js#default",
+   "path": "@/views/talents/index/advertTop.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.advertTop"
+  }
+ },
  "modules": {},
  "sideEffects": [],
  "missing": []

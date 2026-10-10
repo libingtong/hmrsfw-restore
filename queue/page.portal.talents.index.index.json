@@ -55,9 +55,26 @@
    "index.api.178332063620037.js#a"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.talents.index.advertTop",
+   "page.portal.talents.index.frendLinks",
+   "page.portal.talents.index.homeList",
+   "page.portal.talents.index.infoRecommend",
+   "page.portal.talents.index.jobFair",
+   "page.portal.talents.index.jobRecommend",
+   "page.portal.talents.index.review",
+   "page.portal.talents.index.talentRecommend"
+  ],
   "orders": [
    "entry.portal.E6",
+   "page.portal.talents.index.advertTop",
+   "page.portal.talents.index.frendLinks",
+   "page.portal.talents.index.homeList",
+   "page.portal.talents.index.infoRecommend",
+   "page.portal.talents.index.jobFair",
+   "page.portal.talents.index.jobRecommend",
+   "page.portal.talents.index.review",
+   "page.portal.talents.index.talentRecommend",
    "shared.portal.adsCenter",
    "shared.portal.homeRight"
   ]

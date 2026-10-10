@@ -256,14 +256,17 @@ test("rule change review: two non-arbiter families; round 2 reject escalates to 
   assert.equal(r.ok, true, JSON.stringify(r));
   let reviews = issuesOf(fx).filter((i) => i.title.startsWith("[rule-review]"));
   assert.deepEqual(reviews.map((i) => i.assignee_id).sort(), [fx.id("review-deepseek"), fx.id("review-glm")]);
-  setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-deepseek")).id, "review.review-deepseek", { verdict: "approve", why: "ok" });
-  setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-glm")).id, "review.review-glm", { verdict: "reject", why: "swallows real diffs" });
+  // the key the task tells the reviewer is the one the scheduler reads; the roster name ("复核-GLM@Office") is refused
+  for (const i of reviews) assert.ok(i.description.includes(`\`review.${i.assignee_id}\``), i.description);
+  assert.throws(() => setMeta(fx, reviews[0].id, "review.复核-GLM@Office", { verdict: "approve" }), /invalid metadata key/);
+  setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-deepseek")).id, `review.${fx.id("review-deepseek")}`, { verdict: "approve", why: "ok" });
+  setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-glm")).id, `review.${fx.id("review-glm")}`, { verdict: "reject", why: "swallows real diffs" });
   node(fx, "tick.mjs", ["tick"]);
   assert.ok(issuesOf(fx).find((i) => i.title.startsWith("[incident]") && i.assignee_id === fx.id("arbiter")), "round 1 reject → back to the arbiter");
   r = node(fx, "tick.mjs", ["open-rule-review", "rules/r1"]);
   reviews = issuesOf(fx).filter((i) => i.title.includes(" r2 "));
   assert.equal(reviews.length, 2);
-  for (const i of reviews) { const name = i.assignee_id.slice(2); setMeta(fx, i.id, `review.${name}`, { verdict: name === "review-glm" ? "reject" : "approve", why: "x" }); }
+  for (const i of reviews) setMeta(fx, i.id, `review.${i.assignee_id}`, { verdict: i.assignee_id === fx.id("review-glm") ? "reject" : "approve", why: "x" });
   node(fx, "tick.mjs", ["tick"]);
   const blocked = issuesOf(fx).find((i) => i.status === "blocked");
   assert.ok(blocked, "escalated");
@@ -273,7 +276,7 @@ test("rule change review: two non-arbiter families; round 2 reject escalates to 
   writeFileSync(path.join(fx.tool, "rules.json"), JSON.stringify({ rules: ["base", "attr-order"] }));
   git(fx.tool, "commit", "-q", "-am", "rule r2"); git(fx.tool, "push", "-q", "origin", "rules/r2");
   node(fx, "tick.mjs", ["open-rule-review", "rules/r2"]);
-  for (const i of issuesOf(fx).filter((x) => x.title.includes("rules/r2"))) { const name = i.assignee_id.slice(2); setMeta(fx, i.id, `review.${name}`, { verdict: "approve", why: "equivalent" }); }
+  for (const i of issuesOf(fx).filter((x) => x.title.includes("rules/r2"))) setMeta(fx, i.id, `review.${i.assignee_id}`, { verdict: "approve", why: "equivalent" });
   node(fx, "tick.mjs", ["tick"]);
   assert.match(showRemote(fx, "tool", "main", "rules.json"), /attr-order/, "approved rule merged into tool main");
 });

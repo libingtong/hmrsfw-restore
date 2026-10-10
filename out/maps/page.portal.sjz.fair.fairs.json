@@ -78,7 +78,26 @@
  },
  "api": {},
  "shared": {},
- "views": {},
+ "views": {
+  "T": {
+   "original": "list.17833206362008.js#default",
+   "path": "@/views/sjz/fair/webFair/list.vue",
+   "export": "default",
+   "order": "page.portal.sjz.fair.webFair.list"
+  },
+  "L": {
+   "original": "list.17833206362007.js#default",
+   "path": "@/views/sjz/fair/sceneFair/list.vue",
+   "export": "default",
+   "order": "page.portal.sjz.fair.sceneFair.list"
+  },
+  "q": {
+   "original": "list.17833206362006.js#default",
+   "path": "@/views/sjz/fair/outFair/list.vue",
+   "export": "default",
+   "order": "page.portal.sjz.fair.outFair.list"
+  }
+ },
  "modules": {},
  "sideEffects": [],
  "missing": []

@@ -18,7 +18,7 @@ import os from "node:os";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { P, Locks, woLock, readJson } from "./state.mjs";
-import { Roster } from "./roster.mjs";
+import { Roster, reviewKey } from "./roster.mjs";
 import { Multica } from "./multica.mjs";
 import { Git, pageForbidden } from "./gitops.mjs";
 import { classifyRunError, FAILED_RUN_STATUSES } from "./error-classes.mjs";
@@ -1138,7 +1138,7 @@ export class Pipeline {
     const round = rc ? rc.round + 1 : 1;
     const tasks = {};
     for (const a of byFam.slice(0, 2)) {
-      const c = this.createTask({ key: `rule-review:${branch}:r${round}:${a.id}`, title: `[rule-review] ${branch} r${round} (${a.name})`, description: `复核规则变更分支 \`${branch}\`（工具仓库），证据见 \`docs/rule-changes/\`。结论写进元数据 \`review.${a.name}\`。`, meta: { kind: "rule-review", branch, round, ruleChange: branch, reviewer: a.id }, assigneeId: a.id });
+      const c = this.createTask({ key: `rule-review:${branch}:r${round}:${a.id}`, title: `[rule-review] ${branch} r${round} (${a.name})`, description: `复核规则变更分支 \`${branch}\`（工具仓库），证据见 \`docs/rule-changes/\`。结论写进元数据 \`${reviewKey(a.id)}\`（值为 JSON：\`{"verdict":"approve|reject","why":"…"}\`）。`, meta: { kind: "rule-review", branch, round, ruleChange: branch, reviewer: a.id }, assigneeId: a.id });
       if (c.id) tasks[a.id] = c.id;
     }
     this.ledger.tx((L2) => { (L2.tick.ruleChanges ??= {})[branch] = { state: "reviewing", round, tasks, openedAt: this.iso() }; L2.newEvents.push({ type: "rule-review-open", branch, round }); });
@@ -1154,7 +1154,7 @@ export class Pipeline {
       const r = ((rounds[m.branch] ??= {})[m.round || 1] ??= { tasks: {}, open: false, verdicts: [] });
       r.tasks[m.reviewer] = i.id;
       if (OPEN(i)) r.open = true;
-      const v = m[`review.${this.roster.get(m.reviewer)?.name}`];
+      const v = m.reviewer ? m[reviewKey(m.reviewer)] : null;
       if (v) r.verdicts.push(v.verdict);
     }
     const L = this.ledger.read();
@@ -1180,7 +1180,7 @@ export class Pipeline {
   processRuleReview(branch, rc0) {
     const verdicts = {};
     for (const [agentId, taskId] of Object.entries(rc0.tasks)) {
-      const v = this.issues().find((x) => x.id === taskId)?.metadata?.[`review.${this.roster.get(agentId)?.name}`];
+      const v = this.issues().find((x) => x.id === taskId)?.metadata?.[reviewKey(agentId)];
       if (v) verdicts[agentId] = v;
     }
     if (Object.keys(verdicts).length < Object.keys(rc0.tasks).length) return;

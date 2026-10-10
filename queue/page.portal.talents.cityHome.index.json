@@ -59,11 +59,21 @@
   ],
   "modules": [],
   "views": [
-   "page.portal.talents.cityHome.talentArea"
+   "page.portal.talents.cityHome.corp",
+   "page.portal.talents.cityHome.helpCenter",
+   "page.portal.talents.cityHome.job",
+   "page.portal.talents.cityHome.talentArea",
+   "page.portal.talents.cityHome.titles",
+   "page.portal.talents.index.homeList"
   ],
   "orders": [
    "entry.portal.E6",
+   "page.portal.talents.cityHome.corp",
+   "page.portal.talents.cityHome.helpCenter",
+   "page.portal.talents.cityHome.job",
    "page.portal.talents.cityHome.talentArea",
+   "page.portal.talents.cityHome.titles",
+   "page.portal.talents.index.homeList",
    "shared.portal.adsCenter",
    "shared.portal.homeRight"
   ]

@@ -135,7 +135,13 @@
   }
  },
  "views": {},
- "modules": {},
+ "modules": {
+  "Be": {
+   "original": "html2canvas.esm.1751615607545.js#default",
+   "path": "html2canvas",
+   "export": "default"
+  }
+ },
  "sideEffects": [],
  "missing": []
 }

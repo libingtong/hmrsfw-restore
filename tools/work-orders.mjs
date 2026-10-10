@@ -45,9 +45,12 @@ function acceptedPages(APP, app) {
 export function buildMaps(site, chunk, reg, ordersByChunk) {
   const cfg = SITES[site]; const g = siteGraph(site); const src = chunkSource(site, chunk) ?? "";
   const out = { chunk: chunkPath(site, chunk), app: reg.app, vueVersion: reg.vueVersion, vue: {}, entry: {}, api: {}, shared: {}, views: {}, modules: {}, sideEffects: [], missing: [] };
-  for (const m of src.matchAll(/import\{([^}]*)\}from"\.\/([^"]+)"/g)) {
-    const from = m[2];
-    for (const sp of m[1].split(",").map((x) => x.trim()).filter(Boolean)) {
+  // import{a as b}from"./x.js", import D,{__tla as t}from"./x.js" (a sibling view under top-level await), import D from"./x.js";
+  // the default binding D is the export `default`
+  for (const m of src.matchAll(/(?<![\w$.])import\s*(?:([\w$]+)\s*,?\s*)?(?:\{([^}]*)\})?\s*from\s*"\.\/([^"]+)"/g)) {
+    const from = m[3]; if (!m[1] && m[2] == null) continue;
+    const specs = [...(m[1] ? [`default as ${m[1]}`] : []), ...(m[2] ?? "").split(",").map((x) => x.trim()).filter(Boolean)];
+    for (const sp of specs) {
       const [imported, local = imported] = sp.split(/\s+as\s+/).map((x) => x.trim()); if (imported === "__tla") continue;
       if (from === cfg.vue) { const a = reg.vue[imported]; out.vue[local] = a ? `${a.name}${a.from !== "vue" ? ` (${a.from})` : ""}` : `?${imported}`; if (!a) out.missing.push(`vue:${imported}`); continue; }
       if (from === cfg.entry) { const e = reg.entry[imported]; if (!e) { out.entry[local] = { export: imported, missing: true }; out.missing.push(`entry:${imported}`); continue; }

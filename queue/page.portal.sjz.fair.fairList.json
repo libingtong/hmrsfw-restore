@@ -38,8 +38,14 @@
   "shared": [],
   "api": [],
   "modules": [],
-  "views": [],
-  "orders": []
+  "views": [
+   "page.portal.sjz.fair.fairs",
+   "page.portal.sjz.fair.fairsList"
+  ],
+  "orders": [
+   "page.portal.sjz.fair.fairs",
+   "page.portal.sjz.fair.fairsList"
+  ]
  },
  "stylesProvidedByScript": true
 }

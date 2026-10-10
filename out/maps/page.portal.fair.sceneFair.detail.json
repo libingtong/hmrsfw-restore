@@ -285,7 +285,20 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "Xs": {
+   "original": "signModal.1783320636200.js#default",
+   "path": "@/shared/signModal.vue",
+   "export": "default",
+   "order": "page.portal.fair.signModal"
+  },
+  "so": {
+   "original": "NumVideo.1783320636200.js#default",
+   "path": "@/views/fair/webFair/NumVideo.vue",
+   "export": "default",
+   "order": "page.portal.fair.webFair.NumVideo"
+  }
+ },
  "modules": {
   "fs": {
    "original": "down.1783320636200.js#_",

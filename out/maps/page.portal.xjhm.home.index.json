@@ -234,7 +234,14 @@
    "owner": "shared.portal.FriendLinks"
   }
  },
- "views": {},
+ "views": {
+  "di": {
+   "original": "advertTop.17833206362006.js#default",
+   "path": "@/views/xjhm/home/advertTop.vue",
+   "export": "default",
+   "order": "page.portal.xjhm.home.advertTop"
+  }
+ },
  "modules": {
   "Q": {
    "original": "jqqd.1783320636200.js#_",
