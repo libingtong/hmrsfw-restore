@@ -205,7 +205,7 @@ export function buildOrders(APP) {
         const outputs = [...s.components.map(fileOf), ...s.parts.map((p) => `${o.subComponentDir}_seg/${p.component}.${p.part === "script" ? "script.ts" : "template.html"}`)];
         const last = s.index === s.of;
         siteOrders.push({ id, type: "segment", status: "todo", site, app, vueVersion: o.vueVersion, page: o.id, index: s.index, of: s.of, assemble: last, after: last ? o.segments.slice(0, -1).concat(plan.slice(s.index).map((x) => `seg.${o.id.slice(5)}.${x.index}`)).filter((x) => x !== id) : [],
-          kb: s.kb, oversize: s.oversize || undefined, sourceChunk: o.sourceChunk, range: s.range, components: s.components.map((n) => o.components.find((c) => c.name === n) ?? { name: n }), parts: s.parts.map((p) => ({ ...p, file: `${o.subComponentDir}_seg/${p.component}.${p.part === "script" ? "script.ts" : "template.html"}` })),
+          kb: s.kb, oversize: s.oversize || undefined, sourceChunk: o.sourceChunk, range: s.range, factRanges: s.factRanges, components: s.components.map((n) => o.components.find((c) => c.name === n) ?? { name: n }), parts: s.parts.map((p) => ({ ...p, file: `${o.subComponentDir}_seg/${p.component}.${p.part === "script" ? "script.ts" : "template.html"}` })),
           outputs, target: o.target, subComponentDir: o.subComponentDir, scopeIds: o.scopeIds, cssCandidates: o.cssCandidates, routes: o.routes, recordPath: o.recordPath, ...(o.recordVia ? { recordVia: o.recordVia } : {}), role: o.role, ...(o.notes ? { notes: o.notes } : {}),
           maps: o.maps, hints: o.hints, deps: o.deps, stylesProvidedByScript: true,
           instructions: [

@@ -10,11 +10,21 @@
  "of": 2,
  "assemble": false,
  "after": [],
- "kb": 12.8,
+ "kb": 12.5,
  "sourceChunk": "legacy-dist/usercenter/assets/index.175161560754523.js",
  "range": [
   0,
-  13143
+  12789
+ ],
+ "factRanges": [
+  [
+   0,
+   9416
+  ],
+  [
+   9416,
+   12789
+  ]
  ],
  "components": [
   {
@@ -78,7 +88,7 @@
  },
  "stylesProvidedByScript": true,
  "instructions": [
-  "本单只还原原 chunk 的字节区间 [0, 13143)（约 12.8KB），其余部分由同页的其他分段负责。",
+  "本单只还原原 chunk 的字节区间 [0, 12789)（约 12.5KB），其余部分由同页的其他分段负责。",
   "完整还原这些组件并写成 SFC：workShopAddOrEditModel → apps/uc/src/views/gongfuWorkshop/positionPosting/workShopAddOrEditModel.vue；workShopBaseInfoModel → apps/uc/src/views/gongfuWorkshop/positionPosting/workShopBaseInfoModel.vue。",
   "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
  ]

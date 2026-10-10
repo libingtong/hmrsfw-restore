@@ -12,11 +12,21 @@
  "after": [
   "seg.uc.collage.studentApply.1"
  ],
- "kb": 14.9,
+ "kb": 20.4,
  "sourceChunk": "legacy-dist/usercenter/assets/apply.1751615607545.js",
  "range": [
-  18105,
+  12571,
   33451
+ ],
+ "factRanges": [
+  [
+   12571,
+   23102
+  ],
+  [
+   23102,
+   33451
+  ]
  ],
  "components": [
   {
@@ -82,7 +92,7 @@
  },
  "stylesProvidedByScript": true,
  "instructions": [
-  "本单只还原原 chunk 的字节区间 [18105, 33451)（约 14.9KB），其余部分由同页的其他分段负责。",
+  "本单只还原原 chunk 的字节区间 [12571, 33451)（约 20.4KB），其余部分由同页的其他分段负责。",
   "完整还原这些组件并写成 SFC：protocol → apps/uc/src/views/collage/studentApply/protocol.vue；apply → apps/uc/src/views/collage/studentApply.vue。",
   "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.uc.collage.studentApply --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
  ]
