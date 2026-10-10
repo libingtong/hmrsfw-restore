@@ -110,7 +110,7 @@
  },
  "stylesProvidedByScript": true,
  "instructions": [
-  "本单只还原原 chunk 的字节区间 [0, 13869)（约 13.5KB），其余部分由同页的其他分段负责。",
+  "本单只还原原 chunk 的字符区间 [0, 13869)（JS 字符串下标，不是字节偏移；约 13.5KB），其余部分由同页的其他分段负责。",
   "完整还原这些组件并写成 SFC：cols → apps/uc/src/views/sign/corpApply/cols.vue；DetailModal → apps/uc/src/views/sign/corpApply/DetailModal.vue；confirms → apps/uc/src/views/sign/corpApply/confirms.vue；confirms2 → apps/uc/src/views/sign/corpApply/confirms2.vue。",
   "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
  ]

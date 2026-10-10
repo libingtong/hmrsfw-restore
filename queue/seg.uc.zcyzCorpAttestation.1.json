@@ -93,7 +93,7 @@
  },
  "stylesProvidedByScript": true,
  "instructions": [
-  "本单只还原原 chunk 的字节区间 [0, 22232)（约 21.7KB），其余部分由同页的其他分段负责。",
+  "本单只还原原 chunk 的字符区间 [0, 22232)（JS 字符串下标，不是字节偏移；约 21.7KB），其余部分由同页的其他分段负责。",
   "组件 zcyzCorpAttestation 只还原 <script setup> 部分（setup 函数体，不含最后 return 的渲染函数），写成 apps/uc/src/views/zcyzCorpAttestation/_seg/zcyzCorpAttestation.script.ts，内容就是将来 <script setup lang=\"ts\"> 里的代码。",
   "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
  ]

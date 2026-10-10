@@ -209,7 +209,7 @@ export function buildOrders(APP) {
           outputs, target: o.target, subComponentDir: o.subComponentDir, scopeIds: o.scopeIds, cssCandidates: o.cssCandidates, routes: o.routes, recordPath: o.recordPath, ...(o.recordVia ? { recordVia: o.recordVia } : {}), role: o.role, ...(o.notes ? { notes: o.notes } : {}),
           maps: o.maps, hints: o.hints, deps: o.deps, stylesProvidedByScript: true,
           instructions: [
-            `本单只还原原 chunk 的字节区间 [${s.range[0]}, ${s.range[1]})（约 ${s.kb}KB），其余部分由同页的其他分段负责。`,
+            `本单只还原原 chunk 的字符区间 [${s.range[0]}, ${s.range[1]})（JS 字符串下标，不是字节偏移；约 ${s.kb}KB），其余部分由同页的其他分段负责。`,
             ...(s.components.length ? [`完整还原这些组件并写成 SFC：${s.components.map((n) => `${n} → ${fileOf(n)}`).join("；")}。`] : []),
             ...s.parts.map((p) => p.part === "script" ? `组件 ${p.component} 只还原 <script setup> 部分（setup 函数体，不含最后 return 的渲染函数），写成 ${o.subComponentDir}_seg/${p.component}.script.ts，内容就是将来 <script setup lang="ts"> 里的代码。` : `组件 ${p.component} 只还原 <template> 部分（setup 最后 return 的渲染函数），写成 ${o.subComponentDir}_seg/${p.component}.template.html，内容就是将来 <template> 里的模板。`),
             last ? `本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs ${o.id} --app "$HMRSFW_APP_DIR" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。` : "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。",

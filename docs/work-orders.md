@@ -80,7 +80,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | 字段 | 内容 |
 | --- | --- |
 | `page` / `index` / `of` | 所属页面工单和段号 |
-| `range` | 本段负责的原 chunk 字节区间 |
+| `range` | 本段负责的原 chunk 区间，单位是字符：JS 字符串下标（UTF-16 码元，即 Babel 的 `start`/`end`），左闭右开；chunk 含中文时它和字节偏移不同，按字节切会切错位置 |
 | `factRanges` | 本段要还原的渲染调用所在的区间（`check-text-nodes`、`check-directives` 只查这些区间里的静态文本、指令和分支）：整组件是它的整个区间；`template` 部分是该组件定义之前的提升代码（`_withScopeId` 包装、提升的静态 vnode）加渲染函数；`script` 部分没有 |
 | `components` | 本段完整还原的组件 |
 | `parts` | 超过 30KB 的单个组件拆成 `script`（setup 函数体）和 `template`（渲染函数）两部分，写到 `<subComponentDir>_seg/<组件>.script.ts` / `.template.html` |
