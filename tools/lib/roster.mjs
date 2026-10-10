@@ -3,6 +3,15 @@
 // beyond the roster's version 1 (all optional, docs/scheduler.md): agents[].instructionsVersion, agents[].enabled.
 import { P, readJson } from "./state.mjs";
 
+// Metadata keys the Multica server accepts. Roster names carry "@" and Chinese (「复核-GLM@Mac」), so a per-agent key is
+// built from the agent id, never from the name; the writer (the reviewer, told the key in its task) and the reader agree.
+export const META_KEY = /^[a-zA-Z_][a-zA-Z0-9_.-]{0,63}$/;
+export function reviewKey(agentId) {
+  const k = `review.${agentId}`;
+  if (!META_KEY.test(k)) throw new Error(`metadata key ${JSON.stringify(k)} is not accepted by the server (${META_KEY})`);
+  return k;
+}
+
 export const ROLES = ["dispatcher", "gate", "recorder", "fixer", "arbiter", "restorer", "restorer-core", "reviewer"];
 
 export class Roster {

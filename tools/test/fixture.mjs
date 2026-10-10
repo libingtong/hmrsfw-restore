@@ -12,7 +12,9 @@ const git = (cwd, ...args) => { const r = spawnSync("git", ["-c", "user.name=t",
 export { git };
 
 export const ROSTER = (prefix = "a") => {
-  const A = (name, role, family, model, machine, maxConcurrent) => ({ name, id: `${prefix}-${name}`, role, family, model, machine, runtimeId: `rt-${family}-${machine}`, maxConcurrent });
+  // reviewers carry the live roster's naming ("@" and Chinese), which metadata keys must not be built from
+  const NAMES = { "review-claude": "复核-Claude@Office", "review-deepseek": "复核-DeepSeek@Office", "review-glm": "复核-GLM@Office" };
+  const A = (key, role, family, model, machine, maxConcurrent) => ({ name: NAMES[key] ?? key, id: `${prefix}-${key}`, role, family, model, machine, runtimeId: `rt-${family}-${machine}`, maxConcurrent });
   return {
     version: 1,
     agents: [
