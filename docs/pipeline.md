@@ -343,6 +343,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | `receipts/<工单id>.json` | 回执 | 还原员、修正员 |
 | `$RESTORE_ASSETS/har/pages/<工单id>.har` | 页面 HAR | `record-page.mjs` |
 | `$RESTORE_STATE/baseline/<工单id>/` | 原版基线：`dom.html`、`text.txt`、`shot.png`、`seq.json`（请求序列，请求体只存 SHA-256） | `baseline.mjs`（A），由 `record-page.mjs`（D）调用 |
+| `$RESTORE_STATE/baseline/<工单id>/coverage.json` | 原版 JS 覆盖率（HM-21）：本页 chunk 和 `deps.shared` 共享组件 chunk 的函数覆盖率、块覆盖率（两次回放取并集）、`stable`，以及未覆盖项清单（chunk 内位置、弹窗/Tab/表单等上下文、事件名、静态文案、`needs`: interaction / data / unknown）。`baseline.json` 另有键 `coverage` 放摘要。只作用于原版一侧，不进入门槛的比对输入 | `baseline.mjs` |
 | `$RESTORE_STATE/gate/<工单id>-a<attempt>/` | 门槛产物和 diff | `gate.mjs` |
 | `$RESTORE_STATE/ledger/` | `capability.json`、`agents.json`、`runs.jsonl` | `ledger.mjs` |
 | `$RESTORE_STATE/locks/` | `wo-<工单id>`、`ledger`、`integration` | `tick.mjs`、`handoff.mjs` |
@@ -370,7 +371,8 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | `tick.mjs tick` / `tick.mjs advance <任务id>` | `{ok, summary, anomalies:[{issue, what, suggestedAction}]}`；拿不到锁输出 `{"locked":true}` |
 | `route.mjs <工单id>` | `{candidates:[{family, agents:[...], expectedCost, reason}], features, dual:bool}` |
 | `record-page.mjs <工单id>` | `{ok, steps, unstable:[...], blocked?}` |
-| `baseline.mjs <工单id> [--har <path>]` | 用 HAR 回放原版两次，写基线；两次不一致的步骤列入 `unstable` |
+| `baseline.mjs <工单id> [--har <path>] [--no-coverage]` | 用 HAR 回放原版两次，写基线；两次不一致的步骤列入 `unstable`；同时采集覆盖率，输出多一个 `coverage:{page:{function,block}, shared, stable}` |
+| `coverage.mjs report <工单id>` / `summary` / `datareq [--write]` | 单页未覆盖清单（录制员补交互脚本用）/ 覆盖率分布和低于阈值的页面 / 造数需求清单（D7）。阈值读 `restore.config.json` 的 `coverage.minFunction`、`minBlock` |
 | `setup-workdir.mjs --app <dir>` | 本仓库和 `hmrsfw-vue` 检出的依赖就绪；有 `RESTORE_DEPS_CACHE` 时软链到缓存（`hmrsfw-vue` 的缓存项按它自己的 `package-lock.json` 建），缓存项不存在时首次在缓存目录 `npm ci`（加锁）；没有该变量时原地 `npm ci` |
 
 **定位产物工程**：需要读写 `hmrsfw-vue` 的工具，一律通过参数 `--app <hmrsfw-vue 检出目录>` 或环境变量 `HMRSFW_APP_DIR` 定位产物工程，参数优先；两者都没有就报错退出，不猜默认路径。上表中用到产物工程的命令（`self-check`、`gate`、`baseline`、`record-page`、`setup-workdir` 等）都接受 `--app`。共用实现在 `tools/app-dir.mjs`（`appDir()`）。

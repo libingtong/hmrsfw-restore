@@ -101,6 +101,17 @@
       }
     },
     "projectNotes": { "$ref": "#/$defs/relPath", "description": "项目专属规则文档，相对 data 仓库根目录" },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minFunction", "minBlock"],
+      "description": "可选：原版覆盖率阈值（HM-21）。录制员的基线低于任一阈值时，record-page 输出 belowThreshold，按未覆盖清单补交互脚本，补不了的列入造数需求。百分数 0～100",
+      "properties": {
+        "minFunction": { "type": "number", "description": "函数覆盖率下限（%）" },
+        "minBlock": { "type": "number", "description": "块覆盖率下限（%）" },
+        "requireStable": { "type": "boolean", "description": "两次回放的覆盖率不一致时是否也算不达标，默认 true" }
+      }
+    },
     "machines": {
       "type": "array",
       "uniqueItems": true,
