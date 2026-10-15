@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/workType.vue",
  "exports": {
   "w": {
-   "export": "default"
+   "export": "default",
+   "original": "workType.1751615607545.js#w"
   }
  },
  "registryKey": "workType.1751615607545.js",

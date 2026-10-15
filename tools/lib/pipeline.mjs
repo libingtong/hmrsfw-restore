@@ -27,6 +27,7 @@ import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isAccepted, i
 import { Ledger, runRow, recordCapability, recordAudit, auditTier, seedFromConfirm, mergeCapability } from "../ledger.mjs";
 import { route, pick, agentLoad, freeSlots } from "../route.mjs";
 import { Claims, claimPath, statsPath, fileKey } from "./claims.mjs";
+import { sampleBatch } from "../readability-sample.mjs";
 import { ALL, resolveMachine, canRun, hostOf, machineIds } from "./machine.mjs";
 
 export const KINDS = ["restore", "record", "integration", "audit", "rule-review", "arbitrate", "incident", "upgrade"];
@@ -1007,6 +1008,7 @@ export class Pipeline {
       this.ledger.tx((L) => { L.tick.regression = { ...(L.tick.regression || {}), state: "passed" }; L.tick.regressionEpoch = (L.tick.regressionEpoch || 0) + 1; L.tick.lastGoodSha = meta.sha; L.newEvents.push({ type: "main-ff", sha: meta.sha, ok: !!r.ok }); });
       if (!r.ok) this.anomaly(taskId, `fast-forward main → ${short(meta.sha)} failed: ${JSON.stringify(r).slice(0, 200)}`, "裁定员检查 main 是否被手动改动");
       this.closeIntegration(taskId, `[GATE] 集成回归通过，main 快进到 ${short(meta.sha)}`);
+      try { this.readabilitySample(taskId, meta); } catch (e) { this.anomaly(taskId, `readability sample failed: ${String(e.message).slice(0, 200)}`, "不影响回归结果；检查 tools/readability-sample.mjs 或把 readabilitySample.enabled 设为 false"); }
       return { ok: true, summary: `regression @${short(meta.sha)} passed → main`, anomalies: [] };
     }
     const L = this.ledger.read();
@@ -1019,6 +1021,27 @@ export class Pipeline {
       return this.openIncident(`集成回归在 ${short(meta.sha)} 失败，但 main..integration 之间没有可回退的合并提交`, { sha: meta.sha, failed });
     }
     return this.bisectStep({ candidates: cands, lo: 0, hi: cands.length - 1, sha: meta.sha, mainSha: meta.mainSha, failed, step: 1 });
+  }
+
+  // Manual readability sample (HM-19): after a passed integration regression, 5 % of the pages that went in with this batch
+  // (at least one; stratified by size band × generating model family) go to the 「调度日志」 task with a scoring table.
+  // Switch: scheduler.config.json readabilitySample.enabled (default on). Never affects the regression result.
+  readabilitySample(taskId, meta) {
+    const cfg = this.cfg.readabilitySample; if (!cfg?.enabled || meta.purpose !== "regression" || !meta.mainSha) return null;
+    const L = this.ledger.read(); const pages = []; const seen = new Set();
+    for (const sha of this.appGit.mergesBetween(meta.mainSha, meta.sha)) {
+      const info = L.tick.merges?.[sha] || this.mergeInfo(sha); if (!info || L.tick.merges?.[sha]?.reverted) continue;
+      let family = "unknown"; try { const tm = this.meta(info.task); family = this.roster.get(tm.agent)?.family || tm.family || "unknown"; } catch { /* the task is gone: unknown family */ }
+      for (const wo of info.wos || []) if (!seen.has(wo) && isPage(this.wo(wo) || {})) { seen.add(wo); pages.push({ wo, family, sha }); }
+    }
+    if (!pages.length) return null;
+    const key = `reg-${short(meta.sha)}`;
+    const res = sampleBatch({ pages, key, batch: `${pages.length} 页，${short(meta.mainSha)}..${short(meta.sha)}`, APP: this.appDir, rate: cfg.rate, min: cfg.min, ref: meta.sha, orders: this.orders(), dryRun: this.dryRun, root: this.paths.root });
+    if (!res.n) return null;
+    if (this.cfg.logIssueId) this.comment(this.cfg.logIssueId, res.text);
+    else this.anomaly(taskId, `readability sample ${key} (${res.n}/${res.N} pages) not posted: scheduler.config.json has no logIssueId`, "在 scheduler.config.json 填 logIssueId；抽样已写入 $RESTORE_STATE/readability/");
+    this.ledger.tx((L2) => L2.newEvents.push({ type: "readability-sample", key, n: res.n, pages: res.N }));
+    return res;
   }
 
   // Pages to test at a commit: the pages that failed the regression (all passed pages when the gate didn't say which),

@@ -106,21 +106,21 @@
   "Ze": {
    "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#c",
    "path": "@/shared/Content.ts",
-   "export": "c",
+   "export": "checkIzPerfect",
    "status": "reserved",
    "owner": "shared.uc.Content"
   },
   "Ge": {
    "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#g",
    "path": "@/shared/Content.ts",
-   "export": "g",
+   "export": "querySysUserByIdJM",
    "status": "reserved",
    "owner": "shared.uc.Content"
   },
   "Qe": {
    "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#d",
    "path": "@/shared/Content.ts",
-   "export": "d",
+   "export": "getCompanyPositionDetailById",
    "status": "reserved",
    "owner": "shared.uc.Content"
   },
@@ -134,14 +134,14 @@
   "je": {
    "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#a",
    "path": "@/shared/Content.ts",
-   "export": "a",
+   "export": "queryOddUserById",
    "status": "reserved",
    "owner": "shared.uc.Content"
   },
   "es": {
    "original": "Content.vue_vue_type_script_setup_true_lang.1751615607545.js#e",
    "path": "@/shared/Content.ts",
-   "export": "e",
+   "export": "editOddUser",
    "status": "reserved",
    "owner": "shared.uc.Content"
   },

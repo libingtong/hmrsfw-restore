@@ -30,11 +30,13 @@
  "exports": {
   "r": {
    "path": "@/shared/recommendZp/RecommendZp.vue",
-   "export": "default"
+   "export": "default",
+   "original": "recommendZp.1751615607545.js#r"
   },
   "s": {
    "path": "@/shared/recommendZp/StateCard.vue",
-   "export": "default"
+   "export": "default",
+   "original": "recommendZp.1751615607545.js#s"
   }
  },
  "registryKey": "recommendZp.1751615607545.js",

@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/usercard.vue",
  "exports": {
   "u": {
-   "export": "default"
+   "export": "default",
+   "original": "usercard.1751615607545.js#u"
   }
  },
  "registryKey": "usercard.1751615607545.js",

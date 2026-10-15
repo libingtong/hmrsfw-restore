@@ -19,7 +19,8 @@
  "target": "apps/uc/src/shared/phone.vue",
  "exports": {
   "p": {
-   "export": "default"
+   "export": "default",
+   "original": "phone.1751615607545.js#p"
   }
  },
  "registryKey": "phone.1751615607545.js",

@@ -1,0 +1,40 @@
+{
+ "_doc": "可读性检查的规则文件（HM-19，docs/readability.md）。tools/check-readability.mjs 读取；self-check 的 check 名是 readability。可读性只管命名、结构和格式，不碰等价规则（模板文本逐字、scope.row 前缀、独立三元拆多个 v-if 等照旧）。改这个文件走「规则变更单」，与比对规则一样：只认让页面更可读的收紧或等价的豁免，不能为了让某一页通过而放宽。",
+ "mode": "report",
+ "_mode": "report：所有可读性条目带 severity \"warn\"，self-check 照常通过，门槛不因它失败，hint 照样给出；block：条目不带 severity，任何一条都使 self-check 失败。改为 block 要走规则变更单（页面批量派单已经开始时）。",
+ "thresholds": {
+  "fileLines": 2000,
+  "functionLines": 100,
+  "setupLines": 1000,
+  "_doc": "fileLines：整个 .vue / .ts 文件的行数（模板 + 脚本 + 样式）；functionLines：单个函数（含箭头函数、方法）；setupLines：<script setup> 内容或 setup() 的行数。阈值按 2026-10-15 对 hmrsfw-vue 现有页面和 POC 确认页的分布校准，见 docs/readability.md「校准」。"
+ },
+ "identifiers": {
+  "minLength": 3,
+  "allow": ["i", "j", "k", "e", "_", "x", "y", "id", "el", "vm", "fn", "cb", "ok", "to", "ws"],
+  "_allow": "白名单只对本地变量、参数、v-for / 插槽别名生效；import 进来的名字不吃白名单（import 一定要用清单里的可读名，或自己取的可读别名）。允许名前后的下划线不计：_e、e_ 按 e 算。",
+  "hashLike": ["^_0x[0-9a-f]+$", "^[A-Za-z]{1,2}\\d+$", "^[A-Za-z]\\$+$", "^\\$+[A-Za-z]?\\d*$", "^[a-z]{1,2}_[A-Za-z0-9]{1,2}$", "^[a-f0-9]{8,}$"],
+  "_hashLike": "哈希式、编译器生成式的名字：_0x1a2b、a1、e2、n$、$、a_b、十六进制串",
+  "registryOriginals": true,
+  "_registryOriginals": "registry/<app>.json 登记的原压缩符号名（入口导出、共享 chunk 导出、接口导出、vue 运行时别名，如 L、bb）不能直接当名字用；hint 给出清单里它对应的业务名"
+ },
+ "forbidden": {
+  "renderFunctions": true,
+  "_renderFunctions": "页面里不手写 h() / render 函数 / JSX，也不 import createVNode 之类的渲染 API；要写成 <template>",
+  "vIfFalse": true,
+  "_vIfFalse": "v-if=\"false\" / v-else-if=\"false\"（及压缩写法 !1）是为了凑 render 形状留下的死分支，删掉",
+  "compileTraces": [
+   { "id": "_ctx", "pattern": "\\b_ctx\\b", "hint": "_ctx 是模板编译产物里的组件实例；模板里直接写属性名，脚本里用 setup 里的变量" },
+   { "id": "_cache", "pattern": "\\b_cache\\b", "hint": "_cache 是模板编译产物的缓存数组，源码里不存在" },
+   { "id": "_hoisted_", "pattern": "\\b_hoisted_\\d+\\b", "hint": "_hoisted_N 是编译器提升出来的静态节点；写回 <template>" },
+   { "id": "_helper", "pattern": "\\b_(?:createElementVNode|createVNode|createElementBlock|createBlock|createCommentVNode|createTextVNode|createStaticVNode|openBlock|withCtx|withDirectives|withModifiers|withKeys|toDisplayString|resolveComponent|resolveDirective|resolveDynamicComponent|normalizeClass|normalizeStyle|normalizeProps|mergeProps|renderList|renderSlot|createSlots|unref|vShow|vModelText|Fragment|Transition|TransitionGroup|KeepAlive|pushScopeId|popScopeId)\\b", "hint": "_xxx 形式的 Vue 渲染辅助函数是编译产物；写成 <template>，由编译器生成" },
+   { "id": "$setup", "pattern": "\\$setup\\b|__returned__|_sfc_main|_sfc_render|\\b__props\\b|\\b__expose\\b|\\b__emit\\b", "hint": "$setup / __returned__ / _sfc_main 等是 <script setup> 编译后的内部名字；源码里直接用变量和 defineProps / defineEmits 的返回值" },
+   { "id": "__name", "pattern": "__name\\s*:", "hint": "__name 是编译器根据文件名加的；组件名用 defineOptions({ name }) 写" }
+  ]
+ },
+ "lint": {
+  "eslint": true,
+  "prettier": true,
+  "maxItemsPerFile": 12,
+  "_doc": "eslint：hmrsfw-vue 的 eslint.config.js（eslint-plugin-vue flat/recommended，布局类规则交给 prettier）；prettier：hmrsfw-vue 的 .prettierrc.json。每个文件每条规则一个条目，超过 maxItemsPerFile 的合并成一个『另有 N 项』。"
+ }
+}

@@ -21,7 +21,8 @@
  "target": "apps/uc/src/shared/dictCodeTreeOne.vue",
  "exports": {
   "d": {
-   "export": "default"
+   "export": "default",
+   "original": "dictCodeTreeOne.1751615607545.js#d"
   }
  },
  "registryKey": "dictCodeTreeOne.1751615607545.js",

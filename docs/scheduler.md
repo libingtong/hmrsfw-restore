@@ -62,6 +62,7 @@
  "cooldownMin": 30,
  "lockStaleMin": 10,
  "regressionEvery": 20,
+ "readabilitySample": { "enabled": true, "rate": 0.05, "min": 1 },
  "receiptsBranch": "integration",
  "priceFactor": { "claude-opus-5-5": 5, "claude-sonnet-5-5": 1, "deepseek-official/deepseek-flash": 0.1, "zhipuai-coding-plan/glm-5.3-flash": 0.1 },
  "audit": { "coldAudits": 20, "coldRate": 0.5, "normalRate": 0.2, "relaxedRate": 0.1, "relaxedAfter": 50, "relaxedMissRate": 0.03, "strictRate": 1, "missRateThreshold": 0.1 },
@@ -71,6 +72,7 @@
 }
 ```
 
+- `readabilitySample`：每次集成回归通过后，从本批合入的页面里抽 `rate`（至少 `min` 页）发到 `logIssueId` 任务，供人工打分；`enabled: false` 关闭。见 `docs/readability.md`。
 - `cheapTier.enabled` 就是便宜档的开关。G（小样本重测）通过后由裁定员或李炳通改成 `true`。
 - 便宜档的路由（`route.mjs`）：只看 `cheapTier.families` 里、名册中有已启用（`enabled` 不是 `false`）还原员的家族；判断冷启动单派还是双派时，只数本次可用的家族（`tick` 只为本机还原员派单，本机没有某家族的还原员就不算这个家族）。
   - 两个及以上家族，且有一个还在冷启动（该页所在档 `runs < coldStartRuns`）：双派，前两个家族各一张，分支后缀 `-d` / `-g`。

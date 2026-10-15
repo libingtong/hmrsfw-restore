@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/addResume.vue",
  "exports": {
   "a": {
-   "export": "default"
+   "export": "default",
+   "original": "addResume.1783320636200.js#a"
   }
  },
  "registryKey": "addResume.1783320636200.js",

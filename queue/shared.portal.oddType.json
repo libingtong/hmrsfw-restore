@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/oddType.vue",
  "exports": {
   "o": {
-   "export": "default"
+   "export": "default",
+   "original": "oddType.1783320636200.js#o"
   }
  },
  "registryKey": "oddType.1783320636200.js",

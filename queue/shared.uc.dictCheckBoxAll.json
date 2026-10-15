@@ -19,7 +19,8 @@
  "target": "apps/uc/src/shared/dictCheckBoxAll.vue",
  "exports": {
   "d": {
-   "export": "default"
+   "export": "default",
+   "original": "dictCheckBoxAll.1751615607545.js#d"
   }
  },
  "registryKey": "dictCheckBoxAll.1751615607545.js",

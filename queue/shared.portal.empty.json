@@ -21,7 +21,8 @@
  "target": "apps/portal/src/shared/empty.vue",
  "exports": {
   "e": {
-   "export": "default"
+   "export": "default",
+   "original": "empty.1783320636200.js#e"
   }
  },
  "registryKey": "empty.1783320636200.js",

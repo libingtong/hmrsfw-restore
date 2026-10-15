@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/videoModal.vue",
  "exports": {
   "v": {
-   "export": "default"
+   "export": "default",
+   "original": "videoModal.1783320636200.js#v"
   }
  },
  "registryKey": "videoModal.1783320636200.js",

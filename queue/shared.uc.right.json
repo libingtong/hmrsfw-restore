@@ -19,7 +19,8 @@
  "target": "apps/uc/src/shared/right.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "right.vue_vue_type_script_setup_true_lang.1751615607545.js#_"
   }
  },
  "registryKey": "right.vue_vue_type_script_setup_true_lang.1751615607545.js",

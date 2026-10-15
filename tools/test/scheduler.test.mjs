@@ -247,6 +247,29 @@ test("integration regression every N merges: failure bisects to the culprit, rev
   assert.equal(lsRemote(fx, "app", "main"), lsRemote(fx, "app", "integration"), "main fast-forwarded");
 });
 
+test("readability sample: a passed integration regression posts 5 % of the batch (at least one page) to the log task; the switch turns it off", () => {
+  for (const enabled of [true, false]) {
+    const fx = makeFixture({ orders: [page("Q1", 20), page("Q2", 10)], config: { audit: { coldRate: 0 }, regressionEvery: 2, readabilitySample: { enabled } } });
+    const log = mc(fx, "issue", "create", "--title", "调度日志", "--project", "proj-1");
+    const cfgFile = path.join(fx.state, "scheduler.config.json"); const cfg = readJson(cfgFile); writeFileSync(cfgFile, JSON.stringify({ ...cfg, logIssueId: log.id }));
+    recorded(fx, "Q1", "Q2");
+    node(fx, "tick.mjs", ["tick"]);
+    const byWo = Object.fromEntries(restoreTasks(fx).map((t) => [meta(fx, t.id).workOrders[0], t]));
+    for (const wo of ["Q1", "Q2"]) { deliver(fx, byWo[wo].id, { [`apps/portal/src/views/${wo}/index.vue`]: vue(wo) }); gate(fx, byWo[wo].id, { pass: true }); }
+    node(fx, "tick.mjs", ["tick"]);
+    const reg = issuesOf(fx).find((i) => i.title.startsWith("[integration] regression"));
+    setMeta(fx, reg.id, "gate.1", { pass: true });
+    const r = node(fx, "tick.mjs", ["advance", reg.id]);
+    assert.equal(r.ok, true, JSON.stringify(r));
+    const posted = issue(fx, log.id).comments.map((c) => c.content).filter((c) => c.includes("可读性抽检"));
+    if (!enabled) { assert.equal(posted.length, 0, "switch off → nothing posted"); continue; }
+    assert.equal(posted.length, 1, "one sample comment on the log task");
+    assert.match(posted[0], /本批通过的页面 2 页，按 5% 抽 1 页/); assert.match(posted[0], /评分表/); assert.match(posted[0], /\| `Q[12]` \|/);
+    assert.ok(readJson(path.join(fx.state, "readability", `${fs_key(posted[0])}.json`)), "sample saved in $RESTORE_STATE/readability");
+  }
+});
+const fs_key = (text) => text.match(/可读性抽检 `([^`]+)`/)[1];
+
 test("rule change review: two non-arbiter families; round 2 reject escalates to the human; approval merges + regression", () => {
   const fx = makeFixture({ orders: [], config: {} });
   git(fx.tool, "checkout", "-q", "-b", "rules/r1");

@@ -28,7 +28,8 @@
  "target": "apps/uc/src/shared/Editor.vue",
  "exports": {
   "E": {
-   "export": "default"
+   "export": "default",
+   "original": "Editor.1751615607545.js#E"
   }
  },
  "registryKey": "Editor.1751615607545.js",

@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/beonmodal.vue",
  "exports": {
   "b": {
-   "export": "default"
+   "export": "default",
+   "original": "beonmodal.1751615607545.js#b"
   }
  },
  "registryKey": "beonmodal.1751615607545.js",

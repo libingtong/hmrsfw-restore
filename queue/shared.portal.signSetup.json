@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/signSetup.vue",
  "exports": {
   "s": {
-   "export": "default"
+   "export": "default",
+   "original": "signSetup.1783320636200.js#s"
   }
  },
  "registryKey": "signSetup.1783320636200.js",

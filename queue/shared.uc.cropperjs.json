@@ -32,7 +32,8 @@
  "target": "apps/uc/src/shared/cropperjs.vue",
  "exports": {
   "c": {
-   "export": "default"
+   "export": "default",
+   "original": "cropperjs.1751615607545.js#c"
   }
  },
  "registryKey": "cropperjs.1751615607545.js",
