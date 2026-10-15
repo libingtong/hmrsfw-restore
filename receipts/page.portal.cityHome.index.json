@@ -1,0 +1,20 @@
+{
+  "id": "page.portal.cityHome.index",
+  "ticket": "page.portal.cityHome.index",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "fixRound": 1,
+  "outputs": ["apps/portal/src/views/cityHome/index.vue"],
+  "todos": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题：门槛按需编译（tools/gate/appserver.mjs startOnDemand）下 @vitejs/plugin-vue 4.3.4 处于 devServer 模式，模板里的相对资源 src=\"./x.png\" 被直接改写成 /src/... 绝对路径（plugin-vue resolveTemplateCompilerOptions 的 dev base 分支），不经过 import，buildAssetsPlugin 的 load 钩子拿不到，小于 assetsInlineLimit 的图片没有内联成 data URI；tools/test/gate-assets.test.mjs 只覆盖显式 import，没覆盖模板 src。需走规则变更单修门槛，页面侧无可改之处"
+  ],
+  "selfCheck": { "pass": true, "failed": [] },
+  "build": "pass",
+  "notes": [
+    "未改代码：gate.1 的 html load/final 差异只有 7 处 <img src>（原版 data:image/png;base64，还原版 /src/.../assets/*.png），把 src 统一置空后 load/final HTML、text、overlay、cls 与原版逐字一致，pixel 0",
+    "其中 4 处来自公共组件 legacy/components/TopHead.vue（页面单不可改），3 处来自本页模板 src=\"./index/assets/*.png\"，写法与原 chunk 的模块级资源常量对应",
+    "依据：在 restore/fast-lane 上 npm run build:portal，cityHome 产物 chunk 内联的 base64 与原包 index.178332063620024.js 中的完全相同，且不含 /src/views/cityHome 路径；即 vite build 与原包一致，只是门槛按需服务器与 vite build 不一致",
+    "影响面：所有在模板里用相对 src 引小图的页面和公共组件（含 TopHead）在门槛按需模式下都会出同样的 html 差异，建议裁定员提规则变更单修 appserver（例如让 plugin-vue 在门槛服务器里按 build 方式转换 transformAssetUrls），而不是逐页改写模板"
+  ]
+}
