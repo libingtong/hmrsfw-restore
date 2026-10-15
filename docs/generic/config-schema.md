@@ -126,12 +126,12 @@ node --test tools/test/validate-config.test.mjs        # 设置 AJV_DIR=<装了 
 
 | 字段 | 必填 | 含义 |
 | --- | --- | --- |
-| `name` | 是 | 分片名，如 `mac`、`office` |
+| `name` | 是 | 分片名，如 `mac` |
 | `host` | 否 | Multica 运行时所在主机名，只用于核对 |
 | `holdsSecrets` | 否 | 是否持有 HAR、登录态、密钥。为 `false` 的分片不得承担门槛、录制、修正、裁定（`validate-config.mjs` 检查 `roles`） |
 | `roles` | 否 | 该分片承担的名册角色（`dispatcher`、`gate`、`recorder`、`fixer`、`arbiter`、`restorer`、`restorer-core`、`reviewer`） |
 
-不写表示单机部署。
+不写表示单机部署。哈密项目自 2026-10-15 起只在 Mac mini 上运行（Office-Server 已停用，HM-212），`machines` 只有一项 `mac`，承担全部角色；多分片的写法仍然支持。
 
 ## 版本与兼容
 

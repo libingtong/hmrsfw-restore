@@ -1,6 +1,6 @@
 // Pre-delivery self-check of one work order (docs/pipeline.md §5, §12): the static checks a restorer runs before handing
 // over, and the static stage of gate.mjs. Needs only this repo and the hmrsfw-vue checkout — no RESTORE_ASSETS, no HAR,
-// no browser — so it runs on Office-Server too.
+// no browser — so it runs on any machine, including one that holds no secrets.
 //
 //   compile        @vue/compiler-sfc (hmrsfw-vue's own) parses and compiles every delivered SFC
 //   components     as many .vue files as the chunk defines components (check-components.mjs)

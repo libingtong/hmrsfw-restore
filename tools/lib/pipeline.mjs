@@ -7,7 +7,8 @@
 // is checked for the creation key first (then the issues' `createKey` metadata), the intent is written before
 // `issue create`, the id right after it.
 //
-// Two machines (docs/scheduler.md 「两台机器」): each work order is claimed by one machine on the tool repo's `claims`
+// Machines (docs/scheduler.md 「机器与分片」; since 2026-10-15 only the Mac mini runs agents, but more machines still
+// shard the same way): each work order is claimed by one machine on the tool repo's `claims`
 // branch (tools/lib/claims.mjs, a git compare-and-swap) before any task is created for it; only the owner's processes
 // advance its tasks. Tasks without work orders (integration, rule review, incident, record) and the global steps belong
 // to the leader (a lease on the same branch). State another machine must see lives in issue metadata or git; the local
@@ -169,9 +170,10 @@ export class Pipeline {
 
   // Other machines' stats snapshots (claims branch stats/<machine>.json); this machine's own numbers are the live ledger.
   // Only roster machines count: a leftover "*" snapshot from before sharding is this same ledger and would double it.
+  // A retired machine (all its agents disabled) still counts, so its capability history keeps feeding routing.
   otherStats() {
     if (!this.claims) return [];
-    const ids = machineIds(this.roster);
+    const ids = machineIds(this.roster, { all: true });
     try { return this.claims.statsAll().filter((s) => s.machine !== this.machine && ids.includes(s.machine)); } catch { return []; }
   }
   capability(L) { const others = this.otherStats(); return others.length ? mergeCapability(L.capability, ...others.map((s) => s.capability || {})) : L.capability; }

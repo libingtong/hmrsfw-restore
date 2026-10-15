@@ -11,9 +11,11 @@ export const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "
 const git = (cwd, ...args) => { const r = spawnSync("git", ["-c", "user.name=t", "-c", "user.email=t@t", ...args], { cwd, encoding: "utf8" }); if (r.status !== 0) throw new Error(`git ${args.join(" ")}: ${r.stderr}`); return r.stdout.trim(); };
 export { git };
 
+// Mirrors the live roster since 2026-10-15: every agent on the Mac mini (Office-Server retired). Tests that need a
+// second machine add its agents themselves (machines.test.mjs).
 export const ROSTER = (prefix = "a") => {
   // reviewers carry the live roster's naming ("@" and Chinese), which metadata keys must not be built from
-  const NAMES = { "review-claude": "复核-Claude@Office", "review-deepseek": "复核-DeepSeek@Office", "review-glm": "复核-GLM@Office" };
+  const NAMES = { "review-claude": "复核-Claude@Mac", "review-deepseek": "复核-DeepSeek@Mac", "review-glm": "复核-GLM@Mac" };
   const A = (key, role, family, model, machine, maxConcurrent) => ({ name: NAMES[key] ?? key, id: `${prefix}-${key}`, role, family, model, machine, runtimeId: `rt-${family}-${machine}`, maxConcurrent });
   return {
     version: 1,
@@ -23,26 +25,23 @@ export const ROSTER = (prefix = "a") => {
       A("recorder", "recorder", "anthropic", "claude-sonnet-5-5", "mac-mini", 2),
       A("fixer", "fixer", "anthropic", "claude-opus-5-5", "mac-mini", 2),
       A("arbiter", "arbiter", "anthropic", "claude-opus-5-5", "mac-mini", 2),
-      A("sonnet-mac", "restorer", "anthropic", "claude-sonnet-5-5", "mac-mini", 1),
-      A("deepseek-mac", "restorer", "deepseek", "deepseek-official/deepseek-flash", "mac-mini", 1),
+      A("sonnet-mac", "restorer", "anthropic", "claude-sonnet-5-5", "mac-mini", 2),
+      A("deepseek-mac", "restorer", "deepseek", "deepseek-official/deepseek-flash", "mac-mini", 2),
       A("glm-mac", "restorer", "zhipu", "zhipuai-coding-plan/glm-5.3-flash", "mac-mini", 1),
-      A("opus-office", "restorer-core", "anthropic", "claude-opus-5-5", "office-server", 3),
-      A("sonnet-office", "restorer", "anthropic", "claude-sonnet-5-5", "office-server", 4),
-      A("deepseek-office", "restorer", "deepseek", "deepseek-official/deepseek-flash", "office-server", 3),
-      A("glm-office", "restorer", "zhipu", "zhipuai-coding-plan/glm-5.3-flash", "office-server", 3),
-      A("review-claude", "reviewer", "anthropic", "claude-sonnet-5-5", "office-server", 2),
-      A("review-deepseek", "reviewer", "deepseek", "deepseek-official/deepseek-v4-pro", "office-server", 2),
-      A("review-glm", "reviewer", "zhipu", "zhipuai-coding-plan/glm-5.3", "office-server", 2),
+      A("opus-mac", "restorer-core", "anthropic", "claude-opus-5-5", "mac-mini", 2),
+      A("review-claude", "reviewer", "anthropic", "claude-sonnet-5-5", "mac-mini", 2),
+      A("review-deepseek", "reviewer", "deepseek", "deepseek-official/deepseek-v4-pro", "mac-mini", 2),
+      A("review-glm", "reviewer", "zhipu", "zhipuai-coding-plan/glm-5.3", "mac-mini", 2),
     ],
     escalateTo: { name: "human", memberId: "member-human" },
   };
 };
 
-export function makeFixture({ orders = [], config = {}, registry = null } = {}) {
+export function makeFixture({ orders = [], config = {}, registry = null, roster: rosterIn = null } = {}) {
   const root = mkdtempSync(path.join(os.tmpdir(), "hmrsfw-sched-test-"));
   const state = path.join(root, "state");
   for (const d of ["ledger", "locks", "gate", "baseline"]) mkdirSync(path.join(state, d), { recursive: true });
-  const roster = ROSTER();
+  const roster = rosterIn || ROSTER();
   writeFileSync(path.join(state, "agents.roster.json"), JSON.stringify(roster, null, 1));
   writeFileSync(path.join(state, "scheduler.config.json"), JSON.stringify({ projectId: "proj-1", ...config }, null, 1));
   const fake = path.join(root, "multica.json");
