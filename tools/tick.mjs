@@ -8,6 +8,9 @@
 //   open-rule-review <分支>                 rule change review by two reviewers of families other than the arbiter's
 //   resplit <工单id> / rerecord <工单id>      re-segment the order / send it back to the recorder
 //   resume                                 lift the dispatch pause after an incident (on both machines)
+//   fast-lane status|adopt|login-ok|report fast-lane mode (HM-48, config fastLane.enabled): progress / create the restore tasks of
+//                                          the inventory's pages / lift the recording pause after the human logged in again /
+//                                          report [--write]: results/replay.json (verdict per page)
 //   claims list                            work orders per machine, leader lease, heartbeats
 //   claims reclaim --from <machine> [--wo <工单id> ...] [--force]
 //                                          take over a dead machine's work orders (refused while its heartbeat is fresh)
@@ -45,8 +48,9 @@ export function run(argv) {
     case "resplit": if (!target) throw new Error("usage: tick.mjs resplit <工单id>"); return pl.routed("resplit", { wo: target }, () => pl.resplit(target));
     case "rerecord": if (!target) throw new Error("usage: tick.mjs rerecord <工单id>"); return pl.routed("rerecord", { wo: target }, () => pl.rerecord(target));
     case "resume": return pl.resume();
+    case "fast-lane": return pl.fastLaneCmd(target);
     case "claims": { const wo = all(argv, "--wo"); return pl.claimsCmd(target, { from: flag(argv, "--from"), keys: wo.length ? wo : null, force: argv.includes("--force") }); }
-    default: throw new Error("usage: tick.mjs tick | advance <任务id> [--regate] | digest | open-upgrade <任务id> --reason .. | open-rule-review <分支> | resplit <工单id> | rerecord <工单id> | resume | claims list|reclaim");
+    default: throw new Error("usage: tick.mjs tick | advance <任务id> [--regate] | digest | fast-lane status|adopt|login-ok|report | open-upgrade <任务id> --reason .. | open-rule-review <分支> | resplit <工单id> | rerecord <工单id> | resume | claims list|reclaim");
   }
 }
 

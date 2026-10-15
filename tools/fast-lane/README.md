@@ -71,3 +71,19 @@ $W/fl.sh base
 - **录制**：多数页面没有 HAR，正式门槛（`tools/gate.mjs`）会返回 `pending: record`。登录态 2026-10-09 已过期，需要李炳通重新登录后才能录制。页面在批次里按「静态通过」（self-check + 构建）合入，回放判定等录制后补。
 - **E7**（依赖与样式）：`tinymce@5.10.3`、`nprogress@0.2.0`、`print-js`、`vue-countup-v3` 未入 `package.json`；两站 Vue/antd 版本未拆；`legacy.css` 未拆。放在收尾子单做，做完全量回归。
 - 回放定位钩子：两站外壳上的 `id="poc-main"` 不是原包内容。门槛 `tools/gate/common.mjs` 的 `REST_SEL` 仍是 `#poc-main > *`，改选择器要走规则变更单。
+
+## 5. 正式门槛（回放比对 + 交互比对）：HM-48
+
+批次里的页面只做到静态通过。补录制与回放门槛由 HM-48 走自动化：登录由李炳通在 Mac mini 上完成，其余全部脚本推进。
+
+```bash
+node tools/fast-lane/inventory.mjs --md        # 待补页面：按站点、身份分组（再次运行会带上后来合入的批次）
+node tools/fast-lane/inventory.mjs --ids       # 录制顺序：门户先，用户中心按 general → jobseeker → corp → mentor
+```
+
+- 清单 = `results/*.json` 里 `passed` 的 `page.*` 和 `passedPages`，扣掉工单状态为 `regression` 的（已验收的 30 页）。用户中心 `role` 为 `null` 的页面录不了（`record-page` 报 `need-role-decision`），单独列出，不进录制队列。
+- `scheduler.config.json` 里 `fastLane.enabled = true` 时，`tick.mjs tick` 进入快速通道模式（`tools/lib/fastlane.mjs`）：只处理清单里的页面，`dispatchNew` 关闭；每页一张 `[restore]` 任务（`fastLane: true`、`branch: restore/fast-lane`，等录制），录制员按清单顺序领 `[record]` 任务；录完自动送门槛，`gate.mjs --task <id> --mode page`（分支取任务元数据 `restore/fast-lane`）。
+- 门槛通过：不合入 `integration`、不抽审计，任务直接 `done`；代码随 HM-34 的 PR 走。失败：修正员按第 2 节在私有克隆改并 `fl.sh land` 合入 `restore/fast-lane`，再 `handoff.mjs --fix`；两轮修正仍失败交裁定员，不走「重做」。
+- 录制报 `login-expired` / `need-login`：暂停新的录制（门槛和修正照常），等李炳通重新登录后运行 `node tools/tick.mjs fast-lane login-ok`，被拦的页面重新录制。
+- `node tools/tick.mjs fast-lane status` 看进度；`fast-lane report --write` 写 `results/replay.json`（只有页面 id、结论、原因）。
+- 门槛判据、归一化规则、公共库清单、HAR 一概不动。

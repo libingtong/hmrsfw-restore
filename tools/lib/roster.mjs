@@ -65,6 +65,9 @@ export const DEFAULT_CONFIG = {
   claims: { enabled: true, remote: "origin", branch: "claims", leaderTtlMin: 30, publishEveryMin: 10, deadAfterMin: 60 },
   // Assets a stage needs on the agent's machine (roster machines.<id>.assets). No `machines` in the roster = no limit.
   requires: { record: ["login"], gate: ["har", "baseline"] },
+  // Fast-lane mode (HM-48, tools/lib/fastlane.mjs): the scheduler handles only the pages the fast lane landed on
+  // hmrsfw-vue `branch`; their tasks are done on a gate pass without a merge into integration. dispatchNew is off.
+  fastLane: { enabled: false, branch: "restore/fast-lane" },
 };
 
 export function loadConfig(paths = P()) {
