@@ -1,0 +1,119 @@
+{
+ "batch": "HM-37 收尾",
+ "issue": "HM-37",
+ "passed": [
+  "page.portal.sjz.fair.fairsList",
+  "page.portal.talents.cityHome.index",
+  "page.portal.talents.conference.index",
+  "page.portal.talents.eMap.index",
+  "page.portal.talents.fair.fairList",
+  "page.portal.talents.index.jobFair",
+  "page.portal.talents.index.jobRecommend",
+  "page.portal.talents.index.talentRecommend",
+  "page.portal.talents.index.index",
+  "page.portal.xjhm.bigData.statistics",
+  "page.portal.xjhm.cityHome.index",
+  "page.portal.xjhm.home.index",
+  "page.uc.collage.studentApply",
+  "page.uc.sign.corpApply",
+  "page.portal.guide.index",
+  "page.uc.addNewsDetails",
+  "page.uc.teachInCancel",
+  "page.uc.teachInManage",
+  "page.uc.sceneFairSign",
+  "shared.uc.Editor"
+ ],
+ "blocked": [
+  {
+   "id": "shared.portal.maps",
+   "reason": "9 份内置 geojson 已转出到 @/shared/maps/geo/，公共库清单 modules 缺这些路径；清单 entry 的 c8 被映射成 axios AxiosHeaders，原包是 axios 默认实例。需走规则变更单补登记/改清单。",
+   "needs": "rule-change"
+  },
+  {
+   "id": "page.uc.403",
+   "reason": "模板 <el-button> 来自 resolveComponent(\"el-button\")，用户中心原包未注册 Element Plus，registry/uc.json globals 无此项。需规则变更单在 globals 登记原包未注册组件（或给 imports 检查加例外）。页面代码在 hmrsfw-vue fast-lane-blocked/U1。",
+   "needs": "rule-change"
+  },
+  {
+   "id": "page.uc.404",
+   "reason": "同 page.uc.403。页面代码在 fast-lane-blocked/U1。",
+   "needs": "rule-change"
+  },
+  {
+   "id": "page.uc.jobhunterhome",
+   "reason": "模板 <tooltip> 来自 resolveComponent(\"tooltip\")，原包未注册，registry/uc.json globals 无此项；与 403/404 同一张规则变更单。页面代码在 fast-lane-blocked/U2。",
+   "needs": "rule-change"
+  },
+  {
+   "id": "page.uc.jobhunterhomeZzgj",
+   "reason": "同 page.uc.jobhunterhome。页面代码在 fast-lane-blocked/U2。",
+   "needs": "rule-change"
+  },
+  {
+   "id": "page.portal.xjhm.bigData.newBigdata",
+   "reason": "queue 工单 components 只登记了 manaLoginModal，漏登没有 __name 的主组件 big-screen-view-xygsBigdata（原 chunk 2 个组件）；self-check components 不过。需改工单（work-orders.mjs 生成逻辑）后重生成。页面代码在 hmrsfw-vue restore/fast-lane-p4-held。",
+   "needs": "work-order-fix"
+  },
+  {
+   "id": "page.uc.corpLoan",
+   "reason": "self-check 误报：子页面 corpLoan/corpLoanInfo.vue 的工单（page.uc.corpLoan.corpLoanInfo）target 落在本页 subComponentDir 里，orderFiles 把它算作本页文件（components 1 对 2、text-nodes 多出）。页面在本批 self-check 通过时尚无这个文件。需修 work-orders/orderFiles 的目录约定。",
+   "needs": "tool-fix",
+   "falsePositive": true
+  },
+  {
+   "id": "page.uc.personLoan",
+   "reason": "同 page.uc.corpLoan（子页面 personLoan/detailInfo.vue）。",
+   "needs": "tool-fix",
+   "falsePositive": true
+  },
+  {
+   "id": "page.uc.oddjob.lack",
+   "reason": "同 page.uc.corpLoan（子页面 oddjob/lack/add.vue）。",
+   "needs": "tool-fix",
+   "falsePositive": true
+  },
+  {
+   "id": "page.uc.oddjob.need",
+   "reason": "同 page.uc.corpLoan（子页面 oddjob/need/add.vue）。",
+   "needs": "tool-fix",
+   "falsePositive": true
+  },
+  {
+   "id": "entry.portal.E6",
+   "reason": "no-legacy: compiled-sfc-helper ×1，legacy/index.ts 的 _export_sfc 辅助函数里的 sfc.__vccOpts（Vue 官方导出辅助的原样写法）。",
+   "needs": "rule-change"
+  },
+  {
+   "id": "entry.uc.E6",
+   "reason": "同 entry.portal.E6（apps/uc/src/legacy/index.ts）。",
+   "needs": "rule-change"
+  },
+  {
+   "id": "entry.uc.c03",
+   "reason": "no-legacy: tenant-config ×3，App.vue 按 config.json 的 currentAppCode 取租户，是原代码逻辑，不是复制 config.js。",
+   "needs": "rule-change"
+  },
+  {
+   "id": "shared.uc.workType",
+   "reason": "no-legacy: minified-line ×1，内联 data: 图片的长行；hmrsfw-vue 的 hm-58-worktype-data-uri 分支在处理。",
+   "needs": "other-issue"
+  }
+ ],
+ "selfCheck": {
+  "orders": 410,
+  "passed": 396,
+  "failed": 14,
+  "note": "410 = 入口 26 + 共享 90 + 页面 294（含 16 张分段页）；36 张分段单是分段页的组成部分，不单独计数。",
+  "segmentedPagesPassed": 16
+ },
+ "routesCoverage": {
+  "routes": 285,
+  "pass": 274,
+  "blocked": 11
+ },
+ "replay": {
+  "confirm": "20/20",
+  "legacy10": "10/10"
+ },
+ "notes": "终验数字见 hmrsfw-vue 与本仓库的 PR 描述。E7：依赖按指纹锁版本（tinymce 5.10.3、nprogress 0.2.0、print-js 1.6.0、vue-countup-v3 1.4.2），两站 Vue/antd 版本拆开，legacy.css 拆回。同时修了 HM-40 解除停放时误删的 7 个页面。"
+}
