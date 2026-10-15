@@ -1,0 +1,22 @@
+{
+  "id": "page.portal.guide.jobHunt",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "outputs": [
+    "apps/portal/src/views/guide/jobHunt.vue",
+    "apps/portal/src/views/guide/jobHunt/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "194564ef7ecbc440ea3da3c787af4a360ed0703f"
+  },
+  "todos": [],
+  "unresolved": [
+    "gate.1 html load/final 唯一差异是 div.marT10 下「换一批」图标 img 的 src；页面代码无误，原因在共享层写法与门槛 ondemand 构建，见 needsFromSkeleton"
+  ],
+  "needsFromSkeleton": [
+    "疑似共享层问题 / 疑似比对器问题：apps/portal/src/shared/auth.ts 导出 `_`、`a` 用 new URL(\"./auth/assets/*.png\", import.meta.url)。vite build（4.4.9 vite:asset-import-meta-url → fileToUrl → fileToBuiltUrl）下 493B < assetsInlineLimit 会内联成 data:image/png;base64，与原包一致；门槛 page 模式 ondemand 是 vite serve，fileToUrl 走 fileToDevUrl，得到 /src/shared/auth/assets/auth-2ec256b5c2.png。tools/gate/appserver.mjs 的 buildAssetsPlugin 只模拟 import / 模板 src / ?url 资源，不处理 new URL(…, import.meta.url)。二选一：共享层改为 import x from \"./auth/assets/….png\"（公共库升级单），或 buildAssetsPlugin 补 new URL 形式（规则变更单）。同样写法还在 apps/portal/src/shared/FriendLinks.vue、apps/uc/src/shared/images.ts。"
+  ],
+  "notes": "fix 1：未改页面代码。gate.1 的 load/final 唯一差异是 jobHunt.vue 第 487 行 changeBatchIcon（按清单从 @/shared/auth 导入原导出 `_`）的 src：原包内联 data URL，还原版为 dev URL。页面导入与原 chunk 一致（auth chunk 的 `_`），不能在页面里绕。\n依据：Vite 4.4.9 源码 fileToUrl 在 command=serve 时返回 dev URL、build 时走 fileToBuiltUrl 按 assetsInlineLimit 内联；appserver.mjs buildAssetsPlugin 只接管 load 钩子的资源导入。可用 gate --build full 复核（本角色不读 RESTORE_ASSETS，未运行）。\nself-check pass（gitBase = restore/fast-lane 头 194564e）。"
+}
