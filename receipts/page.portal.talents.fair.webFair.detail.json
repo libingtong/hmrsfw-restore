@@ -1,22 +1,44 @@
 {
   "id": "page.portal.talents.fair.webFair.detail",
-  "ticket": "page.portal.talents.fair.webFair.detail",
-  "branch": "restore/fast-lane",
+  "ticket": "upgrade:3",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-3-a1",
   "result": "fail",
-  "fixRound": 1,
-  "outputs": ["apps/portal/src/views/talents/fair/webFair/detail.vue", "apps/portal/src/views/talents/fair/webFair/detail/"],
-  "todos": [],
-  "needsFromSkeleton": [
-    "疑似比对器问题（html/text，final；两次还原侧运行都出现）：compare.mjs 的 pickCandidate 用还原侧 load 根节点 class「bgBoxTop xf-relative」在原版 final 候选里找对应根。交互后页面已向下滚动（原 chunk 滚动回调 ee：scrollTop>200 时 topShow=false），页面根换成 v-else 分支「bgBoxTop xf-relative noTopShow」，两侧都是这样，所以原版侧找不到同 class 的候选，回落到 candidates[0]，也就是 homeView 布局头部 div.headerBox（origSel「main > *」会取到布局头部，与 page.portal.talents.eMap.index 回执同一问题）；还原侧 page 模式下 gate-route 把页面直接挂成顶层路由（路由文件要到第一次导航时才 addRoute，此时 resolve 只命中 pathMatch），#poc-main 下没有 homeView，candidates[0] 就是页面根。两边比较的不是同一层，页面侧无法也不应补出布局头部，需走规则变更单（例如 final 按 scopeId 或去掉 noTopShow 这类状态 class 后再匹配）",
-    "疑似门槛时序问题（requests/overlay/step-error，只出现在 rest.retry）：gate.1 的 firstFailed 只有 final html/text，第一次还原侧运行请求序列、浮层都与原版一致、没有步骤报错。重跑那次 step 2「重置」报点击超时，但该步请求已经发出，并且请求体指纹与原版 step2 相同，说明第一次点击生效了；replay.mjs 失败后 1 秒内再点一次，于是 step3 多出一条 queryAttendeesCompany，也多出一条服务端提示（overlay 3 条对 2 条）。页面重置逻辑 oe→q→g 与原代码一致，属于繁忙机器上的超时重试副作用"
+  "outputs": [],
+  "todos": [
+    "升级单不适用：原因是门槛比对器问题，不是公共库问题，公共库没有改动（restore/upg-3-a1 与 integration 8a39c05 相同）。已核实：tools/gate/compare.mjs compareRuns 第 122 行用还原侧 load 的 candidates[0].cls 作为 restRoot，project() 第 56 行在 final 阶段仍用这个 load 时的 class 去 pickCandidate 原版 final 候选；原 chunk detail.178332063620012.js 的滚动回调 ee 在 scrollTop>200 时把 topShow 置 false，页面根换成 key:1 分支「bgBoxTop xf-relative noTopShow」，原版侧按「bgBoxTop xf-relative」找不到候选，回落 candidates[0]（homeView 布局头部 div.headerBox）；还原侧 cls=null 直接取 #poc-main 下的页面根。final.html/final.text 实际是在拿布局头部和页面根比",
+    "需裁定员按 docs/pipeline.md 第十五节第 2.2 条建规则变更单修 tools/gate/compare.mjs：final 阶段的原版候选应按还原侧 final 根的 class 选（或 load 时选中的候选的同一位置/选择器），不应沿用 load 时的 class，回落 candidates[0] 时也不应落到布局头部；并补 compare 的用例（根 class 在交互后变化）。升级单与页面单都无权改门槛脚本",
+    "影响面：交互后根节点 class 会变的页面（滚动吸顶、v-if/v-else 切根）都会出现同样的 final 误报；page.portal.talents.eMap.index 回执里 origSel「main > *」取到布局头部是同一类问题"
   ],
-  "selfCheck": { "pass": true, "failed": [] },
-  "build": "pass",
-  "notes": [
-    "未改代码：逐段对照原 chunk detail（data-v-b7cb5f58），topShow/noTopShow 两个分支、滚动回调、搜索 q、重置 oe、列表 g（activeKey 分支 Company/Position）、页签 onChange、展开 le 与还原版 detail.vue 逐条一致；load 阶段 html/text/overlay/requests 均已通过",
-    "依据 1（final html/text）：原版 final 取到的根是 headerBox（站点头部，826 字符），还原 final 是页面根 noTopShow（395 字符）；原版两次运行都没有 class 为「bgBoxTop xf-relative」的 final 候选，说明原版同样进入了 noTopShow 分支",
-    "依据 2（请求/浮层/超时）：gate.1 report 的 firstFailed 只有 html/text 两项，requests、overlay、step-error 只出现在 rest.retry；多出的请求与原版 step2 的请求指纹相同（即重复点击「重置」）",
-    "依据 3（路由）：router-xjhm.json 中 webFairDetail/:zphId 是 /talents（src/views/talents/homeView）的子路由；gate appserver.mjs 的 routePlugin 在路由文件加载前判定未命中，于是先加了同路径的顶层路由，按 vue-router 同分数先到先得，页面在还原侧不经过 homeView",
-    "自检 self-check pass:true；npm run build:portal 退出码 0；restore/fast-lane 无新提交"
-  ]
+  "needsFromSkeleton": [],
+  "selfCheck": {
+    "pass": true,
+    "failed": [
+      {
+        "check": "imports",
+        "where": "apps/portal/src/views/talents/fair/webFair/detail.vue",
+        "hint": "\"@/api/jobFair\" 是 hmrsfw-vue 里现有的文件，但不是清单的规范路径（POC 时期的包装或重复文件）：按 maps 的路径导入",
+        "severity": "warn"
+      },
+      {
+        "check": "imports",
+        "where": "apps/portal/src/views/talents/fair/webFair/detail.vue",
+        "hint": "\"@/api/jobCompany\" 是 hmrsfw-vue 里现有的文件，但不是清单的规范路径（POC 时期的包装或重复文件）：按 maps 的路径导入",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "(eslint)",
+        "hint": "eslint 没有跑起来：Cannot find module 'eslint'。hmrsfw-vue 需要 eslint、eslint-plugin-vue 等 devDependencies（node tools/setup-workdir.mjs --app …）；本次没有 eslint 结果",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "(prettier)",
+        "hint": "prettier 没有跑起来：Cannot find module 'prettier'。hmrsfw-vue 需要 prettier devDependency；本次没有格式检查结果",
+        "severity": "warn"
+      }
+    ],
+    "note": "对 page.portal.talents.fair.webFair.detail 在本分支跑 self-check；failed 均为 warn 级"
+  }
 }
