@@ -27,7 +27,7 @@ import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, symlinkSync, w
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { appDir as resolveAppDir } from "./app-dir.mjs";
-import { REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, importLocalCryptoEnv, loadWorkOrder, missingCryptoEnv, opt, stateDir } from "./gate/common.mjs";
+import { REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256 } from "./gate/har.mjs";
 import { runPage } from "./gate/replay.mjs";
 import { compareRuns } from "./gate/compare.mjs";
@@ -125,7 +125,6 @@ export async function gate(argv) {
     // Fast-lane pages (HM-48) live on `restore/fast-lane`, which is far ahead of integration: rule 4 of check-imports ("this order
     // changed only its own files") must measure against the branch tip, as the fast lane's own self-check does (fl.sh base).
     if (app && (flag(argv, "--fast-lane") || meta.fastLane === true)) process.env.HMRSFW_GIT_BASE = app.sha;
-    importLocalCryptoEnv();
     const noKeys = missingCryptoEnv(appDir);
     if (noKeys.length) throw new Error(`crypto keys missing for the restored app: ${noKeys.join(", ")} (set them in the gate's environment; docs/gate.md)`);
     const rules = loadRules();

@@ -157,21 +157,4 @@ export function missingCryptoEnv(appDir, env = process.env) {
   return CRYPTO_ENV.filter((k) => !env[k]?.trim() && !files[k]);
 }
 
-// The gate agents' environment does not carry the VITE_HMRSFW_* keys (HM-48 found it on the first real runs). The project keeps
-// them in hmrsfw-vue/.env.local on this Mac (never committed); when they are missing from the environment, import exactly the
-// VITE_HMRSFW_* names from HMRSFW_ENV_FILE, else from <RESTORE_ASSETS>/../hmrsfw-vue/.env.local, into this process only.
-// Nothing is printed or copied; names other than VITE_HMRSFW_* are ignored.
-export function importLocalCryptoEnv(env = process.env) {
-  if (CRYPTO_ENV.every((k) => env[k]?.trim())) return null;
-  const file = env.HMRSFW_ENV_FILE || (env.RESTORE_ASSETS ? path.join(env.RESTORE_ASSETS, "..", "hmrsfw-vue", ".env.local") : null);
-  if (!file || !existsSync(file)) return null;
-  const set = [];
-  for (const line of readFileSync(file, "utf8").split("\n")) {
-    const m = /^\s*(VITE_HMRSFW_[A-Z0-9_]+)\s*=\s*(.*?)\s*$/.exec(line);
-    const v = m && m[2].replace(/^["']|["']$/g, "");
-    if (v && !env[m[1]]?.trim()) { env[m[1]] = v; set.push(m[1]); }
-  }
-  return set.length ? set : null;
-}
-
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
