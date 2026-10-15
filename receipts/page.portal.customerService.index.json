@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.customerService.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/customerService/index.vue",
+    "apps/portal/src/views/customerService/index/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "b2a8fdc7c46e151df5c51c4040a6efea5834e2ac"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：index.vue 5 张抽出的图片（defaultLogo、arrowLeftDisabled、arrowRightDisabled、helpActive、noHelpActive）由 new URL(\"./index/assets/*.png\", import.meta.url).href 改为 import 默认导入。原 chunk 里这些是内联 data:image/png;base64（均小于 assetsInlineLimit）；vite build 下两种写法都内联，但门槛 page 模式 ondemand（vite serve）的 buildAssetsPlugin 只镜像 import / 模板 src / ?url，不处理 new URL(…, import.meta.url)，于是还原版得到 /src/views/customerService/index/assets/*.png（gate.1 load/final show-img 及翻页箭头 img 的差异）",
+    "依据：HM-26（check-imports 接受相对导入本单资源）已合并，同分支 GuidanceMentorDetail、enterpriserecruitment 已用 import 写法；本次 npm run build:portal 产物内含与原包相同的 base64",
+    "文档不一致：tools/fast-lane/restorer-instructions.md 第 46 行仍要求用 new URL 写法（HM-26 前的说法），按该说明还原的页面在门槛 page 模式都会出现同类差异；疑似比对器问题：buildAssetsPlugin 不处理 new URL 形式（与 page.portal.guide.index 回执所述同一问题）",
+    "gate.1 firstFailed 中的 overlay 差异（load）在复测中已消失，未改",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane 1b20769"
+  ]
+}
