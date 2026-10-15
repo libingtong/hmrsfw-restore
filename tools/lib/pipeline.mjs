@@ -23,7 +23,7 @@ import { Roster, reviewKey } from "./roster.mjs";
 import { Multica } from "./multica.mjs";
 import { Git, pageForbidden } from "./gitops.mjs";
 import { classifyRunError, FAILED_RUN_STATUSES } from "./error-classes.mjs";
-import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isAccepted, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
+import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isAccepted, isDispatchable, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
 import { Ledger, runRow, recordCapability, recordAudit, auditTier, seedFromConfirm, mergeCapability } from "../ledger.mjs";
 import { route, pick, agentLoad, freeSlots } from "../route.mjs";
 import { Claims, claimPath, statsPath, fileKey } from "./claims.mjs";
@@ -303,11 +303,11 @@ export class Pipeline {
   }
 
   // Ordered dispatch queue: upgrades are created directly; entry/shared before pages, each by kb descending; pages
-  // under pack.maxKb are packed 3–5 per order (same app).
+  // under pack.maxKb are packed 3–5 per order (same app). Orders with a non-empty `missing` are not dispatched (isDispatchable).
   dispatchQueue(L) {
     const busyFiles = new Set(Object.values(L.tick.upgrades || {}).filter((u) => u.state === "active").flatMap((u) => u.files || []));
     const theirs = (w) => { const rec = this.claims ? this.claims.get(claimPath(w.id)) : null; return !!rec && !this.mine(rec); };
-    const eligible = this.orders().filter((w) => !isAccepted(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
+    const eligible = this.orders().filter((w) => !isAccepted(w) && isDispatchable(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
     const core = eligible.filter(isCore).filter((w) => !(w.files || []).some((f) => busyFiles.has(f))).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const pages = eligible.filter(isPage).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const units = core.map((w) => [w.id]);

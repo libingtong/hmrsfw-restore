@@ -26,3 +26,31 @@ test("default import without named bindings (`import X from`) resolves through r
   assert.equal(maps.modules.Ut?.original, "html2canvas.esm.1783320636200.js#default");
   assert.ok(!maps.missing.some((m) => m.includes("html2canvas")), JSON.stringify(maps.missing));
 });
+
+test("imports are read from the AST: default, default + named (__tla), namespace, named, bare", async () => {
+  const { relativeImports } = await import("../work-orders.mjs");
+  const src = 'import W,{__tla as t,a as b}from"./titles.js";import X from"./x.js";import*as N from"./n.js";import{c}from"./c.js";import"./side.js";import d from"vue";const s=\'import Z from"./in-string.js"\';';
+  assert.deepEqual(relativeImports(src), [
+    { from: "titles.js", specs: [["default", "W"], ["__tla", "t"], ["a", "b"]] },
+    { from: "x.js", specs: [["default", "X"]] },
+    { from: "n.js", specs: [["*", "N"]] },
+    { from: "c.js", specs: [["c", "c"]] },
+    { from: "side.js", specs: [] },
+  ]);
+});
+
+test("every sibling view a chunk imports is in maps.views and deps.views once its order exists; the default binding is `default`", () => {
+  const byChunk = new Map([["portal/passwordModal.1783320636200.js", { id: "page.portal.answer.passwordModal", target: "apps/portal/src/views/answer/passwordModal.vue" }]]);
+  const maps = buildMaps("portal", "index.178332063620016.js", loadRegistry("portal"), byChunk);
+  assert.ok(!maps.missing.some((m) => m.startsWith("view:passwordModal")), JSON.stringify(maps.missing));
+  assert.ok(Object.values(maps.views).some((v) => v.order === "page.portal.answer.passwordModal" && v.export === "default"));
+});
+
+test("a chunk whose import has no registry entry is `missing`, the order is not dispatchable, and its segments inherit that", async () => {
+  const { isDispatchable } = await import("../lib/workorders.mjs");
+  const maps = buildMaps("portal", "index.178332063620016.js", loadRegistry("portal"), new Map());
+  assert.ok(maps.missing.length > 0);
+  assert.equal(isDispatchable({ id: "page.x", missing: maps.missing }), false);
+  assert.equal(isDispatchable({ id: "page.y" }), true);
+  assert.equal(isDispatchable({ id: "page.z", missing: [] }), true);
+});
