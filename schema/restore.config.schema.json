@@ -197,7 +197,7 @@
       "additionalProperties": false,
       "required": ["name"],
       "properties": {
-        "name": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "分片名，如 mac / office" },
+        "name": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "分片名，如 mac" },
         "host": { "type": "string", "description": "Multica 运行时所在主机名，只用于核对" },
         "holdsSecrets": { "type": "boolean", "description": "是否持有 HAR、登录态、密钥。false 的机器不得派门槛、录制、修正" },
         "roles": { "type": "array", "uniqueItems": true, "items": { "enum": ["dispatcher", "gate", "recorder", "fixer", "arbiter", "restorer", "restorer-core", "reviewer"] }, "description": "该分片承担的角色（名册 role）。holdsSecrets 为 false 时不得含 gate、recorder、fixer、arbiter" }
