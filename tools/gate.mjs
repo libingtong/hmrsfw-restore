@@ -37,6 +37,7 @@ import { buildApp, startOnDemand } from "./gate/appserver.mjs";
 import { serveStatic } from "./gate/serve.mjs";
 import { createShimmer, loadRegistry, reservedShared, shimPlugin, ShimError } from "./gate/shim.mjs";
 import { readBaseline } from "./baseline.mjs";
+import { decodeAll } from "./lib/multica.mjs";
 
 const MULTICA = process.env.MULTICA_BIN || "multica";
 const rel = (p) => path.relative(ROOT, p);
@@ -45,7 +46,7 @@ function multica(args) { return execFileSync(MULTICA, args, { encoding: "utf8", 
 
 function taskMeta(task) {
   const issue = JSON.parse(multica(["issue", "get", task, "--output", "json"]));
-  return issue.metadata ?? {};
+  return decodeAll(issue.metadata); // the server keeps arrays/objects as JSON strings (workOrders, history, …)
 }
 
 // Baseline present and still matching the HAR and interaction script it was recorded with?
