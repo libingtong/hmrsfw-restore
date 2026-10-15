@@ -104,3 +104,17 @@ test("integration gate: failed pages counted from the pages array; app-wide fail
   assert.deepEqual(issue(fx, inc.id).metadata.details ? JSON.parse(JSON.stringify(meta(fx, inc.id).details)).failed : null, ["P2"]);
   assert.deepEqual(meta(fx, inc.id).details.global.byOwner, { "shared.uc.Editor": 1 });
 });
+
+test("slimmed verdict in metadata: the failure category comes from the wo-tagged top-level checks (HM-450)", async () => {
+  const { Pipeline } = await import("../lib/pipeline.mjs");
+  const p = Object.create(Pipeline.prototype);
+  // as gate.mjs writes gate.<attempt>: pages without `failed`, checks in failed[] tagged with wo
+  const slim = { pass: false, stage: "browser", failed: [{ check: "requests", where: "steps", hint: "request #3 after load", wo: "S-b" }, { check: "html", where: "final", hint: "HTML differs", wo: "S-a" }],
+    pages: [{ wo: "S-a", pass: false, stage: "browser", pixel: 0 }, { wo: "S-b", pass: false, stage: "browser", pixel: 0 }, { wo: "S-c", pass: true, stage: null, pixel: 0 }] };
+  const r = p.pageResults(slim, ["S-a", "S-b", "S-c"]);
+  assert.equal(p.failCategory(r["S-a"]), "browser:html");
+  assert.equal(p.failCategory(r["S-b"]), "browser:requests");
+  assert.equal(r["S-c"].pass, true);
+  // full verdicts keep their own per-page checks
+  assert.equal(p.failCategory(p.pageResults(realFail("F1"), ["F1"]).F1), "browser:pixel");
+});

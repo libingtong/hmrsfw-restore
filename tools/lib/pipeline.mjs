@@ -511,9 +511,12 @@ export class Pipeline {
   }
 
   // Per-page results of a (possibly packed) order; without per-page results one verdict for all.
+  // The verdict gate.mjs writes to metadata is slimmed: pages[] carry {wo, pass, stage, pixel} only, the checks sit in the
+  // top-level failed[] tagged with wo. Put them back on the page, else every failure is classed "<stage>:unknown" (HM-450).
   pageResults(gate, wos) {
     const pages = this.pagesOf(gate);
-    if (pages) return Object.fromEntries(wos.map((w) => [w, pages[w] || { pass: false, failed: ["no per-page result"] }]));
+    const withFailed = (p, w) => (p.pass || Array.isArray(p.failed) ? p : { ...p, failed: (gate.failed || []).filter((f) => f?.wo === w) });
+    if (pages) return Object.fromEntries(wos.map((w) => [w, pages[w] ? withFailed(pages[w], w) : { pass: false, failed: ["no per-page result"] }]));
     return Object.fromEntries(wos.map((w) => [w, gate]));
   }
 
