@@ -1,20 +1,70 @@
 {
   "id": "page.portal.cityHome.index",
-  "ticket": "page.portal.cityHome.index",
-  "branch": "restore/fast-lane",
+  "ticket": "upgrade:2",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-2-a1",
   "result": "fail",
-  "fixRound": 1,
-  "outputs": ["apps/portal/src/views/cityHome/index.vue"],
-  "todos": [],
-  "needsFromSkeleton": [
-    "疑似比对器问题：门槛按需编译（tools/gate/appserver.mjs startOnDemand）下 @vitejs/plugin-vue 4.3.4 处于 devServer 模式，模板里的相对资源 src=\"./x.png\" 被直接改写成 /src/... 绝对路径（plugin-vue resolveTemplateCompilerOptions 的 dev base 分支），不经过 import，buildAssetsPlugin 的 load 钩子拿不到，小于 assetsInlineLimit 的图片没有内联成 data URI；tools/test/gate-assets.test.mjs 只覆盖显式 import，没覆盖模板 src。需走规则变更单修门槛，页面侧无可改之处"
+  "outputs": [],
+  "todos": [
+    "升级单不适用：原因是门槛（比对器）问题，不是公共库问题，公共库没有改动（restore/upg-2-a1 与 integration 8a39c05 相同）。已核实：tools/gate/appserver.mjs startOnDemand 用 vite.createServer，@vitejs/plugin-vue 4.3.4 在 options.devServer 存在时（dist/index.cjs 第 216-221 行）给 transformAssetUrls 设 base=/src/...，模板相对 src 被直接改写成绝对 URL，不生成 import，buildAssetsPlugin.load 拿不到，小于 assetsInlineLimit 的图片没有内联；vite build 走 includeAbsolute 分支、生成 import 并内联，与原包一致",
+    "需裁定员按 docs/pipeline.md 第十五节第 2.2 条建规则变更单修 tools/gate/appserver.mjs（让门槛按需服务器的模板资源转换与 vite build 一致），并补 tools/test/gate-assets.test.mjs 的模板 src 用例；升级单与页面单都无权改门槛脚本",
+    "影响面：模板里用相对 src 引小图的页面和公共组件（含 legacy/components/TopHead.vue）在门槛按需模式下都会出现同样的 <img src> 差异"
   ],
-  "selfCheck": { "pass": true, "failed": [] },
-  "build": "pass",
-  "notes": [
-    "未改代码：gate.1 的 html load/final 差异只有 7 处 <img src>（原版 data:image/png;base64，还原版 /src/.../assets/*.png），把 src 统一置空后 load/final HTML、text、overlay、cls 与原版逐字一致，pixel 0",
-    "其中 4 处来自公共组件 legacy/components/TopHead.vue（页面单不可改），3 处来自本页模板 src=\"./index/assets/*.png\"，写法与原 chunk 的模块级资源常量对应",
-    "依据：在 restore/fast-lane 上 npm run build:portal，cityHome 产物 chunk 内联的 base64 与原包 index.178332063620024.js 中的完全相同，且不含 /src/views/cityHome 路径；即 vite build 与原包一致，只是门槛按需服务器与 vite build 不一致",
-    "影响面：所有在模板里用相对 src 引小图的页面和公共组件（含 TopHead）在门槛按需模式下都会出同样的 html 差异，建议裁定员提规则变更单修 appserver（例如让 plugin-vue 在门槛服务器里按 build 方式转换 transformAssetUrls），而不是逐页改写模板"
-  ]
+  "needsFromSkeleton": [],
+  "selfCheck": {
+    "pass": true,
+    "failed": [
+      {
+        "check": "imports",
+        "where": "apps/portal/src/views/cityHome/index.vue",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "apps/portal/src/views/cityHome/index.vue:49",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "apps/portal/src/views/cityHome/index.vue:580",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "apps/portal/src/views/cityHome/index.vue:581",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "apps/portal/src/views/cityHome/index.vue:582",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "apps/portal/src/views/cityHome/index.vue:583",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "apps/portal/src/views/cityHome/index.vue:584",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "apps/portal/src/views/cityHome/index.vue:89",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "(eslint)",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "(prettier)",
+        "severity": "warn"
+      }
+    ],
+    "note": "对 page.portal.cityHome.index 在本分支跑 self-check；failed 均为 warn 级"
+  }
 }
