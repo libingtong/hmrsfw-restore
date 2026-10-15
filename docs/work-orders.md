@@ -24,6 +24,9 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `tools/segments.mjs` | ≥ 30KB 页面的分段方案 |
 | `tools/assemble-segments.mjs` | 最后一段把片段合成 SFC |
 | `tools/self-check.mjs` | 交付前自检（下文） |
+| `tools/check-readability.mjs` / `rules/readability.json` | 可读性检查（self-check 的 `readability` 项）与规则文件，见 `docs/readability.md` |
+| `tools/readability-sample.mjs` | 集成回归后的人工可读性抽检，见 `docs/readability.md` |
+| `tools/refresh-names.mjs` | 清单改名后，只刷新工单的导出名和 maps（不重新生成整个队列） |
 | `tools/registry-cleanup.mjs` | `hmrsfw-vue` 现状清理（方案见 `docs/registry-cleanup.md`），默认只预演 |
 
 ## 数量与 batch-plan 第 6.3 节的对账
@@ -103,9 +106,9 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | 段 | 键 | 值 |
 | --- | --- | --- |
 | `vue` | 运行时改名 | `{name, from}` |
-| `entry` | 入口导出名 | `{path, export, status, owner, kind, url?, method?, sameAs?, stub?, component?, scopeId?, users}`；npm 符号是 `{path: 包名, export, npm: true, status: "npm"}`；不需要导入的是 `{status: "ignore", reason}` |
-| `shared` | 原 chunk 文件名 | `{path, kind, components, kb, exports: {原导出名: {export, path?}}, status, owner, usedBy}` |
-| `api` | `chunk#原导出名` | `{path, export, url, method, status}` |
+| `entry` | 入口导出名 | `{path, export, original, status, owner, kind, url?, method?, sameAs?, stub?, component?, scopeId?, users}`；npm 符号是 `{path: 包名, export, npm: true, status: "npm"}`；不需要导入的是 `{status: "ignore", reason}` |
+| `shared` | 原 chunk 文件名 | `{path, kind, components, kb, exports: {原导出名: {export, path?, original}}, status, owner, usedBy}` |
+| `api` | `chunk#原导出名` | `{path, export, url, method, status, original}` |
 | `apiModules` | 原 chunk | `{path, renameTo?, duplicates?, status, owner, functions}` |
 | `modules` | 原 chunk | npm 库（swiper 各模块、pinyin-match、html2canvas、jspdf、print-js、@amap/amap-jsapi-loader、echarts）、图片常量（→ `@/shared/images`）、geojson |
 | `utils` | `@/utils/*` | 当前导出（request、cachedRequest 等可直接用） |
@@ -148,6 +151,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `secrets` | 密钥、token、手机号、证件号、邮箱 | `scan-secrets.mjs` |
 | `no-legacy` | 本单文件（含 `subComponentDir` 里的资源）零引用：源码和注释里没有 `legacy-dist` 路径、带构建哈希的文件名、编译产物；与门槛 page 模式的零引用同一套规则，还原员交付前就能看到（HM-9） | `check-no-legacy.mjs` |
 | `segments` | 分段交付了片段；最后一段没有留下 `_seg/` | `self-check.mjs` |
+| `readability` | 命名、结构、格式（独立于等价门槛）：不可读的名字、手写 `h()` / render、编译产物痕迹、`v-if="false"`、文件/函数/setup 长度、eslint-plugin-vue、prettier。规则和阈值在 `rules/readability.json`；`mode: report` 时条目带 `severity: "warn"`，`block` 时使自检失败。`--no-lint` 跳过 eslint / prettier | `check-readability.mjs`，详见 `docs/readability.md` |
 | render-equiv | 原 render 与还原版按同版本 compiler 编译后比对（报告） | `render-equiv-confirm.mjs`（现在从 `registry/<app>.json` 取改名表，不再依赖 POC 的 `out/`） |
 
 `check-components`、`check-copied`、`render-equiv-confirm`、`scan-secrets` 按 HM-2 的分工由本任务修改，A（门槛）只导入。四个脚本都改为按工单和 `--app` 工作，不再引用 `skeleton/`。`scan-secrets` 的两条白名单改为 `hmrsfw-vue` 里的路径，对 `hmrsfw-vue` 全仓扫描 0 处命中。

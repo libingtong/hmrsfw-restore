@@ -245,7 +245,7 @@
   "Ke": {
    "original": "mymsg.1751615607545.js#_",
    "path": "@/shared/mymsg.ts",
-   "export": "_",
+   "export": "emptyListImg",
    "status": "reserved",
    "owner": "shared.uc.mymsg"
   },

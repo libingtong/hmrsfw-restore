@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/positionmodal.vue",
  "exports": {
   "p": {
-   "export": "default"
+   "export": "default",
+   "original": "positionmodal.1751615607545.js#p"
   }
  },
  "registryKey": "positionmodal.1751615607545.js",

@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/statusPlace.vue",
  "exports": {
   "s": {
-   "export": "default"
+   "export": "default",
+   "original": "statusPlace.1783320636200.js#s"
   }
  },
  "registryKey": "statusPlace.1783320636200.js",

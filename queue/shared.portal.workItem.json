@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/workItem.vue",
  "exports": {
   "w": {
-   "export": "default"
+   "export": "default",
+   "original": "workItem.17833206362002.js#w"
   }
  },
  "registryKey": "workItem.17833206362002.js",

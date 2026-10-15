@@ -58,7 +58,7 @@
   "te": {
    "original": "confPass.1751615607545.js#m",
    "path": "@/shared/confPass.ts",
-   "export": "m",
+   "export": "queryMySubscribeFair",
    "status": "reserved",
    "owner": "shared.uc.confPass"
   },
@@ -72,7 +72,7 @@
   "ie": {
    "original": "confPass.1751615607545.js#o",
    "path": "@/shared/confPass.ts",
-   "export": "o",
+   "export": "fairSubscribe",
    "status": "reserved",
    "owner": "shared.uc.confPass"
   },

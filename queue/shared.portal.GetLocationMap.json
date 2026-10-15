@@ -19,7 +19,8 @@
  "target": "apps/portal/src/shared/GetLocationMap.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "GetLocationMap.vue_vue_type_script_setup_true_lang.1783320636200.js#_"
   }
  },
  "registryKey": "GetLocationMap.vue_vue_type_script_setup_true_lang.1783320636200.js",

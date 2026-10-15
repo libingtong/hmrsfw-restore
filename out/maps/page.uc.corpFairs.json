@@ -194,15 +194,17 @@
   },
   "bt": {
    "original": "index.175161560754529.js#p",
-   "path": "@/shared/CancelReasonModal.vue",
+   "path": "@/shared/Index29.vue",
    "export": "default",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "shared.uc.Index29"
   },
   "wt": {
    "original": "index.175161560754528.js#f",
-   "path": "@/shared/ReceivedResumeList.vue",
+   "path": "@/shared/Index.vue",
    "export": "default",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "shared.uc.Index"
   },
   "Ct": {
    "original": "workType.1751615607545.js#w",

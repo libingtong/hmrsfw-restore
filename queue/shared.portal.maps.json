@@ -24,7 +24,8 @@
  "target": "apps/portal/src/shared/maps.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "maps.vue_vue_type_style_index_0_lang.1783320636200.js#_"
   }
  },
  "registryKey": "maps.vue_vue_type_style_index_0_lang.1783320636200.js",

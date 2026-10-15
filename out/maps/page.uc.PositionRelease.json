@@ -162,15 +162,17 @@
  "shared": {
   "We": {
    "original": "wxyy.hook.1751615607545.js#g",
-   "path": "@/legacy",
+   "path": "@/shared/wxyy.hook.ts",
    "export": "askWenXin",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "shared.uc.modules"
   },
   "Xe": {
    "original": "wxyy.hook.1751615607545.js#_",
-   "path": "@/legacy",
-   "export": "ROBOT_IMG",
-   "status": "restored"
+   "path": "@/shared/wxyy.hook.ts",
+   "export": "wenXinIconImg",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
   },
   "la": {
    "original": "phone.1751615607545.js#p",
@@ -193,7 +195,7 @@
   "q": {
    "original": "dateUtil.1751615607545.js#a",
    "path": "@/shared/dateUtil.ts",
-   "export": "a",
+   "export": "addDays",
    "status": "reserved",
    "owner": "shared.uc.modules"
   },

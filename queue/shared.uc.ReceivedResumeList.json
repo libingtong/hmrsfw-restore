@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/ReceivedResumeList.vue",
  "exports": {
   "f": {
-   "export": "default"
+   "export": "default",
+   "original": "index.175161560754528.js#f"
   }
  },
  "registryKey": "index.175161560754528.js",

@@ -35,21 +35,26 @@
  "exports": {
   "B": {
    "path": "@/shared/auth/BackGround.vue",
-   "export": "default"
+   "export": "default",
+   "original": "auth.1783320636200.js#B"
   },
   "C": {
    "path": "@/shared/auth/ColumnContent.vue",
-   "export": "default"
+   "export": "default",
+   "original": "auth.1783320636200.js#C"
   },
   "O": {
    "path": "@/shared/auth/OneContent.vue",
-   "export": "default"
+   "export": "default",
+   "original": "auth.1783320636200.js#O"
   },
   "_": {
-   "export": "_"
+   "export": "nextPageIconImg",
+   "original": "auth.1783320636200.js#_"
   },
   "a": {
-   "export": "a"
+   "export": "realNameAuthImg",
+   "original": "auth.1783320636200.js#a"
   }
  },
  "registryKey": "auth.1783320636200.js",

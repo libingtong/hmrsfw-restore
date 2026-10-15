@@ -24,7 +24,8 @@
  "target": "apps/uc/src/shared/SlideCaptcha.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js#_"
   }
  },
  "registryKey": "SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js",

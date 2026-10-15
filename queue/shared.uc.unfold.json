@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/unfold.vue",
  "exports": {
   "u": {
-   "export": "default"
+   "export": "default",
+   "original": "unfold.1751615607545.js#u"
   }
  },
  "registryKey": "unfold.1751615607545.js",

@@ -9,7 +9,8 @@
 // the symbol lives today, and tools/registry-cleanup.mjs --apply moves both together.
 //
 // Usage: node tools/registry.mjs --app <hmrsfw-vue> [--check]
-//   writes registry/portal.json, registry/uc.json; --check only compares with the committed files (exit 1 on difference)
+//   writes registry/portal.json, registry/uc.json; --check only compares with the committed files (exit 1 on difference,
+//   or when an exported symbol has no business name: stats.names.unnamed, HM-19)
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
@@ -174,6 +175,19 @@ function iconName(src, def) {
   return null;
 }
 
+// Business names (HM-19): every exported symbol that a page may import has a readable name. `unnamed` lists the ones that
+// do not: a 1–2 character or hash-like export that is not an npm / ignored symbol (`default` is a name of its own).
+export const isShortName = (n) => typeof n === "string" && n !== "default" && n.replace(/^_+|_+$/g, "").length < 3;
+export function nameStats({ entry, shared, modules, api }) {
+  let symbols = 0, renamed = 0; const unnamed = [];
+  const note = (where, orig, name, npm) => { if (npm || !name) return; symbols++; const alias = String(orig).split("#").pop(); if (name !== "default" && name !== alias) renamed++; if (isShortName(name)) unnamed.push(`${where}:${orig}`); };
+  for (const [a, r] of Object.entries(entry)) if (r.status !== "ignore") note("entry", a, r.export, r.npm);
+  for (const [f, r] of Object.entries(shared)) for (const [a, x] of Object.entries(r.exports)) note("shared", `${f}#${a}`, x.export, x.npm);
+  for (const [f, r] of Object.entries(modules)) if (r.kind === "asset") for (const [a, x] of Object.entries(r.exports)) note("modules", `${f}#${a}`, x.export, x.npm);
+  for (const [k, r] of Object.entries(api)) note("api", k, r.export, false);
+  return { symbols, renamed, unnamed };
+}
+
 export function buildRegistry(site, { APP, gaps = scanSharedGaps(site), vueAliases = null, prev = null } = {}) {
   const app = APP_OF[site]; const cfg = SITES[site];
   const namesFile = JSON.parse(readFileSync(path.join(REGISTRY_DIR, `names.${app}.json`), "utf8"));
@@ -306,7 +320,7 @@ export function buildRegistry(site, { APP, gaps = scanSharedGaps(site), vueAlias
       }
     }
     // names file: per-chunk overrides (where the POC put an export, e.g. wxyy.hook `g` → @/legacy askWenXin)
-    for (const [a, o] of Object.entries(chunkNames[f] ?? {})) if (rec.exports[a]) rec.exports[a] = { path: o.path, export: o.export };
+    for (const [a, o] of Object.entries(chunkNames[f] ?? {})) if (rec.exports[a]) rec.exports[a] = { ...(o.path ? { path: o.path } : {}), export: o.export };
     const statusOfExport = (x) => { if (x.npm) return true; const h = exist((x.path ?? rec.path).replace(/\.ts$/, "")); return !!h && !h.stub && (x.export === "default" || h.exports.has(x.export)); };
     rec.status = Object.values(rec.exports).every(statusOfExport) ? "restored" : "reserved";
     rec.owner = isComp ? `shared.${app}.${name}` : `shared.${app}.modules`;
@@ -333,7 +347,7 @@ export function buildRegistry(site, { APP, gaps = scanSharedGaps(site), vueAlias
     }
     // exports of an API chunk that are not request functions (constants, merged objects): keep the original export name
     const ex = exportsOf(site, f); delete ex.__tla;
-    for (const alias of Object.keys(ex)) if (usedBy.has(`${f}#${alias}`) && !api[`${f}#${alias}`]) api[`${f}#${alias}`] = { path: apiModules[f].path, export: alias, status: keep && existingApiExports(APP, app, keep.file).has(alias) ? "restored" : "reserved", note: "不是接口函数（常量或对象），按原导出名导出" };
+    for (const alias of Object.keys(ex)) if (usedBy.has(`${f}#${alias}`) && !api[`${f}#${alias}`]) api[`${f}#${alias}`] = { path: apiModules[f].path, export: chunkNames[f]?.[alias]?.export ?? alias, status: keep && existingApiExports(APP, app, keep.file).has(chunkNames[f]?.[alias]?.export ?? alias) ? "restored" : "reserved", note: "不是接口函数（常量或对象），按原导出名导出" };
   }
 
   // npm chunks and image constants become direct mappings
@@ -342,9 +356,16 @@ export function buildRegistry(site, { APP, gaps = scanSharedGaps(site), vueAlias
     if (v.kind === "module" || v.kind === "api") continue;
     // image constants: the hmrsfw-vue file restored from this chunk if there is one, otherwise @/shared/images
     const seed = v.kind === "asset" ? (seededFrom.get(f) ?? (exist(`@/shared/${chunkBase(f)}`) ? `@/shared/${chunkBase(f)}` : null)) : null;
-    const assetExport = (a, x) => { const o = chunkNames[f]?.[a]; if (o) return { ...x, path: o.path, export: o.export, status: exist(o.path)?.exports.has(o.export) ? "restored" : "reserved", owner: `shared.${app}.modules` }; if (seed && exist(seed)?.exports.has(a)) return { ...x, path: seed, export: exist(seed).aliasOf.get(a) ?? a, status: "restored" }; return { ...x, path: "@/shared/images", export: Object.keys(v.exports).length === 1 ? `${camel(chunkBase(f))}Img` : camel(`${chunkBase(f)}-img-${a}`), status: "reserved", owner: `shared.${app}.modules` }; };
+    const assetExport = (a, x) => { const o = chunkNames[f]?.[a]; if (o) { const have = !!exist(o.path)?.exports.has(o.export); return { ...x, path: o.path, export: o.export, status: have ? "restored" : "reserved", ...(have ? {} : { owner: `shared.${app}.modules` }) }; } if (seed && exist(seed)?.exports.has(a)) return { ...x, path: seed, export: exist(seed).aliasOf.get(a) ?? a, status: "restored" }; return { ...x, path: "@/shared/images", export: Object.keys(v.exports).length === 1 ? `${camel(chunkBase(f))}Img` : camel(`${chunkBase(f)}-img-${a}`), status: "reserved", owner: `shared.${app}.modules` }; };
     modules[f] = { kind: v.kind, ...(v.npm ? { npm: v.npm } : {}), ...(v.note ? { note: v.note } : {}), exports: v.kind === "asset" ? Object.fromEntries(Object.entries(v.exports).map(([a, x]) => [a, assetExport(a, x)])) : v.exports };
   }
+
+  // original symbol → business name (HM-19): every record says which minified symbol of the original build it stands for,
+  // in the same notation the maps use (entry: the export alias; shared / modules / api: "<chunk>#<alias>")
+  for (const [a, rec] of Object.entries(entry)) if (rec.status !== "ignore") rec.original = a;
+  for (const [f, rec] of Object.entries(shared)) for (const [a, x] of Object.entries(rec.exports)) x.original = `${f}#${a}`;
+  for (const [f, rec] of Object.entries(modules)) if (rec.kind === "asset") for (const [a, x] of Object.entries(rec.exports)) x.original = `${f}#${a}`;
+  for (const [k, rec] of Object.entries(api)) rec.original = k;
 
   // globals
   const g0 = gaps.globals;
@@ -369,6 +390,7 @@ export function buildRegistry(site, { APP, gaps = scanSharedGaps(site), vueAlias
   for (const v of Object.values(entry)) stats.entry[v.status] = (stats.entry[v.status] ?? 0) + 1;
   for (const v of Object.values(shared)) stats.shared[v.status] = (stats.shared[v.status] ?? 0) + 1;
   for (const v of Object.values(api)) stats.api[v.status] = (stats.api[v.status] ?? 0) + 1;
+  stats.names = nameStats({ entry, shared, modules, api });
   return {
     registry: {
       $doc: "docs/work-orders.md#公共库清单", app, site, vueVersion: cfg.vueVersion, antdVersion: cfg.antdVersion, appCode: gaps.appCode,
@@ -394,6 +416,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     const text = JSON.stringify(registry, null, 1) + "\n";
     if (check) { const same = prev && JSON.stringify(prev) === JSON.stringify(registry); if (!same) diff++; console.log(`${app}: ${same ? "same" : "DIFFERENT"}`); }
     else { writeFileSync(file, text); console.log(`${app}: ${file} entry ${JSON.stringify(registry.stats.entry)} shared ${JSON.stringify(registry.stats.shared)} api ${JSON.stringify(registry.stats.api)}`); }
+    if (registry.stats.names.unnamed.length) { diff++; console.log(`  ${app}: ${registry.stats.names.unnamed.length} exported symbol(s) have no business name: ${registry.stats.names.unnamed.slice(0, 8).join(", ")} — add them to registry/names.${app}.json "chunks"`); }
     for (const w of warnings) console.log(`  warn ${w}`);
   }
   process.exitCode = diff ? 1 : 0;

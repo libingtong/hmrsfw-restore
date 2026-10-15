@@ -264,15 +264,17 @@
  "shared": {
   "Je": {
    "original": "wxyy.hook.1751615607545.js#_",
-   "path": "@/legacy",
-   "export": "ROBOT_IMG",
-   "status": "restored"
+   "path": "@/shared/wxyy.hook.ts",
+   "export": "wenXinIconImg",
+   "status": "reserved",
+   "owner": "shared.uc.modules"
   },
   "Jl": {
    "original": "wxyy.hook.1751615607545.js#g",
-   "path": "@/legacy",
+   "path": "@/shared/wxyy.hook.ts",
    "export": "askWenXin",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "shared.uc.modules"
   },
   "$l": {
    "original": "unfold.1751615607545.js#u",

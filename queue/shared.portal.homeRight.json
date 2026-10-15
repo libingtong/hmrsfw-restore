@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/homeRight.vue",
  "exports": {
   "h": {
-   "export": "default"
+   "export": "default",
+   "original": "homeRight.1783320636200.js#h"
   }
  },
  "registryKey": "homeRight.1783320636200.js",

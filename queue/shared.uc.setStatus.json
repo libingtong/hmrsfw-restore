@@ -21,7 +21,8 @@
  "target": "apps/uc/src/shared/setStatus.vue",
  "exports": {
   "a": {
-   "export": "default"
+   "export": "default",
+   "original": "setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js#a"
   }
  },
  "registryKey": "setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js",

@@ -16,7 +16,8 @@
  "target": "apps/portal/src/shared/ellipsisText.vue",
  "exports": {
   "e": {
-   "export": "default"
+   "export": "default",
+   "original": "ellipsisText.1783320636200.js#e"
   }
  },
  "registryKey": "ellipsisText.1783320636200.js",

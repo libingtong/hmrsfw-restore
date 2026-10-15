@@ -1,5 +1,5 @@
 {
- "_doc": "入口导出的可读名（人工核定）。来源：shim-map = POC 对照表（20 页确认后的版本）；curated = 按入口定义核定。接口函数、组件、图标不在此表，由 tools/registry.mjs 按 URL、组件名、图标定义推导。改名会改变所有页面工单的导入，只能在入口单还原之前改。",
+ "_doc": "入口导出的可读名（人工核定）。来源：shim-map = POC 对照表（20 页确认后的版本）；curated = 按入口定义核定。接口函数、组件、图标不在此表，由 tools/registry.mjs 按 URL、组件名、图标定义推导。改名会改变所有页面工单的导入，只能在入口单还原之前改。 chunks：入口以外的 chunk 的导出业务名（HM-19）。键是原 chunk 文件名，下一层的键是原导出名（压缩名），值是 {export, path?}。registry.mjs 把它写进 registry 的 shared / modules，并在每条记录上留 original（原符号）。",
  "entry": {
   "_": {
    "ignore": "_export_sfc：SFC 里不需要，忽略",
@@ -442,13 +442,46 @@
   }
  },
  "chunks": {
-  "wxyy.hook.1751615607545.js": {
-   "_": {
-    "path": "@/legacy",
-    "export": "ROBOT_IMG"
+  "Content.vue_vue_type_script_setup_true_lang.1751615607545.js": {
+   "a": {
+    "export": "queryOddUserById"
+   },
+   "c": {
+    "export": "checkIzPerfect"
+   },
+   "d": {
+    "export": "getCompanyPositionDetailById"
+   },
+   "e": {
+    "export": "editOddUser"
    },
    "g": {
-    "path": "@/legacy",
+    "export": "querySysUserByIdJM"
+   }
+  },
+  "confPass.1751615607545.js": {
+   "m": {
+    "export": "queryMySubscribeFair"
+   },
+   "o": {
+    "export": "fairSubscribe"
+   }
+  },
+  "mymsg.1751615607545.js": {
+   "_": {
+    "export": "emptyListImg"
+   }
+  },
+  "dateUtil.1751615607545.js": {
+   "a": {
+    "export": "addDays"
+   }
+  },
+  "wxyy.hook.1751615607545.js": {
+   "_": {
+    "export": "wenXinIconImg"
+   },
+   "g": {
     "export": "askWenXin"
    }
   }

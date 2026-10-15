@@ -74,7 +74,7 @@
   "J": {
    "original": "message.1783320636200.js#s",
    "path": "@/shared/message.ts",
-   "export": "s",
+   "export": "showSubmitSuccessMessage",
    "status": "reserved",
    "owner": "shared.portal.modules"
   }

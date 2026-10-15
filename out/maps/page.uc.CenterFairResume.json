@@ -22,9 +22,10 @@
  "shared": {
   "m": {
    "original": "index.175161560754528.js#f",
-   "path": "@/shared/ReceivedResumeList.vue",
+   "path": "@/shared/Index.vue",
    "export": "default",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "shared.uc.Index"
   }
  },
  "views": {},

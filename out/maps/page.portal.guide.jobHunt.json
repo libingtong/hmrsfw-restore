@@ -1,5 +1,5 @@
 {
- "id": "page.portal.guide.jobHunt",
+ "id": "seg.portal.guide.jobHunt.2",
  "chunk": "legacy-dist/portal/assets/jobHunt.1783320636200.js",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -302,14 +302,14 @@
   "$a": {
    "original": "auth.1783320636200.js#_",
    "path": "@/shared/auth.ts",
-   "export": "_",
+   "export": "nextPageIconImg",
    "status": "reserved",
    "owner": "shared.portal.auth"
   },
   "Za": {
    "original": "auth.1783320636200.js#a",
    "path": "@/shared/auth.ts",
-   "export": "a",
+   "export": "realNameAuthImg",
    "status": "reserved",
    "owner": "shared.portal.auth"
   },

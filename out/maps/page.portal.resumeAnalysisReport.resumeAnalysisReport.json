@@ -150,7 +150,7 @@
    "value": "/assets/noResumeR.1783320636200.png",
    "inline": false,
    "path": "@/shared/noResumeR",
-   "export": "_",
+   "export": "noResumeImg",
    "status": "restored"
   },
   "q": {

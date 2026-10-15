@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/homeNews.vue",
  "exports": {
   "h": {
-   "export": "default"
+   "export": "default",
+   "original": "homeNews.17833206362002.js#h"
   }
  },
  "registryKey": "homeNews.17833206362002.js",

@@ -30,11 +30,13 @@
  "exports": {
   "a": {
    "path": "@/shared/workshopNews/WorkshopNews.vue",
-   "export": "default"
+   "export": "default",
+   "original": "workshopNews.1751615607545.js#a"
   },
   "w": {
    "path": "@/shared/workshopNews/WorkshopType.vue",
-   "export": "default"
+   "export": "default",
+   "original": "workshopNews.1751615607545.js#w"
   }
  },
  "registryKey": "workshopNews.1751615607545.js",
