@@ -55,8 +55,7 @@ function scriptOf(sfc, file) {
 function changedFiles(APP) {
   const git = (...a) => execFileSync("git", ["-C", APP, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trimEnd(); // keep the leading space of porcelain lines
   try {
-    // HMRSFW_GIT_BASE: the gate sets it for fast-lane pages, whose branch is `restore/fast-lane` itself, not a branch cut from integration
-    const base = [process.env.HMRSFW_GIT_BASE, "origin/integration", "origin/main", "integration", "main"].filter(Boolean).find((r) => { try { git("rev-parse", "--verify", "--quiet", r); return true; } catch { return false; } });
+    const base = ["origin/integration", "origin/main", "integration", "main"].find((r) => { try { git("rev-parse", "--verify", "--quiet", r); return true; } catch { return false; } });
     if (!base) return { files: null, base: null };
     const mb = git("merge-base", "HEAD", base);
     const committed = git("diff", "--name-only", `${mb}...HEAD`).split("\n").filter(Boolean);
