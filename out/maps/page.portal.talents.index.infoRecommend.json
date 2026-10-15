@@ -40,8 +40,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Ie": {
    "original": "u",
@@ -71,7 +70,7 @@
    "original": "index.api.178332063620037.js#b",
    "path": "@/api/sysBusinessSetting",
    "export": "listForWebsite",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
   }
  },

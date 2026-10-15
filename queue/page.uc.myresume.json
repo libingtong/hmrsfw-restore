@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/myresume",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.myresume.json",
  "hints": "out/hints/page.uc.myresume.md",
  "deps": {

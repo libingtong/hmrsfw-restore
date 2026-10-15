@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/sjz/bigData/TopTitle/",
  "routes": [],
  "recordPath": "/sjzbigData",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.bigData.TopTitle.json",
  "hints": "out/hints/page.portal.sjz.bigData.TopTitle.md",
  "deps": {

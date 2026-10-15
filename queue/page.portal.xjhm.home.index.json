@@ -33,6 +33,7 @@
   }
  ],
  "recordPath": "/",
+ "role": "general",
  "maps": "out/maps/page.portal.xjhm.home.index.json",
  "hints": "out/hints/page.portal.xjhm.home.index.md",
  "deps": {
@@ -73,13 +74,11 @@
   "modules": [
    "jqqd.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.xjhm.home.advertTop"
+  ],
   "orders": [
-   "entry.portal.E5",
-   "entry.portal.E6",
-   "entry.portal.c03",
-   "entry.portal.c04",
-   "entry.portal.c09",
+   "page.portal.xjhm.home.advertTop",
    "shared.portal.FriendLinks",
    "shared.portal.homeNews3",
    "shared.portal.homeRight2",

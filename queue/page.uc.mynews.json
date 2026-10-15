@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/mynews",
+ "role": "general",
  "maps": "out/maps/page.uc.mynews.json",
  "hints": "out/hints/page.uc.mynews.md",
  "deps": {
@@ -42,9 +43,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

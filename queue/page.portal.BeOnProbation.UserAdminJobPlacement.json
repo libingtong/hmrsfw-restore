@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/UserAdminJobPlacement",
+ "role": "general",
  "maps": "out/maps/page.portal.BeOnProbation.UserAdminJobPlacement.json",
  "hints": "out/hints/page.portal.BeOnProbation.UserAdminJobPlacement.md",
  "deps": {

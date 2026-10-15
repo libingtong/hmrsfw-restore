@@ -32,6 +32,7 @@
   }
  ],
  "recordPath": "/expert",
+ "role": "general",
  "maps": "out/maps/page.uc.expert.json",
  "hints": "out/hints/page.uc.expert.md",
  "deps": {
@@ -57,9 +58,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

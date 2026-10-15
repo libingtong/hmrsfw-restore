@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/liveApply",
+ "role": "corp",
  "maps": "out/maps/page.uc.liveApply.json",
  "hints": "out/hints/page.uc.liveApply.md",
  "deps": {

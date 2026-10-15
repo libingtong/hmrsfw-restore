@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/changeavatar",
+ "role": "general",
  "maps": "out/maps/page.uc.changeavatar.json",
  "hints": "out/hints/page.uc.changeavatar.md",
  "deps": {

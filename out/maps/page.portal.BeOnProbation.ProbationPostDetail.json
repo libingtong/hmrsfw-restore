@@ -44,8 +44,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "qe": {
    "original": "o",
@@ -110,28 +109,28 @@
  "api": {
   "Se": {
    "original": "index.api.1783320636200.js#d",
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freePositionDetail",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freePositionDetail"
   },
   "Ve": {
    "original": "index.api.1783320636200.js#e",
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freeCompanyDetailById",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyDetailById"
   },
   "ze": {
    "original": "index.api.1783320636200.js#f",
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freeDetailById",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeDetailById"
   },
   "Oe": {
    "original": "index.api.17833206362002.js#q",
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryIzCanDeliver",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver"

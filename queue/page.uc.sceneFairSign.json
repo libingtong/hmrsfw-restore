@@ -35,6 +35,7 @@
   }
  ],
  "recordPath": "/sceneFairSign/:zphId",
+ "role": "corp",
  "maps": "out/maps/page.uc.sceneFairSign.json",
  "hints": "out/hints/page.uc.sceneFairSign.md",
  "deps": {
@@ -60,9 +61,11 @@
    "index.api.175161560754512.js#l"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.uc.webFairWork"
+  ],
   "orders": [
-   "entry.uc.E6"
+   "page.uc.webFairWork"
   ]
  },
  "stylesProvidedByScript": true

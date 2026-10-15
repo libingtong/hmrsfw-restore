@@ -36,7 +36,7 @@
  "api": {
   "E": {
    "original": "index.api.178332063620017.js#w",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "getFairList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/getFairList"

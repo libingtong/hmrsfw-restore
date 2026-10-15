@@ -206,7 +206,26 @@
    "owner": "shared.portal.modules"
   }
  },
- "views": {},
+ "views": {
+  "pa": {
+   "original": "pieCommon.17833206362007.js#default",
+   "path": "@/views/zcyz/bigData/components/pieCommon.vue",
+   "export": "default",
+   "order": "page.portal.zcyz.bigData.components.pieCommon"
+  },
+  "ue": {
+   "original": "pieRader.1783320636200.js#default",
+   "path": "@/views/zcyz/bigData/components/pieRader.vue",
+   "export": "default",
+   "order": "page.portal.zcyz.bigData.components.pieRader"
+  },
+  "ve": {
+   "original": "scrollList.17833206362002.js#default",
+   "path": "@/views/zcyz/bigData/components/scrollList.vue",
+   "export": "default",
+   "order": "page.portal.zcyz.bigData.components.scrollList"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "timeOut.1783320636200.js",

@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/talents/jobList",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.job.jobList.json",
  "hints": "out/hints/page.portal.talents.job.jobList.md",
  "deps": {

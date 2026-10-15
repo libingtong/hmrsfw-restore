@@ -40,6 +40,7 @@
   }
  ],
  "recordPath": "/main",
+ "role": "general",
  "maps": "out/maps/page.uc.main.json",
  "hints": "out/hints/page.uc.main.md",
  "deps": {
@@ -86,8 +87,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.uc.E4",
-   "entry.uc.E6",
    "shared.uc.addKeynote",
    "shared.uc.market",
    "shared.uc.mymsg",

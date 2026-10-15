@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/overseasRecruitment",
+ "role": "general",
  "maps": "out/maps/page.uc.overseasRecruitment.json",
  "hints": "out/hints/page.uc.overseasRecruitment.md",
  "deps": {
@@ -44,9 +45,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

@@ -33,15 +33,13 @@
    "original": "aC",
    "path": "@/legacy/api",
    "export": "queryPageInterviewListByCompanyId",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "W": {
    "original": "a7",
    "path": "@/legacy/api",
    "export": "isPublishingPosition",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "ee": {
    "original": "M",

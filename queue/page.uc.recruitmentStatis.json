@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/recruitmentStatis",
+ "role": "corp",
  "maps": "out/maps/page.uc.recruitmentStatis.json",
  "hints": "out/hints/page.uc.recruitmentStatis.md",
  "deps": {

@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/inSurvey",
+ "role": "general",
  "maps": "out/maps/page.uc.inSurvey.json",
  "hints": "out/hints/page.uc.inSurvey.md",
  "deps": {
@@ -40,9 +41,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

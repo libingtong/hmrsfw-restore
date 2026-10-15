@@ -89,8 +89,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "qt": {
    "original": "ap",
@@ -173,49 +172,49 @@
  "api": {
   "to": {
    "original": "index.api.178332063620017.js#b",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "updateBrowseCount",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/updateBrowseCount"
   },
   "oo": {
    "original": "index.api.178332063620017.js#c",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/queryById"
   },
   "so": {
    "original": "index.api.178332063620017.js#d",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryJobFairStatistics",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/statistics/queryJobFairStatistics"
   },
   "lo": {
    "original": "index.api.178332063620017.js#e",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "scrollBarData",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/scrollBarData"
   },
   "io": {
    "original": "index.api.178332063620017.js#f",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryAttendeesCompany",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesCompany"
   },
   "ro": {
    "original": "index.api.178332063620017.js#h",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryAttendeesPosition",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesPosition"
   },
   "zo": {
    "original": "index.1783320636200117.js#g",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "getQrcodeImgByObjectId",
    "status": "restored",
    "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"
@@ -265,7 +264,20 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "ho": {
+   "original": "signModal.1783320636200.js#default",
+   "path": "@/shared/signModal.vue",
+   "export": "default",
+   "order": "page.portal.fair.signModal"
+  },
+  "bo": {
+   "original": "NumVideo.1783320636200.js#default",
+   "path": "@/views/fair/webFair/NumVideo.vue",
+   "export": "default",
+   "order": "page.portal.fair.webFair.NumVideo"
+  }
+ },
  "modules": {
   "Pt": {
    "original": "down.1783320636200.js#_",

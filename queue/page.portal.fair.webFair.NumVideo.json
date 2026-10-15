@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/fair/webFair/NumVideo/",
  "routes": [],
  "recordPath": "/webFairDetail/:zphId",
+ "role": "general",
  "maps": "out/maps/page.portal.fair.webFair.NumVideo.json",
  "hints": "out/hints/page.portal.fair.webFair.NumVideo.md",
  "deps": {

@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/GuidanceHome",
+ "role": "general",
  "maps": "out/maps/page.portal.Guidance.GuidanceHome.index.json",
  "hints": "out/hints/page.portal.Guidance.GuidanceHome.index.md",
  "deps": {
@@ -73,8 +74,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.c03",
-   "entry.portal.c05",
    "shared.portal.ellipsisText",
    "shared.portal.modules"
   ]

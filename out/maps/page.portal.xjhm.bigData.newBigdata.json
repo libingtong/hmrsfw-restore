@@ -39,15 +39,13 @@
    "original": "cA",
    "path": "@/legacy/api",
    "export": "sysRandomImage",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "sl": {
    "original": "cB",
    "path": "@/legacy/api",
    "export": "login",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Nt": {
    "original": "A",

@@ -27,6 +27,7 @@
   }
  ],
  "recordPath": "/sjzbigData",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.bigData.screen.json",
  "hints": "out/hints/page.portal.sjz.bigData.screen.md",
  "deps": {
@@ -34,8 +35,18 @@
   "shared": [],
   "api": [],
   "modules": [],
-  "views": [],
-  "orders": []
+  "views": [
+   "page.portal.sjz.bigData.TopTitle",
+   "page.portal.sjz.bigData.components.Dashboard1",
+   "page.portal.sjz.bigData.components.Dashboard2",
+   "page.portal.sjz.bigData.index"
+  ],
+  "orders": [
+   "page.portal.sjz.bigData.TopTitle",
+   "page.portal.sjz.bigData.components.Dashboard1",
+   "page.portal.sjz.bigData.components.Dashboard2",
+   "page.portal.sjz.bigData.index"
+  ]
  },
  "stylesProvidedByScript": true
 }

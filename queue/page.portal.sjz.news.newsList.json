@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/newsList",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.news.newsList.json",
  "hints": "out/hints/page.portal.sjz.news.newsList.md",
  "deps": {

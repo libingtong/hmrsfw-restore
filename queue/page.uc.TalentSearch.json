@@ -35,6 +35,7 @@
   }
  ],
  "recordPath": "/TalentSearch",
+ "role": "corp",
  "maps": "out/maps/page.uc.TalentSearch.json",
  "hints": "out/hints/page.uc.TalentSearch.md",
  "deps": {
@@ -58,9 +59,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

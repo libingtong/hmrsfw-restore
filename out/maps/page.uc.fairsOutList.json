@@ -50,7 +50,7 @@
  "api": {
   "ae": {
    "original": "index.api.175161560754512.js#b",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "list3",
    "status": "restored",
    "url": "/xf-job/job/xfJobFairUnsubscribeAuditRecord/list"

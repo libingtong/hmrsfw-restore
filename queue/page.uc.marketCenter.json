@@ -37,6 +37,7 @@
   }
  ],
  "recordPath": "/marketCenter",
+ "role": null,
  "maps": "out/maps/page.uc.marketCenter.json",
  "hints": "out/hints/page.uc.marketCenter.md",
  "deps": {
@@ -65,12 +66,12 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.uc.E6",
    "shared.uc.addKeynote",
    "shared.uc.authCompany",
    "shared.uc.right",
    "shared.uc.setStatus"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "notes": "待人确认（uc-role-decisions.json）：「招聘超市」身份（userroledata type 50）的主页，按 corpInfo 单位取数；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到招聘超市；建议 不录（记阻塞）或 corp；需要确认：给测试账号开通招聘超市身份（造数）后再录，还是按招聘单位身份录，还是记阻塞"
 }

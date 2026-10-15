@@ -35,6 +35,7 @@
   }
  ],
  "recordPath": "/answer",
+ "role": "general",
  "maps": "out/maps/page.portal.answer.index.json",
  "hints": "out/hints/page.portal.answer.index.md",
  "deps": {
@@ -57,10 +58,11 @@
   "modules": [
    "wenjuan.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.answer.passwordModal"
+  ],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
+   "page.portal.answer.passwordModal",
    "shared.portal.modules"
   ]
  },

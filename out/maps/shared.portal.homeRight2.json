@@ -49,8 +49,7 @@
    "original": "ab",
    "path": "@/legacy/api",
    "export": "getArticleListNoCheck",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "q": {
    "original": "B",
@@ -72,8 +71,7 @@
    "original": "by",
    "path": "@/legacy/images",
    "export": "ENTRY_IMAGE_BY",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "K": {
    "original": "a6",
@@ -85,22 +83,19 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "U": {
    "original": "aY",
    "path": "@/legacy/images",
    "export": "ENTRY_IMAGE_AY",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "V": {
    "original": "as",
    "path": "@/legacy/utils",
    "export": "getUserInfo",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   }
  },
  "api": {},

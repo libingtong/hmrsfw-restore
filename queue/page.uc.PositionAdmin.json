@@ -39,6 +39,7 @@
   }
  ],
  "recordPath": "/PositionAdmin",
+ "role": "corp",
  "maps": "out/maps/page.uc.PositionAdmin.json",
  "hints": "out/hints/page.uc.PositionAdmin.md",
  "deps": {
@@ -74,9 +75,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

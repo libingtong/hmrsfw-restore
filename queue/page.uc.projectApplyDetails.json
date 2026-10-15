@@ -112,6 +112,7 @@
   }
  ],
  "recordPath": "/projectApplyDetails",
+ "role": "general",
  "maps": "out/maps/page.uc.projectApplyDetails.json",
  "hints": "out/hints/page.uc.projectApplyDetails.md",
  "deps": {

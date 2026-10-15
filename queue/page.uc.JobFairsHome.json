@@ -1,7 +1,7 @@
 {
  "id": "page.uc.JobFairsHome",
  "type": "page",
- "status": "regression",
+ "status": "todo",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/JobFairsHome/:key?",
+ "role": "corp",
  "maps": "out/maps/page.uc.JobFairsHome.json",
  "hints": "out/hints/page.uc.JobFairsHome.md",
  "deps": {
@@ -58,9 +59,5 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/JobFairsHome/:key?",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "stylesProvidedByScript": true
 }

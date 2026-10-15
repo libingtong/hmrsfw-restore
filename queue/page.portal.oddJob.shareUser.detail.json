@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/shareUserDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.oddJob.shareUser.detail.json",
  "hints": "out/hints/page.portal.oddJob.shareUser.detail.md",
  "deps": {
@@ -56,8 +57,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
    "shared.portal.complaint"
   ]
  },

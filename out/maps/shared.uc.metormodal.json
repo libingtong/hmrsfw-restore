@@ -71,28 +71,28 @@
    "original": "index.api.17516156075454.js#e",
    "path": "@/api/sysConsult",
    "export": "queryById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfSysConsult/queryById"
   },
   "$": {
    "original": "index.api.17516156075454.js#a",
    "path": "@/api/sysConsult",
    "export": "queryOneForUserCenter",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobUserTutorExpand/queryOneForUserCenter"
   },
   "j": {
    "original": "index.api.17516156075454.js#f",
    "path": "@/api/sysConsult",
    "export": "checkIzCanReply",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfSysConsultReply/checkIzCanReply"
   },
   "A": {
    "original": "index.api.17516156075454.js#h",
    "path": "@/api/sysConsult",
    "export": "saveOne",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfSysConsultReply/saveOne"
   }
  },

@@ -60,8 +60,7 @@
    "original": "l",
    "path": "@/legacy/utils",
    "export": "setLocalStorage",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "ve": {
    "original": "f",
@@ -73,8 +72,7 @@
    "original": "q",
    "path": "@/legacy/api",
    "export": "queryByCompanyId",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "$": {
    "original": "m",
@@ -104,8 +102,7 @@
    "original": "j",
    "path": "@/legacy/api",
    "export": "sysUserAuthenticateIdentityList",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "we": {
    "original": "_",
@@ -117,49 +114,49 @@
    "original": "index.api.1751615607545.js#g",
    "path": "@/api/jobSupermarketMerchants",
    "export": "queryByUserId",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId"
   },
   "Te": {
    "original": "index.api.1751615607545.js#a",
    "path": "@/api/jobSupermarketMerchants",
    "export": "getAppealFlagByXfSysUserId",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobAppealRecord/getAppealFlagByXfSysUserId"
   },
   "Ce": {
    "original": "index.api.1751615607545.js#b",
    "path": "@/api/jobSupermarketMerchants",
    "export": "addForClosDown",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobAppealRecord/merchants/addForClosDown"
   },
   "Ue": {
    "original": "index.api.1751615607545.js#c",
    "path": "@/api/jobSupermarketMerchants",
    "export": "checkIzPerfect",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysUser/checkIzPerfect"
   },
   "Be": {
    "original": "index.api.1751615607545.js#p",
    "path": "@/api/jobSupermarketMerchants",
    "export": "beJobSeeker",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/beJobSeeker"
   },
   "Oe": {
    "original": "index.api.1751615607545.js#d",
    "path": "@/api/jobSupermarketMerchants",
    "export": "apply",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobSupermarketMerchants/apply"
   },
   "ze": {
    "original": "index.api.1751615607545.js#l",
    "path": "@/api/jobSupermarketMerchants",
    "export": "logout",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobSupermarketMerchants/logout"
   }
  },

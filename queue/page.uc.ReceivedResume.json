@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/ReceivedResume",
+ "role": "corp",
  "maps": "out/maps/page.uc.ReceivedResume.json",
  "hints": "out/hints/page.uc.ReceivedResume.md",
  "deps": {
@@ -60,7 +61,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.uc.E6",
    "shared.uc.iframeModal"
   ]
  },

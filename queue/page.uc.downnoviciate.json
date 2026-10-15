@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/downnoviciate",
+ "role": "corp",
  "maps": "out/maps/page.uc.downnoviciate.json",
  "hints": "out/hints/page.uc.downnoviciate.md",
  "deps": {
@@ -47,9 +48,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

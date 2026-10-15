@@ -45,8 +45,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "We": {
    "original": "_",
@@ -56,14 +55,14 @@
  "api": {
   "Ye": {
    "original": "index.api.178332063620024.js#o",
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "appletShareSurplusJobList",
    "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/appletShareSurplusJobList"
   },
   "Ze": {
    "original": "index.api.178332063620024.js#m",
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "getDictListByType",
    "status": "restored",
    "url": "/xf-job/communal/licenseFree/getDictListByType?dictTypeCode=ACA111_C"
@@ -83,7 +82,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "je": {
+   "original": "index.178332063620051.js#default",
+   "path": "@/views/oddJob/rtInto/index.vue",
+   "export": "default",
+   "order": "page.portal.oddJob.rtInto.index"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "main.1783320636200.js"

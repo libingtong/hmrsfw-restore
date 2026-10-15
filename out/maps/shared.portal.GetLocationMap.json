@@ -22,8 +22,7 @@
    "original": "N",
    "path": "@/legacy/utils",
    "export": "getCurrentLocation",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   }
  },
  "api": {},

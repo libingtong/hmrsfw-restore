@@ -37,15 +37,13 @@
    "original": "bq",
    "path": "@/legacy/api",
    "export": "getAllianceCompanyForMyCare",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "_e": {
    "original": "br",
    "path": "@/legacy/api",
    "export": "getAlliancePositionForMyCare",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "F": {
    "original": "B",
@@ -69,8 +67,7 @@
    "original": "b5",
    "path": "@/legacy/api",
    "export": "cancel",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "H": {
    "original": "m",

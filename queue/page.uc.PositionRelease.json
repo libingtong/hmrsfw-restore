@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/PositionRelease",
+ "role": "corp",
  "maps": "out/maps/page.uc.PositionRelease.json",
  "hints": "out/hints/page.uc.PositionRelease.md",
  "deps": {
@@ -69,7 +70,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.uc.E6",
    "shared.uc.modules"
   ]
  },

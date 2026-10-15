@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/newBigdata",
+ "role": "general",
  "maps": "out/maps/page.portal.xjhm.bigData.newBigdata.json",
  "hints": "out/hints/page.portal.xjhm.bigData.newBigdata.md",
  "deps": {
@@ -54,7 +55,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.portal.E6",
    "shared.portal.bars",
    "shared.portal.init",
    "shared.portal.lines",

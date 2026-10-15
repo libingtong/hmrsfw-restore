@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/fairsList",
+ "role": "corp",
  "maps": "out/maps/page.uc.fairsList.json",
  "hints": "out/hints/page.uc.fairsList.md",
  "deps": {

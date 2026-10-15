@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/jobMarket",
+ "role": "general",
  "maps": "out/maps/page.portal.jobMarket.index.json",
  "hints": "out/hints/page.portal.jobMarket.index.md",
  "deps": {

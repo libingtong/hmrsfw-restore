@@ -76,14 +76,14 @@
  "api": {
   "Ee": {
    "original": "index.api.1783320636200.js#f",
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freeDetailById",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeDetailById"
   },
   "Me": {
    "original": "index.api.1783320636200.js#a",
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freeCompanyExpandPositionList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyExpandPositionList"

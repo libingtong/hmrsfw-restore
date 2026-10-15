@@ -51,14 +51,14 @@
    "original": "index.api.175161560754510.js#b",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "queryPageInterviewListByCompanyId",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/queryPageInterviewListByCompanyId"
   },
   "J": {
    "original": "index.api.175161560754510.js#a",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "addTalent",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
   }
  },

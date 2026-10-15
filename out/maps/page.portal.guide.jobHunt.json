@@ -71,15 +71,13 @@
    "original": "bh",
    "path": "@/legacy/utils",
    "export": "parseIdCard",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "st": {
    "original": "aR",
    "path": "@/legacy/utils",
    "export": "isMobilePhone",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "ge": {
    "original": "A",
@@ -95,8 +93,7 @@
    "original": "bi",
    "path": "@/legacy/api",
    "export": "getAllInfo",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Re": {
    "original": "L",
@@ -132,8 +129,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Ue": {
    "original": "o",
@@ -181,15 +177,13 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "ut": {
    "original": "a5",
    "path": "@/legacy/api",
    "export": "listOneForWebSite",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "pt": {
    "original": "u",
@@ -201,77 +195,76 @@
    "original": "aU",
    "path": "@/legacy/api",
    "export": "recommendJobList",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   }
  },
  "api": {
   "gt": {
    "original": "index.1783320636200117.js#c",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "checkIdCard",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUser/checkIdCard"
   },
   "fe": {
    "original": "index.1783320636200117.js#s",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "saveForUserCenter",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUser/saveForUserCenter"
   },
   "Qe": {
    "original": "index.1783320636200117.js#b",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "setCompleteStatus",
    "status": "restored",
    "url": "/xf-job/communal/xfSysGuideRecord/setCompleteStatus"
   },
   "ft": {
    "original": "index.1783320636200117.js#d",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "save",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/save"
   },
   "vt": {
    "original": "index.1783320636200117.js#v",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "list2",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/list"
   },
   "yt": {
    "original": "index.1783320636200117.js#e",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "beJobSeeker",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/beJobSeeker"
   },
   "xt": {
    "original": "index.1783320636200117.js#f",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "addBatch",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/addBatch"
   },
   "At": {
    "original": "index.api.17833206362002.js#e",
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "add",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/add"
   },
   "St": {
    "original": "index.api.17833206362002.js#h",
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "cancel",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/cancel"
   },
   "Ut": {
    "original": "index.api.17833206362002.js#q",
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryIzCanDeliver",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver"

@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/oddjob/lack",
+ "role": "corp",
  "maps": "out/maps/page.uc.oddjob.lack.json",
  "hints": "out/hints/page.uc.oddjob.lack.md",
  "deps": {

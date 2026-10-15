@@ -33,14 +33,14 @@
  "api": {
   "P": {
    "original": "index.api.17516156075456.js#g",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryRuleList",
    "status": "restored",
    "url": "/xf-job/job/xfJobIntegralRule/queryRuleList"
   },
   "j": {
    "original": "index.api.17516156075456.js#a",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryDetailList",
    "status": "restored",
    "url": "/xf-job/job/xfJobIntegralDetailRecord/queryDetailList"

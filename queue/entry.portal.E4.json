@@ -18,13 +18,13 @@
    "alias": "aq",
    "path": "@/legacy/store",
    "export": "useStoreGetters",
-   "status": "reserved"
+   "status": "restored"
   },
   {
    "alias": "bt",
    "path": "@/legacy/store",
    "export": "store",
-   "status": "reserved"
+   "status": "restored"
   }
  ],
  "note": "门户 vuex，用户中心 pinia（+ autoLogin 用的 vuex）",

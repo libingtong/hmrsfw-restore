@@ -61,6 +61,7 @@
   }
  ],
  "recordPath": "/sign/corpApply",
+ "role": "corp",
  "maps": "out/maps/page.uc.sign.corpApply.json",
  "hints": "out/hints/page.uc.sign.corpApply.md",
  "deps": {

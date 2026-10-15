@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/BeOnProbationAdmin",
+ "role": "corp",
  "maps": "out/maps/page.uc.BeOnProbationAdmin.json",
  "hints": "out/hints/page.uc.BeOnProbationAdmin.md",
  "deps": {
@@ -58,7 +59,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.uc.E6",
    "shared.uc.corporganic",
    "shared.uc.workVideo"
   ]

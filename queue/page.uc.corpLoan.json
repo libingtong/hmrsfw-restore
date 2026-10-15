@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/corpLoan",
+ "role": "corp",
  "maps": "out/maps/page.uc.corpLoan.json",
  "hints": "out/hints/page.uc.corpLoan.md",
  "deps": {
@@ -40,9 +41,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.c01"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

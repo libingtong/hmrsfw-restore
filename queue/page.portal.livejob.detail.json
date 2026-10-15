@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/livedetail",
+ "role": "general",
  "maps": "out/maps/page.portal.livejob.detail.json",
  "hints": "out/hints/page.portal.livejob.detail.md",
  "deps": {
@@ -57,9 +58,11 @@
    "index.api.178332063620013.js#s"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.livejob.components.commentItem"
+  ],
   "orders": [
-   "entry.portal.E6",
+   "page.portal.livejob.components.commentItem",
    "shared.portal.likeBtn",
    "shared.portal.workItem"
   ]

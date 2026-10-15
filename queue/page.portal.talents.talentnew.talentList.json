@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/talents/talentsHome",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.talentnew.talentList.json",
  "hints": "out/hints/page.portal.talents.talentnew.talentList.md",
  "deps": {
@@ -62,9 +63,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
-   "entry.portal.c05",
    "shared.portal.InterviewInvitation"
   ]
  },

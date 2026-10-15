@@ -256,14 +256,17 @@ test("rule change review: two non-arbiter families; round 2 reject escalates to 
   assert.equal(r.ok, true, JSON.stringify(r));
   let reviews = issuesOf(fx).filter((i) => i.title.startsWith("[rule-review]"));
   assert.deepEqual(reviews.map((i) => i.assignee_id).sort(), [fx.id("review-deepseek"), fx.id("review-glm")]);
-  setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-deepseek")).id, "review.review-deepseek", { verdict: "approve", why: "ok" });
-  setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-glm")).id, "review.review-glm", { verdict: "reject", why: "swallows real diffs" });
+  // the key the task tells the reviewer is the one the scheduler reads; the roster name ("复核-GLM@Office") is refused
+  for (const i of reviews) assert.ok(i.description.includes(`\`review.${i.assignee_id}\``), i.description);
+  assert.throws(() => setMeta(fx, reviews[0].id, "review.复核-GLM@Office", { verdict: "approve" }), /invalid metadata key/);
+  setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-deepseek")).id, `review.${fx.id("review-deepseek")}`, { verdict: "approve", why: "ok" });
+  setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-glm")).id, `review.${fx.id("review-glm")}`, { verdict: "reject", why: "swallows real diffs" });
   node(fx, "tick.mjs", ["tick"]);
   assert.ok(issuesOf(fx).find((i) => i.title.startsWith("[incident]") && i.assignee_id === fx.id("arbiter")), "round 1 reject → back to the arbiter");
   r = node(fx, "tick.mjs", ["open-rule-review", "rules/r1"]);
   reviews = issuesOf(fx).filter((i) => i.title.includes(" r2 "));
   assert.equal(reviews.length, 2);
-  for (const i of reviews) { const name = i.assignee_id.slice(2); setMeta(fx, i.id, `review.${name}`, { verdict: name === "review-glm" ? "reject" : "approve", why: "x" }); }
+  for (const i of reviews) setMeta(fx, i.id, `review.${i.assignee_id}`, { verdict: i.assignee_id === fx.id("review-glm") ? "reject" : "approve", why: "x" });
   node(fx, "tick.mjs", ["tick"]);
   const blocked = issuesOf(fx).find((i) => i.status === "blocked");
   assert.ok(blocked, "escalated");
@@ -273,7 +276,7 @@ test("rule change review: two non-arbiter families; round 2 reject escalates to 
   writeFileSync(path.join(fx.tool, "rules.json"), JSON.stringify({ rules: ["base", "attr-order"] }));
   git(fx.tool, "commit", "-q", "-am", "rule r2"); git(fx.tool, "push", "-q", "origin", "rules/r2");
   node(fx, "tick.mjs", ["open-rule-review", "rules/r2"]);
-  for (const i of issuesOf(fx).filter((x) => x.title.includes("rules/r2"))) { const name = i.assignee_id.slice(2); setMeta(fx, i.id, `review.${name}`, { verdict: "approve", why: "equivalent" }); }
+  for (const i of issuesOf(fx).filter((x) => x.title.includes("rules/r2"))) setMeta(fx, i.id, `review.${i.assignee_id}`, { verdict: "approve", why: "equivalent" });
   node(fx, "tick.mjs", ["tick"]);
   assert.match(showRemote(fx, "tool", "main", "rules.json"), /attr-order/, "approved rule merged into tool main");
 });
@@ -534,4 +537,13 @@ test("bisect: failing page not yet merged at the midpoint → that step counts a
   assert.equal(issuesOf(fx).filter((i) => i.title.startsWith("[integration] bisect")).length, 0, "B3 is only in the last merge");
   assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/B3/index.vue"), null, "B3 merge reverted");
   assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/B2/index.vue"), vue("B2"));
+});
+
+test("an order whose chunk imports something the registry lacks (`missing`) is never dispatched; its neighbour is", () => {
+  const fx = makeFixture({ orders: [page("P1", 8, { missing: ["view:sibling.js"] }), page("P2", 8)], config: { cheapTier: { enabled: false }, audit: { coldRate: 0, normalRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "P1", "P2");
+  node(fx, "tick.mjs", ["tick"]);
+  const ids = restoreTasks(fx).map((t) => meta(fx, t.id).wos ?? meta(fx, t.id).wo);
+  assert.ok(restoreTasks(fx).length > 0, "the clean order is dispatched");
+  assert.ok(!JSON.stringify(restoreTasks(fx).map((t) => meta(fx, t.id))).includes('"P1"'), `P1 must not be dispatched: ${JSON.stringify(ids)}`);
 });

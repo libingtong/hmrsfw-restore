@@ -33,6 +33,7 @@
   }
  ],
  "recordPath": "/previewresume",
+ "role": null,
  "maps": "out/maps/page.uc.previewresume.json",
  "hints": "out/hints/page.uc.previewresume.md",
  "deps": {
@@ -64,9 +65,8 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "notes": "待人确认（uc-role-decisions.json）：两种身份都用：求职者从 myresume / lookresume 打开（只带 id，预览自己的简历），招聘单位从 CorpCenter / TalentSearch 等打开（带 firm=firm，按 corpInfo.id 查看投递人简历）；建议 jobseeker 或 corp；需要确认：录哪一种：求职者预览自己的简历，还是招聘单位查看投递简历（要带 firm、positionId、xfSysUserId 参数）"
 }

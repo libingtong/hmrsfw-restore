@@ -37,15 +37,13 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "L": {
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "be": {
    "original": "u",
@@ -57,8 +55,7 @@
    "original": "bs",
    "path": "@/legacy/utils",
    "export": "openLinkAddress",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Ce": {
    "original": "_",
@@ -70,7 +67,7 @@
    "original": "index.api.178332063620039.js#g",
    "path": "@/api/sysMeeting",
    "export": "getMeetingInfo",
-   "status": "reserved",
+   "status": "restored",
    "url": "xf-job/communal/licenseFree/xfSysMeeting/getMeetingInfo"
   }
  },
@@ -83,7 +80,44 @@
    "owner": "shared.portal.icon"
   }
  },
- "views": {},
+ "views": {
+  "_": {
+   "original": "cTitles.1783320636200.js#default",
+   "path": "@/views/talents/conference/cTitles.vue",
+   "export": "default",
+   "order": "page.portal.talents.conference.cTitles"
+  },
+  "Te": {
+   "original": "abouts.1783320636200.js#default",
+   "path": "@/views/talents/conference/abouts.vue",
+   "export": "default",
+   "order": "page.portal.talents.conference.abouts"
+  },
+  "Pe": {
+   "original": "scrollList.1783320636200.js#default",
+   "path": "@/views/talents/conference/scrollList.vue",
+   "export": "default",
+   "order": "page.portal.talents.conference.scrollList"
+  },
+  "Se": {
+   "original": "medias.1783320636200.js#default",
+   "path": "@/views/talents/conference/medias.vue",
+   "export": "default",
+   "order": "page.portal.talents.conference.medias"
+  },
+  "Oe": {
+   "original": "swperSlides.1783320636200.js#default",
+   "path": "@/views/talents/conference/swperSlides.vue",
+   "export": "default",
+   "order": "page.portal.talents.conference.swperSlides"
+  },
+  "je": {
+   "original": "advertTop.17833206362005.js#default",
+   "path": "@/views/talents/index/advertTop.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.advertTop"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "grid.1783320636200.js"

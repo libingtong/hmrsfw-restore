@@ -39,29 +39,25 @@
    "original": "aq",
    "path": "@/legacy/store",
    "export": "useStoreGetters",
-   "status": "reserved",
-   "owner": "entry.portal.E4"
+   "status": "restored"
   },
   "Ke": {
    "original": "cm",
    "path": "@/legacy/api",
    "export": "listChildrenTreeByTypeCode",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "ce": {
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Qe": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "re": {
    "original": "u",
@@ -73,8 +69,7 @@
    "original": "af",
    "path": "@/legacy/api",
    "export": "logout",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "P": {
    "original": "v",
@@ -98,8 +93,7 @@
    "original": "bH",
    "path": "@/legacy/api",
    "export": "queryByUserId",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "de": {
    "original": "M",
@@ -115,22 +109,19 @@
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "st": {
    "original": "a_",
    "path": "@/legacy/components/Headers.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "entry.portal.c07"
+   "status": "restored"
   },
   "at": {
    "original": "ct",
    "path": "@/legacy/components/Foot2.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "entry.portal.c07"
+   "status": "restored"
   }
  },
  "api": {},

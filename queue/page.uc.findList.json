@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/findList",
+ "role": "general",
  "maps": "out/maps/page.uc.findList.json",
  "hints": "out/hints/page.uc.findList.md",
  "deps": {

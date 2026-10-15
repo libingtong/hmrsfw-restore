@@ -32,15 +32,13 @@
    "original": "aJ",
    "path": "@/legacy/api",
    "export": "queryCompanyTalentlist",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "j": {
    "original": "aL",
    "path": "@/legacy/api",
    "export": "restoreTalent",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "A": {
    "original": "m",

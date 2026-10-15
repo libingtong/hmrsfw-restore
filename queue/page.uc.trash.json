@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/trash",
+ "role": "corp",
  "maps": "out/maps/page.uc.trash.json",
  "hints": "out/hints/page.uc.trash.md",
  "deps": {
@@ -46,9 +47,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

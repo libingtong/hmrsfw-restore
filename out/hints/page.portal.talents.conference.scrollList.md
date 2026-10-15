@@ -4,5 +4,5 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `L` | index.1783320636200.js | entry | @/legacy/utils `openLinkAddress`（reserved） | `(e,t)=>{let n=window.location.host;e.linkAddress?String(e.linkAddress).includes(n)?window.open(e.linkAddress):e.linkAddress.includes("www")\|\|e.linkAddress.includes("http")?window.open("/outLink?link="` |
+| `L` | index.1783320636200.js | entry | @/legacy/utils `openLinkAddress` | `(e,t)=>{let n=window.location.host;e.linkAddress?String(e.linkAddress).includes(n)?window.open(e.linkAddress):e.linkAddress.includes("www")\|\|e.linkAddress.includes("http")?window.open("/outLink?link="` |
 | `A` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |

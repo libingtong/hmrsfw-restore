@@ -33,6 +33,7 @@
   }
  ],
  "recordPath": "/myRegistration",
+ "role": "general",
  "maps": "out/maps/page.uc.myRegistration.json",
  "hints": "out/hints/page.uc.myRegistration.md",
  "deps": {

@@ -17,4 +17,4 @@
 | `$t` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `Pt` | index.1783320636200.js | entry | @/legacy `useStore` | `function(e){return e===void 0&&(e=null),Ft(e!==null?e:Ru)}` |
 | `Ht` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
-| `Ut` | index.apinew.1783320636200.js | api | @/api/deviceBasic `queryAllInfoById`（reserved） | `a=>i.request({url:"/xf-job/job/licenseFree/xfJobBigDataViewSettings/queryAllInfoById",method:"get",params:a})` |
+| `Ut` | index.apinew.1783320636200.js | api | @/api/deviceBasic `queryAllInfoById` | `a=>i.request({url:"/xf-job/job/licenseFree/xfJobBigDataViewSettings/queryAllInfoById",method:"get",params:a})` |

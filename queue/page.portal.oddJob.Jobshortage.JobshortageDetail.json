@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/JobshortageDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.oddJob.Jobshortage.JobshortageDetail.json",
  "hints": "out/hints/page.portal.oddJob.Jobshortage.JobshortageDetail.md",
  "deps": {
@@ -55,8 +56,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
    "shared.portal.complaint"
   ]
  },

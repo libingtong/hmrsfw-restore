@@ -32,15 +32,13 @@
    "original": "bg",
    "path": "@/legacy/api",
    "export": "jobOverseasRecruitRegistrationList",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "q": {
    "original": "bh",
    "path": "@/legacy/api",
    "export": "saveOrCancel",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "B": {
    "original": "m",

@@ -46,36 +46,31 @@
    "original": "aA",
    "path": "@/legacy/api",
    "export": "listForWebsite",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "qe": {
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "De": {
    "original": "an",
    "path": "@/legacy/api",
    "export": "queryLatestQuestionsList",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Ge": {
    "original": "ao",
    "path": "@/legacy/api",
    "export": "queryQuestionsList",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Xe": {
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "je": {
    "original": "u",
@@ -105,7 +100,7 @@
    "original": "index.api.178332063620014.js#g",
    "path": "@/api/article",
    "export": "freeCompanyList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyList"
   }
  },
@@ -132,6 +127,24 @@
   }
  },
  "views": {
+  "ga": {
+   "original": "job.1783320636200.js#default",
+   "path": "@/views/talents/cityHome/job.vue",
+   "export": "default",
+   "order": "page.portal.talents.cityHome.job"
+  },
+  "ua": {
+   "original": "corp.1783320636200.js#default",
+   "path": "@/views/talents/cityHome/corp.vue",
+   "export": "default",
+   "order": "page.portal.talents.cityHome.corp"
+  },
+  "h": {
+   "original": "titles.17833206362003.js#default",
+   "path": "@/views/talents/cityHome/titles.vue",
+   "export": "default",
+   "order": "page.portal.talents.cityHome.titles"
+  },
   "_a": {
    "original": "talentArea.1783320636200.js#f",
    "path": "@/views/talents/cityHome/talentArea.vue",
@@ -149,6 +162,18 @@
    "path": "@/views/talents/cityHome/talentArea.vue",
    "export": "default",
    "order": "page.portal.talents.cityHome.talentArea"
+  },
+  "ha": {
+   "original": "helpCenter.1783320636200.js#default",
+   "path": "@/views/talents/cityHome/helpCenter.vue",
+   "export": "default",
+   "order": "page.portal.talents.cityHome.helpCenter"
+  },
+  "wa": {
+   "original": "homeList.1783320636200.js#default",
+   "path": "@/views/talents/index/homeList.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.homeList"
   }
  },
  "modules": {},

@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/Personalonlineservice",
+ "role": "general",
  "maps": "out/maps/page.uc.Personalonlineservice.json",
  "hints": "out/hints/page.uc.Personalonlineservice.md",
  "deps": {
@@ -62,7 +63,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.uc.E6",
    "shared.uc.addKeynote",
    "shared.uc.market"
   ]

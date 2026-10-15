@@ -55,6 +55,7 @@
   }
  ],
  "recordPath": "/guide/corp",
+ "role": "general",
  "maps": "out/maps/page.portal.guide.index.json",
  "hints": "out/hints/page.portal.guide.index.md",
  "deps": {
@@ -104,8 +105,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
    "shared.portal.InterviewInvitation",
    "shared.portal.auth"
   ]

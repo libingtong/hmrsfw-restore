@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/talents/index/frendLinks/",
  "routes": [],
  "recordPath": "/talents/index",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.index.frendLinks.json",
  "hints": "out/hints/page.portal.talents.index.frendLinks.md",
  "deps": {
@@ -35,9 +36,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true,
  "recordVia": "page.portal.talents.index.index"

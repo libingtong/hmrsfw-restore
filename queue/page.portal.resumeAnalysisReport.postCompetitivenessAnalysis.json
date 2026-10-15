@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/postCompetitivenessAnalysis",
+ "role": "general",
  "maps": "out/maps/page.portal.resumeAnalysisReport.postCompetitivenessAnalysis.json",
  "hints": "out/hints/page.portal.resumeAnalysisReport.postCompetitivenessAnalysis.md",
  "deps": {
@@ -53,8 +54,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
    "shared.portal.statusPlace"
   ]
  },

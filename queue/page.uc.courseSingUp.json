@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/courseSingUp",
+ "role": "general",
  "maps": "out/maps/page.uc.courseSingUp.json",
  "hints": "out/hints/page.uc.courseSingUp.md",
  "deps": {

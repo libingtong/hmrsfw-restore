@@ -5,11 +5,11 @@
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
 | `U` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
-| `ot` | index.1783320636200.js | api | @/legacy/api `getChildArticleTypeListByCode`（reserved） | `e=>ut.request({url:"/xf-job/job/licenseFree/getChildArticleTypeListByCode",method:"post",params:e})` |
+| `ot` | index.1783320636200.js | api | @/legacy/api `getChildArticleTypeListByCode` | `e=>ut.request({url:"/xf-job/job/licenseFree/getChildArticleTypeListByCode",method:"post",params:e})` |
 | `et` | index.1783320636200.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `lt` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `D` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
 | `rt` | index.1783320636200.js | entry | @/legacy `useStore` | `function(e){return e===void 0&&(e=null),Ft(e!==null?e:Ru)}` |
 | `bt` | adsCenter.1783320636200.js | shared | @/shared/adsCenter.vue `default`（reserved） | `W(m,[["__scopeId","data-v-25c7a495"]])` |
 | `wt` | homeRight.1783320636200.js | shared | @/shared/homeRight.vue `default`（reserved） | `te(X,[["__scopeId","data-v-85da16f2"]])` |
-| `Mt` | index.api.178332063620037.js | api | @/api/sysBusinessSetting `getTalentSettings`（reserved） | `()=>s.request({url:"/xf-job/job/licenseFree/xfSysBusinessSetting/getTalentSettings",method:"get"})` |
+| `Mt` | index.api.178332063620037.js | api | @/api/sysBusinessSetting `getTalentSettings` | `()=>s.request({url:"/xf-job/job/licenseFree/xfSysBusinessSetting/getTalentSettings",method:"get"})` |

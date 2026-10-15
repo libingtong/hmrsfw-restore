@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/zcyzwebFairWork/:zphId",
+ "role": "corp",
  "maps": "out/maps/page.uc.zcyzwebFairWork.json",
  "hints": "out/hints/page.uc.zcyzwebFairWork.md",
  "deps": {

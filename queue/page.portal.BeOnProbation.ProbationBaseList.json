@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/ProbationBaseList",
+ "role": "general",
  "maps": "out/maps/page.portal.BeOnProbation.ProbationBaseList.json",
  "hints": "out/hints/page.portal.BeOnProbation.ProbationBaseList.md",
  "deps": {

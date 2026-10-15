@@ -48,7 +48,7 @@
  "api": {
   "B": {
    "original": "index.api.17516156075456.js#X",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "add7",
    "status": "restored",
    "url": "/xf-job/job/xfJobComplaintRecord/add"
@@ -57,7 +57,7 @@
    "original": "index.api.17516156075452.js#g",
    "path": "@/api/sysUser",
    "export": "queryByIdJM",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysUser/queryByIdJM"
   }
  },

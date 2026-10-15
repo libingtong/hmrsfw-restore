@@ -45,15 +45,13 @@
    "original": "ab",
    "path": "@/legacy/api",
    "export": "getArticleListNoCheck",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "ve": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "q": {
    "original": "v",
@@ -81,14 +79,14 @@
  "api": {
   "ke": {
    "original": "index.api.178332063620033.js#g",
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "queryForCompetitiveAnalysis",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryForCompetitiveAnalysis"
   },
   "ge": {
    "original": "index.api.178332063620033.js#f",
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "recommendJobList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"

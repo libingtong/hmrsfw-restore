@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/myaccuse",
+ "role": "general",
  "maps": "out/maps/page.uc.myaccuse.json",
  "hints": "out/hints/page.uc.myaccuse.md",
  "deps": {
@@ -44,9 +45,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

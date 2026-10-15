@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/oddjob/sharepage",
+ "role": "general",
  "maps": "out/maps/page.uc.oddjob.sharepage.json",
  "hints": "out/hints/page.uc.oddjob.sharepage.md",
  "deps": {

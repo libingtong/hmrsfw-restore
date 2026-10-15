@@ -68,8 +68,7 @@
    "original": "a8",
    "path": "@/legacy/utils",
    "export": "formatDateSlash",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "$": {
    "original": "M",
@@ -81,8 +80,7 @@
    "original": "a9",
    "path": "@/legacy/utils",
    "export": "UPLOAD_URL",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "ne": {
    "original": "_",
@@ -104,8 +102,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   }
  },
  "api": {
@@ -113,35 +110,35 @@
    "original": "index.api.178332063620035.js#x",
    "path": "@/api/jobGovRecruitCompany",
    "export": "noPagelist2",
-   "status": "reserved",
+   "status": "restored",
    "url": "/job/licenseFree/xfJobGovRecruitCompany/noPagelist"
   },
   "He": {
    "original": "index.api.178332063620035.js#n",
    "path": "@/api/jobGovRecruitCompany",
    "export": "noPagelist",
-   "status": "reserved",
+   "status": "restored",
    "url": "/job/licenseFree/xfJobGovRecruitPosition/noPagelist"
   },
   "We": {
    "original": "index.api.178332063620035.js#o",
    "path": "@/api/jobGovRecruitCompany",
    "export": "add",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobGovRecruitRegistration/add"
   },
   "re": {
    "original": "index.api.178332063620035.js#g",
    "path": "@/api/jobGovRecruitCompany",
    "export": "queryByIdNew",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobGovRecruitNotice/queryByIdNew"
   },
   "$e": {
    "original": "index.api.178332063620035.js#c",
    "path": "@/api/jobGovRecruitCompany",
    "export": "checkIzPerfect",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysUser/checkIzPerfect"
   }
  },

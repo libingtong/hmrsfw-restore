@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/businessSingUp",
+ "role": "general",
  "maps": "out/maps/page.uc.businessSingUp.json",
  "hints": "out/hints/page.uc.businessSingUp.md",
  "deps": {

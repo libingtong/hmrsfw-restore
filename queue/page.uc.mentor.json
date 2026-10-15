@@ -32,6 +32,7 @@
   }
  ],
  "recordPath": "/mentor",
+ "role": "mentor",
  "maps": "out/maps/page.uc.mentor.json",
  "hints": "out/hints/page.uc.mentor.md",
  "deps": {
@@ -57,9 +58,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

@@ -1,0 +1,63 @@
+{
+ "batch": "U1",
+ "issue": "HM-44",
+ "passed": [
+  "page.uc.BeOnAdmin",
+  "page.uc.BeOnProbation",
+  "page.uc.BeOnProbationAdmin",
+  "page.uc.CenterFairResume",
+  "page.uc.CorpCenter",
+  "page.uc.CorpCenterZ",
+  "page.uc.DownloadResume",
+  "page.uc.Enterpriseonlineservices",
+  "page.uc.InterviewInvitation",
+  "page.uc.Invited",
+  "page.uc.JobFairRelease",
+  "page.uc.Personalonlineservice",
+  "page.uc.PositionAdmin",
+  "page.uc.PositionRelease",
+  "page.uc.PositionReleaseAbroad",
+  "page.uc.RecIntResume",
+  "page.uc.ReceivedResume",
+  "page.uc.ReceivedResumeLive",
+  "page.uc.TalentSearch",
+  "page.uc.Unitposition",
+  "page.uc.WebWorkResume",
+  "page.uc.WorkStyleAdmin",
+  "page.uc.activitySign",
+  "page.uc.addmysubscribe",
+  "page.uc.allconsult",
+  "page.uc.allianceSend",
+  "page.uc.allianceUnitposition",
+  "page.uc.audit",
+  "page.uc.autoLogin",
+  "page.uc.businessSingUp",
+  "page.uc.changeRole",
+  "page.uc.changeavatar",
+  "page.uc.changephone",
+  "page.uc.collage.nojob"
+ ],
+ "blocked": [
+  {
+   "id": "page.uc.403",
+   "reason": "self-check imports：模板 <el-button> 来自 resolveComponent(\"el-button\")，uc 原包未注册 Element Plus（原代码即为未知元素），registry/uc.json globals 无此项。需走规则变更单：在 uc 清单 globals 登记 el-button 为原包未注册组件（或给 imports 检查加例外）。页面已还原（其余检查全过、build:uc 通过），存于 hmrsfw-vue 分支 fast-lane-blocked/U1"
+  },
+  {
+   "id": "page.uc.404",
+   "reason": "同 page.uc.403：<el-button> 不在 registry/uc.json globals（原包未注册）。需同一规则变更单。页面已还原，存于 fast-lane-blocked/U1"
+  },
+  {
+   "id": "page.uc.addNewsDetails",
+   "reason": "build:uc 失败：依赖的 @/shared/Editor.vue（shared.uc.Editor，HM-34 已记阻塞）导入 tinymce/tinymce，package.json 缺 tinymce@5.10.3。归 E7（收尾子单）补依赖后可直接合入；页面 self-check pass:true，存于 fast-lane-blocked/U1"
+  }
+ ],
+ "notes": [
+  "37 单：34 单静态通过（self-check pass:true + build:uc）并合入 hmrsfw-vue restore/fast-lane；3 单阻塞",
+  "批次结束：全量 npm run build 通过；离线回放 confirm 20/20、legacy10 10/10（portal 6/6、uc 4/4）；scan-secrets hits 0；ls-files 无 .env.local/.har/.auth/.pem",
+  "阻塞单的还原成果在 hmrsfw-vue 分支 fast-lane-blocked/U1（基于 fast-lane 701b335），解除阻塞后可 cherry-pick",
+  "清单疑点（未改）：page.uc.CorpCenterZ 回执称 registry/uc.json 把入口导出 bK 标为 axios 的 AxiosHeaders，但原页面当 axios 实例调用 bK.post；页面按 import axios from 'axios' 写，self-check 通过，建议裁定员核对该条",
+  "page.uc.Unitposition 的 fallback 图片按已知坑用 new URL(...) 引用，HM-26 合并后改回 import",
+  "page.uc.audit 子组件 nation.vue：原代码 getPopupContainer 写 t.document.body（实例无 document，原 bug），还原为全局 document.body 并注释；仅在 parentNode 为空时有差别",
+  "render-equiv 仅作报告：CorpCenter（corpcard 1220→629、主组件 5652→2681 token）、collage.nojob（3001→2832）差距较大，文本节点/分支/组件数均一致，回放判定待录制后补跑时留意"
+ ]
+}

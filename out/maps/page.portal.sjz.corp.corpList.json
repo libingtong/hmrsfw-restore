@@ -71,14 +71,14 @@
    "original": "index.api.178332063620014.js#g",
    "path": "@/api/article",
    "export": "freeCompanyList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyList"
   },
   "Te": {
    "original": "index.api.178332063620014.js#f",
    "path": "@/api/article",
    "export": "freeCompanyListByTags",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyListByTags"
   }
  },

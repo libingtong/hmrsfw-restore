@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/personLoan",
+ "role": "general",
  "maps": "out/maps/page.uc.personLoan.json",
  "hints": "out/hints/page.uc.personLoan.md",
  "deps": {
@@ -41,9 +42,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.c01"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

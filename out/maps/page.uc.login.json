@@ -16,15 +16,13 @@
    "original": "bA",
    "path": "@/legacy/store",
    "export": "usePermissStore",
-   "status": "reserved",
-   "owner": "entry.uc.E4"
+   "status": "restored"
   },
   "a": {
    "original": "bB",
    "path": "@/legacy/utils",
    "export": "removeUrlParam",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "r": {
    "original": "_",

@@ -38,8 +38,7 @@
    "original": "cu",
    "path": "@/legacy/api",
    "export": "getChildArticleTypeListByCode",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "et": {
    "original": "B",
@@ -69,7 +68,7 @@
    "original": "index.api.178332063620037.js#a",
    "path": "@/api/sysBusinessSetting",
    "export": "getTalentSettings",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfSysBusinessSetting/getTalentSettings"
   }
  },
@@ -89,7 +88,56 @@
    "owner": "shared.portal.homeRight"
   }
  },
- "views": {},
+ "views": {
+  "nt": {
+   "original": "jobFair.1783320636200.js#default",
+   "path": "@/views/talents/index/jobFair.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.jobFair"
+  },
+  "_t": {
+   "original": "jobRecommend.1783320636200.js#default",
+   "path": "@/views/talents/index/jobRecommend.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.jobRecommend"
+  },
+  "dt": {
+   "original": "talentRecommend.1783320636200.js#default",
+   "path": "@/views/talents/index/talentRecommend.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.talentRecommend"
+  },
+  "ut": {
+   "original": "infoRecommend.1783320636200.js#default",
+   "path": "@/views/talents/index/infoRecommend.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.infoRecommend"
+  },
+  "gt": {
+   "original": "review.1783320636200.js#default",
+   "path": "@/views/talents/index/review.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.review"
+  },
+  "yt": {
+   "original": "frendLinks.17833206362002.js#default",
+   "path": "@/views/talents/index/frendLinks.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.frendLinks"
+  },
+  "vt": {
+   "original": "advertTop.17833206362005.js#default",
+   "path": "@/views/talents/index/advertTop.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.advertTop"
+  },
+  "Tt": {
+   "original": "homeList.1783320636200.js#default",
+   "path": "@/views/talents/index/homeList.vue",
+   "export": "default",
+   "order": "page.portal.talents.index.homeList"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "vue-countup-v3.es.1783320636200.js",

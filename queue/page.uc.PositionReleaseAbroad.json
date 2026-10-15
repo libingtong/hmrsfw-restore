@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/PositionReleaseAbroad",
+ "role": "corp",
  "maps": "out/maps/page.uc.PositionReleaseAbroad.json",
  "hints": "out/hints/page.uc.PositionReleaseAbroad.md",
  "deps": {
@@ -64,7 +65,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.uc.E6",
    "shared.uc.modules"
   ]
  },

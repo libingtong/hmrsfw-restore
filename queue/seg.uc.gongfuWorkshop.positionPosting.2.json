@@ -58,6 +58,7 @@
   }
  ],
  "recordPath": "/gongfuWorkshop/positionPosting",
+ "role": "general",
  "maps": "out/maps/page.uc.gongfuWorkshop.positionPosting.json",
  "hints": "out/hints/page.uc.gongfuWorkshop.positionPosting.md",
  "deps": {

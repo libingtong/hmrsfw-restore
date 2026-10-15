@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/trainCourseHis",
+ "role": "general",
  "maps": "out/maps/page.uc.trainCourseHis.json",
  "hints": "out/hints/page.uc.trainCourseHis.md",
  "deps": {

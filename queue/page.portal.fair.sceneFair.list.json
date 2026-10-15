@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/sceneFairList",
+ "role": "general",
  "maps": "out/maps/page.portal.fair.sceneFair.list.json",
  "hints": "out/hints/page.portal.fair.sceneFair.list.md",
  "deps": {
@@ -61,9 +62,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.c03"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

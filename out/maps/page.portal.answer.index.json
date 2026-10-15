@@ -46,15 +46,13 @@
    "original": "ah",
    "path": "@/legacy/api",
    "export": "getXfSysUserInfo",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "be": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "j": {
    "original": "F",
@@ -78,21 +76,21 @@
    "original": "index.api.178332063620011.js#c",
    "path": "@/api/quenaire",
    "export": "List",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/licenseFree/quenaire/List"
   },
   "Oe": {
    "original": "index.api.178332063620011.js#q",
    "path": "@/api/quenaire",
    "export": "izLogin",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/licenseFree/quenaire/izLogin"
   },
   "E": {
    "original": "index.api.178332063620011.js#r",
    "path": "@/api/quenaire",
    "export": "izEnter",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/communal/xfSysQuenaire/record/izEnter"
   }
  },
@@ -104,7 +102,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "Re": {
+   "original": "passwordModal.1783320636200.js#default",
+   "path": "@/views/answer/passwordModal.vue",
+   "export": "default",
+   "order": "page.portal.answer.passwordModal"
+  }
+ },
  "modules": {
   "qe": {
    "original": "wenjuan.1783320636200.js#_",

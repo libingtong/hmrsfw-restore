@@ -34,22 +34,19 @@
    "original": "s",
    "path": "@/legacy/api",
    "export": "queryAnnouncementList",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "L": {
    "original": "ah",
    "path": "@/legacy/utils",
    "export": "stripHtml",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "R": {
    "original": "ai",
    "path": "@/legacy/api",
    "export": "queryNoReaded",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "T": {
    "original": "_",

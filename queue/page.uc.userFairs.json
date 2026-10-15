@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/userFairs",
+ "role": "general",
  "maps": "out/maps/page.uc.userFairs.json",
  "hints": "out/hints/page.uc.userFairs.md",
  "deps": {

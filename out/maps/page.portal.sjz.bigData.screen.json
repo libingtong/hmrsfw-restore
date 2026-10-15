@@ -14,7 +14,32 @@
  "entry": {},
  "api": {},
  "shared": {},
- "views": {},
+ "views": {
+  "f": {
+   "original": "TopTitle.1783320636200.js#default",
+   "path": "@/views/sjz/bigData/TopTitle.vue",
+   "export": "default",
+   "order": "page.portal.sjz.bigData.TopTitle"
+  },
+  "y": {
+   "original": "index.178332063620073.js#default",
+   "path": "@/views/sjz/bigData/index.vue",
+   "export": "default",
+   "order": "page.portal.sjz.bigData.index"
+  },
+  "v": {
+   "original": "Dashboard1.17833206362002.js#default",
+   "path": "@/views/sjz/bigData/components/Dashboard1.vue",
+   "export": "default",
+   "order": "page.portal.sjz.bigData.components.Dashboard1"
+  },
+  "P": {
+   "original": "Dashboard2.17833206362002.js#default",
+   "path": "@/views/sjz/bigData/components/Dashboard2.vue",
+   "export": "default",
+   "order": "page.portal.sjz.bigData.components.Dashboard2"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "index.1783320636200120.js"

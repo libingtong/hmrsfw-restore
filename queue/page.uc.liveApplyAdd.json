@@ -38,6 +38,7 @@
   }
  ],
  "recordPath": "/liveApplyAdd",
+ "role": "corp",
  "maps": "out/maps/page.uc.liveApplyAdd.json",
  "hints": "out/hints/page.uc.liveApplyAdd.md",
  "deps": {
@@ -64,9 +65,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

@@ -64,15 +64,13 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "_t": {
    "original": "ck",
    "path": "@/legacy/utils",
    "export": "checkOtherLoginLink",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "re": {
    "original": "v",
@@ -114,8 +112,7 @@
    "original": "Q",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_CERTIFIED",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Y": {
    "original": "r",
@@ -139,8 +136,7 @@
    "original": "be",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_AUTH_RESUME",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "wt": {
    "original": "_",
@@ -152,28 +148,28 @@
    "original": "index.api.178332063620023.js#s",
    "path": "@/api/jobCompanyTalents",
    "export": "searchListForWebsite",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobCurriculumVitae/searchListForWebsite"
   },
   "zt": {
    "original": "index.api.178332063620023.js#a",
    "path": "@/api/jobCompanyTalents",
    "export": "addTalent",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
   },
   "Lt": {
    "original": "index.api.178332063620023.js#r",
    "path": "@/api/jobCompanyTalents",
    "export": "cancelTalent",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobCompanyTalents/cancelTalent"
   },
   "Wt": {
    "original": "index.api.178332063620023.js#i",
    "path": "@/api/jobCompanyTalents",
    "export": "isPublishingPosition",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobCompany/isPublishingPosition"
   }
  },

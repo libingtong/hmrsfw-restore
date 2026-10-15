@@ -50,8 +50,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "P": {
    "original": "B",
@@ -69,8 +68,7 @@
    "original": "bU",
    "path": "@/legacy/utils",
    "export": "checkTokenLogin",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "I": {
    "original": "A",
@@ -110,42 +108,42 @@
  "api": {
   "pa": {
    "original": "index.api.178332063620024.js#n",
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "needJoblist",
    "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/needJoblist"
   },
   "ma": {
    "original": "index.api.178332063620024.js#e",
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "add3",
    "status": "restored",
    "url": "/xf-oddjob/oddjob/xfOddPositionApply/add"
   },
   "ya": {
    "original": "index.api.178332063620024.js#h",
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "add4",
    "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/callRecord/add"
   },
   "ba": {
    "original": "index.api.178332063620024.js#i",
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "add",
    "status": "restored",
    "url": "/xf-oddjob/oddjob/xfOddUserCollect/add"
   },
   "fa": {
    "original": "index.api.178332063620024.js#j",
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "deleteItem",
    "status": "restored",
    "url": "/xf-oddjob/oddjob/xfOddUserCollect/delete"
   },
   "ga": {
    "original": "index.api.178332063620024.js#x",
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "add2",
    "status": "restored",
    "url": "/xf-oddjob/oddjob/xfOddUserBrowse/add"
@@ -179,7 +177,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "Ke": {
+   "original": "odd.1783320636200.js#default",
+   "path": "@/views/oddJob/rtInto/odd.vue",
+   "export": "default",
+   "order": "page.portal.oddJob.rtInto.odd"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "main.1783320636200.js"

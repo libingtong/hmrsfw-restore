@@ -51,6 +51,7 @@
   }
  ],
  "recordPath": "/zcyzCorpAttestationapprove",
+ "role": "general",
  "maps": "out/maps/page.uc.zcyzCorpAttestationapprove.json",
  "hints": "out/hints/page.uc.zcyzCorpAttestationapprove.md",
  "deps": {

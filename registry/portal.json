@@ -14,8 +14,7 @@
   "entry": {
    "ignore": 7,
    "npm": 16,
-   "restored": 45,
-   "reserved": 83
+   "restored": 128
   },
   "shared": {
    "reserved": 42,
@@ -23,8 +22,8 @@
    "npm": 2
   },
   "api": {
-   "restored": 99,
-   "reserved": 96
+   "restored": 194,
+   "reserved": 1
   }
  },
  "vue": {
@@ -318,12 +317,70 @@
   }
  },
  "entry": {
+  "a_": {
+   "path": "@/legacy/components/Headers.vue",
+   "export": "default",
+   "component": "headers",
+   "scopeId": "data-v-ee377c98",
+   "kind": "component",
+   "owner": "entry.portal.c07",
+   "users": 1,
+   "status": "restored"
+  },
+  "a$": {
+   "path": "@/legacy/api",
+   "export": "getArticleListByTypeCodes",
+   "url": "/xf-job/job/licenseFree/getArticleListByTypeCodes",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "a0": {
+   "path": "@/legacy/api",
+   "export": "queryByIdJM",
+   "url": "/xf-job/communal/xfSysUser/queryByIdJM",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "a1": {
+   "path": "@/utils/crypto-adapter",
+   "export": "decryptSm4",
+   "kind": "function",
+   "owner": "entry.portal.E5",
+   "users": 2,
+   "status": "restored"
+  },
   "a2": {
    "path": "@/legacy",
    "export": "validateIdCard",
    "kind": "function",
    "owner": "entry.portal.E6",
    "users": 4,
+   "status": "restored"
+  },
+  "a3": {
+   "path": "@/legacy/api",
+   "export": "getCompanyInfo",
+   "url": "/xf-job/job/xfJobCompany/getCompanyInfo",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "a5": {
+   "path": "@/legacy/api",
+   "export": "listOneForWebSite",
+   "url": "/xf-job/communal/xfSysUser/listOneForWebSite",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 2,
    "status": "restored"
   },
   "a6": {
@@ -336,6 +393,22 @@
    "users": 8,
    "status": "restored"
   },
+  "a8": {
+   "path": "@/legacy/utils",
+   "export": "formatDateSlash",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "a9": {
+   "path": "@/legacy/utils",
+   "export": "UPLOAD_URL",
+   "kind": "binding",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
   "aa": {
    "path": "@/legacy",
    "export": "getBusinessDictItems",
@@ -344,6 +417,36 @@
    "kind": "api",
    "owner": "entry.portal.E6",
    "users": 1,
+   "status": "restored"
+  },
+  "aA": {
+   "path": "@/legacy/api",
+   "export": "listForWebsite",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "ab": {
+   "path": "@/legacy/api",
+   "export": "getArticleListNoCheck",
+   "url": "/xf-job/job/licenseFree/getArticleListNoCheck",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 7,
+   "status": "restored"
+  },
+  "aB": {
+   "path": "@/legacy/api",
+   "export": "getChildArticleTypeList",
+   "url": "/xf-job/job/licenseFree/getChildArticleTypeList",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 3,
    "status": "restored"
   },
   "ad": {
@@ -366,6 +469,72 @@
    "users": 16,
    "status": "restored"
   },
+  "ae": {
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "url": "/xf-job/job/licenseFree/queryHomeSettingById",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 12,
+   "status": "restored"
+  },
+  "aE": {
+   "path": "@/legacy",
+   "export": "SlideCaptcha",
+   "component": "SlideCaptcha",
+   "scopeId": null,
+   "kind": "component",
+   "owner": "entry.portal.c02",
+   "users": 4,
+   "status": "restored"
+  },
+  "af": {
+   "path": "@/legacy/api",
+   "export": "logout",
+   "url": "jeecg-system/sys/logout?_t=",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 3,
+   "status": "restored"
+  },
+  "aF": {
+   "path": "@/legacy/components/TopHead.vue",
+   "export": "default",
+   "component": "TopHead",
+   "scopeId": "data-v-15d22a66",
+   "kind": "component",
+   "owner": "entry.portal.c04",
+   "users": 1,
+   "status": "restored"
+  },
+  "ag": {
+   "path": "@/legacy/utils",
+   "export": "formatDateTime",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "ah": {
+   "path": "@/legacy/api",
+   "export": "getXfSysUserInfo",
+   "url": "/xf-job/communal/licenseFree/xfSysUser/getXfSysUserInfo",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "aj": {
+   "path": "@/legacy/utils",
+   "export": "openLink",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 5,
+   "status": "restored"
+  },
   "am": {
    "path": "@/legacy",
    "export": "getArticleList",
@@ -374,6 +543,26 @@
    "kind": "api",
    "owner": "entry.portal.E6",
    "users": 6,
+   "status": "restored"
+  },
+  "an": {
+   "path": "@/legacy/api",
+   "export": "queryLatestQuestionsList",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryLatestQuestionsList",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "ao": {
+   "path": "@/legacy/api",
+   "export": "queryQuestionsList",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuestionsList",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 3,
    "status": "restored"
   },
   "ap": {
@@ -386,12 +575,90 @@
    "users": 5,
    "status": "restored"
   },
+  "aq": {
+   "path": "@/legacy/store",
+   "export": "useStoreGetters",
+   "kind": "function",
+   "owner": "entry.portal.E4",
+   "users": 3,
+   "status": "restored"
+  },
   "aQ": {
    "path": "@/legacy",
    "export": "getWeekDay",
    "kind": "function",
    "owner": "entry.portal.E6",
    "users": 7,
+   "status": "restored"
+  },
+  "aR": {
+   "path": "@/legacy/utils",
+   "export": "isMobilePhone",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "as": {
+   "path": "@/legacy/utils",
+   "export": "getUserInfo",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 7,
+   "status": "restored"
+  },
+  "au": {
+   "path": "@/legacy/utils",
+   "export": "randomColor",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "aU": {
+   "path": "@/legacy/api",
+   "export": "recommendJobList",
+   "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "aV": {
+   "path": "@/legacy/api",
+   "export": "getAllLevelArticleListByTypeId",
+   "url": "/xf-job/job/licenseFree/getAllLevelArticleListByTypeId",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 3,
+   "status": "restored"
+  },
+  "aW": {
+   "path": "@/legacy/api",
+   "export": "queryAllInfoById",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerPageSettings/queryAllInfoById",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "aY": {
+   "path": "@/legacy/images",
+   "export": "ENTRY_IMAGE_AY",
+   "kind": "image",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "aZ": {
+   "path": "@/legacy/utils",
+   "export": "getCurrentSysUser",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 1,
    "status": "restored"
   },
   "B": {
@@ -402,12 +669,102 @@
    "users": 115,
    "status": "restored"
   },
+  "b2": {
+   "path": "@/legacy/api",
+   "export": "querylistForOneUser",
+   "url": "/xf-job/job/xfJobCustomerConsultRecord/querylistForOneUser",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "b3": {
+   "path": "@/legacy/api",
+   "export": "listByPageId",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerPageKnowledgetype/listByPageId",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "b4": {
+   "path": "@/legacy/api",
+   "export": "queryQuickQuestionsList",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuickQuestionsList",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "b5": {
+   "path": "@/legacy/api",
+   "export": "askQuestion",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/askQuestion",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "b6": {
+   "path": "@/legacy/api",
+   "export": "queryQuestionsListByParams",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuestionsListByParams",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "b7": {
+   "path": "@/legacy/api",
+   "export": "updateHelpNums",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/updateHelpNums",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "b8": {
+   "path": "@/legacy/api",
+   "export": "getInfoById",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerMenuSettings/getInfoById",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "b9": {
+   "path": "@/legacy/api",
+   "export": "getKnowledgeInfoById",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/getKnowledgeInfoById",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
   "ba": {
    "path": "@/legacy",
    "export": "MSG_CORP_PENDING",
    "kind": "const",
    "owner": "entry.portal.E6",
    "users": 9,
+   "status": "restored"
+  },
+  "bA": {
+   "path": "@/legacy/components/HomeLoginBtm.vue",
+   "export": "default",
+   "component": "homeLoginBtm",
+   "scopeId": "data-v-2742027c",
+   "kind": "component",
+   "owner": "entry.portal.c04",
+   "users": 1,
    "status": "restored"
   },
   "bb": {
@@ -420,12 +777,196 @@
    "users": 1,
    "status": "restored"
   },
+  "bD": {
+   "path": "@/legacy/api",
+   "export": "login",
+   "url": "/xf-job/school/user/login",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "be": {
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_AUTH_RESUME",
+   "kind": "const",
+   "owner": "entry.portal.E6",
+   "users": 3,
+   "status": "restored"
+  },
+  "bE": {
+   "path": "@/legacy/api",
+   "export": "phoneLogin",
+   "url": "/xf-job/school/user/phoneLogin",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bF": {
+   "path": "@/legacy/utils",
+   "export": "handleLoginSuccess",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bG": {
+   "path": "@/legacy/utils",
+   "export": "handleXfSysUserLoaded",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bh": {
+   "path": "@/legacy/utils",
+   "export": "parseIdCard",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "bH": {
+   "path": "@/legacy/api",
+   "export": "queryByUserId",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bi": {
+   "path": "@/legacy/api",
+   "export": "getAllInfo",
+   "url": "/xf-job/communal/licenseFree/xfSysAreainfo/getAllInfo",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bJ": {
+   "path": "@/legacy/api",
+   "export": "newRegister",
+   "url": "/xf-job/school/user/newRegister",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bm": {
+   "path": "@/legacy/utils",
+   "export": "PAGE_LOAD_TIMESTAMP",
+   "kind": "binding",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bn": {
+   "path": "@/legacy/utils",
+   "export": "validatePassword",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "bN": {
+   "path": "@/legacy/components/Foot.vue",
+   "export": "default",
+   "component": "Foot",
+   "scopeId": "data-v-7515cd55",
+   "kind": "component",
+   "owner": "entry.portal.c06",
+   "users": 1,
+   "status": "restored"
+  },
+  "bo": {
+   "path": "@/legacy/api",
+   "export": "randomImage",
+   "url": "/jeecg-system/sys/randomImage/",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bO": {
+   "path": "@/legacy/components/HomeLoginBtm2.vue",
+   "export": "default",
+   "component": "homeLoginBtm",
+   "scopeId": "data-v-c10885ad",
+   "kind": "component",
+   "owner": "entry.portal.c06",
+   "users": 1,
+   "status": "restored"
+  },
+  "bs": {
+   "path": "@/legacy/utils",
+   "export": "openLinkAddress",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 4,
+   "status": "restored"
+  },
+  "bt": {
+   "path": "@/legacy/store",
+   "export": "store",
+   "kind": "store",
+   "owner": "entry.portal.E4",
+   "users": 1,
+   "status": "restored"
+  },
+  "bT": {
+   "path": "@/legacy/utils",
+   "export": "maskPhone",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 5,
+   "status": "restored"
+  },
+  "bU": {
+   "path": "@/legacy/utils",
+   "export": "checkTokenLogin",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "bV": {
+   "path": "@/legacy/utils",
+   "export": "maskName",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
   "bW": {
    "path": "@/legacy",
    "export": "listAuthenticateIdentity",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/list",
    "method": "get",
    "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "bX": {
+   "path": "@/legacy/utils",
+   "export": "toHonorific",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "by": {
+   "path": "@/legacy/images",
+   "export": "ENTRY_IMAGE_BY",
+   "kind": "image",
    "owner": "entry.portal.E6",
    "users": 1,
    "status": "restored"
@@ -444,6 +985,181 @@
    "kind": "const",
    "owner": "entry.portal.E6",
    "users": 14,
+   "status": "restored"
+  },
+  "c1": {
+   "path": "@/legacy/utils",
+   "export": "LOGIN_CHECK_TYPE_4",
+   "kind": "const",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "c2": {
+   "path": "@/legacy/components/Notice.vue",
+   "export": "default",
+   "component": "notice",
+   "scopeId": null,
+   "kind": "component",
+   "owner": "entry.portal.c09",
+   "users": 2,
+   "status": "restored"
+  },
+  "c3": {
+   "path": "@/legacy/api",
+   "export": "checkIsCanAdd",
+   "url": "/xf-job/job/xfJobLoanApplyCompany/checkIsCanAdd",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "c4": {
+   "path": "@/legacy/api",
+   "export": "jobLoanApplyPersonCheckIsCanAdd",
+   "url": "/xf-job/job/xfJobLoanApplyPerson/checkIsCanAdd",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "c5": {
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_PENDING_2",
+   "kind": "const",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "c7": {
+   "path": "@/legacy/api",
+   "export": "getAreaInfoById",
+   "url": "/xf-job/communal/licenseFree/xfSysAreainfo/getAreaInfoById",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "cA": {
+   "path": "@/legacy/api",
+   "export": "sysRandomImage",
+   "url": "/sys/randomImage",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "cB": {
+   "path": "@/legacy/api",
+   "export": "login",
+   "url": "/xf-job/school/user/login",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored",
+   "sameAs": "bD"
+  },
+  "cd": {
+   "path": "@/legacy/components/MoveWindow.vue",
+   "export": "default",
+   "component": "moveWindow",
+   "scopeId": "data-v-a15b1e15",
+   "kind": "component",
+   "owner": "entry.portal.c03",
+   "users": 3,
+   "status": "restored"
+  },
+  "cD": {
+   "path": "@/legacy/api",
+   "export": "queryOrganizationByAreaId",
+   "url": "/xf-job/job/licenseFree/queryOrganizationByAreaId",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "cE": {
+   "path": "@/legacy/api",
+   "export": "getLoginUserCurriculumVitaeInfo",
+   "url": "/xf-job/job/xfJobCurriculumVitae/getLoginUserCurriculumVitaeInfo",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "cj": {
+   "path": "@/legacy/api",
+   "export": "jobPxRegistrationAdd",
+   "url": "/xf-job/job/xfJobPxRegistration/add",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "ck": {
+   "path": "@/legacy/utils",
+   "export": "checkOtherLoginLink",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "cm": {
+   "path": "@/legacy/api",
+   "export": "listChildrenTreeByTypeCode",
+   "url": "/xf-job/communal/licenseFree/xfSysArticleType/listChildrenTreeByTypeCode",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 1,
+   "status": "restored"
+  },
+  "cn": {
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "url": "/xf-job/job/licenseFree/getArticleListByCode",
+   "method": "get",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 12,
+   "status": "restored"
+  },
+  "ct": {
+   "path": "@/legacy/components/Foot2.vue",
+   "export": "default",
+   "component": "foot",
+   "scopeId": "data-v-e8fe68b2",
+   "kind": "component",
+   "owner": "entry.portal.c07",
+   "users": 1,
+   "status": "restored"
+  },
+  "cu": {
+   "path": "@/legacy/api",
+   "export": "getChildArticleTypeListByCode",
+   "url": "/xf-job/job/licenseFree/getChildArticleTypeListByCode",
+   "method": "post",
+   "kind": "api",
+   "owner": "entry.portal.E6",
+   "users": 2,
+   "status": "restored"
+  },
+  "cv": {
+   "path": "@/legacy/components/Recommend.vue",
+   "export": "default",
+   "component": "recommend",
+   "scopeId": "data-v-ef35af0a",
+   "kind": "component",
+   "owner": "entry.portal.c05",
+   "users": 1,
    "status": "restored"
   },
   "D": {
@@ -571,12 +1287,30 @@
    "users": 8,
    "status": "restored"
   },
+  "m": {
+   "path": "@/legacy",
+   "export": "LoginModal",
+   "component": "loginmodal",
+   "scopeId": "data-v-6ac82971",
+   "kind": "component",
+   "owner": "entry.portal.c03",
+   "users": 73,
+   "status": "restored"
+  },
   "n": {
    "path": "@/legacy",
    "export": "openArticle",
    "kind": "function",
    "owner": "entry.portal.E6",
    "users": 25,
+   "status": "restored"
+  },
+  "N": {
+   "path": "@/legacy/utils",
+   "export": "getCurrentLocation",
+   "kind": "function",
+   "owner": "entry.portal.E6",
+   "users": 3,
    "status": "restored"
   },
   "o": {
@@ -609,6 +1343,14 @@
    "kind": "const",
    "owner": "entry.portal.E6",
    "users": 19,
+   "status": "restored"
+  },
+  "Q": {
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_CERTIFIED",
+   "kind": "const",
+   "owner": "entry.portal.E6",
+   "users": 9,
    "status": "restored"
   },
   "r": {
@@ -661,6 +1403,16 @@
    "users": 36,
    "status": "restored"
   },
+  "V": {
+   "path": "@/legacy",
+   "export": "VideoPlayer",
+   "component": "video",
+   "scopeId": "data-v-0e6750cb",
+   "kind": "component",
+   "owner": "entry.portal.c05",
+   "users": 7,
+   "status": "restored"
+  },
   "w": {
    "path": "@/legacy",
    "export": "getSettingValueByCode",
@@ -707,770 +1459,6 @@
    "users": 21,
    "status": "restored"
   },
-  "z": {
-   "path": "@/utils/request",
-   "export": "request",
-   "kind": "binding",
-   "owner": "entry.portal.E5",
-   "users": 59,
-   "status": "restored"
-  },
-  "a_": {
-   "path": "@/legacy/components/Headers.vue",
-   "export": "default",
-   "component": "headers",
-   "scopeId": "data-v-ee377c98",
-   "kind": "component",
-   "owner": "entry.portal.c07",
-   "users": 1,
-   "status": "reserved"
-  },
-  "a$": {
-   "path": "@/legacy/api",
-   "export": "getArticleListByTypeCodes",
-   "url": "/xf-job/job/licenseFree/getArticleListByTypeCodes",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "a0": {
-   "path": "@/legacy/api",
-   "export": "queryByIdJM",
-   "url": "/xf-job/communal/xfSysUser/queryByIdJM",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "a1": {
-   "path": "@/utils/crypto-adapter",
-   "export": "decryptSm4",
-   "kind": "function",
-   "owner": "entry.portal.E5",
-   "users": 2,
-   "status": "reserved"
-  },
-  "a3": {
-   "path": "@/legacy/api",
-   "export": "getCompanyInfo",
-   "url": "/xf-job/job/xfJobCompany/getCompanyInfo",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "a5": {
-   "path": "@/legacy/api",
-   "export": "listOneForWebSite",
-   "url": "/xf-job/communal/xfSysUser/listOneForWebSite",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "a8": {
-   "path": "@/legacy/utils",
-   "export": "formatDateSlash",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "a9": {
-   "path": "@/legacy/utils",
-   "export": "UPLOAD_URL",
-   "kind": "binding",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "aA": {
-   "path": "@/legacy/api",
-   "export": "listForWebsite",
-   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "ab": {
-   "path": "@/legacy/api",
-   "export": "getArticleListNoCheck",
-   "url": "/xf-job/job/licenseFree/getArticleListNoCheck",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 7,
-   "status": "reserved"
-  },
-  "aB": {
-   "path": "@/legacy/api",
-   "export": "getChildArticleTypeList",
-   "url": "/xf-job/job/licenseFree/getChildArticleTypeList",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 3,
-   "status": "reserved"
-  },
-  "ae": {
-   "path": "@/legacy/api",
-   "export": "queryHomeSettingById",
-   "url": "/xf-job/job/licenseFree/queryHomeSettingById",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 12,
-   "status": "reserved"
-  },
-  "aE": {
-   "path": "@/legacy",
-   "export": "SlideCaptcha",
-   "component": "SlideCaptcha",
-   "scopeId": null,
-   "kind": "component",
-   "owner": "entry.portal.c02",
-   "users": 4,
-   "status": "reserved",
-   "stub": "apps/portal/src/legacy/SlideCaptcha.vue"
-  },
-  "af": {
-   "path": "@/legacy/api",
-   "export": "logout",
-   "url": "jeecg-system/sys/logout?_t=",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 3,
-   "status": "reserved"
-  },
-  "aF": {
-   "path": "@/legacy/components/TopHead.vue",
-   "export": "default",
-   "component": "TopHead",
-   "scopeId": "data-v-15d22a66",
-   "kind": "component",
-   "owner": "entry.portal.c04",
-   "users": 1,
-   "status": "reserved"
-  },
-  "ag": {
-   "path": "@/legacy/utils",
-   "export": "formatDateTime",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "ah": {
-   "path": "@/legacy/api",
-   "export": "getXfSysUserInfo",
-   "url": "/xf-job/communal/licenseFree/xfSysUser/getXfSysUserInfo",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "aj": {
-   "path": "@/legacy/utils",
-   "export": "openLink",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 5,
-   "status": "reserved"
-  },
-  "an": {
-   "path": "@/legacy/api",
-   "export": "queryLatestQuestionsList",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryLatestQuestionsList",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "ao": {
-   "path": "@/legacy/api",
-   "export": "queryQuestionsList",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuestionsList",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 3,
-   "status": "reserved"
-  },
-  "aq": {
-   "path": "@/legacy/store",
-   "export": "useStoreGetters",
-   "kind": "function",
-   "owner": "entry.portal.E4",
-   "users": 3,
-   "status": "reserved"
-  },
-  "aR": {
-   "path": "@/legacy/utils",
-   "export": "isMobilePhone",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "as": {
-   "path": "@/legacy/utils",
-   "export": "getUserInfo",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 7,
-   "status": "reserved"
-  },
-  "au": {
-   "path": "@/legacy/utils",
-   "export": "randomColor",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "aU": {
-   "path": "@/legacy/api",
-   "export": "recommendJobList",
-   "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "aV": {
-   "path": "@/legacy/api",
-   "export": "getAllLevelArticleListByTypeId",
-   "url": "/xf-job/job/licenseFree/getAllLevelArticleListByTypeId",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 3,
-   "status": "reserved"
-  },
-  "aW": {
-   "path": "@/legacy/api",
-   "export": "queryAllInfoById",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerPageSettings/queryAllInfoById",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "aY": {
-   "path": "@/legacy/images",
-   "export": "ENTRY_IMAGE_AY",
-   "kind": "image",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "aZ": {
-   "path": "@/legacy/utils",
-   "export": "getCurrentSysUser",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "b2": {
-   "path": "@/legacy/api",
-   "export": "querylistForOneUser",
-   "url": "/xf-job/job/xfJobCustomerConsultRecord/querylistForOneUser",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "b3": {
-   "path": "@/legacy/api",
-   "export": "listByPageId",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerPageKnowledgetype/listByPageId",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "b4": {
-   "path": "@/legacy/api",
-   "export": "queryQuickQuestionsList",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuickQuestionsList",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "b5": {
-   "path": "@/legacy/api",
-   "export": "askQuestion",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/askQuestion",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "b6": {
-   "path": "@/legacy/api",
-   "export": "queryQuestionsListByParams",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuestionsListByParams",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "b7": {
-   "path": "@/legacy/api",
-   "export": "updateHelpNums",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/updateHelpNums",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "b8": {
-   "path": "@/legacy/api",
-   "export": "getInfoById",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerMenuSettings/getInfoById",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "b9": {
-   "path": "@/legacy/api",
-   "export": "getKnowledgeInfoById",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/getKnowledgeInfoById",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bA": {
-   "path": "@/legacy/components/HomeLoginBtm.vue",
-   "export": "default",
-   "component": "homeLoginBtm",
-   "scopeId": "data-v-2742027c",
-   "kind": "component",
-   "owner": "entry.portal.c04",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bD": {
-   "path": "@/legacy/api",
-   "export": "login",
-   "url": "/xf-job/school/user/login",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "be": {
-   "path": "@/legacy/utils",
-   "export": "MSG_CORP_NOT_AUTH_RESUME",
-   "kind": "const",
-   "owner": "entry.portal.E6",
-   "users": 3,
-   "status": "reserved"
-  },
-  "bE": {
-   "path": "@/legacy/api",
-   "export": "phoneLogin",
-   "url": "/xf-job/school/user/phoneLogin",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bF": {
-   "path": "@/legacy/utils",
-   "export": "handleLoginSuccess",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bG": {
-   "path": "@/legacy/utils",
-   "export": "handleXfSysUserLoaded",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bh": {
-   "path": "@/legacy/utils",
-   "export": "parseIdCard",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "bH": {
-   "path": "@/legacy/api",
-   "export": "queryByUserId",
-   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bi": {
-   "path": "@/legacy/api",
-   "export": "getAllInfo",
-   "url": "/xf-job/communal/licenseFree/xfSysAreainfo/getAllInfo",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bJ": {
-   "path": "@/legacy/api",
-   "export": "newRegister",
-   "url": "/xf-job/school/user/newRegister",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bm": {
-   "path": "@/legacy/utils",
-   "export": "PAGE_LOAD_TIMESTAMP",
-   "kind": "binding",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bn": {
-   "path": "@/legacy/utils",
-   "export": "validatePassword",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "bN": {
-   "path": "@/legacy/components/Foot.vue",
-   "export": "default",
-   "component": "Foot",
-   "scopeId": "data-v-7515cd55",
-   "kind": "component",
-   "owner": "entry.portal.c06",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bo": {
-   "path": "@/legacy/api",
-   "export": "randomImage",
-   "url": "/jeecg-system/sys/randomImage/",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bO": {
-   "path": "@/legacy/components/HomeLoginBtm2.vue",
-   "export": "default",
-   "component": "homeLoginBtm",
-   "scopeId": "data-v-c10885ad",
-   "kind": "component",
-   "owner": "entry.portal.c06",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bs": {
-   "path": "@/legacy/utils",
-   "export": "openLinkAddress",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 4,
-   "status": "reserved"
-  },
-  "bt": {
-   "path": "@/legacy/store",
-   "export": "store",
-   "kind": "store",
-   "owner": "entry.portal.E4",
-   "users": 1,
-   "status": "reserved"
-  },
-  "bT": {
-   "path": "@/legacy/utils",
-   "export": "maskPhone",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 5,
-   "status": "reserved"
-  },
-  "bU": {
-   "path": "@/legacy/utils",
-   "export": "checkTokenLogin",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "bV": {
-   "path": "@/legacy/utils",
-   "export": "maskName",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "bX": {
-   "path": "@/legacy/utils",
-   "export": "toHonorific",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "by": {
-   "path": "@/legacy/images",
-   "export": "ENTRY_IMAGE_BY",
-   "kind": "image",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "c1": {
-   "path": "@/legacy/utils",
-   "export": "LOGIN_CHECK_TYPE_4",
-   "kind": "const",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "c2": {
-   "path": "@/legacy/components/Notice.vue",
-   "export": "default",
-   "component": "notice",
-   "scopeId": null,
-   "kind": "component",
-   "owner": "entry.portal.c09",
-   "users": 2,
-   "status": "reserved"
-  },
-  "c3": {
-   "path": "@/legacy/api",
-   "export": "checkIsCanAdd",
-   "url": "/xf-job/job/xfJobLoanApplyCompany/checkIsCanAdd",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "c4": {
-   "path": "@/legacy/api",
-   "export": "jobLoanApplyPersonCheckIsCanAdd",
-   "url": "/xf-job/job/xfJobLoanApplyPerson/checkIsCanAdd",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "c5": {
-   "path": "@/legacy/utils",
-   "export": "MSG_CORP_PENDING_2",
-   "kind": "const",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "c7": {
-   "path": "@/legacy/api",
-   "export": "getAreaInfoById",
-   "url": "/xf-job/communal/licenseFree/xfSysAreainfo/getAreaInfoById",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "cA": {
-   "path": "@/legacy/api",
-   "export": "sysRandomImage",
-   "url": "/sys/randomImage",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "cB": {
-   "path": "@/legacy/api",
-   "export": "login",
-   "url": "/xf-job/school/user/login",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved",
-   "sameAs": "bD"
-  },
-  "cd": {
-   "path": "@/legacy/components/MoveWindow.vue",
-   "export": "default",
-   "component": "moveWindow",
-   "scopeId": "data-v-a15b1e15",
-   "kind": "component",
-   "owner": "entry.portal.c03",
-   "users": 3,
-   "status": "reserved"
-  },
-  "cD": {
-   "path": "@/legacy/api",
-   "export": "queryOrganizationByAreaId",
-   "url": "/xf-job/job/licenseFree/queryOrganizationByAreaId",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "cE": {
-   "path": "@/legacy/api",
-   "export": "getLoginUserCurriculumVitaeInfo",
-   "url": "/xf-job/job/xfJobCurriculumVitae/getLoginUserCurriculumVitaeInfo",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "cj": {
-   "path": "@/legacy/api",
-   "export": "jobPxRegistrationAdd",
-   "url": "/xf-job/job/xfJobPxRegistration/add",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "ck": {
-   "path": "@/legacy/utils",
-   "export": "checkOtherLoginLink",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "cm": {
-   "path": "@/legacy/api",
-   "export": "listChildrenTreeByTypeCode",
-   "url": "/xf-job/communal/licenseFree/xfSysArticleType/listChildrenTreeByTypeCode",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 1,
-   "status": "reserved"
-  },
-  "cn": {
-   "path": "@/legacy/api",
-   "export": "getArticleListByCode",
-   "url": "/xf-job/job/licenseFree/getArticleListByCode",
-   "method": "get",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 12,
-   "status": "reserved"
-  },
-  "ct": {
-   "path": "@/legacy/components/Foot2.vue",
-   "export": "default",
-   "component": "foot",
-   "scopeId": "data-v-e8fe68b2",
-   "kind": "component",
-   "owner": "entry.portal.c07",
-   "users": 1,
-   "status": "reserved"
-  },
-  "cu": {
-   "path": "@/legacy/api",
-   "export": "getChildArticleTypeListByCode",
-   "url": "/xf-job/job/licenseFree/getChildArticleTypeListByCode",
-   "method": "post",
-   "kind": "api",
-   "owner": "entry.portal.E6",
-   "users": 2,
-   "status": "reserved"
-  },
-  "cv": {
-   "path": "@/legacy/components/Recommend.vue",
-   "export": "default",
-   "component": "recommend",
-   "scopeId": "data-v-ef35af0a",
-   "kind": "component",
-   "owner": "entry.portal.c05",
-   "users": 1,
-   "status": "reserved"
-  },
-  "m": {
-   "path": "@/legacy",
-   "export": "LoginModal",
-   "component": "loginmodal",
-   "scopeId": "data-v-6ac82971",
-   "kind": "component",
-   "owner": "entry.portal.c03",
-   "users": 73,
-   "status": "reserved",
-   "stub": "apps/portal/src/legacy/LoginModal.vue"
-  },
-  "N": {
-   "path": "@/legacy/utils",
-   "export": "getCurrentLocation",
-   "kind": "function",
-   "owner": "entry.portal.E6",
-   "users": 3,
-   "status": "reserved"
-  },
-  "Q": {
-   "path": "@/legacy/utils",
-   "export": "MSG_CORP_NOT_CERTIFIED",
-   "kind": "const",
-   "owner": "entry.portal.E6",
-   "users": 9,
-   "status": "reserved"
-  },
-  "V": {
-   "path": "@/legacy",
-   "export": "VideoPlayer",
-   "component": "video",
-   "scopeId": "data-v-0e6750cb",
-   "kind": "component",
-   "owner": "entry.portal.c05",
-   "users": 7,
-   "status": "reserved",
-   "stub": "apps/portal/src/legacy/VideoPlayer.vue"
-  },
   "Y": {
    "path": "@/legacy/components/Phone.vue",
    "export": "default",
@@ -1479,7 +1467,15 @@
    "kind": "component",
    "owner": "entry.portal.c03",
    "users": 3,
-   "status": "reserved"
+   "status": "restored"
+  },
+  "z": {
+   "path": "@/utils/request",
+   "export": "request",
+   "kind": "binding",
+   "owner": "entry.portal.E5",
+   "users": 59,
+   "status": "restored"
   },
   "Z": {
    "path": "@/legacy/api",
@@ -1489,7 +1485,7 @@
    "kind": "api",
    "owner": "entry.portal.E6",
    "users": 1,
-   "status": "reserved"
+   "status": "restored"
   },
   "a": {
    "path": "swiper/vue",
@@ -2600,167 +2596,167 @@
  },
  "api": {
   "index.1783320636200117.js#s": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "saveForUserCenter",
    "url": "/xf-job/communal/xfSysUser/saveForUserCenter",
    "method": "post",
    "status": "restored"
   },
   "index.1783320636200117.js#a": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "addTalent",
    "url": "/xf-job/job/xfJobCompanyTalents/addTalent",
    "method": "post",
    "status": "restored"
   },
   "index.1783320636200117.js#k": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "listForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",
    "method": "get",
    "status": "restored"
   },
   "index.1783320636200117.js#j": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "hotListForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/hotListForWebsite",
    "method": "get",
    "status": "restored"
   },
   "index.1783320636200117.js#x": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "list",
    "url": "/xf-job/communal/xfSysGuide/list",
    "method": "get",
    "status": "restored"
   },
   "index.1783320636200117.js#h": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "getCompleteStatus",
    "url": "/xf-job/communal/xfSysGuideRecord/getCompleteStatus",
    "method": "post",
    "status": "restored"
   },
   "index.1783320636200117.js#b": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "setCompleteStatus",
    "url": "/xf-job/communal/xfSysGuideRecord/setCompleteStatus",
    "method": "post",
    "status": "restored"
   },
   "index.1783320636200117.js#c": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "checkIdCard",
    "url": "/xf-job/communal/xfSysUser/checkIdCard",
    "method": "post",
    "status": "restored"
   },
   "index.1783320636200117.js#q": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "queryById",
    "url": "/xf-job/communal/xfSysUser/queryById",
    "method": "get",
    "status": "restored"
   },
   "index.1783320636200117.js#d": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "save",
    "url": "/xf-job/job/xfJobCurriculumVitae/save",
    "method": "post",
    "status": "restored"
   },
   "index.1783320636200117.js#f": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "addBatch",
    "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/addBatch",
    "method": "post",
    "status": "restored"
   },
   "index.1783320636200117.js#v": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "list2",
    "url": "/xf-job/job/xfJobCurriculumVitae/list",
    "method": "get",
    "status": "restored"
   },
   "index.1783320636200117.js#i": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "isPublishingPosition",
    "url": "/xf-job/job/xfJobCompany/isPublishingPosition",
    "method": "get",
    "status": "restored"
   },
   "index.1783320636200117.js#r": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "cancelTalent",
    "url": "/xf-job/job/xfJobCompanyTalents/cancelTalent",
    "method": "post",
    "status": "restored"
   },
   "index.1783320636200117.js#e": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "beJobSeeker",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/beJobSeeker",
    "method": "post",
    "status": "restored"
   },
   "index.1783320636200117.js#g": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "getQrcodeImgByObjectId",
    "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId",
    "method": "post",
    "status": "restored"
   },
   "index.1783320636200117.js#o": {
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "o",
    "status": "reserved",
    "note": "不是接口函数（常量或对象），按原导出名导出"
   },
   "index.api.1783320636200.js#a": {
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freeCompanyExpandPositionList",
    "url": "/xf-job/job/licenseFree/freeCompanyExpandPositionList",
    "method": "post",
    "status": "restored"
   },
   "index.api.1783320636200.js#b": {
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freeCompanyExpandList",
    "url": "/xf-job/job/licenseFree/freeCompanyExpandList",
    "method": "post",
    "status": "restored"
   },
   "index.api.1783320636200.js#c": {
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freeCompanyAttachmentList",
    "url": "/xf-job/job/licenseFree/freeCompanyAttachmentList",
    "method": "get",
    "status": "restored"
   },
   "index.api.1783320636200.js#d": {
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freePositionDetail",
    "url": "/xf-job/job/licenseFree/freePositionDetail",
    "method": "post",
    "status": "restored"
   },
   "index.api.1783320636200.js#f": {
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freeDetailById",
    "url": "/xf-job/job/licenseFree/freeDetailById",
    "method": "post",
    "status": "restored"
   },
   "index.api.1783320636200.js#e": {
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "freeCompanyDetailById",
    "url": "/xf-job/job/licenseFree/freeCompanyDetailById",
    "method": "post",
    "status": "restored"
   },
   "index.api.1783320636200.js#g": {
-   "path": "@/api/api-1783320636200",
+   "path": "@/api/company",
    "export": "getArticleList",
    "url": "/xf-job/job/licenseFree/getArticleList",
    "method": "get",
@@ -2771,241 +2767,241 @@
    "export": "List",
    "url": "/xf-job/communal/licenseFree/quenaire/List",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620011.js#q": {
    "path": "@/api/quenaire",
    "export": "izLogin",
    "url": "/xf-job/communal/licenseFree/quenaire/izLogin",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620011.js#a": {
    "path": "@/api/quenaire",
    "export": "preview",
    "url": "/xf-job/communal/licenseFree/quenaire/preview",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620011.js#x": {
    "path": "@/api/quenaire",
    "export": "preview2",
    "url": "/xf-job/communal/xfSysQuenaire/preview",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620011.js#b": {
    "path": "@/api/quenaire",
    "export": "submit",
    "url": "/xf-job/communal/licenseFree/quenaire/submit",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620011.js#s": {
    "path": "@/api/quenaire",
    "export": "staggingOrSubmit",
    "url": "/xf-job/communal/xfSysQuenaireRecord/staggingOrSubmit",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620011.js#r": {
    "path": "@/api/quenaire",
    "export": "izEnter",
    "url": "/xf-job/communal/xfSysQuenaire/record/izEnter",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620011.js#i": {
    "path": "@/api/quenaire",
    "export": "izQuenPwd",
    "url": "/xf-job/communal/licenseFree/quenaire/izQuenPwd",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620013.js#g": {
    "path": "@/api/jobLiveTelecast",
    "export": "list",
    "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/list?izFromWebSite=1",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620013.js#a": {
    "path": "@/api/jobLiveTelecast",
    "export": "queryVoById",
    "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/queryVoById",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620013.js#f": {
    "path": "@/api/jobLiveTelecast",
    "export": "queryCompanyAndPositionList",
    "url": "/xf-job/job/licenseFree/xfJobLiveTelecastPosition/queryCompanyAndPositionList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620013.js#h": {
    "path": "@/api/jobLiveTelecast",
    "export": "updateLikeNum",
    "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/updateLikeNum",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620013.js#s": {
    "path": "@/api/jobLiveTelecast",
    "export": "submit",
    "url": "/xf-job/job/licenseFree/xfJobComment/submit",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620014.js#b": {
    "path": "@/api/article",
    "export": "getArticleList",
    "url": "/xf-job/job/licenseFree/getArticleList",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620014.js#a": {
    "path": "@/api/article",
    "export": "getChildArticleTypeList",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620014.js#c": {
    "path": "@/api/article",
    "export": "findJobList",
    "url": "/xf-job/job/licenseFree/findJobList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620014.js#g": {
    "path": "@/api/article",
    "export": "freeCompanyList",
    "url": "/xf-job/job/licenseFree/freeCompanyList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620014.js#f": {
    "path": "@/api/article",
    "export": "freeCompanyListByTags",
    "url": "/xf-job/job/licenseFree/freeCompanyListByTags",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620015.js#d": {
-   "path": "@/api/api-15",
+   "path": "@/api/archive",
    "export": "freeArchiveInfoPageList",
    "url": "/xf-job/job/licenseFree/freeArchiveInfoPageList",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620015.js#b": {
-   "path": "@/api/api-15",
+   "path": "@/api/archive",
    "export": "freeArchiveServiceOrgList",
    "url": "/xf-job/job/licenseFree/freeArchiveServiceOrgList",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620015.js#a": {
-   "path": "@/api/api-15",
+   "path": "@/api/archive",
    "export": "getArticleList",
    "url": "/xf-job/job/licenseFree/getArticleList",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620015.js#g": {
-   "path": "@/api/api-15",
+   "path": "@/api/archive",
    "export": "getChildArticleTypeList",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620015.js#c": {
-   "path": "@/api/api-15",
+   "path": "@/api/archive",
    "export": "freeArchiveInfoPageList3",
    "url": "/xf-job/job/licenseFree/hm/freeArchiveInfoPageList",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620017.js#g": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "checkIzShowApplySameNetworkFair",
    "url": "/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620017.js#w": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "getFairList",
    "url": "/xf-job/job/licenseFree/xfJobFair/getFairList",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620017.js#c": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryById",
    "url": "/xf-job/job/licenseFree/xfJobFair/queryById",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620017.js#a": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryFairRegions",
    "url": "/xf-job/job/licenseFree/queryFairRegions",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620017.js#s": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "updateCompIntroduc",
    "url": "/xf-job/job/licenseFree/updateCompIntroduc",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620017.js#d": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryJobFairStatistics",
    "url": "/xf-job/job/licenseFree/statistics/queryJobFairStatistics",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620017.js#e": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "scrollBarData",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/scrollBarData",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620017.js#f": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryAttendeesCompany",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesCompany",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620017.js#h": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryAttendeesPosition",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesPosition",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620017.js#b": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "updateBrowseCount",
    "url": "/xf-job/job/licenseFree/xfJobFair/updateBrowseCount",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620017.js#j": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryBoothView",
    "url": "/xf-job/job/licenseFree/xfJobFair/queryBoothView",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620017.js#i": {
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryBoothPlaceInfo",
    "url": "/xf-job/job/licenseFree/xfJobFair/queryBoothPlaceInfo",
    "method": "post",
@@ -3016,164 +3012,164 @@
    "export": "getArticleList",
    "url": "/xf-job/job/licenseFree/getArticleList",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620018.js#g": {
    "path": "@/api/child",
    "export": "getChildArticleTypeList",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620018.js#b": {
    "path": "@/api/child",
    "export": "getArticleTypeById",
    "url": "/xf-job/job/licenseFree/getArticleTypeById",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362002.js#t": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "saveUserAndVitaeWithCare",
    "url": "/xf-job/job/xfJobUserCare/saveUserAndVitaeWithCare",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362002.js#u": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "saveUserAndVitae",
    "url": "/xf-job/job/xfJobCurriculumVitae/saveUserAndVitae",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362002.js#d": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "findJobList",
    "url": "/xf-job/job/licenseFree/findJobList",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362002.js#b": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "findJobFwlzphList",
    "url": "/xf-job/job/licenseFree/findJobFwlzphList",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362002.js#m": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "findLikeJobList",
    "url": "/xf-job/job/licenseFree/findLikeJobList",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362002.js#f": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "freeCompanyDetailById",
    "url": "/xf-job/job/licenseFree/freeCompanyDetailById",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362002.js#l": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "freeCompanyPositionDetail",
    "url": "/xf-job/job/licenseFree/freeCompanyPositionDetail",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362002.js#e": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "add",
    "url": "/xf-job/job/xfJobUserCare/add",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362002.js#h": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "cancel",
    "url": "/xf-job/job/xfJobUserCare/cancel",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362002.js#o": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listNoPageForDeliver",
    "url": "/xf-job/job/xfJobCurriculumVitae/listNoPageForDeliver",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362002.js#q": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryIzCanDeliver",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362002.js#r": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "add2",
    "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/add",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362002.js#j": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryById",
    "url": "/xf-alliance/alliance/licenseFree/xfAllianceCompany/queryById",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362002.js#k": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryById2",
    "url": "/xf-alliance/alliance/licenseFree/xfAlliancePosition/queryById",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362002.js#c": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "list",
    "url": "/xf-alliance/alliance/licenseFree/xfAlliancePosition/mh/list",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362002.js#a": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "updateApplyInfoBrowseCount",
    "url": "/xf-job/job/licenseFree/updateApplyInfoBrowseCount",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362002.js#g": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryCompanyCount",
    "url": "/xf-job/job/licenseFree/queryCompanyCount",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362002.js#i": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryForCompetitiveAnalysis",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryForCompetitiveAnalysis",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362002.js#n": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryIzCanDeliver2",
    "url": "/xf-alliance/alliance/curriculumVitaeDeliver/queryIzCanDeliver",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362002.js#p": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listNoPageForDeliver2",
    "url": "/alliance/curriculumVitaeDeliver/listNoPageForDeliver",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362002.js#s": {
-   "path": "@/api/api-17833206362002",
+   "path": "@/api/jobCurriculumVitae",
    "export": "add3",
    "url": "/xf-alliance/alliance/curriculumVitaeDeliver/add",
    "method": "get",
@@ -3184,255 +3180,255 @@
    "export": "queryById",
    "url": "/xf-job/school/licenseFree/XfSysArticle/queryById",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620020.js#g": {
    "path": "@/api/service",
    "export": "freeServiceUnitPageList",
    "url": "/xf-job/job/licenseFree/freeServiceUnitPageList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620020.js#b": {
    "path": "@/api/service",
    "export": "freeServiceUnitDetailById",
    "url": "/xf-job/job/licenseFree/freeServiceUnitDetailById",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620020.js#a": {
    "path": "@/api/service",
    "export": "freeServiceUnitPageListForMap",
    "url": "/xf-job/job/licenseFree/freeServiceUnitPageListForMap",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620021.js#g": {
    "path": "@/api/jobPxCourse",
    "export": "listForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620021.js#c": {
    "path": "@/api/jobPxCourse",
    "export": "hotListForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/hotListForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620021.js#a": {
    "path": "@/api/jobPxCourse",
    "export": "queryByIdNew",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/queryByIdNew",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620021.js#b": {
    "path": "@/api/jobPxCourse",
    "export": "getArticleList",
    "url": "/xf-job/job/licenseFree/getArticleList",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620021.js#d": {
    "path": "@/api/jobPxCourse",
    "export": "queryFreeDetailById",
    "url": "/xf-job/job/licenseFree/xfJobPxUnit/queryFreeDetailById",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620021.js#e": {
    "path": "@/api/jobPxCourse",
    "export": "freeList",
    "url": "/xf-job/job/licenseFree/xfJobPxUnit/freeList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620022.js#g": {
    "path": "@/api/company2",
    "export": "freeCompanyPositionPageListForMap",
    "url": "/xf-job/job/licenseFree/freeCompanyPositionPageListForMap",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620023.js#s": {
    "path": "@/api/jobCompanyTalents",
    "export": "searchListForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobCurriculumVitae/searchListForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620023.js#a": {
    "path": "@/api/jobCompanyTalents",
    "export": "addTalent",
    "url": "/xf-job/job/xfJobCompanyTalents/addTalent",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620023.js#r": {
    "path": "@/api/jobCompanyTalents",
    "export": "cancelTalent",
    "url": "/xf-job/job/xfJobCompanyTalents/cancelTalent",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620023.js#i": {
    "path": "@/api/jobCompanyTalents",
    "export": "isPublishingPosition",
    "url": "/xf-job/job/xfJobCompany/isPublishingPosition",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620024.js#p": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "popularNeedJob",
    "url": "/xf-oddjob/oddJob/licenseFree/popularNeedJob",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#c": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "populaFindJob",
    "url": "/xf-oddjob/oddJob/licenseFree/populaFindJob",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#l": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "loadTreeRoot",
    "url": "/xf-oddjob/oddJob/licenseFree/loadTreeRoot",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620024.js#n": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "needJoblist",
    "url": "/xf-oddjob/oddJob/licenseFree/needJoblist",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#f": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "findJoblist",
    "url": "/xf-oddjob/oddJob/licenseFree/findJoblist",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#a": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "getChildArticleTypeList",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#k": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "appletList",
    "url": "/xf-oddjob/oddJob/licenseFree/appletList",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#o": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "appletShareSurplusJobList",
    "url": "/xf-oddjob/oddJob/licenseFree/appletShareSurplusJobList",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#q": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "getDetailById",
    "url": "/xf-oddjob/oddJob/licenseFree/getDetailById",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620024.js#m": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "getDictListByType",
    "url": "/xf-job/communal/licenseFree/getDictListByType?dictTypeCode=ACA111_C",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#d": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "getFindDetailById",
    "url": "/xf-oddjob/oddJob/licenseFree/getFindDetailById",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620024.js#J": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "queryById",
    "url": "/xf-oddjob/oddJob/licenseFree/queryById",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620024.js#S": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "findJobQueryById",
    "url": "/xf-oddjob/oddJob/licenseFree/findJobQueryById",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620024.js#i": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "add",
    "url": "/xf-oddjob/oddjob/xfOddUserCollect/add",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#j": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "deleteItem",
    "url": "/xf-oddjob/oddjob/xfOddUserCollect/delete",
    "method": "delete",
    "status": "restored"
   },
   "index.api.178332063620024.js#x": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "add2",
    "url": "/xf-oddjob/oddjob/xfOddUserBrowse/add",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#b": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "getArticleList",
    "url": "/xf-job/school/licenseFree/getArticleList",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620024.js#s": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "querySearchPersonList",
    "url": "/xf-oddjob/oddJob/licenseFree/querySearchPersonList",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#t": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "oddjobXfOddUserQueryById",
    "url": "/xf-oddjob/oddJob/licenseFree/oddjobXfOddUserQueryById",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620024.js#e": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "add3",
    "url": "/xf-oddjob/oddjob/xfOddPositionApply/add",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#r": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "recommendation",
    "url": "/xf-oddjob/oddJob/xfOddRecommendRecord/recommendation",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620024.js#h": {
-   "path": "@/api/api-24",
+   "path": "@/api/oddJob",
    "export": "add4",
    "url": "/xf-oddjob/oddJob/licenseFree/callRecord/add",
    "method": "post",
@@ -3443,164 +3439,164 @@
    "export": "findJobList",
    "url": "/xf-job/job/licenseFree/findJobList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620028.js#p": {
    "path": "@/api/user",
    "export": "sms",
    "url": "/xf-job/school/user/sms",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620028.js#g": {
    "path": "@/api/user",
    "export": "passwordChangeByJson",
    "url": "/xf-job/job/licenseFree/passwordChangeByJson",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620028.js#c": {
    "path": "@/api/user",
    "export": "checkVerifycode",
    "url": "/xf-job/job/licenseFree/checkVerifycode",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362003.js#l": {
    "path": "@/api/sysThumbsUp",
    "export": "listForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobReceptionRoom/listForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362003.js#x": {
    "path": "@/api/sysThumbsUp",
    "export": "listForWebsite2",
    "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362003.js#b": {
    "path": "@/api/sysThumbsUp",
    "export": "queryMoreClassicQandA",
    "url": "/xf-job/communal/licenseFree/xfSysConsult/queryMoreClassicQandA",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362003.js#t": {
    "path": "@/api/sysThumbsUp",
    "export": "add",
    "url": "/xf-job/communal/xfSysThumbsUp/add",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362003.js#c": {
    "path": "@/api/sysThumbsUp",
    "export": "add2",
    "url": "/xf-job/communal/licenseFree/xfSysThumbsUp/add",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362003.js#g": {
    "path": "@/api/sysThumbsUp",
    "export": "getArticleList",
    "url": "/xf-job/job/licenseFree/getArticleList",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362003.js#q": {
    "path": "@/api/sysThumbsUp",
    "export": "queryById",
    "url": "/xf-job/school/licenseFree/XfSysArticle/queryById",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362003.js#a": {
    "path": "@/api/sysThumbsUp",
    "export": "getChildArticleTypeList",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620031.js#g": {
    "path": "@/api/jobPxCourse2",
    "export": "listForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620031.js#c": {
    "path": "@/api/jobPxCourse2",
    "export": "hotListForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/hotListForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620032.js#g": {
    "path": "@/api/jobEventReleaseNew",
    "export": "listCyfwMh",
    "url": "/xf-job/communal/licenseFree/xfJobEventReleaseNew/listCyfwMh",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620032.js#a": {
    "path": "@/api/jobEventReleaseNew",
    "export": "queryByIdMh",
    "url": "/xf-job/communal/licenseFree/xfJobEventReleaseNew/queryByIdMh",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620033.js#a": {
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "freeCompanyPositionDetail",
    "url": "/xf-job/job/licenseFree/freeCompanyPositionDetail",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620033.js#c": {
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "getMatchingDegree",
    "url": "/xf-job/job/xfJobCompanyPosition/getMatchingDegree",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620033.js#b": {
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "viewVoByIdFromPerson",
    "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromPerson",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620033.js#d": {
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "viewVoByIdFromCompany",
    "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromCompany",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620033.js#f": {
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "recommendJobList",
    "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620033.js#g": {
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "queryForCompetitiveAnalysis",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryForCompetitiveAnalysis",
    "method": "get",
    "status": "restored"
   },
   "index.api.178332063620033.js#e": {
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "addTalent",
    "url": "/xf-job/job/xfJobCompanyTalents/addTalent",
    "method": "post",
    "status": "restored"
   },
   "index.api.178332063620033.js#i": {
-   "path": "@/api/api-178332063620033",
+   "path": "@/api/jobCompanyPosition",
    "export": "isPublishingPosition",
    "url": "/xf-job/job/xfJobCompany/isPublishingPosition",
    "method": "get",
@@ -3611,346 +3607,346 @@
    "export": "queryAllInfoById",
    "url": "/xf-job/job/licenseFree/xfJobBigDataViewSettings/queryAllInfoById",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620035.js#o": {
    "path": "@/api/jobGovRecruitCompany",
    "export": "add",
    "url": "/xf-job/job/xfJobGovRecruitRegistration/add",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620035.js#g": {
    "path": "@/api/jobGovRecruitCompany",
    "export": "queryByIdNew",
    "url": "/xf-job/job/licenseFree/xfJobGovRecruitNotice/queryByIdNew",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620035.js#c": {
    "path": "@/api/jobGovRecruitCompany",
    "export": "checkIzPerfect",
    "url": "/xf-job/communal/xfSysUser/checkIzPerfect",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620035.js#n": {
    "path": "@/api/jobGovRecruitCompany",
    "export": "noPagelist",
    "url": "/job/licenseFree/xfJobGovRecruitPosition/noPagelist",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620035.js#x": {
    "path": "@/api/jobGovRecruitCompany",
    "export": "noPagelist2",
    "url": "/job/licenseFree/xfJobGovRecruitCompany/noPagelist",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620037.js#f": {
    "path": "@/api/sysBusinessSetting",
    "export": "recommendJobList",
    "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620037.js#s": {
    "path": "@/api/sysBusinessSetting",
    "export": "searchListForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobCurriculumVitae/searchListForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620037.js#b": {
    "path": "@/api/sysBusinessSetting",
    "export": "listForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620037.js#g": {
    "path": "@/api/sysBusinessSetting",
    "export": "queryPageZcyzList_",
    "url": "/xf-job/job/licenseFree/xfJobFair/queryPageZcyzList ",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620037.js#a": {
    "path": "@/api/sysBusinessSetting",
    "export": "getTalentSettings",
    "url": "/xf-job/job/licenseFree/xfSysBusinessSetting/getTalentSettings",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620039.js#g": {
    "path": "@/api/sysMeeting",
    "export": "getMeetingInfo",
    "url": "xf-job/communal/licenseFree/xfSysMeeting/getMeetingInfo",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620039.js#q": {
    "path": "@/api/sysMeeting",
    "export": "queryById",
    "url": "xf-job/communal/licenseFree/xfSysMeeting/queryById",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362004.js#x": {
    "path": "@/api/jobUserTutorExpand",
    "export": "listForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362004.js#q": {
    "path": "@/api/jobUserTutorExpand",
    "export": "queryMoreClassicQandA",
    "url": "/xf-job/communal/licenseFree/xfSysConsult/queryMoreClassicQandA",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362004.js#a": {
    "path": "@/api/jobUserTutorExpand",
    "export": "getArticleList",
    "url": "/xf-job/job/licenseFree/getArticleList",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362004.js#b": {
    "path": "@/api/jobUserTutorExpand",
    "export": "freeCompanyExpandPositionList",
    "url": "/xf-job/job/licenseFree/freeCompanyExpandPositionList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362004.js#c": {
    "path": "@/api/jobUserTutorExpand",
    "export": "freeCompanyExpandList",
    "url": "/xf-job/job/licenseFree/freeCompanyExpandList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362004.js#f": {
    "path": "@/api/jobUserTutorExpand",
    "export": "freeCompanyAllAttachmentList",
    "url": "/xf-job/job/licenseFree/freeCompanyAllAttachmentList",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362004.js#g": {
    "path": "@/api/jobUserTutorExpand",
    "export": "queryOrganizationByAreaId",
    "url": "/xf-job/job/licenseFree/queryOrganizationByAreaId",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362004.js#d": {
    "path": "@/api/jobUserTutorExpand",
    "export": "freeKeynoteCompanySeeMoreList",
    "url": "/xf-job/job/licenseFree/freeKeynoteCompanySeeMoreList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362004.js#r": {
    "path": "@/api/jobUserTutorExpand",
    "export": "recommendJobList",
    "url": "/job/licenseFree/xfJobCompanyPosition/recommendJobList",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620040.js#q": {
    "path": "@/api/scan",
    "export": "queryById",
    "url": "/xf-job/school/licenseFree/XfSysArticle/queryById",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620040.js#u": {
    "path": "@/api/scan",
    "export": "updateScanTimes",
    "url": "/xf-job/school/licenseFree/updateScanTimes",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620040.js#g": {
    "path": "@/api/scan",
    "export": "getArticleList",
    "url": "/xf-job/job/licenseFree/getArticleList",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620040.js#c": {
    "path": "@/api/scan",
    "export": "getArticleTypeByCode",
    "url": "/xf-job/job/licenseFree/getArticleTypeByCode",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620041.js#b": {
    "path": "@/api/jobOverseasRecruitNotice",
    "export": "queryList",
    "url": "/xf-job/job/licenseFree/xfJobOverseasRecruitNotice/queryList",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620041.js#q": {
    "path": "@/api/jobOverseasRecruitNotice",
    "export": "queryById",
    "url": "/xf-job/job/licenseFree/xfJobOverseasRecruitNotice/queryById",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620041.js#a": {
    "path": "@/api/jobOverseasRecruitNotice",
    "export": "queryById2",
    "url": "/xf-job/job/xfJobOverseasRecruitNotice/queryById",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.178332063620041.js#s": {
    "path": "@/api/jobOverseasRecruitNotice",
    "export": "saveOrCancel",
    "url": "/xf-job/job/xfJobOverseasRecruitRegistration/saveOrCancel",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362005.js#x": {
    "path": "@/api/jobUserTutorExpand2",
    "export": "listForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362005.js#h": {
    "path": "@/api/jobUserTutorExpand2",
    "export": "hotlistForWebsite",
    "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/hotlistForWebsite",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362005.js#t": {
    "path": "@/api/jobUserTutorExpand2",
    "export": "add",
    "url": "/xf-job/communal/xfSysThumbsUp/add",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362006.js#a": {
    "path": "@/api/job",
    "export": "findJobListForWebRedis",
    "url": "/xf-job/job/licenseFree/findJobListForWebRedis",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362006.js#g": {
    "path": "@/api/job",
    "export": "getDistance",
    "url": "/xf-job/job/licenseFree/getDistance",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362006.js#f": {
    "path": "@/api/job",
    "export": "findJobListForDistance",
    "url": "/xf-job/job/licenseFree/findJobListForDistance",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362007.js#v": {
    "path": "@/api/jobInterviewInvitation",
    "export": "viewVoByIdFromCompany",
    "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromCompany",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362007.js#d": {
    "path": "@/api/jobInterviewInvitation",
    "export": "interviewInvitation",
    "url": "/xf-job/job/xfJobInterviewInvitation/interviewInvitation",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362007.js#c": {
    "path": "@/api/jobInterviewInvitation",
    "export": "getInterviewPosition",
    "url": "/xf-job/job/xfJobInterviewInvitation/getInterviewPosition",
    "method": "post",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362007.js#b": {
    "path": "@/api/jobInterviewInvitation",
    "export": "interviewTemplate",
    "url": "/xf-job/job/xfJobInterviewInvitation/interviewTemplate",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362007.js#i": {
    "path": "@/api/jobInterviewInvitation",
    "export": "isPublishingPosition",
    "url": "/xf-job/job/xfJobCompany/isPublishingPosition",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362007.js#a": {
    "path": "@/api/jobInterviewInvitation",
    "export": "downPdf",
    "url": "/xf-job/job/xfJobCompanyCurriculumDownload/downPdf",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   },
   "index.api.17833206362008.js#q": {
-   "path": "@/api/api-08",
+   "path": "@/api/sysArticle",
    "export": "queryById",
    "url": "/xf-job/school/licenseFree/XfSysArticle/queryById",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362008.js#u": {
-   "path": "@/api/api-08",
+   "path": "@/api/sysArticle",
    "export": "updateScanTimes",
    "url": "/xf-job/school/licenseFree/updateScanTimes",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362008.js#b": {
-   "path": "@/api/api-08",
+   "path": "@/api/sysArticle",
    "export": "getChildArticleTypeList",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362008.js#a": {
-   "path": "@/api/api-08",
+   "path": "@/api/sysArticle",
    "export": "getHotArticleList",
    "url": "/xf-job/job/licenseFree/getHotArticleList",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362008.js#e": {
-   "path": "@/api/api-08",
+   "path": "@/api/sysArticle",
    "export": "updateViewTimes",
    "url": "/xf-job/job/licenseFree/updateViewTimes",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362008.js#c": {
-   "path": "@/api/api-08",
+   "path": "@/api/sysArticle",
    "export": "positionList",
    "url": "/xf-job/communal/xfSysArticlePosition/positionList",
    "method": "get",
    "status": "restored"
   },
   "index.api.17833206362008.js#p": {
-   "path": "@/api/api-08",
+   "path": "@/api/sysArticle",
    "export": "deliver",
    "url": "/xf-job/communal/xfSysArticlePositionDeliver/deliver",
    "method": "post",
    "status": "restored"
   },
   "index.api.17833206362008.js#d": {
-   "path": "@/api/api-08",
+   "path": "@/api/sysArticle",
    "export": "queryByIdDeliver",
    "url": "/xf-job/school/licenseFree/xfSysArticle/queryByIdDeliver",
    "method": "get",
@@ -3961,211 +3957,200 @@
    "export": "queryAllInfoById",
    "url": "/xf-job/job/licenseFree/xfJobBigDataViewSettings/queryAllInfoById",
    "method": "get",
-   "status": "reserved"
+   "status": "restored"
   }
  },
  "apiModules": {
   "index.1783320636200117.js": {
-   "path": "@/api/api-117",
-   "renameTo": "@/api/jobCompany",
+   "path": "@/api/jobCompany",
    "status": "restored",
    "owner": null,
    "functions": 22
   },
   "index.api.1783320636200.js": {
-   "path": "@/api/api-1783320636200",
-   "renameTo": "@/api/company",
+   "path": "@/api/company",
    "status": "restored",
    "owner": null,
    "functions": 7
   },
   "index.api.178332063620011.js": {
    "path": "@/api/quenaire",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 8
   },
   "index.api.178332063620013.js": {
    "path": "@/api/jobLiveTelecast",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 6
   },
   "index.api.178332063620014.js": {
    "path": "@/api/article",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 5
   },
   "index.api.178332063620015.js": {
-   "path": "@/api/api-15",
-   "renameTo": "@/api/archive",
+   "path": "@/api/archive",
    "status": "restored",
    "owner": null,
    "functions": 6
   },
   "index.api.178332063620017.js": {
-   "path": "@/api/api-17",
-   "renameTo": "@/api/jobFair",
+   "path": "@/api/jobFair",
    "status": "restored",
    "owner": null,
-   "functions": 13,
-   "duplicates": [
-    "@/api/api-178332063620017"
-   ]
+   "functions": 13
   },
   "index.api.178332063620018.js": {
    "path": "@/api/child",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 3
   },
   "index.api.17833206362002.js": {
-   "path": "@/api/api-17833206362002",
-   "renameTo": "@/api/jobCurriculumVitae",
+   "path": "@/api/jobCurriculumVitae",
    "status": "restored",
    "owner": null,
    "functions": 21
   },
   "index.api.178332063620020.js": {
    "path": "@/api/service",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 4
   },
   "index.api.178332063620021.js": {
    "path": "@/api/jobPxCourse",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 6
   },
   "index.api.178332063620022.js": {
    "path": "@/api/company2",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 1
   },
   "index.api.178332063620023.js": {
    "path": "@/api/jobCompanyTalents",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 5
   },
   "index.api.178332063620024.js": {
-   "path": "@/api/api-24",
-   "renameTo": "@/api/oddJob",
+   "path": "@/api/oddJob",
    "status": "restored",
    "owner": null,
    "functions": 23
   },
   "index.api.178332063620026.js": {
    "path": "@/api/sysConsult",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 16
   },
   "index.api.178332063620028.js": {
    "path": "@/api/user",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 6
   },
   "index.api.17833206362003.js": {
    "path": "@/api/sysThumbsUp",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 8
   },
   "index.api.178332063620031.js": {
    "path": "@/api/jobPxCourse2",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 4
   },
   "index.api.178332063620032.js": {
    "path": "@/api/jobEventReleaseNew",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 2
   },
   "index.api.178332063620033.js": {
-   "path": "@/api/api-178332063620033",
-   "renameTo": "@/api/jobCompanyPosition",
+   "path": "@/api/jobCompanyPosition",
    "status": "restored",
    "owner": null,
    "functions": 8
   },
   "index.api.178332063620034.js": {
    "path": "@/api/jobBigDataViewSettings",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 1
   },
   "index.api.178332063620035.js": {
    "path": "@/api/jobGovRecruitCompany",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 5
   },
   "index.api.178332063620037.js": {
    "path": "@/api/sysBusinessSetting",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 5
   },
   "index.api.178332063620039.js": {
    "path": "@/api/sysMeeting",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 2
   },
   "index.api.17833206362004.js": {
    "path": "@/api/jobUserTutorExpand",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 9
   },
   "index.api.178332063620040.js": {
    "path": "@/api/scan",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 6
   },
   "index.api.178332063620041.js": {
    "path": "@/api/jobOverseasRecruitNotice",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 4
   },
   "index.api.17833206362005.js": {
    "path": "@/api/jobUserTutorExpand2",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 3
   },
   "index.api.17833206362006.js": {
    "path": "@/api/job",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 4
   },
   "index.api.17833206362007.js": {
    "path": "@/api/jobInterviewInvitation",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 10
   },
   "index.api.17833206362008.js": {
-   "path": "@/api/api-08",
-   "renameTo": "@/api/sysArticle",
+   "path": "@/api/sysArticle",
    "status": "restored",
    "owner": null,
    "functions": 9
   },
   "index.apinew.1783320636200.js": {
    "path": "@/api/deviceBasic",
-   "status": "reserved",
-   "owner": "script:restore-api",
+   "status": "restored",
+   "owner": null,
    "functions": 2
   }
  },
@@ -4943,8 +4928,10 @@
   "@/utils/crypto-adapter": [
    "CryptoAdapter",
    "CryptoKeys",
+   "canEncryptRequest",
    "createCryptoAdapter",
    "decryptResponse",
+   "decryptSm4",
    "decryptStorage",
    "encryptRequest",
    "encryptStorage",
@@ -4959,6 +4946,7 @@
    "ApiResponse",
    "STATIC_BASE",
    "cachedRequest",
+   "http",
    "request"
   ]
  },
@@ -5030,7 +5018,7 @@
  "npm": {
   "@amap/amap-jsapi-loader": "1.0.1",
   "@ant-design/icons-vue": "6.1.0",
-  "ant-design-vue": "3.2.20",
+  "ant-design-vue": "3.2.15",
   "axios": "1.4.0",
   "cropperjs": "1.5.13",
   "dayjs": "1.11.9",
@@ -5041,18 +5029,21 @@
   "jspdf": "2.5.1",
   "lodash-es": "4.17.21",
   "moment": "2.29.4",
+  "nprogress": "0.2.0",
   "pinia": "2.1.4",
   "pinyin-match": "1.2.4",
+  "print-js": "1.6.0",
   "qrcodejs2": "0.0.2",
   "qrcodejs2-fix": "0.0.1",
   "sm-crypto": "0.3.13",
   "swiper": "8.4.7",
-  "vue": "3.3.4",
+  "tinymce": "5.10.3",
+  "vue": "3.2.47",
   "vue-baidu-map-3x": "1.0.40",
+  "vue-countup-v3": "1.4.2",
   "vue-router": "4.2.2",
   "vue3-seamless-scroll": "2.0.1",
-  "vuex": "4.1.0",
-  "vue-countup-v3": "待 E7 按指纹核对"
+  "vuex": "4.1.0"
  },
  "npmSubpaths": [
   "swiper/vue",

@@ -24,6 +24,7 @@
   }
  ],
  "recordPath": "/autoLogin",
+ "role": "general",
  "maps": "out/maps/page.uc.autoLogin.json",
  "hints": "out/hints/page.uc.autoLogin.md",
  "deps": {
@@ -47,10 +48,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E4",
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

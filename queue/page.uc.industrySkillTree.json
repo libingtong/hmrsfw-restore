@@ -1,7 +1,7 @@
 {
  "id": "page.uc.industrySkillTree",
  "type": "page",
- "status": "regression",
+ "status": "todo",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/industrySkillTree",
+ "role": null,
  "maps": "out/maps/page.uc.industrySkillTree.json",
  "hints": "out/hints/page.uc.industrySkillTree.md",
  "deps": {
@@ -45,8 +46,5 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/industrySkillTree",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "notes": "没有身份线索：/industrySkillTree 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
 }

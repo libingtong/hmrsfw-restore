@@ -74,8 +74,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Vt": {
    "original": "o",
@@ -140,7 +139,7 @@
  "api": {
   "yo": {
    "original": "index.1783320636200117.js#g",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "getQrcodeImgByObjectId",
    "status": "restored",
    "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"
@@ -190,7 +189,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "po": {
+   "original": "signModal.1783320636200.js#default",
+   "path": "@/shared/signModal.vue",
+   "export": "default",
+   "order": "page.portal.fair.signModal"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "main.1783320636200.js"

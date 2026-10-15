@@ -32,6 +32,7 @@
   }
  ],
  "recordPath": "/BeOnProbation",
+ "role": "corp",
  "maps": "out/maps/page.uc.BeOnProbation.json",
  "hints": "out/hints/page.uc.BeOnProbation.md",
  "deps": {
@@ -53,9 +54,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

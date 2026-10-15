@@ -35,6 +35,7 @@
   }
  ],
  "recordPath": "/collectme",
+ "role": "corp",
  "maps": "out/maps/page.uc.collectme.json",
  "hints": "out/hints/page.uc.collectme.md",
  "deps": {
@@ -55,9 +56,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

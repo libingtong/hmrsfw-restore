@@ -36,8 +36,7 @@
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "le": {
    "original": "a6",
@@ -49,8 +48,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "ae": {
    "original": "S",
@@ -62,8 +60,7 @@
    "original": "aW",
    "path": "@/legacy/api",
    "export": "queryAllInfoById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "te": {
    "original": "_",

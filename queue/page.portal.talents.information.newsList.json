@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/talents/information",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.information.newsList.json",
  "hints": "out/hints/page.portal.talents.information.newsList.md",
  "deps": {
@@ -53,9 +54,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

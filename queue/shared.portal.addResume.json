@@ -53,10 +53,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.E5",
-   "entry.portal.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/region/innovation",
+ "role": "general",
  "maps": "out/maps/page.portal.region.innovation.index.json",
  "hints": "out/hints/page.portal.region.innovation.index.md",
  "deps": {
@@ -69,9 +70,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
-   "entry.portal.c09",
    "shared.portal.homeNews3",
    "shared.portal.modules"
   ]

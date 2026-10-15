@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/ReceivedResumeLive",
+ "role": "corp",
  "maps": "out/maps/page.uc.ReceivedResumeLive.json",
  "hints": "out/hints/page.uc.ReceivedResumeLive.md",
  "deps": {

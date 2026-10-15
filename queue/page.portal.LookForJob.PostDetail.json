@@ -35,6 +35,7 @@
   }
  ],
  "recordPath": "/PostDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.LookForJob.PostDetail.json",
  "hints": "out/hints/page.portal.LookForJob.PostDetail.md",
  "deps": {
@@ -87,8 +88,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
    "shared.portal.addResume",
    "shared.portal.complaint",
    "shared.portal.evaluate",

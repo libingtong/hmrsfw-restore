@@ -16,13 +16,13 @@
 | `Le` | index.1751615607545.js | api | @/legacy `getAreaInfoByAreaId` | `t=>Ee.request({url:"/xf-job/communal/licenseFree/xfSysAreainfo/getInfoByAreaId",method:"get",params:t})` |
 | `Ue` | index.1751615607545.js | entry | @/legacy `getExtractPositionConfig` | `t=>new Promise((e,n)=>Wn(void 0,null,function*(){let r=yield rht(null),a={name:"提取网络职位",alert:!1},i=r[0],o=r[1];i.success&&i.result&&(a.name=i.result),o.success&&(a.alert=!0),e(a)}))` |
 | `Ve` | index.1751615607545.js | entry | @/legacy `confirmExtract` | `(t,e)=>{Yt.confirm({title:"温馨提示",content:'是否${e}信息，在此基础上进行编辑？',centered:!0,okText:"去提取",onOk(){t()},cancelText:"取消",onCancel(){Yt.destroyAll()}})}` |
-| `Fe` | index.1751615607545.js | api | @/legacy/api `checkPositionName`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/checkPositionName",method:"post",params:t})` |
+| `Fe` | index.1751615607545.js | api | @/legacy/api `checkPositionName` | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/checkPositionName",method:"post",params:t})` |
 | `z` | index.1751615607545.js | entry | ant-design-vue `Modal` | `re({compatConfig:{MODE:3},name:"AModal",inheritAttrs:!1,props:xt(Cdt(),{width:520,transitionName:"zoom",maskTransitionName:"fade",confirmLoading:!1,visible:!1,okType:"primary"}),setup:function(e,n){va` |
 | `R` | index.1751615607545.js | entry | @/legacy `SettingCodes` | `(t=>(t.WEBPORTAL_DOMAIN="webportal_domain",t.USER_CENTE_RDEFAULT_NAME="userCenterDefaultName",t.IS_SHOW_CHANGEPWD="is_show_changepwd",t.JOB_FAIR_PASSED_IZ_EDIT_POSITION="job_fair_passed_iz_edit_positi` |
 | `Be` | index.1751615607545.js | api | @/legacy `getCompanyInfo` | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/getCompanyInfo",method:"get",params:t})` |
 | `Ee` | index.1751615607545.js | entry | @/legacy `decryptText` | `t=>{if(t&&typeof t=="string")try{return Df.sm4.decrypt(t,yC)}catch(e){return console.error("解密失败:",e),null}else return null}` |
 | `I` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
-| `He` | index.1751615607545.js | api | @/legacy/api `addOrEdit`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/addOrEdit",method:"post",data:t})` |
+| `He` | index.1751615607545.js | api | @/legacy/api `addOrEdit` | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/addOrEdit",method:"post",data:t})` |
 | `Xe` | index.1751615607545.js | entry | @ant-design/icons-vue `InfoCircleOutlined` | `sm` |
 | `Qe` | index.1751615607545.js | entry | @ant-design/icons-vue `QuestionCircleOutlined` | `e9` |
 | `$e` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |

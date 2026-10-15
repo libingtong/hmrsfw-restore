@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/talents/index/infoRecommend/",
  "routes": [],
  "recordPath": "/talents/index",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.index.infoRecommend.json",
  "hints": "out/hints/page.portal.talents.index.infoRecommend.md",
  "deps": {
@@ -44,7 +45,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.c03",
    "shared.portal.modules"
   ]
  },

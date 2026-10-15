@@ -1,7 +1,7 @@
 {
  "id": "page.portal.fair.sceneFair.detail",
  "type": "page",
- "status": "regression",
+ "status": "segmented",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/sceneFairDetail/:zphId",
+ "role": "general",
  "maps": "out/maps/page.portal.fair.sceneFair.detail.json",
  "hints": "out/hints/page.portal.fair.sceneFair.detail.md",
  "deps": {
@@ -77,14 +78,18 @@
    "index.api.178332063620017.js#j"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo"
+  ],
   "orders": [
-   "entry.portal.c03"
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo"
   ]
  },
  "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/sceneFairDetail/:zphId",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "segments": [
+  "seg.portal.fair.sceneFair.detail.1",
+  "seg.portal.fair.sceneFair.detail.2"
+ ]
 }

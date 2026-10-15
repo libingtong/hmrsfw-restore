@@ -33,8 +33,7 @@
    "original": "aZ",
    "path": "@/legacy/utils",
    "export": "getCurrentSysUser",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "je": {
    "original": "c",
@@ -52,29 +51,25 @@
    "original": "bA",
    "path": "@/legacy/components/HomeLoginBtm.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "entry.portal.c04"
+   "status": "restored"
   },
   "Be": {
    "original": "cd",
    "path": "@/legacy/components/MoveWindow.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Re": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Ge": {
    "original": "c2",
    "path": "@/legacy/components/Notice.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "entry.portal.c09"
+   "status": "restored"
   },
   "C": {
    "original": "D",
@@ -92,8 +87,7 @@
    "original": "c3",
    "path": "@/legacy/api",
    "export": "checkIsCanAdd",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "F": {
    "original": "v",
@@ -105,22 +99,19 @@
    "original": "as",
    "path": "@/legacy/utils",
    "export": "getUserInfo",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Je": {
    "original": "c4",
    "path": "@/legacy/api",
    "export": "jobLoanApplyPersonCheckIsCanAdd",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Qe": {
    "original": "ab",
    "path": "@/legacy/api",
    "export": "getArticleListNoCheck",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Ue": {
    "original": "u",
@@ -138,8 +129,7 @@
    "original": "Q",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_CERTIFIED",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Ye": {
    "original": "p",
@@ -151,8 +141,7 @@
    "original": "c5",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_PENDING_2",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "b": {
    "original": "B",
@@ -182,15 +171,13 @@
    "original": "cE",
    "path": "@/legacy/api",
    "export": "getLoginUserCurriculumVitaeInfo",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Ve": {
    "original": "a1",
    "path": "@/utils/crypto-adapter",
    "export": "decryptSm4",
-   "status": "reserved",
-   "owner": "entry.portal.E5"
+   "status": "restored"
   },
   "ei": {
    "original": "_",
@@ -234,7 +221,14 @@
    "owner": "shared.portal.FriendLinks"
   }
  },
- "views": {},
+ "views": {
+  "di": {
+   "original": "advertTop.17833206362006.js#default",
+   "path": "@/views/xjhm/home/advertTop.vue",
+   "export": "default",
+   "order": "page.portal.xjhm.home.advertTop"
+  }
+ },
  "modules": {
   "Q": {
    "original": "jqqd.1783320636200.js#_",

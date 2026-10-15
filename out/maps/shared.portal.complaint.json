@@ -31,15 +31,13 @@
    "original": "Y",
    "path": "@/legacy/components/Phone.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "Y": {
    "original": "Z",
    "path": "@/legacy/api",
    "export": "add",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Z": {
    "original": "A",

@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/ProbationElegantList",
+ "role": "general",
  "maps": "out/maps/page.portal.BeOnProbation.ProbationElegantList.json",
  "hints": "out/hints/page.portal.BeOnProbation.ProbationElegantList.md",
  "deps": {

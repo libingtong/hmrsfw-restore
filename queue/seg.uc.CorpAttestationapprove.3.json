@@ -1,0 +1,113 @@
+{
+ "id": "seg.uc.CorpAttestationapprove.3",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.CorpAttestationapprove",
+ "index": 3,
+ "of": 3,
+ "assemble": true,
+ "after": [
+  "seg.uc.CorpAttestationapprove.1",
+  "seg.uc.CorpAttestationapprove.2"
+ ],
+ "kb": 29.2,
+ "sourceChunk": "legacy-dist/usercenter/assets/CorpAttestationapprove.1751615607545.js",
+ "range": [
+  39362,
+  69286
+ ],
+ "components": [],
+ "parts": [
+  {
+   "component": "CorpAttestationapprove",
+   "part": "template",
+   "range": [
+    39362,
+    69286
+   ],
+   "kb": 29.2,
+   "file": "apps/uc/src/views/CorpAttestationapprove/_seg/CorpAttestationapprove.template.html"
+  }
+ ],
+ "outputs": [
+  "apps/uc/src/views/CorpAttestationapprove/_seg/CorpAttestationapprove.template.html"
+ ],
+ "target": "apps/uc/src/views/CorpAttestationapprove.vue",
+ "subComponentDir": "apps/uc/src/views/CorpAttestationapprove/",
+ "scopeIds": [
+  "data-v-a3e6ce79",
+  "data-v-3ee3f5bf"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/map.1751615607545.css",
+  "legacy-dist/usercenter/assets/CorpAttestationapprove.1751615607545.css"
+ ],
+ "routes": [
+  {
+   "path": "/CorpAttestationapprove",
+   "name": "CorpAttestationapprove"
+  }
+ ],
+ "recordPath": "/CorpAttestationapprove",
+ "role": "general",
+ "maps": "out/maps/page.uc.CorpAttestationapprove.json",
+ "hints": "out/hints/page.uc.CorpAttestationapprove.md",
+ "deps": {
+  "entry": [
+   "B",
+   "E",
+   "F",
+   "G",
+   "H",
+   "I",
+   "J",
+   "M",
+   "O",
+   "P",
+   "Q",
+   "R",
+   "U",
+   "a",
+   "b",
+   "c",
+   "d",
+   "e",
+   "f",
+   "g",
+   "h",
+   "k",
+   "m",
+   "p",
+   "v",
+   "x",
+   "y",
+   "z"
+  ],
+  "shared": [
+   "DictCodes.1751615607545.js",
+   "XfLoaing.1751615607545.js",
+   "dictCheckBoxAll.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "dictCodeTreeOne.1751615607545.js",
+   "email.1751615607545.js",
+   "gaode.1751615607545.js",
+   "idCard.1751615607545.js",
+   "message.1751615607545.js",
+   "phone.1751615607545.js"
+  ],
+  "api": [],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [39362, 69286)（约 29.2KB），其余部分由同页的其他分段负责。",
+  "组件 CorpAttestationapprove 只还原 <template> 部分（setup 最后 return 的渲染函数），写成 apps/uc/src/views/CorpAttestationapprove/_seg/CorpAttestationapprove.template.html，内容就是将来 <template> 里的模板。",
+  "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.uc.CorpAttestationapprove --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
+ ]
+}

@@ -7,9 +7,9 @@
 | `ge` | index.1783320636200.js | entry | @/legacy `userStorage` | `{keys:!0,setUser(e){this.keys?localStorage.setItem(jn.USER_INFO,e):localStorage.setItem(jn.USER_INFO,JSON.stringify(e))},getUser(){const e=localStorage.getItem(jn.USER_INFO);if(e&&e!="undefined"&&e!="` |
 | `ve` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `_e` | index.1783320636200.js | entry | @/legacy `useStore` | `function(e){return e===void 0&&(e=null),Ft(e!==null?e:Ru)}` |
-| `U` | index.1783320636200.js | entry | @/legacy/utils `toHonorific`（reserved） | `function(e,t){return e!=null&&e!=null&&t?t&&(Number(t)==2\|\|t=="\u5973")?e.substring(0,1)+"\u5973\u58EB":e.substring(0,1)+"\u5148\u751F":""}` |
+| `U` | index.1783320636200.js | entry | @/legacy/utils `toHonorific` | `function(e,t){return e!=null&&e!=null&&t?t&&(Number(t)==2\|\|t=="\u5973")?e.substring(0,1)+"\u5973\u58EB":e.substring(0,1)+"\u5148\u751F":""}` |
 | `he` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
 | `Ee` | workType.1783320636200.js | shared | @/shared/workType.vue `default` | `ye(pe,[["__scopeId","data-v-c9091e07"]])` |
 | `Fe` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
-| `Re` | index.api.178332063620024.js | api | @/api/api-24 `querySearchPersonList` | `e=>o.request({url:"/xf-oddjob/oddJob/licenseFree/querySearchPersonList",method:"post",data:e})` |
-| `De` | index.api.178332063620024.js | api | @/api/api-24 `getDictListByType` | `e=>o.request({url:"/xf-job/communal/licenseFree/getDictListByType?dictTypeCode=ACA111_C",method:"post",params:e})` |
+| `Re` | index.api.178332063620024.js | api | @/api/oddJob `querySearchPersonList` | `e=>o.request({url:"/xf-oddjob/oddJob/licenseFree/querySearchPersonList",method:"post",data:e})` |
+| `De` | index.api.178332063620024.js | api | @/api/oddJob `getDictListByType` | `e=>o.request({url:"/xf-job/communal/licenseFree/getDictListByType?dictTypeCode=ACA111_C",method:"post",params:e})` |

@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/pool",
+ "role": "corp",
  "maps": "out/maps/page.uc.pool.json",
  "hints": "out/hints/page.uc.pool.md",
  "deps": {
@@ -48,9 +49,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

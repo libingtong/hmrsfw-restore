@@ -58,8 +58,7 @@
    "original": "N",
    "path": "@/legacy/components/Notice.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "entry.uc.c01"
+   "status": "restored"
   },
   "Y": {
    "original": "U",
@@ -114,28 +113,28 @@
    "original": "index.api.17516156075459.js#c",
    "path": "@/api/jobLoanApplyCompany",
    "export": "checkIsCanAdd",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobLoanApplyCompany/checkIsCanAdd"
   },
   "Ee": {
    "original": "index.api.17516156075459.js#a",
    "path": "@/api/jobLoanApplyCompany",
    "export": "saveOrUpdateMh",
-   "status": "reserved",
+   "status": "restored",
    "url": "/job/xfJobLoanApplyCompany/saveOrUpdateMh"
   },
   "Se": {
    "original": "index.api.17516156075459.js#b",
    "path": "@/api/jobLoanApplyCompany",
    "export": "queryById",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobLoanApplyCompany/queryById"
   },
   "$e": {
    "original": "index.api.17516156075459.js#d",
    "path": "@/api/jobLoanApplyCompany",
    "export": "queryCompanyInfo",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobLoanApplyCompany/queryCompanyInfo"
   }
  },

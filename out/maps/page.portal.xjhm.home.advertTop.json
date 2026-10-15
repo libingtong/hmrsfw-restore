@@ -53,8 +53,7 @@
    "original": "cD",
    "path": "@/legacy/api",
    "export": "queryOrganizationByAreaId",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "At": {
    "original": "bc",
@@ -70,15 +69,13 @@
    "original": "aq",
    "path": "@/legacy/store",
    "export": "useStoreGetters",
-   "status": "reserved",
-   "owner": "entry.portal.E4"
+   "status": "restored"
   },
   "fe": {
    "original": "ab",
    "path": "@/legacy/api",
    "export": "getArticleListNoCheck",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Z": {
    "original": "D",
@@ -96,8 +93,7 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Ht": {
    "original": "w",
@@ -109,8 +105,7 @@
    "original": "af",
    "path": "@/legacy/api",
    "export": "logout",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "q": {
    "original": "B",
@@ -128,8 +123,7 @@
    "original": "bs",
    "path": "@/legacy/utils",
    "export": "openLinkAddress",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Vt": {
    "original": "v",
@@ -141,8 +135,7 @@
    "original": "bt",
    "path": "@/legacy/store",
    "export": "store",
-   "status": "reserved",
-   "owner": "entry.portal.E4"
+   "status": "restored"
   }
  },
  "api": {},

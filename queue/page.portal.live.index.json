@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/live",
+ "role": "general",
  "maps": "out/maps/page.portal.live.index.json",
  "hints": "out/hints/page.portal.live.index.md",
  "deps": {

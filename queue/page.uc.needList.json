@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/needList",
+ "role": "general",
  "maps": "out/maps/page.uc.needList.json",
  "hints": "out/hints/page.uc.needList.md",
  "deps": {

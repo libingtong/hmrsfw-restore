@@ -26,15 +26,13 @@
    "original": "aj",
    "path": "@/legacy/api",
    "export": "certificationBeforeDetailId",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "T": {
    "original": "ak",
    "path": "@/legacy/api",
    "export": "certificationUser",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "q": {
    "original": "v",

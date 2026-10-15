@@ -871,9 +871,7 @@
    "s10.1783320636200.js"
   ],
   "views": [],
-  "orders": [
-   "entry.portal.E6"
-  ]
+  "orders": []
  },
  "note": "入口和共享组件以外的小模块（工具函数、配置、图片常量），每个 chunk 一个文件；图片常量统一导出到 @/shared/images.ts，内联 base64 抽成资源文件"
 }

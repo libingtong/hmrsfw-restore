@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/hrpark",
+ "role": "general",
  "maps": "out/maps/page.portal.park.index.json",
  "hints": "out/hints/page.portal.park.index.md",
  "deps": {

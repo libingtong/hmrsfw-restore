@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/Unitposition",
+ "role": "general",
  "maps": "out/maps/page.uc.Unitposition.json",
  "hints": "out/hints/page.uc.Unitposition.md",
  "deps": {
@@ -45,9 +46,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

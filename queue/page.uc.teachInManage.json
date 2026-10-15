@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/teachInManage",
+ "role": "corp",
  "maps": "out/maps/page.uc.teachInManage.json",
  "hints": "out/hints/page.uc.teachInManage.md",
  "deps": {

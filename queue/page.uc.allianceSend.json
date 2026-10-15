@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/allianceSend",
+ "role": "general",
  "maps": "out/maps/page.uc.allianceSend.json",
  "hints": "out/hints/page.uc.allianceSend.md",
  "deps": {
@@ -47,7 +48,6 @@
   "modules": [],
   "views": [],
   "orders": [
-   "entry.uc.E6",
    "shared.uc.complaint"
   ]
  },

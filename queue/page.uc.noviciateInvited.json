@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/noviciateInvited",
+ "role": "corp",
  "maps": "out/maps/page.uc.noviciateInvited.json",
  "hints": "out/hints/page.uc.noviciateInvited.md",
  "deps": {
@@ -47,9 +48,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

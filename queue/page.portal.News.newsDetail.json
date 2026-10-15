@@ -1,7 +1,7 @@
 {
  "id": "page.portal.News.newsDetail",
  "type": "page",
- "status": "regression",
+ "status": "todo",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/newsDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.News.newsDetail.json",
  "hints": "out/hints/page.portal.News.newsDetail.md",
  "deps": {
@@ -63,14 +64,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.c03",
-   "entry.portal.c05"
-  ]
+  "orders": []
  },
- "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/newsDetail",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "stylesProvidedByScript": true
 }

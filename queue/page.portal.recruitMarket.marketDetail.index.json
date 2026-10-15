@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/marketDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.recruitMarket.marketDetail.index.json",
  "hints": "out/hints/page.portal.recruitMarket.marketDetail.index.md",
  "deps": {
@@ -67,7 +68,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.c03",
    "shared.portal.map2",
    "shared.portal.modules",
    "shared.portal.unfold"

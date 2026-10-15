@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/BeOnAdmin",
+ "role": "corp",
  "maps": "out/maps/page.uc.BeOnAdmin.json",
  "hints": "out/hints/page.uc.BeOnAdmin.md",
  "deps": {
@@ -47,9 +48,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

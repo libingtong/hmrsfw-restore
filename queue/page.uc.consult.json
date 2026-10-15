@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/consult",
+ "role": "general",
  "maps": "out/maps/page.uc.consult.json",
  "hints": "out/hints/page.uc.consult.md",
  "deps": {

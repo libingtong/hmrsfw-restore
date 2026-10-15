@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/video",
+ "role": "general",
  "maps": "out/maps/page.portal.video.zbdg.json",
  "hints": "out/hints/page.portal.video.zbdg.md",
  "deps": {
@@ -59,8 +60,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c05",
    "shared.portal.modules"
   ]
  },

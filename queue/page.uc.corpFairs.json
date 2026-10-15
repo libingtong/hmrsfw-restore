@@ -1,7 +1,7 @@
 {
  "id": "page.uc.corpFairs",
  "type": "page",
- "status": "regression",
+ "status": "segmented",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -56,6 +56,7 @@
   }
  ],
  "recordPath": "/corpFairs/:key?",
+ "role": "corp",
  "maps": "out/maps/page.uc.corpFairs.json",
  "hints": "out/hints/page.uc.corpFairs.md",
  "deps": {
@@ -100,8 +101,9 @@
   ]
  },
  "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/corpFairs/:key?",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "segments": [
+  "seg.uc.corpFairs.1",
+  "seg.uc.corpFairs.2",
+  "seg.uc.corpFairs.3"
+ ]
 }

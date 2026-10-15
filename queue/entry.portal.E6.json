@@ -18,9 +18,49 @@
  ],
  "owns": [
   {
+   "alias": "a$",
+   "path": "@/legacy/api",
+   "export": "getArticleListByTypeCodes",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getArticleListByTypeCodes"
+  },
+  {
+   "alias": "a0",
+   "path": "@/legacy/api",
+   "export": "queryByIdJM",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUser/queryByIdJM"
+  },
+  {
    "alias": "a2",
    "path": "@/legacy",
    "export": "validateIdCard",
+   "status": "restored"
+  },
+  {
+   "alias": "a3",
+   "path": "@/legacy/api",
+   "export": "getCompanyInfo",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCompany/getCompanyInfo"
+  },
+  {
+   "alias": "a5",
+   "path": "@/legacy/api",
+   "export": "listOneForWebSite",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUser/listOneForWebSite"
+  },
+  {
+   "alias": "a8",
+   "path": "@/legacy/utils",
+   "export": "formatDateSlash",
+   "status": "restored"
+  },
+  {
+   "alias": "a9",
+   "path": "@/legacy/utils",
+   "export": "UPLOAD_URL",
    "status": "restored"
   },
   {
@@ -29,6 +69,27 @@
    "export": "getBusinessDictItems",
    "status": "restored",
    "url": "/jeecg-system/sys/dict/getDictItemsByCode"
+  },
+  {
+   "alias": "aA",
+   "path": "@/legacy/api",
+   "export": "listForWebsite",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
+  },
+  {
+   "alias": "ab",
+   "path": "@/legacy/api",
+   "export": "getArticleListNoCheck",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getArticleListNoCheck"
+  },
+  {
+   "alias": "aB",
+   "path": "@/legacy/api",
+   "export": "getChildArticleTypeList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
   },
   {
    "alias": "ad",
@@ -45,11 +106,58 @@
    "url": "/xf-job/job/xfJobFairApplyInfo/checkIzDishonesty"
   },
   {
+   "alias": "ae",
+   "path": "@/legacy/api",
+   "export": "queryHomeSettingById",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/queryHomeSettingById"
+  },
+  {
+   "alias": "af",
+   "path": "@/legacy/api",
+   "export": "logout",
+   "status": "restored",
+   "url": "jeecg-system/sys/logout?_t="
+  },
+  {
+   "alias": "ag",
+   "path": "@/legacy/utils",
+   "export": "formatDateTime",
+   "status": "restored"
+  },
+  {
+   "alias": "ah",
+   "path": "@/legacy/api",
+   "export": "getXfSysUserInfo",
+   "status": "restored",
+   "url": "/xf-job/communal/licenseFree/xfSysUser/getXfSysUserInfo"
+  },
+  {
+   "alias": "aj",
+   "path": "@/legacy/utils",
+   "export": "openLink",
+   "status": "restored"
+  },
+  {
    "alias": "am",
    "path": "@/legacy",
    "export": "getArticleList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/getArticleList"
+  },
+  {
+   "alias": "an",
+   "path": "@/legacy/api",
+   "export": "queryLatestQuestionsList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryLatestQuestionsList"
+  },
+  {
+   "alias": "ao",
+   "path": "@/legacy/api",
+   "export": "queryQuestionsList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuestionsList"
   },
   {
    "alias": "ap",
@@ -65,6 +173,113 @@
    "status": "restored"
   },
   {
+   "alias": "aR",
+   "path": "@/legacy/utils",
+   "export": "isMobilePhone",
+   "status": "restored"
+  },
+  {
+   "alias": "as",
+   "path": "@/legacy/utils",
+   "export": "getUserInfo",
+   "status": "restored"
+  },
+  {
+   "alias": "au",
+   "path": "@/legacy/utils",
+   "export": "randomColor",
+   "status": "restored"
+  },
+  {
+   "alias": "aU",
+   "path": "@/legacy/api",
+   "export": "recommendJobList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"
+  },
+  {
+   "alias": "aV",
+   "path": "@/legacy/api",
+   "export": "getAllLevelArticleListByTypeId",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getAllLevelArticleListByTypeId"
+  },
+  {
+   "alias": "aW",
+   "path": "@/legacy/api",
+   "export": "queryAllInfoById",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerPageSettings/queryAllInfoById"
+  },
+  {
+   "alias": "aY",
+   "path": "@/legacy/images",
+   "export": "ENTRY_IMAGE_AY",
+   "status": "restored"
+  },
+  {
+   "alias": "aZ",
+   "path": "@/legacy/utils",
+   "export": "getCurrentSysUser",
+   "status": "restored"
+  },
+  {
+   "alias": "b2",
+   "path": "@/legacy/api",
+   "export": "querylistForOneUser",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCustomerConsultRecord/querylistForOneUser"
+  },
+  {
+   "alias": "b3",
+   "path": "@/legacy/api",
+   "export": "listByPageId",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerPageKnowledgetype/listByPageId"
+  },
+  {
+   "alias": "b4",
+   "path": "@/legacy/api",
+   "export": "queryQuickQuestionsList",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuickQuestionsList"
+  },
+  {
+   "alias": "b5",
+   "path": "@/legacy/api",
+   "export": "askQuestion",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/askQuestion"
+  },
+  {
+   "alias": "b6",
+   "path": "@/legacy/api",
+   "export": "queryQuestionsListByParams",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuestionsListByParams"
+  },
+  {
+   "alias": "b7",
+   "path": "@/legacy/api",
+   "export": "updateHelpNums",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/updateHelpNums"
+  },
+  {
+   "alias": "b8",
+   "path": "@/legacy/api",
+   "export": "getInfoById",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerMenuSettings/getInfoById"
+  },
+  {
+   "alias": "b9",
+   "path": "@/legacy/api",
+   "export": "getKnowledgeInfoById",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/getKnowledgeInfoById"
+  },
+  {
    "alias": "ba",
    "path": "@/legacy",
    "export": "MSG_CORP_PENDING",
@@ -78,11 +293,125 @@
    "url": "/xf-job/job/licenseFree/getDictListByType"
   },
   {
+   "alias": "bD",
+   "path": "@/legacy/api",
+   "export": "login",
+   "status": "restored",
+   "url": "/xf-job/school/user/login"
+  },
+  {
+   "alias": "be",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_AUTH_RESUME",
+   "status": "restored"
+  },
+  {
+   "alias": "bE",
+   "path": "@/legacy/api",
+   "export": "phoneLogin",
+   "status": "restored",
+   "url": "/xf-job/school/user/phoneLogin"
+  },
+  {
+   "alias": "bF",
+   "path": "@/legacy/utils",
+   "export": "handleLoginSuccess",
+   "status": "restored"
+  },
+  {
+   "alias": "bG",
+   "path": "@/legacy/utils",
+   "export": "handleXfSysUserLoaded",
+   "status": "restored"
+  },
+  {
+   "alias": "bh",
+   "path": "@/legacy/utils",
+   "export": "parseIdCard",
+   "status": "restored"
+  },
+  {
+   "alias": "bH",
+   "path": "@/legacy/api",
+   "export": "queryByUserId",
+   "status": "restored",
+   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId"
+  },
+  {
+   "alias": "bi",
+   "path": "@/legacy/api",
+   "export": "getAllInfo",
+   "status": "restored",
+   "url": "/xf-job/communal/licenseFree/xfSysAreainfo/getAllInfo"
+  },
+  {
+   "alias": "bJ",
+   "path": "@/legacy/api",
+   "export": "newRegister",
+   "status": "restored",
+   "url": "/xf-job/school/user/newRegister"
+  },
+  {
+   "alias": "bm",
+   "path": "@/legacy/utils",
+   "export": "PAGE_LOAD_TIMESTAMP",
+   "status": "restored"
+  },
+  {
+   "alias": "bn",
+   "path": "@/legacy/utils",
+   "export": "validatePassword",
+   "status": "restored"
+  },
+  {
+   "alias": "bo",
+   "path": "@/legacy/api",
+   "export": "randomImage",
+   "status": "restored",
+   "url": "/jeecg-system/sys/randomImage/"
+  },
+  {
+   "alias": "bs",
+   "path": "@/legacy/utils",
+   "export": "openLinkAddress",
+   "status": "restored"
+  },
+  {
+   "alias": "bT",
+   "path": "@/legacy/utils",
+   "export": "maskPhone",
+   "status": "restored"
+  },
+  {
+   "alias": "bU",
+   "path": "@/legacy/utils",
+   "export": "checkTokenLogin",
+   "status": "restored"
+  },
+  {
+   "alias": "bV",
+   "path": "@/legacy/utils",
+   "export": "maskName",
+   "status": "restored"
+  },
+  {
    "alias": "bW",
    "path": "@/legacy",
    "export": "listAuthenticateIdentity",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/list"
+  },
+  {
+   "alias": "bX",
+   "path": "@/legacy/utils",
+   "export": "toHonorific",
+   "status": "restored"
+  },
+  {
+   "alias": "by",
+   "path": "@/legacy/images",
+   "export": "ENTRY_IMAGE_BY",
+   "status": "restored"
   },
   {
    "alias": "c",
@@ -95,6 +424,101 @@
    "path": "@/legacy",
    "export": "TEXT_GO_PERFECT",
    "status": "restored"
+  },
+  {
+   "alias": "c1",
+   "path": "@/legacy/utils",
+   "export": "LOGIN_CHECK_TYPE_4",
+   "status": "restored"
+  },
+  {
+   "alias": "c3",
+   "path": "@/legacy/api",
+   "export": "checkIsCanAdd",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobLoanApplyCompany/checkIsCanAdd"
+  },
+  {
+   "alias": "c4",
+   "path": "@/legacy/api",
+   "export": "jobLoanApplyPersonCheckIsCanAdd",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobLoanApplyPerson/checkIsCanAdd"
+  },
+  {
+   "alias": "c5",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_PENDING_2",
+   "status": "restored"
+  },
+  {
+   "alias": "c7",
+   "path": "@/legacy/api",
+   "export": "getAreaInfoById",
+   "status": "restored",
+   "url": "/xf-job/communal/licenseFree/xfSysAreainfo/getAreaInfoById"
+  },
+  {
+   "alias": "cA",
+   "path": "@/legacy/api",
+   "export": "sysRandomImage",
+   "status": "restored",
+   "url": "/sys/randomImage"
+  },
+  {
+   "alias": "cB",
+   "path": "@/legacy/api",
+   "export": "login",
+   "status": "restored",
+   "url": "/xf-job/school/user/login"
+  },
+  {
+   "alias": "cD",
+   "path": "@/legacy/api",
+   "export": "queryOrganizationByAreaId",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/queryOrganizationByAreaId"
+  },
+  {
+   "alias": "cE",
+   "path": "@/legacy/api",
+   "export": "getLoginUserCurriculumVitaeInfo",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobCurriculumVitae/getLoginUserCurriculumVitaeInfo"
+  },
+  {
+   "alias": "cj",
+   "path": "@/legacy/api",
+   "export": "jobPxRegistrationAdd",
+   "status": "restored",
+   "url": "/xf-job/job/xfJobPxRegistration/add"
+  },
+  {
+   "alias": "ck",
+   "path": "@/legacy/utils",
+   "export": "checkOtherLoginLink",
+   "status": "restored"
+  },
+  {
+   "alias": "cm",
+   "path": "@/legacy/api",
+   "export": "listChildrenTreeByTypeCode",
+   "status": "restored",
+   "url": "/xf-job/communal/licenseFree/xfSysArticleType/listChildrenTreeByTypeCode"
+  },
+  {
+   "alias": "cn",
+   "path": "@/legacy/api",
+   "export": "getArticleListByCode",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getArticleListByCode"
+  },
+  {
+   "alias": "cu",
+   "path": "@/legacy/api",
+   "export": "getChildArticleTypeListByCode",
+   "status": "restored",
+   "url": "/xf-job/job/licenseFree/getChildArticleTypeListByCode"
   },
   {
    "alias": "D",
@@ -187,6 +611,12 @@
    "status": "restored"
   },
   {
+   "alias": "N",
+   "path": "@/legacy/utils",
+   "export": "getCurrentLocation",
+   "status": "restored"
+  },
+  {
    "alias": "o",
    "path": "@/legacy",
    "export": "checkLogin",
@@ -208,6 +638,12 @@
    "alias": "q",
    "path": "@/legacy",
    "export": "MSG_CORP_NOT_AUTH",
+   "status": "restored"
+  },
+  {
+   "alias": "Q",
+   "path": "@/legacy/utils",
+   "export": "MSG_CORP_NOT_CERTIFIED",
    "status": "restored"
   },
   {
@@ -281,446 +717,10 @@
    "status": "restored"
   },
   {
-   "alias": "a$",
-   "path": "@/legacy/api",
-   "export": "getArticleListByTypeCodes",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/getArticleListByTypeCodes"
-  },
-  {
-   "alias": "a0",
-   "path": "@/legacy/api",
-   "export": "queryByIdJM",
-   "status": "reserved",
-   "url": "/xf-job/communal/xfSysUser/queryByIdJM"
-  },
-  {
-   "alias": "a3",
-   "path": "@/legacy/api",
-   "export": "getCompanyInfo",
-   "status": "reserved",
-   "url": "/xf-job/job/xfJobCompany/getCompanyInfo"
-  },
-  {
-   "alias": "a5",
-   "path": "@/legacy/api",
-   "export": "listOneForWebSite",
-   "status": "reserved",
-   "url": "/xf-job/communal/xfSysUser/listOneForWebSite"
-  },
-  {
-   "alias": "a8",
-   "path": "@/legacy/utils",
-   "export": "formatDateSlash",
-   "status": "reserved"
-  },
-  {
-   "alias": "a9",
-   "path": "@/legacy/utils",
-   "export": "UPLOAD_URL",
-   "status": "reserved"
-  },
-  {
-   "alias": "aA",
-   "path": "@/legacy/api",
-   "export": "listForWebsite",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
-  },
-  {
-   "alias": "ab",
-   "path": "@/legacy/api",
-   "export": "getArticleListNoCheck",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/getArticleListNoCheck"
-  },
-  {
-   "alias": "aB",
-   "path": "@/legacy/api",
-   "export": "getChildArticleTypeList",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
-  },
-  {
-   "alias": "ae",
-   "path": "@/legacy/api",
-   "export": "queryHomeSettingById",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/queryHomeSettingById"
-  },
-  {
-   "alias": "af",
-   "path": "@/legacy/api",
-   "export": "logout",
-   "status": "reserved",
-   "url": "jeecg-system/sys/logout?_t="
-  },
-  {
-   "alias": "ag",
-   "path": "@/legacy/utils",
-   "export": "formatDateTime",
-   "status": "reserved"
-  },
-  {
-   "alias": "ah",
-   "path": "@/legacy/api",
-   "export": "getXfSysUserInfo",
-   "status": "reserved",
-   "url": "/xf-job/communal/licenseFree/xfSysUser/getXfSysUserInfo"
-  },
-  {
-   "alias": "aj",
-   "path": "@/legacy/utils",
-   "export": "openLink",
-   "status": "reserved"
-  },
-  {
-   "alias": "an",
-   "path": "@/legacy/api",
-   "export": "queryLatestQuestionsList",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryLatestQuestionsList"
-  },
-  {
-   "alias": "ao",
-   "path": "@/legacy/api",
-   "export": "queryQuestionsList",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuestionsList"
-  },
-  {
-   "alias": "aR",
-   "path": "@/legacy/utils",
-   "export": "isMobilePhone",
-   "status": "reserved"
-  },
-  {
-   "alias": "as",
-   "path": "@/legacy/utils",
-   "export": "getUserInfo",
-   "status": "reserved"
-  },
-  {
-   "alias": "au",
-   "path": "@/legacy/utils",
-   "export": "randomColor",
-   "status": "reserved"
-  },
-  {
-   "alias": "aU",
-   "path": "@/legacy/api",
-   "export": "recommendJobList",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"
-  },
-  {
-   "alias": "aV",
-   "path": "@/legacy/api",
-   "export": "getAllLevelArticleListByTypeId",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/getAllLevelArticleListByTypeId"
-  },
-  {
-   "alias": "aW",
-   "path": "@/legacy/api",
-   "export": "queryAllInfoById",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerPageSettings/queryAllInfoById"
-  },
-  {
-   "alias": "aY",
-   "path": "@/legacy/images",
-   "export": "ENTRY_IMAGE_AY",
-   "status": "reserved"
-  },
-  {
-   "alias": "aZ",
-   "path": "@/legacy/utils",
-   "export": "getCurrentSysUser",
-   "status": "reserved"
-  },
-  {
-   "alias": "b2",
-   "path": "@/legacy/api",
-   "export": "querylistForOneUser",
-   "status": "reserved",
-   "url": "/xf-job/job/xfJobCustomerConsultRecord/querylistForOneUser"
-  },
-  {
-   "alias": "b3",
-   "path": "@/legacy/api",
-   "export": "listByPageId",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerPageKnowledgetype/listByPageId"
-  },
-  {
-   "alias": "b4",
-   "path": "@/legacy/api",
-   "export": "queryQuickQuestionsList",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuickQuestionsList"
-  },
-  {
-   "alias": "b5",
-   "path": "@/legacy/api",
-   "export": "askQuestion",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/askQuestion"
-  },
-  {
-   "alias": "b6",
-   "path": "@/legacy/api",
-   "export": "queryQuestionsListByParams",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/queryQuestionsListByParams"
-  },
-  {
-   "alias": "b7",
-   "path": "@/legacy/api",
-   "export": "updateHelpNums",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/updateHelpNums"
-  },
-  {
-   "alias": "b8",
-   "path": "@/legacy/api",
-   "export": "getInfoById",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerMenuSettings/getInfoById"
-  },
-  {
-   "alias": "b9",
-   "path": "@/legacy/api",
-   "export": "getKnowledgeInfoById",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/xfJobCustomerKnowledgeBase/getKnowledgeInfoById"
-  },
-  {
-   "alias": "bD",
-   "path": "@/legacy/api",
-   "export": "login",
-   "status": "reserved",
-   "url": "/xf-job/school/user/login"
-  },
-  {
-   "alias": "be",
-   "path": "@/legacy/utils",
-   "export": "MSG_CORP_NOT_AUTH_RESUME",
-   "status": "reserved"
-  },
-  {
-   "alias": "bE",
-   "path": "@/legacy/api",
-   "export": "phoneLogin",
-   "status": "reserved",
-   "url": "/xf-job/school/user/phoneLogin"
-  },
-  {
-   "alias": "bF",
-   "path": "@/legacy/utils",
-   "export": "handleLoginSuccess",
-   "status": "reserved"
-  },
-  {
-   "alias": "bG",
-   "path": "@/legacy/utils",
-   "export": "handleXfSysUserLoaded",
-   "status": "reserved"
-  },
-  {
-   "alias": "bh",
-   "path": "@/legacy/utils",
-   "export": "parseIdCard",
-   "status": "reserved"
-  },
-  {
-   "alias": "bH",
-   "path": "@/legacy/api",
-   "export": "queryByUserId",
-   "status": "reserved",
-   "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId"
-  },
-  {
-   "alias": "bi",
-   "path": "@/legacy/api",
-   "export": "getAllInfo",
-   "status": "reserved",
-   "url": "/xf-job/communal/licenseFree/xfSysAreainfo/getAllInfo"
-  },
-  {
-   "alias": "bJ",
-   "path": "@/legacy/api",
-   "export": "newRegister",
-   "status": "reserved",
-   "url": "/xf-job/school/user/newRegister"
-  },
-  {
-   "alias": "bm",
-   "path": "@/legacy/utils",
-   "export": "PAGE_LOAD_TIMESTAMP",
-   "status": "reserved"
-  },
-  {
-   "alias": "bn",
-   "path": "@/legacy/utils",
-   "export": "validatePassword",
-   "status": "reserved"
-  },
-  {
-   "alias": "bo",
-   "path": "@/legacy/api",
-   "export": "randomImage",
-   "status": "reserved",
-   "url": "/jeecg-system/sys/randomImage/"
-  },
-  {
-   "alias": "bs",
-   "path": "@/legacy/utils",
-   "export": "openLinkAddress",
-   "status": "reserved"
-  },
-  {
-   "alias": "bT",
-   "path": "@/legacy/utils",
-   "export": "maskPhone",
-   "status": "reserved"
-  },
-  {
-   "alias": "bU",
-   "path": "@/legacy/utils",
-   "export": "checkTokenLogin",
-   "status": "reserved"
-  },
-  {
-   "alias": "bV",
-   "path": "@/legacy/utils",
-   "export": "maskName",
-   "status": "reserved"
-  },
-  {
-   "alias": "bX",
-   "path": "@/legacy/utils",
-   "export": "toHonorific",
-   "status": "reserved"
-  },
-  {
-   "alias": "by",
-   "path": "@/legacy/images",
-   "export": "ENTRY_IMAGE_BY",
-   "status": "reserved"
-  },
-  {
-   "alias": "c1",
-   "path": "@/legacy/utils",
-   "export": "LOGIN_CHECK_TYPE_4",
-   "status": "reserved"
-  },
-  {
-   "alias": "c3",
-   "path": "@/legacy/api",
-   "export": "checkIsCanAdd",
-   "status": "reserved",
-   "url": "/xf-job/job/xfJobLoanApplyCompany/checkIsCanAdd"
-  },
-  {
-   "alias": "c4",
-   "path": "@/legacy/api",
-   "export": "jobLoanApplyPersonCheckIsCanAdd",
-   "status": "reserved",
-   "url": "/xf-job/job/xfJobLoanApplyPerson/checkIsCanAdd"
-  },
-  {
-   "alias": "c5",
-   "path": "@/legacy/utils",
-   "export": "MSG_CORP_PENDING_2",
-   "status": "reserved"
-  },
-  {
-   "alias": "c7",
-   "path": "@/legacy/api",
-   "export": "getAreaInfoById",
-   "status": "reserved",
-   "url": "/xf-job/communal/licenseFree/xfSysAreainfo/getAreaInfoById"
-  },
-  {
-   "alias": "cA",
-   "path": "@/legacy/api",
-   "export": "sysRandomImage",
-   "status": "reserved",
-   "url": "/sys/randomImage"
-  },
-  {
-   "alias": "cB",
-   "path": "@/legacy/api",
-   "export": "login",
-   "status": "reserved",
-   "url": "/xf-job/school/user/login"
-  },
-  {
-   "alias": "cD",
-   "path": "@/legacy/api",
-   "export": "queryOrganizationByAreaId",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/queryOrganizationByAreaId"
-  },
-  {
-   "alias": "cE",
-   "path": "@/legacy/api",
-   "export": "getLoginUserCurriculumVitaeInfo",
-   "status": "reserved",
-   "url": "/xf-job/job/xfJobCurriculumVitae/getLoginUserCurriculumVitaeInfo"
-  },
-  {
-   "alias": "cj",
-   "path": "@/legacy/api",
-   "export": "jobPxRegistrationAdd",
-   "status": "reserved",
-   "url": "/xf-job/job/xfJobPxRegistration/add"
-  },
-  {
-   "alias": "ck",
-   "path": "@/legacy/utils",
-   "export": "checkOtherLoginLink",
-   "status": "reserved"
-  },
-  {
-   "alias": "cm",
-   "path": "@/legacy/api",
-   "export": "listChildrenTreeByTypeCode",
-   "status": "reserved",
-   "url": "/xf-job/communal/licenseFree/xfSysArticleType/listChildrenTreeByTypeCode"
-  },
-  {
-   "alias": "cn",
-   "path": "@/legacy/api",
-   "export": "getArticleListByCode",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/getArticleListByCode"
-  },
-  {
-   "alias": "cu",
-   "path": "@/legacy/api",
-   "export": "getChildArticleTypeListByCode",
-   "status": "reserved",
-   "url": "/xf-job/job/licenseFree/getChildArticleTypeListByCode"
-  },
-  {
-   "alias": "N",
-   "path": "@/legacy/utils",
-   "export": "getCurrentLocation",
-   "status": "reserved"
-  },
-  {
-   "alias": "Q",
-   "path": "@/legacy/utils",
-   "export": "MSG_CORP_NOT_CERTIFIED",
-   "status": "reserved"
-  },
-  {
    "alias": "Z",
    "path": "@/legacy/api",
    "export": "add",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobComplaintRecord/add"
   }
  ],

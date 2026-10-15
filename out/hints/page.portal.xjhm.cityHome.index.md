@@ -11,14 +11,14 @@
 | `A` | index.1783320636200.js | entry | @/utils/request `request` | `new QIe({baseURL:ct,timeout:zN})` |
 | `Se` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `Be` | index.1783320636200.js | entry | @/legacy `userStorage` | `{keys:!0,setUser(e){this.keys?localStorage.setItem(jn.USER_INFO,e):localStorage.setItem(jn.USER_INFO,JSON.stringify(e))},getUser(){const e=localStorage.getItem(jn.USER_INFO);if(e&&e!="undefined"&&e!="` |
-| `Fe` | index.1783320636200.js | entry | @/legacy/components/Foot.vue `default`（reserved） | `mt(bce,[["__scopeId","data-v-7515cd55"]])` |
-| `Ne` | index.1783320636200.js | entry | @/legacy/components/HomeLoginBtm2.vue `default`（reserved） | `mt(Ple,[["__scopeId","data-v-c10885ad"]])` |
-| `Pe` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `Fe` | index.1783320636200.js | entry | @/legacy/components/Foot.vue `default` | `mt(bce,[["__scopeId","data-v-7515cd55"]])` |
+| `Ne` | index.1783320636200.js | entry | @/legacy/components/HomeLoginBtm2.vue `default` | `mt(Ple,[["__scopeId","data-v-c10885ad"]])` |
+| `Pe` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
 | `qe` | index.1783320636200.js | entry | @/legacy `FeedbackModal` | `mt(vie,[["__scopeId","data-v-150e31b0"]])` |
 | `We` | index.1783320636200.js | entry | @/legacy `getDictItemsByCode` | `e=>IN("/jeecg-system/sys/dict/getDictItemsByCode",e,"get")` |
-| `se` | index.1783320636200.js | api | @/legacy/api `getChildArticleTypeList`（reserved） | `e=>ut.request({url:"/xf-job/job/licenseFree/getChildArticleTypeList",method:"post",params:e})` |
+| `se` | index.1783320636200.js | api | @/legacy/api `getChildArticleTypeList` | `e=>ut.request({url:"/xf-job/job/licenseFree/getChildArticleTypeList",method:"post",params:e})` |
 | `le` | index.1783320636200.js | api | @/legacy `getArticleList` | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
-| `Ee` | index.1783320636200.js | entry | @/legacy/api `queryHomeSettingById`（reserved） | `e=>IN("/xf-job/job/licenseFree/queryHomeSettingById",e,"post")` |
+| `Ee` | index.1783320636200.js | entry | @/legacy/api `queryHomeSettingById` | `e=>IN("/xf-job/job/licenseFree/queryHomeSettingById",e,"post")` |
 | `oe` | index.1783320636200.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `re` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `Ue` | homeNews.17833206362002.js | shared | @/shared/homeNews.vue `default` | `os(Qe,[["__scopeId","data-v-51b3470e"]])` |
@@ -26,4 +26,4 @@
 | `Xe` | homeRight.17833206362002.js | shared | @/shared/homeRight2/HomeLeft.vue `default`（reserved） | `F(E,[["__scopeId","data-v-24601f4c"]])` |
 | `Ye` | homeRight.17833206362002.js | shared | @/shared/homeRight2/HomeRight.vue `default`（reserved） | `F(O,[["__scopeId","data-v-4e527359"]])` |
 | `Qe` | FriendLink.1783320636200.js | shared | @/shared/FriendLink.vue `default`（reserved） | `Q(r,[["__scopeId","data-v-3fcad7da"]])` |
-| `aa` | index.api.178332063620014.js | api | @/api/article `freeCompanyList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyList",method:"post",params:e})` |
+| `aa` | index.api.178332063620014.js | api | @/api/article `freeCompanyList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyList",method:"post",params:e})` |

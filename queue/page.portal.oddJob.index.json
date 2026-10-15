@@ -1,7 +1,7 @@
 {
  "id": "page.portal.oddJob.index",
  "type": "page",
- "status": "regression",
+ "status": "todo",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -36,6 +36,7 @@
   }
  ],
  "recordPath": "/oddJob",
+ "role": "general",
  "maps": "out/maps/page.portal.oddJob.index.json",
  "hints": "out/hints/page.portal.oddJob.index.md",
  "deps": {
@@ -71,13 +72,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.c03"
-  ]
+  "orders": []
  },
- "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/oddJob",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "stylesProvidedByScript": true
 }

@@ -33,6 +33,7 @@
   }
  ],
  "recordPath": "/lookList",
+ "role": "general",
  "maps": "out/maps/page.uc.lookList.json",
  "hints": "out/hints/page.uc.lookList.md",
  "deps": {

@@ -50,22 +50,19 @@
    "original": "ao",
    "path": "@/legacy/api",
    "export": "getSysUserByPhone",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "j": {
    "original": "ap",
    "path": "@/legacy/api",
    "export": "addUserForCompany",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "E": {
    "original": "aq",
    "path": "@/legacy/api",
    "export": "changeUserForCompany",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "z": {
    "original": "M",

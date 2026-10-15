@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/setupDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.setUp.setupDetail.json",
  "hints": "out/hints/page.portal.sjz.setUp.setupDetail.md",
  "deps": {
@@ -59,8 +60,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
    "shared.portal.complaint",
    "shared.portal.modules",
    "shared.portal.signSetup"

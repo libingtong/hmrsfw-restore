@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/graduates",
+ "role": "general",
  "maps": "out/maps/page.uc.graduates.json",
  "hints": "out/hints/page.uc.graduates.md",
  "deps": {
@@ -48,9 +49,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

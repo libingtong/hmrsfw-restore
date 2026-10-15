@@ -49,6 +49,7 @@
   }
  ],
  "recordPath": "/CorpCenter",
+ "role": "corp",
  "maps": "out/maps/page.uc.CorpCenter.json",
  "hints": "out/hints/page.uc.CorpCenter.md",
  "deps": {
@@ -102,7 +103,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.uc.E6",
    "shared.uc.addKeynote",
    "shared.uc.authCompany",
    "shared.uc.modules",

@@ -29,8 +29,7 @@
    "exportedAs": [
     "m"
    ],
-   "file": "apps/portal/src/legacy/LoginModal.vue",
-   "replacesStub": true
+   "file": "apps/portal/src/legacy/components/Loginmodal.vue"
   },
   {
    "name": "moveWindow",
@@ -45,7 +44,7 @@
  ],
  "files": [
   "apps/portal/src/legacy/components/Phone.vue",
-  "apps/portal/src/legacy/LoginModal.vue",
+  "apps/portal/src/legacy/components/Loginmodal.vue",
   "apps/portal/src/legacy/components/MoveWindow.vue"
  ],
  "owns": [
@@ -53,20 +52,19 @@
    "alias": "cd",
    "path": "@/legacy/components/MoveWindow.vue",
    "export": "default",
-   "status": "reserved"
+   "status": "restored"
   },
   {
    "alias": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "stub": "apps/portal/src/legacy/LoginModal.vue"
+   "status": "restored"
   },
   {
    "alias": "Y",
    "path": "@/legacy/components/Phone.vue",
    "export": "default",
-   "status": "reserved"
+   "status": "restored"
   }
  ],
  "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",

@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/details",
+ "role": "general",
  "maps": "out/maps/page.portal.answer.details.json",
  "hints": "out/hints/page.portal.answer.details.md",
  "deps": {
@@ -53,8 +54,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
    "shared.portal.modules"
   ]
  },

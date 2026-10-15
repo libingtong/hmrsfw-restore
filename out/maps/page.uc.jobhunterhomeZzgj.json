@@ -63,15 +63,13 @@
    "original": "s",
    "path": "@/legacy/api",
    "export": "queryAnnouncementList",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "de": {
    "original": "bp",
    "path": "@/legacy/api",
    "export": "getCompanyPositionForMyCare",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "_e": {
    "original": "G",
@@ -83,15 +81,13 @@
    "original": "bH",
    "path": "@/legacy/api",
    "export": "getPolicyList",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "ue": {
    "original": "bI",
    "path": "@/legacy/api",
    "export": "getPolicyDetail",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "fe": {
    "original": "c",
@@ -109,35 +105,35 @@
  "api": {
   "me": {
    "original": "index.api.17516156075456.js#c",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "statics",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/statics"
   },
   "ve": {
    "original": "index.api.17516156075456.js#d",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listNew",
    "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/listNew"
   },
   "ye": {
    "original": "index.api.17516156075456.js#e",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listWithSort",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort"
   },
   "he": {
    "original": "index.api.17516156075456.js#b",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "getSettingValueByCode",
    "status": "restored",
    "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"
   },
   "F": {
    "original": "index.api.17516156075456.js#p",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "acceptOrRefuse",
    "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse"
@@ -146,7 +142,7 @@
    "original": "index.api.1751615607545.js#f",
    "path": "@/api/jobSupermarketMerchants",
    "export": "recommendJobList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"
   }
  },

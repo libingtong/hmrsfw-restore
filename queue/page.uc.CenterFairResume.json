@@ -40,6 +40,7 @@
   }
  ],
  "recordPath": "/CenterFairResume",
+ "role": "corp",
  "maps": "out/maps/page.uc.CenterFairResume.json",
  "hints": "out/hints/page.uc.CenterFairResume.md",
  "deps": {

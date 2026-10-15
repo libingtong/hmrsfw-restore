@@ -13,5 +13,5 @@
 | `le` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `I` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `ce` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `re` | index.api.175161560754517.js | api | @/api/collegeCareerTalk `queryTalkListInfo`（reserved） | `e=>t.request({url:"/xf-college/careerTalk/xfCollegeCareerTalk/queryTalkListInfo",method:"post",data:e})` |
-| `de` | index.api.175161560754517.js | api | @/api/collegeCareerTalk `cancelUnsubscribe`（reserved） | `e=>t.request({url:"/xf-college/careerTalk/xfCollegeCareerTalk/cancelUnsubscribe",method:"post",params:e})` |
+| `re` | index.api.175161560754517.js | api | @/api/collegeCareerTalk `queryTalkListInfo` | `e=>t.request({url:"/xf-college/careerTalk/xfCollegeCareerTalk/queryTalkListInfo",method:"post",data:e})` |
+| `de` | index.api.175161560754517.js | api | @/api/collegeCareerTalk `cancelUnsubscribe` | `e=>t.request({url:"/xf-college/careerTalk/xfCollegeCareerTalk/cancelUnsubscribe",method:"post",params:e})` |

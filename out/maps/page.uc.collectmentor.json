@@ -35,8 +35,7 @@
    "original": "bn",
    "path": "@/legacy/api",
    "export": "getTutorExpandForMyCare",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "Y": {
    "original": "B",
@@ -60,8 +59,7 @@
    "original": "b5",
    "path": "@/legacy/api",
    "export": "cancel",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   },
   "ee": {
    "original": "m",

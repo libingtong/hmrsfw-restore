@@ -75,7 +75,7 @@
    "original": "index.api.178332063620020.js#a",
    "path": "@/api/service",
    "export": "freeServiceUnitPageListForMap",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/freeServiceUnitPageListForMap"
   }
  },
@@ -105,7 +105,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "ce": {
+   "original": "list.17833206362009.js#default",
+   "path": "@/views/talents/eMap/list.vue",
+   "export": "default",
+   "order": "page.portal.talents.eMap.list"
+  }
+ },
  "modules": {
   "Rt": {
    "original": "adr.1783320636200.js#_",

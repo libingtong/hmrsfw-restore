@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/projectSingUp",
+ "role": "general",
  "maps": "out/maps/page.uc.projectSingUp.json",
  "hints": "out/hints/page.uc.projectSingUp.md",
  "deps": {

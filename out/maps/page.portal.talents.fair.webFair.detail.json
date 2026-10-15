@@ -56,8 +56,7 @@
    "original": "aV",
    "path": "@/legacy/api",
    "export": "getAllLevelArticleListByTypeId",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "Z": {
    "original": "J",
@@ -75,8 +74,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "_t": {
    "original": "o",
@@ -141,49 +139,49 @@
  "api": {
   "jt": {
    "original": "index.api.178332063620017.js#b",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "updateBrowseCount",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/updateBrowseCount"
   },
   "Pt": {
    "original": "index.api.178332063620017.js#c",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/queryById"
   },
   "Rt": {
    "original": "index.api.178332063620017.js#d",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryJobFairStatistics",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/statistics/queryJobFairStatistics"
   },
   "Et": {
    "original": "index.api.178332063620017.js#e",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "scrollBarData",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/scrollBarData"
   },
   "Ut": {
    "original": "index.api.178332063620017.js#f",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryAttendeesCompany",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesCompany"
   },
   "qt": {
    "original": "index.api.178332063620017.js#h",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "queryAttendeesPosition",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesPosition"
   },
   "Gt": {
    "original": "index.1783320636200117.js#g",
-   "path": "@/api/api-117",
+   "path": "@/api/jobCompany",
    "export": "getQrcodeImgByObjectId",
    "status": "restored",
    "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"
@@ -233,7 +231,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "Mt": {
+   "original": "signModal.1783320636200.js#default",
+   "path": "@/shared/signModal.vue",
+   "export": "default",
+   "order": "page.portal.fair.signModal"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "main.1783320636200.js"

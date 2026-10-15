@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/oddjob/need",
+ "role": "corp",
  "maps": "out/maps/page.uc.oddjob.need.json",
  "hints": "out/hints/page.uc.oddjob.need.md",
  "deps": {

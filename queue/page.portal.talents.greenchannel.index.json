@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/talents/greenchannel",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.greenchannel.index.json",
  "hints": "out/hints/page.portal.talents.greenchannel.index.md",
  "deps": {
@@ -45,9 +46,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.c03"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

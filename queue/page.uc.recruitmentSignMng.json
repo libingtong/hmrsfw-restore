@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/recruitmentSignMng",
+ "role": "general",
  "maps": "out/maps/page.uc.recruitmentSignMng.json",
  "hints": "out/hints/page.uc.recruitmentSignMng.md",
  "deps": {

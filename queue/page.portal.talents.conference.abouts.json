@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/talents/conference/abouts/",
  "routes": [],
  "recordPath": "/talents/conference",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.conference.abouts.json",
  "hints": "out/hints/page.portal.talents.conference.abouts.md",
  "deps": {

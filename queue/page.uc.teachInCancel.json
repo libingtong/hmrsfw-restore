@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/teachInCancel",
+ "role": "corp",
  "maps": "out/maps/page.uc.teachInCancel.json",
  "hints": "out/hints/page.uc.teachInCancel.md",
  "deps": {

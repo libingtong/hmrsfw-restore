@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/collectmentor",
+ "role": "general",
  "maps": "out/maps/page.uc.collectmentor.json",
  "hints": "out/hints/page.uc.collectmentor.md",
  "deps": {
@@ -47,7 +48,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.uc.E6",
    "shared.uc.modules"
   ]
  },

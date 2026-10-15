@@ -42,8 +42,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "E": {
    "original": "aQ",
@@ -102,7 +101,7 @@
  "api": {
   "Na": {
    "original": "index.api.178332063620017.js#w",
-   "path": "@/api/api-17",
+   "path": "@/api/jobFair",
    "export": "getFairList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/getFairList"
@@ -122,7 +121,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "Ia": {
+   "original": "signModal.1783320636200.js#default",
+   "path": "@/shared/signModal.vue",
+   "export": "default",
+   "order": "page.portal.fair.signModal"
+  }
+ },
  "modules": {},
  "sideEffects": [],
  "missing": []

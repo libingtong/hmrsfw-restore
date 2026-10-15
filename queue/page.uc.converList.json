@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/converList",
+ "role": "general",
  "maps": "out/maps/page.uc.converList.json",
  "hints": "out/hints/page.uc.converList.md",
  "deps": {

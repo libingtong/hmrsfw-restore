@@ -52,7 +52,7 @@
    "original": "index.api.1751615607545.js#h",
    "path": "@/api/jobSupermarketMerchants",
    "export": "getFairListNew",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/getFairListNew"
   }
  },

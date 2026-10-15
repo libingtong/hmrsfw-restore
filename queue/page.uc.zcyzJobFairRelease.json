@@ -31,6 +31,7 @@
   }
  ],
  "recordPath": "/zcyzJobFairRelease",
+ "role": "corp",
  "maps": "out/maps/page.uc.zcyzJobFairRelease.json",
  "hints": "out/hints/page.uc.zcyzJobFairRelease.md",
  "deps": {
@@ -62,9 +63,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

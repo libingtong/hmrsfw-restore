@@ -49,7 +49,7 @@
    "original": "index.api.178332063620021.js#e",
    "path": "@/api/jobPxCourse",
    "export": "freeList",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobPxUnit/freeList"
   }
  },

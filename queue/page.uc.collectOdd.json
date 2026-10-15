@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/collectOdd",
+ "role": "general",
  "maps": "out/maps/page.uc.collectOdd.json",
  "hints": "out/hints/page.uc.collectOdd.md",
  "deps": {
@@ -44,9 +45,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

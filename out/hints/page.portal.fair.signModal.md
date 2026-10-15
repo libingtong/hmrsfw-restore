@@ -11,6 +11,6 @@
 | `w` | index.1783320636200.js | entry | @/legacy `openUserCenter` | `(e,t)=>{let n=rr.getters.userUrl;t=t\|\|"_blank",n&&n.charAt(n.length-1)==="/"&&(n=n.slice(0,-1)),window.open(n+"/autoLogin?toPath="+encodeURIComponent(e)+"&token="+Ze.getToken(),t)}` |
 | `d` | index.1783320636200.js | entry | ant-design-vue `message` | `D1` |
 | `de` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
-| `fe` | index.api.178332063620017.js | api | @/api/api-17 `checkIzShowApplySameNetworkFair` | `e=>o.request({url:"/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair",method:"post",params:e})` |
-| `be` | index.api.178332063620017.js | api | @/api/api-17 `queryFairRegions` | `e=>o.request({url:"/xf-job/job/licenseFree/queryFairRegions",method:"get",params:e})` |
-| `ve` | index.api.178332063620017.js | api | @/api/api-17 `updateCompIntroduc` | `e=>o.request({url:"/xf-job/job/licenseFree/updateCompIntroduc",method:"post",data:e})` |
+| `fe` | index.api.178332063620017.js | api | @/api/jobFair `checkIzShowApplySameNetworkFair` | `e=>o.request({url:"/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair",method:"post",params:e})` |
+| `be` | index.api.178332063620017.js | api | @/api/jobFair `queryFairRegions` | `e=>o.request({url:"/xf-job/job/licenseFree/queryFairRegions",method:"get",params:e})` |
+| `ve` | index.api.178332063620017.js | api | @/api/jobFair `updateCompIntroduc` | `e=>o.request({url:"/xf-job/job/licenseFree/updateCompIntroduc",method:"post",data:e})` |

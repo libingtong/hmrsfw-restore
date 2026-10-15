@@ -8,5 +8,5 @@
 | `T` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `q` | index.1751615607545.js | entry | ant-design-vue `Modal` | `re({compatConfig:{MODE:3},name:"AModal",inheritAttrs:!1,props:xt(Cdt(),{width:520,transitionName:"zoom",maskTransitionName:"fade",confirmLoading:!1,visible:!1,okType:"primary"}),setup:function(e,n){va` |
 | `F` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `P` | index.api.17516156075456.js | api | @/api/api-56 `listNoPage` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/listNoPage",method:"get",params:e})` |
-| `V` | index.api.17516156075456.js | api | @/api/api-56 `saveCopy` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/saveCopy",method:"get",params:e})` |
+| `P` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `listNoPage` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/listNoPage",method:"get",params:e})` |
+| `V` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `saveCopy` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/saveCopy",method:"get",params:e})` |

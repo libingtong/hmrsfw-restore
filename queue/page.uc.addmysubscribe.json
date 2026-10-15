@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/addmysubscribe",
+ "role": "general",
  "maps": "out/maps/page.uc.addmysubscribe.json",
  "hints": "out/hints/page.uc.addmysubscribe.md",
  "deps": {

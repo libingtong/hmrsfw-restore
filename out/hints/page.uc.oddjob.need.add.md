@@ -4,9 +4,9 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `Te` | index.api.175161560754519.js | api | @/api/oddShareSurplusJobInfo `queryById`（reserved） | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/queryById",method:"get",params:o})` |
-| `xe` | index.api.175161560754519.js | api | @/api/oddShareSurplusJobInfo `edit`（reserved） | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/edit",method:"post",data:o})` |
-| `Ne` | index.api.175161560754519.js | api | @/api/oddShareSurplusJobInfo `add`（reserved） | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/add",method:"post",data:o})` |
+| `Te` | index.api.175161560754519.js | api | @/api/oddShareSurplusJobInfo `queryById` | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/queryById",method:"get",params:o})` |
+| `xe` | index.api.175161560754519.js | api | @/api/oddShareSurplusJobInfo `edit` | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/edit",method:"post",data:o})` |
+| `Ne` | index.api.175161560754519.js | api | @/api/oddShareSurplusJobInfo `add` | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/add",method:"post",data:o})` |
 | `Ie` | index.1751615607545.js | entry | @/legacy `useTagsStore` | `d0("tags",{state:()=>({list:[]}),getters:{show:t=>t.list.length>0,nameList:t=>t.list.map(e=>e.name)},actions:{delTagsItem(t){this.list.splice(t,1)},setTagsItem(t){this.list.push(t)},clearTags(){this.l` |
 | `M` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `j` | index.1751615607545.js | api | @/legacy `getSettingValueByCode` | `t=>Ee.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:t})` |

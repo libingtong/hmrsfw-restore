@@ -24,6 +24,7 @@
  "subComponentDir": "apps/portal/src/views/sjz/fair/sceneFair/list/",
  "routes": [],
  "recordPath": "/fairList",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.fair.sceneFair.list.json",
  "hints": "out/hints/page.portal.sjz.fair.sceneFair.list.md",
  "deps": {
@@ -52,9 +53,11 @@
    "index.api.178332063620017.js#w"
   ],
   "modules": [],
-  "views": [],
+  "views": [
+   "page.portal.fair.signModal"
+  ],
   "orders": [
-   "entry.portal.c03"
+   "page.portal.fair.signModal"
   ]
  },
  "stylesProvidedByScript": true,

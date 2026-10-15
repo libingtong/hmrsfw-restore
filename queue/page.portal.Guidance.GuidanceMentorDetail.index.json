@@ -1,7 +1,7 @@
 {
  "id": "page.portal.Guidance.GuidanceMentorDetail.index",
  "type": "page",
- "status": "regression",
+ "status": "todo",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -35,6 +35,7 @@
   }
  ],
  "recordPath": "/GuidanceMentorDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.Guidance.GuidanceMentorDetail.index.json",
  "hints": "out/hints/page.portal.Guidance.GuidanceMentorDetail.index.md",
  "deps": {
@@ -57,13 +58,7 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.c03"
-  ]
+  "orders": []
  },
- "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/GuidanceMentorDetail",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "stylesProvidedByScript": true
 }

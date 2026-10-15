@@ -83,14 +83,13 @@
    "original": "a7",
    "path": "@/legacy/api",
    "export": "isPublishingPosition",
-   "status": "reserved",
-   "owner": "entry.uc.E6"
+   "status": "restored"
   }
  },
  "api": {
   "Te": {
    "original": "index.api.17516156075456.js#b",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "getSettingValueByCode",
    "status": "restored",
    "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"

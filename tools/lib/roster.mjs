@@ -3,6 +3,15 @@
 // beyond the roster's version 1 (all optional, docs/scheduler.md): agents[].instructionsVersion, agents[].enabled.
 import { P, readJson } from "./state.mjs";
 
+// Metadata keys the Multica server accepts. Roster names carry "@" and Chinese (「复核-GLM@Mac」), so a per-agent key is
+// built from the agent id, never from the name; the writer (the reviewer, told the key in its task) and the reader agree.
+export const META_KEY = /^[a-zA-Z_][a-zA-Z0-9_.-]{0,63}$/;
+export function reviewKey(agentId) {
+  const k = `review.${agentId}`;
+  if (!META_KEY.test(k)) throw new Error(`metadata key ${JSON.stringify(k)} is not accepted by the server (${META_KEY})`);
+  return k;
+}
+
 export const ROLES = ["dispatcher", "gate", "recorder", "fixer", "arbiter", "restorer", "restorer-core", "reviewer"];
 
 export class Roster {
@@ -56,6 +65,9 @@ export const DEFAULT_CONFIG = {
   claims: { enabled: true, remote: "origin", branch: "claims", leaderTtlMin: 30, publishEveryMin: 10, deadAfterMin: 60 },
   // Assets a stage needs on the agent's machine (roster machines.<id>.assets). No `machines` in the roster = no limit.
   requires: { record: ["login"], gate: ["har", "baseline"] },
+  // Fast-lane mode (HM-48, tools/lib/fastlane.mjs): the scheduler handles only the pages the fast lane landed on
+  // hmrsfw-vue `branch`; their tasks are done on a gate pass without a merge into integration. dispatchNew is off.
+  fastLane: { enabled: false, branch: "restore/fast-lane" },
 };
 
 export function loadConfig(paths = P()) {

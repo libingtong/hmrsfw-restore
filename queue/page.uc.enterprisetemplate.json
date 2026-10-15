@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/enterprisetemplate",
+ "role": "corp",
  "maps": "out/maps/page.uc.enterprisetemplate.json",
  "hints": "out/hints/page.uc.enterprisetemplate.md",
  "deps": {

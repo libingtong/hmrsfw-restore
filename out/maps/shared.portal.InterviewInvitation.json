@@ -52,21 +52,21 @@
    "original": "index.api.17833206362007.js#b",
    "path": "@/api/jobInterviewInvitation",
    "export": "interviewTemplate",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/interviewTemplate"
   },
   "Z": {
    "original": "index.api.17833206362007.js#c",
    "path": "@/api/jobInterviewInvitation",
    "export": "getInterviewPosition",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/getInterviewPosition"
   },
   "$": {
    "original": "index.api.17833206362007.js#d",
    "path": "@/api/jobInterviewInvitation",
    "export": "interviewInvitation",
-   "status": "reserved",
+   "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/interviewInvitation"
   }
  },

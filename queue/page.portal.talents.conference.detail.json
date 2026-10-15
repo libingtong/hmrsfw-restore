@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/talents/conference/detail",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.conference.detail.json",
  "hints": "out/hints/page.portal.talents.conference.detail.md",
  "deps": {
@@ -45,9 +46,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.c05"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

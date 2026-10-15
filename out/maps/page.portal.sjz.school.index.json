@@ -51,8 +51,7 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "reserved",
-   "owner": "entry.portal.c03"
+   "status": "restored"
   },
   "de": {
    "original": "h",
@@ -64,22 +63,19 @@
    "original": "ab",
    "path": "@/legacy/api",
    "export": "getArticleListNoCheck",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "pa": {
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "ua": {
    "original": "a$",
    "path": "@/legacy/api",
    "export": "getArticleListByTypeCodes",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "fa": {
    "original": "w",
@@ -187,7 +183,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "ja": {
+   "original": "signModal.1783320636200.js#default",
+   "path": "@/shared/signModal.vue",
+   "export": "default",
+   "order": "page.portal.fair.signModal"
+  }
+ },
  "modules": {
   "ra": {
    "original": "videoNull.1783320636200.js#_",

@@ -26,8 +26,7 @@
    "original": "c7",
    "path": "@/legacy/api",
    "export": "getAreaInfoById",
-   "status": "reserved",
-   "owner": "entry.portal.E6"
+   "status": "restored"
   },
   "I": {
    "original": "B",

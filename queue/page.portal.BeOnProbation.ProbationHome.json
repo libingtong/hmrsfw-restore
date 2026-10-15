@@ -1,7 +1,7 @@
 {
  "id": "page.portal.BeOnProbation.ProbationHome",
  "type": "page",
- "status": "regression",
+ "status": "todo",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -39,6 +39,7 @@
   }
  ],
  "recordPath": "/ProbationHome",
+ "role": "general",
  "maps": "out/maps/page.portal.BeOnProbation.ProbationHome.json",
  "hints": "out/hints/page.portal.BeOnProbation.ProbationHome.md",
  "deps": {
@@ -79,13 +80,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.portal.c03"
-  ]
+  "orders": []
  },
- "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/ProbationHome",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "stylesProvidedByScript": true
 }

@@ -13,10 +13,10 @@
 | `he` | index.1783320636200.js | entry | @/legacy `userStorage` | `{keys:!0,setUser(e){this.keys?localStorage.setItem(jn.USER_INFO,e):localStorage.setItem(jn.USER_INFO,JSON.stringify(e))},getUser(){const e=localStorage.getItem(jn.USER_INFO);if(e&&e!="undefined"&&e!="` |
 | `bt` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `te` | index.1783320636200.js | entry | @/legacy `getDictItemsByCode` | `e=>IN("/jeecg-system/sys/dict/getDictItemsByCode",e,"get")` |
-| `kt` | index.1783320636200.js | entry | @/legacy/api `queryHomeSettingById`（reserved） | `e=>IN("/xf-job/job/licenseFree/queryHomeSettingById",e,"post")` |
-| `Lt` | index.1783320636200.js | api | @/legacy/api `getArticleListNoCheck`（reserved） | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleListNoCheck",method:"post",params:e})` |
-| `_t` | index.1783320636200.js | entry | @/legacy/components/TopHead.vue `default`（reserved） | `mt(Vne,[["__scopeId","data-v-15d22a66"]])` |
-| `xt` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `kt` | index.1783320636200.js | entry | @/legacy/api `queryHomeSettingById` | `e=>IN("/xf-job/job/licenseFree/queryHomeSettingById",e,"post")` |
+| `Lt` | index.1783320636200.js | api | @/legacy/api `getArticleListNoCheck` | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleListNoCheck",method:"post",params:e})` |
+| `_t` | index.1783320636200.js | entry | @/legacy/components/TopHead.vue `default` | `mt(Vne,[["__scopeId","data-v-15d22a66"]])` |
+| `xt` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
 | `T` | index.1783320636200.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `I` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `ie` | index.1783320636200.js | entry | @/legacy `openArticle` | `(e,t,n)=>{if(e.keywords&&e.keywords.indexOf("toUserCenter-")!=-1){const a=XMt(e.keywords,"toUserCenter-");console.log(a),Dt(a);return}let r=window.location.host;if(e.linkAddress)String(e.linkAddress).` |
@@ -35,16 +35,16 @@
 | `Et` | pagination.1783320636200.js | shared | swiper `Pagination` | `function(f){let{swiper:a,extendParams:P,on:p,emit:x}=f;const o="swiper-pagination";P({pagination:{el:null,bulletElement:"span",clickable:!1,hideOnClick:!1,renderBullet:null,renderProgressbar:null,rend` |
 | `Ut` | scrollbar.1783320636200.js | shared | swiper `Scrollbar` | `function(y){let{swiper:a,extendParams:b,on:d,emit:g}=y;const v=I();let f=!1,h=null,p=null,m,n,u,E;b({scrollbar:{el:null,dragSize:"auto",hide:!1,draggable:!1,snapOnRelease:!0,lockClass:"swiper-scrollba` |
 | `qt` | autoplay.1783320636200.js | shared | swiper `Autoplay` | `function(y){let{swiper:a,extendParams:u,on:l,emit:t}=y,o;a.autoplay={running:!1,paused:!1},u({autoplay:{enabled:!1,delay:3e3,waitForTransition:!0,disableOnInteraction:!0,stopOnLastSlide:!1,reverseDire` |
-| `Qt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `queryOrganizationByAreaId`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/queryOrganizationByAreaId",method:"post",params:e})` |
-| `ke` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `getArticleList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
-| `Wt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `listForWebsite`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite",method:"get",params:e})` |
-| `Mt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `freeCompanyAllAttachmentList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyAllAttachmentList",method:"get",params:e})` |
-| `Ot` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `queryMoreClassicQandA`（reserved） | `e=>s.request({url:"/xf-job/communal/licenseFree/xfSysConsult/queryMoreClassicQandA",method:"get",params:e})` |
-| `Ht` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `freeCompanyExpandPositionList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandPositionList",method:"post",params:e})` |
-| `Kt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `freeCompanyExpandList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandList",method:"post",params:e})` |
-| `Zt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `recommendJobList`（reserved） | `e=>s.request({url:"/job/licenseFree/xfJobCompanyPosition/recommendJobList",method:"post",params:e})` |
-| `Gt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `freeKeynoteCompanySeeMoreList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/freeKeynoteCompanySeeMoreList",method:"post",params:e})` |
-| `Xt` | index.api.178332063620020.js | api | @/api/service `freeServiceUnitPageList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/freeServiceUnitPageList",method:"post",params:e})` |
-| `si` | index.api.178332063620017.js | api | @/api/api-17 `getFairList` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/getFairList",method:"post",data:e})` |
+| `Qt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `queryOrganizationByAreaId` | `e=>s.request({url:"/xf-job/job/licenseFree/queryOrganizationByAreaId",method:"post",params:e})` |
+| `ke` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `getArticleList` | `e=>s.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
+| `Wt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `listForWebsite` | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite",method:"get",params:e})` |
+| `Mt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `freeCompanyAllAttachmentList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyAllAttachmentList",method:"get",params:e})` |
+| `Ot` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `queryMoreClassicQandA` | `e=>s.request({url:"/xf-job/communal/licenseFree/xfSysConsult/queryMoreClassicQandA",method:"get",params:e})` |
+| `Ht` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `freeCompanyExpandPositionList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandPositionList",method:"post",params:e})` |
+| `Kt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `freeCompanyExpandList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyExpandList",method:"post",params:e})` |
+| `Zt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `recommendJobList` | `e=>s.request({url:"/job/licenseFree/xfJobCompanyPosition/recommendJobList",method:"post",params:e})` |
+| `Gt` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `freeKeynoteCompanySeeMoreList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeKeynoteCompanySeeMoreList",method:"post",params:e})` |
+| `Xt` | index.api.178332063620020.js | api | @/api/service `freeServiceUnitPageList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeServiceUnitPageList",method:"post",params:e})` |
+| `si` | index.api.178332063620017.js | api | @/api/jobFair `getFairList` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/getFairList",method:"post",data:e})` |
 | `S` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
-| `Le` | index.api.178332063620021.js | api | @/api/jobPxCourse `listForWebsite`（reserved） | `e=>r.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:e})` |
+| `Le` | index.api.178332063620021.js | api | @/api/jobPxCourse `listForWebsite` | `e=>r.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:e})` |

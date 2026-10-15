@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/nom",
+ "role": "general",
  "maps": "out/maps/page.uc.nom.json",
  "hints": "out/hints/page.uc.nom.md",
  "deps": {
@@ -59,9 +60,7 @@
   ],
   "modules": [],
   "views": [],
-  "orders": [
-   "entry.uc.E6"
-  ]
+  "orders": []
  },
  "stylesProvidedByScript": true
 }

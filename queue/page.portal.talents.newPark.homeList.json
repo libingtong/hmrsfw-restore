@@ -25,6 +25,7 @@
  "subComponentDir": "apps/portal/src/views/talents/newPark/homeList/",
  "routes": [],
  "recordPath": "/talents/park",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.newPark.homeList.json",
  "hints": "out/hints/page.portal.talents.newPark.homeList.md",
  "deps": {

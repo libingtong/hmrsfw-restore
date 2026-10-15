@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/feedback",
+ "role": "general",
  "maps": "out/maps/page.uc.feedback.json",
  "hints": "out/hints/page.uc.feedback.md",
  "deps": {

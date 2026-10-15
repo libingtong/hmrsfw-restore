@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/areaHome/:cityCode",
+ "role": "general",
  "maps": "out/maps/page.portal.xjhm.cityHome.index.json",
  "hints": "out/hints/page.portal.xjhm.cityHome.index.md",
  "deps": {
@@ -61,9 +62,6 @@
   ],
   "views": [],
   "orders": [
-   "entry.portal.E6",
-   "entry.portal.c03",
-   "entry.portal.c06",
    "shared.portal.FriendLink",
    "shared.portal.homeRight2",
    "shared.portal.jobArea",
