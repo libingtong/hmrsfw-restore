@@ -1,0 +1,28 @@
+{
+  "id": "page.portal.guide.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/guide/index.vue",
+    "apps/portal/src/views/guide/index/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "194564ef7ecbc440ea3da3c787af4a360ed0703f"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [
+    "gate.1 html load/final 第 2 处差异：index.vue「换一批」图标 img（按清单从 @/shared/auth 导入原导出 `_`）的 src，原包内联 data URL，还原版为 dev URL；页面导入与原 chunk 一致，原因在共享层写法与门槛 ondemand 构建，见 needsFromSkeleton"
+  ],
+  "needsFromSkeleton": [
+    "疑似共享层问题 / 疑似比对器问题（与 page.portal.guide.jobHunt 回执同一问题）：apps/portal/src/shared/auth.ts 的 `_`、`a` 用 new URL(\"./auth/assets/*.png\", import.meta.url)；vite build 下小于 assetsInlineLimit 会内联成 data:image/png;base64，与原包一致，门槛 page 模式 ondemand（vite serve）得到 /src/shared/auth/assets/auth-2ec256b5c2.png；tools/gate/appserver.mjs 的 buildAssetsPlugin 不处理 new URL(…, import.meta.url)。二选一：共享层改为 import 写法（公共库升级单），或 buildAssetsPlugin 补 new URL 形式（规则变更单）"
+  ],
+  "notes": [
+    "fix 1：index/StepForm4.vue 身份证提示行 div.tip-red 的静态 style=\"\" 改为 :style=\"''\"。原 chunk 是 hoisted 静态 vnode {class:\"tip-red marL5 cred marB5\",style:\"\"}，渲染出 style=\"\"；SFC 编译器会丢弃空的静态 style 属性，还原版少了该属性（gate.1 load/final 第 1 处差异）。改后 vite build 产物为 style:\"\"，与原包一致；写法同 guide/jobHunt/StepForm.vue",
+    "未改：index.vue「换一批」img src 差异，来自 @/shared/auth 导出的资源 URL（见 needsFromSkeleton）。依据：本次 npm run build:portal 产物 auth chunk 内含与原包相同的 base64，只是门槛按需服务器与 vite build 不一致",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane b2a8fdc"
+  ]
+}
