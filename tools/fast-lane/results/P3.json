@@ -1,0 +1,65 @@
+{
+ "batch": "P3",
+ "issue": "HM-39",
+ "app": "portal",
+ "passed": [
+  "page.portal.sjz.fair.outFair.list",
+  "page.portal.sjz.fair.sceneFair.list",
+  "page.portal.sjz.fair.webFair.list",
+  "page.portal.sjz.job.jobList",
+  "page.portal.sjz.news.newsList",
+  "page.portal.sjz.school.index",
+  "page.portal.sjz.setUp.setupDetail",
+  "page.portal.sjz.talent.talentList",
+  "page.portal.sjz.unitMain.unitMain",
+  "page.portal.sjz.virtualjobfairs.index",
+  "page.portal.sjz.webvirtualjobfairs.index",
+  "page.portal.talents.cityHome.corp",
+  "page.portal.talents.cityHome.helpCenter",
+  "page.portal.talents.cityHome.job",
+  "page.portal.talents.cityHome.talentArea",
+  "page.portal.talents.cityHome.titles",
+  "page.portal.talents.conference.abouts",
+  "page.portal.talents.conference.cTitles",
+  "page.portal.talents.conference.detail",
+  "page.portal.talents.conference.medias",
+  "page.portal.talents.conference.scrollList",
+  "page.portal.talents.conference.swperSlides",
+  "page.portal.talents.eMap.list",
+  "page.portal.talents.fair.outFair.list",
+  "page.portal.talents.fair.webFair.detail",
+  "page.portal.talents.fair.webFair.list",
+  "page.portal.talents.greenchannel.index",
+  "page.portal.talents.homeView",
+  "page.portal.talents.index.advertTop",
+  "page.portal.talents.index.frendLinks"
+ ],
+ "blocked": [
+  {
+   "id": "page.portal.sjz.fair.fairsList",
+   "reason": "self-check 仅 imports 3 条失败：@/views/sjz/fair/webFair/list.vue、@/views/sjz/fair/sceneFair/list.vue、@/views/livejob/index.vue（前两个在本批已合入，livejob/index 在 P1 已合入）。 根因：maps 生成器漏登兄弟页面的默认导入：tools/work-orders.mjs buildMaps 的正则只匹配 import{...}from，原 chunk 的 import X,{__tla as Y}from\"./<view>.js\" 整条被跳过，所以 maps.views / deps.views 为空，self-check imports 报「是页面文件，maps 里没有它；不要导入别的页面」。需要：buildMaps 识别默认导入（含 __tla 形式）并重新生成 queue/ 与 out/maps/（规则/工具变更，按项目流程走），之后本单无需改代码，重跑 self-check 即可合入。",
+   "parkedBranch": "hmrsfw-vue fast-lane-parked/page.portal.sjz.fair.fairsList"
+  },
+  {
+   "id": "page.portal.talents.cityHome.index",
+   "reason": "self-check 仅 imports 5 条失败：cityHome/job.vue、corp.vue、titles.vue、helpCenter.vue（本批已合入）、@/views/talents/index/homeList.vue（工单 page.portal.talents.index.homeList，不在本批）。另构建还依赖 shared/adsCenter、shared/homeRight 等其他批次的文件，需它们合入后重跑构建。 根因：maps 生成器漏登兄弟页面的默认导入：tools/work-orders.mjs buildMaps 的正则只匹配 import{...}from，原 chunk 的 import X,{__tla as Y}from\"./<view>.js\" 整条被跳过，所以 maps.views / deps.views 为空，self-check imports 报「是页面文件，maps 里没有它；不要导入别的页面」。需要：buildMaps 识别默认导入（含 __tla 形式）并重新生成 queue/ 与 out/maps/（规则/工具变更，按项目流程走），之后本单无需改代码，重跑 self-check 即可合入。",
+   "parkedBranch": "hmrsfw-vue fast-lane-parked/page.portal.talents.cityHome.index"
+  },
+  {
+   "id": "page.portal.talents.conference.index",
+   "reason": "self-check 仅 imports 失败：./abouts.vue、./cTitles.vue、./medias.vue、./scrollList.vue、./swperSlides.vue、@/views/talents/index/advertTop.vue（均已在本批合入）。 根因：maps 生成器漏登兄弟页面的默认导入：tools/work-orders.mjs buildMaps 的正则只匹配 import{...}from，原 chunk 的 import X,{__tla as Y}from\"./<view>.js\" 整条被跳过，所以 maps.views / deps.views 为空，self-check imports 报「是页面文件，maps 里没有它；不要导入别的页面」。需要：buildMaps 识别默认导入（含 __tla 形式）并重新生成 queue/ 与 out/maps/（规则/工具变更，按项目流程走），之后本单无需改代码，重跑 self-check 即可合入。",
+   "parkedBranch": "hmrsfw-vue fast-lane-parked/page.portal.talents.conference.index"
+  },
+  {
+   "id": "page.portal.talents.eMap.index",
+   "reason": "self-check 仅 imports 失败：./list.vue（page.portal.talents.eMap.list，本批已合入）。 根因：maps 生成器漏登兄弟页面的默认导入：tools/work-orders.mjs buildMaps 的正则只匹配 import{...}from，原 chunk 的 import X,{__tla as Y}from\"./<view>.js\" 整条被跳过，所以 maps.views / deps.views 为空，self-check imports 报「是页面文件，maps 里没有它；不要导入别的页面」。需要：buildMaps 识别默认导入（含 __tla 形式）并重新生成 queue/ 与 out/maps/（规则/工具变更，按项目流程走），之后本单无需改代码，重跑 self-check 即可合入。",
+   "parkedBranch": "hmrsfw-vue fast-lane-parked/page.portal.talents.eMap.index"
+  },
+  {
+   "id": "page.portal.talents.fair.fairList",
+   "reason": "self-check 仅 imports 失败：./webFair/list.vue、./outFair/list.vue（本批已合入）。 根因：maps 生成器漏登兄弟页面的默认导入：tools/work-orders.mjs buildMaps 的正则只匹配 import{...}from，原 chunk 的 import X,{__tla as Y}from\"./<view>.js\" 整条被跳过，所以 maps.views / deps.views 为空，self-check imports 报「是页面文件，maps 里没有它；不要导入别的页面」。需要：buildMaps 识别默认导入（含 __tla 形式）并重新生成 queue/ 与 out/maps/（规则/工具变更，按项目流程走），之后本单无需改代码，重跑 self-check 即可合入。",
+   "parkedBranch": "hmrsfw-vue fast-lane-parked/page.portal.talents.fair.fairList"
+  }
+ ],
+ "notes": "30 通过、5 阻塞（全部为 maps 漏登兄弟页默认导入，同 P1）。每单 self-check pass:true 且各自 build:portal 通过；批次末全量 npm run build（portal+uc）退出码 0，scan-secrets 0，无 .env.local/.har/.auth/.pem 被跟踪。回放回归：legacy10 10/10；confirm 首轮 19/20（c12 仅 overlay differs，html/text/请求/像素均相同），单独重跑 c12 两次均 PASS，判为并发构建负载下的偶发，视为 20/20。常见的 warn：@/shared/signModal.vue 非清单规范路径（maps/registry 未收录 signModal.1783320636200.js，涉及 sjz/talents 的 fair 系列页面共 9 张），需在清单里补规范路径后统一改。另有 10 张页面因自检提示把页面私有函数改名（如 openLink→openLinkInNewTab、getArticleList→fetchArticleList），行为不变。"
+}
