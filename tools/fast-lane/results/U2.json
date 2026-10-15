@@ -41,7 +41,7 @@
  "blocked": [
   {
    "id": "page.uc.jobhunterhome",
-   "reason": "工单/映射缺项 + 清单缺项：(1) 原 chunk import 了页面 page.uc.myresume（myresume.1751615607545.js），但 maps.views / deps.views 为空，self-check imports 拦下 @/views/myresume.vue，且 myresume 属 U3 批次尚未合入，build:uc 因缺文件失败；需在 tools/work-orders.mjs 生成的工单/maps 里补 views 依赖，并在 page.uc.myresume 合入后重跑。(2) 原代码 resolveComponent(\"tooltip\") 未注册（原包即为未知元素），registry/uc.json globals 无此项，与 U1 的 el-button 同一规则变更单。页面已还原（其余检查全过，text-nodes 32/32），存于 hmrsfw-vue 分支 fast-lane-blocked/U2"
+   "reason": "清单缺项（HM-47 复跑）：原 chunk 对 page.uc.myresume 的默认导入已进 maps.views（@/views/myresume.vue），该项不再拦；仍然 self-check imports 失败：原代码 resolveComponent(\"tooltip\") 未注册（原包即为未知元素），registry/uc.json globals 无此项，需要与 U1 的 el-button 同一张规则变更单（在 uc 清单 globals 登记原包未注册组件，或给 imports 检查加例外），不在页面里绕。页面已还原，存于 hmrsfw-vue 分支 fast-lane-blocked/U2（提交 b69f2b4）"
   },
   {
    "id": "page.uc.jobhunterhomeZzgj",
@@ -55,6 +55,7 @@
   "render-equiv 仅作报告：main 的 dashboard 报 4285→270 token，已对照原 render 确认结构一致（比对器展开了内联子组件）；fairsList（2743→1168）、collectme（2301→1040）同为原包内联子组件；回放判定待录制后补跑时留意",
   "downnoviciate/consult 的 maps.sideEffects（index.api.*、message.*、default.*、unfold.*）是 Rollup 的纯模块排序导入，无副作用，页面未加",
   "myPoints 抽出的 base64 图标按已知坑用 new URL(...) 引用，HM-26 合并后改回 import",
-  "多页把与公共库同名的本地函数改名以消除 self-check warn（jobPosting、corpImg、myRegistration、graduates），行为不变"
+  "多页把与公共库同名的本地函数改名以消除 self-check warn（jobPosting、corpImg、myRegistration、graduates），行为不变",
+  "HM-47：jobhunterhome 的 myresume 依赖已解决，仍阻塞在 <tooltip> 清单缺项（见 blocked 原因）"
  ]
 }
