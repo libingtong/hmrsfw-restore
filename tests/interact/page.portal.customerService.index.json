@@ -1,0 +1,11 @@
+[
+  {"clickSel":".hot-item .hot-p","optional":true},
+  {"wait":800},
+  {"clickSel":".i-item .ellipsis","optional":true},
+  {"wait":800},
+  {"fill":["请输入你要咨询的问题","测试"]},
+  {"wait":800},
+  {"clickSel":".k-item","optional":true},
+  {"wait":800},
+  {"clickSel":".a-right","optional":true}
+]
