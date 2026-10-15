@@ -1,0 +1,10 @@
+[
+  {"wait":800},
+  {"clickSel":".posrt100","optional":true},
+  {"wait":500},
+  {"clickSel":".posrt100","optional":true},
+  {"wait":500},
+  {"clickSel":".poslf100","optional":true},
+  {"wait":500},
+  {"clickSel":".dotsilunbo","optional":true}
+]
