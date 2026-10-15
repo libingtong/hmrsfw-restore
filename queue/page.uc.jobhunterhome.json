@@ -46,6 +46,7 @@
   }
  ],
  "recordPath": "/jobhunterhome",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.jobhunterhome.json",
  "hints": "out/hints/page.uc.jobhunterhome.md",
  "deps": {
@@ -80,8 +81,11 @@
    "default.1751615607545.js",
    "newUserCard.vue_vue_type_style_index_0_scoped_399cb1b5_lang.1751615607545.js"
   ],
-  "views": [],
+  "views": [
+   "page.uc.myresume"
+  ],
   "orders": [
+   "page.uc.myresume",
    "shared.uc.modules",
    "shared.uc.mymsg",
    "shared.uc.recommendZp",

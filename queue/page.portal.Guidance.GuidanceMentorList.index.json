@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/GuidanceMentorList",
+ "role": "general",
  "maps": "out/maps/page.portal.Guidance.GuidanceMentorList.index.json",
  "hints": "out/hints/page.portal.Guidance.GuidanceMentorList.index.md",
  "deps": {

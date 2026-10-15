@@ -147,7 +147,14 @@
    "owner": "shared.portal.likeBtn"
   }
  },
- "views": {},
+ "views": {
+  "da": {
+   "original": "commentItem.1783320636200.js#default",
+   "path": "@/views/livejob/components/commentItem.vue",
+   "export": "default",
+   "order": "page.portal.livejob.components.commentItem"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "main.1783320636200.js"

@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/ResumePreview",
+ "role": "general",
  "maps": "out/maps/page.portal.RecruitTalents.ResumePreview.json",
  "hints": "out/hints/page.portal.RecruitTalents.ResumePreview.md",
  "deps": {

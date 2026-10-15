@@ -6,7 +6,8 @@ import assert from "node:assert/strict";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { selfCheckVerdict, staticStage } from "../gate/static.mjs";
+import { ownerOf, selfCheckVerdict, staticStage } from "../gate/static.mjs";
+import { loadWorkOrder, missingCryptoEnv } from "../gate/common.mjs";
 
 const v = (code, out, crash) => selfCheckVerdict({ code, stdout: typeof out === "string" ? out : JSON.stringify(out, null, 1), crash }, "c01");
 const failsWith = (r, re) => { assert.equal(r.length, 1); assert.equal(r[0].check, "self-check"); assert.equal(r[0].where, "c01"); assert.match(r[0].hint, re); };
@@ -61,4 +62,42 @@ test("staticStage runs the script and fails the page when self-check exits 2", a
     r = await staticStage({ wos, appDir: dir, mode: "page", selfCheckScript: ok });
     assert.deepEqual(r.failed.c01, []);
   } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+// HM-9 integration run: what the gate needs besides the page itself.
+test("POC pages are self-checked under their queue/ id (same source chunk)", () => {
+  const wo = loadWorkOrder("c01");
+  assert.equal(wo.id, "c01");
+  assert.equal(wo.queueId, "page.portal.BeOnProbation.ProbationHome");
+  assert.equal(loadWorkOrder("page.uc.signUp").queueId, "page.uc.signUp");
+});
+
+test("staticStage passes the queue id to self-check, results stay under the gate's id", async () => {
+  const dir = mkdtempSync(path.join(os.tmpdir(), "gate-static-"));
+  try {
+    const f = path.join(dir, "echo.mjs");
+    writeFileSync(f, `const id = process.argv[2]; console.log(JSON.stringify(id === "page.x" ? { pass: true, failed: [] } : { pass: false, error: "work order not found: queue/" + id + ".json", failed: [] })); process.exit(id === "page.x" ? 0 : 2);\n`);
+    const r = await staticStage({ wos: [{ id: "c99", queueId: "page.x" }], appDir: dir, mode: "page", selfCheckScript: f });
+    assert.deepEqual(r.failed.c99, []);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("missing crypto keys are reported by name: environment first, then .env.local / .env in the app root", () => {
+  const dir = mkdtempSync(path.join(os.tmpdir(), "gate-env-"));
+  try {
+    assert.deepEqual(missingCryptoEnv(dir, {}), ["VITE_HMRSFW_SM2_PUBLIC_KEY", "VITE_HMRSFW_SM4_KEY"]);
+    assert.deepEqual(missingCryptoEnv(dir, { VITE_HMRSFW_SM4_KEY: "k" }), ["VITE_HMRSFW_SM2_PUBLIC_KEY"]);
+    writeFileSync(path.join(dir, ".env.local"), "VITE_HMRSFW_SM2_PUBLIC_KEY=pk\nVITE_HMRSFW_SM4_KEY=\n");
+    assert.deepEqual(missingCryptoEnv(dir, {}), ["VITE_HMRSFW_SM4_KEY"], "an empty value counts as missing");
+    assert.deepEqual(missingCryptoEnv(dir, { VITE_HMRSFW_SM4_KEY: "k" }), []);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("integration: app-wide failures are attributed to a layer and, where an order owns the file, to that order", () => {
+  assert.deepEqual(ownerOf("apps/uc/src/shared/corporganic.vue"), { layer: "shared", owner: "shared.uc.corporganic" });
+  assert.deepEqual(ownerOf("apps/portal/src/shared/dateUtil.ts"), { layer: "shared", owner: "shared.portal.modules" });
+  assert.deepEqual(ownerOf("apps/uc/src/views/userFairs/x.vue"), { layer: "page", owner: "page.uc.userFairs" });
+  assert.deepEqual(ownerOf("apps/uc/src/api/api-56.ts"), { layer: "api" });
+  assert.deepEqual(ownerOf("apps/portal/public/config.js"), { layer: "shell" });
+  assert.equal(ownerOf("apps/portal/src/legacy/components/HeadNav.vue").layer, "entry");
 });

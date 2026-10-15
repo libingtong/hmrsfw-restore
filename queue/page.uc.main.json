@@ -40,6 +40,7 @@
   }
  ],
  "recordPath": "/main",
+ "role": "general",
  "maps": "out/maps/page.uc.main.json",
  "hints": "out/hints/page.uc.main.md",
  "deps": {

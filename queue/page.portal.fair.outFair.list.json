@@ -1,7 +1,7 @@
 {
  "id": "page.portal.fair.outFair.list",
  "type": "page",
- "status": "regression",
+ "status": "todo",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/outFairList",
+ "role": "general",
  "maps": "out/maps/page.portal.fair.outFair.list.json",
  "hints": "out/hints/page.portal.fair.outFair.list.md",
  "deps": {
@@ -58,12 +59,12 @@
    "index.api.178332063620017.js#w"
   ],
   "modules": [],
-  "views": [],
-  "orders": []
+  "views": [
+   "page.portal.fair.signModal"
+  ],
+  "orders": [
+   "page.portal.fair.signModal"
+  ]
  },
- "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/outFairList",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "stylesProvidedByScript": true
 }

@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/Jobsearch",
+ "role": "general",
  "maps": "out/maps/page.portal.oddJob.Jobsearch.index.json",
  "hints": "out/hints/page.portal.oddJob.Jobsearch.index.md",
  "deps": {
@@ -65,8 +66,11 @@
   "modules": [
    "sm.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.oddJob.rtInto.odd"
+  ],
   "orders": [
+   "page.portal.oddJob.rtInto.odd",
    "shared.portal.modules",
    "shared.portal.nowContact",
    "shared.portal.oddType"

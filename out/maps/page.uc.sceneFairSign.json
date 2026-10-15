@@ -138,7 +138,14 @@
   }
  },
  "shared": {},
- "views": {},
+ "views": {
+  "Ne": {
+   "original": "webFairWork.1751615607545.js#default",
+   "path": "@/views/webFairWork.vue",
+   "export": "default",
+   "order": "page.uc.webFairWork"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "phone.1751615607545.js",

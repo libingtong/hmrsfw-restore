@@ -102,7 +102,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "Re": {
+   "original": "passwordModal.1783320636200.js#default",
+   "path": "@/views/answer/passwordModal.vue",
+   "export": "default",
+   "order": "page.portal.answer.passwordModal"
+  }
+ },
  "modules": {
   "qe": {
    "original": "wenjuan.1783320636200.js#_",

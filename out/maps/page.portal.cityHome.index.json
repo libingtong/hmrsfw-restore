@@ -252,7 +252,20 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "ei": {
+   "original": "signModal.1783320636200.js#default",
+   "path": "@/shared/signModal.vue",
+   "export": "default",
+   "order": "page.portal.fair.signModal"
+  },
+  "W": {
+   "original": "titles.1783320636200.js#default",
+   "path": "@/views/cityHome/titles.vue",
+   "export": "default",
+   "order": "page.portal.cityHome.titles"
+  }
+ },
  "modules": {
   "mt": {
    "original": "card.1783320636200.js#_",

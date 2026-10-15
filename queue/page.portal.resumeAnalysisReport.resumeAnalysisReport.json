@@ -1,7 +1,7 @@
 {
  "id": "page.portal.resumeAnalysisReport.resumeAnalysisReport",
  "type": "page",
- "status": "regression",
+ "status": "todo",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/resumeAnalysisReport",
+ "role": "general",
  "maps": "out/maps/page.portal.resumeAnalysisReport.resumeAnalysisReport.json",
  "hints": "out/hints/page.portal.resumeAnalysisReport.resumeAnalysisReport.md",
  "deps": {
@@ -57,9 +58,5 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/resumeAnalysisReport",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "stylesProvidedByScript": true
 }

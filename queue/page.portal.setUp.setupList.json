@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/setupList",
+ "role": "general",
  "maps": "out/maps/page.portal.setUp.setupList.json",
  "hints": "out/hints/page.portal.setUp.setupList.md",
  "deps": {

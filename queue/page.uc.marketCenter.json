@@ -37,6 +37,7 @@
   }
  ],
  "recordPath": "/marketCenter",
+ "role": null,
  "maps": "out/maps/page.uc.marketCenter.json",
  "hints": "out/hints/page.uc.marketCenter.md",
  "deps": {
@@ -71,5 +72,6 @@
    "shared.uc.setStatus"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "notes": "「招聘超市」身份（userroledata type 50）的主页，record-page 能切的身份（general / jobseeker / corp / mentor）里没有它"
 }

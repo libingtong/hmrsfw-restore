@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/livejob/components/commentItem/",
  "routes": [],
  "recordPath": "/livedetail",
+ "role": "general",
  "maps": "out/maps/page.portal.livejob.components.commentItem.json",
  "hints": "out/hints/page.portal.livejob.components.commentItem.md",
  "deps": {

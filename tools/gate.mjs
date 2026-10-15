@@ -27,7 +27,7 @@ import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, symlinkSync, w
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { appDir as resolveAppDir } from "./app-dir.mjs";
-import { REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, opt, stateDir } from "./gate/common.mjs";
+import { REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256 } from "./gate/har.mjs";
 import { runPage } from "./gate/replay.mjs";
 import { compareRuns } from "./gate/compare.mjs";
@@ -75,8 +75,8 @@ function checkoutBranch(baseApp, branch, gateDir) {
   return { dir: wt, sha: execFileSync("git", ["-C", wt, "rev-parse", "HEAD"], { encoding: "utf8" }).trim(), cleanup: () => { try { execFileSync("git", ["-C", baseApp, "worktree", "remove", "--force", wt], { stdio: "ignore" }); } catch {} } };
 }
 
-function restStorage(wo, assets, patch) {
-  const st = authStorage(wo, assets);
+function restStorage(wo, assets, patch, har) {
+  const st = authStorage(wo, assets, har);
   for (const k of patch.remove ?? []) delete st.localStorage[k];
   Object.assign(st.localStorage, patch.set ?? {});
   return st;
@@ -121,6 +121,8 @@ export async function gate(argv) {
     const baseApp = resolveAppDir(argv);
     if (branch && !flag(argv, "--no-checkout")) { app = checkoutBranch(baseApp, branch, gateDir); closers.push(app.cleanup); out.commit = app.sha; }
     const appDir = app?.dir ?? baseApp;
+    const noKeys = missingCryptoEnv(appDir);
+    if (noKeys.length) throw new Error(`crypto keys missing for the restored app: ${noKeys.join(", ")} (set them in the gate's environment; docs/gate.md)`);
     const rules = loadRules();
     out.rules = rules.version;
 
@@ -131,7 +133,9 @@ export async function gate(argv) {
     for (const wo of judged) pageFail[wo.id] = [...(st.failed[wo.id] ?? [])];
     if (st.global.length) out.failed.push(...st.global);
     const staticBad = judged.filter((w) => pageFail[w.id].length);
-    if (!regress && !skipStatic && (staticBad.length || st.global.length)) {
+    // Integration mode keeps going after app-wide zero-reference hits (each carries its layer and owning order): the
+    // pages are still judged, so a failing page and a library file that still points into the archive are told apart.
+    if (!regress && !skipStatic && mode === "page" && (staticBad.length || st.global.length)) {
       out.stage = "static";
       out.pages = judged.map((w) => ({ wo: w.id, pass: false, stage: pageFail[w.id].length ? "static" : null, failed: pageFail[w.id] }));
       out.failed.push(...staticBad.flatMap((w) => pageFail[w.id].map((f) => ({ ...f, wo: w.id }))));
@@ -195,7 +199,7 @@ export async function gate(argv) {
       const known = loadKnownDiffs(wo.id, { state, site: wo.site });
       const har = loadHar(base.har.path);
       const once = async (tag) => {
-        const rest = await runPage(browser, { origin: servers[wo.app].origin, url: wo.recordPath, storage: restStorage(wo, assets, base.storagePatch), har, sel: REST_SEL, steps, shotDir: dir, tag });
+        const rest = await runPage(browser, { origin: servers[wo.app].origin, url: wo.recordPath, storage: restStorage(wo, assets, base.storagePatch, har), har, sel: REST_SEL, steps, shotDir: dir, tag });
         return { rest, cmp: compareRuns(base, rest, { rules, site: wo.site, known: known.list, shotOut: path.join(dir, `${tag}.diff.png`) }) };
       };
       // A failing restored run is repeated once (busy machine: animations, toasts and timers land differently); the
@@ -211,7 +215,8 @@ export async function gate(argv) {
     stages.browser = Date.now() - tw;
     for (const a of apps) if (servers[a]?.publishDeps && out.pages.every((p) => p.stage !== "build")) out.depsCachePublished = servers[a].publishDeps() || undefined;
     out.failed.push(...out.pages.filter((p) => !p.pass).flatMap((p) => p.failed.map((f) => ({ ...f, wo: p.wo }))));
-    out.stage = out.pages.some((p) => p.stage === "static") ? "static" : out.pages.some((p) => p.stage === "build") ? "build" : out.failed.length ? "browser" : "browser";
+    out.stage = out.pages.some((p) => p.stage === "static") || (st.global.length && out.pages.every((p) => p.pass)) ? "static" : out.pages.some((p) => p.stage === "build") ? "build" : "browser";
+    if (st.global.length) out.global = summarizeGlobal(st.global);
     out.pass = out.failed.length === 0 && out.pages.length === wos.length;
     if (missing.length) out.pending = missing;
     return out;
@@ -223,6 +228,13 @@ export async function gate(argv) {
   }
 }
 const strip = (p) => Object.fromEntries(Object.entries(p).filter(([k]) => k !== "shot"));
+
+// App-wide failures (integration mode) by layer and owning order: {total, byLayer:{layer: n}, byOwner:{order: n}}.
+function summarizeGlobal(items) {
+  const byLayer = {}, byOwner = {};
+  for (const f of items) { byLayer[f.layer ?? "shell"] = (byLayer[f.layer ?? "shell"] ?? 0) + 1; if (f.owner) byOwner[f.owner] = (byOwner[f.owner] ?? 0) + 1; }
+  return { total: items.length, byLayer, byOwner };
+}
 
 // --regress: compare with the previous regression result ($RESTORE_STATE/gate/regress-last.json, replaced atomically).
 function regressDiff(out, state, dry) {
@@ -237,12 +249,15 @@ function regressDiff(out, state, dry) {
 
 // Metadata gate.<attempt> + one [GATE] comment (no page text, only checks, element paths and API paths).
 function report(task, attempt, out, ids) {
-  const slim = out.pending === "record" ? out : { ...out, failed: out.failed.slice(0, 30).map((f) => ({ ...f, hint: String(f.hint ?? "").slice(0, 200) })), pages: out.pages.map((p) => ({ wo: p.wo, pass: p.pass, stage: p.stage, pixel: p.pixel })) };
+  // page-level failures first: hundreds of app-wide zero-reference hits must not push them out of the 30 kept
+  const ordered = [...out.failed.filter((f) => f.wo), ...out.failed.filter((f) => !f.wo)];
+  const slim = out.pending === "record" ? out : { ...out, failed: ordered.slice(0, 30).map((f) => ({ ...f, hint: String(f.hint ?? "").slice(0, 200) })), pages: out.pages.map((p) => ({ wo: p.wo, pass: p.pass, stage: p.stage, pixel: p.pixel })) };
   try { multica(["issue", "metadata", "set", task, "--key", `gate.${attempt}`, "--value", JSON.stringify(slim)]); } catch (e) { process.stderr.write("metadata write failed: " + e.message + "\n"); }
   const secs = (ms) => (ms / 1000).toFixed(1) + "s";
   const head = out.pending === "record" ? `[GATE] PENDING record ${ids.join(",")} a${attempt}: ${out.missing.map((m) => m.why).join("; ")}` : `[GATE] ${out.pass ? "PASS" : "FAIL"} ${ids.join(",")} a${attempt} ${out.mode} — ${secs(out.durationMs)} (static ${secs(out.stages.static ?? 0)}, build ${secs(out.stages.build ?? 0)}, browser ${secs(out.stages.browser ?? 0)})`;
   const lines = [head];
-  if (!out.pass && out.failed?.length) lines.push(...out.failed.slice(0, 5).map((f) => `- ${f.wo ? f.wo + " " : ""}${f.where} ${f.check}: ${String(f.hint ?? "").slice(0, 160)}`));
+  if (out.global) lines.push(`- app-wide: ${out.global.total} (${Object.entries(out.global.byLayer).map(([k, n]) => `${k} ${n}`).join(", ")})`);
+  if (!out.pass && out.failed?.length) lines.push(...ordered.slice(0, 5).map((f) => `- ${f.wo ? f.wo + " " : ""}${f.where} ${f.check}: ${String(f.hint ?? "").slice(0, 160)}`));
   if (out.shimmed?.length) lines.push(`- shimmed: ${out.shimmed.join("; ")}`);
   const file = path.join(out.diff ?? path.join(stateDir(), "gate"), `gate-comment-${process.pid}.md`);
   try { mkdirSync(path.dirname(file), { recursive: true }); writeFileSync(file, lines.join("\n") + "\n"); multica(["issue", "comment", "add", task, "--content-file", file, "--output", "table"]); rmSync(file, { force: true }); } catch (e) { process.stderr.write("comment failed: " + e.message + "\n"); }

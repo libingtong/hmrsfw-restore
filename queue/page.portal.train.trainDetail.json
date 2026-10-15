@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/trainDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.train.trainDetail.json",
  "hints": "out/hints/page.portal.train.trainDetail.md",
  "deps": {

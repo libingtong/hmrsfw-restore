@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/send",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.send.json",
  "hints": "out/hints/page.uc.send.md",
  "deps": {

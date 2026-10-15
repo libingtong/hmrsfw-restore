@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/jobMarketDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.jobMarket.marketDetail.json",
  "hints": "out/hints/page.portal.jobMarket.marketDetail.md",
  "deps": {

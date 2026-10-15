@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/region/innovationDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.region.innovation.innovationDetail.json",
  "hints": "out/hints/page.portal.region.innovation.innovationDetail.md",
  "deps": {

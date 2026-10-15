@@ -264,7 +264,20 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "ho": {
+   "original": "signModal.1783320636200.js#default",
+   "path": "@/shared/signModal.vue",
+   "export": "default",
+   "order": "page.portal.fair.signModal"
+  },
+  "bo": {
+   "original": "NumVideo.1783320636200.js#default",
+   "path": "@/views/fair/webFair/NumVideo.vue",
+   "export": "default",
+   "order": "page.portal.fair.webFair.NumVideo"
+  }
+ },
  "modules": {
   "Pt": {
    "original": "down.1783320636200.js#_",

@@ -51,6 +51,7 @@
   }
  ],
  "recordPath": "/eMap",
+ "role": "general",
  "maps": "out/maps/page.portal.eMap.index.json",
  "hints": "out/hints/page.portal.eMap.index.md",
  "deps": {
@@ -82,8 +83,11 @@
    "adr.1783320636200.js",
    "work.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.eMap.list"
+  ],
   "orders": [
+   "page.portal.eMap.list",
    "shared.portal.gaode2",
    "shared.portal.modules"
   ]

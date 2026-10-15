@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/PositionReleaseAbroad",
+ "role": "corp",
  "maps": "out/maps/page.uc.PositionReleaseAbroad.json",
  "hints": "out/hints/page.uc.PositionReleaseAbroad.md",
  "deps": {

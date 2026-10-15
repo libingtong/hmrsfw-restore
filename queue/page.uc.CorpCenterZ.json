@@ -42,6 +42,7 @@
   }
  ],
  "recordPath": "/CorpCenterZ",
+ "role": "corp",
  "maps": "out/maps/page.uc.CorpCenterZ.json",
  "hints": "out/hints/page.uc.CorpCenterZ.md",
  "deps": {

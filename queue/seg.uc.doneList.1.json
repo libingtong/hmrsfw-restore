@@ -1,0 +1,101 @@
+{
+ "id": "seg.uc.doneList.1",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.doneList",
+ "index": 1,
+ "of": 2,
+ "assemble": false,
+ "after": [],
+ "kb": 14.5,
+ "sourceChunk": "legacy-dist/usercenter/assets/doneList.1751615607545.js",
+ "range": [
+  0,
+  14894
+ ],
+ "components": [
+  {
+   "name": "bmgjjl",
+   "scopeId": "data-v-6a4ffb67"
+  },
+  {
+   "name": "lsajbt",
+   "scopeId": "data-v-b8ce5be2"
+  },
+  {
+   "name": "zctsjl",
+   "scopeId": "data-v-b0681253"
+  }
+ ],
+ "parts": [],
+ "outputs": [
+  "apps/uc/src/views/doneList/bmgjjl.vue",
+  "apps/uc/src/views/doneList/lsajbt.vue",
+  "apps/uc/src/views/doneList/zctsjl.vue"
+ ],
+ "target": "apps/uc/src/views/doneList.vue",
+ "subComponentDir": "apps/uc/src/views/doneList/",
+ "scopeIds": [
+  "data-v-6a4ffb67",
+  "data-v-b8ce5be2",
+  "data-v-b0681253",
+  "data-v-e2dc51aa",
+  "data-v-52f2d3bc",
+  "data-v-60ca775d",
+  "data-v-f4337a65",
+  "data-v-36a28532",
+  "data-v-52447ec8"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/doneList.1751615607545.css"
+ ],
+ "routes": [
+  {
+   "path": "/doneList",
+   "name": "doneList"
+  }
+ ],
+ "recordPath": "/doneList",
+ "role": null,
+ "notes": "没有身份线索：/doneList 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）",
+ "maps": "out/maps/page.uc.doneList.json",
+ "hints": "out/hints/page.uc.doneList.md",
+ "deps": {
+  "entry": [
+   "B",
+   "I",
+   "M",
+   "c",
+   "d",
+   "h",
+   "m",
+   "v",
+   "y"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075455.js#a",
+   "index.api.17516156075455.js#b",
+   "index.api.17516156075455.js#c",
+   "index.api.17516156075455.js#d",
+   "index.api.17516156075455.js#e",
+   "index.api.17516156075455.js#f",
+   "index.api.17516156075455.js#g",
+   "index.api.17516156075455.js#s"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [0, 14894)（约 14.5KB），其余部分由同页的其他分段负责。",
+  "完整还原这些组件并写成 SFC：bmgjjl → apps/uc/src/views/doneList/bmgjjl.vue；lsajbt → apps/uc/src/views/doneList/lsajbt.vue；zctsjl → apps/uc/src/views/doneList/zctsjl.vue。",
+  "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
+ ]
+}

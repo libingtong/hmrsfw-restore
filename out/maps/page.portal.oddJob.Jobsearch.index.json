@@ -184,7 +184,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "Ze": {
+   "original": "odd.1783320636200.js#default",
+   "path": "@/views/oddJob/rtInto/odd.vue",
+   "export": "default",
+   "order": "page.portal.oddJob.rtInto.odd"
+  }
+ },
  "modules": {
   "Ue": {
    "original": "sm.1783320636200.js#_",

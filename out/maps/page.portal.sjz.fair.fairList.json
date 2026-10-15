@@ -21,7 +21,20 @@
  },
  "api": {},
  "shared": {},
- "views": {},
+ "views": {
+  "h": {
+   "original": "fairs.1783320636200.js#default",
+   "path": "@/views/sjz/fair/fairs.vue",
+   "export": "default",
+   "order": "page.portal.sjz.fair.fairs"
+  },
+  "d": {
+   "original": "fairsList.1783320636200.js#default",
+   "path": "@/views/sjz/fair/fairsList.vue",
+   "export": "default",
+   "order": "page.portal.sjz.fair.fairsList"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "liveNull.1783320636200.js"

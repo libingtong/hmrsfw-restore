@@ -1,0 +1,1178 @@
+{
+ "page.portal.xjhm.home.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.cityHome.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.region.innovation.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.region.innovation.innovationDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.region.colleges.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.region.findworker.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.region.skill.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.recruitworkers.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.recruitworkers.recruitworkersDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.Jobsearch.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.Jobsearch.JobsearchDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.Jobshortage.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.Jobshortage.JobshortageDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.Sparework.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.Sparework.SpareworkDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.shareUser.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.shareUser.detail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.news.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.live.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.livejob.detail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.video.zbdg": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.recruitMarket.marketHome.home": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.recruitMarket.marketDetail.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.train.trainOrganList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.train.trainOrganDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.recruitMarket.corpList.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.Guidance.GuidanceHome.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.Guidance.GuidanceVideo.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.Guidance.GuidanceAskList.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.Guidance.GuidanceAskDetail.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.Guidance.GuidanceMentorList.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.Guidance.GuidanceMentorDetail.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.Guidance.GuidanceMentorFrom.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.Guidance.GuidanceConsult.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.school.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.enterpriserecruitment.enterpriserecruitment": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.unitMain.unitMain": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.news.newsList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.News.newsDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.job.jobList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.talent.talentList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.RecruitTalents.ResumePreview": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.PDFPreview.PDFPreview": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.LookForJob.PostDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.resumeAnalysisReport.resumeAnalysisReport": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.park.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.setUp.setupList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.setUp.setupDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.train.trainList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.train.trainDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.BeOnProbation.ProbationHome": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.BeOnProbation.UserAdminJobPlacement": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.BeOnProbation.ProbationPostList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.BeOnProbation.ProbationPostDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.BeOnProbation.ProbationBaseList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.BeOnProbation.ProbationBaseDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.BeOnProbation.ProbationElegantList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.eMap.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.outLink.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.fair.fairList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.fair.webFair.list": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.fair.webFair.detail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.fair.sceneFair.list": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.fair.sceneFair.detail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.fair.outFair.list": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.fair.outFair.detail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.service.filesSearch.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.corp.corpList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.LookForJob.CorpDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.login": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.loginviews.siginbig": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.loginviews.passwordhintbig": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.answer.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.answer.details": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.jobMarket.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.jobMarket.marketDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.archivesSearch.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.customerService.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.bigData.screen": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.xjhm.bigData.statistics": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.xjhm.bigData.newBigdata": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.zzgj.trainCourse.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.xjhm.cityHome.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.personnelAssessment.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.virtualjobfairs.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.webvirtualjobfairs.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.guide.jobHunt": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.guide.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.bigData.mobile.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.homeView": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.index.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.cityHome.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.setUp.setupList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.setUp.setupDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.information.newsList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.information.newsDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.job.jobList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.fair.fairList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.fair.webFair.detail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.fair.outFair.detail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.talentnew.talentList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.conference.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.conference.detail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.eMap.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.newPark.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.greenchannel.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.overseasRecruitment.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.overseasRecruitment.antDetail": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.bigData.components.Dashboard1": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.bigData.components.Dashboard2": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.fair.webFair.NumVideo": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.bigData.TopTitle": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.conference.abouts": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.index.advertTop": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.xjhm.home.advertTop": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.conference.cTitles": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.livejob.components.commentItem": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.cityHome.corp": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.fair.fairs": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.fair.fairsList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.index.frendLinks": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.cityHome.helpCenter": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.index.homeList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.newPark.homeList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.livejob.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.rtInto.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.bigData.index": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.newPark.industry": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.index.infoRecommend": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.cityHome.job": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.index.jobFair": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.special.page1.jobNews": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.index.jobRecommend": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.fair.outFair.list": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.fair.webFair.list": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.eMap.list": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.fair.outFair.list": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.fair.sceneFair.list": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.fair.webFair.list": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.eMap.list": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.conference.medias": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.oddJob.rtInto.odd": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.answer.passwordModal": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.zcyz.bigData.components.pieCommon": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.zcyz.bigData.components.pieRader": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.sjz.newHome.resource": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.index.review": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.conference.scrollList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.zcyz.bigData.components.scrollList": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.newPark.servicePark": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.fair.signModal": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.conference.swperSlides": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.cityHome.talentArea": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.newPark.talentPark": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.index.talentRecommend": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.cityHome.titles": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.cityHome.titles": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.portal.talents.newPark.titles": {
+  "role": "general",
+  "by": "门户不需要身份"
+ },
+ "page.uc.main": {
+  "role": "general",
+  "by": "「普通用户」身份的主页（原版切换身份时跳到 /main）"
+ },
+ "page.uc.StorageChgPassword": {
+  "role": "general",
+  "by": "顶栏下拉「修改密码」，所有身份共用，与身份无关"
+ },
+ "page.uc.changephone": {
+  "role": "general",
+  "by": "顶栏下拉「更改手机号」，所有身份共用，与身份无关"
+ },
+ "page.uc.nom": {
+  "role": "general",
+  "by": "顶栏下拉「个人基本信息」，所有身份共用，与身份无关"
+ },
+ "page.uc.myPoints": {
+  "role": "jobseeker",
+  "by": "「求职者」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.mentor": {
+  "role": "mentor",
+  "by": "「职业导师」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.mentorhome": {
+  "role": "mentor",
+  "by": "「职业导师」身份的主页（原版切换身份时跳到 /mentorhome）"
+ },
+ "page.uc.experthome": {
+  "role": null,
+  "notes": "「专家」身份（userroledata type 60）的主页，record-page 能切的身份（general / jobseeker / corp / mentor）里没有它"
+ },
+ "page.uc.CorpAttestation": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.corpLoan": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.CorpCenter": {
+  "role": "corp",
+  "by": "「招聘单位」身份的主页（原版切换身份时跳到 /CorpCenter）"
+ },
+ "page.uc.marketCenter": {
+  "role": null,
+  "notes": "「招聘超市」身份（userroledata type 50）的主页，record-page 能切的身份（general / jobseeker / corp / mentor）里没有它"
+ },
+ "page.uc.PositionAdmin": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.TalentSearch": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.pool": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.collectme": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.InterviewInvitation": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.DownloadResume": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.ReceivedResume": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.WorkStyleAdmin": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.JobFairsHome": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.fairsList": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.fairsOutList": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.myconsult": {
+  "role": "mentor",
+  "by": "「职业导师」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.allconsult": {
+  "role": "mentor",
+  "by": "「职业导师」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.jobhunterhome": {
+  "role": "jobseeker",
+  "by": "「求职者」身份的主页（原版切换身份时跳到 /jobhunterhome）"
+ },
+ "page.uc.Createaresume": {
+  "role": "jobseeker",
+  "by": "「求职者」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.myresume": {
+  "role": "jobseeker",
+  "by": "「求职者」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.resumetemplate": {
+  "role": "jobseeker",
+  "by": "「求职者」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.enterprisetemplate": {
+  "role": "corp",
+  "by": "「招聘单位」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.Invited": {
+  "role": "jobseeker",
+  "by": "「求职者」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.send": {
+  "role": "jobseeker",
+  "by": "「求职者」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.lookresume": {
+  "role": "jobseeker",
+  "by": "「求职者」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.maskunit": {
+  "role": "jobseeker",
+  "by": "「求职者」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.collage.studentInfo": {
+  "role": null,
+  "notes": "「在校生」身份（userroledata type 120）的主页，record-page 能切的身份（general / jobseeker / corp / mentor）里没有它"
+ },
+ "page.uc.personalstyle": {
+  "role": "jobseeker",
+  "by": "「求职者」身份的菜单项（uc-identity-menus.json）"
+ },
+ "page.uc.mynews": {
+  "role": "general",
+  "by": "顶栏消息铃铛，所有身份共用，与身份无关"
+ },
+ "page.uc.404": {
+  "role": "general",
+  "by": "系统页（空白页），与身份无关"
+ },
+ "page.uc.login": {
+  "role": "general",
+  "by": "系统页（登录页），与身份无关"
+ },
+ "page.uc.403": {
+  "role": "general",
+  "by": "系统页（无权限页），与身份无关"
+ },
+ "page.uc.autoLogin": {
+  "role": "general",
+  "by": "系统页（登录中转页），与身份无关"
+ },
+ "page.uc.jobhunterhomeZzgj": {
+  "role": "jobseeker",
+  "by": "只有「求职者」身份的页面链到它：page.uc.jobhunterhome"
+ },
+ "page.uc.userImg": {
+  "role": "jobseeker",
+  "by": "只有「求职者」身份的页面链到它：page.uc.jobhunterhome"
+ },
+ "page.uc.corpImg": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.CorpCenter"
+ },
+ "page.uc.zcyzCorpAttestation": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.CorpCenter"
+ },
+ "page.uc.corpLoan.corpLoanInfo": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.corpLoan"
+ },
+ "page.uc.CorpAttestationapprove": {
+  "role": "general",
+  "by": "只有「普通用户」身份的页面链到它：page.uc.main"
+ },
+ "page.uc.PositionRelease": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.PositionAdmin"
+ },
+ "page.uc.PositionReleaseAbroad": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.PositionAdmin"
+ },
+ "page.uc.BeOnProbation": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.PositionAdmin"
+ },
+ "page.uc.WebWorkResume": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.CorpCenter"
+ },
+ "page.uc.BeOnProbationAdmin": {
+  "role": null,
+  "notes": "不同身份的页面都链到它：page.uc.main（普通用户）、page.uc.CorpCenter（招聘单位）、page.uc.marketCenter（「招聘超市」）"
+ },
+ "page.uc.corpFairs": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.CorpCenter"
+ },
+ "page.uc.webFairWork": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.fairsList"
+ },
+ "page.uc.sceneFairSign": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.fairsList"
+ },
+ "page.uc.zcyzPositionRelease": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.PositionAdmin"
+ },
+ "page.uc.previewresume": {
+  "role": null,
+  "notes": "不同身份的页面都链到它：page.uc.CorpCenter（招聘单位）、page.uc.marketCenter（「招聘超市」）、page.uc.TalentSearch（招聘单位）、page.uc.pool（招聘单位）、page.uc.collectme（招聘单位）、page.uc.InterviewInvitation（招聘单位）、page.uc.DownloadResume（招聘单位）、page.uc.ReceivedResume（招聘单位）、page.uc.myresume（求职者）、page.uc.lookresume（求职者）"
+ },
+ "page.uc.BeOnAdmin": {
+  "role": "corp",
+  "by": "只有「招聘单位」身份的页面链到它：page.uc.BeOnProbation"
+ },
+ "page.uc.CorpCenterZ": {
+  "role": "corp",
+  "by": "它链出去的页面只属于「招聘单位」身份：page.uc.PositionAdmin、page.uc.WebWorkResume、page.uc.corpFairs"
+ },
+ "page.uc.RecIntResume": {
+  "role": "corp",
+  "by": "它链出去的页面只属于「招聘单位」身份：page.uc.PositionAdmin"
+ },
+ "page.uc.downnoviciate": {
+  "role": "corp",
+  "by": "它链出去的页面只属于「招聘单位」身份：page.uc.PositionAdmin"
+ },
+ "page.uc.Personalonlineservice": {
+  "role": null,
+  "notes": "它链到不同身份的页面：page.uc.mentor（职业导师）、page.uc.CorpAttestation（招聘单位）、page.uc.CorpAttestationapprove（普通用户）、page.uc.Createaresume（求职者）"
+ },
+ "page.uc.Enterpriseonlineservices": {
+  "role": null,
+  "notes": "它链到不同身份的页面：page.uc.mentor（职业导师）、page.uc.CorpAttestation（招聘单位）、page.uc.CorpAttestationapprove（普通用户）、page.uc.Createaresume（求职者）"
+ },
+ "page.uc.oddjob.need": {
+  "role": null,
+  "notes": "没有身份线索：/oddjob/need 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.oddjob.need.add": {
+  "role": null,
+  "notes": "没有身份线索：/oddjob/need/add 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.oddjob.lack": {
+  "role": null,
+  "notes": "没有身份线索：/oddjob/lack 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.oddjob.lack.add": {
+  "role": null,
+  "notes": "没有身份线索：/oddjob/lack/add 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.oddjob.sharepage": {
+  "role": null,
+  "notes": "没有身份线索：/oddjob/sharepage 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.unRegister": {
+  "role": null,
+  "notes": "没有身份线索：/unRegister 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.zgAccount": {
+  "role": null,
+  "notes": "没有身份线索：/zgAccount 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.changeRole": {
+  "role": null,
+  "notes": "没有身份线索：/changeRole 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.projectApplyDetails": {
+  "role": null,
+  "notes": "没有身份线索：/projectApplyDetails 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.accountBind": {
+  "role": null,
+  "notes": "没有身份线索：/accountBind 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.changeavatar": {
+  "role": null,
+  "notes": "没有身份线索：/changeavatar 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.audit": {
+  "role": null,
+  "notes": "没有身份线索：/audit 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.doneList": {
+  "role": null,
+  "notes": "没有身份线索：/doneList 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.needList": {
+  "role": null,
+  "notes": "没有身份线索：/needList 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.needDetail": {
+  "role": null,
+  "notes": "没有身份线索：/needDetail 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.findList": {
+  "role": null,
+  "notes": "没有身份线索：/findList 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.findDetail": {
+  "role": null,
+  "notes": "没有身份线索：/findDetail 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.formDone": {
+  "role": null,
+  "notes": "没有身份线索：/formDone/:type 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.expert": {
+  "role": null,
+  "notes": "没有身份线索：/expert 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.graduates": {
+  "role": null,
+  "notes": "没有身份线索：/graduates 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.zcyzCorpAttestationapprove": {
+  "role": null,
+  "notes": "没有身份线索：/zcyzCorpAttestationapprove 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.noviciateInvited": {
+  "role": null,
+  "notes": "没有身份线索：/noviciateInvited 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.trash": {
+  "role": null,
+  "notes": "没有身份线索：/trash 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.ReceivedResumeLive": {
+  "role": null,
+  "notes": "没有身份线索：/ReceivedResumeLive 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.CenterFairResume": {
+  "role": null,
+  "notes": "没有身份线索：/CenterFairResume 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.userFairs": {
+  "role": null,
+  "notes": "没有身份线索：/userFairs 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.JobFairRelease": {
+  "role": null,
+  "notes": "没有身份线索：/JobFairRelease 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.allianceSend": {
+  "role": null,
+  "notes": "没有身份线索：/allianceSend 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.trainCourseHis": {
+  "role": null,
+  "notes": "没有身份线索：/trainCourseHis 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.collage.studentApply": {
+  "role": null,
+  "notes": "没有身份线索：/collage/studentApply 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.collage.nojob": {
+  "role": null,
+  "notes": "没有身份线索：/collage/nojob 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.sign.corpInfo": {
+  "role": null,
+  "notes": "没有身份线索：/sign/corpInfo 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.sign.corpApply": {
+  "role": null,
+  "notes": "没有身份线索：/sign/corpApply 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.corpNoJob": {
+  "role": null,
+  "notes": "没有身份线索：/corpNoJob 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.mysubscribe": {
+  "role": null,
+  "notes": "没有身份线索：/mysubscribe 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.addmysubscribe": {
+  "role": null,
+  "notes": "没有身份线索：/addmysubscribe 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.myaccuse": {
+  "role": null,
+  "notes": "没有身份线索：/myaccuse 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.myRegistration": {
+  "role": null,
+  "notes": "没有身份线索：/myRegistration 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.personLoan": {
+  "role": null,
+  "notes": "没有身份线索：/personLoan 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.personLoan.detailInfo": {
+  "role": null,
+  "notes": "没有身份线索：/personLoan/detailInfo 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.signUp": {
+  "role": null,
+  "notes": "没有身份线索：/signUp 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.overseasRecruitment": {
+  "role": null,
+  "notes": "没有身份线索：/overseasRecruitment 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.activitySign": {
+  "role": null,
+  "notes": "没有身份线索：/activitySign 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.businessSingUp": {
+  "role": null,
+  "notes": "没有身份线索：/businessSingUp 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.courseSingUp": {
+  "role": null,
+  "notes": "没有身份线索：/courseSingUp 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.projectSingUp": {
+  "role": null,
+  "notes": "没有身份线索：/projectSingUp 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.inSurvey": {
+  "role": null,
+  "notes": "没有身份线索：/inSurvey 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.collectmentor": {
+  "role": null,
+  "notes": "没有身份线索：/collectmentor 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.Unitposition": {
+  "role": null,
+  "notes": "没有身份线索：/Unitposition 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.allianceUnitposition": {
+  "role": null,
+  "notes": "没有身份线索：/allianceUnitposition 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.collectOdd": {
+  "role": null,
+  "notes": "没有身份线索：/collectOdd 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.consult": {
+  "role": null,
+  "notes": "没有身份线索：/consult 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.feedback": {
+  "role": null,
+  "notes": "没有身份线索：/feedback 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.liveApply": {
+  "role": null,
+  "notes": "没有身份线索：/liveApply 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.liveApplyAdd": {
+  "role": null,
+  "notes": "没有身份线索：/liveApplyAdd 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.teachIn": {
+  "role": null,
+  "notes": "没有身份线索：/teachIn 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.teachInManage": {
+  "role": null,
+  "notes": "没有身份线索：/teachInManage 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.teachInCancel": {
+  "role": null,
+  "notes": "没有身份线索：/teachInCancel 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.industrySkillTree": {
+  "role": null,
+  "notes": "没有身份线索：/industrySkillTree 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.recruitmentInformation": {
+  "role": null,
+  "notes": "没有身份线索：/recruitmentInformation 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.addNewsDetails": {
+  "role": null,
+  "notes": "没有身份线索：/addNewsDetails 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.recruitmentStatis": {
+  "role": null,
+  "notes": "没有身份线索：/recruitmentStatis 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.recruitmentSignMng": {
+  "role": null,
+  "notes": "没有身份线索：/recruitmentSignMng 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.zcyzJobFairRelease": {
+  "role": null,
+  "notes": "没有身份线索：/zcyzJobFairRelease 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.zcyzwebFairWork": {
+  "role": null,
+  "notes": "没有身份线索：/zcyzwebFairWork/:zphId 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.converList": {
+  "role": null,
+  "notes": "没有身份线索：/converList 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.lookList": {
+  "role": null,
+  "notes": "没有身份线索：/lookList 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.gongfuWorkshop.positionPosting": {
+  "role": null,
+  "notes": "没有身份线索：/gongfuWorkshop/positionPosting 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.gongfuWorkshop.jobPosting": {
+  "role": null,
+  "notes": "没有身份线索：/gongfuWorkshop/jobPosting 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ },
+ "page.uc.trainCertificate": {
+  "role": null,
+  "notes": "没有身份线索：/trainCertificate 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ }
+}

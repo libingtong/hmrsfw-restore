@@ -1,7 +1,7 @@
 {
  "id": "page.uc.Createaresume",
  "type": "page",
- "status": "regression",
+ "status": "segmented",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/Createaresume",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.Createaresume.json",
  "hints": "out/hints/page.uc.Createaresume.md",
  "deps": {
@@ -83,8 +84,7 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/Createaresume",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "segments": [
+  "seg.uc.Createaresume.1"
+ ]
 }

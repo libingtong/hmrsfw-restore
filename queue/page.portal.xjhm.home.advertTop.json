@@ -28,6 +28,7 @@
  "subComponentDir": "apps/portal/src/views/xjhm/home/advertTop/",
  "routes": [],
  "recordPath": "/",
+ "role": "general",
  "maps": "out/maps/page.portal.xjhm.home.advertTop.json",
  "hints": "out/hints/page.portal.xjhm.home.advertTop.md",
  "deps": {

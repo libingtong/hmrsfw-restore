@@ -33,6 +33,7 @@
   }
  ],
  "recordPath": "/WorkStyleAdmin",
+ "role": "corp",
  "maps": "out/maps/page.uc.WorkStyleAdmin.json",
  "hints": "out/hints/page.uc.WorkStyleAdmin.md",
  "deps": {

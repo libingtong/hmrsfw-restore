@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/outFairDetail/:zphId",
+ "role": "general",
  "maps": "out/maps/page.portal.fair.outFair.detail.json",
  "hints": "out/hints/page.portal.fair.outFair.detail.md",
  "deps": {
@@ -74,8 +75,13 @@
   "modules": [
    "outIcon.1783320636200.js"
   ],
-  "views": [],
+  "views": [
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo"
+  ],
   "orders": [
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo",
    "shared.portal.modules"
   ]
  },

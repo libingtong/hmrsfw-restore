@@ -1,0 +1,117 @@
+{
+ "id": "seg.portal.fair.sceneFair.detail.2",
+ "type": "segment",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "page": "page.portal.fair.sceneFair.detail",
+ "index": 2,
+ "of": 2,
+ "assemble": true,
+ "after": [
+  "seg.portal.fair.sceneFair.detail.1"
+ ],
+ "kb": 20.2,
+ "sourceChunk": "legacy-dist/portal/assets/detail.17833206362003.js",
+ "range": [
+  15263,
+  35906
+ ],
+ "components": [],
+ "parts": [
+  {
+   "component": "detail",
+   "part": "template",
+   "range": [
+    15263,
+    35906
+   ],
+   "kb": 20.2,
+   "file": "apps/portal/src/views/fair/sceneFair/detail/_seg/detail.template.html"
+  }
+ ],
+ "outputs": [
+  "apps/portal/src/views/fair/sceneFair/detail/_seg/detail.template.html"
+ ],
+ "target": "apps/portal/src/views/fair/sceneFair/detail.vue",
+ "subComponentDir": "apps/portal/src/views/fair/sceneFair/detail/",
+ "scopeIds": [
+  "data-v-aa062d95"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/detail.17833206362004.css",
+  "legacy-dist/portal/assets/detail.17833206362003.css"
+ ],
+ "routes": [
+  {
+   "path": "/sceneFairDetail/:zphId",
+   "name": "sceneFairDetail",
+   "title": "固定展位招聘会"
+  }
+ ],
+ "recordPath": "/sceneFairDetail/:zphId",
+ "role": "general",
+ "maps": "out/maps/page.portal.fair.sceneFair.detail.json",
+ "hints": "out/hints/page.portal.fair.sceneFair.detail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "D",
+   "I",
+   "J",
+   "K",
+   "O",
+   "S",
+   "aD",
+   "ap",
+   "ba",
+   "c",
+   "d",
+   "f",
+   "g",
+   "h",
+   "m",
+   "p",
+   "q",
+   "r",
+   "u",
+   "v"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "industryCode.1783320636200.js",
+   "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#g",
+   "index.api.178332063620017.js#b",
+   "index.api.178332063620017.js#c",
+   "index.api.178332063620017.js#d",
+   "index.api.178332063620017.js#e",
+   "index.api.178332063620017.js#f",
+   "index.api.178332063620017.js#h",
+   "index.api.178332063620017.js#i",
+   "index.api.178332063620017.js#j"
+  ],
+  "modules": [],
+  "views": [
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo"
+  ],
+  "orders": [
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [15263, 35906)（约 20.2KB），其余部分由同页的其他分段负责。",
+  "组件 detail 只还原 <template> 部分（setup 最后 return 的渲染函数），写成 apps/portal/src/views/fair/sceneFair/detail/_seg/detail.template.html，内容就是将来 <template> 里的模板。",
+  "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.portal.fair.sceneFair.detail --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
+ ]
+}

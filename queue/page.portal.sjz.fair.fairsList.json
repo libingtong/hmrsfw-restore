@@ -25,6 +25,7 @@
  "subComponentDir": "apps/portal/src/views/sjz/fair/fairsList/",
  "routes": [],
  "recordPath": "/fairList",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.fair.fairsList.json",
  "hints": "out/hints/page.portal.sjz.fair.fairsList.md",
  "deps": {
@@ -40,8 +41,16 @@
   "shared": [],
   "api": [],
   "modules": [],
-  "views": [],
-  "orders": []
+  "views": [
+   "page.portal.livejob.index",
+   "page.portal.sjz.fair.sceneFair.list",
+   "page.portal.sjz.fair.webFair.list"
+  ],
+  "orders": [
+   "page.portal.livejob.index",
+   "page.portal.sjz.fair.sceneFair.list",
+   "page.portal.sjz.fair.webFair.list"
+  ]
  },
  "stylesProvidedByScript": true,
  "recordVia": "page.portal.sjz.fair.fairList"

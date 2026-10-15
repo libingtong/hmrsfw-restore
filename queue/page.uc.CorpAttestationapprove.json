@@ -1,7 +1,7 @@
 {
  "id": "page.uc.CorpAttestationapprove",
  "type": "page",
- "status": "regression",
+ "status": "segmented",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -35,6 +35,7 @@
   }
  ],
  "recordPath": "/CorpAttestationapprove",
+ "role": "general",
  "maps": "out/maps/page.uc.CorpAttestationapprove.json",
  "hints": "out/hints/page.uc.CorpAttestationapprove.md",
  "deps": {
@@ -86,8 +87,9 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/CorpAttestationapprove",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "segments": [
+  "seg.uc.CorpAttestationapprove.1",
+  "seg.uc.CorpAttestationapprove.2",
+  "seg.uc.CorpAttestationapprove.3"
+ ]
 }

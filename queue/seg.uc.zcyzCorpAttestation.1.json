@@ -50,6 +50,7 @@
   }
  ],
  "recordPath": "/zcyzCorpAttestation",
+ "role": "corp",
  "maps": "out/maps/page.uc.zcyzCorpAttestation.json",
  "hints": "out/hints/page.uc.zcyzCorpAttestation.md",
  "deps": {

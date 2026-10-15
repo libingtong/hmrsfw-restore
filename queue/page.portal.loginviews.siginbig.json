@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/sigin",
+ "role": "general",
  "maps": "out/maps/page.portal.loginviews.siginbig.json",
  "hints": "out/hints/page.portal.loginviews.siginbig.md",
  "deps": {

@@ -24,6 +24,7 @@
   }
  ],
  "recordPath": "/autoLogin",
+ "role": "general",
  "maps": "out/maps/page.uc.autoLogin.json",
  "hints": "out/hints/page.uc.autoLogin.md",
  "deps": {

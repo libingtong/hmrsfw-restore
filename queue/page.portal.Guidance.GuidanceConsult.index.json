@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/GuidanceConsult",
+ "role": "general",
  "maps": "out/maps/page.portal.Guidance.GuidanceConsult.index.json",
  "hints": "out/hints/page.portal.Guidance.GuidanceConsult.index.md",
  "deps": {

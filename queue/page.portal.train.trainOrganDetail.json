@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/trainOrganDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.train.trainOrganDetail.json",
  "hints": "out/hints/page.portal.train.trainOrganDetail.md",
  "deps": {

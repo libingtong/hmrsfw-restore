@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/RecIntResume",
+ "role": "corp",
  "maps": "out/maps/page.uc.RecIntResume.json",
  "hints": "out/hints/page.uc.RecIntResume.md",
  "deps": {

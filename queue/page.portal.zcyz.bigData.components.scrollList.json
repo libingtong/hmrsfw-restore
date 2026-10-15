@@ -23,6 +23,7 @@
  "subComponentDir": "apps/portal/src/views/zcyz/bigData/components/scrollList/",
  "routes": [],
  "recordPath": "/statistics",
+ "role": "general",
  "maps": "out/maps/page.portal.zcyz.bigData.components.scrollList.json",
  "hints": "out/hints/page.portal.zcyz.bigData.components.scrollList.md",
  "deps": {

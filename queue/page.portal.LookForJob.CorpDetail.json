@@ -34,6 +34,7 @@
   }
  ],
  "recordPath": "/CorpDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.LookForJob.CorpDetail.json",
  "hints": "out/hints/page.portal.LookForJob.CorpDetail.md",
  "deps": {

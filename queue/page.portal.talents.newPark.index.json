@@ -32,6 +32,7 @@
   }
  ],
  "recordPath": "/talents/park",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.newPark.index.json",
  "hints": "out/hints/page.portal.talents.newPark.index.md",
  "deps": {
@@ -44,8 +45,22 @@
   "shared": [],
   "api": [],
   "modules": [],
-  "views": [],
-  "orders": []
+  "views": [
+   "page.portal.talents.index.advertTop",
+   "page.portal.talents.newPark.homeList",
+   "page.portal.talents.newPark.industry",
+   "page.portal.talents.newPark.servicePark",
+   "page.portal.talents.newPark.talentPark",
+   "page.portal.talents.newPark.titles"
+  ],
+  "orders": [
+   "page.portal.talents.index.advertTop",
+   "page.portal.talents.newPark.homeList",
+   "page.portal.talents.newPark.industry",
+   "page.portal.talents.newPark.servicePark",
+   "page.portal.talents.newPark.talentPark",
+   "page.portal.talents.newPark.titles"
+  ]
  },
  "stylesProvidedByScript": true
 }

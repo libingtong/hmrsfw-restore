@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/webvirtualjobfairs",
+ "role": "general",
  "maps": "out/maps/page.portal.sjz.webvirtualjobfairs.index.json",
  "hints": "out/hints/page.portal.sjz.webvirtualjobfairs.index.md",
  "deps": {

@@ -1,7 +1,7 @@
 {
  "id": "page.portal.personnelAssessment.index",
  "type": "page",
- "status": "regression",
+ "status": "todo",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -30,6 +30,7 @@
   }
  ],
  "recordPath": "/personnelAssessment",
+ "role": "general",
  "maps": "out/maps/page.portal.personnelAssessment.index.json",
  "hints": "out/hints/page.portal.personnelAssessment.index.md",
  "deps": {
@@ -48,9 +49,5 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/personnelAssessment",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "stylesProvidedByScript": true
 }

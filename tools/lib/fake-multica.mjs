@@ -100,6 +100,8 @@ try {
     const [sub, id] = rest; const i = issue(id);
     if (sub === "list") out(i.metadata);
     else if (sub === "get") out(i.metadata[flags.key] ?? null);
+    // the server's key rule (MUL metadata): names with "@" or Chinese are refused
+    else if (sub === "set" && !/^[a-zA-Z_][a-zA-Z0-9_.-]{0,63}$/.test(flags.key ?? "")) { console.error(`invalid metadata key ${JSON.stringify(flags.key)}: must match ^[a-zA-Z_][a-zA-Z0-9_.-]{0,63}$`); process.exit(1); }
     else if (sub === "set") { i.metadata[flags.key] = sniff(flags.value, flags.type); W("meta.set", { issue: i.id, key: flags.key }); dirty = true; out({ [flags.key]: i.metadata[flags.key] }); }
     else if (sub === "delete") { delete i.metadata[flags.key]; W("meta.delete", { issue: i.id, key: flags.key }); dirty = true; out({ ok: true }); }
   } else if (group === "issue" && cmd === "comment") {

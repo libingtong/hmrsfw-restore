@@ -63,6 +63,7 @@
   }
  ],
  "recordPath": "/guide/jobHunt",
+ "role": "general",
  "maps": "out/maps/page.portal.guide.jobHunt.json",
  "hints": "out/hints/page.portal.guide.jobHunt.md",
  "deps": {

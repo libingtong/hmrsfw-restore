@@ -1,7 +1,7 @@
 {
  "id": "page.uc.resumetemplate",
  "type": "page",
- "status": "regression",
+ "status": "todo",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/resumetemplate",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.resumetemplate.json",
  "hints": "out/hints/page.uc.resumetemplate.md",
  "deps": {
@@ -46,9 +47,5 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true,
- "accepted": {
-  "route": "/resumetemplate",
-  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
- }
+ "stylesProvidedByScript": true
 }

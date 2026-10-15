@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/myconsult",
+ "role": "mentor",
  "maps": "out/maps/page.uc.myconsult.json",
  "hints": "out/hints/page.uc.myconsult.md",
  "deps": {

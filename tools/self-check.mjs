@@ -9,6 +9,8 @@
 //   imports        public library only through registry/<app>.json; nothing outside the order changed (check-imports.mjs)
 //   copied         no code/CSS copied from the order's original chunks (check-copied.mjs)
 //   secrets        no keys, tokens, phone or id numbers (scan-secrets.mjs)
+//   no-legacy      zero references to the original build in the order's own files, comments included
+//                  (check-no-legacy.mjs; the same scan the gate's static stage runs in page mode)
 //   segments       a segment delivered its fragments; the assembling segment left no _seg/ behind
 //   render-equiv   report only (reports.renderEquiv), never fails the check
 //
@@ -28,6 +30,7 @@ import { checkDirectives } from "./check-directives.mjs";
 import { checkImports } from "./check-imports.mjs";
 import { indexArchive, scanFiles } from "./check-copied.mjs";
 import { scanSecretFiles } from "./scan-secrets.mjs";
+import { scanNoLegacy } from "./check-no-legacy.mjs";
 import { renderEquiv } from "./render-equiv-confirm.mjs";
 import { appDir } from "./app-dir.mjs";
 
@@ -101,6 +104,9 @@ export function selfCheck(order, APP, { renderEquivReport = true } = {}) {
     for (const a of hits.assets) failed.push({ check: "copied", where: a.file, severity: "warn", hint: `资源文件与原包 ${a.archived} 相同：图片等资源可以复用，但要去掉文件名里的构建哈希并在资源清单登记` });
     stats.copiedArchive = archive.length;
   }
+  // the order's files plus whatever else sits in its subComponentDir (assets): the files gate.mjs scans in page mode
+  const own = order.type === "entry" || partial || !order.subComponentDir ? files : [...new Set([...files, ...walk(path.join(APP, order.subComponentDir))])];
+  for (const h of scanNoLegacy({ root: APP, files: own }).hits) failed.push({ check: "no-legacy", where: h.file, hint: `${h.rule} ×${h.count}：源码、注释和资源文件名里不能出现原包路径（legacy-dist）、带构建哈希的文件名或编译产物；还原来源写进回执，不写进注释` });
   for (const h of scanSecretFiles(files, rel)) failed.push({ check: "secrets", where: `${h.file}:${h.line}`, hint: `命中规则 ${h.rule}：代码、注释、回执里不能出现密钥、token、手机号、证件号、邮箱等；密钥只从环境变量读取（import.meta.env），测试数据换成明显的假值` });
 
   // ---- report only ----

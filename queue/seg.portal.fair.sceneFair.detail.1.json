@@ -1,0 +1,115 @@
+{
+ "id": "seg.portal.fair.sceneFair.detail.1",
+ "type": "segment",
+ "status": "todo",
+ "site": "portal",
+ "app": "portal",
+ "vueVersion": "3.2.47",
+ "page": "page.portal.fair.sceneFair.detail",
+ "index": 1,
+ "of": 2,
+ "assemble": false,
+ "after": [],
+ "kb": 14.9,
+ "sourceChunk": "legacy-dist/portal/assets/detail.17833206362003.js",
+ "range": [
+  0,
+  15263
+ ],
+ "components": [],
+ "parts": [
+  {
+   "component": "detail",
+   "part": "script",
+   "range": [
+    0,
+    15263
+   ],
+   "kb": 14.9,
+   "file": "apps/portal/src/views/fair/sceneFair/detail/_seg/detail.script.ts"
+  }
+ ],
+ "outputs": [
+  "apps/portal/src/views/fair/sceneFair/detail/_seg/detail.script.ts"
+ ],
+ "target": "apps/portal/src/views/fair/sceneFair/detail.vue",
+ "subComponentDir": "apps/portal/src/views/fair/sceneFair/detail/",
+ "scopeIds": [
+  "data-v-aa062d95"
+ ],
+ "cssCandidates": [
+  "legacy-dist/portal/assets/detail.17833206362004.css",
+  "legacy-dist/portal/assets/detail.17833206362003.css"
+ ],
+ "routes": [
+  {
+   "path": "/sceneFairDetail/:zphId",
+   "name": "sceneFairDetail",
+   "title": "固定展位招聘会"
+  }
+ ],
+ "recordPath": "/sceneFairDetail/:zphId",
+ "role": "general",
+ "maps": "out/maps/page.portal.fair.sceneFair.detail.json",
+ "hints": "out/hints/page.portal.fair.sceneFair.detail.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "D",
+   "I",
+   "J",
+   "K",
+   "O",
+   "S",
+   "aD",
+   "ap",
+   "ba",
+   "c",
+   "d",
+   "f",
+   "g",
+   "h",
+   "m",
+   "p",
+   "q",
+   "r",
+   "u",
+   "v"
+  ],
+  "shared": [
+   "city.1783320636200.js",
+   "dictCode.1783320636200.js",
+   "empty.1783320636200.js",
+   "industryCode.1783320636200.js",
+   "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",
+   "workType.1783320636200.js"
+  ],
+  "api": [
+   "index.1783320636200117.js#g",
+   "index.api.178332063620017.js#b",
+   "index.api.178332063620017.js#c",
+   "index.api.178332063620017.js#d",
+   "index.api.178332063620017.js#e",
+   "index.api.178332063620017.js#f",
+   "index.api.178332063620017.js#h",
+   "index.api.178332063620017.js#i",
+   "index.api.178332063620017.js#j"
+  ],
+  "modules": [],
+  "views": [
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo"
+  ],
+  "orders": [
+   "page.portal.fair.signModal",
+   "page.portal.fair.webFair.NumVideo"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [0, 15263)（约 14.9KB），其余部分由同页的其他分段负责。",
+  "组件 detail 只还原 <script setup> 部分（setup 函数体，不含最后 return 的渲染函数），写成 apps/portal/src/views/fair/sceneFair/detail/_seg/detail.script.ts，内容就是将来 <script setup lang=\"ts\"> 里的代码。",
+  "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
+ ]
+}

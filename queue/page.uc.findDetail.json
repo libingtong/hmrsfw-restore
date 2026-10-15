@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/findDetail",
+ "role": null,
  "maps": "out/maps/page.uc.findDetail.json",
  "hints": "out/hints/page.uc.findDetail.md",
  "deps": {
@@ -54,5 +55,6 @@
    "shared.uc.oddNews"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "notes": "没有身份线索：/findDetail 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
 }

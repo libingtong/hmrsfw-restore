@@ -1,0 +1,102 @@
+{
+ "id": "seg.uc.corpFairs.2",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.corpFairs",
+ "index": 2,
+ "of": 3,
+ "assemble": false,
+ "after": [],
+ "kb": 29.8,
+ "sourceChunk": "legacy-dist/usercenter/assets/corpFairs.1751615607545.js",
+ "range": [
+  25271,
+  55737
+ ],
+ "components": [
+  {
+   "name": "proofResume",
+   "scopeId": "data-v-daa9a53d"
+  }
+ ],
+ "parts": [],
+ "outputs": [
+  "apps/uc/src/views/corpFairs/proofResume.vue"
+ ],
+ "target": "apps/uc/src/views/corpFairs.vue",
+ "subComponentDir": "apps/uc/src/views/corpFairs/",
+ "scopeIds": [
+  "data-v-f32771ca",
+  "data-v-19434c2a",
+  "data-v-009debef",
+  "data-v-daa9a53d",
+  "data-v-22e4465f"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/index.175161560754514.css",
+  "legacy-dist/usercenter/assets/unfold.1751615607545.css",
+  "legacy-dist/usercenter/assets/InterviewInvitation.1751615607545.css",
+  "legacy-dist/usercenter/assets/index.175161560754513.css",
+  "legacy-dist/usercenter/assets/corpFairs.1751615607545.css"
+ ],
+ "routes": [
+  {
+   "path": "/corpFairs/:key?",
+   "name": "corpFairs"
+  }
+ ],
+ "recordPath": "/corpFairs/:key?",
+ "role": "corp",
+ "maps": "out/maps/page.uc.corpFairs.json",
+ "hints": "out/hints/page.uc.corpFairs.md",
+ "deps": {
+  "entry": [
+   "B",
+   "I",
+   "M",
+   "T",
+   "V",
+   "a",
+   "c",
+   "d",
+   "h",
+   "k",
+   "m",
+   "v",
+   "y"
+  ],
+  "shared": [
+   "confPass.1751615607545.js",
+   "dictCode.1751615607545.js",
+   "index.175161560754528.js",
+   "index.175161560754529.js",
+   "message.1751615607545.js",
+   "workType.1751615607545.js"
+  ],
+  "api": [
+   "index.api.175161560754511.js#b",
+   "index.api.175161560754511.js#c",
+   "index.api.175161560754511.js#d",
+   "index.api.175161560754511.js#e",
+   "index.api.175161560754511.js#f",
+   "index.api.175161560754511.js#g",
+   "index.api.175161560754511.js#h",
+   "index.api.175161560754511.js#i",
+   "index.api.175161560754511.js#j"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": [
+   "shared.uc.confPass"
+  ]
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [25271, 55737)（约 29.8KB），其余部分由同页的其他分段负责。",
+  "完整还原这些组件并写成 SFC：proofResume → apps/uc/src/views/corpFairs/proofResume.vue。",
+  "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
+ ]
+}

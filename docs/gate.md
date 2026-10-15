@@ -8,6 +8,8 @@
 export RESTORE_ASSETS=…  RESTORE_STATE=…  HMRSFW_APP_DIR=<hmrsfw-vue 检出>
 # 加密密钥只从环境变量来：VITE_HMRSFW_SM2_PUBLIC_KEY、VITE_HMRSFW_SM4_KEY、VITE_HMRSFW_SM4_STORAGE_KEY（还原版用），
 # SM2_PRIVATE_KEY（解密请求体做匹配，可缺省：缺省时按「方法 + 路径」匹配）
+# 前两个是必需的：--branch 建的 worktree 和新 clone 都没有 .env.local，门槛员的环境里没有它们时门槛输出 {"error":"crypto keys missing …"}，
+# 不会把每个有加密响应的页面误判为还原错误（HM-9 联调实测：缺密钥时 c01 在 browser 阶段失败，响应解密失败、页面报错）
 
 node tools/baseline.mjs <工单id> [--har <path>]                       # 录制员（record-page.mjs）录完后调用
 node tools/gate.mjs --task <任务id> --branch <b> --mode page            # 门槛员
@@ -32,9 +34,11 @@ hint 只含检查名、元素路径（标签名 + 第一个 class）、接口路
 
 | 阶段 | 内容 | 典型耗时 |
 | --- | --- | --- |
-| static | `self-check.mjs <工单id> --app … --no-render-equiv`（HM-6 的自检；只作报告的 render-equiv 不跑）；零引用 `check-no-legacy`（page 模式只查本页文件） | 0.4–1.4 s |
+| static | `self-check.mjs <工单id> --app … --no-render-equiv`（HM-6 的自检，已含本页文件的零引用；只作报告的 render-equiv 不跑）；零引用 `check-no-legacy`（page 模式只查本页文件，自检已报过的不重复；integration 模式查整个 `apps/`） | 0.2–1.0 s |
 | build | page 模式：Vite 按需编译（生产语义），先把本页及其导入的应用内模块编译一遍，编译或导入解析错误在这里报；integration 模式：整站 `vite build` | 2 s（依赖缓存命中） |
 | browser | 一个浏览器实例，HAR 回放还原版，与基线比对；失败时还原版重跑一次 | 4–15 s / 页 |
+
+POC 时期的页面（`c01`…、`p1`…，`tools/confirm-orders.json`、`poc-orders.json`）在 `queue/` 里是同一个原 chunk 的回归单，自检按那张单的 id 跑（`wo.queueId`），基线、报告仍按 `c01` 等原 id。
 
 self-check 的结论只认干净的通过（`pass:true`、退出码 0）。以下一律判 static 失败（`check: "self-check"`）：退出码 2、带 `error` 字段（如工单不在 `queue/`）、`pass:false` 却没有失败项、`pass` 与退出码矛盾、没有 JSON 输出、进程崩溃或超时。`severity: "warn"` 的条目不判失败（self-check 自己的 `pass` 也不计它们）。测试：`node --test tools/test/gate-static.test.mjs`。
 
@@ -58,6 +62,8 @@ self-check 的结论只认干净的通过（`pass:true`、退出码 0）。以�
 一致性的保证：`--mode integration`（及 `--regress`）用整站 `vite build`，`--build full` 用同一页的真实单页 `vite build`，比对完全相同。实测 30 页：按需编译与整站构建逐页结论相同，失败项的检查名和位置也相同（见下文「验证」）。
 
 ## 原版基线（baseline.mjs）
+
+回放身份：页面 HAR 里有 `record-page.mjs` 记下的 `log._record.localStorage`（切到工单身份后的存储，不含 token）时，基线和门槛都把它盖在登录态上再回放，两边用录制时的身份，与 `.auth/pw-usercenter.json` 当时存的是哪个身份无关（HM-9 实测：导师首页按求职者身份回放会少发 `queryHomeSettingById`）。
 
 `$RESTORE_STATE/baseline/<工单id>/`，原子替换：
 
@@ -98,6 +104,12 @@ DOM 存成 JSON 树而不是只存字符串，所以规范化规则以后变了�
   - JSON 字符串 `{"where":"load.html","orig":"…","rest":"…"}`：比对前两边的这段片段换成同一个占位符；`where` 是 `*.requests` 时去掉这条请求（如 `"GET /xf-job/x"`）（细）。`where` 取 `load.html|text|overlay|requests`、`steps.requests`、`final.html|text|overlay`。
   - 条目编号 `<slug>#<序号>`。缺 `by`、证据文件不存在（相对本仓库，或 `legacy-dist/<site>/assets/` 下的文件名）、没有 `diff` 或写法不对的条目不生效，在页面结果的 `knownUnusable` 里列出原因，不判失败。生效的条目列在 `knownDiffs`，被豁免的失败项留在本地 `report.json` 的 `waived`。
   - 登记：`node tools/known-diff.mjs add <工单id> --evidence "<chunk>:<位置>" --why "…" --diff "load.overlay"`。测试：`node --test tools/test/gate-known-diffs.test.mjs`（用 `known-diff.mjs` 真实写入，再由门槛读取）。
+
+## 集成模式的失败归属（--mode integration）
+
+整站零引用的命中不再让门槛停在 static：页面照常构建、回放、比对，`pass` 仍为 false。每条整站命中带 `layer`（`page` / `shared` / `entry` / `api` / `utils` / `shell`：`public/`、`App.vue`、`main.ts` 等）和 `owner`（`queue/` 里 `target`、`files`、`outputs` 或 `subComponentDir` 含该文件的工单；`api/` 和外壳文件没有工单），输出另有 `global: {total, byLayer, byOwner}`。写元数据时页面的失败项排在前面，不会被几百条整站命中挤出前 30 条。调度端（`tick.mjs advance`）按 `pages` 数组逐页判定，集成门槛的评论和排障单里写明整站失败按层、按工单的数量。
+
+HM-9 实测（`hmrsfw-vue` `main` 6e95728，20 张确认页）：整站 516 处，外壳 334（`public/` 下带构建哈希的资源名 320）、共享组件 95、页面 66、接口 15、入口 6，涉及 53 张工单；页面 12 张通过、6 张本页静态失败（HM-26 的资源导入、POC 页面头注释里的原包路径）、2 张浏览器失败（c09、c12 的 toast，属 `utils/request.ts`）。
 
 ## 共享组件顶替（--mode page）
 

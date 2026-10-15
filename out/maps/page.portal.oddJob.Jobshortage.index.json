@@ -89,7 +89,14 @@
    "status": "restored"
   }
  },
- "views": {},
+ "views": {
+  "Xe": {
+   "original": "index.178332063620051.js#default",
+   "path": "@/views/oddJob/rtInto/index.vue",
+   "export": "default",
+   "order": "page.portal.oddJob.rtInto.index"
+  }
+ },
  "modules": {},
  "sideEffects": [
   "main.1783320636200.js"

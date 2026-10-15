@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/InterviewInvitation",
+ "role": "corp",
  "maps": "out/maps/page.uc.InterviewInvitation.json",
  "hints": "out/hints/page.uc.InterviewInvitation.md",
  "deps": {

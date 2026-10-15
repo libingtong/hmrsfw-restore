@@ -29,6 +29,7 @@
   }
  ],
  "recordPath": "/talents/antDetail",
+ "role": "general",
  "maps": "out/maps/page.portal.talents.overseasRecruitment.antDetail.json",
  "hints": "out/hints/page.portal.talents.overseasRecruitment.antDetail.md",
  "deps": {

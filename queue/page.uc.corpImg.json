@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/corpImg",
+ "role": "corp",
  "maps": "out/maps/page.uc.corpImg.json",
  "hints": "out/hints/page.uc.corpImg.md",
  "deps": {

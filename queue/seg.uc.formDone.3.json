@@ -1,0 +1,106 @@
+{
+ "id": "seg.uc.formDone.3",
+ "type": "segment",
+ "status": "todo",
+ "site": "usercenter",
+ "app": "uc",
+ "vueVersion": "3.3.4",
+ "page": "page.uc.formDone",
+ "index": 3,
+ "of": 4,
+ "assemble": false,
+ "after": [],
+ "kb": 23.9,
+ "sourceChunk": "legacy-dist/usercenter/assets/formDone.1751615607545.js",
+ "range": [
+  51889,
+  76413
+ ],
+ "components": [
+  {
+   "name": "zctsjl",
+   "scopeId": "data-v-7d0af864"
+  },
+  {
+   "name": "zsgxjl",
+   "scopeId": "data-v-2f021b16"
+  }
+ ],
+ "parts": [],
+ "outputs": [
+  "apps/uc/src/views/formDone/zctsjl.vue",
+  "apps/uc/src/views/formDone/zsgxjl.vue"
+ ],
+ "target": "apps/uc/src/views/formDone.vue",
+ "subComponentDir": "apps/uc/src/views/formDone/",
+ "scopeIds": [
+  "data-v-b03e59fc",
+  "data-v-5396e0f7",
+  "data-v-7d0af864",
+  "data-v-2f021b16",
+  "data-v-37818952",
+  "data-v-4a29201b",
+  "data-v-272981db",
+  "data-v-d4179e39"
+ ],
+ "cssCandidates": [
+  "legacy-dist/usercenter/assets/formDone.1751615607545.css"
+ ],
+ "routes": [
+  {
+   "path": "/formDone/:type",
+   "name": "formDone"
+  }
+ ],
+ "recordPath": "/formDone/:type",
+ "role": null,
+ "notes": "没有身份线索：/formDone/:type 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）",
+ "maps": "out/maps/page.uc.formDone.json",
+ "hints": "out/hints/page.uc.formDone.md",
+ "deps": {
+  "entry": [
+   "A",
+   "B",
+   "I",
+   "M",
+   "U",
+   "a",
+   "d",
+   "h",
+   "k",
+   "m",
+   "p",
+   "y"
+  ],
+  "shared": [
+   "dictCode.1751615607545.js",
+   "idCard.1751615607545.js"
+  ],
+  "api": [
+   "index.api.17516156075455.js#d",
+   "index.api.17516156075455.js#h",
+   "index.api.17516156075455.js#i",
+   "index.api.17516156075455.js#j",
+   "index.api.17516156075455.js#k",
+   "index.api.17516156075455.js#l",
+   "index.api.17516156075455.js#m",
+   "index.api.17516156075455.js#n",
+   "index.api.17516156075455.js#o",
+   "index.api.17516156075455.js#p",
+   "index.api.17516156075455.js#q",
+   "index.api.17516156075455.js#r",
+   "index.api.17516156075455.js#t",
+   "index.api.17516156075455.js#u",
+   "index.api.17516156075455.js#v"
+  ],
+  "modules": [],
+  "views": [],
+  "orders": []
+ },
+ "stylesProvidedByScript": true,
+ "instructions": [
+  "本单只还原原 chunk 的字节区间 [51889, 76413)（约 23.9KB），其余部分由同页的其他分段负责。",
+  "完整还原这些组件并写成 SFC：zctsjl → apps/uc/src/views/formDone/zctsjl.vue；zsgxjl → apps/uc/src/views/formDone/zsgxjl.vue。",
+  "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。"
+ ]
+}

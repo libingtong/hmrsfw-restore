@@ -28,6 +28,7 @@
   }
  ],
  "recordPath": "/personalstyle",
+ "role": "jobseeker",
  "maps": "out/maps/page.uc.personalstyle.json",
  "hints": "out/hints/page.uc.personalstyle.md",
  "deps": {
