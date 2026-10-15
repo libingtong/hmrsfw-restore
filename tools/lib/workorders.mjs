@@ -30,6 +30,9 @@ export const isPage = (wo) => wo && !isCore(wo);
 // Pages already accepted in hmrsfw-vue are regression-only (§1 范围). C writes `status: "regression"` and an `accepted`
 // object ({route, in}); a bare `accepted: true` is accepted too.
 export const isAccepted = (wo) => !!wo.accepted || wo.status === "accepted" || wo.status === "regression" || wo.regressionOnly === true;
+// An order whose chunk imports something the registry has no entry for (`missing`, written by work-orders.mjs) is not dispatched:
+// playbook 3.5, the restorer would have to invent a path. It goes back to the arbiter as a registry gap.
+export const isDispatchable = (wo) => !wo.missing?.length;
 export const appOf = (wo) => wo.app || (wo.site === "usercenter" || wo.site === "uc" ? "uc" : wo.site || "portal");
 
 // Validation rules in the original chunk: explicit field from the generator, else count `trigger:` entries of
