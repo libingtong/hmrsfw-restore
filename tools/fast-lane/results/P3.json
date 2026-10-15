@@ -61,5 +61,5 @@
    "parkedBranch": "hmrsfw-vue fast-lane-parked/page.portal.talents.fair.fairList"
   }
  ],
- "notes": "30 通过、5 阻塞（全部为 maps 漏登兄弟页默认导入，同 P1）。每单 self-check pass:true 且各自 build:portal 通过；批次末全量 npm run build（portal+uc）退出码 0，scan-secrets 0，无 .env.local/.har/.auth/.pem 被跟踪。回放回归：legacy10 10/10；confirm 首轮 19/20（c12 仅 overlay differs，html/text/请求/像素均相同），单独重跑 c12 两次均 PASS，判为并发构建负载下的偶发，视为 20/20。常见的 warn：@/shared/signModal.vue 非清单规范路径（maps/registry 未收录 signModal.1783320636200.js，涉及 sjz/talents 的 fair 系列页面共 9 张），需在清单里补规范路径后统一改。另有 10 张页面因自检提示把页面私有函数改名（如 openLink→openLinkInNewTab、getArticleList→fetchArticleList），行为不变。"
+ "notes": "30 通过、5 阻塞（全部为 maps 漏登兄弟页默认导入，同 P1）。每单 self-check pass:true 且各自 build:portal 通过；批次末全量 npm run build（portal+uc）退出码 0，scan-secrets 0，无 .env.local/.har/.auth/.pem 被跟踪。回放回归：legacy10 10/10；confirm 首轮 19/20（c12 仅 overlay differs，html/text/请求/像素均相同），单独重跑 c12 两次均 PASS，判为并发构建负载下的偶发，视为 20/20。常见的 warn：@/shared/signModal.vue 非清单规范路径（maps/registry 未收录 signModal.1783320636200.js，本批 7 张：sjz.fair.outFair.list/sceneFair.list/webFair.list、sjz.school.index、talents.fair.outFair.list/webFair.detail/webFair.list），需在清单里补规范路径后统一改。另有 4 张页面因自检提示把页面私有函数改名（school.index、setUp.setupDetail、greenchannel.index、homeView；如 openLink→openLinkInNewTab、getArticleList→fetchArticleList），行为不变。"
 }
