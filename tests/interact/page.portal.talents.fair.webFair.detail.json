@@ -1,0 +1,10 @@
+[
+  {"fill":["可输入单位名称进行搜索","测试"]},
+  {"click":"搜索"},
+  {"click":"重置"},
+  {"clickSel":".expande-button","optional":true},
+  {"click":"找职位"},
+  {"fill":["请输入职位名称进行查询","测试"]},
+  {"click":"搜索"},
+  {"click":"清空筛选条件"}
+]
