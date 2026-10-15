@@ -1490,14 +1490,13 @@ export class Pipeline {
     step("resume suspended", () => this.resumeSuspendedOwned());
     step("requests", () => this.processRequests());
     this.issues(true);
-    step("fast-lane adopt", () => (this.isLeader ? FL.adoptPages(this) : 0));
-    this.issues(true);
     step("records", () => this.syncRecords());
     step("audits", () => this.processAudits());
     if (this.isLeader && this.confirmLeader()) step("rule reviews", () => this.processRuleReviews());
     this.issues(true);
     const rec = this.isLeader && this.confirmLeader() ? step("dispatch records", () => this.dispatchRecords()) : 0;
     const neu = step("dispatch", () => this.dispatchNew());
+    if (this.isLeader) step("fast-lane adopt", () => FL.adoptPages(this)); // after the records: recording is the time-critical part (login lifetime)
     if (this.isLeader && this.confirmLeader()) {
       if (this.appDir) { try { this.maybeIntegrationGate(); this.maybeRegression(); } catch (e) { this.anomaly(null, `integration step failed: ${e.message}`, "检查 hmrsfw-vue 检出"); } }
       step("stop conditions", () => this.checkStopConditions());

@@ -61,13 +61,14 @@ export function recordQueue(pl) { return inventory(pl).pages.filter((p) => p.rol
 
 // One restore task per recordable page, created waiting for its recording (waitRecord): when the record task says ok,
 // syncRecords sends it to the gate. Idempotent through the creation key.
-export function adoptPages(pl) {
+export function adoptPages(pl, limit = pl.cfg.fastLane?.adoptPerTick ?? 25) { // creating a task is ~12 CLI calls: a few per tick keep the tick (and its lock) short
   if (!fastLaneOn(pl)) return 0;
   const agent = pl.roster.agents.find((a) => a.role === "restorer" && a.enabled !== false && a.model === pl.cfg.defaultPageModel && pl.isLocal(a));
   if (!agent) { pl.anomaly(null, `fast lane: no enabled restorer on ${pl.machine} with model ${pl.cfg.defaultPageModel}`, "检查名册"); return 0; }
   const L = pl.ledger.read();
   let n = 0;
   for (const p of inventory(pl).pages) {
+    if (n >= limit) break;
     if (!p.role || p.replay === "pass") continue;
     const key = `restore:${p.id}:fl`;
     if (L.tasks.keys?.[key] || pl.pipelineIssues().some((i) => i.metadata.createKey === key)) continue;
