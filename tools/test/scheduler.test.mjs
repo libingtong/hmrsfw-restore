@@ -538,3 +538,12 @@ test("bisect: failing page not yet merged at the midpoint → that step counts a
   assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/B3/index.vue"), null, "B3 merge reverted");
   assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/B2/index.vue"), vue("B2"));
 });
+
+test("an order whose chunk imports something the registry lacks (`missing`) is never dispatched; its neighbour is", () => {
+  const fx = makeFixture({ orders: [page("P1", 8, { missing: ["view:sibling.js"] }), page("P2", 8)], config: { cheapTier: { enabled: false }, audit: { coldRate: 0, normalRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "P1", "P2");
+  node(fx, "tick.mjs", ["tick"]);
+  const ids = restoreTasks(fx).map((t) => meta(fx, t.id).wos ?? meta(fx, t.id).wo);
+  assert.ok(restoreTasks(fx).length > 0, "the clean order is dispatched");
+  assert.ok(!JSON.stringify(restoreTasks(fx).map((t) => meta(fx, t.id))).includes('"P1"'), `P1 must not be dispatched: ${JSON.stringify(ids)}`);
+});
