@@ -60,6 +60,8 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 
 所有工单共有：`id`、`type`（page / segment / shared / entry）、`status`、`site`（portal / usercenter）、`app`（portal / uc）、`vueVersion`、`kb`、`sourceChunk`、`deps`。
 
+`missing`（可选）：原 chunk 的导入里，在清单（vue / entry / api / shared / views / modules）中找不到对应条目的项，写法同 maps 的 `missing`（`entry:x`、`shared:chunk#x`、`view:chunk`、`chunk#x` 等）。只在非空时出现；非空的工单不派发（手册 3.5 节），`queue/index.json` 的同一条里也带这个字段；分段单继承所属页面的 `missing`。清单补齐、重新生成后该字段消失。
+
 `status`：`todo` 可派单；`regression` 已在 `hmrsfw-vue` 验收或还原，只做回归；`segmented` 页面已拆成分段单，本身不派；`npm` 用 npm 包代替，不派。
 
 **page**
@@ -94,7 +96,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 
 **entry**：`area`（E1–E7 或 `component`）、`title`、`files`、`owns`（本单负责的入口导出：原导出名、清单路径、导出名、状态）、`components`（组件单：组件名、入口里的 binding 名、scopeId、大小、文件；`replacesStub` 表示要替换 `hmrsfw-vue` 里现有的桩）、`globals`（E2：清单的全局组件和指令）。入口单的 `kb` 是估算值（`kbEstimated: true`）。
 
-`queue/index.json` 是所有工单的一览（id、type、status、kb、`after`、`deps.orders`）加反向索引 `dependents`；`queue/routes.json` 是 `check-coverage.mjs` 的输入；`queue/summary.json` 是上面这些数字；`queue/roles.json` 是每张页面单的身份和判定依据（判不出的是原因）。
+`queue/index.json` 是所有工单的一览（id、type、status、kb、`after`、`missing`、`deps.orders`）加反向索引 `dependents`；`queue/routes.json` 是 `check-coverage.mjs` 的输入；`queue/summary.json` 是上面这些数字；`queue/roles.json` 是每张页面单的身份和判定依据（判不出的是原因）。
 
 ## 公共库清单 `registry/<app>.json`
 

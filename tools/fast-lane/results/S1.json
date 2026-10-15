@@ -12,26 +12,22 @@
   "seg.portal.guide.jobHunt.1",
   "seg.portal.guide.jobHunt.2",
   "seg.uc.gongfuWorkshop.positionPosting.1",
-  "seg.uc.gongfuWorkshop.positionPosting.2"
+  "seg.uc.gongfuWorkshop.positionPosting.2",
+  "seg.portal.cityHome.index.1",
+  "seg.portal.cityHome.index.2",
+  "seg.portal.eMap.index.1",
+  "seg.portal.eMap.index.2"
  ],
  "passedPages": [
   "page.uc.CorpAttestation",
   "page.uc.zcyzCorpAttestation",
   "page.uc.zcyzCorpAttestationapprove",
   "page.portal.guide.jobHunt",
-  "page.uc.gongfuWorkshop.positionPosting"
+  "page.uc.gongfuWorkshop.positionPosting",
+  "page.portal.cityHome.index",
+  "page.portal.eMap.index"
  ],
  "blocked": [
-  {
-   "id": "page.portal.cityHome.index",
-   "orders": ["seg.portal.cityHome.index.1", "seg.portal.cityHome.index.2"],
-   "reason": "self-check imports：\"@/views/cityHome/titles.vue\" 是页面文件，maps 里没有它。原 chunk 用默认导入 `import W,{__tla}from\"./titles…\"` 引用 titles 页，tools/work-orders.mjs 的 buildMaps 只识别 `import{...}`，漏了默认导入，maps.views 与工单 deps.views/orders 都为空。需要改：buildMaps 识别 `import X,{...}from` 默认导入，重新生成 out/maps/page.portal.cityHome.index.json（views 补 titles.1783320636200.js#default → @/views/cityHome/titles.vue，order page.portal.cityHome.titles；signModal.1783320636200.js#default → @/shared/signModal.vue）并补 registry 的 signModal 条目（目前只报 warn）。titles.vue 已由 P1 落地，构建已不受影响。页面其余检查全过（text-nodes 54/54、directives 5/5、branches 14/14），成果在 hmrsfw-vue 分支 fast-lane-blocked/S1"
-  },
-  {
-   "id": "page.portal.eMap.index",
-   "orders": ["seg.portal.eMap.index.1", "seg.portal.eMap.index.2"],
-   "reason": "self-check imports：\"@/views/eMap/list.vue\" 是页面文件，maps 里没有它。原因同 cityHome：原 chunk `import ke,{__tla}from\"./list.17833206362002.js\"` 为默认导入，buildMaps 漏识别。需要改：out/maps/page.portal.eMap.index.json 的 views 补 list.17833206362002.js#default → @/views/eMap/list.vue（order page.portal.eMap.list），工单 deps 同步。list.vue 已由 P1 落地。其余检查全过（text-nodes 16/16、directives 3/3、branches 14/14），成果在 fast-lane-blocked/S1"
-  },
   {
    "id": "page.portal.guide.index",
    "orders": ["seg.portal.guide.index.1", "seg.portal.guide.index.2"],
@@ -59,6 +55,7 @@
   "工单错位（未改）：seg.portal.guide.jobHunt 的 scopeId 错位（data-v-8d4a8610 属 StepForm2，data-v-de35c3a3 属主组件 jobHunt，XfLoaing 无 scopeId）；seg.portal.guide.jobHunt.1 漏列 defineComponent({name:'nation'}) 组件，第 1 段已交付 jobHunt/nation.vue；collage.studentApply 的 scopeIds 对错了组件（cpyInfo=5ffb5602、protocol=60225454、主组件=9662b120）",
   "guide/jobHunt：css-by-scope 按位置把 .p-fixed/.loading-text/.u-y 三条全局规则写进 workItem.vue（实际只被 XfLoaing 使用），还原员曾手动挪到 XfLoaing，编排者已改回脚本输出（--check 无差异），运行效果相同",
   "CorpAttestation、cityHome 中原 render 有被压缩器折叠的恒假 v-if 分支，内容无法复原，以 v-if=\"false\" 占位并注释（TODO:restore）",
+  "HM-47 解除阻塞：cityHome.index、eMap.index 原因是 buildMaps 漏默认导入的兄弟页（titles / list），工具修好后在各自成果分支上重跑整页 self-check pass:true、build:portal 通过，已合入 restore/fast-lane（页面文件里提到原包路径/哈希文件名的来源注释按 no-legacy 改成不带路径的写法，代码不变）",
   "过程事故：一名还原子智能体（cp2）违规运行了一次 git fetch（只读访问 hmrsfw-vue 私有仓库），改动了共享 .git 里的 origin/integration；已恢复并由编排者重设 fl.sh base 后重新复核全部自检"
  ]
 }

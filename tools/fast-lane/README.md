@@ -29,6 +29,7 @@ mkdir -p $W/replay && cp tools/fast-lane/replay/* $W/replay/
 
 ## 2. 每张工单
 
+0. **派单前先查 `missing`**：`$W/fl.sh check <工单 id>`。工单的 `missing`（原 chunk 的导入在清单里找不到条目，见 `docs/work-orders.md`）不为空就不派（手册 3.5 节），直接记进阻塞清单，原因写「清单缺 X」，不要让子智能体去绕。
 1. **一单一 worktree**：`$W/fl.sh new <短名>` → `$W/wt/<短名>`。同一 worktree 放两张单，越界检查会互相误报。
 2. 派子智能体（页面用 `model: sonnet`，分段单用 `model: opus`），**前台**调用（`run_in_background: false`），一条消息里并行派 5–6 个。提示模板：
 

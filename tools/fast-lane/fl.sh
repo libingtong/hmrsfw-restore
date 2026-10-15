@@ -3,9 +3,12 @@
 #   fl.sh new <name>            worktree wt/<name> at restore/fast-lane tip, node_modules linked
 #   fl.sh land <name> <msg>     commit worktree changes, cherry-pick onto restore/fast-lane
 #   fl.sh base                  point local origin/integration at fast-lane tip (self-check scope base)
+#   fl.sh check <order id>      exit 1 and list the entries if the order's `missing` is not empty (HM-47: such an order is not dispatched)
 set -e
 W=${FL_WORK:?set FL_WORK to the batch work dir}; V=$W/fl-vue
 case $1 in
+  check)
+    node -e 'const o=JSON.parse(require("fs").readFileSync(process.argv[1]+"/queue/"+process.argv[2]+".json","utf8")); if(o.missing?.length){console.log(o.id+" not dispatchable, missing: "+o.missing.join(", "));process.exit(1)}' "${FL_RESTORE:-$W/hmrsfw-restore}" "$2" ;;
   base) git -C $V update-ref refs/remotes/origin/integration restore/fast-lane ;;
   new)
     D=$W/wt/$2
