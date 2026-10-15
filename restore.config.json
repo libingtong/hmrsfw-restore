@@ -86,6 +86,7 @@
       { "id": "D10", "decision": "按实测额度触发情况自动调节并发" }
     ]
   },
+  "coverage": { "minFunction": 50, "minBlock": 40, "requireStable": true },
   "projectNotes": "docs/project-notes.md",
   "machines": [
     { "name": "mac", "host": "DylandeMac-mini.local", "holdsSecrets": true, "roles": ["dispatcher", "gate", "recorder", "fixer", "arbiter", "restorer", "restorer-core", "reviewer"] }

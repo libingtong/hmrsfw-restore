@@ -6,6 +6,7 @@
 import path from "node:path";
 import { routeApi } from "./har.mjs";
 import { domTreeInPage } from "./dom.mjs";
+import { pickScripts } from "./coverage.mjs";
 
 export const VIEWPORT = { width: 1920, height: 1080 };
 // Overlay text = open modals at capture time + every message / notification shown during the phase (recorded by a
@@ -100,7 +101,9 @@ async function captureRoot(page, sel, shotBase, withShots, phases) {
   return { candidates, overlay };
 }
 
-// opts: { origin, url, storage: {localStorage, sessionStorage}, har, sel, steps, shotDir, tag, stubChunk }
+// opts: { origin, url, storage: {localStorage, sessionStorage}, har, sel, steps, shotDir, tag, stubChunk, coverage }
+// coverage = names of the scripts to measure (basenames under /assets/): V8 precise coverage over the whole run, load and
+// steps, returned as res.coverage = [{url, source, functions}] for those scripts only (tools/gate/coverage.mjs).
 // stubChunk = basename of the page chunk: replaced by an empty component that snapshots localStorage at mount (shell
 // probe: what the app shell alone requests, and the storage the page component sees when it mounts).
 export async function runPage(browser, opts) {
@@ -112,6 +115,7 @@ export async function runPage(browser, opts) {
   await routeApi(ctx, opts.har, { log: (r) => { lastRequestAt = Date.now(); log.push(r); }, phase: () => phase });
   if (opts.stubChunk) await ctx.route((u) => u.pathname === "/assets/" + opts.stubChunk, (r) => r.fulfill({ status: 200, contentType: "text/javascript", body: "const c={name:'ShellProbe',setup(){window.__shellMountStorage=Object.fromEntries(Object.keys(localStorage).map((k)=>[k,localStorage.getItem(k)]));return()=>null}};export default c;export const __tla=Promise.resolve();" }));
   const page = await ctx.newPage();
+  if (opts.coverage?.length) await page.coverage.startJSCoverage({ resetOnNavigation: false, reportAnonymousScripts: false });
   // The page's clock starts at the beginning of the HAR's recording minute and runs normally (no fake timers), so pages
   // that print "now" show the same minute in the baseline and in later gate runs.
   await page.clock.setSystemTime(new Date(Math.floor(opts.har.recordedAt / 60000) * 60000));
@@ -152,6 +156,7 @@ export async function runPage(browser, opts) {
     res.stepLog = log.filter((x) => x.phase !== "load");
   }
   res.totalMs = Date.now() - t0;
+  if (opts.coverage?.length) res.coverage = pickScripts(await page.coverage.stopJSCoverage(), opts.coverage);
   await ctx.close();
   return res;
 }
