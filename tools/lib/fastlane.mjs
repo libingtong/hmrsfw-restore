@@ -79,12 +79,25 @@ export function adoptPages(pl) {
   return n;
 }
 
+const TOOL_URL = "https://github.com/libingtong/hmrsfw-restore", APP_URL = "https://github.com/libingtong/hmrsfw-vue";
+
+// The agents' standing instructions say "tool repo main / integration"; for fast-lane pages the tool code (this mode, the
+// regenerated queue/) is on `restore/fast-lane`, so every fast-lane task spells out the refs. Task text wins over the
+// generic instructions here: with main's `advance`, a pass would merge the whole fast-lane branch into integration.
 export function flDescription(p, branch) {
   return [`快速通道页面 \`${p.id}\`（${p.app}，身份 ${p.role}）：代码已在 hmrsfw-vue \`${branch}\`，这张单只负责回放比对和交互比对。`, "",
-    "- 先录制（`[record]` 任务），录完自动送门槛；门槛员运行 `node tools/gate.mjs --task <任务id> --branch " + branch + " --mode page`，再 `node tools/tick.mjs advance <任务id>`。",
+    `**检出（与智能体通用指令不同，以本单为准）**：工具仓库 \`multica repo checkout ${TOOL_URL} --ref ${branch}\`（不要用 main：main 的 \`advance\` 不认快速通道，通过时会把整条分支合进 integration）；产物仓库 \`multica repo checkout ${APP_URL} --ref ${branch}\`。`,
+    "- 门槛员：录制员把交互脚本提交在工具仓库 `integration` 分支，门槛要读到同一份：在工具仓库里先 `git fetch origin integration && git checkout origin/integration -- tests/interact`（只取脚本，不提交），再 `node tools/gate.mjs --task <任务id> --branch " + branch + " --mode page --app \"$HMRSFW_APP_DIR\"`，然后 `node tools/tick.mjs advance <任务id> --app \"$HMRSFW_APP_DIR\"`。",
     "- 通过：不合入 integration、不抽审计，单直接 `done`；代码随 HM-34 的 PR 走合并员。",
-    "- 失败：修正员按 `tools/fast-lane/README.md` 第 1–2 节在私有克隆里改，`fl.sh land` 合入 `" + branch + "` 并推送，然后 `node tools/handoff.mjs <任务id> --fix`。修正不允许改 `legacy/`、`shared/`、`api/`、`utils/`、`package.json`、门槛脚本、归一化规则、公共库清单、HAR。",
+    "- 失败：修正员在产物仓库私有克隆里改（`tools/fast-lane/README.md` 第 1–2 节），`fl.sh land` 合入 `" + branch + "` 并推送，再 `node tools/handoff.mjs <任务id> --fix`。不许改 `legacy/`、`shared/`、`api/`、`utils/`、`package.json`、门槛脚本、归一化规则、公共库清单、HAR。",
     "- 参数以任务元数据为准。"].join("\n");
+}
+
+export function recordDescription(woId, branch) {
+  return [`录制工单 \`${woId}\`：写交互脚本、录 HAR、算原版基线（快速通道页面，门槛的前置）。`, "",
+    `**检出（以本单为准）**：工具仓库 \`multica repo checkout ${TOOL_URL} --ref ${branch}\`（\`queue/\` 已带 \`role\`，\`record-page\` 是含身份切换的版本；integration 分支的版本较旧，不要用）；产物仓库 \`--ref ${branch}\`。交互脚本由 \`record-page.mjs\` 自己提交到工具仓库 integration 分支，不用手动提交。`,
+    "- 登录态由人准备，只检测不登录；报 `login-expired` / `need-login` / `need-role*` / `role-*` 时：元数据 `record=blocked:<原因>`，评论 `[RECORD] blocked <原因>`，任务设 `done`（不要 blocked、不要指派人，调度脚本会暂停新的录制并通知李炳通），结束。",
+    "- 成功：`record=ok`，评论 `[RECORD] ok <步数>`，状态 `done`。其余按录制员通用指令。"].join("\n");
 }
 
 // Gate PASS of a fast-lane task: nothing to merge, no audit — done.

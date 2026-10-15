@@ -392,7 +392,7 @@ export class Pipeline {
   }
 
   openRecord(woId, agent = this.leastLoaded("recorder", [], [woId]), attempt = 1) {
-    const c = this.createTask({ key: `record:${woId}:a${attempt}`, title: `[record] ${woId}${attempt > 1 ? ` a${attempt}` : ""}`, description: `录制工单 \`${woId}\`：写交互脚本、录 HAR、算原版基线。按录制员指令执行。`, meta: { kind: "record", workOrders: [woId], attempt }, assigneeId: agent.id, wos: [woId] });
+    const c = this.createTask({ key: `record:${woId}:a${attempt}`, title: `[record] ${woId}${attempt > 1 ? ` a${attempt}` : ""}`, description: FL.fastLaneOn(this) ? FL.recordDescription(woId, FL.fastLaneBranch(this)) : `录制工单 \`${woId}\`：写交互脚本、录 HAR、算原版基线。按录制员指令执行。`, meta: { kind: "record", workOrders: [woId], attempt }, assigneeId: agent.id, wos: [woId] });
     if (c.id) this.ledger.tx((L) => { const s = (L.tasks.wos[woId] ??= { tasks: [] }); s.record = "pending"; s.recordTask = c.id; s.recordAttempts = Math.max(s.recordAttempts || 0, attempt); });
     return c;
   }
