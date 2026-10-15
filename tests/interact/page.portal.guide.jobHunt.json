@@ -1,0 +1,8 @@
+[
+  {"fill":["请输入姓名","测试"]},
+  {"fill":["请输入证件号码","Tst-0001"]},
+  {"fill":["请输入手机号","123"]},
+  {"click":"下一步"},
+  {"clickSel":".ant-btn:has-text('上一步')","optional":true},
+  {"clickSel":".ant-btn:has-text('暂不完善，先看看')","optional":true}
+]
