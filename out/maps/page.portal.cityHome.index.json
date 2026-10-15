@@ -1,5 +1,5 @@
 {
- "id": "seg.portal.cityHome.index.2",
+ "id": "page.portal.cityHome.index",
  "chunk": "legacy-dist/portal/assets/index.178332063620024.js",
  "app": "portal",
  "vueVersion": "3.2.47",

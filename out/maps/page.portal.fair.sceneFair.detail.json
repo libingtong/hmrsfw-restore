@@ -306,6 +306,9 @@
    "inline": true,
    "path": "@/shared/down",
    "export": "arrowUpImg",
+   "aliases": [
+    "_"
+   ],
    "status": "restored"
   },
   "ms": {
@@ -314,6 +317,9 @@
    "inline": true,
    "path": "@/shared/down",
    "export": "arrowDownImg",
+   "aliases": [
+    "a"
+   ],
    "status": "restored"
   }
  },

@@ -479,9 +479,11 @@
   },
   "wxyy.hook.1751615607545.js": {
    "_": {
-    "export": "wenXinIconImg"
+    "path": "@/legacy",
+    "export": "ROBOT_IMG"
    },
    "g": {
+    "path": "@/legacy",
     "export": "askWenXin"
    }
   }

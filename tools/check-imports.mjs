@@ -34,6 +34,13 @@ export function registryIndex(reg) {
   for (const s of Object.values(reg.shared)) for (const x of Object.values(s.exports)) { if (x.npm) continue; add(x.path ?? s.path, x.export); if (x.export !== "default") publicNames.set(x.export, x.path ?? s.path); }
   for (const a of Object.values(reg.api)) { add(a.path, a.export); publicNames.set(a.export, a.path); urls.set(a.url, `${a.path} 的 ${a.export}`); }
   for (const m of Object.values(reg.modules)) for (const x of Object.values(m.exports)) if (x.path?.startsWith("@/")) add(x.path, x.export);
+  // earlier names of a renamed export that restored pages still import (record.aliases): accepted, with a warning
+  const aliases = new Map(); // normalized path → Map(old name → current name)
+  const addAlias = (p, x) => { for (const a of x.aliases ?? []) { const k = normSpec(p); if (!aliases.has(k)) aliases.set(k, new Map()); aliases.get(k).set(a, x.export); } };
+  for (const s of Object.values(reg.shared)) for (const x of Object.values(s.exports)) addAlias(x.path ?? s.path, x);
+  for (const m of Object.values(reg.modules)) for (const x of Object.values(m.exports)) if (x.path?.startsWith("@/")) addAlias(x.path, x);
+  for (const e of Object.values(reg.entry)) if (e.path && !e.npm) addAlias(e.path, e);
+  for (const a of Object.values(reg.api)) addAlias(a.path, a);
   for (const m of Object.values(reg.apiModules ?? {})) add(m.path);
   for (const [spec, names] of Object.entries(reg.utils ?? {})) for (const n of names) { add(spec, n); if (!publicNames.has(n)) publicNames.set(n, spec); }
   // npm symbols the original reached through a chunk (entry exports, shared chunks that bundled a package)
@@ -42,7 +49,7 @@ export function registryIndex(reg) {
   for (const sh of Object.values(reg.shared)) for (const x of Object.values(sh.exports)) if (x.npm) npmNames.set(x.export, x.path);
   for (const m of Object.values(reg.modules)) for (const x of Object.values(m.exports)) if (x.path && !x.path.startsWith("@/") && x.export) npmNames.set(x.export, x.path);
   const npm = new Set([...BUILTIN_NPM, ...Object.keys(reg.npm ?? {})]);
-  return { paths, publicNames, urls, npm, npmNames };
+  return { paths, publicNames, urls, npm, npmNames, aliases };
 }
 
 function scriptOf(sfc, file) {
@@ -113,6 +120,8 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
               failed.push({ check: "imports", where: rel(f), hint: `"${spec}" 不是公共库清单里的路径。按 maps 给出的路径导入；清单里没有的东西写进回执 needsFromSkeleton，不要自己补` }); continue;
             }
             for (const x of names) if (x.imported !== "*" && allowed.size && !allowed.has(x.imported)) {
+              const renamed = idx.aliases.get(k)?.get(x.imported);
+              if (renamed) { warn(rel(f), `"${spec}" 的 ${x.imported} 是旧导出名，清单里现在叫 ${renamed}：新代码用 import { ${renamed} } from "${spec}"（已还原页面里的旧名暂时照常通过，registry 清理时统一改）`); continue; }
               const at = idx.publicNames.get(x.imported) ?? idx.npmNames.get(x.imported);
               const viaBarrel = appIdx.get(k)?.exports.has(x.imported);
               const readable = appIdx.get(k)?.aliasOf.get(x.imported);

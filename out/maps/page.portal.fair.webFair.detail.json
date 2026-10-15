@@ -286,6 +286,9 @@
    "inline": true,
    "path": "@/shared/down",
    "export": "arrowUpImg",
+   "aliases": [
+    "_"
+   ],
    "status": "restored"
   },
   "At": {
@@ -294,6 +297,9 @@
    "inline": true,
    "path": "@/shared/down",
    "export": "arrowDownImg",
+   "aliases": [
+    "a"
+   ],
    "status": "restored"
   }
  },

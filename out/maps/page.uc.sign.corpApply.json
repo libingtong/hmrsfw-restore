@@ -1,5 +1,5 @@
 {
- "id": "seg.uc.sign.corpApply.2",
+ "id": "page.uc.sign.corpApply",
  "chunk": "legacy-dist/usercenter/assets/apply.17516156075452.js",
  "app": "uc",
  "vueVersion": "3.3.4",

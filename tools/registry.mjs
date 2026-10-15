@@ -9,6 +9,8 @@
 // the symbol lives today, and tools/registry-cleanup.mjs --apply moves both together.
 //
 // Usage: node tools/registry.mjs --app <hmrsfw-vue> [--check]
+//   `aliases` on an export record (names file: chunks.<chunk>.<alias>.aliases): earlier export names that restored pages
+//   still import; check-imports keeps accepting them (with a warning) until the registry cleanup moves those pages.
 //   writes registry/portal.json, registry/uc.json; --check only compares with the committed files (exit 1 on difference,
 //   or when an exported symbol has no business name: stats.names.unnamed, HM-19)
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
@@ -356,7 +358,7 @@ export function buildRegistry(site, { APP, gaps = scanSharedGaps(site), vueAlias
     if (v.kind === "module" || v.kind === "api") continue;
     // image constants: the hmrsfw-vue file restored from this chunk if there is one, otherwise @/shared/images
     const seed = v.kind === "asset" ? (seededFrom.get(f) ?? (exist(`@/shared/${chunkBase(f)}`) ? `@/shared/${chunkBase(f)}` : null)) : null;
-    const assetExport = (a, x) => { const o = chunkNames[f]?.[a]; if (o) { const have = !!exist(o.path)?.exports.has(o.export); return { ...x, path: o.path, export: o.export, status: have ? "restored" : "reserved", ...(have ? {} : { owner: `shared.${app}.modules` }) }; } if (seed && exist(seed)?.exports.has(a)) return { ...x, path: seed, export: exist(seed).aliasOf.get(a) ?? a, status: "restored" }; return { ...x, path: "@/shared/images", export: Object.keys(v.exports).length === 1 ? `${camel(chunkBase(f))}Img` : camel(`${chunkBase(f)}-img-${a}`), status: "reserved", owner: `shared.${app}.modules` }; };
+    const assetExport = (a, x) => { const o = chunkNames[f]?.[a]; if (o) { const have = !!exist(o.path)?.exports.has(o.export); return { ...x, path: o.path, export: o.export, ...(o.aliases?.length ? { aliases: o.aliases } : {}), status: have ? "restored" : "reserved", ...(have ? {} : { owner: `shared.${app}.modules` }) }; } if (seed && exist(seed)?.exports.has(a)) return { ...x, path: seed, export: exist(seed).aliasOf.get(a) ?? a, status: "restored" }; return { ...x, path: "@/shared/images", export: Object.keys(v.exports).length === 1 ? `${camel(chunkBase(f))}Img` : camel(`${chunkBase(f)}-img-${a}`), status: "reserved", owner: `shared.${app}.modules` }; };
     modules[f] = { kind: v.kind, ...(v.npm ? { npm: v.npm } : {}), ...(v.note ? { note: v.note } : {}), exports: v.kind === "asset" ? Object.fromEntries(Object.entries(v.exports).map(([a, x]) => [a, assetExport(a, x)])) : v.exports };
   }
 

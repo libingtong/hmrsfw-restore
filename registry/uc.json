@@ -18,8 +18,8 @@
    "ignore": 3
   },
   "shared": {
-   "reserved": 25,
-   "restored": 24
+   "reserved": 22,
+   "restored": 27
   },
   "api": {
    "reserved": 115,
@@ -2538,9 +2538,9 @@
      "original": "index.175161560754528.js#f"
     }
    },
-   "path": "@/shared/Index.vue",
-   "status": "reserved",
-   "owner": "shared.uc.Index",
+   "path": "@/shared/ReceivedResumeList.vue",
+   "status": "restored",
+   "owner": "shared.uc.ReceivedResumeList",
    "usedBy": 2
   },
   "index.175161560754529.js": {
@@ -2555,9 +2555,9 @@
      "original": "index.175161560754529.js#p"
     }
    },
-   "path": "@/shared/Index29.vue",
-   "status": "reserved",
-   "owner": "shared.uc.Index29",
+   "path": "@/shared/CancelReasonModal.vue",
+   "status": "restored",
+   "owner": "shared.uc.CancelReasonModal",
    "usedBy": 2
   },
   "mapInfo.1751615607545.js": {
@@ -3013,16 +3013,18 @@
    "kb": 0.4,
    "exports": {
     "_": {
-     "export": "wenXinIconImg",
+     "path": "@/legacy",
+     "export": "ROBOT_IMG",
      "original": "wxyy.hook.1751615607545.js#_"
     },
     "g": {
+     "path": "@/legacy",
      "export": "askWenXin",
      "original": "wxyy.hook.1751615607545.js#g"
     }
    },
    "path": "@/shared/wxyy.hook.ts",
-   "status": "reserved",
+   "status": "restored",
    "owner": "shared.uc.modules",
    "usedBy": 4
   }

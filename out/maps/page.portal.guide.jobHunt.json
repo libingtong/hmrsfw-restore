@@ -1,5 +1,5 @@
 {
- "id": "seg.portal.guide.jobHunt.2",
+ "id": "page.portal.guide.jobHunt",
  "chunk": "legacy-dist/portal/assets/jobHunt.1783320636200.js",
  "app": "portal",
  "vueVersion": "3.2.47",

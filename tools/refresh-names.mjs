@@ -31,7 +31,8 @@ for (const { file, o } of orders) {
 }
 // maps
 for (const { o } of orders) {
-  if (!o.maps) continue; const reg = loadRegistry(o.app); const site = o.site;
+  // a segmented page and its segments share out/maps/<page>.json: only the page order writes it
+  if (!o.maps || o.type === "segment") continue; const reg = loadRegistry(o.app); const site = o.site;
   let maps;
   if (o.subtype === "modules") {
     const all = { entry: {}, shared: {}, api: {}, modules: {}, views: {}, vue: {}, missing: [], sideEffects: [] };

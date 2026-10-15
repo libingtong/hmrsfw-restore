@@ -707,17 +707,26 @@
   "down.1783320636200.js": {
    "_": {
     "path": "@/shared/down",
-    "export": "arrowUpImg"
+    "export": "arrowUpImg",
+    "aliases": [
+     "_"
+    ]
    },
    "a": {
     "path": "@/shared/down",
-    "export": "arrowDownImg"
+    "export": "arrowDownImg",
+    "aliases": [
+     "a"
+    ]
    }
   },
   "noResumeR.1783320636200.js": {
    "_": {
     "path": "@/shared/noResumeR",
-    "export": "noResumeImg"
+    "export": "noResumeImg",
+    "aliases": [
+     "_"
+    ]
    }
   },
   "index.1783320636200117.js": {

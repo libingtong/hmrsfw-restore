@@ -88,10 +88,12 @@
    "status": "restored",
    "exports": {
     "_": {
-     "export": "wenXinIconImg",
+     "path": "@/legacy",
+     "export": "ROBOT_IMG",
      "original": "wxyy.hook.1751615607545.js#_"
     },
     "g": {
+     "path": "@/legacy",
      "export": "askWenXin",
      "original": "wxyy.hook.1751615607545.js#g"
     }
