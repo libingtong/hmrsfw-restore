@@ -28,6 +28,7 @@ import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, symlinkSync, w
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { appDir as resolveAppDir } from "./app-dir.mjs";
+import { gitExclude } from "./lib/git-exclude.mjs";
 import { REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256 } from "./gate/har.mjs";
 import { runPage } from "./gate/replay.mjs";
@@ -74,6 +75,9 @@ function checkoutBranch(baseApp, branch, gateDir) {
   rmSync(wt, { recursive: true, force: true });
   execFileSync("git", ["-C", baseApp, "worktree", "add", "-q", "--detach", wt, `origin/${branch}`], { stdio: "ignore" });
   symlinkSync(realpathSync(path.join(baseApp, "node_modules")), path.join(wt, "node_modules"));
+  // the link is not ignored by `node_modules/` (directories only): rule 4 of check-imports would see an untracked
+  // `node_modules` that is no order's change (HM-526)
+  gitExclude(wt, "node_modules", "tools/gate.mjs: the --branch worktree links node_modules");
   return { dir: wt, sha: execFileSync("git", ["-C", wt, "rev-parse", "HEAD"], { encoding: "utf8" }).trim(), cleanup: () => { try { execFileSync("git", ["-C", baseApp, "worktree", "remove", "--force", wt], { stdio: "ignore" }); } catch {} } };
 }
 
