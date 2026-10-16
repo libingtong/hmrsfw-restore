@@ -1,0 +1,8 @@
+[
+  {"wait":800},
+  {"click":"邀请面试"},
+  {"wait":800},
+  {"clickSel":".ant-modal-confirm-btns .ant-btn:not(.ant-btn-primary)","optional":true},
+  {"clickSel":".ant-modal-close","optional":true},
+  {"wait":500}
+]
