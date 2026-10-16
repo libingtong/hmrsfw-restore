@@ -1,0 +1,10 @@
+[
+  {"clickSel":".right-zp","optional":true},
+  {"wait":800},
+  {"clickSel":".right-zp","optional":true},
+  {"wait":800},
+  {"clickSel":".left-zp","optional":true},
+  {"wait":800},
+  {"clickSel":".indicatorrecommendationactive, .indicatornorecommendationactive","optional":true},
+  {"wait":800}
+]
