@@ -1,0 +1,6 @@
+[
+  {"wait":800},
+  {"clickSel":".item:nth-child(2)","optional":true},
+  {"clickSel":".item:nth-child(3)","optional":true},
+  {"clickSel":".item.item-active .btn","optional":true}
+]
