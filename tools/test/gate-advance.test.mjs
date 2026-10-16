@@ -104,3 +104,16 @@ test("integration gate: failed pages counted from the pages array; app-wide fail
   assert.deepEqual(issue(fx, inc.id).metadata.details ? JSON.parse(JSON.stringify(meta(fx, inc.id).details)).failed : null, ["P2"]);
   assert.deepEqual(meta(fx, inc.id).details.global.byOwner, { "shared.uc.Editor": 1 });
 });
+
+test("integration gate: pending record is no verdict — a rule regression is neither passed nor reverted", () => {
+  const ids = ["P1", "P2"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
+  const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (2 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
+  for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: "abc1234" })) setMeta(fx, t.id, k, v);
+  const r = gate(fx, t.id, { pending: "record", missing: [{ wo: "P1", why: "no baseline" }, { wo: "P2", why: "interaction script changed since the baseline" }], attempt: 1, durationMs: 4 });
+  assert.equal(r.ok, false);
+  assert.match(r.anomalies[0].what, /pending record: 2 pages/);
+  assert.equal(issue(fx, t.id).status, "in_review", "not closed");
+  assert.equal(meta(fx, t.id).advanced, undefined, "not marked advanced: a later --regate can still be advanced");
+  assert.ok(!issue(fx, t.id).comments.some((c) => /已回退|reverted/.test(c.content)), "no revert");
+});
