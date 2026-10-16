@@ -6,6 +6,9 @@
 //   3. every component / directive the templates resolve by name is imported or registered globally (registry.globals);
 //   4. a page or segment order changes nothing outside its own files (legacy/, shared/, api/, utils/, package.json, lock
 //      files, other pages) — judged from git in the hmrsfw-vue checkout against origin/integration (or origin/main).
+//      On a branch several page orders share (HMRSFW_SHARED_BRANCH=1, set by the gate for fast-lane tasks: every fix lands
+//      on `restore/fast-lane` itself), a file another page owns is that page's change, not this order's, when every commit
+//      since the base that touches it touches only files other pages own and does not name this order (otherPagesOnly).
 // Items that only differ in form from the registry (a barrel re-exporting the same symbol, a duplicate API file, a POC
 // wrapper around an npm package, a function named like a public one) are reported with severity "warn" and do not fail.
 // Usage: node tools/check-imports.mjs <order id> --app <hmrsfw-vue>   → JSON {pass, failed:[{check, where, hint, severity?}]}
@@ -67,8 +70,47 @@ function changedFiles(APP) {
     const mb = git("merge-base", "HEAD", base);
     const committed = git("diff", "--name-only", `${mb}...HEAD`).split("\n").filter(Boolean);
     const work = git("status", "--porcelain", "--untracked-files=all").split("\n").filter(Boolean).map((l) => l.slice(3).replace(/^.* -> /, ""));
-    return { files: [...new Set([...committed, ...work])], base };
+    return { files: [...new Set([...committed, ...work])], base, mb, work: new Set(work) };
   } catch { return { files: null, base: null }; }
+}
+
+// page id owning a file (target or subComponentDir of a page / segment order; segments count as their page), or null
+export function pageOwners(queueDir = path.join(ROOT, "queue")) {
+  const files = new Map(), dirs = [];
+  for (const n of readdirSync(queueDir).filter((f) => /^(page|seg)\..*\.json$/.test(f))) {
+    const o = JSON.parse(readFileSync(path.join(queueDir, n), "utf8")); const page = o.type === "segment" ? o.page : o.id;
+    if (!page) continue;
+    if (o.target) files.set(o.target, page);
+    if (o.subComponentDir) dirs.push([o.subComponentDir.replace(/\/?$/, "/"), page]);
+  }
+  dirs.sort((a, b) => b[0].length - a[0].length);
+  return (p) => files.get(p) ?? dirs.find(([d]) => p.startsWith(d))?.[1] ?? null;
+}
+
+// Rule 4 on a shared branch: of the changed files outside this order, those that are another page's own change → Map(file →
+// owning page). A file qualifies only if it is not in the working tree, at least one commit in mb..HEAD touches it, and every
+// such commit is attributable to other pages: every file it touches (renames as delete + add) is owned by a
+// page other than this one, and its message does not name this order or its page; with any merge in mb..HEAD nothing
+// qualifies. Everything else stays this order's.
+export function otherPagesOnly(APP, { mb, files, work, me, mine, owner = pageOwners() }) {
+  const git = (...a) => execFileSync("git", ["-C", APP, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], maxBuffer: 64 << 20 });
+  const ids = [...new Set(me)].filter(Boolean);
+  const names = (msg) => { const t = new Set(msg.split(/[^\w.-]+/).map((w) => w.replace(/\.+$/, ""))); return ids.some((id) => t.has(id)); };
+  const commits = [];
+  if (git("rev-list", "--merges", "-n", "1", `${mb}..HEAD`).trim()) return new Map(); // a merge's own changes are not listed per commit
+  for (const rec of git("log", "--no-renames", "--name-only", "--format=%x00%H%x01%B%x01", `${mb}..HEAD`).split("\0").slice(1)) {
+    const [, msg, rest = ""] = rec.split("\x01");
+    const touched = rest.split("\n").filter(Boolean);
+    const others = touched.length > 0 && !names(msg) && touched.every((p) => !mine(p) && owner(p) && !ids.includes(owner(p)));
+    commits.push({ touched: new Set(touched), others });
+  }
+  const out = new Map();
+  for (const p of files) {
+    if (mine(p) || work.has(p) || !owner(p) || ids.includes(owner(p))) continue;
+    const by = commits.filter((c) => c.touched.has(p));
+    if (by.length && by.every((c) => c.others)) out.set(p, owner(p));
+  }
+  return out;
 }
 
 export function checkImports(order, APP, { files = orderFiles(order, APP), maps = order.maps ? loadJson(order.maps) : null, reg = loadRegistry(order.app), allTargets = null } = {}) {
@@ -172,11 +214,13 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
 
   // rule 4: what the branch changed in hmrsfw-vue
   if (pageOrder || order.type === "shared") {
-    const { files: changed, base } = changedFiles(APP); stats.gitBase = base;
+    const { files: changed, base, mb, work } = changedFiles(APP); stats.gitBase = base;
     if (changed) {
       const mine = (p) => (order.target && p === order.target) || (order.subComponentDir && p.startsWith(order.subComponentDir)) || files.some((f) => rel(f) === p);
+      const others = pageOrder && process.env.HMRSFW_SHARED_BRANCH === "1" ? otherPagesOnly(APP, { mb, files: changed, work, me: [order.id, order.page], mine }) : new Map();
+      if (others.size) stats.otherPages = Object.fromEntries(others);
       for (const p of changed) {
-        if (mine(p)) continue;
+        if (mine(p) || others.has(p)) continue;
         if (order.type === "shared" && (p.startsWith(`apps/${order.app}/src/shared/`) || p.startsWith(`apps/${order.app}/public/`))) continue;
         failed.push({ check: "imports", where: p, hint: `本单不能修改 ${p}${/\/(legacy|shared|api|utils)\/|package(-lock)?\.json$/.test(p) ? "（公共库文件只由入口包、共享组件工单修改）" : ""}：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton` });
       }
