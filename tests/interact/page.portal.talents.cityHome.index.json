@@ -1,0 +1,9 @@
+[
+  {"wait":1000},
+  {"clickSel":".idotList .li-item:nth-child(2)","optional":true},
+  {"wait":500},
+  {"clickSel":".idotList .li-item:nth-child(1)","optional":true},
+  {"wait":500},
+  {"clickSel":".card3","optional":true},
+  {"wait":800}
+]
