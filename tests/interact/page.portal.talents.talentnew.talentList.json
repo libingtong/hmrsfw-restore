@@ -1,0 +1,9 @@
+[
+  {"fill":["请输入求职意向关键字进行查询","测试"]},
+  {"click":"搜索"},
+  {"wait":500},
+  {"click":"重置"},
+  {"wait":500},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true}
+]
