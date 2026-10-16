@@ -1,0 +1,6 @@
+[
+  {"clickSel":".swiper-button-next","optional":true},
+  {"clickSel":".swiper-button-next1","optional":true},
+  {"click":"查看更多"},
+  {"wait":800}
+]
