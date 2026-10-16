@@ -4,6 +4,7 @@
 //   queue/routes.json        in-scope routes → order (input of check-coverage.mjs), plus the routes blocked up front
 //   queue/summary.json       counts, size bands (30–60KB pages), comparison with batch-plan.md §6.3
 //   queue/roles.json         identity (role) of every page order and why (uc-roles.mjs); undecided ones with the reason
+//   queue/data-needs.json    test data to create once all pages are recorded (D7): pages recorded with a stand-in identity
 //   out/maps/<id>.json       per-order import map, generated from registry/<app>.json (same symbol → same path everywhere)
 //   out/hints/<id>.md        per-order import hint sheet (definition snippets)
 // Pages already accepted in hmrsfw-vue (its router.ts) get status "regression": no restore order is dispatched for them.
@@ -147,7 +148,7 @@ export function buildOrders(APP) {
       if (via) { o.recordPath = via.recordPath; o.recordVia = via.id; }
     }
     // identity to record with: portal needs none; user center by route and chunk, undecided → null + notes (never guessed)
-    if (site === "usercenter") for (const [id, r] of ucRoles(siteOrders.filter((x) => x.type === "page"))) { const o = siteOrders.find((x) => x.id === id); o.role = r.role; if (!r.role) o.notes = r.notes; roles[id] = r; }
+    if (site === "usercenter") for (const [id, r] of ucRoles(siteOrders.filter((x) => x.type === "page"))) { const o = siteOrders.find((x) => x.id === id); o.role = r.role; if (r.notes) o.notes = r.notes; roles[id] = r; }
     else for (const o of siteOrders) if (o.type === "page") roles[o.id] = { role: "general", by: "门户不需要身份" };
     for (const b of scope.blocked) blockedRoutes.push({ site, app, route: b.route, component: b.component, reason: b.reason });
 
@@ -281,6 +282,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     writeFileSync(path.join(q, "routes.json"), JSON.stringify({ routes, blocked: blockedRoutes }, null, 1) + "\n");
     writeFileSync(path.join(q, "summary.json"), JSON.stringify(summary, null, 1) + "\n");
     writeFileSync(path.join(q, "roles.json"), JSON.stringify(roles, null, 1) + "\n");
+    const needs = orders.filter((o) => roles[o.id]?.dataNeed).map((o) => ({ id: o.id, recordPath: o.recordPath, role: o.role, limit: roles[o.id].limit, need: roles[o.id].dataNeed }));
+    writeFileSync(path.join(q, "data-needs.json"), JSON.stringify({ _source: "造数需求清单（D7）：按代替身份录制、录出来可能是空状态或没有权限的页面，录完全部页面后统一交人造数，造好后重录（uc-role-decisions.json 的 dataNeed）", pages: needs }, null, 1) + "\n");
   }
   console.log(JSON.stringify(summary.totals));
   for (const [site, s] of Object.entries(summary.sites)) console.log(site, JSON.stringify({ pages: s.pages, accepted: s.accepted, pageOrders: s.pageOrders, segmented: s.segmentedPages.length, segments: s.segments, bands: s.sizeBands, shared: s.shared, sharedTodo: s.sharedTodo, modules: s.sharedModulesOrders, entry: s.entry }));

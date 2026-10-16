@@ -1,7 +1,7 @@
 // node --test tools/test/uc-roles.test.mjs
 // Arbiter decisions (tools/uc-role-decisions.json, HM-227) in ucRoles() on the real user-center page orders: every cited
-// evidence location exists in legacy-dist, a decided page gets its role, a pending page stays null with the question in
-// its notes, and a decision never replaces a role the automatic rules found.
+// evidence location exists in legacy-dist, a decided page gets its role (its limit and data need in its notes), a pending
+// page stays null with the question in its notes, and a decision never replaces a role the automatic rules found.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
@@ -24,11 +24,17 @@ test("every evidence location exists in legacy-dist", () => {
   }
 });
 
-test("decided → role, pending → null with the question, rule roles kept", () => {
+test("decided → role (+ limit / data need in notes), pending → null with the question, rule roles kept", () => {
   const roles = ucRoles(pages);
   for (const o of pages) {
     const p = staticPart(o.recordPath), r = roles.get(o.id);
     if (D.decided[p]) assert.ok(r.role && (r.role === D.decided[p].role || !r.by.startsWith("裁定")), `${o.id}: ${JSON.stringify(r)}`);
+    if (D.decided[p] && r.by.startsWith("裁定")) {
+      const { limit, dataNeed } = D.decided[p];
+      for (const t of [limit, dataNeed].filter(Boolean)) assert.ok(r.notes?.includes(t), `${o.id}: notes miss ${t}`);
+      if (dataNeed) assert.ok(r.notes.includes("需造数") && r.dataNeed === dataNeed, `${o.id}: ${JSON.stringify(r)}`);
+      if (!limit && !dataNeed) assert.equal(r.notes, undefined, o.id);
+    }
     if (D.pending[p]) assert.ok(r.role === null ? r.notes.includes("需要确认") : !r.by.startsWith("裁定"), `${o.id}: ${JSON.stringify(r)}`);
   }
   const paths = new Set(pages.map((o) => staticPart(o.recordPath)));
