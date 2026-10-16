@@ -1,0 +1,7 @@
+[
+  {"fill":["请输入单位/职位名称或关键字进行查询","测试"]},
+  {"click":"搜索","wait":1500},
+  {"clickSel":".resetBtn","optional":true,"wait":1500},
+  {"click":"超市介绍","wait":1000},
+  {"click":"招聘职位","wait":1000}
+]
