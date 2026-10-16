@@ -1,0 +1,5 @@
+[
+  {"clickSel":".u-blue.pointer","optional":true},
+  {"clickSel":".pointer.u-6","optional":true},
+  {"wait":800}
+]
