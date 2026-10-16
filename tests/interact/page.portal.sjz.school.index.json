@@ -1,0 +1,8 @@
+[
+  {"clickSel":".sjz-home-newsTitle p:nth-child(2)","optional":true},
+  {"wait":800},
+  {"clickSel":".ant-pagination-simple .ant-pagination-next","optional":true},
+  {"wait":800},
+  {"clickSel":".ant-pagination-simple .ant-pagination-prev","optional":true},
+  {"wait":800}
+]
