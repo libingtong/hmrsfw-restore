@@ -1,5 +1,5 @@
 {
- "_source": "HM-227 裁定员按原 chunk 判定的用户中心页面身份（uc-roles.mjs 自动规则判不出的页面）。decided 写进工单 role；pending 不写，record-page 仍报 need-role-decision，notes 里写建议和需要人确认的事。evidence 为 legacy-dist 中的 文件:行:列。",
+ "_source": "HM-227 裁定员按原 chunk 判定的用户中心页面身份（uc-roles.mjs 自动规则判不出的页面）。decided 写进工单 role；limit（录制覆盖不到的部分）写进工单 notes；dataNeed（造数需求，D7）另汇总进 queue/data-needs.json，录完后统一交人造数；pending 不写，record-page 仍报 need-role-decision，notes 里写建议和需要人确认的事。evidence 为 legacy-dist 中的 文件:行:列。HM-496：剩余 9 页按李炳通授权的建议写入 decided。",
  "decided": {
   "/JobFairRelease": {
    "role": "corp",
@@ -450,81 +450,88 @@
    "evidence": [
     "legacy-dist/usercenter/assets/index.175161560754520.js:1:1324"
    ]
-  }
- },
- "pending": {
+  },
   "/previewresume": {
-   "suggest": "jobseeker 或 corp",
-   "notes": "两种身份都用：求职者从 myresume / lookresume 打开（只带 id，预览自己的简历），招聘单位从 CorpCenter / TalentSearch 等打开（带 firm=firm，按 corpInfo.id 查看投递人简历）",
-   "ask": "录哪一种：求职者预览自己的简历，还是招聘单位查看投递简历（要带 firm、positionId、xfSysUserId 参数）",
+   "role": "jobseeker",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：求职者从 myresume 打开（只带 id，预览自己的简历），不需要额外参数",
+   "limit": "招聘单位从 CorpCenter / TalentSearch 等打开（带 firm=firm、positionId、xfSysUserId，按 corpInfo.id 查看投递人简历）的路径不覆盖",
    "evidence": [
     "legacy-dist/usercenter/assets/myresume.1751615607545.js:1:2991",
     "legacy-dist/usercenter/assets/CorpCenter.1751615607545.js:1:14856"
    ]
   },
   "/changeRole": {
-   "suggest": "general",
-   "notes": "身份切换页，各身份都能进，页面显示「当前身份」，内容随当前身份变",
-   "ask": "按普通用户录是否可以（录出来显示的当前身份是普通用户）",
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：身份切换页，各身份都能进，页面显示「当前身份」，内容随当前身份变",
+   "limit": "录出来显示「当前身份：普通用户」，其他身份下的显示不覆盖",
    "evidence": [
     "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:4011"
    ]
   },
   "/marketCenter": {
-   "suggest": "不录（记阻塞）或 corp",
-   "notes": "「招聘超市」身份（userroledata type 50）的主页，按 corpInfo 单位取数；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到招聘超市",
-   "ask": "给测试账号开通招聘超市身份（造数）后再录，还是按招聘单位身份录，还是记阻塞",
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：「招聘超市」身份（userroledata type 50）的主页，按 corpInfo 单位取数；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到招聘超市，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "给测试账号开通「招聘超市」身份（userroledata type 50，带单位 corpInfo）",
    "evidence": [
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:2781",
     "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
    ]
   },
   "/experthome": {
-   "suggest": "不录（记阻塞）或 general",
-   "notes": "「专家」身份（userroledata type 60）的主页；测试账号没有专家身份",
-   "ask": "开通专家身份后再录，还是按普通用户录（页面只按 xfSysUserId 取数），还是记阻塞",
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：「专家」身份（userroledata type 60）的主页，页面只按 xfSysUserId 取数；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到专家，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "给测试账号开通「专家」身份（userroledata type 60）",
    "evidence": [
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:2851",
     "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
    ]
   },
   "/collage/studentInfo": {
-   "suggest": "不录（记阻塞）或 general",
-   "notes": "「在校生」身份（userroledata type 120）的主页（完善签约信息）；测试账号没有在校生身份",
-   "ask": "开通在校生身份后再录，还是按普通用户录，还是记阻塞",
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：「在校生」身份（userroledata type 120）的主页（完善签约信息）；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到在校生，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "给测试账号开通「在校生」身份（userroledata type 120）并带签约信息",
    "evidence": [
     "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:2487"
    ]
   },
   "/collage/nojob": {
-   "suggest": "不录（记阻塞）或 general",
-   "notes": "在校生的非就业签约，页面链回在校生主页 /collage/studentInfo；测试账号没有在校生身份",
-   "ask": "同 /collage/studentInfo",
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：在校生的非就业签约，页面链回在校生主页 /collage/studentInfo；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到在校生，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "在校生身份（同 /collage/studentInfo）下有非就业签约数据",
    "evidence": [
     "legacy-dist/usercenter/assets/nojob.1751615607545.js:1:10975"
    ]
   },
   "/collage/studentApply": {
-   "suggest": "不录（记阻塞）或 general",
-   "notes": "在校生的签约信息管理，页面链到在校生主页 /collage/studentInfo 和 /collage/nojob；测试账号没有在校生身份",
-   "ask": "同 /collage/studentInfo",
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：在校生的签约信息管理，页面链到 /collage/studentInfo 和 /collage/nojob；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到在校生，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "在校生身份（同 /collage/studentInfo）下有就业 / 非就业签约数据",
    "evidence": [
     "legacy-dist/usercenter/assets/apply.1751615607545.js:168:11650"
    ]
   },
   "/teachIn": {
-   "suggest": "不录（记阻塞）或 general",
-   "notes": "学生侧的宣讲会预约（xf-college careerTalkStudent 接口：签到、取消预约），属于在校生功能；测试账号没有在校生身份",
-   "ask": "同 /collage/studentInfo",
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：学生侧的宣讲会预约（xf-college careerTalkStudent 接口：签到、取消预约），属于在校生功能；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到在校生，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "在校生身份（同 /collage/studentInfo）下有宣讲会预约记录（可签到、可取消预约）",
    "evidence": [
     "legacy-dist/usercenter/assets/index.175161560754515.js:1:5010"
    ]
   },
   "/corpNoJob": {
-   "suggest": "corp",
-   "notes": "非就业签约（单位侧，名称带 corp），页面不读任何身份状态也没有自己的接口，展示学生的报到证、档案去向；没有找到原版里打开它的入口",
-   "ask": "按招聘单位录是否可以，或这一页在哈密不开放、记阻塞",
+   "role": "corp",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：非就业签约（单位侧，名称带 corp），页面不读任何身份状态也没有自己的接口，展示学生的报到证、档案去向，按招聘单位录",
+   "limit": "原版里没有找到打开它的入口",
    "evidence": [
     "legacy-dist/usercenter/assets/nojob.17516156075452.js:1:1406"
    ]
   }
- }
+ },
+ "pending": {}
 }
