@@ -1,0 +1,1 @@
+[{"wait":1500},{"clickSel":".resumeMatchAnalysisReport .btn:nth-child(2)","optional":true},{"wait":1000},{"clickSel":".resumeMatchAnalysisReport .btn:nth-child(3)","optional":true},{"wait":1000}]
