@@ -1,0 +1,8 @@
+[
+  {"fill":["输入课程名称点击搜索","测试"]},
+  {"click":"搜索"},
+  {"click":"重置"},
+  {"clickSel":".zbItem","optional":true},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true}
+]
