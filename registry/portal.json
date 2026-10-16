@@ -5515,11 +5515,17 @@
    "$setCorp",
    "$setUser"
   ],
+  "unregistered": {
+   "Video": [
+    "ProbationBaseDetail.1783320636200.js"
+   ]
+  },
   "notes": [
    "ant-design-vue 由 app.use 全量注册（a-* 组件）",
    "@ant-design/icons-vue 图标全量注册",
    "swiper/vue 的 Swiper、SwiperSlide 由入口全局注册",
-   "vue-baidu-map-3x（baidu-map、bm-*）由入口在取到 ak 后注册"
+   "vue-baidu-map-3x（baidu-map、bm-*）由入口在取到 ak 后注册",
+   "unregistered：原包按名字解析（resolveComponent）但没有任何注册的组件，运行时按未知元素渲染；只在列出的 chunk 对应的页面里放行同名标签"
   ]
  },
  "npm": {

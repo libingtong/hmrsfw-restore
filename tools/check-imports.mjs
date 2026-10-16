@@ -4,6 +4,8 @@
 //   2. a page does not redefine a public symbol: no top-level declaration named like a registry export, no request to a
 //      url that a registry function already wraps;
 //   3. every component / directive the templates resolve by name is imported or registered globally (registry.globals);
+//      a name the original chunk itself resolves without any registration (registry.globals.unregistered lists it for
+//      that chunk) is rendered as an unknown element there, and the same tag in the restored template is the same call;
 //   4. a page or segment order changes nothing outside its own files (legacy/, shared/, api/, utils/, package.json, lock
 //      files, other pages) — judged from git in the hmrsfw-vue checkout against origin/integration (or origin/main).
 // Items that only differ in form from the registry (a barrel re-exporting the same symbol, a duplicate API file, a POC
@@ -96,6 +98,7 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
   const dupApi = new Map(Object.values(reg.apiModules ?? {}).flatMap((m) => (m.duplicates ?? []).map((d) => [normSpec(d), m.path])));
   const warn = (where, hint) => failed.push({ check: "imports", where, hint, severity: "warn" });
   const origSrc = order.sourceChunk ? chunkSource(order.site, order.sourceChunk.split("/").pop()) ?? "" : "";
+  const unregistered = (n) => !!order.sourceChunk && (reg.globals.unregistered?.[n] ?? []).includes(order.sourceChunk.split("/").pop());
 
   for (const f of files) {
     const local = new Set(); const imported = new Set(); const bound = new Set(); // bound: every top-level name (template may use it as a component)
@@ -164,7 +167,7 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
       const c = compileSfc(sfc, f);
       if (c.errors.length) continue; // compile errors are reported by the compile check
       const facts = renderFacts(c.code, compiledNameOf);
-      const ok = (n) => VUE_BUILTIN_COMPONENTS.has(n) || reg.globals.components.includes(n) || reg.globals.components.includes(camel(n)) || reg.globals.componentPatterns.some((p) => new RegExp(p).test(n)) || [...imported, ...local, ...bound].some((l) => l === n || l === pascal(n) || l === camel(n));
+      const ok = (n) => VUE_BUILTIN_COMPONENTS.has(n) || reg.globals.components.includes(n) || reg.globals.components.includes(camel(n)) || reg.globals.componentPatterns.some((p) => new RegExp(p).test(n)) || unregistered(n) || [...imported, ...local, ...bound].some((l) => l === n || l === pascal(n) || l === camel(n));
       for (const n of new Set(facts.components)) if (!ok(n)) failed.push({ check: "imports", where: rel(f), hint: `模板用到组件 <${n}>，但既没有导入也不是全局组件（清单 globals）：按 maps 导入它；如果原包里它是全局组件而清单没有，写进回执 needsFromSkeleton` });
       for (const n of new Set(facts.directiveNames)) if (!reg.globals.directives.includes(n) && ![...local, ...imported, ...bound].includes(`v${pascal(camel(n))}`)) failed.push({ check: "imports", where: rel(f), hint: `模板用到指令 v-${n}，它不是全局指令（清单 globals.directives：${reg.globals.directives.join("、")}）` });
     }
