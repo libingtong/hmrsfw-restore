@@ -1,0 +1,10 @@
+[
+  {"click":"换一批"},
+  {"wait":500},
+  {"click":"换一批"},
+  {"wait":500},
+  {"clickSel":"img[alt=\"下一页\"]","optional":true},
+  {"wait":500},
+  {"clickSel":"img[alt=\"上一页\"]","optional":true},
+  {"wait":500}
+]
