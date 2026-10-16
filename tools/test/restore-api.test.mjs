@@ -9,7 +9,7 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseApiChunk, nameFromUrl } from "../restore-api.mjs";
+import { parseApiChunk, nameFromUrl, copySource } from "../restore-api.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const HEADER = 'headers:{"Content-Type":"application/json; application/octet-stream"}';
@@ -104,16 +104,23 @@ test("not a namespace copy: a non-function member, an unexported copy, a helper 
   assert.deepEqual(parseApiChunk(nsChunk("getCompanyInfo:a", { copy: "d({},b)" })).copies, []);
 });
 
-test("CLI on the real portal chunk behind api-117.ts adds `o` after the 22 functions, with the original keys", () => {
+test("CLI on the real portal chunk behind api-117.ts adds `o` after the 22 functions, with the original keys, under its business name (names.portal.json)", () => {
   const dir = mkdtempSync(path.join(os.tmpdir(), "restore-api-"));
   try {
     const out = path.join(dir, "api-117.ts");
     execFileSync(process.execPath, [path.join(ROOT, "tools/restore-api.mjs"), "portal", "index.1783320636200117.js", out], { cwd: ROOT, stdio: "pipe" });
     const ts = readFileSync(out, "utf8");
     assert.equal((ts.match(/^export const /gm) ?? []).length, 23);
-    assert.ok(ts.trimEnd().endsWith("/** 原压缩名 _，导出名 o */\nexport const o = { getCompanyInfo, getRecommendTalentList, izAlreadySubmitCompany, queryCompanyInfo, submitNewGuideCompanyInfo, verifyCompanyInfo };"));
-    assert.equal(JSON.parse(readFileSync(out.replace(/\.ts$/, ".map.json"), "utf8")).o, "o");
+    assert.ok(ts.trimEnd().endsWith("/** 原压缩名 _，导出名 o */\nexport const jobCompanyApi = { getCompanyInfo, getRecommendTalentList, izAlreadySubmitCompany, queryCompanyInfo, submitNewGuideCompanyInfo, verifyCompanyInfo };"));
+    assert.equal(JSON.parse(readFileSync(out.replace(/\.ts$/, ".map.json"), "utf8")).o, "jobCompanyApi");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test("a namespace copy is exported under the registry's business name; the comment keeps the original export name", () => {
+  const [c] = parseApiChunk(nsChunk("getCompanyInfo:a,queryCompanyInfo:s")).copies;
+  const ts = copySource(c, "", "jobCompanyApi");
+  assert.match(ts, /\/\*\* 原压缩名 _，导出名 o \*\/\nexport const jobCompanyApi = \{ getCompanyInfo, queryCompanyInfo \};$/);
+  assert.match(copySource(c), /export const o = \{/, "without a name: the original export name");
 });

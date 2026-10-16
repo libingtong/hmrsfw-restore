@@ -1,6 +1,6 @@
 // Turn an index.api.*.js chunk into a readable TS module. Usage: node tools/restore-api.mjs <site> <chunk> <outTs>
 // parseApiChunk() is shared with registry.mjs, so the registry's function names are the ones this script writes.
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { parse } from "@babel/parser";
@@ -51,7 +51,8 @@ export function parseApiChunk(src) {
 // The copy has the namespace's enumerable string keys (toStringTag is not enumerable) bound to the same functions, so
 // `export const o = { getCompanyInfo, … }` over the restored functions is the same object. Only exported copies count.
 // the TS for one namespace copy; also appended by registry-cleanup.mjs to an API file that lacks it
-export const copySource = (c, tag = "") => `// 原包 \`${c.local}=${c.def}\`：本模块 ${c.members.length} 个接口函数的命名空间对象 ${c.namespace} 的浅拷贝，键名是原包的键名\n/** 原压缩名 ${c.local}，导出名 ${c.exported}${tag} */\nexport const ${c.exported} = { ${c.members.map((m) => (m.key === m.name ? m.key : `${m.key}: ${m.name}`)).join(", ")} };`;
+// `name`: the export name the registry gives it (the business name, HM-19); the comment keeps the original export name
+export const copySource = (c, tag = "", name = c.exported) => `// 原包 \`${c.local}=${c.def}\`：本模块 ${c.members.length} 个接口函数的命名空间对象 ${c.namespace} 的浅拷贝，键名是原包的键名\n/** 原压缩名 ${c.local}，导出名 ${c.exported}${tag} */\nexport const ${name} = { ${c.members.map((m) => (m.key === m.name ? m.key : `${m.key}: ${m.name}`)).join(", ")} };`;
 
 function namespaceCopies(ast, src, fns, exp) {
   // binding → its value: `const x=…`, or `x=…` assigned to a `let` (the top-level-await wrapper declares the module's
@@ -99,10 +100,14 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   const [site, chunk, outTs] = process.argv.slice(2);
   const dir = site === "portal" ? "legacy-dist/portal" : "legacy-dist/usercenter";
   const { fns, copies, exportCount } = parseApiChunk(readFileSync(path.join(dir, "assets", chunk), "utf8"));
+  // business names of the non-function exports (registry/names.<app>.json, HM-19), as registry.mjs reads them
+  const namesPath = new URL(`../registry/names.${site === "portal" ? "portal" : "uc"}.json`, import.meta.url);
+  const chunkNames = existsSync(namesPath) ? JSON.parse(readFileSync(namesPath, "utf8")).chunks?.[chunk] ?? {} : {};
+  const copyName = (c) => chunkNames[c.exported]?.export ?? c.exported;
   const ts = [`// 由 ${chunk} 还原（脚本生成）。request 的用法与原包一致：request({ url, method, params | data })。`, `import { request } from "@/utils/request";`, "",
     ...fns.map((f) => `/** 原压缩名 ${f.local}${f.exported ? `，导出名 ${f.exported}` : ""} */\nexport const ${f.name} = (${f.params || ""}) => request(${f.cfg});`),
-    ...copies.map((c) => copySource(c))].join("\n");
+    ...copies.map((c) => copySource(c, "", copyName(c)))].join("\n");
   writeFileSync(outTs, ts + "\n");
-  writeFileSync(outTs.replace(/\.ts$/, ".map.json"), JSON.stringify(Object.fromEntries([...fns.map((f) => [f.exported ?? f.local, f.name]), ...copies.map((c) => [c.exported, c.exported])]), null, 2));
+  writeFileSync(outTs.replace(/\.ts$/, ".map.json"), JSON.stringify(Object.fromEntries([...fns.map((f) => [f.exported ?? f.local, f.name]), ...copies.map((c) => [c.exported, copyName(c)])]), null, 2));
   console.log(outTs, fns.length, "functions,", copies.length, "namespace copies; exports in chunk:", exportCount);
 }
