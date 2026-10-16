@@ -83,6 +83,14 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
   const views = new Map(Object.values(maps?.views ?? {}).filter((v) => v.path).map((v) => [normSpec(v.path), v]));
   allTargets ??= new Map(readdirSync(path.join(ROOT, "queue")).filter((f) => /^(page|seg)\./.test(f)).map((f) => JSON.parse(readFileSync(path.join(ROOT, "queue", f), "utf8"))).filter((o) => o.target).map((o) => [path.resolve(APP, o.target), o.id]));
   const pageOrder = order.type === "page" || order.type === "segment";
+  // a segment's fragments are pasted as they are into the assembled SFC (assemble-segments.mjs), so a relative import in
+  // <subComponentDir>_seg/<Comp>.script.ts is written — and resolved here — from the assembled file's directory; and a
+  // segment's own files are its page's (the same set rule 4's mine() allows), including what the other segments deliver
+  const page = order.type === "segment" ? (() => { try { return loadOrder(order.page); } catch { return null; } })() : null;
+  const segDir = page ? path.resolve(APP, page.subComponentDir, "_seg") + path.sep : null;
+  const assembledOf = (name) => path.resolve(APP, name === page.components.at(-1)?.name ? page.target : `${page.subComponentDir}${name}.vue`);
+  const importDir = (f) => segDir && f.startsWith(segDir) && f.endsWith(".script.ts") ? path.dirname(assembledOf(path.basename(f, ".script.ts"))) : path.dirname(f);
+  if (page) for (const f of [...orderFiles(page, APP), ...(page.components ?? []).map((c) => assembledOf(c.name))]) own.add(path.resolve(f));
   // hmrsfw-vue as it is: barrels that re-export a registry symbol, duplicate API files, POC wrappers around npm packages
   const appIdx = appExportIndex(APP, order.app);
   const dupApi = new Map(Object.values(reg.apiModules ?? {}).flatMap((m) => (m.duplicates ?? []).map((d) => [normSpec(d), m.path])));
@@ -100,7 +108,7 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
           names.forEach((x) => imported.add(x.local));
           if (n.importKind === "type") continue;
           if (spec.startsWith(".")) {
-            const target = path.resolve(path.dirname(f), spec); const cands = [target, `${target}.ts`, `${target}.vue`, path.join(target, "index.ts")];
+            const target = path.resolve(importDir(path.resolve(f)), spec); const cands = [target, `${target}.ts`, `${target}.vue`, path.join(target, "index.ts")];
             const hit = cands.find((c) => own.has(c)) ?? cands.find((c) => existsSync(c));
             if (!hit) { failed.push({ check: "imports", where: rel(f), hint: `相对导入 "${spec}" 找不到文件` }); continue; }
             if (own.has(hit) || ownAsset(hit)) continue;

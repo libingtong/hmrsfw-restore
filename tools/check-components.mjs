@@ -13,8 +13,11 @@ import { appDir } from "./app-dir.mjs";
 export function checkComponents(order, APP, { files = orderFiles(order, APP) } = {}) {
   APP = path.resolve(APP);
   const failed = []; const vue = files.filter((f) => f.endsWith(".vue"));
-  const expected = order.type === "segment" && !order.assemble ? order.components : order.components ?? [];
-  if (order.target && !existsSync(path.join(APP, order.target)) && (order.type !== "segment" || order.assemble || expected.some((c) => c.name === order.components?.at?.(-1)?.name)))
+  const expected = order.components ?? [];
+  // a non-assembling segment delivers the target only when it holds the page's main component (the last component of the
+  // page order, not of the segment); otherwise the target is another segment's output
+  const mainName = order.type === "segment" && !order.assemble ? pageMain(order) : null;
+  if (order.target && !existsSync(path.join(APP, order.target)) && (order.type !== "segment" || order.assemble || expected.some((c) => c.name === mainName)))
     failed.push({ check: "components", where: order.target, hint: `目标文件 ${order.target} 不存在：主组件必须写到工单 target 指定的路径` });
   if (order.type === "segment" && !order.assemble) {
     for (const out of order.outputs ?? []) if (!existsSync(path.join(APP, out))) failed.push({ check: "components", where: out, hint: `本分段要交付 ${out}，文件不存在` });
@@ -27,6 +30,8 @@ export function checkComponents(order, APP, { files = orderFiles(order, APP) } =
   }
   return { failed, stats: { expected: expected.length, delivered: vue.length } };
 }
+
+function pageMain(order) { try { return loadOrder(order.page).components?.at(-1)?.name ?? null; } catch { return null; } }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const id = process.argv.slice(2).find((a, i, all) => !a.startsWith("--") && all[i - 1] !== "--app");

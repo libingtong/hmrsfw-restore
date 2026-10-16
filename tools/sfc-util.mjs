@@ -76,7 +76,9 @@ export function renderFacts(code, nameOf, { range = null, plugins = [] } = {}) {
   const isTrue = (n) => n?.type === "BooleanLiteral" ? n.value : n?.type === "UnaryExpression" && n.operator === "!" && n.argument.type === "NumericLiteral" ? n.argument.value === 0 : false;
   const isFalse = (n) => n?.type === "BooleanLiteral" ? !n.value : n?.type === "UnaryExpression" && n.operator === "!" && n.argument.type === "NumericLiteral" ? n.argument.value !== 0 : false;
   const dirVars = new Map(); // local var → custom directive name (from resolveDirective("x"))
-  const inRange = (n) => !range || (n.start >= range[0] && n.end <= range[1]);
+  // range: [s, e] or a list of them (a segment's factRanges); a call counts when it lies inside one of them
+  const ranges = !range ? null : !range.length || Array.isArray(range[0]) ? range : [range];
+  const inRange = (n) => !ranges || ranges.some(([s, e]) => n.start >= s && n.end <= e);
   const strParts = (n) => {
     if (!n) return [];
     if (n.type === "StringLiteral") return [n.value];

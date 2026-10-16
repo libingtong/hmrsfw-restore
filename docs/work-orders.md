@@ -85,7 +85,8 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | 字段 | 内容 |
 | --- | --- |
 | `page` / `index` / `of` | 所属页面工单和段号 |
-| `range` | 本段负责的原 chunk 字节区间 |
+| `range` | 本段负责的原 chunk 区间，单位是字符：JS 字符串下标（UTF-16 码元，即 Babel 的 `start`/`end`），左闭右开；chunk 含中文时它和字节偏移不同，按字节切会切错位置 |
+| `factRanges` | 本段要还原的渲染调用所在的区间（`check-text-nodes`、`check-directives` 只查这些区间里的静态文本、指令和分支）：整组件是它的整个区间；`template` 部分是该组件定义之前的提升代码（`_withScopeId` 包装、提升的静态 vnode）加渲染函数；`script` 部分没有 |
 | `components` | 本段完整还原的组件 |
 | `parts` | 超过 30KB 的单个组件拆成 `script`（setup 函数体）和 `template`（渲染函数）两部分，写到 `<subComponentDir>_seg/<组件>.script.ts` / `.template.html` |
 | `outputs` | 本段要交付的文件 |
@@ -93,7 +94,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `instructions` | 给还原员的中文说明 |
 | 其余 | `target`、`subComponentDir`、`routes`、`recordPath`、`role`、`notes`、`maps`、`hints`、`deps` 同所属页面 |
 
-分段规则（`tools/segments.mjs`）：段数 `ceil(kb / 30)`；先按组件边界把整组件按源码顺序分进各段，使最大的一段尽量小；单个组件超过 30KB 的，拆成 script / template 两部分。主组件在 chunk 末尾，所以总在最后一段。21 段中只有 CorpAttestation 的 script 部分（31.2KB）略超 30KB。
+分段规则（`tools/segments.mjs`）：段数 `ceil(kb / 30)`；先按组件边界把整组件按源码顺序分进各段，使最大的一段尽量小；单个组件超过 30KB 的，拆成 script / template 两部分。组件的区间从上一个组件的定义结束处起算，所以组件定义之前的 `_withScopeId` 包装和提升的静态 vnode 归它自己（上一个组件的 `_export_sfc` 包装也落在这里，它不含渲染调用）。主组件在 chunk 末尾，所以总在最后一段。21 段中只有 CorpAttestation 的 script 部分（31.2KB）略超 30KB。
 
 **shared**：`target`（单组件为 `.vue`；多组件 chunk 每个组件一个 `.vue` 放在 `subComponentDir`，非组件导出放同名 `.ts`）、`exports`（原导出名 → 清单导出）、`registryKey`、`usedBy`（依赖它的页面工单，公共库回归用）、`bundled`。`subtype: "modules"` 的小模块单列出 `chunks`（每个 chunk 对应的文件和导出）和 `files`。
 
