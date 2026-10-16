@@ -1,0 +1,7 @@
+[
+  {"clickSel":".submit:not(.marR10)","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-radio-wrapper","optional":true},
+  {"clickSel":".ant-checkbox-wrapper","optional":true},
+  {"clickSel":".submit.marR10","optional":true}
+]
