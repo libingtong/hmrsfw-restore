@@ -260,7 +260,8 @@ function regressDiff(out, state, dry) {
 // Metadata gate.<attempt> + one [GATE] comment (no page text, only checks, element paths and API paths).
 function report(task, attempt, out, ids) {
   // page-level failures first: hundreds of app-wide zero-reference hits must not push them out of the 30 kept
-  const ordered = [...out.failed.filter((f) => f.wo), ...out.failed.filter((f) => !f.wo)];
+  const failed = out.failed ?? []; // {pending: "record"} carries no failed list
+  const ordered = [...failed.filter((f) => f.wo), ...failed.filter((f) => !f.wo)];
   const slim = out.pending === "record" ? out : { ...out, failed: ordered.slice(0, 30).map((f) => ({ ...f, hint: String(f.hint ?? "").slice(0, 200) })), pages: out.pages.map((p) => ({ wo: p.wo, pass: p.pass, stage: p.stage, pixel: p.pixel })) };
   try { multica(["issue", "metadata", "set", task, "--key", `gate.${attempt}`, "--value", JSON.stringify(slim)]); } catch (e) { process.stderr.write("metadata write failed: " + e.message + "\n"); }
   const secs = (ms) => (ms / 1000).toFixed(1) + "s";
