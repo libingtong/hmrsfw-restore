@@ -28,7 +28,7 @@
   }
  ],
  "recordPath": "/changeRole",
- "role": null,
+ "role": "general",
  "maps": "out/maps/page.uc.changeRole.json",
  "hints": "out/hints/page.uc.changeRole.md",
  "deps": {
@@ -50,5 +50,5 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "notes": "待人确认（uc-role-decisions.json）：身份切换页，各身份都能进，页面显示「当前身份」，内容随当前身份变；建议 general；需要确认：按普通用户录是否可以（录出来显示的当前身份是普通用户）"
+ "notes": "裁定（uc-role-decisions.json）。局限：录出来显示「当前身份：普通用户」，其他身份下的显示不覆盖"
 }
