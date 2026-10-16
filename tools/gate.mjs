@@ -12,6 +12,7 @@
 // Options: --build ondemand|full (page mode; full = single-page `vite build`, for consistency checks)
 //          --from build (with --dry-run only): diagnostic, keep going after static failures
 //          --registry <file> (default registry/<app>.json), --keep (keep the gate dir even when passing)
+//          --fast-lane (implied by task metadata fastLane: true): the branch is shared by many page orders (HM-526)
 // Output: one JSON line on stdout:
 //   {pass, failed:[{check, where, hint, wo?}], stage, diff, shimmed:[…], durationMs, stages:{static, build, browser},
 //    pages:[{wo, pass, stage, failed, pixel}], mode, attempt}
@@ -122,6 +123,10 @@ export async function gate(argv) {
     const baseApp = resolveAppDir(argv);
     if (branch && !flag(argv, "--no-checkout")) { app = checkoutBranch(baseApp, branch, gateDir); closers.push(app.cleanup); out.commit = app.sha; }
     const appDir = app?.dir ?? baseApp;
+    // Fast-lane pages (HM-48) share one branch, `restore/fast-lane`, and their fixes land on it directly: rule 4 of
+    // check-imports attributes each commit to the page whose files it touches instead of charging this page with all of them
+    // (HM-526). Inherited by the self-check child processes.
+    if (app && (flag(argv, "--fast-lane") || [true, "true"].includes(meta.fastLane))) process.env.HMRSFW_SHARED_BRANCH = "1";
     const noKeys = missingCryptoEnv(appDir);
     if (noKeys.length) throw new Error(`crypto keys missing for the restored app: ${noKeys.join(", ")} (set them in the gate's environment; docs/gate.md)`);
     const rules = loadRules();
