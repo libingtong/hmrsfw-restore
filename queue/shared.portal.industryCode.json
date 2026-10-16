@@ -19,7 +19,8 @@
  "target": "apps/portal/src/shared/industryCode.vue",
  "exports": {
   "i": {
-   "export": "default"
+   "export": "default",
+   "original": "industryCode.1783320636200.js#i"
   }
  },
  "registryKey": "industryCode.1783320636200.js",

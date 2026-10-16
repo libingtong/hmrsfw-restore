@@ -25,6 +25,8 @@
 
 `receipts/`、`tests/interact/` 由阶段 2 的其他子任务按第十二节建立。
 
+**交互脚本 → E2E**：`tests/interact/<工单id>.json` 是录制员写的脚本；`hmrsfw-vue` 自己的 E2E（`npm run e2e`，见该仓库 `e2e/README.md`、`docs/graduation.md`）跑的是 `e2e/cases/<id>.json`。录制员新增或改了脚本以后，跑一次 `node tools/interact-to-e2e.mjs --app <hmrsfw-vue 检出目录>` 同步过去（重复运行结果不变；`--check` 只检查是否同步，`--prune` 删除已不在范围内的用例）；测试：`node --test tools/test/interact-to-e2e.test.mjs`。
+
 本仓库不包含 HAR、登录态、SM2 私钥、后端源码和接口返回的数据。它们只在 Mac mini 本机（`$RESTORE_ASSETS`、`$RESTORE_STATE`），见 `docs/pipeline.md` 第一、四节。提交前运行 `node tools/scan-secrets.mjs`。
 
 ## 开始工作

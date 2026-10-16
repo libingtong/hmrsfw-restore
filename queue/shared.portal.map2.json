@@ -19,7 +19,8 @@
  "target": "apps/portal/src/shared/map2.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "map.vue_vue_type_script_setup_true_lang.1783320636200.js#_"
   }
  },
  "registryKey": "map.vue_vue_type_script_setup_true_lang.1783320636200.js",

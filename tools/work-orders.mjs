@@ -11,6 +11,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { parse } from "@babel/parser";
 import { ROOT, SITES, APP_OF, hamiScope, siteGraph, chunkSource, chunkPath, kbOf, componentsOf, cssOf, importsOf } from "./scope.mjs";
 import { scanSharedGaps } from "./scan-shared-gaps.mjs";
 import { loadRegistry, chunkBase, appExportIndex, seedIndex } from "./registry.mjs";
@@ -42,16 +43,26 @@ function acceptedPages(APP, app) {
 }
 
 // ---- maps: every import binding of a chunk resolved through the registry -----------------------------------------------
+// Static imports of sibling chunks ("./x.js"), read from the AST: [{ from, specs: [[imported, local]] }]. Every form is covered
+// (`import{a as b}`, `import D,{__tla as t}` — a sibling view under top-level await —, `import D`, `import * as N`, `import"./x.js"`);
+// the default binding is the export `default`, a namespace is `*`. A bare `import"./x.js"` has no specs.
+const importsMemo = new Map();
+export function relativeImports(src) {
+  if (importsMemo.has(src)) return importsMemo.get(src);
+  const name = (n) => n.name ?? n.value;
+  const out = parse(src, { sourceType: "module", plugins: ["topLevelAwait"] }).program.body
+    .filter((n) => n.type === "ImportDeclaration" && n.source.value.startsWith("./"))
+    .map((n) => ({ from: n.source.value.slice(2), specs: n.specifiers.map((s) => [s.type === "ImportDefaultSpecifier" ? "default" : s.type === "ImportNamespaceSpecifier" ? "*" : name(s.imported), s.local.name]) }));
+  importsMemo.set(src, out);
+  return out;
+}
+
 export function buildMaps(site, chunk, reg, ordersByChunk) {
   const cfg = SITES[site]; const g = siteGraph(site); const src = chunkSource(site, chunk) ?? "";
   const out = { chunk: chunkPath(site, chunk), app: reg.app, vueVersion: reg.vueVersion, vue: {}, entry: {}, api: {}, shared: {}, views: {}, modules: {}, sideEffects: [], missing: [] };
-  // import{a as b}from"./x.js", import D,{__tla as t}from"./x.js" (a sibling view under top-level await), import D from"./x.js";
-  // the default binding D is the export `default`
-  for (const m of src.matchAll(/(?<![\w$.])import\s*(?:([\w$]+)\s*,?\s*)?(?:\{([^}]*)\})?\s*from\s*"\.\/([^"]+)"/g)) {
-    const from = m[3]; if (!m[1] && m[2] == null) continue;
-    const specs = [...(m[1] ? [`default as ${m[1]}`] : []), ...(m[2] ?? "").split(",").map((x) => x.trim()).filter(Boolean)];
-    for (const sp of specs) {
-      const [imported, local = imported] = sp.split(/\s+as\s+/).map((x) => x.trim()); if (imported === "__tla") continue;
+  for (const { from, specs } of relativeImports(src)) {
+    for (const [imported, local] of specs) {
+      if (imported === "__tla") continue;
       if (from === cfg.vue) { const a = reg.vue[imported]; out.vue[local] = a ? `${a.name}${a.from !== "vue" ? ` (${a.from})` : ""}` : `?${imported}`; if (!a) out.missing.push(`vue:${imported}`); continue; }
       if (from === cfg.entry) { const e = reg.entry[imported]; if (!e) { out.entry[local] = { export: imported, missing: true }; out.missing.push(`entry:${imported}`); continue; }
         out.entry[local] = e.status === "ignore" ? { original: imported, ignore: e.reason } : { original: imported, path: e.path, export: e.export, status: e.status, ...(e.local ? { as: e.local } : {}), ...(e.owner && e.status === "reserved" ? { owner: e.owner } : {}) }; continue; }
@@ -65,7 +76,7 @@ export function buildMaps(site, chunk, reg, ordersByChunk) {
       out.missing.push(`${from}#${imported}`);
     }
   }
-  for (const m of src.matchAll(/import"\.\/([^"]+)"/g)) out.sideEffects.push(m[1]);
+  for (const { from, specs } of relativeImports(src)) if (!specs.length) out.sideEffects.push(from);
   return out;
 }
 
@@ -75,6 +86,11 @@ const hintsMd = (id, site, chunk, maps) => {
   const rows = res.filter((r) => r.from !== "vue-runtime").map((r) => `| \`${r.local}\` | ${r.from} | ${r.kind ?? r.lib} | ${target(r.local)} | ${r.def ? "`" + r.def.slice(0, 200).replace(/\|/g, "\\|").replace(/`/g, "'") + "`" : ""} |`);
   return [`# 导入提示：${id}`, "", `原 chunk \`${chunk}\`。导入路径和导出名以 maps 为准（来自 registry），这里只给定义片段帮助理解。Vue 运行时别名见 maps.vue。`, "", "| 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |", "|---|---|---|---|---|", ...rows].join("\n") + "\n";
 };
+
+// Imports of the original chunk that the registry (vue / entry / api / shared / views / modules) has no entry for (docs/work-orders.md `missing`).
+// An order with a non-empty `missing` is not dispatchable (playbook 3.5): the restorer would have to invent a path, and self-check refuses it.
+// Written only when non-empty, so orders that are fine stay byte-identical.
+function withMissing(o, maps) { const m = [...new Set(maps.missing)].sort(); if (m.length) o.missing = m; }
 
 function depsOf(maps, selfId) {
   const deps = { entry: [], shared: [], api: [], modules: [], views: [], orders: [] };
@@ -183,11 +199,11 @@ export function buildOrders(APP) {
         const chunk = o.sourceChunk.split("/").pop();
         const maps = buildMaps(site, chunk, reg, byChunk);
         o.maps = `out/maps/${o.id}.json`; o.hints = `out/hints/${o.id}.md`; o._maps = maps; o._hints = hintsMd(o.id, site, chunk, maps);
-        o.deps = depsOf(maps, o.id);
+        o.deps = depsOf(maps, o.id); withMissing(o, maps);
       } else if (o.subtype === "modules") {
         const all = { entry: {}, shared: {}, api: {}, modules: {}, views: {}, vue: {}, missing: [], sideEffects: [] };
         for (const c of o.chunks) { const m = buildMaps(site, c.chunk.split("/").pop(), reg, byChunk); for (const k of ["entry", "shared", "api", "modules", "views", "vue"]) Object.assign(all[k], m[k]); all.missing.push(...m.missing); }
-        o.maps = `out/maps/${o.id}.json`; o._maps = { chunk: o.chunks.map((c) => c.chunk), app, vueVersion: cfg.vueVersion, ...all }; o.deps = depsOf(all, o.id);
+        o.maps = `out/maps/${o.id}.json`; o._maps = { chunk: o.chunks.map((c) => c.chunk), app, vueVersion: cfg.vueVersion, ...all }; o.deps = depsOf(all, o.id); withMissing(o, all);
       }
     }
     // shared: which pages import it (regression set when it changes)
@@ -205,11 +221,11 @@ export function buildOrders(APP) {
         const outputs = [...s.components.map(fileOf), ...s.parts.map((p) => `${o.subComponentDir}_seg/${p.component}.${p.part === "script" ? "script.ts" : "template.html"}`)];
         const last = s.index === s.of;
         siteOrders.push({ id, type: "segment", status: "todo", site, app, vueVersion: o.vueVersion, page: o.id, index: s.index, of: s.of, assemble: last, after: last ? o.segments.slice(0, -1).concat(plan.slice(s.index).map((x) => `seg.${o.id.slice(5)}.${x.index}`)).filter((x) => x !== id) : [],
-          kb: s.kb, oversize: s.oversize || undefined, sourceChunk: o.sourceChunk, range: s.range, components: s.components.map((n) => o.components.find((c) => c.name === n) ?? { name: n }), parts: s.parts.map((p) => ({ ...p, file: `${o.subComponentDir}_seg/${p.component}.${p.part === "script" ? "script.ts" : "template.html"}` })),
+          kb: s.kb, oversize: s.oversize || undefined, sourceChunk: o.sourceChunk, range: s.range, factRanges: s.factRanges, components: s.components.map((n) => o.components.find((c) => c.name === n) ?? { name: n }), parts: s.parts.map((p) => ({ ...p, file: `${o.subComponentDir}_seg/${p.component}.${p.part === "script" ? "script.ts" : "template.html"}` })),
           outputs, target: o.target, subComponentDir: o.subComponentDir, scopeIds: o.scopeIds, cssCandidates: o.cssCandidates, routes: o.routes, recordPath: o.recordPath, ...(o.recordVia ? { recordVia: o.recordVia } : {}), role: o.role, ...(o.notes ? { notes: o.notes } : {}),
-          maps: o.maps, hints: o.hints, deps: o.deps, stylesProvidedByScript: true,
+          maps: o.maps, hints: o.hints, deps: o.deps, ...(o.missing ? { missing: o.missing } : {}), stylesProvidedByScript: true,
           instructions: [
-            `本单只还原原 chunk 的字节区间 [${s.range[0]}, ${s.range[1]})（约 ${s.kb}KB），其余部分由同页的其他分段负责。`,
+            `本单只还原原 chunk 的字符区间 [${s.range[0]}, ${s.range[1]})（JS 字符串下标，不是字节偏移；约 ${s.kb}KB），其余部分由同页的其他分段负责。`,
             ...(s.components.length ? [`完整还原这些组件并写成 SFC：${s.components.map((n) => `${n} → ${fileOf(n)}`).join("；")}。`] : []),
             ...s.parts.map((p) => p.part === "script" ? `组件 ${p.component} 只还原 <script setup> 部分（setup 函数体，不含最后 return 的渲染函数），写成 ${o.subComponentDir}_seg/${p.component}.script.ts，内容就是将来 <script setup lang="ts"> 里的代码。` : `组件 ${p.component} 只还原 <template> 部分（setup 最后 return 的渲染函数），写成 ${o.subComponentDir}_seg/${p.component}.template.html，内容就是将来 <template> 里的模板。`),
             last ? `本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs ${o.id} --app "$HMRSFW_APP_DIR" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。` : "本单不是最后一段：只跑静态自检（self-check 会按分段模式检查片段），不跑页面门槛。",
@@ -239,7 +255,7 @@ export function buildOrders(APP) {
   }
   const t = (type, f = () => true) => orders.filter((o) => o.type === type && f(o)).length;
   summary.totals = {
-    orders: orders.length, dispatchable: orders.filter((o) => o.status === "todo").length,
+    orders: orders.length, dispatchable: orders.filter((o) => o.status === "todo" && !o.missing).length, withMissing: orders.filter((o) => o.missing).length,
     pages: t("page"), pageOrders: t("page", (o) => o.status === "todo"), regression: orders.filter((o) => o.status === "regression").length, segmentedPages: t("page", (o) => o.status === "segmented"), segments: t("segment"),
     shared: t("shared", (o) => o.subtype !== "modules"), sharedTodo: t("shared", (o) => o.subtype !== "modules" && o.status === "todo"), sharedModules: t("shared", (o) => o.subtype === "modules"), entry: t("entry"),
   };
@@ -261,7 +277,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       if (_hints) writeFileSync(path.join(ROOT, o.hints), _hints);
     }
     const reverse = {}; for (const o of orders) for (const d of o.deps?.orders ?? []) (reverse[d] ??= []).push(o.id);
-    writeFileSync(path.join(q, "index.json"), JSON.stringify({ orders: orders.map((o) => ({ id: o.id, type: o.type, status: o.status, app: o.app, kb: o.kb, ...(o.after?.length ? { after: o.after } : {}), deps: o.deps?.orders ?? [] })), dependents: reverse }, null, 1) + "\n");
+    writeFileSync(path.join(q, "index.json"), JSON.stringify({ orders: orders.map((o) => ({ id: o.id, type: o.type, status: o.status, app: o.app, kb: o.kb, ...(o.after?.length ? { after: o.after } : {}), ...(o.missing ? { missing: o.missing } : {}), deps: o.deps?.orders ?? [] })), dependents: reverse }, null, 1) + "\n");
     writeFileSync(path.join(q, "routes.json"), JSON.stringify({ routes, blocked: blockedRoutes }, null, 1) + "\n");
     writeFileSync(path.join(q, "summary.json"), JSON.stringify(summary, null, 1) + "\n");
     writeFileSync(path.join(q, "roles.json"), JSON.stringify(roles, null, 1) + "\n");

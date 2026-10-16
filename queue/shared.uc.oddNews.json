@@ -30,11 +30,13 @@
  "exports": {
   "a": {
    "path": "@/shared/oddNews/OddNews.vue",
-   "export": "default"
+   "export": "default",
+   "original": "oddNews.1751615607545.js#a"
   },
   "o": {
    "path": "@/shared/oddNews/OddType.vue",
-   "export": "default"
+   "export": "default",
+   "original": "oddNews.1751615607545.js#o"
   }
  },
  "registryKey": "oddNews.1751615607545.js",

@@ -24,6 +24,9 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `tools/segments.mjs` | ≥ 30KB 页面的分段方案 |
 | `tools/assemble-segments.mjs` | 最后一段把片段合成 SFC |
 | `tools/self-check.mjs` | 交付前自检（下文） |
+| `tools/check-readability.mjs` / `rules/readability.json` | 可读性检查（self-check 的 `readability` 项）与规则文件，见 `docs/readability.md` |
+| `tools/readability-sample.mjs` | 集成回归后的人工可读性抽检，见 `docs/readability.md` |
+| `tools/refresh-names.mjs` | 清单改名后，只刷新工单的导出名和 maps（不重新生成整个队列） |
 | `tools/registry-cleanup.mjs` | `hmrsfw-vue` 现状清理（方案见 `docs/registry-cleanup.md`），默认只预演 |
 
 ## 数量与 batch-plan 第 6.3 节的对账
@@ -60,6 +63,8 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 
 所有工单共有：`id`、`type`（page / segment / shared / entry）、`status`、`site`（portal / usercenter）、`app`（portal / uc）、`vueVersion`、`kb`、`sourceChunk`、`deps`。
 
+`missing`（可选）：原 chunk 的导入里，在清单（vue / entry / api / shared / views / modules）中找不到对应条目的项，写法同 maps 的 `missing`（`entry:x`、`shared:chunk#x`、`view:chunk`、`chunk#x` 等）。只在非空时出现；非空的工单不派发（手册 3.5 节），`queue/index.json` 的同一条里也带这个字段；分段单继承所属页面的 `missing`。清单补齐、重新生成后该字段消失。
+
 `status`：`todo` 可派单；`regression` 已在 `hmrsfw-vue` 验收或还原，只做回归；`segmented` 页面已拆成分段单，本身不派；`npm` 用 npm 包代替，不派。
 
 **page**
@@ -80,7 +85,8 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | 字段 | 内容 |
 | --- | --- |
 | `page` / `index` / `of` | 所属页面工单和段号 |
-| `range` | 本段负责的原 chunk 字节区间 |
+| `range` | 本段负责的原 chunk 区间，单位是字符：JS 字符串下标（UTF-16 码元，即 Babel 的 `start`/`end`），左闭右开；chunk 含中文时它和字节偏移不同，按字节切会切错位置 |
+| `factRanges` | 本段要还原的渲染调用所在的区间（`check-text-nodes`、`check-directives` 只查这些区间里的静态文本、指令和分支）：整组件是它的整个区间；`template` 部分是该组件定义之前的提升代码（`_withScopeId` 包装、提升的静态 vnode）加渲染函数；`script` 部分没有 |
 | `components` | 本段完整还原的组件 |
 | `parts` | 超过 30KB 的单个组件拆成 `script`（setup 函数体）和 `template`（渲染函数）两部分，写到 `<subComponentDir>_seg/<组件>.script.ts` / `.template.html` |
 | `outputs` | 本段要交付的文件 |
@@ -88,13 +94,13 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `instructions` | 给还原员的中文说明 |
 | 其余 | `target`、`subComponentDir`、`routes`、`recordPath`、`role`、`notes`、`maps`、`hints`、`deps` 同所属页面 |
 
-分段规则（`tools/segments.mjs`）：段数 `ceil(kb / 30)`；先按组件边界把整组件按源码顺序分进各段，使最大的一段尽量小；单个组件超过 30KB 的，拆成 script / template 两部分。主组件在 chunk 末尾，所以总在最后一段。21 段中只有 CorpAttestation 的 script 部分（31.2KB）略超 30KB。
+分段规则（`tools/segments.mjs`）：段数 `ceil(kb / 30)`；先按组件边界把整组件按源码顺序分进各段，使最大的一段尽量小；单个组件超过 30KB 的，拆成 script / template 两部分。组件的区间从上一个组件的定义结束处起算，所以组件定义之前的 `_withScopeId` 包装和提升的静态 vnode 归它自己（上一个组件的 `_export_sfc` 包装也落在这里，它不含渲染调用）。主组件在 chunk 末尾，所以总在最后一段。21 段中只有 CorpAttestation 的 script 部分（31.2KB）略超 30KB。
 
 **shared**：`target`（单组件为 `.vue`；多组件 chunk 每个组件一个 `.vue` 放在 `subComponentDir`，非组件导出放同名 `.ts`）、`exports`（原导出名 → 清单导出）、`registryKey`、`usedBy`（依赖它的页面工单，公共库回归用）、`bundled`。`subtype: "modules"` 的小模块单列出 `chunks`（每个 chunk 对应的文件和导出）和 `files`。
 
 **entry**：`area`（E1–E7 或 `component`）、`title`、`files`、`owns`（本单负责的入口导出：原导出名、清单路径、导出名、状态）、`components`（组件单：组件名、入口里的 binding 名、scopeId、大小、文件；`replacesStub` 表示要替换 `hmrsfw-vue` 里现有的桩）、`globals`（E2：清单的全局组件和指令）。入口单的 `kb` 是估算值（`kbEstimated: true`）。
 
-`queue/index.json` 是所有工单的一览（id、type、status、kb、`after`、`deps.orders`）加反向索引 `dependents`；`queue/routes.json` 是 `check-coverage.mjs` 的输入；`queue/summary.json` 是上面这些数字；`queue/roles.json` 是每张页面单的身份和判定依据（判不出的是原因）。
+`queue/index.json` 是所有工单的一览（id、type、status、kb、`after`、`missing`、`deps.orders`）加反向索引 `dependents`；`queue/routes.json` 是 `check-coverage.mjs` 的输入；`queue/summary.json` 是上面这些数字；`queue/roles.json` 是每张页面单的身份和判定依据（判不出的是原因）。
 
 ## 公共库清单 `registry/<app>.json`
 
@@ -103,13 +109,13 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | 段 | 键 | 值 |
 | --- | --- | --- |
 | `vue` | 运行时改名 | `{name, from}` |
-| `entry` | 入口导出名 | `{path, export, status, owner, kind, url?, method?, sameAs?, stub?, component?, scopeId?, users}`；npm 符号是 `{path: 包名, export, npm: true, status: "npm"}`；不需要导入的是 `{status: "ignore", reason}` |
-| `shared` | 原 chunk 文件名 | `{path, kind, components, kb, exports: {原导出名: {export, path?}}, status, owner, usedBy}` |
-| `api` | `chunk#原导出名` | `{path, export, url, method, status}` |
+| `entry` | 入口导出名 | `{path, export, original, status, owner, kind, url?, method?, sameAs?, stub?, component?, scopeId?, users}`；npm 符号是 `{path: 包名, export, npm: true, status: "npm"}`；不需要导入的是 `{status: "ignore", reason}` |
+| `shared` | 原 chunk 文件名 | `{path, kind, components, kb, exports: {原导出名: {export, path?, original}}, status, owner, usedBy}` |
+| `api` | `chunk#原导出名` | `{path, export, url, method, status, original}` |
 | `apiModules` | 原 chunk | `{path, renameTo?, duplicates?, status, owner, functions}` |
 | `modules` | 原 chunk | npm 库（swiper 各模块、pinyin-match、html2canvas、jspdf、print-js、@amap/amap-jsapi-loader、echarts）、图片常量（→ `@/shared/images`）、geojson |
 | `utils` | `@/utils/*` | 当前导出（request、cachedRequest 等可直接用） |
-| `globals` | | `components`、`componentPatterns`（a-*、图标、bm-*）、`directives`（门户 trim、click-outside；用户中心 imgerr、click-outside）、`provide`（门户 $getUser 等 4 个） |
+| `globals` | | `components`、`componentPatterns`（a-*、图标、bm-*）、`directives`（门户 trim、click-outside；用户中心 imgerr、click-outside）、`provide`（门户 $getUser 等 4 个）、`unregistered`（原包按名字解析但没有任何注册、运行时按未知元素渲染的组件 → 用到它的原 chunk；check-imports 只在这些 chunk 的工单里放行同名标签） |
 | `npm` | 包名 | 版本（`hmrsfw-vue/package.json`；不在里面的标「待 E7 按指纹核对」：print-js、vue-countup-v3） |
 
 状态：`restored`（`hmrsfw-vue` 里已有，且不是桩）、`reserved`（还没还原，路径和名字已定）、`npm`、`ignore`。
@@ -143,11 +149,12 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `text-nodes` | 原 render 的静态文本（`createTextVNode`、各 vnode 的字符串子节点、`createStaticVNode`、插值旁的字符串）逐字出现在还原版模板里；只差首尾空格的报 warn | `check-text-nodes.mjs` |
 | `directives` | `withDirectives` 的每一项（v-show、原生 v-model、自定义指令，含参数和修饰符）个数一致 | `check-directives.mjs` |
 | `branches` | 没有 v-else 的 v-if 个数一致（每个渲染为空注释占位）；合并独立 v-if、漏分支都会改变它。恒为 false 的分支两边都不计，与 D2 不冲突 | `check-directives.mjs` |
-| `imports` | 第十三节 2 的四条：导入只来自本页文件、清单路径（且导出名对）、清单 npm 包；不重新定义公共函数、不直接请求清单已封装且原 chunk 不是自己定义的 URL；模板里按名字用到的组件和指令必须导入或在 `globals`；本单在 `hmrsfw-vue` 里改动的文件不出本单范围（相对 `origin/integration`）。经由桶文件再导出、重复的接口文件、POC 的 npm 包装、与公共函数同名的本地函数报 warn | `check-imports.mjs` |
+| `imports` | 第十三节 2 的四条：导入只来自本页文件、清单路径（且导出名对）、清单 npm 包；不重新定义公共函数、不直接请求清单已封装且原 chunk 不是自己定义的 URL；模板里按名字用到的组件和指令必须导入或在 `globals`（`globals.unregistered` 只对列出的原 chunk 生效，标签名须与原包完全相同）；本单在 `hmrsfw-vue` 里改动的文件不出本单范围（相对 `origin/integration`）。经由桶文件再导出、重复的接口文件、POC 的 npm 包装、与公共函数同名的本地函数报 warn | `check-imports.mjs` |
 | `copied` | 不得原样拷贝本单原 chunk、它的 CSS 和它导入的 chunk 里的代码（160 字符窗口比对）。30 字符以上的正则字面量（身份证、手机号校验）必须原样保留，两边都先遮掉，不计入 | `check-copied.mjs` |
 | `secrets` | 密钥、token、手机号、证件号、邮箱 | `scan-secrets.mjs` |
 | `no-legacy` | 本单文件（含 `subComponentDir` 里的资源）零引用：源码和注释里没有 `legacy-dist` 路径、带构建哈希的文件名、编译产物；与门槛 page 模式的零引用同一套规则，还原员交付前就能看到（HM-9） | `check-no-legacy.mjs` |
 | `segments` | 分段交付了片段；最后一段没有留下 `_seg/` | `self-check.mjs` |
+| `readability` | 命名、结构、格式（独立于等价门槛）：不可读的名字、手写 `h()` / render、编译产物痕迹、`v-if="false"`、文件/函数/setup 长度、eslint-plugin-vue、prettier。规则和阈值在 `rules/readability.json`；`mode: report` 时条目带 `severity: "warn"`，`block` 时使自检失败。`--no-lint` 跳过 eslint / prettier | `check-readability.mjs`，详见 `docs/readability.md` |
 | render-equiv | 原 render 与还原版按同版本 compiler 编译后比对（报告） | `render-equiv-confirm.mjs`（现在从 `registry/<app>.json` 取改名表，不再依赖 POC 的 `out/`） |
 
 `check-components`、`check-copied`、`render-equiv-confirm`、`scan-secrets` 按 HM-2 的分工由本任务修改，A（门槛）只导入。四个脚本都改为按工单和 `--app` 工作，不再引用 `skeleton/`。`scan-secrets` 的两条白名单改为 `hmrsfw-vue` 里的路径，对 `hmrsfw-vue` 全仓扫描 0 处命中。

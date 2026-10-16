@@ -30,7 +30,7 @@ test("full chain: dispatch → handoff → gate fail → fix → pass → merge 
   const [t] = restoreTasks(fx);
   assert.ok(t, "restore task created");
   let m = meta(fx, t.id);
-  assert.equal(t.assignee_id, fx.id("deepseek-office"), "cheap tier, not cold → deepseek (office has more free slots)");
+  assert.equal(t.assignee_id, fx.id("deepseek-mac"), "cheap tier, not cold → deepseek");
   assert.equal(m.branch, "restore/P1-a1");
   assert.equal(t.status, "todo");
 
@@ -73,7 +73,7 @@ test("full chain: dispatch → handoff → gate fail → fix → pass → merge 
   assert.equal(m.attempt, 2);
   assert.equal(m.branch, "restore/P1-a2");
   assert.equal(m.history.length, 1);
-  assert.equal(issue(fx, t.id).assignee_id, fx.id("sonnet-office"));
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("sonnet-mac"));
   const cap = readJson(path.join(fx.state, "ledger", "capability.json"));
   assert.deepEqual(cap.audits["deepseek|zhipu"], { audits: 1, misses: 1 });
 
@@ -195,7 +195,7 @@ test("needsFromSkeleton → upgrade order, page suspended; upgrade merged → li
   assert.equal(issue(fx, t.id).status, "backlog", "page suspended");
   const up = issuesOf(fx).find((i) => i.title.startsWith("[upgrade]"));
   assert.ok(up, "upgrade order opened");
-  assert.equal(up.assignee_id, fx.id("opus-office"));
+  assert.equal(up.assignee_id, fx.id("opus-mac"));
   assert.equal(meta(fx, t.id).suspendedBy, up.id);
 
   deliver(fx, up.id, { "apps/portal/src/shared/Dict.vue": "<template><span>dict v2</span></template>\n" });
@@ -247,6 +247,29 @@ test("integration regression every N merges: failure bisects to the culprit, rev
   assert.equal(lsRemote(fx, "app", "main"), lsRemote(fx, "app", "integration"), "main fast-forwarded");
 });
 
+test("readability sample: a passed integration regression posts 5 % of the batch (at least one page) to the log task; the switch turns it off", () => {
+  for (const enabled of [true, false]) {
+    const fx = makeFixture({ orders: [page("Q1", 20), page("Q2", 10)], config: { audit: { coldRate: 0 }, regressionEvery: 2, readabilitySample: { enabled } } });
+    const log = mc(fx, "issue", "create", "--title", "调度日志", "--project", "proj-1");
+    const cfgFile = path.join(fx.state, "scheduler.config.json"); const cfg = readJson(cfgFile); writeFileSync(cfgFile, JSON.stringify({ ...cfg, logIssueId: log.id }));
+    recorded(fx, "Q1", "Q2");
+    node(fx, "tick.mjs", ["tick"]);
+    const byWo = Object.fromEntries(restoreTasks(fx).map((t) => [meta(fx, t.id).workOrders[0], t]));
+    for (const wo of ["Q1", "Q2"]) { deliver(fx, byWo[wo].id, { [`apps/portal/src/views/${wo}/index.vue`]: vue(wo) }); gate(fx, byWo[wo].id, { pass: true }); }
+    node(fx, "tick.mjs", ["tick"]);
+    const reg = issuesOf(fx).find((i) => i.title.startsWith("[integration] regression"));
+    setMeta(fx, reg.id, "gate.1", { pass: true });
+    const r = node(fx, "tick.mjs", ["advance", reg.id]);
+    assert.equal(r.ok, true, JSON.stringify(r));
+    const posted = issue(fx, log.id).comments.map((c) => c.content).filter((c) => c.includes("可读性抽检"));
+    if (!enabled) { assert.equal(posted.length, 0, "switch off → nothing posted"); continue; }
+    assert.equal(posted.length, 1, "one sample comment on the log task");
+    assert.match(posted[0], /本批通过的页面 2 页，按 5% 抽 1 页/); assert.match(posted[0], /评分表/); assert.match(posted[0], /\| `Q[12]` \|/);
+    assert.ok(readJson(path.join(fx.state, "readability", `${fs_key(posted[0])}.json`)), "sample saved in $RESTORE_STATE/readability");
+  }
+});
+const fs_key = (text) => text.match(/可读性抽检 `([^`]+)`/)[1];
+
 test("rule change review: two non-arbiter families; round 2 reject escalates to the human; approval merges + regression", () => {
   const fx = makeFixture({ orders: [], config: {} });
   git(fx.tool, "checkout", "-q", "-b", "rules/r1");
@@ -256,9 +279,9 @@ test("rule change review: two non-arbiter families; round 2 reject escalates to 
   assert.equal(r.ok, true, JSON.stringify(r));
   let reviews = issuesOf(fx).filter((i) => i.title.startsWith("[rule-review]"));
   assert.deepEqual(reviews.map((i) => i.assignee_id).sort(), [fx.id("review-deepseek"), fx.id("review-glm")]);
-  // the key the task tells the reviewer is the one the scheduler reads; the roster name ("复核-GLM@Office") is refused
+  // the key the task tells the reviewer is the one the scheduler reads; the roster name ("复核-GLM@Mac") is refused
   for (const i of reviews) assert.ok(i.description.includes(`\`review.${i.assignee_id}\``), i.description);
-  assert.throws(() => setMeta(fx, reviews[0].id, "review.复核-GLM@Office", { verdict: "approve" }), /invalid metadata key/);
+  assert.throws(() => setMeta(fx, reviews[0].id, "review.复核-GLM@Mac", { verdict: "approve" }), /invalid metadata key/);
   setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-deepseek")).id, `review.${fx.id("review-deepseek")}`, { verdict: "approve", why: "ok" });
   setMeta(fx, reviews.find((i) => i.assignee_id === fx.id("review-glm")).id, `review.${fx.id("review-glm")}`, { verdict: "reject", why: "swallows real diffs" });
   node(fx, "tick.mjs", ["tick"]);
@@ -282,21 +305,24 @@ test("rule change review: two non-arbiter families; round 2 reject escalates to 
 });
 
 test("rate-limited run → agent cooldown, reassigned within the family; unknown error → anomaly", () => {
-  const fx = makeFixture({ orders: [page("P9", 10), page("P10", 9)], config: { cheapTier: { enabled: true, coldStartRuns: 0, minFirstPass: 0 } } });
+  // a second DeepSeek restorer (same model) so there is someone of the family to take the task over
+  const roster = ROSTER();
+  roster.agents.push({ ...roster.agents.find((a) => a.id === "a-deepseek-mac"), id: "a-deepseek-mac-2", name: "deepseek-mac-2" });
+  const fx = makeFixture({ orders: [page("P9", 10), page("P10", 9)], config: { cheapTier: { enabled: true, coldStartRuns: 0, minFirstPass: 0 } }, roster });
   recorded(fx, "P9", "P10");
   node(fx, "tick.mjs", ["tick"]);
   const ts = restoreTasks(fx);
   const s = fakeState(fx);
-  const t = ts.find((x) => x.assignee_id === fx.id("deepseek-office"));
+  const t = ts.find((x) => x.assignee_id === fx.id("deepseek-mac"));
   assert.ok(t);
-  s.issues[t.id].runs.unshift({ id: "run-x", agent_id: fx.id("deepseek-office"), status: "failed", error: "API error 429: Too Many Requests" });
+  s.issues[t.id].runs.unshift({ id: "run-x", agent_id: fx.id("deepseek-mac"), status: "failed", error: "API error 429: Too Many Requests" });
   const other = ts.find((x) => x.id !== t.id);
   s.issues[other.id].runs.unshift({ id: "run-y", agent_id: other.assignee_id, status: "failed", error: "segfault in harness" });
   writeFileSync(fx.fake, JSON.stringify(s));
   const r = node(fx, "tick.mjs", ["tick"]);
-  assert.equal(issue(fx, t.id).assignee_id, fx.id("deepseek-mac"), "same family, other machine");
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("deepseek-mac-2"), "same family, same model");
   const agents = readJson(path.join(fx.state, "ledger", "agents.json"));
-  assert.ok(agents[fx.id("deepseek-office")].cooldownUntil > Date.now());
+  assert.ok(agents[fx.id("deepseek-mac")].cooldownUntil > Date.now());
   assert.ok(r.anomalies.some((a) => a.issue === other.id), "unknown error reported");
   const again = node(fx, "tick.mjs", ["tick"]);
   assert.ok(!again.anomalies.some((a) => a.issue === other.id), "a failed run is handled once");
@@ -316,7 +342,7 @@ test("dry-run prints writes and changes nothing", () => {
 test("route.mjs: core → Opus, complex page → Sonnet, cheap tier switch, capability seed", () => {
   const fx = makeFixture({ orders: [{ id: "E1", type: "entry", kb: 50, app: "portal" }, page("BIG", 40), page("RULES", 12, { rules: 12 }), page("SMALL", 12)], config: { cheapTier: { enabled: true, coldStartRuns: 10 } } });
   let r = node(fx, "route.mjs", ["E1", "--offline"]);
-  assert.deepEqual(r.candidates[0].agents.map((a) => a.id), [fx.id("opus-office")]);
+  assert.deepEqual(r.candidates[0].agents.map((a) => a.id), [fx.id("opus-mac")]);
   r = node(fx, "route.mjs", ["BIG", "--offline"]);
   assert.equal(r.candidates.length, 1); assert.equal(r.candidates[0].model, "claude-sonnet-5-5"); assert.equal(r.features.complex, true);
   r = node(fx, "route.mjs", ["RULES", "--offline"]);
@@ -345,7 +371,7 @@ const setCapability = (fx, family, model, tier, t) => writeFileSync(path.join(fx
 test("route.mjs: one cheap family → single cold-start dispatch; after cold start by first-pass rate; disabled agents never chosen", () => {
   const fx = makeFixture({ orders: [page("SMALL", 12), page("BIG", 40)], config: { cheapTier: { enabled: true, coldStartRuns: 10, minFirstPass: 0.7 } } });
   editRoster(fx, glmRestorersOff);
-  const glm = [fx.id("glm-mac"), fx.id("glm-office")];
+  const glm = [fx.id("glm-mac")];
   const ids = (r) => r.candidates.flatMap((c) => c.agents.map((a) => a.id));
   // families still lists zhipu, but the roster has no enabled zhipu restorer → one family
   let r = node(fx, "route.mjs", ["SMALL", "--offline"]);
@@ -380,7 +406,7 @@ test("route.mjs: one cheap family → single cold-start dispatch; after cold sta
 });
 
 test("single cheap family cold start: tick dispatches to DeepSeek alone (no twin), Sonnet once DeepSeek is full", () => {
-  const ids = ["S1", "S2", "S3", "S4", "S5", "S6", "S7"];
+  const ids = ["S1", "S2", "S3", "S4"];
   const fx = makeFixture({ orders: ids.map((id) => page(id, 8)), config: { cheapTier: { enabled: true, families: ["deepseek"], coldStartRuns: 10 } } });
   editRoster(fx, glmRestorersOff);
   recorded(fx, ...ids);
@@ -389,8 +415,8 @@ test("single cheap family cold start: tick dispatches to DeepSeek alone (no twin
   const ts = restoreTasks(fx);
   assert.equal(ts.length, ids.length, "one task per page, no dual");
   const fam = (t) => meta(fx, t.id).family;
-  // deepseek slots: mac 1+1, office 3+1 = 6 → the 7th page falls back to Sonnet
-  assert.equal(ts.filter((t) => fam(t) === "deepseek").length, 6);
+  // deepseek slots: maxConcurrent 2 + pre-queue 1 = 3 → the 4th page falls back to Sonnet
+  assert.equal(ts.filter((t) => fam(t) === "deepseek").length, 3);
   assert.equal(ts.filter((t) => fam(t) === "anthropic").length, 1);
   assert.ok(ts.every((t) => !meta(fx, t.id).twin), "no twin");
   assert.ok(ts.every((t) => !/-[dg]$/.test(meta(fx, t.id).branch)), "no dual-dispatch branch suffix");
@@ -537,4 +563,13 @@ test("bisect: failing page not yet merged at the midpoint → that step counts a
   assert.equal(issuesOf(fx).filter((i) => i.title.startsWith("[integration] bisect")).length, 0, "B3 is only in the last merge");
   assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/B3/index.vue"), null, "B3 merge reverted");
   assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/B2/index.vue"), vue("B2"));
+});
+
+test("an order whose chunk imports something the registry lacks (`missing`) is never dispatched; its neighbour is", () => {
+  const fx = makeFixture({ orders: [page("P1", 8, { missing: ["view:sibling.js"] }), page("P2", 8)], config: { cheapTier: { enabled: false }, audit: { coldRate: 0, normalRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "P1", "P2");
+  node(fx, "tick.mjs", ["tick"]);
+  const ids = restoreTasks(fx).map((t) => meta(fx, t.id).wos ?? meta(fx, t.id).wo);
+  assert.ok(restoreTasks(fx).length > 0, "the clean order is dispatched");
+  assert.ok(!JSON.stringify(restoreTasks(fx).map((t) => meta(fx, t.id))).includes('"P1"'), `P1 must not be dispatched: ${JSON.stringify(ids)}`);
 });

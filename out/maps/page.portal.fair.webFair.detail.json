@@ -285,7 +285,10 @@
    "value": "data:image/png;base64,iVBORw0K…（内联 0.2KB）",
    "inline": true,
    "path": "@/shared/down",
-   "export": "_",
+   "export": "arrowUpImg",
+   "aliases": [
+    "_"
+   ],
    "status": "restored"
   },
   "At": {
@@ -293,7 +296,10 @@
    "value": "data:image/png;base64,iVBORw0K…（内联 1.3KB）",
    "inline": true,
    "path": "@/shared/down",
-   "export": "a",
+   "export": "arrowDownImg",
+   "aliases": [
+    "a"
+   ],
    "status": "restored"
   }
  },

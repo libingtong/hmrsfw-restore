@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/InterviewInvitation.vue",
  "exports": {
   "I": {
-   "export": "default"
+   "export": "default",
+   "original": "InterviewInvitation.1783320636200.js#I"
   }
  },
  "registryKey": "InterviewInvitation.1783320636200.js",

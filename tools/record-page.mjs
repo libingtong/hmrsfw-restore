@@ -37,6 +37,7 @@ import { chromium } from "playwright";
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { evaluate, thresholds } from "./coverage.mjs";
 import { apiTracker, describeStep, loadScript, runStepRetry, scriptPath, settle } from "./interact.mjs";
 import { entryKey, fulfillOptions, harResponder, requestBody } from "./har-body.mjs";
 import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, pin, pinKey, resolveOrder, switchIdentity, tokenInfo, validId } from "./record-lib.mjs";
@@ -237,7 +238,7 @@ function baseline({ id, harFile }) {
   let j = null; try { j = JSON.parse(line); } catch {}
   if (!j) throw fail(`${tool} gave no JSON (exit ${r.status}): ${(r.stderr ?? "").trim().split("\n").pop()?.slice(0, 200) ?? ""}`);
   if (j.error) throw fail(`${tool}: ${j.error}`);
-  return { tool, placeholder: !own, unstable: j.unstable ?? [], result: j };
+  return { tool, placeholder: !own, unstable: j.unstable ?? [], coverage: j.coverage ?? null, result: j };
 }
 
 let release = null, releaseIdentity = null;
@@ -295,7 +296,11 @@ try {
   const ok = !unstable.length;
   if (ok && steps.length && !OFFLINE && !flag("--no-commit") && scriptFile === scriptPath(id))
     committed = commitToIntegration(path.relative(ROOT, scriptFile), `test(interact): ${id} interaction script (record-page)`).committed;
-  const out = { ok, id, steps: steps.length, unstable, har: harFile.startsWith(assets + path.sep) ? "$RESTORE_ASSETS/" + path.relative(assets, harFile) : harFile, entries: rec.entries, writes: rec.writes, sm2: rec.sm2, baseline: base && { tool: base.tool, placeholder: base.placeholder, ...(base.placeholder ? { replay: base.result.replay } : {}) }, committed };
+  // Coverage of the original (HM-21): only reported. A page below the thresholds still records; the recorder reads
+  // `node tools/coverage.mjs report <id>` and adds interactions or hands the data gaps to the D7 request.
+  const cov = base?.coverage ?? null;
+  const verdict = cov && thresholds() ? evaluate({ page: cov.page && { loaded: true, function: { pct: cov.page.function }, block: { pct: cov.page.block } }, stable: cov.stable }, thresholds()) : null;
+  const out = { ok, id, steps: steps.length, unstable, ...(cov ? { coverage: cov, belowThreshold: verdict?.below ?? null, ...(verdict?.below ? { coverageReasons: verdict.reasons } : {}) } : {}), har: harFile.startsWith(assets + path.sep) ? "$RESTORE_ASSETS/" + path.relative(assets, harFile) : harFile, entries: rec.entries, writes: rec.writes, sm2: rec.sm2, baseline: base && { tool: base.tool, placeholder: base.placeholder, ...(base.placeholder ? { replay: base.result.replay } : {}) }, committed };
   if (!OFFLINE) { mkdirSync(noteDir, { recursive: true }); writeFileSync(path.join(noteDir, "result.json"), JSON.stringify({ ...out, warnings, at: new Date().toISOString() }, null, 1)); }
   emit(out, ok ? 0 : 1);
 } catch (e) {

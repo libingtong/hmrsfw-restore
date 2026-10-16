@@ -7,7 +7,7 @@
 //   open-upgrade <任务id> --reason "<依据>"  public-library upgrade order; the page is suspended until it merges
 //   open-rule-review <分支>                 rule change review by two reviewers of families other than the arbiter's
 //   resplit <工单id> / rerecord <工单id>      re-segment the order / send it back to the recorder
-//   resume                                 lift the dispatch pause after an incident (on both machines)
+//   resume                                 lift the dispatch pause after an incident (on every machine)
 //   claims list                            work orders per machine, leader lease, heartbeats
 //   claims reclaim --from <machine> [--wo <工单id> ...] [--force]
 //                                          take over a dead machine's work orders (refused while its heartbeat is fresh)

@@ -2388,7 +2388,7 @@
    "type": "segment",
    "status": "todo",
    "app": "portal",
-   "kb": 18.8,
+   "kb": 16.9,
    "deps": [
     "entry.portal.E6",
     "entry.portal.c03",
@@ -2400,7 +2400,7 @@
    "type": "segment",
    "status": "todo",
    "app": "portal",
-   "kb": 22.5,
+   "kb": 24.2,
    "after": [
     "seg.portal.guide.jobHunt.1"
    ],
@@ -2415,7 +2415,7 @@
    "type": "segment",
    "status": "todo",
    "app": "portal",
-   "kb": 17.1,
+   "kb": 16.9,
    "deps": [
     "entry.portal.E6",
     "entry.portal.c03",
@@ -2428,7 +2428,7 @@
    "type": "segment",
    "status": "todo",
    "app": "portal",
-   "kb": 13.4,
+   "kb": 13.7,
    "after": [
     "seg.portal.guide.index.1"
    ],
@@ -4222,7 +4222,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 15.3,
+   "kb": 14.2,
    "deps": []
   },
   {
@@ -4230,7 +4230,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 20.6,
+   "kb": 21.7,
    "deps": []
   },
   {
@@ -4250,7 +4250,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 17.7,
+   "kb": 12.4,
    "deps": []
   },
   {
@@ -4258,7 +4258,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 14.9,
+   "kb": 20.4,
    "after": [
     "seg.uc.collage.studentApply.1"
    ],
@@ -4269,7 +4269,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 19.1,
+   "kb": 13.5,
    "deps": []
   },
   {
@@ -4277,7 +4277,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 15.7,
+   "kb": 21.2,
    "after": [
     "seg.uc.sign.corpApply.1"
    ],
@@ -4288,7 +4288,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 12.8,
+   "kb": 12.5,
    "deps": [
     "shared.uc.mapInfo",
     "shared.uc.workshopNews"
@@ -4299,7 +4299,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 17.2,
+   "kb": 17.4,
    "after": [
     "seg.uc.gongfuWorkshop.positionPosting.1"
    ],

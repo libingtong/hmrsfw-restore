@@ -20,7 +20,7 @@
 | `tools/lib/claims.mjs` | 跨机领取：工具仓库 `claims` 分支上的工单归属、主控租约、各机统计快照、跨机命令请求（git 比较并交换） |
 | `tools/lib/machine.mjs` | 本进程在哪台机器、每台机器有哪些资产、某一步需要哪些资产 |
 
-`tick.mjs` 另有 `claims list`（各机领取数、主控、心跳）和 `claims reclaim --from <机器> [--wo <工单id>] [--force]`（接管停用机器的工单），见「两台机器」。
+`tick.mjs` 另有 `claims list`（各机领取数、主控、心跳）和 `claims reclaim --from <机器> [--wo <工单id>] [--force]`（接管停用机器的工单），见「机器与分片」。
 
 所有命令输出一行 JSON。`tick.mjs` 的输出是 `{ok, summary, anomalies:[{issue, what, suggestedAction}]}`，拿不到锁时输出 `{"locked":true}`。
 
@@ -31,7 +31,7 @@
 | `agents.roster.json` | 名册（已有）。脚本按 `role`、`family`、`model`、`maxConcurrent`、`runtimeId` 选人，`escalateTo.memberId` 是升级给人时的负责人 |
 | `scheduler.config.json` | 调度配置，见下一节。没有这个文件时全用默认值，但 `tick` 需要 `projectId` |
 | `ledger/runs.jsonl` | 每次运行一行：工单、智能体、家族、机器、运行时、CLI 版本、multica CLI 版本、模型 ID、指令版本、token（按任务用量的增量）、结果、错误类别 |
-| `ledger/capability.json` | `keys`：以「运行时\|CLI 版本\|模型 ID\|指令版本」为键，按 `simple`（< 5KB）、`medium`（5–30KB）、`large`（≥ 30KB）记首通、通过、token、修正轮数。路由按家族 + 模型聚合所有键，所以两台机器的同家族智能体共享数据。`audits`：以「生成家族\|复核家族」为键的审计数和漏检数 |
+| `ledger/capability.json` | `keys`：以「运行时\|CLI 版本\|模型 ID\|指令版本」为键，按 `simple`（< 5KB）、`medium`（5–30KB）、`large`（≥ 30KB）记首通、通过、token、修正轮数。路由按家族 + 模型聚合所有键，所以同家族的智能体（多台机器时跨机器）共享数据。`audits`：以「生成家族\|复核家族」为键的审计数和漏检数 |
 | `ledger/agents.json` | 每个智能体的冷却截止时间、运行时和 CLI 版本、环境类失败重试次数 |
 | `ledger/tasks.json` | 工单与任务的对应关系、创建键（幂等）、工单状态（`active` / `suspended` / `merged` / `done` / `superseded`）、录制状态 |
 | `ledger/tick-state.json` | 暂停标记、自上次回归以来的合并数、回归与二分状态、`integration` 上每个合并提交对应的任务、升级单、规则变更单 |
@@ -62,6 +62,7 @@
  "cooldownMin": 30,
  "lockStaleMin": 10,
  "regressionEvery": 20,
+ "readabilitySample": { "enabled": true, "rate": 0.05, "min": 1 },
  "receiptsBranch": "integration",
  "priceFactor": { "claude-opus-5-5": 5, "claude-sonnet-5-5": 1, "deepseek-official/deepseek-flash": 0.1, "zhipuai-coding-plan/glm-5.3-flash": 0.1 },
  "audit": { "coldAudits": 20, "coldRate": 0.5, "normalRate": 0.2, "relaxedRate": 0.1, "relaxedAfter": 50, "relaxedMissRate": 0.03, "strictRate": 1, "missRateThreshold": 0.1 },
@@ -71,6 +72,7 @@
 }
 ```
 
+- `readabilitySample`：每次集成回归通过后，从本批合入的页面里抽 `rate`（至少 `min` 页）发到 `logIssueId` 任务，供人工打分；`enabled: false` 关闭。见 `docs/readability.md`。
 - `cheapTier.enabled` 就是便宜档的开关。G（小样本重测）通过后由裁定员或李炳通改成 `true`。
 - 便宜档的路由（`route.mjs`）：只看 `cheapTier.families` 里、名册中有已启用（`enabled` 不是 `false`）还原员的家族；判断冷启动单派还是双派时，只数本次可用的家族（`tick` 只为本机还原员派单，本机没有某家族的还原员就不算这个家族）。
   - 两个及以上家族，且有一个还在冷启动（该页所在档 `runs < coldStartRuns`）：双派，前两个家族各一张，分支后缀 `-d` / `-g`。
@@ -105,7 +107,7 @@
 | `claimedBy` | tick | 派单时工单的领取者（机器）。和 `claims` 分支对不上就报「重复派单」 |
 | `advanceRequested`、`regateDone` | advance | 在不拥有该工单的机器上调用 `advance` 时只写这个键，由工单所属机器的下一轮 tick 推进。`--regate` 的请求只对发出时的那一轮门槛有效，任务之后变了（已修正、已合并）就丢弃 |
 | `reopenRequest`、`reopenHandled` | tick | 主控回退了别的机器的合并（回归二分、公共库回归）时写给该任务，由所属机器重开 |
-| `paused`、`resumed`、`resumedAt`、`resumedOn` | tick / resume | `kind=incident`：`paused=true` 且未 `resumed` 时，两台机器都停止派新单 |
+| `paused`、`resumed`、`resumedAt`、`resumedOn` | tick / resume | `kind=incident`：`paused=true` 且未 `resumed` 时，各台机器都停止派新单 |
 
 对象和数组一律按 JSON 字符串写入（`--type string`），读的时候解码；也接受服务端原生存的对象。清空一个键用 `metadata delete`，不写空字符串。
 
@@ -135,20 +137,33 @@
 
 **停止条件**（触发后暂停派新单，建排障单给裁定员，`resume` 恢复）：连续 5 次同类门槛失败（类别 = 阶段 + 第一个失败检查）；集成门槛失败率 > 10%；某个「生成家族 × 复核家族」审计满 10 次后漏检率 > 10%；一小时内 3 次无法归类的运行失败；默认还原家族（以及已启用的便宜档）全部在冷却中。
 
-**运行失败**（`tick` 第 2 步）：读每个进行中任务的最近一次运行。限流、额度 → 该智能体冷却 30 分钟，改派同家族同模型的另一台机器，没有就按路由的下一个候选；环境类 → 同一智能体重跑一次，再失败就改派；无法归类 → 报 anomaly。同一次运行只处理一次。
+**运行失败**（`tick` 第 2 步）：读每个进行中任务的最近一次运行。限流、额度 → 该智能体冷却 30 分钟，改派同家族同模型的另一个智能体（单机运行时通常没有），没有就按路由的下一个候选；环境类 → 同一智能体重跑一次，再失败就改派；无法归类 → 报 anomaly。同一次运行只处理一次。
 
 **失败类别映射表是猜测**。`tools/lib/error-classes.mjs` 里的文案是各家的常见写法，还没见过 Multica 对 Claude Code、dsh、Opencode 限流时实际返回什么。联调或上线后看到真实的失败，以 `multica issue runs <id>` 返回的 `error` / `result` 原文为准替换。
 
-## 两台机器
+## 机器与分片
 
-两台机器可以各跑一个 `tick`（每台同时只跑一个，`locks/tick` 保证）。分片按能力和负载：每台只为**本机**还原员的空位领工单（拉取模式），门槛、录制、复核按资产和负载在两台之间选人，不按工单在哪台。
+### 现状：只在 Mac mini 上运行（2026-10-15 起）
+
+2026-10-15 李炳通决定停用 Office-Server（HM-212）：它上面的 Claude 命令行路径失效，GitHub 凭据和仓库缓存也反复出问题。现在全部智能体都在 Mac mini（名册 `machine` 为 `mac-mini`），只跑一个 `tick`：
+
+- `restore.config.json` 的 `machines` 只剩 `mac`，承担全部角色（含原来只在 Office 上的 `restorer-core`、`reviewer`）。
+- 名册里原 `@Office` 的智能体都是 `enabled: false`，保留只为留存历史。**全部智能体都停用的机器不算机器**（`tools/lib/machine.mjs` 的 `machineIds`），所以名册里只剩一台活着的机器，`tick` 不写 `--machine` 也会认出 `mac-mini`；写 `--machine mac` 同样可以。`--machine office` 会报错。停用机器的 `stats/<机器>.json` 快照仍然读入，能力数据不丢。
+- `claims` 分支没有 Office 的领取记录（远端还没有这个分支），不用 `claims reclaim`。以后如果发现停用机器还领着工单，在 Mac 上运行 `claims reclaim --from office-server --machine mac-mini`（心跳超过 60 分钟后不用 `--force`）。
+- 门槛、录制、修正、复核、还原都在同一台 16GB 的机器上抢内存，并发建议见 `docs/pipeline.md` 第四节。
+
+下面的分片机制保留不动：以后再加机器时照此运行，`machines.test.mjs` 用一台假设的第二台机器继续覆盖。
+
+### 多台机器时
+
+每台机器可以各跑一个 `tick`（每台同时只跑一个，`locks/tick` 保证）。分片按能力和负载：每台只为**本机**还原员的空位领工单（拉取模式），门槛、录制、复核按资产和负载在各台之间选人，不按工单在哪台。
 
 ### 本机是哪台
 
-`--machine <id>` > 环境变量 `HMRSFW_MACHINE` > 名册 `machines.<id>.hosts` 与主机名匹配 > 名册里只有一台机器时就是它 > 未知。`<id>` 是名册里智能体的 `machine` 值，可以写唯一前缀（`mac` → `mac-mini`，`office` → `office-server`）。不看智能体名字里的 `@Mac` / `@Office`。
+`--machine <id>` > 环境变量 `HMRSFW_MACHINE` > 名册 `machines.<id>.hosts` 与主机名匹配 > 名册里只有一台机器时就是它 > 未知。`<id>` 是名册里**启用的**智能体的 `machine` 值（加上名册 `machines` 的键），可以写唯一前缀（`mac` → `mac-mini`）。不看智能体名字里的 `@Mac`。
 
 - 未知时 `tick` 拒绝运行。其他命令（例如门槛员调用 `advance`）照常运行，这时只认本主机写下的领取记录。
-- `*`（不分片：一个 tick 驱动全部工单，和分片前一样）只在明确写了 `--machine '*'` 或 `HMRSFW_MACHINE=*` 时才用。两台机器不会因为都漏配而同时退回 `*`；另一台主机写的 `*` 记录也不算本机的。
+- `*`（不分片：一个 tick 驱动全部工单，和分片前一样）只在明确写了 `--machine '*'` 或 `HMRSFW_MACHINE=*` 时才用。多台机器不会因为都漏配而同时退回 `*`；另一台主机写的 `*` 记录也不算本机的。
 - 建议在名册里写好 `machines.<id>.hosts`，这样所有智能体不用改指令就能认出本机。
 
 名册可以加 `machines`（可选，不删现有字段）：
@@ -156,11 +171,11 @@
 ```json
 "machines": {
  "mac-mini": { "hosts": ["DylandeMac-mini.local"], "assets": ["login", "har", "baseline"] },
- "office-server": { "hosts": ["Dylan-Office-Server"], "assets": ["har", "baseline"] }
+ "spare-host": { "hosts": ["spare-host.lan"], "assets": ["har", "baseline"] }
 }
 ```
 
-`assets` 是这台机器上有的东西：`login`（人登录过的浏览器登录态，只在有人能亲手登录的机器上）、`har`、`baseline`（随常态同步到两台）。某一步需要什么写在 `scheduler.config.json` 的 `requires`：默认录制要 `login`，门槛要 `har` 和 `baseline`。**名册没有 `machines` 时不做任何资产限制**，门槛员在哪台由名册决定，没有写死在 Mac。HM-9 定了门槛归属后只改名册（门槛员的 `machine`、各机 `assets`），不改代码。
+`assets` 是这台机器上有的东西：`login`（人登录过的浏览器登录态，只在有人能亲手登录的机器上）、`har`、`baseline`（多台机器时随常态同步到各台）。某一步需要什么写在 `scheduler.config.json` 的 `requires`：默认录制要 `login`，门槛要 `har` 和 `baseline`。**名册没有 `machines` 时不做任何资产限制**，门槛员在哪台由名册决定，没有写死在 Mac。HM-9 定了门槛归属后只改名册（门槛员的 `machine`、各机 `assets`），不改代码。
 
 工单自己的额外要求读 `requires` 字段（数组 = 每一步都要；对象 = 按步骤，如 `{"record": ["login:enterprise"]}`）。这个字段名是向 C 提的建议，C 的工单目前没有机器或资产字段；C 定了别的名字，只改 `tools/lib/machine.mjs` 的 `woRequires` 一处。
 
@@ -185,10 +200,10 @@
 - `advance` 在不拥有该工单的机器上调用（门槛员可能在任一台）：只写 `advanceRequested`，返回 `{"ok":true,"deferred":true}`；所属机器下一轮立即推进，不等 10 分钟的兜底。`--regate` 同理。
 - 主控回退了别的机器的合并：写 `reopenRequest`，由所属机器重开。
 - `resplit`、`rerecord`、`open-upgrade` 会改动工单的任务，所以只在工单所属机器上执行。在另一台机器上调用时（裁定员或被改派的还原员可能在另一台），只在 `claims` 分支写一条 `req/*.json`，返回 `deferred`；所属机器下一轮执行后删掉这条请求。
-- 主控每一步全局操作前都会重新确认租约，剩余时间不到四分之一（7.5 分钟）就跳过。所以 tick 跑得慢，或两台时钟偏差在这个范围内，都不会出现两个主控。两台机器要开 NTP 对时。
-- 暂停：停止条件建的排障单带 `paused=true`，两台都看到；`resume` 在任一台运行都把它标成 `resumed`，发起暂停那台账本里的暂停标记也随之失效。
+- 主控每一步全局操作前都会重新确认租约，剩余时间不到四分之一（7.5 分钟）就跳过。所以 tick 跑得慢，或各台时钟偏差在这个范围内，都不会出现两个主控。多台机器要开 NTP 对时。
+- 暂停：停止条件建的排障单带 `paused=true`，各台都看到；`resume` 在任一台运行都把它标成 `resumed`，发起暂停那台账本里的暂停标记也随之失效。
 - 本机账本只当明细和缓存。已通过的页、合并的 sha、录制是否完成、回归是否在进行、某工单是否已有任务，都从任务元数据或 git 推出来；回归计数改为数 `main..integration` 之间的合并提交。
-- 能力表、漏检、冷却、最近的事件各机只记自己推进的那部分，每 `publishEveryMin` 分钟写到 `claims` 分支 `stats/<机器>.json`（同时是心跳）。路由、抽检档位、停止条件、每日摘要读「本机账本 + 另一台的快照」之和，所以两台的同家族智能体仍共享能力数据。POC 播种只算一次；只认名册里的机器，从不分片切过来时留下的 `*` 快照不计入，避免把同一份账本算两遍。
+- 能力表、漏检、冷却、最近的事件各机只记自己推进的那部分，每 `publishEveryMin` 分钟写到 `claims` 分支 `stats/<机器>.json`（同时是心跳）。路由、抽检档位、停止条件、每日摘要读「本机账本 + 其他机器的快照」之和（含已停用机器留下的快照），所以同家族智能体仍共享能力数据。POC 播种只算一次；只认名册里的机器，从不分片切过来时留下的 `*` 快照不计入，避免把同一份账本算两遍。
 - 主控每轮检查：同一工单有两张以上未结束的任务且不是双派，或任务的 `claimedBy` 和领取记录不符 → 报「重复派单」anomaly 并记入每日摘要，由裁定员决定留哪张。
 
 ### 停用一台机器、从不分片切到分片
@@ -202,7 +217,7 @@
 ```bash
 node --test tools/test/scheduler.test.mjs     # 场景：完整链路、双派、单家族冷启动单派、打包、等录制、升级单、回归二分、规则复核、限流、dry-run、路由、无异家族复核员、已知差异
 node --test tools/test/concurrency.test.mjs   # 3 个 tick 并发 × 20 轮，两种锁模式
-node --test tools/test/machines.test.mjs      # 两台机器：并发领取、先到先得与退避、两个 --machine 的 tick 并发、advance 只在所属机器、暂停/接管、资产判断、C 的工单格式
+node --test tools/test/machines.test.mjs      # 单机：停用机器不算机器、--machine mac 只派给 Mac 智能体；多机（假设的第二台）：并发领取、先到先得与退避、两个 --machine 的 tick 并发、advance 只在所属机器、暂停/接管、资产判断、C 的工单格式
 ```
 
 测试只用假 CLI（`MULTICA_FAKE_STATE`）和临时目录里的 git 仓库（本地裸仓库当 `origin`），不访问真实工作区和 GitHub。`HMRSFW_TOOL_ROOT` 让脚本指向测试用的工具仓库，`HMRSFW_TICK_NO_GLOBAL_LOCK=1` 关掉 `tick` 的全局锁、只靠工单锁和账本锁（只用于测试）。

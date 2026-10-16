@@ -19,7 +19,8 @@
  "target": "apps/uc/src/shared/market.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "market.vue_vue_type_script_setup_true_lang.1751615607545.js#_"
   }
  },
  "registryKey": "market.vue_vue_type_script_setup_true_lang.1751615607545.js",

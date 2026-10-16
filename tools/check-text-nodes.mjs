@@ -2,7 +2,7 @@
 // characters, leading/trailing spaces included (global doc §六 页面还原 5). The POC found "搜索" vs " 搜索 " only here:
 // replay compares rendered DOM after whitespace collapsing and cannot see it.
 // Original side: string children of createTextVNode / createElementVNode / createVNode / createElementBlock / createBlock and
-// the text of createStaticVNode, read from the chunk (only the order's byte range for a segment). Restored side: the same
+// the text of createStaticVNode, read from the chunk (for a segment only its factRanges, tools/segments.mjs). Restored side: the same
 // calls in each SFC template compiled with hmrsfw-vue's @vue/compiler-sfc.
 // A difference only in leading/trailing whitespace is reported with severity "warn": it is a real source difference the
 // restorer should fix, but replay often cannot see it (antd components, unrendered branches), so it does not fail the check.
@@ -16,7 +16,7 @@ import { appDir } from "./app-dir.mjs";
 const show = (t) => JSON.stringify(t);
 export function checkTextNodes(order, APP, { files = orderFiles(order, APP), maps = loadJson(order.maps) } = {}) {
   const chunk = order.sourceChunk.split("/").pop();
-  const orig = renderFacts(chunkSource(order.site, chunk), originalNameOf(maps.vue), { range: order.type === "segment" ? order.range : null }).texts;
+  const orig = renderFacts(chunkSource(order.site, chunk), originalNameOf(maps.vue), { range: order.type === "segment" ? order.factRanges ?? order.range : null }).texts;
   const sfc = compilerSfc(APP); const restored = []; const where = new Map();
   for (const f of files) { const c = compileSfc(sfc, f); if (!c.code) continue; for (const t of renderFacts(c.code, compiledNameOf).texts) { restored.push(t); if (!where.has(t)) where.set(t, path.relative(APP, f)); } }
   const { onlyA: missing, onlyB: extra } = multisetDiff(orig, restored);

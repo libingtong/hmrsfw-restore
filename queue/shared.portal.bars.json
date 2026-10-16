@@ -19,7 +19,8 @@
  "target": "apps/portal/src/shared/bars.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "bars.vue_vue_type_style_index_0_lang.1783320636200.js#_"
   }
  },
  "registryKey": "bars.vue_vue_type_style_index_0_lang.1783320636200.js",

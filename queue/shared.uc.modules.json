@@ -14,7 +14,8 @@
    "status": "restored",
    "exports": {
     "D": {
-     "export": "DictCodes"
+     "export": "DictCodes",
+     "original": "DictCodes.1751615607545.js#D"
     }
    },
    "kb": 0.2
@@ -25,10 +26,12 @@
    "status": "restored",
    "exports": {
     "c": {
-     "export": "createWebSocket"
+     "export": "createWebSocket",
+     "original": "WebSockets.1751615607545.js#c"
     },
     "g": {
-     "export": "getWsBaseUrl"
+     "export": "getWsBaseUrl",
+     "original": "WebSockets.1751615607545.js#g"
     }
    },
    "kb": 0.9
@@ -39,7 +42,8 @@
    "status": "reserved",
    "exports": {
     "a": {
-     "export": "a"
+     "export": "addDays",
+     "original": "dateUtil.1751615607545.js#a"
     }
    },
    "kb": 0.1
@@ -52,10 +56,12 @@
     "E": {
      "path": "jspdf",
      "export": "jsPDF",
-     "npm": true
+     "npm": true,
+     "original": "jspdf.es.min.1751615607545.js#E"
     },
     "H": {
-     "export": "Watermark"
+     "export": "Watermark",
+     "original": "jspdf.es.min.1751615607545.js#H"
     }
    },
    "kb": 351.6
@@ -66,10 +72,12 @@
    "status": "restored",
    "exports": {
     "i": {
-     "export": "infoAlert"
+     "export": "infoAlert",
+     "original": "message.1751615607545.js#i"
     },
     "s": {
-     "export": "successCountdown"
+     "export": "successCountdown",
+     "original": "message.1751615607545.js#s"
     }
    },
    "kb": 0.3
@@ -81,11 +89,13 @@
    "exports": {
     "_": {
      "path": "@/legacy",
-     "export": "ROBOT_IMG"
+     "export": "ROBOT_IMG",
+     "original": "wxyy.hook.1751615607545.js#_"
     },
     "g": {
      "path": "@/legacy",
-     "export": "askWenXin"
+     "export": "askWenXin",
+     "original": "wxyy.hook.1751615607545.js#g"
     }
    },
    "kb": 0.4
@@ -101,7 +111,8 @@
      "path": "@/shared/images",
      "export": "defaultImg",
      "status": "reserved",
-     "owner": "shared.uc.modules"
+     "owner": "shared.uc.modules",
+     "original": "default.1751615607545.js#_"
     }
    },
    "kb": 0.1
@@ -117,7 +128,8 @@
      "path": "@/shared/images",
      "export": "newUserCardImg",
      "status": "reserved",
-     "owner": "shared.uc.modules"
+     "owner": "shared.uc.modules",
+     "original": "newUserCard.vue_vue_type_style_index_0_scoped_399cb1b5_lang.1751615607545.js#_"
     }
    },
    "kb": 0.1
@@ -133,7 +145,8 @@
      "path": "@/shared/images",
      "export": "stateCardImg",
      "status": "reserved",
-     "owner": "shared.uc.modules"
+     "owner": "shared.uc.modules",
+     "original": "stateCard.vue_vue_type_style_index_0_scoped_53902b4a_lang.1751615607545.js#_"
     }
    },
    "kb": 0.7

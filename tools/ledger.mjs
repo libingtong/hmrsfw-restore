@@ -91,7 +91,7 @@ export function recordCapability(L, row, { tier, firstPass, passed, fixRounds = 
   if (passed) { t.pass++; t.fixRounds += fixRounds; }
 }
 
-// Aggregate over every key of a family (both machines share it, §4 家族与路由), optionally one model.
+// Aggregate over every key of a family (every machine shares it, §4 家族与路由), optionally one model.
 export function familyCapability(cap, family, model, tier) {
   const agg = emptyTier();
   for (const k of Object.values(cap.keys || {})) {

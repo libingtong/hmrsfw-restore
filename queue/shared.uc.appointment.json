@@ -45,23 +45,28 @@
  "exports": {
   "D": {
    "path": "@/shared/appointment/DetailModal.vue",
-   "export": "default"
+   "export": "default",
+   "original": "appointment.1751615607545.js#D"
   },
   "a": {
    "path": "@/shared/appointment/Appointment.vue",
-   "export": "default"
+   "export": "default",
+   "original": "appointment.1751615607545.js#a"
   },
   "c": {
    "path": "@/shared/appointment/CancelModal.vue",
-   "export": "default"
+   "export": "default",
+   "original": "appointment.1751615607545.js#c"
   },
   "o": {
    "path": "@/shared/appointment/OrderModal.vue",
-   "export": "default"
+   "export": "default",
+   "original": "appointment.1751615607545.js#o"
   },
   "s": {
    "path": "@/shared/appointment/SignModal.vue",
-   "export": "default"
+   "export": "default",
+   "original": "appointment.1751615607545.js#s"
   }
  },
  "registryKey": "appointment.1751615607545.js",

@@ -19,7 +19,8 @@
  "target": "apps/uc/src/shared/corporganic.vue",
  "exports": {
   "c": {
-   "export": "default"
+   "export": "default",
+   "original": "corporganic.1751615607545.js#c"
   }
  },
  "registryKey": "corporganic.1751615607545.js",

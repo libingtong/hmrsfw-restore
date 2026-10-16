@@ -30,11 +30,13 @@
  "exports": {
   "a": {
    "path": "@/shared/homeRight2/HomeRight.vue",
-   "export": "default"
+   "export": "default",
+   "original": "homeRight.17833206362002.js#a"
   },
   "h": {
    "path": "@/shared/homeRight2/HomeLeft.vue",
-   "export": "default"
+   "export": "default",
+   "original": "homeRight.17833206362002.js#h"
   }
  },
  "registryKey": "homeRight.17833206362002.js",

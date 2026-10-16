@@ -7,7 +7,7 @@
 //     the page's tier, the order goes to both (dual; branches -d / -g) — or, when the roster has only one cheap family,
 //     to that family alone (single; Sonnet if it has no free slot); afterwards to the cheapest family whose first-pass
 //     rate ≥ minFirstPass, Sonnet last;
-//   - agents of the same family on both machines share capability data (ledger.familyCapability) and each has its own
+//   - agents of the same family on every machine share capability data (ledger.familyCapability) and each has its own
 //     free slots: maxConcurrent + preQueue − active tasks (pre-queue = running + 1).
 // Usage: node tools/route.mjs <工单id> [--kind restore|upgrade] [--offline] [--app <dir>]
 //   → {candidates:[{family, agents:[...], expectedCost, reason}], features, dual}

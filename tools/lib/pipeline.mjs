@@ -7,7 +7,8 @@
 // is checked for the creation key first (then the issues' `createKey` metadata), the intent is written before
 // `issue create`, the id right after it.
 //
-// Two machines (docs/scheduler.md 「两台机器」): each work order is claimed by one machine on the tool repo's `claims`
+// Machines (docs/scheduler.md 「机器与分片」; since 2026-10-15 only the Mac mini runs agents, but more machines still
+// shard the same way): each work order is claimed by one machine on the tool repo's `claims`
 // branch (tools/lib/claims.mjs, a git compare-and-swap) before any task is created for it; only the owner's processes
 // advance its tasks. Tasks without work orders (integration, rule review, incident, record) and the global steps belong
 // to the leader (a lease on the same branch). State another machine must see lives in issue metadata or git; the local
@@ -22,10 +23,11 @@ import { Roster, reviewKey } from "./roster.mjs";
 import { Multica } from "./multica.mjs";
 import { Git, pageForbidden } from "./gitops.mjs";
 import { classifyRunError, FAILED_RUN_STATUSES } from "./error-classes.mjs";
-import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isAccepted, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
+import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isAccepted, isDispatchable, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
 import { Ledger, runRow, recordCapability, recordAudit, auditTier, seedFromConfirm, mergeCapability } from "../ledger.mjs";
 import { route, pick, agentLoad, freeSlots } from "../route.mjs";
 import { Claims, claimPath, statsPath, fileKey } from "./claims.mjs";
+import { sampleBatch } from "../readability-sample.mjs";
 import { ALL, resolveMachine, canRun, hostOf, machineIds } from "./machine.mjs";
 
 export const KINDS = ["restore", "record", "integration", "audit", "rule-review", "arbitrate", "incident", "upgrade"];
@@ -169,9 +171,10 @@ export class Pipeline {
 
   // Other machines' stats snapshots (claims branch stats/<machine>.json); this machine's own numbers are the live ledger.
   // Only roster machines count: a leftover "*" snapshot from before sharding is this same ledger and would double it.
+  // A retired machine (all its agents disabled) still counts, so its capability history keeps feeding routing.
   otherStats() {
     if (!this.claims) return [];
-    const ids = machineIds(this.roster);
+    const ids = machineIds(this.roster, { all: true });
     try { return this.claims.statsAll().filter((s) => s.machine !== this.machine && ids.includes(s.machine)); } catch { return []; }
   }
   capability(L) { const others = this.otherStats(); return others.length ? mergeCapability(L.capability, ...others.map((s) => s.capability || {})) : L.capability; }
@@ -301,11 +304,11 @@ export class Pipeline {
   }
 
   // Ordered dispatch queue: upgrades are created directly; entry/shared before pages, each by kb descending; pages
-  // under pack.maxKb are packed 3–5 per order (same app).
+  // under pack.maxKb are packed 3–5 per order (same app). Orders with a non-empty `missing` are not dispatched (isDispatchable).
   dispatchQueue(L) {
     const busyFiles = new Set(Object.values(L.tick.upgrades || {}).filter((u) => u.state === "active").flatMap((u) => u.files || []));
     const theirs = (w) => { const rec = this.claims ? this.claims.get(claimPath(w.id)) : null; return !!rec && !this.mine(rec); };
-    const eligible = this.orders().filter((w) => !isAccepted(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
+    const eligible = this.orders().filter((w) => !isAccepted(w) && isDispatchable(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
     const core = eligible.filter(isCore).filter((w) => !(w.files || []).some((f) => busyFiles.has(f))).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const pages = eligible.filter(isPage).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const units = core.map((w) => [w.id]);
@@ -981,6 +984,8 @@ export class Pipeline {
     const gate = this.gateResult(meta);
     if (!gate) return { ok: false, summary: `no gate result on ${taskId}`, anomalies: [{ issue: taskId, what: "integration advance without gate result", suggestedAction: "门槛员重跑" }] };
     if (gate.error) return { ok: false, summary: "gate error", anomalies: [{ issue: taskId, what: `integration gate error: ${String(gate.error).slice(0, 200)}`, suggestedAction: "建排障单交给裁定员" }] };
+    // No verdict: pages without a usable baseline. Not a failure — a rule/lib regression must not be reverted on it.
+    if (gate.pending === "record") return { ok: false, summary: "integration gate pending record", anomalies: [{ issue: taskId, what: `integration gate pending record: ${(gate.missing || []).length} pages without a usable baseline`, suggestedAction: "补录基线后 --regate，或由人决定回归范围" }] };
     const wos = meta.workOrders || [];
     const failed = gate.pass ? [] : this.failedWos(gate, wos);
     this.gateGlobal = gate.global ?? null; // app-wide failures by layer / owner (integration mode), for the reports below
@@ -1005,6 +1010,7 @@ export class Pipeline {
       this.ledger.tx((L) => { L.tick.regression = { ...(L.tick.regression || {}), state: "passed" }; L.tick.regressionEpoch = (L.tick.regressionEpoch || 0) + 1; L.tick.lastGoodSha = meta.sha; L.newEvents.push({ type: "main-ff", sha: meta.sha, ok: !!r.ok }); });
       if (!r.ok) this.anomaly(taskId, `fast-forward main → ${short(meta.sha)} failed: ${JSON.stringify(r).slice(0, 200)}`, "裁定员检查 main 是否被手动改动");
       this.closeIntegration(taskId, `[GATE] 集成回归通过，main 快进到 ${short(meta.sha)}`);
+      try { this.readabilitySample(taskId, meta); } catch (e) { this.anomaly(taskId, `readability sample failed: ${String(e.message).slice(0, 200)}`, "不影响回归结果；检查 tools/readability-sample.mjs 或把 readabilitySample.enabled 设为 false"); }
       return { ok: true, summary: `regression @${short(meta.sha)} passed → main`, anomalies: [] };
     }
     const L = this.ledger.read();
@@ -1017,6 +1023,27 @@ export class Pipeline {
       return this.openIncident(`集成回归在 ${short(meta.sha)} 失败，但 main..integration 之间没有可回退的合并提交`, { sha: meta.sha, failed });
     }
     return this.bisectStep({ candidates: cands, lo: 0, hi: cands.length - 1, sha: meta.sha, mainSha: meta.mainSha, failed, step: 1 });
+  }
+
+  // Manual readability sample (HM-19): after a passed integration regression, 5 % of the pages that went in with this batch
+  // (at least one; stratified by size band × generating model family) go to the 「调度日志」 task with a scoring table.
+  // Switch: scheduler.config.json readabilitySample.enabled (default on). Never affects the regression result.
+  readabilitySample(taskId, meta) {
+    const cfg = this.cfg.readabilitySample; if (!cfg?.enabled || meta.purpose !== "regression" || !meta.mainSha) return null;
+    const L = this.ledger.read(); const pages = []; const seen = new Set();
+    for (const sha of this.appGit.mergesBetween(meta.mainSha, meta.sha)) {
+      const info = L.tick.merges?.[sha] || this.mergeInfo(sha); if (!info || L.tick.merges?.[sha]?.reverted) continue;
+      let family = "unknown"; try { const tm = this.meta(info.task); family = this.roster.get(tm.agent)?.family || tm.family || "unknown"; } catch { /* the task is gone: unknown family */ }
+      for (const wo of info.wos || []) if (!seen.has(wo) && isPage(this.wo(wo) || {})) { seen.add(wo); pages.push({ wo, family, sha }); }
+    }
+    if (!pages.length) return null;
+    const key = `reg-${short(meta.sha)}`;
+    const res = sampleBatch({ pages, key, batch: `${pages.length} 页，${short(meta.mainSha)}..${short(meta.sha)}`, APP: this.appDir, rate: cfg.rate, min: cfg.min, ref: meta.sha, orders: this.orders(), dryRun: this.dryRun, root: this.paths.root });
+    if (!res.n) return null;
+    if (this.cfg.logIssueId) this.comment(this.cfg.logIssueId, res.text);
+    else this.anomaly(taskId, `readability sample ${key} (${res.n}/${res.N} pages) not posted: scheduler.config.json has no logIssueId`, "在 scheduler.config.json 填 logIssueId；抽样已写入 $RESTORE_STATE/readability/");
+    this.ledger.tx((L2) => L2.newEvents.push({ type: "readability-sample", key, n: res.n, pages: res.N }));
+    return res;
   }
 
   // Pages to test at a commit: the pages that failed the regression (all passed pages when the gate didn't say which),

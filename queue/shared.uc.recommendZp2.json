@@ -40,19 +40,23 @@
  "exports": {
   "B": {
    "path": "@/shared/recommendZp2/BusinessCard.vue",
-   "export": "default"
+   "export": "default",
+   "original": "recommendZp.17516156075452.js#B"
   },
   "M": {
    "path": "@/shared/recommendZp2/MsgAndTip.vue",
-   "export": "default"
+   "export": "default",
+   "original": "recommendZp.17516156075452.js#M"
   },
   "a": {
    "path": "@/shared/recommendZp2/MyBusiness.vue",
-   "export": "default"
+   "export": "default",
+   "original": "recommendZp.17516156075452.js#a"
   },
   "r": {
    "path": "@/shared/recommendZp2/RecommendZp.vue",
-   "export": "default"
+   "export": "default",
+   "original": "recommendZp.17516156075452.js#r"
   }
  },
  "registryKey": "recommendZp.17516156075452.js",

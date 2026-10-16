@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/evaluate.vue",
  "exports": {
   "e": {
-   "export": "default"
+   "export": "default",
+   "original": "evaluate.1783320636200.js#e"
   }
  },
  "registryKey": "evaluate.1783320636200.js",
