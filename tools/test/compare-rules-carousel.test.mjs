@@ -27,3 +27,13 @@ test("slick-track-transition: the track position, other styles and other element
   assert.notEqual(html(track("opacity: 1; transition: opacity 500ms;", "slick-slide")), html(track("opacity: 1;", "slick-slide")));
   assert.notEqual(html(track("opacity: 1; transition: opacity 500ms;", "slick-track-x")), html(track("opacity: 1;", "slick-track-x")));
 });
+
+const chart = (attrs) => ({ tree: el("div", [["class", "box"]], [el("div", attrs, [el("canvas", [["width", "600"]])])]), ltgt: true });
+test("echarts-instance-id: the per-run instance number is not compared; presence, element and the rest are", () => {
+  assert.ok(rules.ids.includes("echarts-instance-id"));
+  const st = ["style", "user-select: none;"];
+  assert.equal(html(chart([["_echarts_instance_", "ec_1792144146926"], ["class", "setSize"], st])), html(chart([["_echarts_instance_", "ec_1792144143116"], ["class", "setSize"], st])));
+  assert.notEqual(html(chart([["_echarts_instance_", "ec_1792144146926"], ["class", "setSize"], st])), html(chart([["class", "setSize"], st]))); // not initialised
+  assert.notEqual(html(chart([["_echarts_instance_", "ec_1"], ["class", "setSize"], st])), html(chart([["_echarts_instance_", "ec_2"], ["class", "other"], st])));
+  assert.notEqual(html(chart([["_echarts_instance_", "x1"], st])), html(chart([["_echarts_instance_", "x2"], st]))); // only the ec_<digits> form
+});
