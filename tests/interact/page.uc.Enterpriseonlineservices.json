@@ -1,0 +1,11 @@
+[
+  {"wait":800},
+  {"click":"我要申诉","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-modal-close","optional":true},
+  {"wait":500},
+  {"click":"取消入驻","optional":true},
+  {"wait":500},
+  {"click":"取消","optional":true},
+  {"wait":500}
+]
