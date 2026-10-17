@@ -1,0 +1,6 @@
+[
+  {"wait":2000},
+  {"clickSel":".a3","optional":true},
+  {"clickSel":".item-one-a2","optional":true},
+  {"clickSel":".ctn2","optional":true}
+]
