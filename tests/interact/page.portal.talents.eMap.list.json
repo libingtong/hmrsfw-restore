@@ -2,7 +2,7 @@
   {"fill": ["请输入单位名称或者职位名称", "测试"], "wait": 500},
   {"click": "查询", "wait": 2000},
   {"click": "重置", "wait": 2000},
-  {"clickSel": ".searchBoxItem .marLeft20.pointer", "optional": true, "wait": 2000},
-  {"clickSel": ".mapLi > li", "optional": true, "wait": 2000},
+  {"click": "找机构", "wait": 2500},
+  {"click": "找服务", "wait": 2500},
   {"clickSel": ".ant-pagination-next", "optional": true, "wait": 2000}
 ]
