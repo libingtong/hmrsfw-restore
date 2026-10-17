@@ -1,0 +1,6 @@
+[
+  {"wait": 1500},
+  {"clickSel": ".custom-slick-arrow-right", "optional": true},
+  {"clickSel": ".custom-slick-arrow-pre", "optional": true},
+  {"clickSel": ".tableftbList .font-16.u-8", "optional": true}
+]
