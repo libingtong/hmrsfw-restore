@@ -1,0 +1,7 @@
+[
+  {"wait":1000},
+  {"clickSel":".ant-table-tbody tr:first-child .eye-outlined, .ant-table-tbody tr:first-child a","optional":true},
+  {"wait":800},
+  {"clickSel":".ant-modal-close","optional":true},
+  {"wait":500}
+]
