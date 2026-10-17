@@ -1,0 +1,12 @@
+[
+  {"fill":["请输入单位/职位名称或关键字进行查询","测试"]},
+  {"click":"搜索"},
+  {"wait":800},
+  {"fill":["最低月薪资","3000"]},
+  {"fill":["最高薪资","8000"]},
+  {"click":"搜索"},
+  {"wait":800},
+  {"click":"重置"},
+  {"wait":800},
+  {"clickSel":".ant-pagination-next","optional":true}
+]
