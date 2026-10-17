@@ -1,0 +1,8 @@
+[
+  {"clickSel":".rightcord.bg1 .fabu","optional":false},
+  {"wait":1500},
+  {"clickSel":".rightcord.bg2 .fabu","optional":false},
+  {"wait":1500},
+  {"clickSel":".rightcord.bgBlue .fabu","optional":false},
+  {"wait":1500}
+]
