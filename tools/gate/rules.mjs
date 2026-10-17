@@ -14,7 +14,13 @@ export function readRuleDir(dir) {
   });
 }
 
-const stripTransition = (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.map(([k, v]) => (k === "style" ? [k, v.replace(/(^|;)\s*(-webkit-)?transition(-[a-z-]+)?\s*:[^;]*;?/g, "$1").replace(/^\s+|\s+$/g, "")] : [k, v])) }));
+const dropTransition = (v) => v.replace(/(^|;)\s*(-webkit-)?transition(-[a-z-]+)?\s*:[^;]*;?/g, "$1").replace(/^\s+|\s+$/g, "");
+const stripTransition = (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.map(([k, v]) => (k === "style" ? [k, dropTransition(v)] : [k, v])) }));
+// ant-design-vue's carousel (vc-slick) puts `transition` on the .slick-track inline style only while it slides
+// (getTrackAnimateCSS) and sets the plain track style back `speed` ms later (animationEndCallback); the target position
+// (transform / left / top) is already in the style during the slide. Drop only the transition declaration on that element.
+const hasClass = (n, c) => n.a.some(([k, v]) => k === "class" && v.split(/\s+/).includes(c));
+const slickTrackTransition = (tree) => mapTree(tree, (n) => (hasClass(n, "slick-track") ? { ...n, a: n.a.map(([k, v]) => (k === "style" ? [k, dropTransition(v)] : [k, v])) } : n));
 // Elements caught mid-transition carry Vue/rc-motion state classes (x-enter-from, x-leave-active, x-appear-prepare …),
 // the motion's base class x, and the inline height/opacity of that moment; when the motion ends the classes go and an
 // empty style="" is left behind. Drop the state classes with their base class and the inline style on such elements,
@@ -27,7 +33,7 @@ const stripMotion = (tree) => mapTree(tree, (n) => {
   if (!bases.size) return { ...n, a: n.a.filter(([k, v]) => !(k === "style" && v.trim() === "")) };
   return { ...n, a: n.a.filter(([k]) => k !== "style").map(([k, v]) => (k === "class" ? [k, tokens.filter((t) => !MOTION.test(t) && !bases.has(t)).join(" ")] : [k, v])) };
 });
-const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion };
+const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition };
 const dropAttrs = (names) => (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k]) => !names.has(k)) }));
 
 export function loadRules(dir = path.join(ROOT, "rules/compare")) {

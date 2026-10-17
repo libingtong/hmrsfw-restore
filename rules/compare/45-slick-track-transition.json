@@ -1,0 +1,7 @@
+{
+ "id": "slick-track-transition",
+ "kind": "tree",
+ "enabled": true,
+ "since": "HM-652",
+ "why": "ant-design-vue 轮播（vc-slick）只在滑动进行中给 .slick-track 的行内 style 加 transition（getTrackAnimateCSS），speed 毫秒后由 animationEndCallback 换回不带 transition 的轨道样式；目标位置 transform 在滑动开始时就已写入。只去掉 .slick-track 上的 transition 声明，transform、宽度、各 slide 的类和属性照常比较。证据：legacy-dist/portal/assets/index.1783320636200.js 偏移 557765（静态轨道样式 transition:\"\"）、558381（滑动样式加 transition）、571456（animationEndCallback）；HM-635、HM-604、HM-611 两次原版基线仅此不同。见 docs/rule-changes/HM-652.md"
+}
