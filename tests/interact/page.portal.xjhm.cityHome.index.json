@@ -1,0 +1,7 @@
+[
+  {"wait":1500},
+  {"clickSel":".dotsilunbo","optional":true},
+  {"wait":800},
+  {"clickSel":".dotsilunbo:nth-of-type(2)","optional":true},
+  {"wait":800}
+]
