@@ -1,10 +1,11 @@
 [
-  {"fill":["请输入职位名称","测试"]},
-  {"click":"查询","wait":2000},
-  {"click":"重置","wait":2000},
-  {"clickSel":".ant-pagination-next","optional":true,"wait":2000},
-  {"click":"添加职位","wait":2000},
-  {"fill":["请输入最低工资","1000"]},
-  {"click":"提交","wait":1500},
-  {"click":"关闭","optional":true}
+  {"fill":["请输入工坊名称","测试工坊"],"optional":true},
+  {"fill":["请输入职位名称","测试职位"],"optional":true},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"click":"添加职位","optional":true},
+  {"click":"关闭","optional":true},
+  {"click":"新增工坊","optional":true},
+  {"click":"关闭","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true}
 ]
