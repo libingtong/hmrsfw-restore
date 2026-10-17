@@ -1,0 +1,7 @@
+[
+  {"wait":800},
+  {"clickSel":".approveli a.wid:not(.coloradb8)","optional":true},
+  {"wait":800},
+  {"clickSel":".ant-modal-confirm .ant-btn:not(.ant-btn-primary)","optional":true},
+  {"wait":500}
+]
