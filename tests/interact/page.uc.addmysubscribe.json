@@ -1,0 +1,6 @@
+[
+  {"click":"保存","optional":true},
+  {"fill":["请输入订阅器名称","测试订阅"]},
+  {"fill":["不小于1的正整数","3"]},
+  {"click":"保存","optional":true}
+]
