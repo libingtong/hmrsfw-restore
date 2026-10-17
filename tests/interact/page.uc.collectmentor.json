@@ -1,0 +1,11 @@
+[
+  {"fill":["请输入导师姓名或擅长领域","测试"]},
+  {"click":"查询"},
+  {"wait":500},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"click":"重置"},
+  {"wait":500},
+  {"clickSel":".star","optional":true},
+  {"click":"关闭","optional":true}
+]
