@@ -1,0 +1,6 @@
+[
+  {"clickSel":".swiper-slide.pointer:last-child","optional":true},
+  {"clickSel":".swiper-slide.pointer:first-child","optional":true},
+  {"click":"下一页","optional":true},
+  {"click":"上一页","optional":true}
+]
