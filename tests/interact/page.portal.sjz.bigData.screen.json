@@ -1,0 +1,7 @@
+[
+  {"wait": 2000},
+  {"clickSel": ".slick-arrow-rigth", "optional": true},
+  {"clickSel": ".slick-arrow-left", "optional": true},
+  {"clickSel": ".dotsi", "optional": true},
+  {"wait": 1000}
+]
