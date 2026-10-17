@@ -1,0 +1,14 @@
+[
+  {"clickSel":".ant-tabs-tab:nth-child(2)","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-tabs-tab:nth-child(3)","optional":true},
+  {"wait":500},
+  {"fill":["请输入咨询内容查询","测试"]},
+  {"click":"查询"},
+  {"wait":500},
+  {"click":"重置"},
+  {"wait":500},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"wait":500},
+  {"click":"查看","optional":true}
+]
