@@ -1,0 +1,6 @@
+[
+  {"click":"报名参加","optional":true,"wait":2000},
+  {"click":"取消","optional":true,"wait":1000},
+  {"click":"报名参加","optional":true,"wait":2000},
+  {"click":"确认","optional":true,"wait":3000}
+]
