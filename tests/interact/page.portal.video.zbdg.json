@@ -1,0 +1,12 @@
+[
+  {"wait":1500},
+  {"fill":["请输入直播名称点击搜索","测试"]},
+  {"click":"搜索"},
+  {"wait":1000},
+  {"click":"重置"},
+  {"wait":1000},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"wait":1000},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"wait":1000}
+]
