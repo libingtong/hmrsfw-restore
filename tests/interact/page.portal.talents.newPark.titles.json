@@ -1,0 +1,8 @@
+[
+  {"wait": 800},
+  {"clickSel": ".specNext", "optional": true},
+  {"clickSel": ".specPrev", "optional": true},
+  {"clickSel": ".specNext1", "optional": true},
+  {"clickSel": ".specPrev1", "optional": true},
+  {"wait": 800}
+]
