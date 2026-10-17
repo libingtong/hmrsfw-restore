@@ -1,0 +1,9 @@
+[
+  {"clickSel":".userlist","optional":true},
+  {"clickSel":".approve .right a:has-text('展开')","optional":true},
+  {"clickSel":".approve .right a:has-text('收起')","optional":true},
+  {"clickSel":".ant-table-tbody tr:first-child a:has-text('回复')","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-modal-close","optional":true},
+  {"clickSel":".moredianji a","optional":true}
+]
