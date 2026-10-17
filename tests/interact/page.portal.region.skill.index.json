@@ -1,0 +1,7 @@
+[
+  {"wait":800},
+  {"clickSel":".sjz-train-li:not(.sjz-train-li1)","optional":true},
+  {"wait":500},
+  {"clickSel":".sjz-train-li1","optional":true},
+  {"wait":500}
+]
