@@ -1,0 +1,15 @@
+[
+  {"fill":["请输入零工名称","测试"]},
+  {"click":"查询"},
+  {"wait":800},
+  {"click":"重置"},
+  {"wait":800},
+  {"fill":["请输入姓名","测试"]},
+  {"fill":["请输入联系电话","10000000000"]},
+  {"click":"查询"},
+  {"wait":800},
+  {"click":"重置"},
+  {"wait":800},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"wait":800}
+]
