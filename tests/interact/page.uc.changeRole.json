@@ -1,0 +1,4 @@
+[
+  {"clickSel":".ant-dropdown-link","optional":true},
+  {"wait":500}
+]
