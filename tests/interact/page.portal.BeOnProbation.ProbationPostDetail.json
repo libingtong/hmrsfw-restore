@@ -1,0 +1,6 @@
+[
+  {"click":"投递简历","optional":true},
+  {"wait":1500},
+  {"click":"取消","optional":true},
+  {"wait":500}
+]
