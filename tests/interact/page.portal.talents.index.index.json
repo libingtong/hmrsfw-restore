@@ -1,0 +1,7 @@
+[
+  {"click":"线下招聘会","wait":1200,"optional":true},
+  {"click":"线上招聘会","wait":1200,"optional":true},
+  {"clickSel":".swiper-pagination-bullet","optional":true,"wait":800},
+  {"click":"意见反馈","wait":1200,"optional":true},
+  {"press":"Escape","wait":800}
+]
