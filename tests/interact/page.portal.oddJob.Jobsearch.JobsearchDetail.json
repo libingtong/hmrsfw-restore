@@ -1,0 +1,12 @@
+[
+  {"wait":1500},
+  {"click":"收藏","optional":true},
+  {"wait":1000},
+  {"click":"已收藏","optional":true},
+  {"wait":1000},
+  {"click":"投诉","optional":true},
+  {"wait":800},
+  {"clickSel":".ant-modal-close","optional":true},
+  {"clickSel":".defaultBtn","optional":true},
+  {"wait":800}
+]
