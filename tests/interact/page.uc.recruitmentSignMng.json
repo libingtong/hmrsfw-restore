@@ -1,0 +1,7 @@
+[
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"clickSel":".ant-pagination-prev","optional":true},
+  {"clickSel":".ant-table-tbody tr:first-child a:last-child","optional":true},
+  {"clickSel":".ant-modal-confirm-btns .ant-btn:not(.ant-btn-primary)","optional":true}
+]
