@@ -1,0 +1,8 @@
+[
+  {"fill":["请输入课程名称","测试"]},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"fill":["请输入课程名称","Tst-0001"]},
+  {"click":"查询"},
+  {"clickSel":".ant-pagination-next","optional":true}
+]
