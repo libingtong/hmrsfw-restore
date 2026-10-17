@@ -1,0 +1,9 @@
+[
+  {"fill":["可输入招聘会名称进行搜索","测试"]},
+  {"click":"搜索"},
+  {"clickSel":".ant-select-selector"},
+  {"click":"进行中","optional":true},
+  {"click":"搜索"},
+  {"click":"重置"},
+  {"click":"下一页","optional":true}
+]
