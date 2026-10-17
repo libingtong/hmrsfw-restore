@@ -57,7 +57,7 @@ const SECRET_HEADER = /^(x-access-token|token|authorization|cookie)$/i;
 const SECRET_PARAM = /token/i; // e.g. portal getSysUserByToken?curToken=…
 const redactUrl = (raw) => { const u = new URL(raw); for (const k of [...u.searchParams.keys()]) if (SECRET_PARAM.test(k)) u.searchParams.set(k, "[redacted]"); return u.href; };
 const brief = (e) => String(e.message).split("\n").map((l) => l.trim()).filter((l) => l && !/^=+/.test(l)).slice(0, 6).join(" | ").slice(0, 400);
-const loginHint = (site) => `登录态失效或缺失：请人工在有界面的浏览器里重新登录测试站（${ORIGIN[site]}），在 $RESTORE_ASSETS 下运行 node <本仓库>/tools/pw-login.mjs ${site}，窗口里显示「已保存」后自动关闭，然后重跑 record-page。只需登录，不用切身份（身份由 record-page 切）。脚本不会自动登录。`;
+const loginHint = (site) => `登录态失效或缺失：请人工在有界面的浏览器里重新登录测试站（${ORIGIN[site]}），在 $RESTORE_ASSETS 下运行 node <本仓库>/tools/pw-login.mjs all 30，只登录门户一次（用户中心由门户的「用户中心」入口自动进入），两站都保存后窗口自动关闭，然后重跑 record-page。只需登录，不用切身份（身份由 record-page 切）。脚本不会自动登录。`;
 
 function emit(o, code) {
   console.log(JSON.stringify({ ...o, warnings, durationMs: Date.now() - t0 }));
