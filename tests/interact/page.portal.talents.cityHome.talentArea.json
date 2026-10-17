@@ -1,0 +1,10 @@
+[
+  {"wait":1000},
+  {"clickSel":".xfz-talent-item .hoverShow .deliverBtn.u-f","optional":true},
+  {"wait":800},
+  {"clickSel":".ant-modal-close","optional":true},
+  {"clickSel":".xfz-talent-item .hoverShow button.deliverBtn","optional":true},
+  {"wait":800},
+  {"clickSel":".ant-modal-confirm-btns .ant-btn:not(.ant-btn-primary)","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true}
+]
