@@ -1,0 +1,8 @@
+[
+  {"fill":["请输入机构名称进行查询","测试"]},
+  {"click":"搜索"},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"click":"重置"},
+  {"fill":["请输入机构名称进行查询","Tst-0001"]},
+  {"click":"搜索"}
+]
