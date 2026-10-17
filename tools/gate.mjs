@@ -12,6 +12,7 @@
 // Options: --build ondemand|full (page mode; full = single-page `vite build`, for consistency checks)
 //          --from build (with --dry-run only): diagnostic, keep going after static failures
 //          --registry <file> (default registry/<app>.json), --keep (keep the gate dir even when passing)
+//          --fast-lane (implied by task metadata fastLane: true): the branch is shared by many page orders (HM-526)
 // Output: one JSON line on stdout:
 //   {pass, failed:[{check, where, hint, wo?}], stage, diff, shimmed:[…], durationMs, stages:{static, build, browser},
 //    pages:[{wo, pass, stage, failed, pixel}], mode, attempt}
@@ -27,6 +28,7 @@ import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, symlinkSync, w
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { appDir as resolveAppDir } from "./app-dir.mjs";
+import { gitExclude } from "./lib/git-exclude.mjs";
 import { REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256 } from "./gate/har.mjs";
 import { runPage } from "./gate/replay.mjs";
@@ -73,6 +75,9 @@ function checkoutBranch(baseApp, branch, gateDir) {
   rmSync(wt, { recursive: true, force: true });
   execFileSync("git", ["-C", baseApp, "worktree", "add", "-q", "--detach", wt, `origin/${branch}`], { stdio: "ignore" });
   symlinkSync(realpathSync(path.join(baseApp, "node_modules")), path.join(wt, "node_modules"));
+  // the link is not ignored by `node_modules/` (directories only): rule 4 of check-imports would see an untracked
+  // `node_modules` that is no order's change (HM-526)
+  gitExclude(wt, "node_modules", "tools/gate.mjs: the --branch worktree links node_modules");
   return { dir: wt, sha: execFileSync("git", ["-C", wt, "rev-parse", "HEAD"], { encoding: "utf8" }).trim(), cleanup: () => { try { execFileSync("git", ["-C", baseApp, "worktree", "remove", "--force", wt], { stdio: "ignore" }); } catch {} } };
 }
 
@@ -122,6 +127,10 @@ export async function gate(argv) {
     const baseApp = resolveAppDir(argv);
     if (branch && !flag(argv, "--no-checkout")) { app = checkoutBranch(baseApp, branch, gateDir); closers.push(app.cleanup); out.commit = app.sha; }
     const appDir = app?.dir ?? baseApp;
+    // Fast-lane pages (HM-48) share one branch, `restore/fast-lane`, and their fixes land on it directly: rule 4 of
+    // check-imports attributes each commit to the page whose files it touches instead of charging this page with all of them
+    // (HM-526). Inherited by the self-check child processes.
+    if (app && (flag(argv, "--fast-lane") || [true, "true"].includes(meta.fastLane))) process.env.HMRSFW_SHARED_BRANCH = "1";
     const noKeys = missingCryptoEnv(appDir);
     if (noKeys.length) throw new Error(`crypto keys missing for the restored app: ${noKeys.join(", ")} (set them in the gate's environment; docs/gate.md)`);
     const rules = loadRules();
