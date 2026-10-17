@@ -1,0 +1,10 @@
+[
+  {"wait":800},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-pagination-prev","optional":true},
+  {"wait":500},
+  {"click":"新增申请","optional":true}
+]
