@@ -1,0 +1,7 @@
+[
+  {"wait":800},
+  {"clickSel":".one","optional":true},
+  {"clickSel":".ant-dropdown-link","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-modal-close","optional":true}
+]
