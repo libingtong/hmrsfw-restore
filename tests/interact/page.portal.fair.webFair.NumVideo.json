@@ -1,0 +1,6 @@
+[
+  {"clickSel":"img.defaultImg","optional":true},
+  {"wait":1500},
+  {"click":"关闭","optional":true},
+  {"wait":500}
+]
