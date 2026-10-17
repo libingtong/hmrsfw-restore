@@ -1,0 +1,10 @@
+[
+  {"clickSel":".ant-select:nth-of-type(1) .ant-select-selector","optional":true},
+  {"clickSel":".ant-select-dropdown:not(.ant-select-dropdown-hidden) .ant-select-item-option:nth-child(2)","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-select:nth-of-type(2) .ant-select-selector","optional":true},
+  {"clickSel":".ant-select-dropdown:not(.ant-select-dropdown-hidden) .ant-select-item-option:nth-child(2)","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true}
+]
