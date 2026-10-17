@@ -1,0 +1,5 @@
+[
+  {"wait":500},
+  {"clickSel":".ant-btn-primary","optional":true},
+  {"wait":500}
+]
