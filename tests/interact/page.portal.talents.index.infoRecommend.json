@@ -1,0 +1,6 @@
+[
+  {"clickSel":".swiper-button-next","optional":true,"wait":1000},
+  {"clickSel":".swiper-button-prev","optional":true,"wait":1000},
+  {"clickSel":".idotitem","optional":true,"wait":1000},
+  {"clickSel":".swiper-button-next","optional":true,"wait":1000}
+]
