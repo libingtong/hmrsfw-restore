@@ -1,0 +1,7 @@
+[
+  {"wait": 2000},
+  {"clickSel": ".ant-carousel .slick-next", "optional": true, "wait": 800},
+  {"clickSel": ".ant-carousel .slick-prev", "optional": true, "wait": 800},
+  {"clickSel": ".ant-carousel .slick-dots button", "optional": true, "wait": 800},
+  {"wait": 1000}
+]
