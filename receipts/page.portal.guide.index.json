@@ -3,34 +3,40 @@
   "ticket": "page.portal.guide.index",
   "group": "还原-Opus@Mac",
   "kind": "upgrade",
-  "task": "HM-429",
-  "branch": "restore/upg-1-a1",
+  "task": "HM-555",
+  "branch": "restore/upg-4-a1",
   "result": "ok",
   "outputs": [
-    "apps/portal/src/shared/auth.ts"
+    "apps/portal/src/api/jobCompany.ts"
   ],
   "registry": {
-    "pr": "https://github.com/libingtong/hmrsfw-restore/pull/23",
-    "branch": "restore/upg-1-a1-registry",
-    "change": "registry/portal.json shared auth.1783320636200.js: status reserved → restored；_ / a 登记 aliases；stats.shared 41/11。names.portal.json 同步 aliases"
+    "pr": "https://github.com/libingtong/hmrsfw-restore/pull/28",
+    "branch": "restore/upg-4-a1-registry",
+    "change": "registry/portal.json index.1783320636200117.js#o（jobCompanyApi）：status reserved → restored；stats.api 99/96 → 100/95。由 registry.mjs 生成（基准 hmrsfw-vue origin/main 临时工作树，改动前结果与 main 提交的 portal.json 相同，uc.json 不变）"
   },
   "todos": [
-    "清单改动在工具仓库 PR #23（按 §13.4 需审批）；合入 main 之前门槛读到的 auth 条目仍是 reserved，page 模式会用原 chunk 顶替 @/shared/auth，测不到本次 auth.ts",
-    "同样的 new URL(…, import.meta.url) 写法还在 apps/portal/src/shared/FriendLinks.vue、apps/uc/src/shared/images.ts，本单未改（不在本单原因范围，属其他 owner）"
+    "integration 已执行 registry-cleanup，接口文件是 apps/portal/src/api/jobCompany.ts（清单 path @/api/api-117，renameTo @/api/jobCompany），所以改的是 jobCompany.ts：手写的 export const o 两行换成 restore-api.mjs 输出的 3 行 export const jobCompanyApi，其余 47 行与生成器输出一致（文件头沿用 HM-37 去哈希的写法），.map.json 没有提交",
+    "保留了旧导出名 o（export { jobCompanyApi as o }）：integration 和 restore/fast-lane 上的 guide/index.vue、guide/index/StepForm5.vue 仍按 o 从 @/api/jobCompany 导入，去掉 o 会让构建失败；页面单改成 jobCompanyApi 之后可以删",
+    "清单改动在工具仓库 PR #28，按 §13.4 需要审批；合入 main 之前门槛读到的 #o 仍是 reserved",
+    "HM-50-C2 里说页面有两处 TODO:restore，但 integration 和 restore/fast-lane 上 guide 页没有 TODO:restore（ae5f29b/79414a6 已经接上 o），页面单要做的是把 o 改成 jobCompanyApi",
+    "完整的 npm run build:portal 超过 10 分钟被超时中断（日志里只有既有的资源告警，没有报错）；改为用 esbuild 单独打包 jobCompany.ts 核对：24 个导出，o === jobCompanyApi，6 个键与原包顺序一致，原型是 Object.prototype，没有冻结，值与同名函数是同一个引用"
   ],
   "needsFromSkeleton": [
-    "tools/registry.mjs 只给 asset 类 chunk 传播 names 文件的 aliases，component 类 chunk（auth）整体重生成会丢掉 _ / a 的 aliases，已还原的 guide/index、guide/jobHunt 届时 check-imports 会判旧名",
-    "工具仓库 integration 分支的 registry/portal.json 落后 main（auth 条目导出名仍是 _ / a）"
+    "tools/registry.mjs 不给 api 条目传播 names 文件里的 aliases，所以清单里没有登记旧名 o。integration 的 guide 页从非规范路径 @/api/jobCompany 导入，check-imports 只给 warn，不受影响",
+    "tools/registry.mjs 对 integration 重新生成会把 195 个 api 条目全部判成 reserved：integration 的接口文件头去掉了带哈希的 chunk 名（HM-37 c2bb9ad），existingApiFile 匹配不到文件。所以本单以 hmrsfw-vue main 为基准生成",
+    "integration 上的 guide/index.vue 仍从 @/shared/auth 导入 _、a，main 的清单里没有这两个导出（aliases 在未合并的 PR #23 里），page.portal.guide.index 自检因此失败，与本单无关"
   ],
   "selfCheck": {
-    "shared.portal.auth": { "pass": true, "failed": [] },
     "page.portal.guide.index": {
       "pass": false,
-      "failed": ["imports: apps/portal/src/shared/auth.ts 本单不能修改（升级单分支改公共库，预期内；页面文件本身无阻断项，_ / a 旧名按 aliases 仅 warn）"]
+      "failed": [
+        "imports: apps/portal/src/api/jobCompany.ts 本单不能修改（升级单分支改公共库，预期内）",
+        "imports: guide/index.vue 从 @/shared/auth 导入 _、a，清单里没有（已有问题，等 PR #23 / HM-429）"
+      ]
     }
   },
   "verification": [
-    "门槛 appserver startOnDemand + buildAssetsPlugin：auth.ts 的两个 png 导入取值为 data:image/png;base64，与原 chunk 导出 _（at）、a（ot）逐字一致",
-    "npm run build:portal 通过（24m42s），产物 OneContent chunk 内联两张图标 base64"
+    "node tools/restore-api.mjs portal index.1783320636200117.js：22 functions, 1 namespace copies；与 hmrsfw-vue main 的 api-117.ts 相比只多 3 行 export const jobCompanyApi",
+    "registry.mjs 在 hmrsfw-vue origin/main 工作树上前后各生成一次：只有 #o 的 status 和 stats.api 变化"
   ]
 }
