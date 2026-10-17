@@ -1,0 +1,5 @@
+[
+  {"wait": 1500},
+  {"clickSel": ".imgBox > img", "optional": true},
+  {"wait": 800}
+]
