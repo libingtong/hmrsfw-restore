@@ -1,0 +1,6 @@
+[
+  {"click":"投诉建议","wait":1500},
+  {"click":"关闭","optional":true,"wait":800},
+  {"click":"课程报名","optional":true,"wait":1500},
+  {"click":"关闭","optional":true,"wait":800}
+]
