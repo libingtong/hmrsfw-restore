@@ -1,0 +1,5 @@
+[
+  {"click":"投诉","wait":1500,"optional":true},
+  {"click":"确定","wait":1000,"optional":true},
+  {"click":"取消","wait":1000,"optional":true}
+]
