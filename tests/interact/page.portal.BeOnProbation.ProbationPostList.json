@@ -1,0 +1,9 @@
+[
+  {"fill":["可输入见习岗位名称或关键字进行搜索","测试"]},
+  {"click":"搜索"},
+  {"clickSel":".ant-select-selector","optional":true,"wait":600},
+  {"clickSel":".ant-select-dropdown:not(.ant-select-dropdown-hidden) .ant-select-item-option","optional":true},
+  {"click":"换一换","optional":true},
+  {"click":"下一页","optional":true},
+  {"click":"重置"}
+]
