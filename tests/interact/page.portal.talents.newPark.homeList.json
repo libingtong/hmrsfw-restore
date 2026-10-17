@@ -1,0 +1,5 @@
+[
+  {"clickSel": ".item-one", "optional": true, "wait": 1500},
+  {"clickSel": ".tow-content > div:first-child", "optional": true, "wait": 1500},
+  {"clickSel": ".tow-content > div:last-child", "optional": true, "wait": 1500}
+]
