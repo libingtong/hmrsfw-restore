@@ -1,0 +1,10 @@
+[
+  {"clickSel":".ant-tabs-tab:nth-child(2)"},
+  {"wait":800},
+  {"clickSel":".ant-tabs-tab:nth-child(3)"},
+  {"wait":800},
+  {"clickSel":".ant-tabs-tab:nth-child(1)"},
+  {"wait":800},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"wait":800}
+]
