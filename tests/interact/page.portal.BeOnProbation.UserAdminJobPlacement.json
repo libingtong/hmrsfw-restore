@@ -1,0 +1,8 @@
+[
+  {"clickSel":".good_city > .tabBox:nth-child(2)","optional":true},
+  {"clickSel":".good_city > .tabBox:nth-child(3)","optional":true},
+  {"clickSel":".good_city > .tabBox:nth-child(1)","optional":true},
+  {"click":"下一页","optional":true},
+  {"click":"上一页","optional":true},
+  {"clickSel":".ant-pagination-item-2","optional":true}
+]
