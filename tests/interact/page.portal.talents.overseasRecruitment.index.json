@@ -1,0 +1,8 @@
+[
+  {"clickSel":".font-30.pointer.marR20","optional":true},
+  {"fill":["请输入关键字进行搜索","测试"]},
+  {"click":"搜索"},
+  {"click":"重置"},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true}
+]
