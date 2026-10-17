@@ -1,0 +1,13 @@
+[
+  {"clickSel":"button.btn.ant-btn-primary","optional":true},
+  {"wait":500},
+  {"clickSel":"button.btn.ant-btn-primary","optional":true},
+  {"wait":500},
+  {"fill":["请输入联系人","测试"]},
+  {"click":"点击添加技能证书"},
+  {"fill":["请输入技能证书的名字","测试技能"]},
+  {"click":"重置"},
+  {"wait":500},
+  {"click":"同意《共享用工发布》协议"},
+  {"wait":500}
+]
