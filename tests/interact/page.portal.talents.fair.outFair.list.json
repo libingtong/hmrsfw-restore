@@ -1,0 +1,9 @@
+[
+  {"fill":["可输入招聘会名称进行搜索","测试"]},
+  {"clickSel":"button.defaultBtn.hbtn"},
+  {"clickSel":"button.resetBtn.hbtn"},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"fill":["可输入招聘会名称进行搜索","Tst-0001"]},
+  {"clickSel":"button.defaultBtn.hbtn"}
+]
