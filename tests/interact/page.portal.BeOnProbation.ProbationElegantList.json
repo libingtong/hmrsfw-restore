@@ -1,0 +1,8 @@
+[
+  {"clickSel":".radius5 .ant-select-selector","optional":true,"wait":800},
+  {"clickSel":".ant-select-dropdown:not(.ant-select-dropdown-hidden) .ant-select-item-option","optional":true,"wait":1500},
+  {"clickSel":".searchBtn","optional":true,"wait":1500},
+  {"clickSel":".resetBtn","optional":true,"wait":1500},
+  {"clickSel":".ant-pagination-next","optional":true,"wait":1500},
+  {"clickSel":".ant-pagination-item-2","optional":true,"wait":1500}
+]
