@@ -1,0 +1,7 @@
+[
+  {"clickSel":".specNext","optional":true},
+  {"clickSel":".specPrev","optional":true},
+  {"clickSel":".specNext1","optional":true},
+  {"clickSel":".specPrev1","optional":true},
+  {"clickSel":".list-content .hoverChange","optional":true}
+]
