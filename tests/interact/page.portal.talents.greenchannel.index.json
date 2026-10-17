@@ -1,0 +1,5 @@
+[
+  {"wait": 1000},
+  {"clickSel": ".btnBox", "optional": true},
+  {"clickSel": ".ant-modal-close", "optional": true}
+]
