@@ -2965,7 +2965,8 @@
    "path": "@/api/api-117",
    "export": "jobCompanyApi",
    "status": "reserved",
-   "note": "不是接口函数（常量或对象），按原导出名导出",
+   "owner": "script:restore-api",
+   "note": "本模块 6 个接口函数的命名空间对象的浅拷贝（键名 getCompanyInfo、getRecommendTalentList、izAlreadySubmitCompany、queryCompanyInfo、submitNewGuideCompanyInfo、verifyCompanyInfo），restore-api.mjs 生成",
    "original": "index.1783320636200117.js#o"
   },
   "index.api.1783320636200.js#a": {

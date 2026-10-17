@@ -53,7 +53,7 @@ node tools/work-orders.mjs --app ../hmrsfw-vue                 # 重新生成工
 
 新名取自接口 URL 的控制器段（`/xf-job/job/xfJobFair/…` → `jobFair`）；没有控制器段的 `licenseFree` 接口取函数名的主题词。新旧对应同时记在 `registry/<app>.json` 的 `apiModules`（`path` 是现在的位置，`renameTo` 是新名）。准确的表以 `node tools/registry-cleanup.mjs --app …` 的预演输出为准。
 
-改名时顺带补上旧脚本漏掉的 3 个函数：门户 `jobCompany` 的导出 `o`（不是接口函数，是常量对象，留 TODO 按原 chunk 补）；用户中心 `jobCurriculumVitae` 的 `downPdf`、`downPdf2`（配置里带 `Content-Type` 头，旧的正则解析器漏掉了）。`restore-api.mjs` 已改为 AST 解析，不会再漏。
+改名时顺带补上旧脚本漏掉的 3 个函数：门户 `jobCompany` 的导出 `o`（不是接口函数，是本模块 6 个接口函数命名空间对象的浅拷贝；HM-50 起由 `restore-api.mjs` 生成，见 `docs/rule-changes/HM-50-C2.md`）；用户中心 `jobCurriculumVitae` 的 `downPdf`、`downPdf2`（配置里带 `Content-Type` 头，旧的正则解析器漏掉了）。`restore-api.mjs` 已改为 AST 解析，不会再漏。
 
 ## 4. 页面导入改为清单的规范路径
 
