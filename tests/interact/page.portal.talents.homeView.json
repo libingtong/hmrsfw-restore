@@ -1,0 +1,4 @@
+[
+  {"click":"登录","optional":true,"wait":1500},
+  {"press":"Escape","optional":true,"wait":800}
+]
