@@ -1,0 +1,7 @@
+[
+  {"fill":["请输入余工名称进行查询","测试"]},
+  {"click":"搜索"},
+  {"click":"重置"},
+  {"click":"下一页","optional":true},
+  {"clickSel":".ant-select.boderinputsecorlor","wait":1500}
+]
