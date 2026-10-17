@@ -1,0 +1,7 @@
+[
+  {"clickSel":".proItem","optional":true,"wait":2000},
+  {"clickSel":".ant-pagination-item-2","optional":true,"wait":2000},
+  {"click":"下一页","optional":true,"wait":2000},
+  {"click":"上一页","optional":true,"wait":2000},
+  {"clickSel":".specNext1","optional":true,"wait":800}
+]
