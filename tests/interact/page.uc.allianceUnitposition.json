@@ -1,0 +1,11 @@
+[
+  {"fill":["请输入单位名称","测试"]},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"click":"收藏的职位"},
+  {"fill":["请输入职位名称","测试"]},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"clickSel":".ant-pagination-next","optional":true}
+]
