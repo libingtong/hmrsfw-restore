@@ -1,0 +1,5 @@
+[
+  {"click":"投诉","wait":1500},
+  {"click":"关闭","optional":true,"wait":800},
+  {"clickSel":".ant-modal-close","optional":true,"wait":800}
+]
