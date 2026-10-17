@@ -1,0 +1,6 @@
+[
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"click":"上一页","optional":true},
+  {"click":"下一页","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true}
+]
