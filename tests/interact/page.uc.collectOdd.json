@@ -1,0 +1,10 @@
+[
+  {"fill":["请输入零工名称或者关键字进行查询","测试"]},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"click":"收藏的找活"},
+  {"click":"收藏的招工"},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"clickSel":".starCorp","optional":true},
+  {"click":"关闭","optional":true}
+]
