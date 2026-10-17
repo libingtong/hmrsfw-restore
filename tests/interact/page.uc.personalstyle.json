@@ -1,0 +1,11 @@
+[
+  {"wait":1000},
+  {"click":"风采视频"},
+  {"wait":1000},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"wait":800},
+  {"click":"风采照片"},
+  {"wait":1000},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"wait":800}
+]
