@@ -17,6 +17,7 @@ import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { appDir } from "./app-dir.mjs";
+import { gitExclude } from "./lib/git-exclude.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const TARGETS = [".", "tools/vuefp", "tools/vuefp33"]; // dirs of this repo with package.json + package-lock.json
@@ -94,17 +95,6 @@ function link(from, to) {
   return "linked";
 }
 
-// Makes sure git in <repo> ignores <name> (no-op outside a git checkout or when a tracked rule already covers it).
-function gitExclude(repo, name) {
-  const git = (...a) => execFileSync("git", ["-C", repo, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
-  try { git("rev-parse", "--git-dir"); } catch { return; }
-  try { git("check-ignore", "-q", "--", name); return; } catch {} // exit 1: not ignored
-  const file = path.resolve(repo, git("rev-parse", "--git-path", "info/exclude").trim());
-  mkdirSync(path.dirname(file), { recursive: true });
-  const cur = existsSync(file) ? readFileSync(file, "utf8") : "";
-  writeFileSync(file, `${cur}${cur && !cur.endsWith("\n") ? "\n" : ""}# tools/setup-workdir.mjs: node_modules may be a symlink into RESTORE_DEPS_CACHE\n/${name}\n`);
-}
-
 function setupTarget(dir, abs, label) {
   const lockFile = path.join(abs, "package-lock.json");
   if (!existsSync(lockFile)) throw new Error(`${lockFile} missing`);
@@ -127,7 +117,7 @@ try {
   const app = (out.app = appDir());
   for (const dir of TARGETS) out.targets.push(setupTarget(dir, path.join(ROOT, dir), dir === "." ? "root" : dir.replace(/[\\/]/g, "-")));
   out.targets.push(setupTarget(app, app, APP_LABEL));
-  gitExclude(app, "node_modules");
+  gitExclude(app, "node_modules", "tools/setup-workdir.mjs: node_modules may be a symlink into RESTORE_DEPS_CACHE");
   try { // gate/record need a Playwright Chromium; a missing browser is reported, not installed
     const { chromium } = createRequire(path.join(ROOT, "package.json"))("playwright");
     if (!existsSync(chromium.executablePath())) warnings.push("Playwright Chromium not installed: run `npx playwright install chromium`");
