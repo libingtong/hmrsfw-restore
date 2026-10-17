@@ -1,0 +1,7 @@
+[
+  {"clickSel":".idotitem:nth-child(1)","optional":true},
+  {"clickSel":".idotitem","optional":true},
+  {"clickSel":".slick-active .headSculpture","optional":true},
+  {"clickSel":".loginnew","optional":true},
+  {"click":"查看更多+"}
+]
