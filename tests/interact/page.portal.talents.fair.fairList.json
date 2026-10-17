@@ -1,0 +1,6 @@
+[
+  {"click":"线下招聘会","wait":2000},
+  {"clickSel":".ant-pagination-next","optional":true,"wait":2000},
+  {"click":"线上招聘会","wait":2000},
+  {"clickSel":".ant-pagination-next","optional":true,"wait":2000}
+]
