@@ -1,0 +1,8 @@
+[
+  {"click":"投诉建议"},
+  {"fill":["请输入投诉建议，字数不能超过100个","测试"]},
+  {"click":"确定"},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"clickSel":".signBtn","optional":true},
+  {"click":"关闭","optional":true}
+]
