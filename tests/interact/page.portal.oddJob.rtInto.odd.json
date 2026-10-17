@@ -1,0 +1,5 @@
+[
+  {"clickSel":".rightcord.bg1 a.fabu","wait":2000},
+  {"click":"取消","optional":true},
+  {"clickSel":".rightcord.bg2 a.fabu","optional":true,"wait":2000}
+]
