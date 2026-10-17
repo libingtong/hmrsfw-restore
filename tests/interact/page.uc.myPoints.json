@@ -1,0 +1,11 @@
+[
+  {"wait":800},
+  {"click":"积分获取记录"},
+  {"wait":800},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"wait":800},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"wait":800},
+  {"click":"获取积分"},
+  {"wait":800}
+]
