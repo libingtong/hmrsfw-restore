@@ -1,0 +1,12 @@
+[
+  {"fill":["请输入零工市场名称或关键字","测试"]},
+  {"click":"搜索"},
+  {"wait":800},
+  {"click":"重置"},
+  {"wait":800},
+  {"clickSel":".mitem120","optional":true},
+  {"wait":500},
+  {"clickSel":".mkright img.pointer","optional":true},
+  {"wait":500},
+  {"clickSel":".mkleft img.pointer","optional":true}
+]
