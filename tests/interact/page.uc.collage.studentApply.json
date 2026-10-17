@@ -1,0 +1,9 @@
+[
+  {"fill":["请输入单位名称","测试"]},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"click":"我签约的企业"},
+  {"click":"我解约的企业"},
+  {"click":"申请签约企业"},
+  {"clickSel":".ant-pagination-next","optional":true}
+]
