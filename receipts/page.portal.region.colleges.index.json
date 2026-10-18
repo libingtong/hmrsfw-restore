@@ -2,14 +2,14 @@
   "id": "page.portal.region.colleges.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/region/colleges/index.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "521afbd1c91d72b9f68a61a3cee1914a55010ddb"
+    "gitBase": "ca4dc51fcd1b65357dbf93d40f905b621410cf77"
   },
   "build": "pass",
   "todos": [],
@@ -21,6 +21,8 @@
     "fix 1：未改代码。gate.1 失败项只有 load.overlay：原版 1 条、还原版 2 条，内容都是同一条服务端 500 提示（11 字），由 utils/request 响应拦截器统一弹出，本页没有自己的 message 调用",
     "逐段对照原 chunk：setup 里的四个本地接口函数（getArticleList、getFairList、findJobList、freeRecommendCompanyList）、Ke / Qe / V / X / la 的调用顺序和参数、onMounted 里 Ke()、X(\"1\")、la(\"1\")、Qe() 都与还原版一致；gate.1 load.requests 两侧相同，load.html、load.text、像素均通过",
     "同一现象出现在别的快速通道单：HM-251 overlay 字数 0/11、HM-250 字数 26/40（多 \" | \" 加 11 字），都是还原版恰好多出同一条 11 字提示；HM-250 第 1 轮改了请求时序后复测仍是同样的 overlay 差异。判断多出的这条来自外壳，不是页面",
-    "self-check pass（restore/fast-lane 521afbd）；npm run build:portal 通过；无代码改动，未 land"
+    "self-check pass（restore/fast-lane 521afbd）；npm run build:portal 通过；无代码改动，未 land",
+    "fix 2：未改代码。gate.2 在 521afbd 上复测，结果与 gate.1 完全相同（load.overlay 字数 11/25，其余各项通过），说明差异与页面代码无关；main、restore/fast-lane 上都还没有处理还原版外壳 toast 的规则变更（最近的 HM-652、HM-779 不涉及 overlay）。HM-250 第 2 轮结论相同。两轮已满，需裁定员发起规则变更单",
+    "self-check pass（restore/fast-lane ca4dc51）；npm run build:portal 通过；无代码改动，未 land"
   ]
 }
