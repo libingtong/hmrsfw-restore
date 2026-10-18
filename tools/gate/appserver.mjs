@@ -98,6 +98,12 @@ function singleRoutePlugin({ appDir, app, routes }) {
 // are left to Vite (same URL in both). Not mirrored: Rollup's de-duplication of two differently named files with
 // identical content (the build names both after the first one emitted). CSS url() keeps dev URLs: it is not part of
 // the compared DOM and the pixels are the same.
+// Template src="./a.png": with a dev server, @vitejs/plugin-vue 4.3.4 (resolveTemplateCompilerOptions) passes the
+// compiler transformAssetUrls { base: <dev base>/<dir of the .vue> }, which rewrites "./a.png" to the string
+// "/src/…/a.png" with no import, so load() never sees it (HM-778). The build passes { includeAbsolute: true } instead,
+// which turns relative, absolute and aliased src into imports. vueBuildAssetUrls() sets the build value as the plugin's
+// own template.transformAssetUrls (base: null overrides the dev base in plugin-vue's merge), so the template compiles
+// to the same imports as in the build and the asset goes through load() like an explicit import.
 const SKIP_QUERY = /[?&](raw|inline|worker|sharedworker)\b/;
 const INVALID_CHAR = /[\u0000-\u001F"#$&*+,:;<=>?[\]^`{|}\u007F]/g; // Rollup sanitizeFileName
 function viteMimes(appDir) {
@@ -109,13 +115,23 @@ function viteMimes(appDir) {
   }
   throw new Error("gate: mime table not found in vite's chunks (vite version changed?)");
 }
+// transformAssetUrls as plugin-vue 4.3.4 resolves it for a build, from the user's option t, in a form its dev-server
+// merge ({ base, ...t } unless t is the legacy tags-only form) leaves unchanged.
+function vueBuildAssetUrls(t) {
+  if (!t || typeof t !== "object") return { base: null, includeAbsolute: t !== false };
+  return Object.values(t).some((v) => Array.isArray(v)) ? { base: null, includeAbsolute: true, tags: t } : { base: null, includeAbsolute: true, ...t };
+}
 export function buildAssetsPlugin({ appDir }) {
   let config, mimes;
   const emitted = new Map(); // "/assets/a-1234abcd.png" → source file
   return {
     name: "gate-build-assets",
     enforce: "pre",
-    configResolved(c) { config = c; },
+    configResolved(c) {
+      config = c;
+      const vue = c.plugins.find((p) => p.name === "vite:vue");
+      if (vue?.api?.options) { const o = vue.api.options; vue.api.options = { ...o, template: { ...o.template, transformAssetUrls: vueBuildAssetUrls(o.template?.transformAssetUrls) } }; }
+    },
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const file = emitted.get(decodeURIComponent((req.url ?? "").split("?")[0]));
