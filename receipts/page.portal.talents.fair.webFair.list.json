@@ -2,7 +2,7 @@
   "id": "page.portal.talents.fair.webFair.list",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/fair/webFair/list.vue"
   ],
@@ -14,10 +14,10 @@
   "build": "pass",
   "todos": [],
   "unresolved": [
-    "gate.1 html（final）：唯一差异是已关闭的状态下拉框 div.ant-select-dropdown 行内样式 top（原 -293px / 还原 -383px），本单 target 内没有可改的原因，见 notes"
+    "gate.1 html（final）：唯一差异仍是已关闭状态下拉框 div.ant-select-dropdown 行内样式 top（原 -293px / 还原 -383px），第 2 轮实测确认来自门槛单页挂载方式，不在本单 target 内，见 notes"
   ],
   "needsFromSkeleton": [
-    "疑似比对器/外壳问题：还原侧 select 在文档中的纵向位置比原站低 90px，来源在页面根之外（外壳 legacy/components/App.vue、Headers2.vue 的页头显示/高度，或 recordVia 父页 page.portal.talents.fair.fairList 的布局），不在本单 target / subComponentDir 内"
+    "疑似比对器问题：门槛 page 模式把页面作为顶层路由挂在 #poc-main 下（tools/gate/appserver.mjs gateRouteCode，HM-779），还原侧少了真实应用里包住 /talents/fairList 的 views/talents/homeView.vue 布局（其 headers.vue 渲染 div.headerBox，高 90px），与 select 位置差 90px 吻合；需裁定员/门槛侧处理，修正员不改门槛脚本"
   ],
   "notes": [
     "fix 1：本轮未改页面代码（fl-vue restore/fast-lane 仍为 c85352b）",
@@ -26,6 +26,11 @@
     "本页无法造成该偏移：原 chunk list.178332063620012.js 的 setup/render 与还原一致（无 props、无 attrs 透传，根为 Fragment）；本页 CSS list.178332063620010.css 全部带 data-v-0070b4cb，与还原 <style scoped> 逐条一致（含 .searchCont margin-top:-65px），不影响页面外元素",
     "粗算：父页 bgBoxTop height:300 − .searchCont margin-top:65 + 卡片边框/内边距，select 文档 y 约 280 左右，与原值 293 同一量级，提示原站 select 上方只有父页 bgBoxTop；还原侧多出的 90px 疑在外壳页头（Headers2.vue 按 route.meta.hideHeader 显示）或父页，未实测，需门槛/外壳侧核对，修正员按规则不改",
     "render-equiv（仅报告）DIFF 2119/2123：唯一差异是 LoginModal 经 @/legacy 汇总导入后编译出 unref(LoginModal)，运行时等价，与本次门槛差异无关",
-    "self-check pass、build 未改动（沿用 c85352b 门槛 build 通过）；未读取 RESTORE_ASSETS，未在本机复跑门槛"
+    "self-check pass、build 未改动（沿用 c85352b 门槛 build 通过）；未读取 RESTORE_ASSETS，未在本机复跑门槛",
+    "fix 2：本轮仍未改页面代码（fl-vue restore/fast-lane 仍为 c85352b），self-check pass",
+    "离线实测（不用 HAR，所有 /xf- 与外部请求一律 abort，不联网）：legacy-dist/portal 与 fl-vue 完整构建 dist/portal 打开 /talents/fairList，两侧布局逐项一致：header 296、main 内 headerBox 90 → bgBoxTop 300 → 列表 → footCls，select 文档 y=662；点击 select 后两侧下拉框 style 都是 top:44px",
+    "headerBox 来源：apps/portal/src/views/talents/homeView/headers.vue（homeView.vue 布局 = headers + RouterView + foot），真实路由里 /talents/fairList 是该布局的子路由；门槛 page 模式的 fallback 路由是顶层 strict 路由，不经过此布局，还原侧因此缺少这 90px（以及布局里的页脚），属于比对环境差异",
+    "更正第 1 轮推测：90px 不是外壳 Headers2.vue 或父页 fairList 造成，两者在完整构建下与原站一致",
+    "按快速通道规则两轮修正仍失败交裁定员；建议在门槛侧让 recordVia/嵌套布局路由按原路由层级挂载，或走规则变更单，修正员不改门槛脚本、归一化规则"
   ]
 }
