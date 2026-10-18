@@ -257,21 +257,83 @@ function regressDiff(out, state, dry) {
   return { regress: { total: out.pages.length, passed: out.pages.filter((p) => p.pass).length, newPass, newFail, previous: Object.keys(prev).length } };
 }
 
+// Task metadata values are capped at 8 KB by the server; stay well under it.
+export const META_BUDGET = 7000;
+const bytes = (v) => Buffer.byteLength(JSON.stringify(v));
+const clip = (s, n) => String(s ?? "").slice(0, n);
+
+// What goes into gate.<attempt>: the fields tick.mjs advance reads (pass, pending, missing, error, stage, failed, pages
+// [{wo, pass, stage}], global), shrunk until they fit META_BUDGET. Every page keeps an entry — advance reads a page
+// without one as failed — passing pages shrink to {wo, pass}, then to a count (passedOmitted). The full result is in the
+// file named by `detail`.
+export function slimResult(out, detail) {
+  if (out.pending === "record") {
+    const ids = out.missing.map((m) => m.wo), byReason = {};
+    for (const m of out.missing) byReason[m.why] = (byReason[m.why] ?? 0) + 1;
+    const slim = { pending: "record", missingTotal: ids.length, byReason, missing: ids, attempt: out.attempt, durationMs: out.durationMs, detail };
+    while (bytes(slim) > META_BUDGET && slim.missing.length) slim.missing = ids.slice(0, Math.floor(slim.missing.length / 2));
+    if (slim.missing.length < ids.length) slim.missingTruncated = true;
+    return slim;
+  }
+  // page-level failures first: hundreds of app-wide zero-reference hits must not push them out of the ones kept
+  const failed = out.failed ?? [];
+  const ordered = [...failed.filter((f) => f.wo), ...failed.filter((f) => !f.wo)];
+  const pendingIds = Array.isArray(out.pending) ? out.pending.map((m) => m.wo ?? m) : undefined; // --regress: pages without a baseline
+  const levels = [
+    { failed: 30, hint: 200, page: (p) => ({ wo: p.wo, pass: p.pass, stage: p.stage, pixel: p.pixel }) },
+    { failed: 10, hint: 120, page: (p) => (p.pass ? { wo: p.wo, pass: true } : { wo: p.wo, pass: false, stage: p.stage }) },
+    { failed: 3, hint: 80, page: (p) => (p.pass ? { wo: p.wo, pass: true } : { wo: p.wo, pass: false, stage: p.stage }), drop: ["shimmed", "regress", "stages"] },
+  ];
+  let slim;
+  for (const lv of levels) {
+    slim = { ...out, failed: ordered.slice(0, lv.failed).map((f) => ({ ...f, hint: clip(f.hint, lv.hint) })), pages: (out.pages ?? []).map(lv.page), detail };
+    if (pendingIds) slim.pending = pendingIds;
+    if (ordered.length > lv.failed) slim.failedTotal = ordered.length;
+    for (const k of lv.drop ?? []) delete slim[k];
+    if (bytes(slim) <= META_BUDGET) return slim;
+  }
+  // Hundreds of pages: list the failing pages only and count the passing ones (advance reads an unlisted page as passed
+  // when passedOmitted is set). Failing pages that still do not fit are cut, without passedOmitted: every unlisted page
+  // then reads as failed — a wider regression set, never a page wrongly passed.
+  const bad = (out.pages ?? []).filter((p) => !p.pass).map((p) => ({ wo: p.wo, pass: false, stage: p.stage }));
+  slim.pages = bad;
+  slim.passedOmitted = (out.pages ?? []).length - bad.length;
+  if (bytes(slim) <= META_BUDGET) return slim;
+  delete slim.passedOmitted;
+  slim.failedPagesTotal = bad.length;
+  slim.pagesTruncated = true;
+  while (bytes(slim) > META_BUDGET && slim.pages.length) slim.pages = bad.slice(0, Math.floor(slim.pages.length / 2));
+  return slim;
+}
+
+// "[GATE] …" title: every id for a few pages, a count and the first ones for many.
+export function idList(ids, show = 5) { return ids.length <= show ? ids.join(",") : `${ids.length} 页（${ids.slice(0, 3).join(",")} 等）`; }
+
 // Metadata gate.<attempt> + one [GATE] comment (no page text, only checks, element paths and API paths).
-function report(task, attempt, out, ids) {
-  // page-level failures first: hundreds of app-wide zero-reference hits must not push them out of the 30 kept
+export function report(task, attempt, out, ids) {
   const failed = out.failed ?? []; // {pending: "record"} carries no failed list
   const ordered = [...failed.filter((f) => f.wo), ...failed.filter((f) => !f.wo)];
-  const slim = out.pending === "record" ? out : { ...out, failed: ordered.slice(0, 30).map((f) => ({ ...f, hint: String(f.hint ?? "").slice(0, 200) })), pages: out.pages.map((p) => ({ wo: p.wo, pass: p.pass, stage: p.stage, pixel: p.pixel })) };
+  // the full result stays in $RESTORE_STATE (with the gate's other output), metadata only names the file
+  let detail;
+  try {
+    detail = path.join(out.diff ?? path.join(stateDir(), "gate"), out.diff ? "result.json" : `pending-${task}-a${attempt}.json`);
+    mkdirSync(path.dirname(detail), { recursive: true });
+    writeFileSync(detail, JSON.stringify(out, null, 1));
+  } catch (e) { process.stderr.write("result file write failed: " + e.message + "\n"); detail = undefined; }
+  const slim = slimResult(out, detail);
   try { multica(["issue", "metadata", "set", task, "--key", `gate.${attempt}`, "--value", JSON.stringify(slim)]); } catch (e) { process.stderr.write("metadata write failed: " + e.message + "\n"); }
   const secs = (ms) => (ms / 1000).toFixed(1) + "s";
-  const head = out.pending === "record" ? `[GATE] PENDING record ${ids.join(",")} a${attempt}: ${out.missing.map((m) => m.why).join("; ")}` : `[GATE] ${out.pass ? "PASS" : "FAIL"} ${ids.join(",")} a${attempt} ${out.mode} — ${secs(out.durationMs)} (static ${secs(out.stages.static ?? 0)}, build ${secs(out.stages.build ?? 0)}, browser ${secs(out.stages.browser ?? 0)})`;
+  const head = out.pending === "record" ? `[GATE] PENDING record ${idList(ids)} a${attempt}: ${Object.entries(slim.byReason).map(([why, n]) => `${why} ×${n}`).join("; ")}` : `[GATE] ${out.pass ? "PASS" : "FAIL"} ${idList(ids)} a${attempt} ${out.mode} — ${secs(out.durationMs)} (static ${secs(out.stages.static ?? 0)}, build ${secs(out.stages.build ?? 0)}, browser ${secs(out.stages.browser ?? 0)})`;
   const lines = [head];
+  if (out.pages?.length > 5) lines.push(`- pages: ${out.pages.filter((p) => p.pass).length}/${out.pages.length} passed${out.pass ? "" : `; failed: ${idList(out.pages.filter((p) => !p.pass).map((p) => p.wo), 10)}`}`);
   if (out.global) lines.push(`- app-wide: ${out.global.total} (${Object.entries(out.global.byLayer).map(([k, n]) => `${k} ${n}`).join(", ")})`);
-  if (!out.pass && out.failed?.length) lines.push(...ordered.slice(0, 5).map((f) => `- ${f.wo ? f.wo + " " : ""}${f.where} ${f.check}: ${String(f.hint ?? "").slice(0, 160)}`));
+  if (!out.pass && out.failed?.length) lines.push(...ordered.slice(0, 5).map((f) => `- ${f.wo ? f.wo + " " : ""}${f.where} ${f.check}: ${clip(f.hint, 160)}`));
   if (out.shimmed?.length) lines.push(`- shimmed: ${out.shimmed.join("; ")}`);
-  const file = path.join(out.diff ?? path.join(stateDir(), "gate"), `gate-comment-${process.pid}.md`);
-  try { mkdirSync(path.dirname(file), { recursive: true }); writeFileSync(file, lines.join("\n") + "\n"); multica(["issue", "comment", "add", task, "--content-file", file, "--output", "table"]); rmSync(file, { force: true }); } catch (e) { process.stderr.write("comment failed: " + e.message + "\n"); }
+  if (detail) lines.push(`- detail: \`${path.basename(path.dirname(detail))}/${path.basename(detail)}\``);
+  // multica only accepts --content-file inside the caller's working directory: the gate agent's cwd, not $RESTORE_STATE
+  const file = path.join(process.cwd(), `.gate-comment-${process.pid}.md`);
+  try { writeFileSync(file, lines.join("\n") + "\n"); multica(["issue", "comment", "add", task, "--content-file", file, "--output", "table"]); } catch (e) { process.stderr.write("comment failed: " + e.message + "\n"); } finally { rmSync(file, { force: true }); }
+  return { slim, file, detail };
 }
 
 // CLI. Results and {pending} go to metadata + one [GATE] comment when --task is given without --dry-run; {error} is

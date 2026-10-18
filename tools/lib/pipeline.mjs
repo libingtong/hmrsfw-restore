@@ -509,7 +509,8 @@ export class Pipeline {
   // Per-page results of a (possibly packed) order; without per-page results one verdict for all.
   pageResults(gate, wos) {
     const pages = this.pagesOf(gate);
-    if (pages) return Object.fromEntries(wos.map((w) => [w, pages[w] || { pass: false, failed: ["no per-page result"] }]));
+    // passedOmitted (gate.mjs, HM-839): a verdict too large for metadata lists only its failing pages
+    if (pages) return Object.fromEntries(wos.map((w) => [w, pages[w] || (gate.passedOmitted ? { pass: true } : { pass: false, failed: ["no per-page result"] })]));
     return Object.fromEntries(wos.map((w) => [w, gate]));
   }
 
@@ -974,7 +975,7 @@ export class Pipeline {
 
   failedWos(gate, wos) {
     const pages = this.pagesOf(gate);
-    if (pages) return wos.filter((w) => !pages[w]?.pass);
+    if (pages) return wos.filter((w) => (pages[w] ? !pages[w].pass : !gate.passedOmitted));
     return (gate?.failed || []).map((f) => (typeof f === "string" ? f : f.wo || f.id || f.workOrder)).filter((w) => wos.includes(w));
   }
 
