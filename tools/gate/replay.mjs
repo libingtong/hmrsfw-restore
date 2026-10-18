@@ -101,20 +101,50 @@ async function captureRoot(page, sel, shotBase, withShots, phases) {
   return { candidates, overlay };
 }
 
+// Pages the page under test opens (a target="_blank" link, window.open) → "<path>?<query>#<hash>" on the replay origin
+// (`_t` cache-busters dropped, other parameters sorted), "<host><path>" elsewhere. Both sides serve on different local
+// origins, so only the target is compared.
+export function openedTarget(url, origin) {
+  let u;
+  try { u = new URL(url); } catch { return String(url); }
+  if (u.protocol === "about:") return u.href;
+  if (u.origin !== origin) return u.host + u.pathname;
+  const q = new URLSearchParams([...u.searchParams].filter(([k]) => k !== "_t").sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)));
+  return u.pathname + (q.size ? "?" + q : "") + u.hash;
+}
+
 // opts: { origin, url, storage: {localStorage, sessionStorage}, har, sel, steps, shotDir, tag, stubChunk, coverage }
 // coverage = names of the scripts to measure (basenames under /assets/): V8 precise coverage over the whole run, load and
 // steps, returned as res.coverage = [{url, source, functions}] for those scripts only (tools/gate/coverage.mjs).
 // stubChunk = basename of the page chunk: replaced by an empty component that snapshots localStorage at mount (shell
 // probe: what the app shell alone requests, and the storage the page component sees when it mounts).
+// Measurement scope (HM-797): the requests compared are the ones the page under test makes (its main frame and its
+// iframes). A page it opens (target="_blank", window.open) is not part of it: the opening is recorded as {phase, target}
+// (res.load.opened during load, res.opened during the steps), and that page's own requests go to res.otherRequests
+// (diagnostics only, never compared), so whether they land before the capture (a race between the two pages' start-up
+// speed) no longer matters. The other page is left running as before; only what is measured changes.
 export async function runPage(browser, opts) {
   const ctx = await browser.newContext({ viewport: VIEWPORT, locale: "zh-CN" });
   await ctx.addInitScript(toastRecorder, TOAST_SEL);
   await ctx.addInitScript((s) => { for (const [k, v] of Object.entries(s.localStorage)) localStorage.setItem(k, v); for (const [k, v] of Object.entries(s.sessionStorage ?? {})) sessionStorage.setItem(k, v); }, opts.storage);
-  const log = [], errors = [];
-  let phase = "load", lastRequestAt = 0, outdated = 0;
-  await routeApi(ctx, opts.har, { log: (r) => { lastRequestAt = Date.now(); log.push(r); }, phase: () => phase });
+  const log = [], errors = [], opened = [], otherRequests = [];
+  let phase = "load", lastRequestAt = 0, outdated = 0, page = null;
+  // A request without a frame (service worker) cannot be attributed: it stays with the page under test, as before.
+  const fromOther = (q) => { try { return !!page && q.frame().page() !== page; } catch { return false; } };
+  await routeApi(ctx, opts.har, { log: (r, q) => { if (q && fromOther(q)) { otherRequests.push(r); return; } lastRequestAt = Date.now(); log.push(r); }, phase: () => phase });
   if (opts.stubChunk) await ctx.route((u) => u.pathname === "/assets/" + opts.stubChunk, (r) => r.fulfill({ status: 200, contentType: "text/javascript", body: "const c={name:'ShellProbe',setup(){window.__shellMountStorage=Object.fromEntries(Object.keys(localStorage).map((k)=>[k,localStorage.getItem(k)]));return()=>null}};export default c;export const __tla=Promise.resolve();" }));
-  const page = await ctx.newPage();
+  page = await ctx.newPage();
+  // A new page's first navigation request comes before the page exists (Playwright has no frame for it yet) and carries
+  // the target the page under test asked for; the page itself may end on an error page (hosts outside the replay are
+  // aborted). A page opened without one (window.open() with no URL) is recorded with its own URL when it appears.
+  const pendingNav = [];
+  ctx.on("request", (q) => { if (!q.isNavigationRequest()) return; try { q.frame(); } catch { pendingNav.push({ url: q.url(), phase }); } });
+  ctx.on("page", (p) => {
+    if (p === page) return;
+    const i = pendingNav.findIndex((x) => x.url === p.url());
+    const nav = i >= 0 ? pendingNav.splice(i, 1)[0] : p.url().startsWith("chrome-error:") ? pendingNav.shift() : null;
+    opened.push({ phase: nav?.phase ?? phase, target: openedTarget(nav?.url ?? p.url(), opts.origin) });
+  });
   if (opts.coverage?.length) await page.coverage.startJSCoverage({ resetOnNavigation: false, reportAnonymousScripts: false });
   // The page's clock starts at the beginning of the HAR's recording minute and runs normally (no fake timers), so pages
   // that print "now" show the same minute in the baseline and in later gate runs.
@@ -128,7 +158,7 @@ export async function runPage(browser, opts) {
   const go = () => page.goto(opts.origin + opts.url, { waitUntil: "load", timeout: 60000 }).catch((e) => errors.push("goto " + e.message.slice(0, 80)));
   await go();
   let settle = await waitStable(page, () => lastRequestAt);
-  if (outdated) { errors.push(`reloaded after ${outdated} outdated dependency responses`); outdated = 0; log.length = 0; await go(); settle = await waitStable(page, () => lastRequestAt); }
+  if (outdated) { errors.push(`reloaded after ${outdated} outdated dependency responses`); outdated = 0; log.length = 0; opened.length = 0; otherRequests.length = 0; await go(); settle = await waitStable(page, () => lastRequestAt); }
   const res = { settleMs: settle, loadMs: Date.now() - t0, errors };
   if (opts.stubChunk) {
     await page.waitForTimeout(Math.max(0, 6000 - (Date.now() - t0)));
@@ -139,7 +169,7 @@ export async function runPage(browser, opts) {
     return res;
   }
   const base = path.join(opts.shotDir, opts.tag);
-  res.load = { ...(await captureRoot(page, opts.sel, base, true, /^load$/)), requests: log.map((x) => ({ ...x })) };
+  res.load = { ...(await captureRoot(page, opts.sel, base, true, /^load$/)), requests: log.map((x) => ({ ...x })), opened: opened.map((x) => ({ ...x })) };
   if (opts.steps?.length) {
     res.steps = [];
     for (const [i, s] of opts.steps.entries()) {
@@ -154,7 +184,9 @@ export async function runPage(browser, opts) {
     await waitQuiet(page, opts.sel);
     res.final = await captureRoot(page, opts.sel, base + ".final", false, /^step/);
     res.stepLog = log.filter((x) => x.phase !== "load");
+    res.opened = opened.filter((x) => x.phase !== "load");
   }
+  res.otherRequests = otherRequests.map((x) => ({ phase: x.phase, method: x.method, path: x.path }));
   res.totalMs = Date.now() - t0;
   if (opts.coverage?.length) res.coverage = pickScripts(await page.coverage.stopJSCoverage(), opts.coverage);
   await ctx.close();
