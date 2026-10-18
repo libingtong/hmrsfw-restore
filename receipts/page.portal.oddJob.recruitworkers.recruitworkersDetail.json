@@ -1,0 +1,27 @@
+{
+  "id": "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/oddJob/recruitworkers/recruitworkersDetail.vue",
+    "apps/portal/src/views/oddJob/recruitworkers/recruitworkersDetail/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "e432b507c43e5b8eb4196a5d767b4c4b7138f91f"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：div.u-4f.marT10 的工期插值后补回末尾空格（{{ state.info.duration }} 后接注释保住空白，编译器否则丢弃末尾纯空白）。依据：原 chunk 为 l(e.info.duration)+\" \"。对应 gate.1 load/final 在 div.ant-col > div.u-4f 下 offset 328、长度差 1 的 HTML 差异",
+    "fix 2：Complaint / LoginModal / NowContact 三个弹窗由根 div 下挪回第二个 div.main.marT40 内、a-row 之后。依据：原 render 中 e.showModel?… 紧跟在 n(j,…) 之后、位于 s(\"div\",fe,[…]) 的子数组里",
+    "fix 3：收藏按钮两分支顺序按原 render 改为 v-if=\"!state.info.collectId\"（收藏，key 0）/ v-else（已收藏，key 1）；渲染结果不变",
+    "fix 4：颜色字面量按原 chunk 写 #FF7800（4 处）、#FF7D0A（2 处）、rgba(222,234,255,1) / rgba(18,116,251,1)（无空格）；渲染结果不变",
+    "未改：renderEquiv 仍为 DIFF（2414/2418），剩余差异只有 ext 名（shared.map / shared.nowContact 的原 chunk 名 vs 还原名，疑似比对器问题）和 LoginModal 的 unref（清单规定从 @/legacy 桶文件导入，编译器对非 .vue 导入加 unref），不影响渲染",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane 9f54b8e"
+  ]
+}
