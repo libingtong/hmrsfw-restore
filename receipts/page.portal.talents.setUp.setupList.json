@@ -1,0 +1,32 @@
+{
+  "id": "page.portal.talents.setUp.setupList",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/setUp/setupList.vue",
+    "apps/portal/src/views/talents/setUp/setupList/projectInfo.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "c56909ac653192e6a09c98efbc9b91498306b7ea"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似共享层问题（pixel，标签云）：@/shared/tagcanvas.vue 没有接入 TagCanvas 库（文件头 TODO：npm 上无官方包、未复制库代码），Start 抛错被 try/catch 吞掉，热门领域画布空白；原版画出了标签。该文件不在本单可改范围，需公共库升级单补上 TagCanvas",
+    "疑似比对器问题（html，#weightTags）：#weightTags 下 <a> 的 class（medium/small）和 color 由共享 tagcanvas 用 Math.random 生成（原 tagcanvas.vue_vue_type_style_index_0_lang 同样如此）；gate.1 两次原版运行之间这几项也不一样，但没被标成 unstable",
+    "疑似外壳问题（pixel，顶部 y<70）：原版截图顶部 65px 叠着外壳页头（含用户区和横幅），还原版没有；页面根节点 HTML（除 #weightTags 随机项与搜索框 style 两处）、尺寸 1920x760 两边一致，差异来自页面以外的固定层或滚动位置，不在 target/subComponentDir",
+    "疑似比对器或运行时版本问题（html，搜索框 style=\"\"）：原版加载时 <input> 带空 style=\"\"，还原版加载时没有、交互后 final.html 两边都有；原 chunk 传给 a-input 的只有 class/value/onUpdate:value/placeholder/size，没有 style，还原代码一致。空 style 不影响渲染；归一化规则 44-motion-state（含「空 style 视同没有」）当前 enabled:false。可能与还原工程 Vue 3.3.4 / antd 3.2.20 对原包 Vue 3.2.47 / antd 3.2.15 的差异有关（E7）"
+  ],
+  "notes": [
+    "fix 1：未改代码。gate.1 失败项为 load.html 与 load.pixel，逐项核对如下",
+    "html 差异 1：搜索框 input 的 style=\"\"。原 chunk setupList.17833206362002.js 的 a-input 无 style 属性，setupList.vue:151-156 写法一致；页面里也没有任何改 input 样式的代码。不往页面里加 style 去凑",
+    "html 差异 2：#weightTags 的 class/color 随机（共享 tagcanvas 的 Math.random），原版两次运行之间也不同，非页面问题",
+    "pixel 2.24%：按 rest.diff.png 标红像素统计：y<70 顶部 27590、标签云框 9830、其他区域 0。顶部是原版外壳页头叠层，标签云是共享 tagcanvas 未接 TagCanvas 库；页面自身区域无像素差",
+    "load.text、final.text、overlay、cls 两边一致；final.html 只剩 #weightTags 随机项",
+    "self-check pass（私有克隆 restore/fast-lane c56909a）；无代码改动，无需 fl.sh land"
+  ]
+}
