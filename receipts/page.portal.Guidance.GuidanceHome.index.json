@@ -1,35 +1,47 @@
 {
   "id": "page.portal.Guidance.GuidanceHome.index",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 2,
+  "ticket": "page.portal.Guidance.GuidanceHome.index",
+  "kind": "upgrade",
+  "upgradeTask": "01a14d24-f441-7225-9f6c-9d4ce15923d1",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-6-a1",
+  "result": "ok",
   "outputs": [
-    "apps/portal/src/views/Guidance/GuidanceHome/index.vue",
-    "apps/portal/src/views/Guidance/GuidanceHome/index/"
+    "package.json",
+    "package-lock.json",
+    "vite.portal.config.ts",
+    "apps/portal/src/shared/images.ts",
+    "apps/portal/src/shared/imageAssets/",
+    "README.md"
   ],
-  "selfCheck": {
-    "pass": true,
-    "failed": [],
-    "gitBase": "ca4dc51"
-  },
-  "build": "not-run",
   "todos": [],
-  "unresolved": [],
-  "needsFromSkeleton": [
-    "依赖 swiper 版本：原包内置的 swiper/vue 把 .swiper-scrollbar 渲染在 .swiper-wrapper 之前（index.1783320636200.js 的 Swiper render：button-prev/next → scrollbar → pagination → wrapper），scrollbar 模块不加 swiper-scrollbar-horizontal；package.json 的 swiper 8.4.7 把 scrollbar 渲染在 wrapper 之后，并加 swiper-scrollbar-horizontal。gate.1 load/final 第一处差异（div.swiper 下 offset 3066）和 pixel 差异（差异图里只有滚动条拖动块一条线）都来自这里；需要按原包版本锁定 swiper 或走规则变更单，页面不能改",
-    "共享层 @/shared/images：dianzanImg、daImg_、daImgA 原包是内联 data:image/png;base64，共享层导出为 /assets/shared/*.png；askImg 原包为 /assets/ask.1783320636200.png，共享层导出 /assets/shared/ask.png。页面按 registry 导入，不能在页面里绕",
-    "比对器：gate.1（第 2 次）load 时还原版 swiperBox 的自动轮播比原版多走一格（swiper-wrapper translate 不同，slide 的 active/duplicate class 随之不同），原代码 autoplay delay 5000、speed 10，取样时刻落在轮播切换前后，属时序不稳定；pixel 0.137 也来自这一格位移。需要门槛在取样前冻结 swiper autoplay 或把该节点列为不稳定项，走规则变更单"
-  ],
+  "needsFromSkeleton": [],
+  "selfCheck": {
+    "pass": false,
+    "failed": [
+      {
+        "check": "imports",
+        "count": 42,
+        "where": "README.md、apps/portal/public/assets/shared/*、apps/portal/src/shared/imageAssets/*、apps/portal/src/shared/images.ts、package.json、package-lock.json、vite.portal.config.ts",
+        "note": "按页面单规则跑自检，把升级单改的公共库文件和依赖判为“页面单改公共库”。本单是升级单（orderOf → type shared，合并的 ownerViolations 只拦有活跃工单的 owner），不适用，未按 hint 撤销（与 HM-796 相同）"
+      },
+      { "check": "readability", "where": "apps/portal/src/views/Guidance/GuidanceHome/index.vue:39", "severity": "warn", "note": "本页既有代码（本单未改），warn 级" },
+      { "check": "readability", "where": "(eslint)", "severity": "warn", "note": "hmrsfw-vue 未装 eslint，warn 级" },
+      { "check": "readability", "where": "(prettier)", "severity": "warn", "note": "hmrsfw-vue 未装 prettier，warn 级" }
+    ],
+    "components": { "expected": 1, "delivered": 1 },
+    "textNodes": { "original": 25, "restored": 25 },
+    "directives": { "original": 1, "restored": 1, "branches": [11, 11] }
+  },
   "notes": [
-    "fix 1：页面未改。对照 sourceChunk index.17833206362006.js，两个 Swiper 的 props（modules、scrollbar:{draggable:!1}、loop、autoplay、slidesPerView 等）与还原版一致",
-    "疑似共享层问题（依赖版本）：swiper-scrollbar 的位置和 class 由 swiper/vue 版本决定，依据见 needsFromSkeleton 第 1 条",
-    "疑似共享层问题：点赞、问答、ask 图片 src 与原包不同，来自 shared/images.ts 的值，依据见 needsFromSkeleton 第 2 条",
-    "final 处 swiper-wrapper 的 transition-duration 0ms/10ms 不同：原代码 speed:10 + autoplay，取样时刻在切换过渡中，属时序差异，疑似比对器问题（不稳定项）",
-    "把上述三类差异抹平后，gate.1 的 load、final HTML 两侧完全一致，页面自身没有剩余差异",
-    "self-check pass（restore/fast-lane a1482b9），无新提交",
-    "fix 2：页面仍未改。第 2 次门槛 load 的新差异是自动轮播位置（还原版多切换一格），与页面代码无关；final 在抹平 swiper scrollbar、shared/images 图片 src、transition-duration 后两侧完全一致",
-    "疑似比对器问题：autoplay 未冻结导致 load 取样时刻的轮播位置不稳定（第 1 次门槛 load 位置一致，第 2 次不一致，页面代码两次相同）",
-    "第 1 轮列出的 swiper 依赖版本、shared/images 两项共享层问题仍在，页面单不能改，建议裁定员按 needsFromSkeleton 开公共库升级或规则变更单",
-    "self-check pass（restore/fast-lane ca4dc51），无新提交"
+    "swiper 指纹：原包门户 index chunk 有 -webkit-grab 光标（8.1.0 删除）、swiper/vue params 列表为 \"autoplay\"（8.0.3 改 \"_autoplay\"）、backface-hidden 无 hasClass 判断（8.0.2 加入）→ 8.0.0/8.0.1；两版 core/modules/vue/css 除版本注释外逐字相同，取 8.0.1。比工单说的 ≤8.1.4 更窄",
+    "用户中心原包 swiper 有 hasClass 判断、无 -webkit-grab（≥8.1.0），与门户不同版本，因此不改根依赖 swiper 8.4.7；新增别名包 swiper-portal（npm:swiper@8.0.1），vite.portal.config.ts 加 alias ^swiper(?=/|$) → swiper-portal，页面仍按清单写 import \"swiper\" / \"swiper/vue\" / \"swiper/css\"",
+    "npm run build:portal 产物：Swiper render 为 button-prev/next → scrollbar → pagination → wrapper；scrollbar 模块无 horizontalClass；params 为 \"autoplay\"",
+    "images.ts：31 个内联 base64 导出（含 dianzanImg、daImg_、daImgA）的 PNG 与原包 base64 逐字节核对一致，git mv 到 src/shared/imageAssets/ 并改为 import；构建产物里 dianzan 已内联为 data URL",
+    "askImg、bgImg、btnImg、moreInfoImg、womanImgM、womanImgW 改为原包地址 /assets/ask.1783320636200.png、/assets/bg.178332063620012.jpg、/assets/btn.1783320636200.png、/assets/moreInfo.1783320636200.png、/assets/man.1783320636200.png、/assets/woman.1783320636200.png（文件本已在 apps/portal/public/assets/）；public/assets/shared/ 下对应的去哈希副本已删除（无其他引用）",
+    "导出名不变，页面无需改动；npm run build:portal、npm run build:uc 均通过；scan-secrets 0 命中",
+    "tools/test/gate-assets.test.mjs：逐资源对比（vite build 值 = buildAssetsPlugin 值）全部一致；失败的是“恰好 2 个外发资源”的计数断言，用户中心未改动也同样失败，是测试的既有假设过时",
+    "清单：registry/portal.json 的 npm.swiper 应为 8.0.1，modules 下 @/shared/images 的 54 个导出应为 restored（images.ts 早已导出它们）。工具仓库 main 与 integration 的清单已分叉，handoff.mjs 只提交回执，之前的升级单也没有改清单的路径，本单未改清单",
+    "同类问题不在本单范围：@/shared/commonInit（commonInit-imgR01.png）、@/shared/down（down-1/2.png）也把原包内联图导出为 /assets/shared/ 公共路径"
   ]
 }
