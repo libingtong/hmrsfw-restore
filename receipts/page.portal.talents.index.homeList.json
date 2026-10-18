@@ -1,0 +1,24 @@
+{
+  "id": "page.portal.talents.index.homeList",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/index/homeList.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "c85352b16c260b71633c7d591520e5e146a9ade2"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题：gate.1 只有 pixel@load 6.082% 失败，load.html / final.html / text 两侧逐字相同。rest.diff.png 里不同的像素全部落在 y=10–99 这 90 行（x 0–1199 整宽，共 37004 个 = 1200×507 的 6.082%），y≥100 为 0。这一条是外壳 homeView 的固定头部：homeView.1783320636200.css 里 .headerCls[data-v-c9994972]{position:fixed;z-index:1000}、.headerBox[data-v-c9994972]{height:90px}，scopeId 不是本页的 data-v-9926b2dc。本单是 recordVia 子视图（父页面 page.portal.talents.index.index），HM-262 的 shellLayoutCss 对 recordVia 根不生效，原版元素截图滚动后把固定头部叠进组件顶部，还原侧门槛没有外壳。main 已合入的 HM-253 规则 offscope-fixed（83ffb0e，截 recordVia 组件时隐藏组件外的 fixed/sticky 元素，且让旧 recordVia 基线离线重算）正好覆盖这种情况，但还没进工具仓库 restore/fast-lane（已备分支 rule/hm-253-fast-lane，未合）；本次门槛跑在 fast-lane eeb71aa 上，不含该规则。需要先把 rule/hm-253-fast-lane 合入 restore/fast-lane 再重跑门槛，页面代码无需改动"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐段对照 homeList.1783320636200.js：模板结构（recruitment / recruitmentLeft 790px / tabLeft 新闻资讯 / 查看更多 / tabBotmData / Empty / recruitmentRight hoverBig / mentRightBg / a-carousel）、props（type、codeList、fun、params、paraType、detail）、state 字段、findCode / 新闻列表 / 工作动态列表、日期格式化、计时器与 openRoute 均与原 chunk 一致；scoped CSS 与 homeList.17833206362002.css（data-v-9926b2dc）逐条一致",
+    "self-check pass（restore/fast-lane c85352b）；npm run build:portal 通过；无代码改动，未 land"
+  ]
+}
