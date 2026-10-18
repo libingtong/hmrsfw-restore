@@ -1,0 +1,30 @@
+{
+  "id": "page.portal.talents.newPark.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/newPark/index.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "168c7ba3220d066321ed4d7f2a18b0fa165d3755"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [
+    "load pixel 1.218%：差异全部是原版 talents 布局 homeView 的固定头部叠进页面根截图，不在本单 target / subComponentDir 内，页面侧无可改之处（见 needsFromSkeleton）"
+  ],
+  "needsFromSkeleton": [
+    "疑似比对器问题：原版 /talents/park 是 router-xjhm.json 里 /talents（src/views/talents/homeView）的子路由，布局头部 .headerBox 高 90px、.headerCls{position:fixed;z-index:1000}（homeView.1783320636200.css）；页面根高 2021、视口 1080，元素截图滚动后固定头部叠进页面根 y=296–385。还原侧门槛兜底路由把页面顶层挂在 #poc-main 下、不包 homeView（tools/gate/appserver.mjs gateRouteCode 注释；docs/rule-changes/HM-250.md 写明如此），所以没有这条头部。规则变更单 HM-262（rule/hm-262-fast-lane f210ede「shell-layout-shots」）正是处理这个问题，其证据 docs/rule-changes/HM-262.md（4320154）第 4 节影响表已列出 talents.newPark.index：bgColor 0 → 1.218，与本次 gate.1 的 1.218% 一致，并要求合并时重录该页基线。git merge-base 确认 f210ede 尚未并入 main 和 restore/fast-lane。本页等 HM-262 合入 restore/fast-lane 并重录基线后重送门槛即可，页面不需要再改"
+  ],
+  "notes": [
+    "fix 1：未改代码。gate.1 只有 load pixel 一项失败；report.json 里原版与还原版 load.html 逐字相同（2403 字符），文字相同，请求集合无失败",
+    "rest.diff.png 与 rest.retry.diff.png 相同：标红像素全部落在 y=296–385 这 90 行（= homeView 头部 .headerBox 高度）和最末一行 y=2020（全宽 1 行，约 0.05%，低于阈值），带外 0 差异；差异图里是头部左右波浪背景和右侧用户区链接，即布局固定头部",
+    "本页原 chunk index.1783320636200100.js 不渲染、不操作外壳头部；advertTop（park_ad_banner）无数据时不渲染，DOM 已与原版一致。页面里补头部会引入原 chunk 没有的内容，不改",
+    "同类回执：page.portal.talents.conference.index、page.portal.talents.greenchannel.index、page.portal.talents.talentnew.talentList（同一条 90px 横带）",
+    "HM-262 合入前再送门槛结果会与 gate.1 相同",
+    "self-check pass（fl-vue restore/fast-lane 168c7ba），renderEquiv EQUAL"
+  ]
+}
