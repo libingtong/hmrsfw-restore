@@ -1,0 +1,32 @@
+{
+  "id": "page.portal.talents.index.talentRecommend",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/index/talentRecommend.vue",
+    "apps/portal/src/views/talents/index/talentRecommend/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "c85352b16c260b71633c7d591520e5e146a9ade2"
+  },
+  "todos": [],
+  "unresolved": [
+    "gate.1 browser:html（load/final）未修：差异全部是 @/shared/images 导出的图片地址，属于共享层，见 needsFromSkeleton",
+    "gate.1 browser:pixel（load，重试后 4.166%）未修：本页自身的 DOM 在归一图片地址后落在原版两次运行的不稳定掩码内；剩余像素差无法从页面代码定位，见 notes"
+  ],
+  "needsFromSkeleton": [
+    "疑似共享层问题（shared.portal.modules，@/shared/images）：robotImg。原 chunk talentRecommend.1783320636200.js 以 import{_ as Te}from\"./robot.1783320636200.js\" 取图，robot.1783320636200.js 导出的是 Vite 内联的 data:image/png;base64（registry/portal.json robot.1783320636200.js._ inline:true，约 4.4KB 字符，小于 assetsInlineLimit 4096 字节）；共享层把它抽成 public/assets/shared/robot.png 并导出固定字符串 \"/assets/shared/robot.png\"（images.ts 第 100 行），DOM 里 <img src> 从 data URI 变成 public 路径。gate.1 的 html 首个差异（div.aiBackdropnew，offset 274）就是这里。建议共享层按 docs/rule-changes/HM-26.md 的做法改为 import 本地 png（构建时内联，得到与原包逐字节相同的 data URI），而不是导出 public 路径；同类导出（rightdisab、s04、adr 等标「内联 base64 图片」的）同样受影响",
+    "疑似共享层问题（同上）：womanImgM / womanImgW。原包 woman.1783320636200.js 是 const s=\"/assets/man.1783320636200.png\",a=\"/assets/woman.1783320636200.png\";export{s as m,a as w}，registry value 也是这两个字面量；共享层导出的是 \"/assets/shared/man.png\" / \"/assets/shared/woman.png\"（images.ts 第 158、160 行）。本页 a-image 的 fallback 用它们，gate.1 load/final html 里每张兜底头像 <img class=\"ant-image-img radius50 marR10\"> 的 src 都因此不同（两张文件逐字节相同，hmrsfw-vue public/assets/man.1783320636200.png 本就存在）。应在共享层把值改回原包字面量。页面只能按清单从 @/shared/images 导入，不在页面里绕"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐段对照 talentRecommend.1783320636200.js：模板（标题、aiBackdropnew + CountUp(start-val=state.startVal, end-val=tip.count, duration 5)、登录/未登录两段文字、去登录、分页点 list.length>9、查看更多、list.length<10 时 columnCount3 否则 a-carousel autoplay 5000 + beforeChange、a-image fallback 按 sex、Empty、LoginModal）、props tip、state 字段、getList / selectDot / onBeforeChange / showLogin / openResume / openPage 均与原 chunk 一致",
+    "html 定位：把 gate.1 报告里原版一侧 robot 的 data URI 和兜底头像的 /assets/<名>.1783320636200.png 换成还原侧的 /assets/shared/ 路径后，用 compare.mjs 同一套 volatileMatch（原版两次运行之差作掩码）重算：load.html、final.html 均匹配；load/final 的 text、overlay 本来就匹配。所以 html 失败只来自上面两项共享层地址，页面结构无差",
+    "原版自身不稳定：两次原版运行的 CountUp 数字、轮播 slick-track 位置和当前分页点都不同（autoplay 5s、CountUp 5s 动画，startVal 在 beforeChange 时 0/500 切换），门槛已按掩码处理这些位置；还原侧 load 时的轮播位置与其中一次原版运行相同",
+    "像素：rest.retry.png 里机器人图标、兜底头像、名片背景都正常渲染；剩余 4.166% 只能对照原版截图细分，修正员不读 $RESTORE_ASSETS，无法进一步拆分。可能来源：上述轮播/CountUp 动画时序，或 recordVia 页截图的外壳 fixed 头部（HM-253 offscope-fixed 规则仍未进工具仓库 restore/fast-lane，eeb71aa 上 tools/gate 无该规则；同父页面的 homeList、infoRecommend 回执已记录）。均不在页面代码内",
+    "self-check render-equiv 报 DIFF（tokens 1288/1297）只是报告项：还原把原 chunk 的 n(z)?loginMsg:msg 写成 v-if=\"!xfSysUser\" msg / v-else loginMsg，渲染结果相同，门槛也未指出，按「只改错的地方」不动",
+    "页面代码从门槛提交 c85352b 到 restore/fast-lane HEAD c85352b 没有改动；self-check pass:true；没有在 restore/fast-lane 上提交或推送任何东西"
+  ]
+}
