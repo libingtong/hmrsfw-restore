@@ -2,7 +2,7 @@
   "id": "page.portal.region.findworker.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/region/findworker/index.vue"
   ],
@@ -22,6 +22,8 @@
     "去掉 swiper-scrollbar 节点后两边 swiper 区域一致；唯一差异是 scrollbar 节点的位置（原版在 swiper-wrapper 前，还原在后）、类名（还原多 swiper-scrollbar-vertical）和拖块 height/transform",
     "页面代码与原 chunk index.178332063620065.js 核对一致：Swiper 属性、modules（ae=[M,Je,R]）、SwiperSlide 循环",
     "原因是 swiper 版本差异（原包 <8.4，工程 8.4.7），见 needsFromSkeleton；疑似共享层问题，不在 target/subComponentDir 内",
-    "self-check pass（私有克隆 restore/fast-lane cac41a9）；无代码改动，无需 fl.sh land"
+    "self-check pass（私有克隆 restore/fast-lane cac41a9）；无代码改动，无需 fl.sh land",
+    "fix 2：仍未改代码。门槛复跑（commit cac41a9）失败项与第 1 轮相同：html/load、html/final 只差 swiper-scrollbar 节点（位置、swiper-scrollbar-vertical 类、拖块尺寸），pixel 0.081",
+    "页面侧没有等价改法：scrollbar 节点由 swiper/vue 组件和 Scrollbar 模块生成，要和原版一致只能换 swiper 版本（package.json / registry，页面单不许改），或用手写节点等原 chunk 没有的写法去凑，两种都不做；请裁定员定是降 swiper 版本还是走规则变更单"
   ]
 }
