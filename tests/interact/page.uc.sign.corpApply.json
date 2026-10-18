@@ -1,0 +1,9 @@
+[
+  {"click":"签约成功的学生"},
+  {"click":"拒绝签约的学生"},
+  {"click":"解约的学生"},
+  {"click":"申请签约的学生"},
+  {"clickSel":".ant-input","optional":true},
+  {"click":"查询"},
+  {"click":"重置"}
+]
