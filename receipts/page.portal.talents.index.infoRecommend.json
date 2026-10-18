@@ -2,7 +2,7 @@
   "id": "page.portal.talents.index.infoRecommend",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/index/infoRecommend.vue",
     "apps/portal/src/views/talents/index/infoRecommend/"
@@ -13,7 +13,7 @@
   },
   "todos": [],
   "unresolved": [
-    "gate.1 browser:pixel（load，5.484%）未修：原因不在页面代码，见 notes"
+    "gate.1 browser:pixel（load，5.484%）第 2 次未修：原因不在页面代码，见 notes"
   ],
   "needsFromSkeleton": [
     "疑似比对器问题：restore/fast-lane 的 tools/gate/replay.mjs 还没有 HM-253 规则 offscope-fixed（main 83ffb0e，合并提交 85fc032：recordVia 组件截图时隐藏组件外的 fixed/sticky 元素，baseline.mjs/gate.mjs 同步改动）。需要按 HM-239、HM-262 的做法把它 cherry-pick 进 restore/fast-lane，必要时重做本页原版基线截图，然后再跑门槛"
@@ -23,6 +23,7 @@
     "像素差只在截图最上面约 20 行：1200×20 / (1200×349) ≈ 5.7%，与报告的 5.484% 吻合；20 行以下只有淡色残影（相同）。两次截图（rest/retry）的差异图一样，说明稳定、不是动画造成的",
     "原因：本页是 recordVia 页（挂在 page.portal.talents.index.index 下）。原版一侧是整站外壳，homeView.1783320636200.css 里 .headerCls{position:fixed;z-index:1000}，元素截图滚动后这个 fixed 头部画在组件顶部那一条上；还原一侧门槛只挂恢复后的父页面，没有外壳，那一条露出的是父页面 .tjBg 背景图。差异图里背景越亮（接近白色）的地方越不算差异，符合原版那条是浅色头部的判断。replay.mjs 的 shellLayoutCss（HM-262）对 recordVia 页不生效：它隐藏的是 sel 下没有本页 scopeId 的兄弟，而 recordVia 的 sel 本身就按 scopeId 选，外壳头部不在 sel 里",
     "样式对照：还原文件 scoped 样式和 infoRecommend.1783320636200.css 逐条一致（.aiBackdropnew 的内联 base64 图拆成 infoRecommend/assets 下的文件，内容同源）；父页面 index.vue 的 .tjBg 与 legacy index 样式一致，根节点和 .marT20 结构与原 chunk 一致",
-    "页面代码从门槛提交 c85352b 到 restore/fast-lane HEAD c85352b 没有改动；self-check pass:true；没有在 restore/fast-lane 上提交或推送任何东西"
+    "页面代码从门槛提交 c85352b 到 restore/fast-lane HEAD c85352b 没有改动；self-check pass:true；没有在 restore/fast-lane 上提交或推送任何东西",
+    "fix 2：未改代码。第 2 次门槛（commit c85352b、rules 9f6f36e79038）结果与第 1 次逐像素相同（rest.diff.png 与 retry 一致，仍只在顶部约 20 行）；门槛用的 restore/fast-lane 工具分支（eeb71aa）里仍没有 HM-253 的 markOffscopeFixed。页面这边没有可改之处：用页面代码去模拟外壳头部属于为通过而改。建议转裁定员，把 HM-253（main 85fc032）按 HM-239、HM-262 的做法移植进 restore/fast-lane，必要时重做本页原版基线后重跑"
   ]
 }
