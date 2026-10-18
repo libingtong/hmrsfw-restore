@@ -516,7 +516,8 @@ export class Pipeline {
   pageResults(gate, wos) {
     const pages = this.pagesOf(gate);
     const withFailed = (p, w) => (p.pass || Array.isArray(p.failed) ? p : { ...p, failed: (gate.failed || []).filter((f) => f?.wo === w) });
-    if (pages) return Object.fromEntries(wos.map((w) => [w, pages[w] ? withFailed(pages[w], w) : { pass: false, failed: ["no per-page result"] }]));
+    // passedOmitted (gate.mjs, HM-839): a verdict too large for metadata lists only its failing pages
+    if (pages) return Object.fromEntries(wos.map((w) => [w, pages[w] ? withFailed(pages[w], w) : gate.passedOmitted ? { pass: true } : { pass: false, failed: ["no per-page result"] }]));
     return Object.fromEntries(wos.map((w) => [w, gate]));
   }
 
@@ -983,7 +984,7 @@ export class Pipeline {
 
   failedWos(gate, wos) {
     const pages = this.pagesOf(gate);
-    if (pages) return wos.filter((w) => !pages[w]?.pass);
+    if (pages) return wos.filter((w) => (pages[w] ? !pages[w].pass : !gate.passedOmitted));
     return (gate?.failed || []).map((f) => (typeof f === "string" ? f : f.wo || f.id || f.workOrder)).filter((w) => wos.includes(w));
   }
 
@@ -993,6 +994,8 @@ export class Pipeline {
     const gate = this.gateResult(meta);
     if (!gate) return { ok: false, summary: `no gate result on ${taskId}`, anomalies: [{ issue: taskId, what: "integration advance without gate result", suggestedAction: "门槛员重跑" }] };
     if (gate.error) return { ok: false, summary: "gate error", anomalies: [{ issue: taskId, what: `integration gate error: ${String(gate.error).slice(0, 200)}`, suggestedAction: "建排障单交给裁定员" }] };
+    // No verdict: pages without a usable baseline. Not a failure — a rule/lib regression must not be reverted on it.
+    if (gate.pending === "record") return { ok: false, summary: "integration gate pending record", anomalies: [{ issue: taskId, what: `integration gate pending record: ${(gate.missing || []).length} pages without a usable baseline`, suggestedAction: "补录基线后 --regate，或由人决定回归范围" }] };
     const wos = meta.workOrders || [];
     const failed = gate.pass ? [] : this.failedWos(gate, wos);
     this.gateGlobal = gate.global ?? null; // app-wide failures by layer / owner (integration mode), for the reports below
