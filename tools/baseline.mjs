@@ -8,7 +8,7 @@
 //   seq.json       /xf-api/ requests: load-time set, app-shell set, post-load step sequence (bodies as SHA-256 only),
 //                  pages the steps opened (target="_blank", window.open)
 //   baseline.json  everything the gate reads: both runs (DOM trees, texts, overlays, requests, step results), the HAR
-//                  path and SHA-256, the shell probe, `unstable`
+//                  path and SHA-256, the shell probe, `unstable`, `sel` (the root selector used: common.mjs origSelOf)
 //   coverage.json  JS coverage of the page chunk (and its shared component chunks) over both runs, load and steps, with
 //                  the uncovered stretches and hints for the recorder (tools/gate/coverage.mjs; --no-coverage skips it)
 //   storage.json   (mode 600) localStorage changes the original app shell makes before the page mounts, applied to the
@@ -18,7 +18,7 @@ import { chromium } from "playwright";
 import { chmodSync, existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { ROOT, SITES, assetsDir, authStorage, findHar, flag, interactScript, loadWorkOrder, opt, positionals, stateDir } from "./gate/common.mjs";
+import { ROOT, assetsDir, authStorage, findHar, flag, interactScript, loadWorkOrder, opt, origSelOf, positionals, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256 } from "./gate/har.mjs";
 import { runPage } from "./gate/replay.mjs";
 import { serveStatic } from "./gate/serve.mjs";
@@ -31,7 +31,7 @@ export const BASELINE_VERSION = 1;
 // Shell probe + two original runs for one work order. Used by this CLI and by the POC comparison wrappers
 // (verify-confirm.mjs), which keep the result in memory instead of writing it.
 export async function recordOriginal({ browser, wo, harFile, assets, shotDir, rules, coverage = false }) {
-  const site = SITES[wo.site];
+  const sel = origSelOf(wo); // the component's own root for recordVia pages (HM-251)
   const har = loadHar(harFile);
   const storage = authStorage(wo, assets, har);
   const steps = await interactScript(wo.id);
@@ -45,7 +45,7 @@ export async function recordOriginal({ browser, wo, harFile, assets, shotDir, ru
     // in all (the POC re-ran the original up to 4 times). If steps still fail they stay in the baseline as recorded.
     const runs = [];
     for (let n = 1; runs.length < 2 && n <= 4; n++) {
-      const run = await runPage(browser, { origin: srv.origin, url: wo.recordPath, storage, har, sel: site.origSel, steps, shotDir, tag: runs.length === 0 ? "shot" : "shot.r2", coverage: coverage ? [pageChunk, ...sharedChunks] : null, pageScopes: wo.scopeIds });
+      const run = await runPage(browser, { origin: srv.origin, url: wo.recordPath, storage, har, sel, steps, shotDir, tag: runs.length === 0 ? "shot" : "shot.r2", coverage: coverage ? [pageChunk, ...sharedChunks] : null, pageScopes: wo.scopeIds });
       run.attempt = n;
       if (run.steps?.some((s) => s.err) && n < 4 - (1 - runs.length)) continue;
       runs.push(run);
@@ -57,7 +57,7 @@ export async function recordOriginal({ browser, wo, harFile, assets, shotDir, ru
     const unstable = unstableKeys(runs[0], runs[1], { rules, site: wo.site, shell: shellSet, shellToasts: shell.toasts });
     const before = storage.localStorage, after = shell.storageAtMount ?? before;
     const patch = { set: Object.fromEntries(Object.entries(after).filter(([k, v]) => before[k] !== v)), remove: Object.keys(before).filter((k) => !(k in after)) };
-    return { shell: { requests: [...shellSet].sort(), toasts: shell.toasts ?? [], storageCaptured: !!shell.storageAtMount }, runs, unstable, steps: steps?.length ?? 0, script: steps ? sha256(JSON.stringify(steps)) : null, storagePatch: patch, coverage: cov };
+    return { sel, shell: { requests: [...shellSet].sort(), toasts: shell.toasts ?? [], storageCaptured: !!shell.storageAtMount }, runs, unstable, steps: steps?.length ?? 0, script: steps ? sha256(JSON.stringify(steps)) : null, storagePatch: patch, coverage: cov };
   } finally { await srv.close(); }
 }
 
@@ -95,14 +95,14 @@ async function main() {
   try {
     const rec = await recordOriginal({ browser, wo, harFile, assets, shotDir: tmp, rules, coverage: !flag(argv, "--no-coverage") });
     const r1 = rec.runs[0], c0 = r1.load.candidates[0];
-    if (!c0 || c0.empty) throw new Error(`original page root (${SITES[wo.site].origSel}) not found at ${wo.recordPath}`);
+    if (!c0 || c0.empty) throw new Error(`original page root (${rec.sel}) not found at ${wo.recordPath}`);
     const runs = rec.runs.map((r) => slimRun(r, tmp));
     writeFileSync(path.join(tmp, "dom.html"), c0.html);
     writeFileSync(path.join(tmp, "text.txt"), c0.text);
     writeFileSync(path.join(tmp, "seq.json"), JSON.stringify({ load: runs[0].load.requests, shell: rec.shell.requests, steps: runs[0].stepLog ?? [], opened: runs[0].opened ?? [] }, null, 1));
     writeFileSync(path.join(tmp, "baseline.json"), JSON.stringify({
       version: BASELINE_VERSION, wo: id, site: wo.site, app: wo.app, recordPath: wo.recordPath, role: wo.role, sourceChunk: wo.sourceChunk,
-      har: { path: harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version,
+      har: { path: harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version, sel: rec.sel,
       ...(rec.coverage ? { coverage: summaryOf(rec.coverage) } : {}),
       shell: rec.shell, steps: rec.steps, script: rec.script, unstable: rec.unstable, runs,
     }));
