@@ -28,6 +28,10 @@ stdout 一行 JSON：
 
 另外两种输出：`{"pending":"record","missing":[{wo, why}]}`（没有基线，或 HAR、交互脚本在基线之后变了）；`{"error":"…"}`（门槛自身的问题）。
 `--task` 且不带 `--dry-run` 时，同一份结果写元数据 `gate.<attempt>`（截短的 hint），并评论一条 `[GATE] PASS|FAIL …`。
+元数据值上限 8 KB，`gate.<attempt>` 控制在 7 KB 内（HM-839）：完整结果写到 `$RESTORE_STATE/gate/<run>/result.json`（pending 写 `$RESTORE_STATE/gate/pending-<任务>-a<attempt>.json`），元数据用 `detail` 记路径。
+pending 只记 `missingTotal`、按原因计数的 `byReason` 和缺失页 id 列表 `missing`（放不下时截断并标 `missingTruncated`）；
+pass/fail 超预算时逐级收紧：`failed` 30→10→3 条（`failedTotal` 记总数）、hint 200→120→80 字，通过的页只留 `{wo, pass}`；还放不下时 `pages` 只列未通过的页，通过的页记数 `passedOmitted`（`advance` 把未列出的页当通过）；未通过的页仍放不下时截断并标 `pagesTruncated`，不写 `passedOmitted`，未列出的页一律按失败处理（只会扩大回归范围，不会误判通过）。
+评论文件写在门槛员的工作目录（`process.cwd()`），multica 不接受工作目录外的 `--content-file`；页数多时标题写「N 页」加前几个 id。
 hint 只含检查名、元素路径（标签名 + 第一个 class）、接口路径和步骤号，不含页面文字和接口数据；带页面内容的完整比对留在 `$RESTORE_STATE/gate/<run>/<工单>/report.json`。
 
 ## 三个阶段，失败即停

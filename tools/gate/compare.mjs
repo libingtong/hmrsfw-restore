@@ -1,8 +1,10 @@
 // Comparison of a restored run against the original baseline (or of two original runs, to find unstable steps).
 // Pass = same normalised page-root HTML, same innerText, same overlay text, same /xf-api/ request set (minus the
 // app-shell requests), screenshot within the pixel threshold, and — when the page has an interaction script — no step
-// errors, the same post-load request sequence (bodies compared by SHA-256 of the decrypted canonical form) and the same
-// final HTML / text / overlay. Where the original itself is unstable (its two baseline runs differ), the positions that
+// errors, the same post-load request sequence (bodies compared by SHA-256 of the decrypted canonical form), the same
+// pages opened (target="_blank", window.open: the target path, in order) and the same final HTML / text / overlay.
+// Requests are the page under test's own: a page it opens is not part of it (HM-797, tools/gate/replay.mjs).
+// Where the original itself is unstable (its two baseline runs differ), the positions that
 // differ between the runs are not compared (volatile mask: animated progress, timers); request sets accept anything
 // between the intersection and the union of the two runs; request sequences accept either run.
 // Hints only name element paths, API paths and step numbers: no page text or data (they go into task metadata).
@@ -16,6 +18,8 @@ import { applyKnown, normHtml, normOverlay, normText, waiveKnown } from "./rules
 export const loadSet = (requests, shell) => [...new Set(requests.map((r) => (typeof r === "string" ? r : r.method + " " + r.path)))].filter((k) => !k.includes("EXTERNAL ") && !shell.has(k)).sort();
 export const seqKey = (x) => `${x.phase} ${x.method} ${x.path} ${x.query} ${x.bodyKind === "sm2" ? "sm2:" : ""}${x.bodySha ?? sha256(x.body ?? "")}`;
 export const stepSeq = (log, exclude) => log.filter((x) => x.phase !== "load" && !x.path.startsWith("EXTERNAL ") && !exclude.has(x.method + " " + x.path)).map(seqKey);
+// A page opened by the page under test (target="_blank", window.open; tools/gate/replay.mjs) → one sequence entry.
+export const openedKey = (x) => `${x.phase} ${x.target}`;
 // Request log entry → what the baseline stores (body reduced to its SHA-256).
 export const redact = (x) => ({ phase: x.phase, method: x.method, path: x.path, query: x.query, bodyKind: x.bodyKind, bodySha: x.bodySha ?? sha256(x.body ?? ""), tier: x.tier });
 
@@ -58,11 +62,15 @@ export function project(run, { rules, shell, exclude, cls = {}, known, side, use
     "load.requests": k("load.requests", loadSet(run.load?.requests ?? [], new Set([...shell, ...exclude]))),
     shot: lc?.shot ?? null, cls: lc?.cls ?? null, empty: !lc || lc.empty || !lc.tree, root: { load: lFound },
   };
+  // pages opened by the page under test, in order; a run recorded before HM-797 has none stored and counts as having
+  // opened none (re-record its baseline if the original does open a page)
+  p["load.opened"] = k("load.opened", (run.load?.opened ?? []).map(openedKey));
   if (run.steps) {
     const fc = pickCandidate(run.final?.candidates, cls.final), fFound = !!fc || cls.final === undefined;
     p.finalCls = fc?.cls ?? null; p.root.final = fFound;
     p["steps.errors"] = run.steps.filter((s) => s.err).map((s) => `step ${s.i}: ${s.err}`);
     p["steps.requests"] = k("steps.requests", stepSeq(run.stepLog ?? [], new Set([...exclude, ...shell])));
+    p["steps.opened"] = k("steps.opened", (run.opened ?? []).map(openedKey));
     p["final.html"] = fFound ? k("final.html", normHtml(fc, rules)) : null;
     p["final.text"] = fFound ? k("final.text", normText(fc?.text, rules)) : null;
     p["final.overlay"] = k("final.overlay", normOverlay(overlayText(run.final?.overlay, shellToasts), rules));
@@ -112,6 +120,11 @@ function hint(where, a, b) {
   if (where === "load.requests") {
     const missing = a.filter((x) => !b.includes(x)), extra = b.filter((x) => !a.includes(x));
     return [missing.length ? "missing " + missing.join(", ") : "", extra.length ? "extra " + extra.join(", ") : ""].filter(Boolean).join("; ");
+  }
+  if (where.endsWith(".opened")) {
+    let i = 0; while (i < a.length && a[i] === b[i]) i++;
+    const cut = (s) => (s ? s.split("?")[0].split("#")[0] : "(none)"); // phase + path only, no query values
+    return `opened page #${i + 1}: original ${cut(a[i])}, restored ${cut(b[i])} (${a.length}/${b.length} pages opened)`;
   }
   if (where === "steps.requests") {
     let i = 0; while (i < a.length && a[i] === b[i]) i++;
