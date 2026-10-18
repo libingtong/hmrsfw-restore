@@ -2,7 +2,7 @@
   "id": "page.portal.talents.job.jobList",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/job/jobList.vue",
     "apps/portal/src/views/talents/job/jobList/"
@@ -10,19 +10,22 @@
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "ca4dc51fcd1b65357dbf93d40f905b621410cf77"
+    "gitBase": "9f54b8e9feedd49acae11875579a5c3b8ca48739"
   },
   "build": "pass",
   "todos": [],
-  "unresolved": [],
+  "unresolved": [
+    "load html：仅差 11 处 input 上的 style=\"\"（49283-49184=99=11×9），去掉 style=\"\" 后两边加载 HTML 完全相同",
+    "load pixel 1.627%：截图 y≈295–385 一条全宽横带，在页面根之外"
+  ],
   "needsFromSkeleton": [
-    "疑似共享层问题（load pixel 1.637%）：差异是截图 y≈295–385 一条全宽横带（波浪背景 + 右侧导航链接），位置在页面根 div.bgBoxTop 之外，属外壳头部区域；页面 chunk 无 scroll/fixed 逻辑，页面代码无从修正。页面根高 1153 大于门槛视口 1080，元素截图滚动后外壳元素叠入原版截图；需外壳（legacy/components/Headers.vue、HeadNav2.vue）或比对器侧确认"
+    "疑似共享层问题（load html style=\"\"）：原版加载时页面里全部 antd 输入框（a-input、7 个 radio-button、2 个 a-input-number、分页跳页框）都带 style=\"\"，还原版加载时没有、交互后才出现（gate final 里还原版 11 处都有）。这是组件被更新过一次后留下的空 style，说明原版在加载截图前有一次来自页面外的全局更新，或是运行时版本差异（原 chunk Vue 3.2.47，产物 package.json 为 vue 3.3.4，即 HM-34 已知项 E7「两站 Vue/antd 版本未拆」）。页面模板 render-equiv EQUAL、setup 逻辑与导入映射逐项对应，原 chunk 无任何 DOM/style 操作，页面侧无可改之处。另：rules/compare/44-motion-state.json（视 style=\"\" 为无样式）当前 enabled:false，是否启用属规则变更单，本单不动",
+    "疑似共享层问题（load pixel）：差异横带（波浪背景 + 右侧导航链接）位于页面根 div.bgBoxTop 之外，是外壳头部区域；页面根高 1153 大于门槛视口 1080，元素截图滚动后外壳元素叠入原版截图。需外壳（legacy/components/Headers.vue、HeadNav2.vue、App.vue）或比对器侧确认"
   ],
   "notes": [
-    "fix 1：jobList.vue 第二个 a-input-number（state.user.endSalary）的 placeholder 由「最高月薪资」改回「最高薪资」。依据：原 chunk 中该项 placeholder 为 \"\\u6700\\u9AD8\\u85AA\\u8D44\"（最高薪资），最低一项为「最低月薪资」，原代码本身不对称，保持不变。对应 gate.1 load/final 在 div.ant-input-number-input-wrap 下的 HTML 差异，以及交互第 4 步按该 placeholder 定位的 locator.fill 超时和随之错位的 requests 差异",
-    "fix 2：两处 caret-down-outlined 的 style color 由 #d7d7d7 改为原 chunk 的 #D7D7D7（渲染结果相同），self-check renderEquiv 由 DIFF 变为 EQUAL（tokens 2136/2136）",
-    "未改：load html 其余差异全是 input 上的 style=\"\"，门槛 rules.mjs 已把 style=\"\" 视为无样式，不是页面问题",
-    "未改：load pixel 横带见 needsFromSkeleton，疑似共享层问题",
-    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane e432b50"
+    "fix 2：未改代码。核对 gate.1（第 2 次）：final html、requests、step-error 已在第 1 轮修复后消失；剩余 load html 与 load pixel 两项都不在页面代码，见 needsFromSkeleton",
+    "更正第 1 轮回执：第 1 轮写的「style=\"\" 已被 rules.mjs 归一化」不对——该归一化属于 motion-state 规则，当前 enabled:false",
+    "核对依据：self-check pass，renderEquiv jobList EQUAL（tokens 2136/2136）；setup 中 userStorage.getUser / useRouter / useRoute / useStore / onMounted（路由参数回填、loadDicts、getList）与原 chunk 一一对应；原 chunk 内无 querySelector、.style、setAttribute 等 DOM 操作",
+    "第 1 轮已合入 restore/fast-lane e432b50（最高薪资 placeholder、caret-down 颜色字面量），本轮无新提交"
   ]
 }
