@@ -2,7 +2,7 @@
   "id": "page.portal.talents.newPark.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/newPark/index.vue"
   ],
@@ -25,6 +25,8 @@
     "本页原 chunk index.1783320636200100.js 不渲染、不操作外壳头部；advertTop（park_ad_banner）无数据时不渲染，DOM 已与原版一致。页面里补头部会引入原 chunk 没有的内容，不改",
     "同类回执：page.portal.talents.conference.index、page.portal.talents.greenchannel.index、page.portal.talents.talentnew.talentList（同一条 90px 横带）",
     "HM-262 合入前再送门槛结果会与 gate.1 相同",
-    "self-check pass（fl-vue restore/fast-lane 168c7ba），renderEquiv EQUAL"
+    "self-check pass（fl-vue restore/fast-lane 168c7ba），renderEquiv EQUAL",
+    "fix 2（第 2 轮）：未改代码。第 2 次门槛（同一 commit 168c7ba，restore/fast-lane 未变）结果与第 1 次相同：只有 load pixel 1.218%，load.html 仍逐字相同；rest.diff.png 与 rest.retry.diff.png 标红像素 47248 个，仍全部在 y=296–385（homeView 固定头部 90px）和 y=2020 一行，带外 0",
+    "复核：f210ede（HM-262 shell-layout-shots）仍未并入 main 和 restore/fast-lane；差异不在本单 target / subComponentDir 内。按 tools/fast-lane/README.md 第 5 节，两轮修正未过应交裁定员——处理方式是合入 HM-262 并按其第 4 节重录本页基线后重送门槛"
   ]
 }
