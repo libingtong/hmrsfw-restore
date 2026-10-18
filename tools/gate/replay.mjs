@@ -73,6 +73,24 @@ export async function step(page, s) {
   return null;
 }
 
+// Playwright logs "performing <action> action" right before it sends the input events and "<action> action done" after
+// them. A step that fails after that point (the click handler keeps the main thread busy, or the wait for scheduled
+// navigations runs out on a busy machine) has already reached the page: doing it again would click twice (HM-245).
+const ACTION_SENT = /\bperforming \w+ action\b|\b\w+ action done\b/;
+export const actionSent = (e) => ACTION_SENT.test(String(e?.message ?? ""));
+
+// One step as runPage runs it → { note, err }. A step that failed before its action was sent (target not actionable
+// yet on a busy machine, as record-page does) is tried once more after 1 s; one whose action was sent is not repeated:
+// it gets the step's usual wait and a note, and what it did is compared like any other step.
+export async function runStep(page, s) {
+  try { return { note: (await step(page, s)) ?? null, err: null }; }
+  catch (e) {
+    if (actionSent(e)) { await page.waitForTimeout(s.wait ?? 1200); return { note: "timed out after the action was sent; not repeated", err: null }; }
+    await page.waitForTimeout(1000);
+    try { return { note: (await step(page, s)) ?? null, err: null }; } catch (e2) { return { note: null, err: e2.message.split("\n")[0].slice(0, 160) }; }
+  }
+}
+
 async function captureRoot(page, sel, shotBase, withShots, phases) {
   const els = await page.$$(sel);
   await page.waitForTimeout(60); // toast texts are read 50 ms after they appear
@@ -145,10 +163,7 @@ export async function runPage(browser, opts) {
     for (const [i, s] of opts.steps.entries()) {
       phase = "step" + i;
       await page.evaluate((p) => { window.__gatePhase = p; }, phase).catch(() => {});
-      let err = null, note = null;
-      // A failed step is tried once more after 1 s (as record-page does): on a busy machine a click can time out while
-      // the page is still busy.
-      try { note = (await step(page, s)) ?? null; } catch { await page.waitForTimeout(1000); try { note = (await step(page, s)) ?? null; } catch (e) { err = e.message.split("\n")[0].slice(0, 160); } }
+      const { err, note } = await runStep(page, s);
       res.steps.push({ i, step: s.fill ? { fill: [s.fill[0], "<test value>"] } : s, err, note });
     }
     await waitQuiet(page, opts.sel);
