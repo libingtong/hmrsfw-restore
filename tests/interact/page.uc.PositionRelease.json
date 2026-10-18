@@ -1,0 +1,9 @@
+[
+  {"fill":["请输入职位名称","测试职位Tst-0001"]},
+  {"fill":["请输入招聘人数","3"]},
+  {"fill":["请输入招聘联系人","测试"]},
+  {"fill":["请输入最低年龄","10"]},
+  {"fill":["请输入最高年龄","200"]},
+  {"clickSel":"button[type=submit], .ant-btn-primary","optional":true},
+  {"wait":500}
+]
