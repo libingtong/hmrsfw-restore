@@ -1,0 +1,25 @@
+{
+  "id": "page.portal.recruitMarket.marketHome.home",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/recruitMarket/marketHome/home.vue",
+    "apps/portal/src/views/recruitMarket/marketHome/home/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "fe4e53a0a739197c29ed41ad543cf9e8a259b1e6"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：home/index.vue 评论图标 commentIcon 由 new URL(\"./assets/index-884ec03b09.png\", import.meta.url).href 改为 import 默认导入。原 chunk 里是内联 data:image/png;base64（小于 assetsInlineLimit）；门槛 page 模式 ondemand 的 buildAssetsPlugin 只镜像 import / 模板 src / ?url，不处理 new URL，还原版得到 /src/views/.../assets/*.png，即 gate.1 load/final html 在 div.textCenter 下的差异。npm run build:portal 产物内含与原包相同的 base64",
+    "依据：同 HM-240（customerService）修正第 1 轮做法；HM-26 已合并，check-imports 接受相对导入本单资源",
+    "pixel（load 6.446%）：差异图里集中在页头横幅（约 y=145–240 的城市剪影 logo 区）和页头搜索框「职位」下拉，均来自外壳 legacy/components/Headers.vue，不在本单 target/subComponentDir 内；本页 CSS 全部 scoped，没有能影响页头的全局规则；页面区域（就业商城、入驻专区、右侧悬浮栏）在差异图里一致。疑似共享层问题（页头 websiteLogoPath 图片在还原版未显示，load 有若干 404），未改，评论图标修复后 pixel 是否仍超阈值待门槛复测",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane a1482b9"
+  ]
+}
