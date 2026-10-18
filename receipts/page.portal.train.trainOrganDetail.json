@@ -2,7 +2,7 @@
   "id": "page.portal.train.trainOrganDetail",
   "branch": "restore/fast-lane",
   "result": "needs-skeleton",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/train/trainOrganDetail.vue"
   ],
@@ -22,6 +22,10 @@
     "fix 1：未改代码，疑似共享层问题（外壳 public/）。依据：gate.1（commit cac41a9）原版两次与还原版的 load/final HTML、文本、cls、root、empty 逐字一致；像素差 44.860% 集中在顶部 300px 的 .bgTop（diff 图是背景图纹理），以下区域无差异",
     "页面样式与原 chunk 一致：trainOrganDetail.1783320636200.css 的 .bgTop[data-v-6bc41e89]{background:url(/sjz/home/marketTop.jpg);height:300px;background-size:100% 100%}，trainOrganDetail.vue 的 scoped .bgTop 相同",
     "不在页面里绕（不把图片拷进 subComponentDir 改相对路径）：快速通道手册第 2 节第 5 条，public/ 不在本单 target / subComponentDir 内",
-    "self-check pass；npm run build:portal 通过；restore/fast-lane cac41a9 无新提交"
+    "self-check pass；npm run build:portal 通过；restore/fast-lane cac41a9 无新提交",
+    "fix 2：未改代码。gate.2（commit cac41a9）与 gate.1 相同：原版与还原版 load/final HTML、文本逐字一致，pixel 44.860% 仍全部来自顶部 .bgTop 背景图 /sjz/home/marketTop.jpg 404",
+    "门槛复测评论说「第 1 轮改动疑似未 land」：第 1 轮本来就没有代码改动（回执 receipt.1 result=needs-skeleton），不是推送遗漏",
+    "现状：origin/restore/fast-lane 168c7ba、origin/integration 8a39c05、origin/main 365ff4e 的 apps/portal/public 下仍无 sjz/；HM-796 的 7f7ad2d 仍只在 restore/upg-5-a1。本页 trainOrganDetail.vue 在 cac41a9..168c7ba 之间无改动",
+    "self-check pass（基于 168c7ba）；restore/fast-lane 无新提交。需裁定员推动公共资源 public/sjz/ 进 integration 与 restore/fast-lane 后重跑门槛"
   ]
 }
