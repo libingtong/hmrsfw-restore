@@ -1,0 +1,26 @@
+{
+  "id": "page.uc.changephone",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/uc/src/views/changephone.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "0f9895b"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：gate.1 失败项 html（load、final，form.ant-form > div.ant-row）、pixel 4.084% 同一根因：按钮列嵌套层级不对",
+    "改动 1（第 1 步表单）：「返回 / 下一步」所在 a-col(span 10) 移出验证码所在的第二个 a-row，直接挂在 a-form 下。原 chunk changephone.1751615607545.js：s(h,null,[s(d,{span:10},[smscode])]) 闭合后才是 s(d,{span:10},[按钮])，与 row 同级",
+    "改动 2（第 2 步表单）：「提交」所在 a-col 同样移出第二个 a-row，与原 chunk 结构一致",
+    "render-equiv 修改前后均为 DIFF（1343/1343 token），只是报告项；结构差异由门槛 html 检查覆盖",
+    "label-col / wrapper-col 引用未定义的 labelCol / wrapperCol 为原代码问题，原样保留",
+    "self-check pass、build:uc pass；fl-vue restore/fast-lane d5a41e7 已推送"
+  ]
+}
