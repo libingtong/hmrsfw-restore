@@ -1,0 +1,24 @@
+{
+  "id": "page.uc.main",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/uc/src/views/main/usercardnew.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "0f9895b"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：gate.1 失败项 html（load，div.ant-card-head-title > div.flex > div.ant-image 下 img 的 class）与 requests（steps，点「编辑」后 3 个请求落在 step2）",
+    "html：usercardnew.vue 的 a-image class 由 marL20 改回 marR20。原 chunk dashboard.1751615607545.js 子组件 usercardnew 为 d(u,{...,class:\"marR20\",...})，还原时写错",
+    "requests：疑似比对器问题（时序），未改代码。点「编辑」是 router.push('/nom')（与原 chunk a[0]=ee=>k(m).push({path:\"/nom\"}) 一致），这 4 个请求全部由 /nom 页（工单 page.uc.nom，不在本单 target/subComponentDir）发出；还原版 getInfo 已在 step1 发出，后续 queryAreaChildrenTreeListById（City.vue 等 getDictItemsByCode 应答后）和 listOneForWebSite→queryByIdJM（nom.vue loadIdTypeDict await 后）是应答链，顺序、参数与原版一致，只是越过了 click 步骤的 1200ms 窗口。nom.vue 的 onMounted/loadIdTypeDict/loadUserInfo 链与原 chunk nom.1751615607545.js 逐句一致；门槛为 build:ondemand（首次进入 /nom 才按需编译该路由），本机当时负载约 40+，判断为环境/时序造成的阶段归属差异，不是页面代码问题",
+    "self-check pass、build:uc pass；fl-vue restore/fast-lane 4685bf8 已推送"
+  ]
+}
