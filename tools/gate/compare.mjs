@@ -135,7 +135,9 @@ function hint(where, a, b) {
 }
 
 // baseline: { runs:[run, run?], shell:{requests} }, rest: restored run. Returns { pass, failed, waived, pixel, knownUsed }.
-export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }) {
+// inParent: the restored component runs inside its restored parent page (recordVia, HM-251), so the toasts the shell
+// probe saw (the parent's and its other components') are dropped on the restored side too, as the shell's requests are.
+export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, restSel = "#poc-main > *", inParent = false }) {
   const shell = new Set(baseline.shell?.requests ?? []);
   const exclude = rules.shellRequests(site);
   const used = new Set();
@@ -144,9 +146,10 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }
   const restCls = { load: rest.load?.candidates?.[0]?.cls ?? null, final: rest.final?.candidates?.[0]?.cls ?? null };
   // The shell probe's toasts come off both sides when the restored app runs the shell too (it makes the shell probe's
   // requests: legacy App.vue / main.ts, e.g. the portal's getDictValueByCodes answered with the server's 500 message).
-  // A restored app without a shell (POC App.vue, only <router-view/>) keeps all its toasts (HM-250).
+  // A restored app without a shell (POC App.vue, only <router-view/>) keeps all its toasts (HM-250). A recordVia
+  // component mounted in its restored parent page (inParent) always drops them: the probe's toasts are the parent's (HM-251).
   const shellToasts = baseline.shell?.toasts ?? [];
-  const restShell = (rest.load?.requests ?? []).some((r) => shell.has(typeof r === "string" ? r : r.method + " " + r.path));
+  const restShell = inParent || (rest.load?.requests ?? []).some((r) => shell.has(typeof r === "string" ? r : r.method + " " + r.path));
   const R = project(rest, { rules, shell, exclude, known, side: "rest", used, shellToasts: restShell ? shellToasts : [] });
   const O = baseline.runs.map((run) => project(run, { rules, shell, exclude, cls: restCls, known, side: "orig", used, shellToasts }));
   const failed = [];
@@ -155,7 +158,7 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }
   const rootHint = (ph) => `no original root candidate with class ${JSON.stringify(restCls[ph])} (restored ${ph} root); original candidates: ${[...new Set(baseline.runs.flatMap((r) => (r[ph]?.candidates ?? []).map((c) => JSON.stringify(c.cls))))].join(", ")}`;
   for (const ph of ["load", "final"]) if (noRoot(ph)) failed.push({ check: "root", where: ph, hint: rootHint(ph) });
   if (!noRoot("load") && O.every((o) => o.empty)) failed.push({ check: "baseline", where: "load", hint: "original page root not found in the baseline" });
-  if (R.empty) failed.push({ check: "render", where: "load", hint: "restored page root (#poc-main > *) is empty" });
+  if (R.empty) failed.push({ check: "render", where: "load", hint: `restored page root (${restSel}) is empty` });
   const keys = Object.keys(R).filter((k) => k.includes(".") && k !== "steps.errors");
   for (const where of keys) {
     if (!(where in O[0])) { failed.push({ check: where.split(".")[1], where: where.split(".")[0], hint: "baseline has no interaction run" }); continue; }
