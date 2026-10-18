@@ -2,7 +2,7 @@
   "id": "page.portal.talents.conference.index",
   "branch": "restore/fast-lane",
   "result": "fail",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/conference/index.vue",
     "apps/portal/src/views/talents/conference/index/"
@@ -21,6 +21,7 @@
   ],
   "notes": [
     "fix 1：未改代码。逐项核对了 gate.1：html（load/final）的唯一差异来自兄弟工单 abouts.vue 的图片 src，pixel 来自父布局的 fixed 顶栏，均不在本单 target / subComponentDir 范围内，见 needsFromSkeleton",
+    "fix 2（第 2 轮）：未改代码。第 2 次门槛（同一 commit fc8d72e）三项失败与第 1 次完全相同：html 差异仍只在 abouts.vue 渲染的 img.bgimg src，pixel 仍是父布局固定顶栏那条横带，均不在本单 target / subComponentDir 内；按 README 第 5 节两轮修正未过应交裁定员",
     "本单 index.vue 的滚动监听、右侧导航逻辑与原 chunk 一致，没有操作外壳",
     "self-check pass；npm run build:portal 通过；restore/fast-lane 仍为 fc8d72e（与 gate.1 比对的 commit 相同）"
   ]
