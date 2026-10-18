@@ -1,0 +1,27 @@
+{
+  "id": "page.portal.RecruitTalents.ResumePreview",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/RecruitTalents/ResumePreview.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "dcd926856b0e172058fee7a246550bff4c6f6c07"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题（步骤时序）：gate.1 的 steps 请求方法、路径、参数、顺序、数量（6/6）与原版完全一致，只是后两个请求被记到了 step2 / step3；页面与共享弹窗代码和原 chunk 逐行等价，未改代码，见 notes"
+  ],
+  "notes": [
+    "fix 1：未改代码。gate.1 失败项是 steps requests：原版 6 个请求全在 step1（点「邀请面试」后 1200 ms 内），还原版前 4 个在 step1，interviewTemplate 落到 step2、getInterviewPosition 落到 step3；方法、路径、参数、顺序全部一致",
+    "页面侧核对：inviteInterview 与原 chunk 的 be 等价——checkLogin(IDENTITY_CORP, MSG_CORP_NOT_CERTIFIED, TEXT_GO_AUTH) → 返回 1 时 isPublishingPosition → 成功则同一 tick 设 setInfo、Interviewvisible=true、title；弹窗用 v-if=Interviewvisible 挂载，props 与原 chunk 一致（izEndReply=\"0\"、visible、title、setInfo、okclick、cancelClick）。没有多余的 await、setTimeout 或加载标志",
+    "后两个请求由共享层 @/shared/InterviewInvitation.vue 发出：onMounted → interviewTemplate 与 getDictItemsByCode 并发，字典返回后 getInterviewPosition。原 chunk 同样是 onMounted(W=onMounted) → X / R 并发 → x()，逻辑一致，且该文件不在本单可改范围",
+    "原因判断：点击后是 checkLogin 的 3 个串行请求 + isPublishingPosition + 弹窗挂载 + interviewTemplate + 字典 + getInterviewPosition 的串行链，原版刚好在 click 步固定的 1200 ms 等待内走完；还原版在门槛机繁忙时超出（gate.1 rest settleMs 7013 ms，browser 阶段 143 s），且门槛页面模式是 Vite 按需编译、每个请求都经 Playwright 路由应答。属于步骤边界按固定等待切分对负载敏感，不是页面代码差异，请门槛复测；若稳定复现，建议裁定员评估交互脚本在点击后加等待或请求比对放宽到相邻步骤（走规则变更单）",
+    "self-check pass（私有克隆 restore/fast-lane dcd9268）；无代码提交，无需 fl.sh land"
+  ]
+}
