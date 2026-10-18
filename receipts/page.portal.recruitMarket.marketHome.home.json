@@ -2,7 +2,7 @@
   "id": "page.portal.recruitMarket.marketHome.home",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/recruitMarket/marketHome/home.vue",
     "apps/portal/src/views/recruitMarket/marketHome/home/"
@@ -10,16 +10,20 @@
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "fe4e53a0a739197c29ed41ad543cf9e8a259b1e6"
+    "gitBase": "ca4dc51fcd1b65357dbf93d40f905b621410cf77"
   },
   "build": "pass",
   "todos": [],
   "unresolved": [],
-  "needsFromSkeleton": [],
+  "needsFromSkeleton": [
+    "门户 public 缺 sjz/newHome/bg1.jpg：外壳页头 legacy/components/Headers2.vue（scopeId data-v-392944e8）的 .homeTopLogo 背景是 url(/sjz/newHome/bg1.jpg)，原包有 legacy-dist/portal/sjz/newHome/bg1.jpg，hmrsfw-vue 的 apps/portal/public/ 下没有 sjz/ 目录，还原版请求 404、页头 200px 背景空白。需由骨架/入口单把 legacy-dist/portal/sjz/newHome/ 补进 apps/portal/public/sjz/newHome/（不在本单 target/subComponentDir 内）"
+  ],
   "notes": [
     "fix 1：home/index.vue 评论图标 commentIcon 由 new URL(\"./assets/index-884ec03b09.png\", import.meta.url).href 改为 import 默认导入。原 chunk 里是内联 data:image/png;base64（小于 assetsInlineLimit）；门槛 page 模式 ondemand 的 buildAssetsPlugin 只镜像 import / 模板 src / ?url，不处理 new URL，还原版得到 /src/views/.../assets/*.png，即 gate.1 load/final html 在 div.textCenter 下的差异。npm run build:portal 产物内含与原包相同的 base64",
     "依据：同 HM-240（customerService）修正第 1 轮做法；HM-26 已合并，check-imports 接受相对导入本单资源",
-    "pixel（load 6.446%）：差异图里集中在页头横幅（约 y=145–240 的城市剪影 logo 区）和页头搜索框「职位」下拉，均来自外壳 legacy/components/Headers.vue，不在本单 target/subComponentDir 内；本页 CSS 全部 scoped，没有能影响页头的全局规则；页面区域（就业商城、入驻专区、右侧悬浮栏）在差异图里一致。疑似共享层问题（页头 websiteLogoPath 图片在还原版未显示，load 有若干 404），未改，评论图标修复后 pixel 是否仍超阈值待门槛复测",
-    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane a1482b9"
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane a1482b9",
+    "fix 2：未改代码。gate.1（a1482b9）只剩 load pixel 6.446%：按差异图逐行统计，红色像素 100% 落在 y=140–240（页头 .topHead 40px + .homeTopLogo 200px 区间），页面自身区域（轮播、就业商城、入驻专区、右侧悬浮栏）0 差异；红色区域形状与 legacy-dist/portal/sjz/newHome/bg1.jpg 的城市剪影一致",
+    "依据：页头按钮 #ff9600 → 当前外壳是 Headers2.vue（原入口 data-v-392944e8），其 .homeTopLogo 背景引用 /sjz/newHome/bg1.jpg，与原包 CSS 一致；该文件在 apps/portal/public 缺失（public 下无 sjz/），load 有 404。页头「职位」下拉的少量差异同在外壳内。疑似共享层问题，见 needsFromSkeleton；本页 CSS 全部 scoped，页面内无可改之处",
+    "self-check pass（基准 restore/fast-lane ca4dc51）；本轮无新提交，页面代码仍为 a1482b9"
   ]
 }
