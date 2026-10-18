@@ -2,9 +2,9 @@
 // The gate's on-demand server gives every asset of hmrsfw-vue the same URL `vite build` gives it (data: URI under
 // assetsInlineLimit, /assets/<name>-<hash>.<ext> otherwise). Builds one throwaway entry that imports every asset under
 // apps/<app>/src with the app's own vite config and compares the built values with buildAssetsPlugin's. A second test
-// per app compiles one SFC through a real on-demand server (the gate's plugin, the app's config) and through
-// `vite build`: template src="./a.png", one file under and one over assetsInlineLimit, must give the build's URLs
-// (HM-778). Skipped when HMRSFW_APP_DIR is not set.
+// per app compiles one SFC and one module through a real on-demand server (the gate's plugin, the app's config) and
+// through `vite build`: template src="./a.png" and new URL("./a.png", import.meta.url), one file under and one over
+// assetsInlineLimit, must give the build's URLs (HM-778). Skipped when HMRSFW_APP_DIR is not set.
 import "../gate/prod-env.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -39,7 +39,7 @@ for (const app of ["portal", "uc"]) {
       const built = (await import(pathToFileURL(path.join(outDir, "entry.mjs")).href)).default;
 
       const resolved = await vite.resolveConfig({ ...config, configFile: false, logLevel: "silent" }, "serve", "production");
-      const plugin = buildAssetsPlugin({ appDir: APP });
+      const [plugin] = buildAssetsPlugin({ appDir: APP });
       plugin.configResolved(resolved);
       const ours = files.map((f) => JSON.parse(/^export default (.*)$/.exec(plugin.load(f))[1]));
       const diff = files.map((f, i) => [path.relative(APP, f), built[i], ours[i]]).filter(([, b, o]) => b !== o);
@@ -51,13 +51,18 @@ for (const app of ["portal", "uc"]) {
 
 // Fixtures live in a temp dir inside the checkout (bare imports such as "vue" resolve from its node_modules) that is
 // also the Vite root: plugin-vue only takes its dev-server branch for files under the root.
-const FIXTURE_VUE = `<template><div><img class="t" src="./img/small.png" /><img class="t" src="./img/big.png" /></div></template>
+const FIXTURE_VUE = `<template><div><img class="t" src="./img/small.png" /><img class="t" src="./img/big.png" /><img :src="s" /><img :src="b" /></div></template>
+<script setup>
+const s = new URL("./img/small.png", import.meta.url).href;
+const b = new URL("./img/big.png", import.meta.url).href;
+</script>
 `;
+const FIXTURE_TS = `export default [new URL("./img/small.png", import.meta.url).href, new URL("./img/big.png", import.meta.url).href];\n`;
 const urlStrings = (code) => [...code.matchAll(/"(data:[^"]*|\/assets\/[^"]*)"/g)].map((m) => m[1]);
 const short = (u) => (u.startsWith("data:") ? `${u.slice(0, u.indexOf(",") + 1)}…sha256:${createHash("sha256").update(u).digest("hex").slice(0, 12)}` : u);
 
 for (const app of ["portal", "uc"]) {
-  test(`${app}: template src on demand equals vite build's`, { skip: !APP && "HMRSFW_APP_DIR not set" }, async () => {
+  test(`${app}: template src and new URL(…, import.meta.url) on demand equal vite build's`, { skip: !APP && "HMRSFW_APP_DIR not set" }, async () => {
     const vite = await import(pathToFileURL(path.join(APP, "node_modules/vite/dist/node/index.js")).href);
     const tmp = mkdtempSync(path.join(APP, ".gate-assets-"));
     try {
@@ -67,7 +72,8 @@ for (const app of ["portal", "uc"]) {
       writeFileSync(path.join(tmp, "img/small.png"), randomBytes(limit - 1000));
       writeFileSync(path.join(tmp, "img/big.png"), randomBytes(limit + 1000));
       writeFileSync(path.join(tmp, "c.vue"), FIXTURE_VUE);
-      writeFileSync(path.join(tmp, "entry.js"), `import C from "./c.vue";\nexport default C;\n`);
+      writeFileSync(path.join(tmp, "u.ts"), FIXTURE_TS);
+      writeFileSync(path.join(tmp, "entry.js"), `import C from "./c.vue";\nimport U from "./u.ts";\nexport default [C, U];\n`);
       const base = { ...config, configFile: false, root: tmp, logLevel: "silent", publicDir: false, mode: "production" };
 
       // vite build: every URL string the bundle holds (Vue itself is external)
@@ -78,7 +84,7 @@ for (const app of ["portal", "uc"]) {
       }));
       const built = urlStrings(readFileSync(path.join(outDir, "entry.mjs"), "utf8")).map(short).sort();
 
-      // on demand: template imports resolved through the server (the gate plugin's load)
+      // on demand: template imports resolved through the server (the gate plugin's load), new URL(…) as transformed
       const server = await vite.createServer(vite.mergeConfig(base, {
         cacheDir: path.join(tmp, "vite"), appType: "custom", optimizeDeps: { disabled: true },
         plugins: [buildAssetsPlugin({ appDir: APP })],
@@ -86,17 +92,18 @@ for (const app of ["portal", "uc"]) {
       }));
       const ours = [], leftovers = [];
       try {
-        for (const url of ["/c.vue"]) {
+        for (const url of ["/c.vue", "/u.ts"]) {
           const { code } = await server.transformRequest(url);
           for (const [, spec] of code.matchAll(/^import \w+ from "([^"]*\/img\/[^"]*)";?$/gm)) ours.push(JSON.parse(/^export default (".*")/m.exec((await server.transformRequest(spec)).code)[1]));
-          const rest = code.replace(/^import .*$/gm, "");
+          for (const [, lit] of code.matchAll(/new URL\(("(?:[^"\\]|\\.)*"), self\.location\)/g)) ours.push(JSON.parse(lit));
+          const rest = code.replace(/^import .*$/gm, "").replace(/new URL\("(?:[^"\\]|\\.)*", self\.location\)/g, "");
           if (/\/img\//.test(rest)) leftovers.push(`${url}: ${/.{0,60}\/img\/.{0,30}/.exec(rest)[0]}`);
         }
       } finally { await server.close(); }
 
       assert.deepEqual(leftovers, [], "dev URLs left in the compiled code");
       assert.deepEqual(ours.map(short).sort(), built);
-      assert.equal(built.length, 2, "2 template imports");
+      assert.equal(built.length, 6, "2 template imports + 4 new URL");
       assert.ok(built.some((u) => u.startsWith("data:")) && built.some((u) => u.startsWith("/assets/big-")), "inline and emitted assets covered");
     } finally { rmSync(tmp, { recursive: true, force: true }); }
   });
