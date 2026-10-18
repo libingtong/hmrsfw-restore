@@ -30,7 +30,9 @@ export function pixelDiff(a, b, out, threshold) {
 }
 
 // Pick the original candidate the restored root corresponds to (POC: same class attribute, else the first one).
-export const pickCandidate = (cands, cls) => cands?.find((c) => cls != null && c.cls === cls) ?? cands?.[0] ?? null;
+// cls null = the restored root has no class attribute: it matches a classless original candidate, not whatever comes
+// first under the layout (portal homeView puts its header before the page, HM-239). cls undefined = nothing to match.
+export const pickCandidate = (cands, cls) => cands?.find((c) => cls !== undefined && c.cls === cls) ?? cands?.[0] ?? null;
 
 // Overlay → one string: open modals, then the toasts shown in the phase minus the app shell's own toasts (the shell
 // probe's; the restored app has no shell yet). Older baselines stored the overlay as a plain string.
@@ -119,8 +121,9 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }
   const shell = new Set(baseline.shell?.requests ?? []);
   const exclude = rules.shellRequests(site);
   const used = new Set();
-  const restRoot = rest.load?.candidates?.[0]?.cls ?? null;
-  const R = project(rest, { rules, shell, exclude, cls: null, known, side: "rest", used });
+  const r0 = rest.load?.candidates?.[0];
+  const restRoot = r0 && !r0.empty ? r0.cls : undefined;
+  const R = project(rest, { rules, shell, exclude, cls: undefined, known, side: "rest", used });
   const O = baseline.runs.map((run) => project(run, { rules, shell, exclude, cls: restRoot, known, side: "orig", used, shellToasts: baseline.shell?.toasts ?? [] }));
   const failed = [];
   if (O.every((o) => o.empty)) failed.push({ check: "baseline", where: "load", hint: "original page root not found in the baseline" });
