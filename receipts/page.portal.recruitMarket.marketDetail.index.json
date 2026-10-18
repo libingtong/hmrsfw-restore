@@ -1,0 +1,31 @@
+{
+  "id": "page.portal.recruitMarket.marketDetail.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/recruitMarket/marketDetail/index.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "1b207691e35933dab4a840c240f928eb6c6adc6e"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [
+    "gate.1 pixel（load）：apps/portal/public 缺 /sjz/home/marketTop.jpg，页面无权补（见 needsFromSkeleton）",
+    "gate.1 steps.requests：原版基线 step2 的第二个 findJobList 来自门槛对原版的重复点击（见 needsFromSkeleton），页面无可改之处"
+  ],
+  "needsFromSkeleton": [
+    "疑似共享层问题：apps/portal/public 下没有 sjz/ 目录，.bgTop 的 background:url(/sjz/home/marketTop.jpg) 在还原版 404，头部 300px 背景图缺失（原版由 legacy-dist/portal/sjz/home/marketTop.jpg 提供）。需要外壳/公共资源单把 legacy-dist/portal/sjz/home/ 下用到的静态图放进 apps/portal/public/sjz/home/；同目录资源还被 train/trainOrganDetail.vue（marketTop.jpg）、video/zbdg.vue（vidBg.jpg）、shared/images.ts（jobfair_arrow.png、news.png）引用",
+    "疑似比对器问题：tools/gate/replay.mjs runPage 对任何异常都会重做一次 step（注释写的是“动作没发生才重试”）。本地用 tools/gate/replay.mjs 的 step() 和同一交互脚本、桩接口（不读 HAR）复现：原版 legacy-dist 上 Playwright 日志已到 “click action done”，随后卡在 “waiting for scheduled navigations to finish” 或 “performing click action” 超时 5000ms，重试后再点一次，于是原版多出一个请求；还原版不超时，只发一次。门槛基线里 step2 两个 findJobList 请求体相同，与此一致"
+  ],
+  "notes": [
+    "fix 1：未改代码。index.vue 的 reset / getPostList / 分页绑定与原 chunk index.178332063620063.js 的 ee / x / cus-pagination 绑定逐项一致；全局 cus-pagination（legacy/components/CusPagination.vue）与原入口 _Mt 一致；dictCode、city 无 watch 触发查询",
+    "pixel：疑似共享层问题（public 缺 /sjz/home/marketTop.jpg），不在页面里拷贝或改写原包资源路径",
+    "requests：疑似比对器问题（门槛对原版点击超时后重试造成重复点击），本地桩接口复现原版 step1/step2 均可能双发，次数随时序变化",
+    "附带：门槛对 legacy 包与还原包的 Vue 版本不同（原包 3.2.47，还原包 Vue 3.3.4 / antd-vue 3.2.20，E7 未拆），未发现与本页差异相关",
+    "self-check pass；npm run build:portal 通过；restore/fast-lane 无新提交（仍为 1b20769）"
+  ]
+}
