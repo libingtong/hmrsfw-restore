@@ -1,0 +1,28 @@
+{
+  "id": "page.portal.talents.job.jobList",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/job/jobList.vue",
+    "apps/portal/src/views/talents/job/jobList/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "ca4dc51fcd1b65357dbf93d40f905b621410cf77"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似共享层问题（load pixel 1.637%）：差异是截图 y≈295–385 一条全宽横带（波浪背景 + 右侧导航链接），位置在页面根 div.bgBoxTop 之外，属外壳头部区域；页面 chunk 无 scroll/fixed 逻辑，页面代码无从修正。页面根高 1153 大于门槛视口 1080，元素截图滚动后外壳元素叠入原版截图；需外壳（legacy/components/Headers.vue、HeadNav2.vue）或比对器侧确认"
+  ],
+  "notes": [
+    "fix 1：jobList.vue 第二个 a-input-number（state.user.endSalary）的 placeholder 由「最高月薪资」改回「最高薪资」。依据：原 chunk 中该项 placeholder 为 \"\\u6700\\u9AD8\\u85AA\\u8D44\"（最高薪资），最低一项为「最低月薪资」，原代码本身不对称，保持不变。对应 gate.1 load/final 在 div.ant-input-number-input-wrap 下的 HTML 差异，以及交互第 4 步按该 placeholder 定位的 locator.fill 超时和随之错位的 requests 差异",
+    "fix 2：两处 caret-down-outlined 的 style color 由 #d7d7d7 改为原 chunk 的 #D7D7D7（渲染结果相同），self-check renderEquiv 由 DIFF 变为 EQUAL（tokens 2136/2136）",
+    "未改：load html 其余差异全是 input 上的 style=\"\"，门槛 rules.mjs 已把 style=\"\" 视为无样式，不是页面问题",
+    "未改：load pixel 横带见 needsFromSkeleton，疑似共享层问题",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane e432b50"
+  ]
+}
