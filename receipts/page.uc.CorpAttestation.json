@@ -2,7 +2,7 @@
   "id": "page.uc.CorpAttestation",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/uc/src/views/CorpAttestation.vue"
   ],
@@ -15,15 +15,16 @@
   "todos": [],
   "unresolved": [],
   "needsFromSkeleton": [
-    "疑似比对器问题（基线侧）：gate.1 唯一失败项是 step3 sumbitBaseCompanyInfo 请求体哈希不同；还原版这条请求在 HAR 回放里按请求体精确命中录制条目（restRequests tier=body），即与测试环境真实原页面录制时发出的提交体一致；基线两次原版回放（baseline runs[0]/[1] stepLog）同一请求只命中到 tier=path，没有任何录制条目与之相同。差异出在离线回放原版那一侧，页面代码未改，见 notes"
+    "疑似比对器问题（基线侧）：fix 1 时 gate.1 唯一失败项是 step3 sumbitBaseCompanyInfo 请求体哈希不同；还原版这条请求在 HAR 回放里按请求体精确命中录制条目（restRequests tier=body），即与测试环境真实原页面录制时发出的提交体一致；基线两次原版回放（baseline runs[0]/[1] stepLog）同一请求只命中到 tier=path，没有任何录制条目与之相同。差异出在离线回放原版那一侧，页面代码未改，见 notes",
+    "疑似比对器问题（步骤重试）：第二次 gate.1 多出的 step3 POST izAlreadySubmitCompany（not-in-har）和 final HTML 差异，只有第二个表单（setForm，onFinish=handleStepTwoFinish）被提交、整表校验跑到单位名称的 validator 时才会出现；页面代码没有任何地方主动校验第二个表单，交互脚本也不碰它的输入框。replay.mjs 的 step 出错后 1 s 重试，clickSel 取「最后一个可见的 button[type=submit]」：第一次点击已提交成功（activeKey=2）但被判失败重试时，第二次点到的就是第二个表单的「保存」。本轮 browser 阶段 181 s（上轮 88 s），且上轮同一页面没有这条请求，属负载引起的步骤重试，不是页面差异"
   ],
   "notes": [
-    "fix 1：未改代码。gate.1 failed 只有 steps requests（step3 提交体哈希不同），方法、路径、参数、请求顺序与数量 4/4 一致；firstFailed 里的 load html / pixel 在重试后已不在 failed 里",
-    "证据：录制员（record-page）在测试环境上对原页面真跑交互脚本，HAR 保存的是原页面实际发出的请求体；还原版 step3 提交体与 HAR 中的录制请求体规范化后完全相同（tier=body），基线原版回放的提交体与 HAR 中所有录制请求体都不同（tier=path，两次一致）",
-    "页面侧核对（原 chunk CorpAttestation）：提交 Fa 与 handleStepOneFinish 等价（appCode 014 分支、代办人证照校验、gaodeKeys 决定清空 latitude/longitude 或 Gcj02、{...user, izOpenShowContact 取反为 0/1, izAbroad 1/0}）；接口 St 为 index 的 d7t，POST data 不加密，与 @/legacy/api 一致",
-    "加载回填核对：onMounted 顺序 corpInfo→getCompanyInfo 再 getDictValueByCodes 一致；user 与 weight 指向同一返回对象、weight 上的 industryType/izProviceVertical/beginTime1/endType/各证照置空、agent 证照置空、ssq=joinAreaNames、sys_user_dept_relation 写 orgCode，均与原 chunk 逐条一致；user 初始值逐字段一致",
-    "模板核对：表单 :model=user、单位名称绑定 queryParam.name、各 a-input 的 v-model 与 oninput/onkeyup 字符串属性、DictCode/DictCodeTreeOne/DictCheckBoxAll/Phone/Email/IdCard/city/地图组件的 props 与事件处理函数，均与原 chunk 对应",
-    "原因判断：还原版行为与真实原页面一致，基线离线回放的原版在同一步发出了录制中不存在的提交体，疑为基线回放环境（原版侧存储/身份或响应应答差异）导致；建议门槛员/裁定员在本机按门槛权限解密比对 step3 两边提交体的差异字段（不出机器），确认后重录基线或按规则变更单处理，不应把页面改成与录制不符的提交体",
-    "self-check pass（私有克隆 restore/fast-lane dd01d1b）；无代码提交，无需 fl.sh land"
+    "fix 2：未改代码（页面与上轮门槛同一提交 dd01d1b）。第二次 gate.1 失败项：steps requests（4/5，多一条 step3 izAlreadySubmitCompany）、final html（form.ant-form > div.ant-row > div.ant-col 下，还原版多约 340 字符）；提交体哈希差异与 fix 1 相同，还原版仍按请求体命中 HAR（tier=body），基线仍只到 tier=path",
+    "izAlreadySubmitCompany 来源：queryParam.rules.name 的 {validator: validateCompanyName, trigger:'change'}，只挂在第二个表单的单位名称 form-item 上，与原 chunk 的 rules.name / La 等价（原 chunk 同样 zt({name: weight.name, companyId: corpInfo.id})）",
+    "触发条件核对（ant-design-vue 3.2.20）：change 校验只来自 a-input 的真实 input 事件（Input.triggerChange → formItemContext.onFieldChange）或表单提交/validateFields；页面里唯一的 validateFields 是所在地区变更时对 formRef[0] 的 validateFields('ssq')，与原 chunk 一致；交互脚本只填写第一个表单的招聘联系人、注册地址，不触碰第二个表单",
+    "因此只可能是第二个表单被提交：门槛 replay.mjs 的 step() 出错后 1 s 重试一次，clickSel 取最后一个可见的 button[type=submit]；首次点击已触发 sumbitBaseCompanyInfo 并切到第二个表单后若被判失败（busy 时的 5 s 点击超时 / 元素在重渲染中脱离），重试会点到第二个表单的「保存」，整表校验跑 validator（发出该请求）并渲染必填提示（即 final HTML 多出的部分）。上轮门槛（browser 88 s）没有这条请求，本轮 browser 181 s",
+    "建议：门槛员复测或在空闲时段重跑；若稳定复现，请裁定员评估在 report 中记录 step 的 err/note（当前 report 未输出 steps 重试信息，无法直接确认）或交互脚本把 clickSel 收窄到第一个表单（走规则变更单）。提交体哈希差异仍按 fix 1 的结论处理：需在本机解密比对基线侧 step3 提交体",
+    "页面侧核对沿用 fix 1：提交、加载回填、user 初始值、两个表单的绑定与校验规则、共享组件 props/事件均与原 chunk 等价",
+    "self-check pass（私有克隆 restore/fast-lane dd01d1b）、build:uc pass；无代码提交，无需 fl.sh land"
   ]
 }
