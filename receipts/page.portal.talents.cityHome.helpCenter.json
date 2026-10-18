@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.talents.cityHome.helpCenter",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/cityHome/helpCenter.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "c85352b16c260b71633c7d591520e5e146a9ade2"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似共享层问题（public/sjz 缺失，对应升级单 HM-796）：gate.1 的 pixel@load 43.227% 集中在左侧 .helpContent 区域（794×316）。本页 scoped CSS 与 helpCenter.1783320636200.css（data-v-15a5e3de）逐条一致，.helpContent 背景为 url(/sjz/newHome/helpBg.png)；原包 legacy-dist/portal/sjz/newHome/helpBg.png 存在，hmrsfw-vue restore/fast-lane 与 integration 的 apps/portal/public/ 下都没有 sjz/ 目录，还原侧 404，背景空白、白字落在浅灰底上。HM-796（补 apps/portal/public/sjz/）在 in_review、未进 integration；fast-lane 上的 cherry-pick 27d2c1f 已由 fc8d72e 撤销（HM-287 裁定：公共库改动先合 integration 再进快速通道）",
+    "疑似共享层问题（images.ts 哈希图地址，对应升级单 HM-800 第 2 点同类）：load/final HTML 唯一差异在 div.w40 > img 的 src——原版 /assets/moreInfo.1783320636200.png，还原版 /assets/shared/moreInfo.png（长度差 7 字符）。页面按 registry/portal.json「moreInfo.1783320636200.js」条目（path @/shared/images，export moreInfoImg，value /assets/moreInfo.1783320636200.png）导入，但共享层 apps/portal/src/shared/images.ts:78 把它导出为去哈希地址 /assets/shared/moreInfo.png，与清单 value 不符。HM-800 已指出 askImg 同类问题（大图地址需与原包一致），需把 moreInfoImg 一并改回原包地址"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐段对照 helpCenter.1783320636200.js：模板结构（marT20 / marT40 / main flex / w70 a-skeleton rows 8 / helpContent / w45 帮助中心·最新问题列表 / w40 moreInfo 图 + helpCont 猜你想问·换一批·newQueList / 右侧两张图 / 意见反馈弹窗 / 登录弹窗）、props、emits、state 字段、跳转函数 x/S/U/Z/j 均与原 chunk 一致；scoped CSS 与原 css 逐条一致",
+    "两处差异都在页面之外：public/sjz 缺失（HM-796）与 images.ts 的 moreInfoImg 去哈希地址（HM-800 同类）；页面单不得改 shared/ 和 public 公共资源，快速通道不自动建升级单，交门槛 / 裁定员处理",
+    "self-check pass（restore/fast-lane c85352b）；npm run build:portal 通过；无代码改动，未 land"
+  ]
+}
