@@ -152,6 +152,24 @@ export function buildAssetsPlugin({ appDir }) {
   }
 }
 
+// Plugin: the scope id @vitejs/plugin-vue gives each compiled SFC (`_export_sfc(_sfc_main, [["__scopeId", "data-v-…"]])`
+// in the main module; style and template sub-requests carry `?vue&…`), recorded per real file path into `found`. The
+// gate finds a recordVia page's restored component inside the restored parent page by it (HM-251).
+export function scopeIdPlugin(found) {
+  return {
+    name: "gate-scope-ids",
+    enforce: "post",
+    transform(code, id) {
+      const [file, query = ""] = id.split("?");
+      if (!file.endsWith(".vue") || /(^|&)vue(&|$)/.test(query)) return null;
+      const m = /\["__scopeId",\s*"(data-v-[0-9a-f]+)"\]/.exec(code);
+      if (m) found.set(realpathOr(file), m[1]);
+      return null;
+    },
+  };
+}
+export const realpathOr = (f) => { try { return realpathSync(f); } catch { return f; } };
+
 // opts: { appDir, app, gateDir, stateRoot, routes:[{route, recordPath, file}], plugins:[] }
 export async function startOnDemand(opts) {
   const { appDir, app, gateDir } = opts;
