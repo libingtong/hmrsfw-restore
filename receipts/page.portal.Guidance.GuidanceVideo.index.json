@@ -1,0 +1,24 @@
+{
+  "id": "page.portal.Guidance.GuidanceVideo.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/Guidance/GuidanceVideo/index.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "aa22bd4"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：gate a1 load requests 少 GET getArticleList、多 GET queryPremiumCourseList。原 chunk index.178332063620011.js 内联的两个接口是 GET /xf-job/job/licenseFree/getArticleList 和 POST /xf-job/school/licenseFree/updateScanTimes，还原时连同函数名一起把 URL 改成了 queryPremiumCourseList / postCourseScanTimes，现按原 chunk 改回",
+    "本地函数改名为 fetchArticleList / postUpdateScanTimes（URL 不变），避开 @/api/scan、@/api/sysArticle 里的同名符号，self-check 无告警",
+    "其余逻辑（字典 premiumCourses 取 typeId、分页参数、openItem/playVideo 分支、模板）对照原 chunk 无差异，未改",
+    "self-check pass、build:portal pass（fl-vue restore/fast-lane aa22bd4，已推送）"
+  ]
+}
