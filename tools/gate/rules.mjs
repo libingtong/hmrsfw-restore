@@ -39,7 +39,18 @@ const stripMotion = (tree) => mapTree(tree, (n) => {
 // the same 18 antd inputs carry it in the original at load and in the restored page after the interaction steps).
 // Drop an empty (whitespace-only) style attribute; any non-empty style is compared as before.
 const dropEmptyStyle = (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k, v]) => !(k === "style" && v.trim() === "")) }));
-const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle };
+// Baidu map JS API tiles (vue-baidu-map-3x loads the map from api.map.baidu.com; both apps): each tile <img> is appended
+// to the tile layer in its own onload (getscript `this.hb.onload=function(){…f.Mb.appendChild(i.hb)…}`), so the order of
+// the tiles among their siblings is the order in which the downloads finished (two original runs already differ, HM-239).
+// Sort an element's children by tile (z, y, x) when all of them are Baidu tile images; which tiles there are, their src
+// (host shard, x/y/z, style version) and their style (position, size) are compared as before.
+const TILE_SRC = /^https?:\/\/[\w-]+\.bdimg\.com\/tile\/\?/;
+const srcOf = (n) => n.a.find(([k]) => k === "src")?.[1] ?? "";
+const isTile = (n) => !!n && typeof n === "object" && n.t === "img" && TILE_SRC.test(srcOf(n));
+const tileKey = (n) => { const q = new URLSearchParams(srcOf(n).split("?")[1]); return [Number(q.get("z")), Number(q.get("y")), Number(q.get("x")), srcOf(n)]; };
+const byTile = (x, y) => { const a = tileKey(x), b = tileKey(y); for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i] < b[i] ? -1 : 1; return 0; };
+const baiduTileOrder = (tree) => mapTree(tree, (n) => (n.c.length > 1 && n.c.every(isTile) ? { ...n, c: n.c.slice().sort(byTile) } : n));
+const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle, "baidu-tile-order": baiduTileOrder };
 const dropAttrs = (names) => (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k]) => !names.has(k)) }));
 
 export function loadRules(dir = path.join(ROOT, "rules/compare")) {
