@@ -1,0 +1,33 @@
+{
+  "id": "page.uc.personLoan",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "fixRound": 1,
+  "outputs": [
+    "apps/uc/src/views/personLoan.vue"
+  ],
+  "selfCheck": {
+    "pass": false,
+    "failed": [
+      "components：subComponentDir apps/uc/src/views/personLoan/ 下有 2 个 .vue（含 detailInfo.vue）",
+      "text-nodes ×11：全部在 apps/uc/src/views/personLoan/detailInfo.vue",
+      "branches：4 vs 11（personLoan.vue 4 + detailInfo.vue 7）"
+    ],
+    "gitBase": "dd01d1b"
+  },
+  "build": "not-run",
+  "todos": [],
+  "unresolved": [
+    "gate.1 的 13 项失败全部来自 apps/uc/src/views/personLoan/detailInfo.vue，它是另一张工单 page.uc.personLoan.detailInfo 的 target，不属于本单，修正员不能改也不能删"
+  ],
+  "needsFromSkeleton": [
+    "疑似比对器问题（工单目录嵌套）：本单 subComponentDir = apps/uc/src/views/personLoan/，工单 page.uc.personLoan.detailInfo 的 target = apps/uc/src/views/personLoan/detailInfo.vue 落在该目录里（work-orders.mjs 按 target 去掉 .vue 推出 subComponentDir，嵌套路由 /personLoan/detailInfo 因此嵌进父页目录）。self-check.mjs 的 orderFiles（tools/sfc-util.mjs）和 gate 的 pageFiles（tools/gate/static.mjs）遍历 subComponentDir 时没有排除其他工单的 target/subComponentDir，把 detailInfo.vue 算成本单交付。依据：在临时 worktree 里移走 detailInfo.vue 后，self-check page.uc.personLoan 为 pass（components 1/1、text-nodes 3/3、branches 4/4）；放回后 self-check page.uc.personLoan.detailInfo 也为 pass（text-nodes 11/11、branches 7/7），4+7=11 正好是本单报出的分支数。需要裁定员走规则变更单：遍历 subComponentDir 时跳过属于其他工单（target 或 subComponentDir 更具体）的文件，或调整这对工单的目录约定；check-imports.mjs 已有按最长目录归属的 owner 逻辑可参考"
+  ],
+  "notes": [
+    "fix 1：没有改代码（页面与门槛同一提交 dd01d1b），无需 fl.sh land",
+    "personLoan.vue 与原 chunk index.175161560754513.js 对照：无 v-else 的 v-if 共 4 处（title 插槽 addShow、bodyCell 的 column.key==='operation'、checkStatus!='10' 的编辑链接、showModal 的 Notice），与原 render 的 4 个 r(\"\",!0) 一致；静态文本 新增申请/查看/编辑 3 处一致；组件 1 个（index）一致",
+    "detailInfo.vue（4d4008b，HM-42 快速通道）属于 page.uc.personLoan.detailInfo，按「只改本单 target 和 subComponentDir」不动；删除或移动会破坏该页和 /personLoan/detailInfo 路由",
+    "slot-scope / Page / index 未定义为原代码问题，原样保留；本次 diff 不涉及",
+    "修正员按两轮规则重复送门槛只会得到同样的结果，建议直接交裁定员处理比对器的文件归属"
+  ]
+}
