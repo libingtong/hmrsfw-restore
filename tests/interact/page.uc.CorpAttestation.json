@@ -1,0 +1,11 @@
+[
+  {"wait":1500},
+  {"fill":["请输入招聘联系人","测试"]},
+  {"fill":["请输入注册地址",""]},
+  {"clickSel":"button[type=submit]","optional":true},
+  {"wait":500},
+  {"click":"重要信息"},
+  {"wait":500},
+  {"click":"单位基本信息"},
+  {"wait":500}
+]
