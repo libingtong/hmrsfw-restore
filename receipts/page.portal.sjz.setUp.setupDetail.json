@@ -2,14 +2,14 @@
   "id": "page.portal.sjz.setUp.setupDetail",
   "branch": "restore/fast-lane",
   "result": "needs-skeleton",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/sjz/setUp/setupDetail.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "9f54b8e9feedd49acae11875579a5c3b8ca48739"
+    "gitBase": "1f114639f48db658c274c942a3906a2833b6ce24"
   },
   "build": "pass",
   "todos": [],
@@ -21,6 +21,7 @@
     "未改代码：疑似共享层问题（外壳 public/）。依据：gate.1 的 load/final HTML、文本、请求、弹层与原版逐字一致；像素差 91.48% 分布在整块 1920x385 的 .bgTop 区域（diff 图是背景图纹理），还原截图该区域为白底白字",
     "页面样式与原 chunk 一致：setupDetail.1783320636200.css 的 .bgTop[data-v-80c8c83d]{background:url(/sjz/setup/detailBg.png);height:385px}，还原 setupDetail.vue 的 scoped .bgTop 相同",
     "不在页面里绕（如把图片拷进 subComponentDir 改相对路径）：快速通道手册第 2 节第 5 条，公共库/外壳缺东西记阻塞、写明要改什么；public/ 不在本单 target / subComponentDir 内",
-    "self-check pass（renderEquiv 仍为 DIFF 1611/1635，与本次像素失败无关，未动）；npm run build:portal 通过；restore/fast-lane 9f54b8e 无新提交"
+    "self-check pass（renderEquiv 仍为 DIFF 1611/1635，与本次像素失败无关，未动）；npm run build:portal 通过；restore/fast-lane 9f54b8e 无新提交",
+    "fix 第 2 轮：仍未改代码。gate.1（commit 1f11463）与第 1 轮结果相同，pixel 91.480%，DOM/文本/请求/弹层仍逐字一致；restore/fast-lane 9f54b8e..1f11463 只多了 HM-287 的 cityHome 提交，apps/portal/public/sjz/ 仍为 0 个文件。HM-287 同类背景（/sjz/newHome/*.jpg）也保留原绝对路径，未在页面绕。外壳资源合进 restore/fast-lane 之前，这一页无法靠页面修正通过"
   ]
 }
