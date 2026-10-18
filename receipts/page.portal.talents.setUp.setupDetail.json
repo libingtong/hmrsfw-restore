@@ -2,7 +2,7 @@
   "id": "page.portal.talents.setUp.setupDetail",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/setUp/setupDetail.vue"
   ],
@@ -21,6 +21,7 @@
     "fix 1 未改页面：gate.1 load pixel 91.507% 覆盖整块 1920x385 的 div.bgTop 背景区（原版有背景图，还原为白底，白色文字因此不可见）；load/final 的 html、text、overlay、请求序列与原版完全一致",
     "依据：setupDetail.vue 的 .bgTop 规则与原 chunk CSS（setupDetail.17833206362003.css）逐字一致，都是 url(/sjz/setup/detailBg.png)；原版侧 legacy-dist/portal/sjz/setup/detailBg.png 存在，restore/fast-lane（门槛跑在 fc8d72e，现 c56909a）apps/portal/public 下没有 sjz/，fc8d72e 正是撤销 27d2c1f（public/sjz cherry-pick）的提交",
     "public/ 不在本单 target / subComponentDir 内，按规则不在页面里绕（不抽资源进页面目录、不改成 import；HM-299 裁定也把同类抽出副本改回了原字符串常量），记入 needsFromSkeleton",
-    "self-check pass（restore/fast-lane c56909a，未新增提交）"
+    "self-check pass（restore/fast-lane c56909a，fix 1/2 均未新增提交）",
+    "fix 2 仍未改页面：gate.2 与 gate.1 相同（commit c56909a，load pixel 91.507%，同一 1920x385 .bgTop 背景区）；复查 origin/restore/fast-lane（c56909a）与 origin/integration（8a39c05）apps/portal/public 下均无 sjz/，HM-796 仍 in_review。页面侧无可改项，需裁定员按 HM-281 / HM-287 处理（等 HM-796 合入 integration 并同步进 restore/fast-lane 后 advance --regate）"
   ]
 }
