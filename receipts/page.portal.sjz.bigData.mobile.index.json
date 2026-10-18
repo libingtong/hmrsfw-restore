@@ -1,0 +1,25 @@
+{
+  "id": "page.portal.sjz.bigData.mobile.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/sjz/bigData/mobile/index.vue",
+    "apps/portal/src/views/sjz/bigData/mobile/index/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "499c1d4abdc04918ce046c9bcf36ac2ecf67b6e0"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：index/bars.vue 的 onMounted 由 nextTick(() => renderChart()) 改为 nextTick(() => {})，挂载时不再 echarts.init；只在 props.data 有数据时由 watch 绘制。对应 gate.1 load 在 div.need > div.content > section.a3 下第 2、3 个 div.setSize 多出 _echarts_instance_ 容器（长度差正好两个容器）",
+    "依据：原 chunk 里 bars 组件 setup 为 N(()=>{C(()=>{})})（与 pie 相同，空回调），只有 lines 是 N(()=>{console.log(\"-----\"),C(()=>{w()})})",
+    "未改：self-check 的 renderEquiv 报告 index DIFF，index.vue 本轮没动，不是本轮门槛失败项",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane dcd9268"
+  ]
+}
