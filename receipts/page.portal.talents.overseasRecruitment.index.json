@@ -2,14 +2,14 @@
   "id": "page.portal.talents.overseasRecruitment.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/overseasRecruitment/index.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "cac41a9a974d6818bf8dc8f7f467d019f81a741a"
+    "gitBase": "168c7ba3220d066321ed4d7f2a18b0fa165d3755"
   },
   "build": "pass",
   "todos": [],
@@ -24,6 +24,8 @@
     "对照 sourceChunk index.1783320636200101.js：a-input 只传 class、value、onUpdate:value、placeholder、size，无 style；antd 3.2.15 Input 不给 <input> 写 style；还原模板与原 chunk 一致，所以原版的 style=\"\" 不来自页面代码",
     "依据：Playwright 截图隐藏光标会给所有 input 留空 style；原版嵌套布局下 main > * 先匹配布局根并先截图，还原 #poc-main 只有页面根（详见 needsFromSkeleton）",
     "未运行门槛 dry-run（本环境未设 RESTORE_ASSETS，按规则不读）；结论来自 gate 代码、Playwright 源码和本任务 diff 里 orig/rest 的 load、final 对比",
-    "self-check pass、npm run build:portal 通过（fl-vue restore/fast-lane cac41a9，工作树无改动）"
+    "self-check pass、npm run build:portal 通过（fl-vue restore/fast-lane cac41a9，工作树无改动）",
+    "fix 2：gate 第 2 次（commit 168c7ba）差异与第 1 次完全相同，仍只有还原 load 的搜索框 input 少空 style=\"\"（还原 final 有）；本页文件 cac41a9..168c7ba 无变化，页面仍不改，原因同 needsFromSkeleton（疑似比对器问题），需走规则变更单，建议交裁定员",
+    "fix 2：self-check pass（fl-vue restore/fast-lane 168c7ba，工作树无改动）"
   ]
 }
