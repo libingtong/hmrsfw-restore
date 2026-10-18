@@ -50,7 +50,23 @@ const isTile = (n) => !!n && typeof n === "object" && n.t === "img" && TILE_SRC.
 const tileKey = (n) => { const q = new URLSearchParams(srcOf(n).split("?")[1]); return [Number(q.get("z")), Number(q.get("y")), Number(q.get("x")), srcOf(n)]; };
 const byTile = (x, y) => { const a = tileKey(x), b = tileKey(y); for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i] < b[i] ? -1 : 1; return 0; };
 const baiduTileOrder = (tree) => mapTree(tree, (n) => (n.c.length > 1 && n.c.every(isTile) ? { ...n, c: n.c.slice().sort(byTile) } : n));
-const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle, "baidu-tile-order": baiduTileOrder };
+// ant-design-vue's popups (vc-trigger PopupInner, both apps): every change of `visible` runs measure → align, closing
+// included (useVisibleStatus sets 'measure' on any visible change; alignDisabled is false in 'align'), and vc-align only
+// checks that the trigger is visible, not the popup. So right after a popup closes, dom-align positions it once more
+// while it is display:none (zero rect): its inline left/top become a function of where the trigger sits in the document
+// (a 90 px layout header above the page moves top by 90 px, HM-292), not of the page code. Opening re-aligns before the
+// popup shows (opacity 0 until 'motion'), so these values are never rendered. On an element that vc-align has placed
+// (class <prefix>-placement-<placement>, set from onAlign) and whose inline style has display: none, drop the left and
+// top declarations; the rest of the style, a visible popup's position and every other element are compared as before.
+const PLACED = /^ant-[a-z]+(-[a-z]+)*-placement-[a-zA-Z]+$/;
+const decls = (v) => v.split(";").map((d) => d.trim()).filter(Boolean);
+const prop = (d) => d.split(":")[0].trim().toLowerCase();
+const hiddenPopupOffset = (tree) => mapTree(tree, (n) => {
+  const cls = n.a.find(([k]) => k === "class")?.[1] ?? "", st = n.a.find(([k]) => k === "style")?.[1] ?? "";
+  if (!cls.split(/\s+/).some((t) => PLACED.test(t)) || !decls(st).some((d) => prop(d) === "display" && /^none$/i.test(d.slice(d.indexOf(":") + 1).trim()))) return n;
+  return { ...n, a: n.a.map(([k, v]) => (k === "style" ? [k, decls(v).filter((d) => prop(d) !== "left" && prop(d) !== "top").map((d) => d + ";").join(" ")] : [k, v])) };
+});
+const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle, "baidu-tile-order": baiduTileOrder, "hidden-popup-offset": hiddenPopupOffset };
 const dropAttrs = (names) => (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k]) => !names.has(k)) }));
 
 export function loadRules(dir = path.join(ROOT, "rules/compare")) {
