@@ -2,14 +2,14 @@
   "id": "page.portal.talents.talentnew.talentList",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/talentnew/talentList.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "dd509163d67d8d29bd655143cceed19831be7e92"
+    "gitBase": "ca4dc51"
   },
   "build": "pass",
   "todos": [],
@@ -22,6 +22,10 @@
     "fix 1：未改代码。逐段对照原 chunk talentList.17833206362002.js：四个本地接口、state 初值（pageSize 9、education \"80\" 等）、onMounted 里 Qe()+d()、模板结构与 props、Recommend type=10 tag=/talents 均与还原版一致；样式块与原 CSS 的定位 / z-index 规则一致",
     "gate.1 load.html：差异只有原版 input 上的空 style=\"\"（18 处），见 needsFromSkeleton 第 2 条",
     "gate.1 load.pixel：差异只在原版固定头部叠加的那一条，页面内容区像素一致，见 needsFromSkeleton 第 1 条",
-    "self-check pass（restore/fast-lane dd50916）；npm run build:portal 通过；无代码改动，未 land"
+    "self-check pass（restore/fast-lane dd50916）；npm run build:portal 通过；无代码改动，未 land",
+    "fix 2：仍未改代码。gate.2 与 gate.1 的差异完全相同：load.html 把原版 input 上的空 style=\"\" 去掉后两侧逐字相同；load.pixel 1.290% 全部在元素截图 y≈290–390 一条（带外 0），即原版固定头部叠加处；交互 steps/final 均通过",
+    "外壳侧线索（供裁定）：还原版 views/talents/homeView/headers.vue 根节点 v-if=\"state.showHeader\"，按 route.meta.hideHeader/show 隐藏；/talents/talentsHome 的路由记录来自服务端路由文件，头部在还原版截图中未出现，需外壳负责方在实跑中核对该路由是否挂在 homeView 下、meta 判定是否与原版一致",
+    "两轮修正均判定差异不在 target / subComponentDir 内，按快速通道规则交裁定员：外壳头部归外壳方；空 style=\"\" 需规则变更单（44-motion-state 当前 enabled:false）或认定为原版差异登记 known-diff",
+    "fix 2 self-check pass（restore/fast-lane ca4dc51）；npm run build:portal 通过；无代码改动，未 land"
   ]
 }
