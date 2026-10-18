@@ -1,0 +1,25 @@
+{
+  "id": "page.portal.sjz.job.jobList",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/sjz/job/jobList.vue",
+    "apps/portal/src/views/sjz/job/jobList/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "dcd926856b0e172058fee7a246550bff4c6f6c07"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：jobList.vue 第二个 a-input-number（state.user.endSalary）的 placeholder 由「最高月薪资」改回「最高薪资」，其余不动。对应 gate.1 load/final 在 div.ant-input-number-input-wrap 下的 HTML 差 1 个字符（56002/56003、56179/56180），这是两阶段唯一的差异",
+    "依据：原 chunk 中 onBlur:t[7]（V(i,2)）那一项的 placeholder 为 \"\\u6700\\u9AD8\\u85AA\\u8D44\"（最高薪资）；最低一项 t[5] 为 \"\\u6700\\u4F4E\\u6708\\u85AA\\u8D44\"（最低月薪资），原代码本身就不对称，保持不变",
+    "未改：self-check 的 renderEquiv 报告 jobList DIFF（tokens 2274/2274），修改前后相同，不是本轮门槛失败项",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane ca4dc51"
+  ]
+}
