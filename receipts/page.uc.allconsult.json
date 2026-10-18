@@ -1,0 +1,28 @@
+{
+  "id": "page.uc.allconsult",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/uc/src/views/allconsult.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "dd01d1b"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题（步骤重试）：gate.1 两遍还原侧回放都失败在点击上。第一遍 firstFailed 是 step5 的 .ant-table-tbody a 点击超时（5000 ms，重试后仍然失败）。重跑那遍（rest.retry）唯一的失败项是 step0「查询」多发了一次 queryJoinedForUserCenter：两次参数相同，中间夹着外壳 10 s 一次的 queryNoReaded 轮询，可见 step0 至少持续了 5 s 以上，符合「点击超时 → 1 s 后重试 → 再点一次」。replay.mjs 的 step() 只要抛错就重试，但第一次点击可能已经送达页面，所以重试会重复执行动作。本轮 browser 阶段 146.8 s，本机负载均值约 34（10 核）。页面代码没有一次点击发两次请求的路径，见 notes"
+  ],
+  "notes": [
+    "fix 1：没有改代码（页面与门槛同一提交 dd01d1b），无需 fl.sh land",
+    "查询路径与原 chunk 一一对应：a-button onClick → onSearch（原 D：activeKey==1 ? c() : b()）→ loadConsultList / loadJoinedConsultList（原 c / b），每次点击只调一次 queryJoinedForUserCenter（原 N=index.api c）。重置、切 tab、分页、弹窗关闭的触发点与原 chunk 的 E / L / q / U / J 相同；step1–step5 的请求序列与原版一致（6/7 只差 step0 多出的那条）",
+    "本机离线复现（build:uc 产物、接口全部用本地假数据桩、明文存储，不连测试环境、不用 HAR，按 tests/interact/page.uc.allconsult.json 走 6 步）：step0–step5 的请求序列与原版 steps.requests 的形状一致，step0 只发 1 次。偶发的 click 超时（step3 / step5）卡在 Playwright 的 performing click action，同期 longtask 都在 1.5 s 以内，开启 CPU profiler 时主线程有约 10 s 记为 (program)，与本机高负载对得上；超时后请求照样发出，说明点击已经送达",
+    "建议：门槛员在空闲时段复跑。如果稳定复现，请裁定员评估：report 里输出每一步的 err/note（目前看不到哪一步重试过），或在步骤出错时只对没有产生请求的点击重试（走规则变更单）",
+    "模板里 Page.current 引用未定义（原 chunk 的 t.Page 同样未定义）属原代码问题，原样保留；本次 diff 不涉及",
+    "self-check pass（私有克隆 restore/fast-lane dd01d1b，render-equiv DIFF 979/979 token 只是报告项）、build:uc pass"
+  ]
+}
