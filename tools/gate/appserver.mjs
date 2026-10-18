@@ -65,6 +65,20 @@ function cloneDir(src, dst) {
 
 // Plugin: make sure the work order's route reaches the page even when the app router does not list it yet (page
 // orders may not edit router.ts); appended after the router is created, before the app uses it.
+// The fallback route keeps the page mounted top-level under #poc-main (the restored root is #poc-main's first child,
+// HM-779), but carries the meta the app's own record would give: the portal router adds the records of the router file
+// (router-xjhm.json, meta such as hideHeader / hideFooter) in its first beforeEach, after this code ran, and the
+// meta-less fallback hid them from the shell, which then showed the header and footer the original hides (HM-250).
+// Every app addRoute re-adds the fallback with the merged meta of the app's records for that path (none → {}). The
+// fallback is `strict` (+0.7 path score in vue-router 4, root path included), so it still wins over a same-path record
+// added later, as it did by insertion order before. It has no name, so a navigation spread from a route it matched
+// (`next({ ...to, replace: true })`) still resolves by path.
+export const gateRouteCode = (routes) => routes.map((r) => {
+  const P = JSON.stringify(r.recordPath), rec = (meta) => `{ path: ${JSON.stringify(r.route)}, strict: true, meta: ${meta}, component: () => import(${JSON.stringify(r.file)}) }`;
+  return `{ const unmatched = () => { const m = router.resolve(${P}).matched; return !m.length || /pathMatch/.test(m[m.length - 1].path); };
+  if (unmatched()) { const add = router.addRoute; let drop = add(${rec("{}")});
+    router.addRoute = (...a) => { const out = add(...a); drop(); const meta = unmatched() ? {} : { ...router.resolve(${P}).meta }; drop = add(${rec("meta")}); return out; }; } }`;
+}).join("\n");
 function routePlugin({ appDir, app, routes }) {
   const routerFile = path.join(appDir, "apps", app, "src/router.ts");
   return {
@@ -72,8 +86,7 @@ function routePlugin({ appDir, app, routes }) {
     enforce: "post",
     transform(code, id) {
       if (id.split("?")[0] !== routerFile || !routes.length || !/export const router\b/.test(code)) return null;
-      const add = routes.map((r) => `{ const m = router.resolve(${JSON.stringify(r.recordPath)}).matched; if (!m.length || /pathMatch/.test(m[m.length - 1].path)) router.addRoute({ path: ${JSON.stringify(r.route)}, component: () => import(${JSON.stringify(r.file)}) }); }`).join("\n");
-      return { code: code + "\n// gate: routes of the work orders under test\n" + add + "\n", map: null };
+      return { code: code + "\n// gate: routes of the work orders under test\n" + gateRouteCode(routes) + "\n", map: null };
     },
   };
 }
@@ -98,7 +111,22 @@ function singleRoutePlugin({ appDir, app, routes }) {
 // are left to Vite (same URL in both). Not mirrored: Rollup's de-duplication of two differently named files with
 // identical content (the build names both after the first one emitted). CSS url() keeps dev URLs: it is not part of
 // the compared DOM and the pixels are the same.
+// Template src="./a.png": with a dev server, @vitejs/plugin-vue 4.3.4 (resolveTemplateCompilerOptions) passes the
+// compiler transformAssetUrls { base: <dev base>/<dir of the .vue> }, which rewrites "./a.png" to the string
+// "/src/…/a.png" with no import, so load() never sees it (HM-778). The build passes { includeAbsolute: true } instead,
+// which turns relative, absolute and aliased src into imports. vueBuildAssetUrls() sets the build value as the plugin's
+// own template.transformAssetUrls (base: null overrides the dev base in plugin-vue's merge), so the template compiles
+// to the same imports as in the build and the asset goes through load() like an explicit import.
+// new URL("./a.png", import.meta.url): Vite's vite:asset-import-meta-url gives it fileToDevUrl when serving and
+// fileToBuiltUrl when building (HM-778). The second plugin, gate-build-assets-url, runs as a normal plugin (after
+// plugin-vue has compiled the SFC, before vite:asset-import-meta-url) and rewrites such an expression the way the build
+// does: new URL("<built URL>", self.location). Same match as Vite 4.4.9 (string literal first argument; a template
+// literal with ${} is a glob and left to Vite); a relative URL is resolved against the importer, others with the
+// resolver (aliases). Left to Vite, same URL in both modes: public/ files, files that do not exist (Vite keeps the URL
+// as written). Not mirrored: Vite skips matches inside comments and strings (strip-literal); rewriting a commented-out
+// expression has no effect, and an asset URL expression spelled inside a string literal does not occur in the app.
 const SKIP_QUERY = /[?&](raw|inline|worker|sharedworker)\b/;
+const IMPORT_META_URL = /\bnew\s+URL\s*\(\s*('[^']+'|"[^"]+"|`[^`]+`)\s*,\s*import\.meta\.url\s*(?:,\s*)?\)/g; // Vite 4.4.9 assetImportMetaUrlPlugin
 const INVALID_CHAR = /[\u0000-\u001F"#$&*+,:;<=>?[\]^`{|}\u007F]/g; // Rollup sanitizeFileName
 function viteMimes(appDir) {
   const dir = path.join(appDir, "node_modules/vite/dist/node/chunks");
@@ -109,13 +137,26 @@ function viteMimes(appDir) {
   }
   throw new Error("gate: mime table not found in vite's chunks (vite version changed?)");
 }
+// transformAssetUrls as plugin-vue 4.3.4 resolves it for a build, from the user's option t, in a form its dev-server
+// merge ({ base, ...t } unless t is the legacy tags-only form) leaves unchanged.
+function vueBuildAssetUrls(t) {
+  if (!t || typeof t !== "object") return { base: null, includeAbsolute: t !== false };
+  return Object.values(t).some((v) => Array.isArray(v)) ? { base: null, includeAbsolute: true, tags: t } : { base: null, includeAbsolute: true, ...t };
+}
+// Returns two plugins (Vite flattens the array): gate-build-assets (pre: imports, template src, serving the URLs) and
+// gate-build-assets-url (normal: new URL(…, import.meta.url)).
 export function buildAssetsPlugin({ appDir }) {
   let config, mimes;
   const emitted = new Map(); // "/assets/a-1234abcd.png" → source file
-  return {
+  const isPublic = (file) => config.publicDir && file.startsWith(config.publicDir + path.sep);
+  const assets = {
     name: "gate-build-assets",
     enforce: "pre",
-    configResolved(c) { config = c; },
+    configResolved(c) {
+      config = c;
+      const vue = c.plugins.find((p) => p.name === "vite:vue");
+      if (vue?.api?.options) { const o = vue.api.options; vue.api.options = { ...o, template: { ...o.template, transformAssetUrls: vueBuildAssetUrls(o.template?.transformAssetUrls) } }; }
+    },
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const file = emitted.get(decodeURIComponent((req.url ?? "").split("?")[0]));
@@ -129,10 +170,31 @@ export function buildAssetsPlugin({ appDir }) {
       if (id[0] === "\0" || SKIP_QUERY.test(id)) return null;
       const file = id.split(/[?#]/)[0];
       if (!/[?&]url\b/.test(id) && !config.assetsInclude(file)) return null;
-      if (!existsSync(file) || (config.publicDir && file.startsWith(config.publicDir + path.sep))) return null;
+      if (!existsSync(file) || isPublic(file)) return null;
       return `export default ${JSON.stringify(builtUrl(file))}`;
     },
   };
+  const importMetaUrl = {
+    name: "gate-build-assets-url",
+    async transform(code, id, options) {
+      if (options?.ssr || id[0] === "\0" || !code.includes("new URL") || !code.includes("import.meta.url")) return null;
+      const importer = id.split(/[?#]/)[0];
+      const edits = [];
+      for (const m of code.matchAll(IMPORT_META_URL)) {
+        const lit = m[1];
+        if (lit[0] === "`" && lit.includes("${")) continue;
+        const url = lit.slice(1, -1);
+        const file = url[0] === "." ? path.resolve(path.dirname(importer), url) : (await this.resolve(url, id))?.id?.split(/[?#]/)[0];
+        if (!file || !path.isAbsolute(file) || !existsSync(file) || !statSync(file).isFile() || isPublic(file)) continue;
+        edits.push([m.index, m.index + m[0].length, `new URL(${JSON.stringify(builtUrl(file))}, self.location)`]);
+      }
+      if (!edits.length) return null;
+      let out = code;
+      for (const [a, b, rep] of edits.reverse()) out = out.slice(0, a) + rep + out.slice(b);
+      return { code: out, map: null };
+    },
+  };
+  return [assets, importMetaUrl];
   function builtUrl(file) {
     const content = readFileSync(file);
     const lfs = content.subarray(0, 100).toString().startsWith("version https://git-lfs.github.com");
