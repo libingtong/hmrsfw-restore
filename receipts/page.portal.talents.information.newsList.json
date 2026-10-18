@@ -2,7 +2,7 @@
   "id": "page.portal.talents.information.newsList",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/information/newsList.vue"
   ],
@@ -20,6 +20,8 @@
     "疑似比对器问题：gate a1 唯一失败项是 load html 里共享组件 cus-pagination（@/legacy/components/CusPagination.vue）内 antd InputNumber 的 <input> 多一个空 style=\"\"（长度差 9 = ' style=\"\"'），final html 两边完全一致。空 style 来自门槛截图本身：Playwright 截图默认 hideCaret，会对页面上所有 input 执行 style.setProperty('caret-color','transparent','important') 再还原，留下空 style 属性（playwright-core lib/coreBundle.js 的 hideCaret 段）。tools/gate/replay.mjs captureRoot 对每个根候选先取 HTML 再截图，所以 input 有没有 style=\"\" 取决于取 HTML 之前是否已截过图：还原侧 #poc-main > * 只有页面根，先取 HTML 后截图，load 没有、final 有；原包侧两次 run 的 load 都已有，说明原包这条路由在页面根之前已截过图（main > * 前面还有候选或别的截图）。同为 total=0 的 page.portal.train.trainList、sjz.news.newsList 原包 load 都没有 style=\"\"，门槛通过。归一化规则 44-motion-state（空 style 视同没有）目前 enabled:false 等审计（HM-4）。建议裁定员按「比对器/截图副作用」登记已知差异（load.html，orig ' style=\"\"' / rest ''），或走规则变更单启用空 style 归一化；页面不需要改"
   ],
   "notes": [
+    "fix 2：本轮仍未改代码。gate 第 2 次结果与第 1 次相同：唯一失败项 load html，原包两次 run 与还原侧去掉 input 上的空 style=\"\" 后 load html 逐字一致，final html 两边一致；差异可确定复现，不是偶发，页面侧无可改之处，等裁定员处理（见 needsFromSkeleton）",
+    "self-check 复跑 pass，renderEquiv allEqual（fl-vue restore/fast-lane 168c7ba，分支自 fix 1 后无变化）",
     "fix 1：本轮未改代码。逐项对照 newsList.17833206362004.js：setup（reactive 字段、loadTabs/loadNoviciateTabs/getList/getNewsListByCode、nextTick 赋值、onBeforeMount、watch）与模板（a-row/a-col、两处 v-for、Empty、cus-pagination 的 props/itemRender/patch flag）一一对应",
     "self-check pass，renderEquiv newsList EQUAL（691/691 token）（fl-vue restore/fast-lane 168c7ba）",
     "差异定位：report.json load.html 仅 input.ant-input-number-input 的 style=\"\" 不同（3233/3224），final.html 两边 3233 字节一致；text、overlay、requests、pixel 均通过",
