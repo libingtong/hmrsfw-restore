@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.xjhm.home.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/xjhm/home/index.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": []
+  },
+  "todos": [],
+  "unresolved": [
+    "gate.1 browser:html（load/final）未修：三处差异都不在本单 target / subComponentDir 里，见 notes"
+  ],
+  "needsFromSkeleton": [
+    "疑似共享层问题：门户 swiper 版本。FriendLinks 的 Swiper 里 div.swiper-pagination 的位置不同：原包门户 index chunk 内置的 swiper/vue render 顺序为 container-start → button-prev/next → scrollbar → pagination → swiper-wrapper → container-end，而 hmrsfw-vue restore/fast-lane 装的 swiper 8.4.7（node_modules/swiper/vue/swiper.js）把 pagination 放在 swiper-wrapper 之后。FriendLinks 的 props（modules、pagination:{clickable:true}）与原 chunk 一致，页面改不了。HM-800 升级单（分支 restore/upg-6-a1，in_review）已经为门户加了 swiper-portal（npm:swiper@8.0.1）别名，合入 restore/fast-lane 后这一项应消失"
+  ],
+  "notes": [
+    "fix 1：未改代码。index.vue、advertTop、FriendLinks.vue、package.json 从门槛提交 ca4dc51 到 restore/fast-lane HEAD 9f54b8e 都没有改动；self-check page.portal.xjhm.home.index pass:true；没有在 restore/fast-lane 上提交或推送",
+    "差异 1（load/final，hint 里的 div.sjz-area）：「切换地区」后面的图标，原版为 anticon-caret-down，还原版为 anticon-down。位置在 advertTop 的子组件 apps/portal/src/views/xjhm/home/advertTop/areaCont.vue:115（<DownOutlined />），属于 page.portal.xjhm.home.advertTop 工单的 subComponentDir，本单不改。依据：原 chunk advertTop.17833206362006.js 的 areaCont 渲染 I(u(At))，At 导入自入口 bc，入口 chunk 里 bc 为 Au=Fv，Fv.displayName=\"CaretDownOutlined\"（icon name caret-down）。out/maps/page.portal.xjhm.home.advertTop.json 把 At 标成 DownOutlined，是映射错误（疑似工单生成问题），该改成 CaretDownOutlined，由 advertTop 那张单修",
+    "差异 2（load/final，友情链接）：div.swiper-pagination 在 swiper-wrapper 之前（原版）还是之后（还原版），原因是 swiper 版本，见 needsFromSkeleton",
+    "差异 3（final，hint 里的 div.slick-track）：advertTop 的 a-carousel 自动轮播，final 时原版两次运行都停在 data-index 2，还原版停在 1；load 时两边都是 0。a-carousel 的属性（autoplay、autoplayspeed=\"4000\"、dots、effect fade、beforeChange）与原 chunk 一致。门槛时钟正常走、不冻结计时器（tools/gate/replay.mjs:115），自动轮播在 final 停在哪一张取决于 load 到 final 之间实际经过的时间（含 settle 等待，本次还原版 settleMs 6216）。firstFailed 那次 load 也在 slick-track 处不同，retry 后 load 才一致，说明这一项随时间抖动。疑似比对器问题：自动轮播的当前张没有固定下来，页面代码改不了；且这个 carousel 也在 advertTop 文件里，不在本单范围"
+  ]
+}
