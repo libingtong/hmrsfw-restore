@@ -176,11 +176,11 @@
    "note": "params)`（`/xf-job/job/licenseFree/getDictListByType`；与 `L` 同名但不是同一接口"
   },
   "bc": {
-   "export": "DownOutlined",
+   "export": "CaretDownOutlined",
    "path": "@ant-design/icons-vue",
    "npm": true,
-   "source": "shim-map",
-   "note": "a-select 的后缀图标"
+   "source": "curated",
+   "note": "a-select 的后缀图标。入口定义 Fv.displayName=\"CaretDownOutlined\"…Au=Fv，导出 Au as bc；shim-map 原写 DownOutlined 有误（HM-815）"
   },
   "bC": {
    "export": "toInteger",
