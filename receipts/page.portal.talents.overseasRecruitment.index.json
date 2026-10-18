@@ -1,0 +1,29 @@
+{
+  "id": "page.portal.talents.overseasRecruitment.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/overseasRecruitment/index.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "cac41a9a974d6818bf8dc8f7f467d019f81a741a"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [
+    "load html：搜索框 <input class=\"ant-input ant-input-lg boderinputse boderinputsecorlor\"> 原版带空 style=\"\"，还原没有（长度差 9 = ` style=\"\"`）；差异由门槛采集顺序产生，页面侧无可改之处（见 needsFromSkeleton）"
+  ],
+  "needsFromSkeleton": [
+    "疑似比对器问题：tools/gate/replay.mjs captureRoot 对每个根候选先取 HTML 再 el.screenshot()；Playwright 1.64 截图默认 caret:\"hide\"，对文档里所有 input/textarea/[contenteditable] 先 style.setProperty(\"caret-color\",\"transparent\",\"important\")、截完再设回空值，元素上留下空的 style=\"\"（playwright-core/lib/coreBundle.js 的 hideCaret 段）。原版 origSel 是 \"main > *\"，而原版外壳是嵌套布局：App 的 <main>（App.178332063620010.js）里是布局组件，布局组件自己的 <main> 里才是页面（index.1783320636200.js 里十几处 B(\"main\",null,[router-view])），所以 main > * 先匹配布局根、后匹配页面根，取页面根 HTML 之前布局根已截过图，input 已带 style=\"\"；还原 REST_SEL \"#poc-main > *\" 只有页面根（compare.mjs:37 注释），第 0 个候选取 HTML 时还没截图。还原 final 也有 style=\"\"（final 不截图，空 style 是 load 截图留下的），与此一致。凡门户页根节点内有输入框都会出现同样差异，不是本页代码问题。可选修法（走规则变更单）：captureRoot 先取完全部候选的 HTML 再截图，或截图传 caret:\"initial\"，或把空 style 视同无 style（44-motion-state 现为 enabled:false）。页面不加假 style 来凑"
+  ],
+  "notes": [
+    "fix 1：gate.1 只有一项 load html 差异（div.main > div.ant-row > div.ant-col > div.flex，offset 429，1068/1059），判定为疑似比对器问题，页面未改（restore/fast-lane 仍为 cac41a9）",
+    "对照 sourceChunk index.1783320636200101.js：a-input 只传 class、value、onUpdate:value、placeholder、size，无 style；antd 3.2.15 Input 不给 <input> 写 style；还原模板与原 chunk 一致，所以原版的 style=\"\" 不来自页面代码",
+    "依据：Playwright 截图隐藏光标会给所有 input 留空 style；原版嵌套布局下 main > * 先匹配布局根并先截图，还原 #poc-main 只有页面根（详见 needsFromSkeleton）",
+    "未运行门槛 dry-run（本环境未设 RESTORE_ASSETS，按规则不读）；结论来自 gate 代码、Playwright 源码和本任务 diff 里 orig/rest 的 load、final 对比",
+    "self-check pass、npm run build:portal 通过（fl-vue restore/fast-lane cac41a9，工作树无改动）"
+  ]
+}
