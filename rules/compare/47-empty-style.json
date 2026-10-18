@@ -1,0 +1,7 @@
+{
+ "id": "empty-style",
+ "kind": "tree",
+ "enabled": true,
+ "since": "HM-262",
+ "why": "style=\"\" 是空声明块，渲染与没有 style 属性完全相同（两个应用里没有选择器能区分它和没有 style：原版样式表没有 [style]，还原版只有 TinyMCE 编辑器内容样式里匹配非空值的 [style*=\"border-width: 0px\"]）；元素的行内样式被写过又清空（或写入空值）后才留下它，有没有取决于截取时元素被打过几次补丁，与页面代码无关。只去掉空（仅空白）的 style 属性，非空 style 照常比较。证据：legacy-dist/portal/assets/talentList.17833206362002.js 给这 18 个 input 的组件（a-input、a-radio-button、a-pagination 快速跳转）都不传 style；HM-262 门槛报告里原版加载后 18 个 input 带 style=\"\"、还原版没有，交互后两边 18 个都带，去掉后加载 HTML 逐字相同。见 docs/rule-changes/HM-262.md"
+}

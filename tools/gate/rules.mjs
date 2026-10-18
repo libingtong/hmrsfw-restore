@@ -33,7 +33,13 @@ const stripMotion = (tree) => mapTree(tree, (n) => {
   if (!bases.size) return { ...n, a: n.a.filter(([k, v]) => !(k === "style" && v.trim() === "")) };
   return { ...n, a: n.a.filter(([k]) => k !== "style").map(([k, v]) => (k === "class" ? [k, tokens.filter((t) => !MOTION.test(t) && !bases.has(t)).join(" ")] : [k, v])) };
 });
-const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition };
+// style="" is an empty declaration block: it renders exactly like no style attribute (no selector in either app tells the
+// two apart: the original's stylesheets have no [style], the restored app only TinyMCE's [style*="border-width: 0px"]). It is left on an element once something wrote and cleared (or wrote an empty value into) its inline
+// style, so whether it is there depends on the element's patch history at capture time, not on the page code (HM-262:
+// the same 18 antd inputs carry it in the original at load and in the restored page after the interaction steps).
+// Drop an empty (whitespace-only) style attribute; any non-empty style is compared as before.
+const dropEmptyStyle = (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k, v]) => !(k === "style" && v.trim() === "")) }));
+const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle };
 const dropAttrs = (names) => (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k]) => !names.has(k)) }));
 
 export function loadRules(dir = path.join(ROOT, "rules/compare")) {
