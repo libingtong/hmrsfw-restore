@@ -1,28 +1,47 @@
 {
   "id": "page.portal.xjhm.home.index",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 2,
+  "ticket": "page.portal.xjhm.home.index",
+  "kind": "upgrade",
+  "upgradeTask": "01a14db4-c3a0-7b7a-b835-596768c98f7d",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-7-a1",
+  "result": "ok",
   "outputs": [
-    "apps/portal/src/views/xjhm/home/index.vue"
+    "apps/portal/src/views/xjhm/home/advertTop/areaCont.vue",
+    "apps/portal/src/views/fair/sceneFair/list.vue",
+    "apps/portal/src/views/fair/webFair/list.vue",
+    "apps/portal/src/views/fair/outFair/list.vue",
+    "apps/portal/src/legacy/index.ts",
+    "apps/portal/src/legacy/components/AreaCont.vue"
   ],
+  "todos": [
+    "工具仓库清单改动在 hmrsfw-restore 分支 restore/upg-7-a1（ad7a93c）：registry/portal.json、registry/names.portal.json 的 bc 条目，以及 4 份 out/maps、out/hints。handoff.mjs 只提交回执，调度脚本只有规则变更单会合入工具仓库 main，升级单没有合入路径，需裁定员按规则变更流程或人工合入 main（及 restore/fast-lane）",
+    "restore/fast-lane：本单产物分支从 integration 拉出；快速通道页需把 hmrsfw-vue aa92469 cherry-pick 到 restore/fast-lane（与 HM-796 的做法相同），与 HM-800 的 swiper 修正一起进 fast-lane 后再重跑 HM-279 门槛"
+  ],
+  "needsFromSkeleton": [],
   "selfCheck": {
-    "pass": true,
-    "failed": []
+    "pass": false,
+    "failed": [
+      {
+        "check": "imports",
+        "where": "apps/portal/src/legacy/index.ts、apps/portal/src/legacy/components/AreaCont.vue 以及 4 个使用方页面（按各工单交叉报出）",
+        "note": "按页面单规则跑自检，把升级单改的入口文件和其他页面判为“本单不能修改”。本单是升级单（ownerViolations 只拦有活跃工单的 owner；这几个文件在清单里无 owner），不适用，未按 hint 撤销（与 HM-796、HM-800 相同）"
+      },
+      {
+        "check": "text-nodes / readability / imports",
+        "count": 22,
+        "where": "page.portal.xjhm.home.advertTop、fair.sceneFair.list、fair.webFair.list、fair.outFair.list、xjhm.home.index",
+        "note": "既有问题：把 6 个文件换回 origin/integration 版本重跑自检，22 条失败逐条相同，本单没有新增也没有消除任何一条"
+      }
+    ]
   },
-  "todos": [],
-  "unresolved": [
-    "gate.1（第 2 次，提交 9f54b8e）browser:html（load/final）未修：剩下的两处差异都不在本单 target / subComponentDir 里，见 notes"
-  ],
-  "needsFromSkeleton": [
-    "疑似共享层问题：门户 swiper 版本。FriendLinks 的 Swiper 里 div.swiper-pagination 的位置不同：原包门户 index chunk 内置的 swiper/vue render 顺序为 container-start → button-prev/next → scrollbar → pagination → swiper-wrapper → container-end，而 hmrsfw-vue restore/fast-lane 装的 swiper 8.4.7（node_modules/swiper/vue/swiper.js）把 pagination 放在 swiper-wrapper 之后。FriendLinks 的 props（modules、pagination:{clickable:true}）与原 chunk 一致，页面改不了。HM-800 升级单（分支 restore/upg-6-a1，in_review）已经为门户加了 swiper-portal（npm:swiper@8.0.1）别名，合入 restore/fast-lane 后这一项应消失"
-  ],
   "notes": [
-    "fix 1：未改代码。index.vue、advertTop、FriendLinks.vue、package.json 从门槛提交 ca4dc51 到 restore/fast-lane HEAD 9f54b8e 都没有改动；self-check page.portal.xjhm.home.index pass:true；没有在 restore/fast-lane 上提交或推送",
-    "差异 1（load/final，hint 里的 div.sjz-area）：「切换地区」后面的图标，原版为 anticon-caret-down，还原版为 anticon-down。位置在 advertTop 的子组件 apps/portal/src/views/xjhm/home/advertTop/areaCont.vue:115（<DownOutlined />），属于 page.portal.xjhm.home.advertTop 工单的 subComponentDir，本单不改。依据：原 chunk advertTop.17833206362006.js 的 areaCont 渲染 I(u(At))，At 导入自入口 bc，入口 chunk 里 bc 为 Au=Fv，Fv.displayName=\"CaretDownOutlined\"（icon name caret-down）。out/maps/page.portal.xjhm.home.advertTop.json 把 At 标成 DownOutlined，是映射错误（疑似工单生成问题），该改成 CaretDownOutlined，由 advertTop 那张单修",
-    "差异 2（load/final，友情链接）：div.swiper-pagination 在 swiper-wrapper 之前（原版）还是之后（还原版），原因是 swiper 版本，见 needsFromSkeleton",
-    "差异 3（final，hint 里的 div.slick-track）：advertTop 的 a-carousel 自动轮播，final 时原版两次运行都停在 data-index 2，还原版停在 1；load 时两边都是 0。a-carousel 的属性（autoplay、autoplayspeed=\"4000\"、dots、effect fade、beforeChange）与原 chunk 一致。门槛时钟正常走、不冻结计时器（tools/gate/replay.mjs:115），自动轮播在 final 停在哪一张取决于 load 到 final 之间实际经过的时间（含 settle 等待，本次还原版 settleMs 6216）。firstFailed 那次 load 也在 slick-track 处不同，retry 后 load 才一致，说明这一项随时间抖动。疑似比对器问题：自动轮播的当前张没有固定下来，页面代码改不了；且这个 carousel 也在 advertTop 文件里，不在本单范围",
-    "fix 2：未改代码。第 2 次门槛（提交 9f54b8e）的 load/final 剩两处差异，与 fix 1 的差异 1（advertTop/areaCont.vue 图标 DownOutlined→应为 CaretDownOutlined）、差异 2（swiper 8.4.7 的 pagination 渲染位置）相同。差异 3（轮播当前张）这次 firstFailed final 仍在 div.slick-track，retry 后一致，再次说明它随时间抖动。restore/fast-lane 从 9f54b8e 起没有新提交；HM-800（swiper-portal）仍是 in_review、未合入。self-check pass:true；没有在 restore/fast-lane 上提交或推送",
-    "要让本页通过需要：① advertTop 单把 areaCont.vue 的 DownOutlined 改成 CaretDownOutlined（并修正 out/maps/page.portal.xjhm.home.advertTop.json 里 At 的 export）；② HM-800 的 swiper-portal 合入 restore/fast-lane。两项都不是本单能改的文件"
+    "证据：legacy-dist/portal/assets/index.1783320636200.js 偏移 1006494 Fv.displayName=\"CaretDownOutlined\",…,Au=Fv；偏移 2982036 export Au as bc。DownOutlined（L6，const Kl=L6）不在入口导出里",
+    "引用 bc 的 chunk 只有 4 个：advertTop.17833206362006.js（子组件 areaCont）、list.17833206362003/4/5.js（a-select #suffixIcon）；四页的 DownOutlined 改为 CaretDownOutlined",
+    "同一根因的入口侧：legacy/index.ts 的 SelectSuffixIcon（注释 `bc`）原为 DownOutlined，改为 CaretDownOutlined；入口全局组件 areaCont（wre，data-v-51dcc8f8）render 里直接用 Au，legacy/components/AreaCont.vue 同步改为 CaretDownOutlined。两个文件在清单里没有 owner",
+    "views/customerService/index.vue 的 DownOutlined 不来自 bc（该 chunk 不导入 bc），未动",
+    "清单：registry/names.portal.json 的 bc 来自 shim-map（POC 对照表）写错，改为 CaretDownOutlined 并标 curated；registry/portal.json 只改这一条的 export。没有整体重跑 registry.mjs（当前 --check 本来就与已提交清单不同，重跑会带入无关改动）",
+    "maps 用 node tools/slice-maps.mjs 重新生成，4 份各只有 bc 一行变化；hints 表格里 bc 一行同步改正；out/maps/c17.json 是 20 页确认期的旧文件，未动",
+    "npm run build:portal 通过；scan-secrets（两个仓库）0 命中"
   ]
 }
