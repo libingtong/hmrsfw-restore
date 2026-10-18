@@ -2,7 +2,7 @@
   "id": "page.portal.oddJob.news.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/oddJob/news/index.vue"
   ],
@@ -25,6 +25,10 @@
     "页面代码与原 chunk index.178332063620049.js 核对一致：Swiper 属性（modules=[Autoplay, Pagination, Navigation, Scrollbar]、space-between 30、slides-per-view auto、pagination clickable、navigation）、SwiperSlide 循环；导入按 maps（swiper/vue、swiper）",
     "页面侧没有等价改法：节点顺序由 swiper/vue 组件决定，改只能换 swiper 版本（package.json，页面单不许改）或手写原 chunk 没有的结构，两种都不做",
     "同类回执：page.portal.region.findworker.index、page.portal.region.innovation.index（同为 swiper 版本差异）；依赖修复在 HM-800",
-    "self-check pass、npm run build:portal 通过（私有克隆 restore/fast-lane 168c7ba）；无代码改动，无需 fl.sh land"
+    "self-check pass、npm run build:portal 通过（私有克隆 restore/fast-lane 168c7ba）；无代码改动，无需 fl.sh land",
+    "fix 2：仍未改代码。门槛复跑（commit 168c7ba）失败项与第 1 轮相同：html/load、html/final 只差 swiper-pagination / swiper-wrapper 节点顺序，pixel 0；对调这两个节点后与原版两次采样逐字一致",
+    "复查 restore/fast-lane 仍为 168c7ba，git merge-base 确认 HM-800（restore/upg-6-a1 eb2b5ff，状态 in_review）尚未并入，node_modules 中 swiper 仍为 8.4.7；快速通道不自动开升级单，页面侧无等价改法",
+    "请裁定员决定：把 HM-800 并入 restore/fast-lane 后重送门槛（预期通过，页面无需改动），或另走规则变更单",
+    "self-check pass（私有克隆 restore/fast-lane 168c7ba）；无代码改动，无需 fl.sh land"
   ]
 }
