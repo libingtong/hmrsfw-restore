@@ -1,0 +1,19 @@
+{
+  "id": "page.portal.talents.newPark.talentPark",
+  "ticket": "page.portal.talents.newPark.talentPark",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "fixRound": 1,
+  "outputs": ["apps/portal/src/views/talents/newPark/talentPark.vue"],
+  "todos": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题（pixel，load，1.645%）：原版侧截图叠入了布局固定头部。本页是 recordVia 子视图（父页 page.portal.talents.newPark.index），原版侧根选择器为 scopeRootSel(data-v-c1d9e962)；HM-262 的 shellLayoutCss 只隐藏 sel 下不带本页 scopeId 的兄弟，对 recordVia 页面 sel 本身已要求 scopeId，因此是空操作（tools/gate/replay.mjs 第 28–45 行注释；main 6aceac6 合并说明写明「for recordVia pages shellLayoutCss is then a no-op」）。门户 homeView 的 headers 组件 .headerCls 为 position:fixed;z-index:1000，.left/.right 背景为 leftbg/rightbg 波浪图（headers.1783320636200.css）；元素截图滚动后头部画在根的顶部。diff 图（rest.diff.png 与 rest.retry.diff.png 一致）只在顶部约 35px 有差，形状正是波浪线并覆盖在标题字形之上（z-index 在页面之上），以下的空状态图、文字零差异。两侧 load.html / final.html 逐字相同（513 字符），text 相同。页面侧无法也不应补出布局头部，需走规则变更单让 recordVia 页面截图时同样隐藏布局外壳（例如隐藏 origSel 下不含本页根的兄弟）"
+  ],
+  "selfCheck": { "pass": true, "failed": [] },
+  "build": "not-run",
+  "notes": [
+    "第 1 轮未改代码：门槛只失败 pixel 一项，html/text 两侧完全一致；差异区域仅为顶部固定头部叠图，原因在比对器（recordVia 页面不隐藏布局外壳），不在页面",
+    "第 1 轮依据：对照原 chunk talentPark.1783320636200.js 与 talentPark.1783320636200.css，模板结构、scoped 样式、空状态 Empty 引用与还原版一致；同类问题见 HM-262（非 recordVia 页面已修）",
+    "第 1 轮自检：fl-vue 在 restore/fast-lane c85352b，fl.sh base 后 self-check pass:true；本页文件无改动，无提交"
+  ]
+}
