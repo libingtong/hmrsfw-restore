@@ -2,7 +2,7 @@
   "id": "page.portal.video.zbdg",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/video/zbdg.vue"
   ],
@@ -21,6 +21,7 @@
     "fix 1 未改页面：gate.1 load pixel 33.144% 全部落在顶部 1920x300 的 div.bgBoxTop.vidTop 背景区域（原版有背景图，还原为白底），搜索卡片、标题按钮等前景一致",
     "依据：zbdg.vue 的 .vidTop 规则与原 chunk CSS（zbdg.1783320636200.css）逐字一致，都是 url(/sjz/home/vidBg.jpg)；门槛 page 模式静态服务 [outDir, apps/portal/public]（tools/gate.mjs:178、tools/gate/appserver.mjs:303），而 restore/fast-lane 的 apps/portal/public 下没有 sjz/，原版侧 legacy-dist/portal/sjz/home/vidBg.jpg 存在",
     "public/ 不在本单 target / subComponentDir 内，按规则不在页面里绕（不改成内联或 import 资源），记入 needsFromSkeleton",
-    "self-check pass（restore/fast-lane 9f54b8e，未新增提交）"
+    "self-check pass（restore/fast-lane 9f54b8e，未新增提交）",
+    "fix 2 仍未改页面：门槛第 2 次结果与第 1 次相同（load pixel 33.144%，同一 1920x300 背景区）；复查 origin/restore/fast-lane（1f11463）apps/portal/public 下仍无 sjz/，7f7ad2d 仍只在 restore/upg-5-a1。页面侧无可改项，需裁定员决定把 public/sjz/ 带进 restore/fast-lane（共享层，超出本单 target / subComponentDir）"
   ]
 }
