@@ -1,0 +1,27 @@
+{
+  "id": "page.portal.talents.greenchannel.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/greenchannel/index.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "cac41a9a974d6818bf8dc8f7f467d019f81a741a"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题（pixel/load 1.569%）：门槛的兜底路由（tools/gate/appserver.mjs gateRouteCode）把 talents/* 页面顶层挂在 #poc-main 下、不包 homeView 布局（docs/rule-changes/HM-250.md 规则 2 写明如此）；原版 /talents/greenchannel 是 router-xjhm.json 里 /talents（src/views/talents/homeView）的子路由，布局头部 .headerBox 高 90px、.headerCls{position:fixed;z-index:1000}（homeView.1783320636200.css，还原 homeView/headers.vue:349-357 一致）。页面框高 980，截图时滚动，原版这条固定头部叠进页面框 y=196–285；还原侧没有布局，所以没有。差异不在 target/subComponentDir，页面里补头部会引入原 chunk 没有的内容，不改。需要比对器层面裁定（还原侧按路由文件嵌套挂布局，或对布局固定层做等价处理），走规则变更单"
+  ],
+  "notes": [
+    "fix 1：未改代码。gate.1 唯一失败项 pixel/load 1.569%",
+    "load.html / final.html、load.text、overlay（两边都是外壳的「操作失败」）两边完全一致；页面代码与原 chunk index.178332063620097.js 逐项核对一致（模板、样式 data-v-fc76a0be、请求）",
+    "rest.diff.png 与 rest.retry.diff.png 相同：标红像素 32821 个全部落在 y=196–285 这 90 行（=人才频道头部 .headerBox 的 90px），其余区域 0；差异图里是 leftbg/rightbg 波浪背景和右侧用户区文字，即 homeView/headers.vue 的固定头部",
+    "原因：门槛还原侧不包 homeView 布局，原版有；见 needsFromSkeleton。与 setupList 修正回执里「顶部页头叠层」同类",
+    "self-check pass（私有克隆 restore/fast-lane cac41a9）；无代码改动，无需 fl.sh land"
+  ]
+}
