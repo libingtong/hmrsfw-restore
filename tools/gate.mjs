@@ -44,7 +44,7 @@ import { decodeAll } from "./lib/multica.mjs";
 const MULTICA = process.env.MULTICA_BIN || "multica";
 const rel = (p) => path.relative(ROOT, p);
 
-function multica(args) { return execFileSync(MULTICA, args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }); }
+function multica(args, input) { return execFileSync(MULTICA, args, { encoding: "utf8", input, stdio: [input == null ? "ignore" : "pipe", "pipe", "pipe"] }); }
 
 function taskMeta(task) {
   const issue = JSON.parse(multica(["issue", "get", task, "--output", "json"]));
@@ -270,8 +270,8 @@ function report(task, attempt, out, ids) {
   if (out.global) lines.push(`- app-wide: ${out.global.total} (${Object.entries(out.global.byLayer).map(([k, n]) => `${k} ${n}`).join(", ")})`);
   if (!out.pass && out.failed?.length) lines.push(...ordered.slice(0, 5).map((f) => `- ${f.wo ? f.wo + " " : ""}${f.where} ${f.check}: ${String(f.hint ?? "").slice(0, 160)}`));
   if (out.shimmed?.length) lines.push(`- shimmed: ${out.shimmed.join("; ")}`);
-  const file = path.join(out.diff ?? path.join(stateDir(), "gate"), `gate-comment-${process.pid}.md`);
-  try { mkdirSync(path.dirname(file), { recursive: true }); writeFileSync(file, lines.join("\n") + "\n"); multica(["issue", "comment", "add", task, "--content-file", file, "--output", "table"]); rmSync(file, { force: true }); } catch (e) { process.stderr.write("comment failed: " + e.message + "\n"); }
+  // body on stdin: the CLI refuses a --content-file outside the caller's working directory, and $RESTORE_STATE is outside it
+  try { multica(["issue", "comment", "add", task, "--content-stdin", "--output", "table"], lines.join("\n") + "\n"); } catch (e) { process.stderr.write("comment failed: " + e.message + "\n"); }
 }
 
 // CLI. Results and {pending} go to metadata + one [GATE] comment when --task is given without --dry-run; {error} is
