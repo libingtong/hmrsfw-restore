@@ -2,7 +2,7 @@
   "id": "page.portal.Guidance.GuidanceHome.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/Guidance/GuidanceHome/index.vue",
     "apps/portal/src/views/Guidance/GuidanceHome/index/"
@@ -10,14 +10,15 @@
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "a1482b9040f52473fc7ef403ab4aeaa37700987e"
+    "gitBase": "ca4dc51"
   },
   "build": "not-run",
   "todos": [],
   "unresolved": [],
   "needsFromSkeleton": [
     "依赖 swiper 版本：原包内置的 swiper/vue 把 .swiper-scrollbar 渲染在 .swiper-wrapper 之前（index.1783320636200.js 的 Swiper render：button-prev/next → scrollbar → pagination → wrapper），scrollbar 模块不加 swiper-scrollbar-horizontal；package.json 的 swiper 8.4.7 把 scrollbar 渲染在 wrapper 之后，并加 swiper-scrollbar-horizontal。gate.1 load/final 第一处差异（div.swiper 下 offset 3066）和 pixel 差异（差异图里只有滚动条拖动块一条线）都来自这里；需要按原包版本锁定 swiper 或走规则变更单，页面不能改",
-    "共享层 @/shared/images：dianzanImg、daImg_、daImgA 原包是内联 data:image/png;base64，共享层导出为 /assets/shared/*.png；askImg 原包为 /assets/ask.1783320636200.png，共享层导出 /assets/shared/ask.png。页面按 registry 导入，不能在页面里绕"
+    "共享层 @/shared/images：dianzanImg、daImg_、daImgA 原包是内联 data:image/png;base64，共享层导出为 /assets/shared/*.png；askImg 原包为 /assets/ask.1783320636200.png，共享层导出 /assets/shared/ask.png。页面按 registry 导入，不能在页面里绕",
+    "比对器：gate.1（第 2 次）load 时还原版 swiperBox 的自动轮播比原版多走一格（swiper-wrapper translate 不同，slide 的 active/duplicate class 随之不同），原代码 autoplay delay 5000、speed 10，取样时刻落在轮播切换前后，属时序不稳定；pixel 0.137 也来自这一格位移。需要门槛在取样前冻结 swiper autoplay 或把该节点列为不稳定项，走规则变更单"
   ],
   "notes": [
     "fix 1：页面未改。对照 sourceChunk index.17833206362006.js，两个 Swiper 的 props（modules、scrollbar:{draggable:!1}、loop、autoplay、slidesPerView 等）与还原版一致",
@@ -25,6 +26,10 @@
     "疑似共享层问题：点赞、问答、ask 图片 src 与原包不同，来自 shared/images.ts 的值，依据见 needsFromSkeleton 第 2 条",
     "final 处 swiper-wrapper 的 transition-duration 0ms/10ms 不同：原代码 speed:10 + autoplay，取样时刻在切换过渡中，属时序差异，疑似比对器问题（不稳定项）",
     "把上述三类差异抹平后，gate.1 的 load、final HTML 两侧完全一致，页面自身没有剩余差异",
-    "self-check pass（restore/fast-lane a1482b9），无新提交"
+    "self-check pass（restore/fast-lane a1482b9），无新提交",
+    "fix 2：页面仍未改。第 2 次门槛 load 的新差异是自动轮播位置（还原版多切换一格），与页面代码无关；final 在抹平 swiper scrollbar、shared/images 图片 src、transition-duration 后两侧完全一致",
+    "疑似比对器问题：autoplay 未冻结导致 load 取样时刻的轮播位置不稳定（第 1 次门槛 load 位置一致，第 2 次不一致，页面代码两次相同）",
+    "第 1 轮列出的 swiper 依赖版本、shared/images 两项共享层问题仍在，页面单不能改，建议裁定员按 needsFromSkeleton 开公共库升级或规则变更单",
+    "self-check pass（restore/fast-lane ca4dc51），无新提交"
   ]
 }
