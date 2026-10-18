@@ -1,0 +1,27 @@
+{
+  "id": "page.portal.service.filesSearch.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/service/filesSearch/index.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "aa22bd4"
+  },
+  "build": "not-run",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "apps/portal/public 缺原包 legacy-dist/portal/sjz/ 目录：本页 .bgBoxTop 的 background-image:url(/sjz/service/bg.png) 在还原版 404（gate a1 errors 有 404，rest 截图 300px 顶部为纯白，白字标题不可见）。HM-796（upg-5，分支 restore/upg-5-a1 提交 7f7ad2d）已补齐 sjz/ 34 个文件，但它从 integration 切出、尚未进入 restore/fast-lane；需把该提交带进 restore/fast-lane 后再跑门槛"
+  ],
+  "notes": [
+    "fix 1：未改页面代码。疑似共享层问题：gate a1 load pixel 80.307% 只落在 1920x300 的 .bgBoxTop 区域（diff 图下方卡片区无差异）",
+    "依据：还原版 .bgBoxTop 样式与原 CSS index.178332063620082.css 中 data-v-a7d369d3 的规则逐项一致（url(/sjz/service/bg.png)、#fff、300px、padding-top 110px、36px/700）；模板与原 chunk index.178332063620069.js 一致",
+    "依据：restore/fast-lane（aa22bd4）与 integration 的 apps/portal/public 下都没有 sjz/；门槛单页模式静态服务只从构建产物和 apps/portal/public 取文件，所以 /sjz/service/bg.png 404",
+    "public/ 属外壳层，不在本单 target/subComponentDir 内，修正员不改；快速通道不自动开升级单（pipeline onFail 对 fastLane 跳过 openUpgrade），需编排者或裁定员把 HM-796 的 sjz 资源合入 restore/fast-lane",
+    "self-check pass（fl-vue restore/fast-lane aa22bd4，无新提交）"
+  ]
+}
