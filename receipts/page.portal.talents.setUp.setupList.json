@@ -1,35 +1,46 @@
 {
   "id": "page.portal.talents.setUp.setupList",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 2,
+  "ticket": "page.portal.talents.setUp.setupList",
+  "kind": "upgrade",
+  "upgradeTask": "01a14df3-9eba-79ec-b70f-bbe809f44274",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-8-a1",
+  "result": "ok",
   "outputs": [
-    "apps/portal/src/views/talents/setUp/setupList.vue",
-    "apps/portal/src/views/talents/setUp/setupList/projectInfo.vue"
+    "apps/portal/src/shared/tagcanvas.vue",
+    "apps/portal/src/shared/tagcanvas/tagcanvas.min.js"
   ],
+  "todos": [
+    "工具仓库清单改动在 hmrsfw-restore 分支 restore/upg-8-a1-registry（c9c4f8c）：registry/portal.json 中 tagcanvas 条目 status reserved→restored，stats.shared 同步。handoff.mjs 只提交回执，升级单没有合入工具仓库 main 的路径，需裁定员按规则变更流程或人工合入（与 upg-1/4/7 相同）",
+    "restore/fast-lane：HM-302 的 setupList 门槛跑在 restore/fast-lane 上，需把 hmrsfw-vue f91d14a、5ffa940 cherry-pick 到 restore/fast-lane 后再重跑门槛（与 HM-796、HM-815 做法相同）",
+    "tagcanvas.min.js 是压缩的第三方库单行文件，check-no-legacy 在 integration 全量模式下会报一条 minified-line，与 public/third 下 jquery3.js、tac.min.js 等既有第三方脚本同类；copy-exemptions 里第三方脚本属于「另行裁定」，本单未改豁免表",
+    "标签云本身含随机量（TagCanvas shuffleTags:true，标签颜色/字号 Math.random），两次原版基线之间画布本身差约 0.705%，接上库之后 setupList 的像素差仍会含这部分"
+  ],
+  "needsFromSkeleton": [],
   "selfCheck": {
-    "pass": true,
-    "failed": [],
-    "gitBase": "c56909ac653192e6a09c98efbc9b91498306b7ea"
+    "pass": false,
+    "failed": [
+      {
+        "check": "imports",
+        "where": "apps/portal/src/shared/tagcanvas.vue、apps/portal/src/shared/tagcanvas/tagcanvas.min.js",
+        "note": "按页面单规则跑自检，把升级单改的共享层文件判为“本单不能修改”。本单是升级单（ownerViolations 只拦 owner 有活跃任务的文件；owner shared.portal.tagcanvas 工单为 todo、无活跃任务），不适用，未按 hint 撤销（与 HM-796、HM-800、HM-815 相同）"
+      },
+      {
+        "check": "imports",
+        "where": "apps/portal/src/views/talents/setUp/setupList.vue",
+        "note": "既有问题：清单里 @/shared/hotProject 没有导出 a。页面文件本单未动，与本单无关"
+      },
+      {
+        "check": "readability",
+        "severity": "warn",
+        "note": "eslint / prettier 在本机产物工程依赖里缺失，没有结果"
+      }
+    ]
   },
-  "build": "pass",
-  "todos": [],
-  "unresolved": [],
-  "needsFromSkeleton": [
-    "疑似共享层问题（pixel，标签云）：@/shared/tagcanvas.vue 没有接入 TagCanvas 库（文件头 TODO：npm 上无官方包、未复制库代码），Start 抛错被 try/catch 吞掉，热门领域画布空白；原版画出了标签。该文件不在本单可改范围，需公共库升级单补上 TagCanvas",
-    "疑似比对器问题（html，#weightTags）：#weightTags 下 <a> 的 class（medium/small）和 color 由共享 tagcanvas 用 Math.random 生成（原 tagcanvas.vue_vue_type_style_index_0_lang 同样如此）；gate.1 两次原版运行之间这几项也不一样，但没被标成 unstable",
-    "疑似外壳问题（pixel，顶部 y<70）：原版截图顶部 65px 叠着外壳页头（含用户区和横幅），还原版没有；页面根节点 HTML（除 #weightTags 随机项与搜索框 style 两处）、尺寸 1920x760 两边一致，差异来自页面以外的固定层或滚动位置，不在 target/subComponentDir",
-    "疑似比对器或运行时版本问题（html，搜索框 style=\"\"）：原版加载时 <input> 带空 style=\"\"，还原版加载时没有、交互后 final.html 两边都有；原 chunk 传给 a-input 的只有 class/value/onUpdate:value/placeholder/size，没有 style，还原代码一致。空 style 不影响渲染；归一化规则 44-motion-state（含「空 style 视同没有」）当前 enabled:false。可能与还原工程 Vue 3.3.4 / antd 3.2.20 对原包 Vue 3.2.47 / antd 3.2.15 的差异有关（E7）"
-  ],
   "notes": [
-    "fix 1：未改代码。gate.1 失败项为 load.html 与 load.pixel，逐项核对如下",
-    "html 差异 1：搜索框 input 的 style=\"\"。原 chunk setupList.17833206362002.js 的 a-input 无 style 属性，setupList.vue:151-156 写法一致；页面里也没有任何改 input 样式的代码。不往页面里加 style 去凑",
-    "html 差异 2：#weightTags 的 class/color 随机（共享 tagcanvas 的 Math.random），原版两次运行之间也不同，非页面问题",
-    "pixel 2.24%：按 rest.diff.png 标红像素统计：y<70 顶部 27590、标签云框 9830、其他区域 0。顶部是原版外壳页头叠层，标签云是共享 tagcanvas 未接 TagCanvas 库；页面自身区域无像素差",
-    "load.text、final.text、overlay、cls 两边一致；final.html 只剩 #weightTags 随机项",
-    "self-check pass（私有克隆 restore/fast-lane c56909a）；无代码改动，无需 fl.sh land",
-    "fix 2：仍未改代码。gate.2 失败项与 gate.1 相同：load.html 只有搜索框 style=\"\" 和 #weightTags 随机 class/color 两处（这次随机值又与上次不同，佐证随机），pixel 2.24% 的标红像素仍是顶部 27590、标签云框 9830、其他 0",
-    "回应门槛员「两次 commit 同为 c56909ac」：第 1 轮按依据判定差异不在 target/subComponentDir，未提交代码，commit 不变是预期；页面文件最后一次改动仍是 210f301",
-    "两轮修正后仍失败，三处都需要共享层（tagcanvas 接入 TagCanvas）、外壳（页头叠层）或比对器（空 style、随机标签不稳定项）层面裁定，建议交裁定员"
+    "库版本核对：原 chunk 开头 41.5KB 的 IIFE 与 TagCanvas 2.11 官方 tagcanvas.min.js（取自 npm react-icon-cloud@4.1.7 src/lib/tag_canvas_string.ts 的原始文本）两边都用 esbuild 0.18.20（target es2020，与 Vite 构建一致）压缩，再用 @babel/traverse 按声明顺序统一改名后逐行一致；唯一差别是官方文件中一个从未引用、无初值的局部变量，原构建被 rollup 摇掉",
+    "npm 上没有可直接加载的 2.11：jquery-tagcanvas 只有 2.9.0（无 audio/altImage 选项）；tag-canvas@0.0.1–0.0.5 是更早的版本；react-icon-cloud 的 dist 里该字符串丢了反斜杠（/\\s*,\\s*/ 变成 /s*,s*/），只能取 src 里的原始文本",
+    "提供方式：官方文件连同 LGPL 版权头原样收录，文件头只去掉作者联系邮箱一行（scan-secrets 命中）；tagcanvas.vue 以副作用方式导入，执行顺序与原 chunk 一致（vue 导入之后、组件定义之前）。没有放 public/third + index.html，以免每个页面都多一次脚本请求",
+    "验证：只构建 tagcanvas.vue 的内存 vite build（门户配置）里库位于组件定义之前，window.TagCanvas 赋值与 TagCanvas.Start 调用都在；vm 冒烟测试 TagCanvas.Start/Update 为函数，window load 后 loaded=1；check-copied 对整个 legacy-dist 0 命中；scan-secrets 0 命中。整站 build:portal 因本机磁盘写满中断（只剩约 150MB，输出已清理），未跑完"
   ]
 }
