@@ -2,25 +2,30 @@
   "id": "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/resumeAnalysisReport/resumeMatchAnalysisReport.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "fe4e53a0a739197c29ed41ad543cf9e8a259b1e6"
+    "gitBase": "ca4dc51fcd1b65357dbf93d40f905b621410cf77"
   },
   "build": "pass",
   "todos": [],
   "unresolved": [],
   "needsFromSkeleton": [
-    "疑似共享层问题（门户外壳）：gate.1 load 像素差全部落在页头、导航条、页脚，不在本单 target 内，见 notes"
+    "疑似比对器问题（overlay）：tools/gate/compare.mjs compareRuns 只对原版一侧 project(...) 传 shellToasts（扣掉外壳探测里的 toast），还原版一侧不扣；docs/gate.md「比对内容」第 3 条的前提「还原版暂时没有外壳」已不成立。外壳自己弹的那条服务端 500 提示在原版被扣、在还原版被计入，load.overlay 多一条。需走规则变更单（两侧都扣或都不扣），同 HM-251、colleges（HM receipts 845999d）",
+    "疑似共享层问题（pixel）：本页根节点高 0，门槛走整屏截图，差异只在门户外壳（导航条底色、页头搜索按钮、外壳文字）；gate.1 restRequests 里外壳的 getSettingValueByCode 一次为 not-in-har，疑似外壳设置类请求的查询参数与原版外壳不同导致外壳取不到配置、按默认样式渲染。页面区域一致"
   ],
   "notes": [
     "fix 1：loadPersonInfo / loadReport 去掉 return，不再返回 promise。原 chunk 的 ea / ta 是块体箭头函数（ea=()=>{Oa(...).then(...)}），onMounted 里 yield ea(), yield ta() 不等请求，viewVoByIdFromCompany 和 getMatchingDegree 并发发出；还原版返回 promise，变成先等前者响应再发后者，请求时序与原版不同",
     "overlay（load 第 2 行，还原版多一条服务端 500 提示）：页面只发 viewVoByIdFromCompany、getMatchingDegree、getDictItemsByCode 三个请求，参数与原 chunk 一致，HAR 应答相同；页面里没有别的 message 调用，提示由 utils/request 响应拦截器统一弹出。本轮把请求时序改回原样后，多出的这一条是否消失待门槛复测；仍不一致则疑似外壳请求（gate.1 restRequests 里 getSysUserByToken、getSettingValueByCode、queryAreaChildrenTreeListById 为 not-in-har，本页不发这些请求）或外壳提示扣减问题",
     "pixel（load 5.507%，复测 5.380%）：页面根节点 load / final 的 HTML 与原版完全一致；contBox 为 display:none、弹窗是 fixed 定位，根节点高度为 0，门槛走整屏截图，因此截到了外壳。差异图里红色只在页头文字、搜索框、导航条和页脚文字上，页面区域（进度条）一致。本页 CSS 全部 scoped，:deep 只作用于本页弹窗内容，没有能影响外壳的全局规则。疑似共享层问题，未改",
-    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane 521afbd"
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane 521afbd",
+    "fix 2：未改代码。门槛复测 521afbd 后失败项、overlay 字数（26/40）、像素差（5.507%）与第 1 轮完全相同，说明差异与页面请求时序无关",
+    "overlay：原版 / 还原版的 load.requests 相同（viewVoByIdFromCompany、getMatchingDegree），final.overlay 两侧一致；多出的一条与 HM-251、page.portal.region.colleges.index 现象相同（还原版恰好多出同一条 11 字服务端提示）。compare.mjs compareRuns 中原版一侧 project 带 shellToasts: baseline.shell.toasts，还原版一侧 project 未带，外壳提示只在原版被扣除。属比对器问题，按规则不改门槛脚本",
+    "pixel：load / final 页面根 HTML 两侧完全一致；根节点高 0（contBox display:none、弹窗 fixed）导致整屏截图截入外壳；差异图红色集中在导航条底色、搜索按钮和外壳文字，页面自身（进度条区域）一致；本页 CSS 全部 scoped。属外壳问题，不在 target 内",
+    "self-check pass（restore/fast-lane ca4dc51）；已两轮修正，按 tools/fast-lane/README.md 第 5 节应交裁定员"
   ]
 }
