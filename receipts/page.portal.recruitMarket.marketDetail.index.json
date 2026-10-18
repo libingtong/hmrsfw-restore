@@ -2,14 +2,14 @@
   "id": "page.portal.recruitMarket.marketDetail.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/recruitMarket/marketDetail/index.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "1b207691e35933dab4a840c240f928eb6c6adc6e"
+    "gitBase": "a1482b9040f52473fc7ef403ab4aeaa37700987e"
   },
   "build": "pass",
   "todos": [],
@@ -26,6 +26,9 @@
     "pixel：疑似共享层问题（public 缺 /sjz/home/marketTop.jpg），不在页面里拷贝或改写原包资源路径",
     "requests：疑似比对器问题（门槛对原版点击超时后重试造成重复点击），本地桩接口复现原版 step1/step2 均可能双发，次数随时序变化",
     "附带：门槛对 legacy 包与还原包的 Vue 版本不同（原包 3.2.47，还原包 Vue 3.3.4 / antd-vue 3.2.20，E7 未拆），未发现与本页差异相关",
-    "self-check pass；npm run build:portal 通过；restore/fast-lane 无新提交（仍为 1b20769）"
+    "self-check pass；npm run build:portal 通过；restore/fast-lane 无新提交（仍为 1b20769）",
+    "fix 2：未改代码。gate.2（commit a1482b9，本页文件、CusPagination.vue、apps/portal/public 与 gate.1 的 1b20769 相同）中还原版改为 step1 双发 findJobList、step2 单发，原版仍是 step1 单发、step2 双发；代码不变而双发位置在两侧之间移动，说明重复请求来自门槛 replay.mjs 的“任何异常都重做一步”，不是页面行为（疑似比对器问题）",
+    "pixel 仍是 apps/portal/public 缺 /sjz/home/marketTop.jpg（a1482b9 上 public 下仍无 sjz/），疑似共享层问题，需公共资源单补",
+    "self-check pass；restore/fast-lane 无新提交"
   ]
 }
