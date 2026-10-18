@@ -1,0 +1,7 @@
+{
+ "id": "empty-style",
+ "kind": "tree",
+ "enabled": true,
+ "since": "HM-336",
+ "why": "空的行内 style（style=\"\"，没有任何声明）与没有 style 属性渲染相同。门槛自己会留下它：Playwright 截图默认 hideCaret，对整页所有 input/textarea/[contenteditable] 先 setProperty('caret-color','transparent','important') 再按原值还原，原来没有就留下空 style（playwright-core 1.64.0 lib/coreBundle.js 的 hideCaret 段）；captureRoot 按候选顺序先取 HTML 再截图，所以原版页面根前面有外壳候选（headerBox）时，页面根的 input 带 style=\"\"，还原版只有页面根时不带。只去掉值为空白的 style，有声明的 style 照常比较。见 docs/rule-changes/HM-336.md"
+}
