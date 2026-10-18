@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/resumeAnalysisReport/resumeMatchAnalysisReport.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "fe4e53a0a739197c29ed41ad543cf9e8a259b1e6"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似共享层问题（门户外壳）：gate.1 load 像素差全部落在页头、导航条、页脚，不在本单 target 内，见 notes"
+  ],
+  "notes": [
+    "fix 1：loadPersonInfo / loadReport 去掉 return，不再返回 promise。原 chunk 的 ea / ta 是块体箭头函数（ea=()=>{Oa(...).then(...)}），onMounted 里 yield ea(), yield ta() 不等请求，viewVoByIdFromCompany 和 getMatchingDegree 并发发出；还原版返回 promise，变成先等前者响应再发后者，请求时序与原版不同",
+    "overlay（load 第 2 行，还原版多一条服务端 500 提示）：页面只发 viewVoByIdFromCompany、getMatchingDegree、getDictItemsByCode 三个请求，参数与原 chunk 一致，HAR 应答相同；页面里没有别的 message 调用，提示由 utils/request 响应拦截器统一弹出。本轮把请求时序改回原样后，多出的这一条是否消失待门槛复测；仍不一致则疑似外壳请求（gate.1 restRequests 里 getSysUserByToken、getSettingValueByCode、queryAreaChildrenTreeListById 为 not-in-har，本页不发这些请求）或外壳提示扣减问题",
+    "pixel（load 5.507%，复测 5.380%）：页面根节点 load / final 的 HTML 与原版完全一致；contBox 为 display:none、弹窗是 fixed 定位，根节点高度为 0，门槛走整屏截图，因此截到了外壳。差异图里红色只在页头文字、搜索框、导航条和页脚文字上，页面区域（进度条）一致。本页 CSS 全部 scoped，:deep 只作用于本页弹窗内容，没有能影响外壳的全局规则。疑似共享层问题，未改",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane 521afbd"
+  ]
+}
