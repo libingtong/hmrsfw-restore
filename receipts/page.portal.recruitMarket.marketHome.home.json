@@ -1,29 +1,67 @@
 {
   "id": "page.portal.recruitMarket.marketHome.home",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 2,
+  "ticket": "page.portal.recruitMarket.marketHome.home",
+  "kind": "upgrade",
+  "upgradeTask": "01a14d12-be1f-7464-b63c-45f1a085d580",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-5-a1",
+  "result": "ok",
   "outputs": [
-    "apps/portal/src/views/recruitMarket/marketHome/home.vue",
-    "apps/portal/src/views/recruitMarket/marketHome/home/"
+    "apps/portal/public/sjz/"
   ],
-  "selfCheck": {
-    "pass": true,
-    "failed": [],
-    "gitBase": "ca4dc51fcd1b65357dbf93d40f905b621410cf77"
-  },
-  "build": "pass",
   "todos": [],
-  "unresolved": [],
-  "needsFromSkeleton": [
-    "门户 public 缺 sjz/newHome/bg1.jpg：外壳页头 legacy/components/Headers2.vue（scopeId data-v-392944e8）的 .homeTopLogo 背景是 url(/sjz/newHome/bg1.jpg)，原包有 legacy-dist/portal/sjz/newHome/bg1.jpg，hmrsfw-vue 的 apps/portal/public/ 下没有 sjz/ 目录，还原版请求 404、页头 200px 背景空白。需由骨架/入口单把 legacy-dist/portal/sjz/newHome/ 补进 apps/portal/public/sjz/newHome/（不在本单 target/subComponentDir 内）"
-  ],
+  "needsFromSkeleton": [],
+  "selfCheck": {
+    "pass": false,
+    "failed": [
+      {
+        "check": "imports",
+        "count": 34,
+        "where": "apps/portal/public/sjz/**",
+        "note": "按页面单规则跑自检，把升级单新增的 34 个 public 文件判为“页面单改公共库”。本单是升级单（orderOf → type shared，check-imports 对 shared 放行 apps/portal/public/；合并的 ownerViolations 只看 src/legacy|shared|api|utils），不适用，未按 hint 撤销"
+      },
+      {
+        "check": "readability",
+        "where": "apps/portal/src/views/recruitMarket/marketHome/home.vue:82",
+        "severity": "warn",
+        "note": "本页既有代码（本单未改），warn 级"
+      },
+      {
+        "check": "readability",
+        "where": "(eslint)",
+        "severity": "warn",
+        "note": "本页既有代码（本单未改），warn 级"
+      },
+      {
+        "check": "readability",
+        "where": "(prettier)",
+        "severity": "warn",
+        "note": "本页既有代码（本单未改），warn 级"
+      }
+    ],
+    "components": {
+      "expected": 4,
+      "delivered": 4
+    },
+    "textNodes": {
+      "original": 23,
+      "restored": 23
+    },
+    "directives": {
+      "original": 1,
+      "restored": 1,
+      "branches": [
+        13,
+        13
+      ]
+    }
+  },
   "notes": [
-    "fix 1：home/index.vue 评论图标 commentIcon 由 new URL(\"./assets/index-884ec03b09.png\", import.meta.url).href 改为 import 默认导入。原 chunk 里是内联 data:image/png;base64（小于 assetsInlineLimit）；门槛 page 模式 ondemand 的 buildAssetsPlugin 只镜像 import / 模板 src / ?url，不处理 new URL，还原版得到 /src/views/.../assets/*.png，即 gate.1 load/final html 在 div.textCenter 下的差异。npm run build:portal 产物内含与原包相同的 base64",
-    "依据：同 HM-240（customerService）修正第 1 轮做法；HM-26 已合并，check-imports 接受相对导入本单资源",
-    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane a1482b9",
-    "fix 2：未改代码。gate.1（a1482b9）只剩 load pixel 6.446%：按差异图逐行统计，红色像素 100% 落在 y=140–240（页头 .topHead 40px + .homeTopLogo 200px 区间），页面自身区域（轮播、就业商城、入驻专区、右侧悬浮栏）0 差异；红色区域形状与 legacy-dist/portal/sjz/newHome/bg1.jpg 的城市剪影一致",
-    "依据：页头按钮 #ff9600 → 当前外壳是 Headers2.vue（原入口 data-v-392944e8），其 .homeTopLogo 背景引用 /sjz/newHome/bg1.jpg，与原包 CSS 一致；该文件在 apps/portal/public 缺失（public 下无 sjz/），load 有 404。页头「职位」下拉的少量差异同在外壳内。疑似共享层问题，见 needsFromSkeleton；本页 CSS 全部 scoped，页面内无可改之处",
-    "self-check pass（基准 restore/fast-lane ca4dc51）；本轮无新提交，页面代码仍为 a1482b9"
+    "legacy-dist/portal/sjz/ 原样复制到 apps/portal/public/sjz/（34 个文件：newHome 22、home 6、special 4、service 1、setup 1），diff -r 逐字节一致",
+    "已有引用 /sjz/newHome/bg1.jpg、/sjz/newHome/helpBg.png、/sjz/home/marketTop.jpg、/sjz/home/vidBg.jpg、/sjz/service/bg.png、/sjz/setup/detailBg.png 现在都能解析",
+    "src 里另有 /sjz/newHome/login.png、/sjz/setup/card.png 等约 20 处引用在原包 legacy-dist 中也不存在（原站同样 404），不在本单范围",
+    "registry/portal.json 没有登记 public/ 静态资源的条目，因此没有条目 status 可改",
+    "npm run build:portal 通过，dist/portal/sjz/ 已产出；scan-secrets 0 命中",
+    "工单回执路径由 handoff.mjs 按 workOrders 决定，本回执会覆盖该页上一版回执；页面重派后会生成新回执"
   ]
 }
