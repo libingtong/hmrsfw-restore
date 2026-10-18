@@ -2,14 +2,14 @@
   "id": "page.portal.talents.newPark.industry",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/newPark/industry.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "dd509163d67d8d29bd655143cceed19831be7e92"
+    "gitBase": "ca4dc51"
   },
   "build": "pass",
   "todos": [],
@@ -18,8 +18,8 @@
     "疑似比对器问题：本单是 recordVia 子组件（recordVia page.portal.talents.newPark.index，recordPath /talents/park），只被 newPark/index 当组件用并传入 list / introList / loading 和默认插槽 Titles。门槛原侧回放父页面整页，按 SITES.portal.origSel「main > *」取根，原侧候选是页头 headerBox、父页面根 bgColor、页脚，industry 的根（无 class 的 div，挂在 .bgColor > .padT30 > .main 内）不在候选里；gate.1 跑在 HM-779 之前，pickCandidate 回退到第一个候选 headerBox（1920x90），还原侧在同一路由单独挂载 industry.vue、无 props 无插槽，取到本组件根（渲染 Empty，1920x478）。两侧比的不是同一个元素，页面代码无法修到通过。HM-779（root-pick-per-phase）已合入 restore/fast-lane，重跑预计改报 root 失败（原侧无 class 为 null 的候选）。与 page.portal.talents.index.jobFair / review 回执所述同一问题，需走规则变更单：recordVia 子组件在父页面内按 scopeId（data-v-9e6c643f）定位组件根，或随父页面 page.portal.talents.newPark.index 一并判定"
   ],
   "notes": [
-    "fix 1：未改代码。gate.1 失败项 html / text（load、final）与 pixel（load）全部由原侧根取成页头 headerBox 引起：原侧 cls=headerBox、innerText 3 行，还原侧 cls=null（无 class 根）、innerText 1 行，offset 5 起即不同",
-    "逐段对照 industry.1783320636200.js：模板结构（默认插槽 div、.bg.marT20.shadow 内 introList[0].content 的 v-html、list 非空时 a-skeleton + .list-content.flex 列表、否则 empty 组件）、props（list / loading / introList 及默认值）、state（activeIndex、imgList 5 张内联图）、H（hover 切 activeIndex）、G（空函数）、R（router.resolve 后 window.open 新窗口）均与还原版一致；还原侧单独挂载时无 props，list 为空走 Empty 分支，属预期",
-    "self-check pass（restore/fast-lane dd50916）；npm run build:portal 通过；无代码改动，未 land"
+    "fix 2：未改代码。门槛第 2 次结果与第 1 次逐项相同（html / text 的 load、final，pixel 的 load；原侧 cls=headerBox 1920x90，还原侧无 class 根 1920x478），原因不变：recordVia 子组件在原侧「main > *」候选里没有对应元素",
+    "疑似比对器问题（补充）：第 2 次门槛 rules 仍为 8ada37b35e61，且原侧仍取成 headerBox；restore/fast-lane 上的 tools/gate/compare.mjs:37（HM-779，3ba9801）已不再回落到第一个候选，按它应报 root 失败而非 html 差异，疑似门槛员运行时的工具检出未包含 HM-779。两种结果都不是页面代码能修的",
+    "industry.vue 自 dd50916 起未变；self-check pass（restore/fast-lane ca4dc51）；npm run build:portal 通过；无代码改动，未 land。两轮修正均为比对器问题，按 tools/fast-lane/README.md 第 5 节应交裁定员"
   ]
 }
