@@ -18,8 +18,8 @@
    "reserved": 83
   },
   "shared": {
-   "reserved": 42,
-   "restored": 10,
+   "reserved": 41,
+   "restored": 11,
    "npm": 2
   },
   "api": {
@@ -2532,7 +2532,7 @@
     }
    },
    "path": "@/shared/tagcanvas.vue",
-   "status": "reserved",
+   "status": "restored",
    "owner": "shared.portal.tagcanvas",
    "usedBy": 3
   },
