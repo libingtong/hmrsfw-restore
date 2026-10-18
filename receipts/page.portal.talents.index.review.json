@@ -2,7 +2,7 @@
   "id": "page.portal.talents.index.review",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/index/review.vue"
   ],
@@ -22,6 +22,8 @@
     "html / text / pixel（load、final）：原侧根元素 class 为 headerBox（父页面页头，1920x90），还原侧根元素为本组件 marT20（1920x494）。同批另两个 recordVia 页 page.portal.talents.index.jobFair、page.portal.talents.newPark.industry 的 gate a1 报告原侧根同样是 headerBox，属同一问题，疑似比对器问题",
     "requests（load 缺 queryLatestQuestionsList、queryQuestionsList）：原 chunk 只在 codeList 含 default_organization_id 时才发这两个请求（me() → Ae()、T()）；codeList 由父页面 index 经 props 传入，门槛单独挂载时 props 为默认空数组，所以不发。疑似比对器问题",
     "requests（steps 参数缺 organizationId）与 overlay（还原侧多一条「操作失败」提示）：同因，organizationId 未经 props 赋值，点「换一批」发出的请求在 HAR 中找不到（restRequests 标 not-in-har），由 utils/request 拦截器弹出失败提示。疑似比对器问题",
-    "self-check pass（renderEquiv 仅 izHighHome 取值写法 props.izHighHome / 模板直接取 prop 的 token 差，渲染行为相同，未改）；npm run build:portal 通过；restore/fast-lane 无新提交（HEAD 521afbd）"
+    "self-check pass（renderEquiv 仅 izHighHome 取值写法 props.izHighHome / 模板直接取 prop 的 token 差，渲染行为相同，未改）；npm run build:portal 通过；restore/fast-lane 无新提交（HEAD 521afbd）",
+    "fix 2：未改代码。gate.1 第 2 次判定（commit 521afbd、rules 8ada37b35e61）失败项与第 1 轮逐条相同，原侧根仍为 headerBox，原因同上",
+    "HM-779 root-pick-per-phase（restore/fast-lane 3ba9801）在本轮判定之后才合入，本轮未生效；新规则下原侧按还原根 class marT20 选候选，若父页面 main > * 中没有该元素会改报 root 失败；即使选中，还原侧单独挂载不传 codeList，load/steps 请求仍会缺 organizationId，仍需门槛支持 recordVia 子视图（在父页面内挂载或按 scopeId 定位），疑似比对器问题"
   ]
 }
