@@ -7,14 +7,15 @@ import path from "node:path";
 import { promisify } from "node:util";
 import { ROOT } from "./common.mjs";
 import { scanNoLegacy } from "../check-no-legacy.mjs";
+import { subDirFiles } from "../sfc-util.mjs";
 
 const run = promisify(execFile);
 
 export function pageFiles(wo, appDir) {
   const files = [];
   if (wo.target) { const t = path.join(appDir, wo.target); if (existsSync(t)) files.push(t); }
-  const walk = (d) => { for (const n of readdirSync(d)) { const p = path.join(d, n); if (statSync(p).isDirectory()) walk(p); else files.push(p); } };
-  if (wo.subComponentDir) { const d = path.join(appDir, wo.subComponentDir); if (existsSync(d) && statSync(d).isDirectory()) walk(d); }
+  // files of a nested order inside subComponentDir are that order's (HM-468, sfc-util.mjs foreignPaths)
+  if (wo.subComponentDir) { const d = path.join(appDir, wo.subComponentDir); if (existsSync(d) && statSync(d).isDirectory()) files.push(...subDirFiles(wo, appDir)); }
   return [...new Set(files)];
 }
 

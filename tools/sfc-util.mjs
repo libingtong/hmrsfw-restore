@@ -24,12 +24,45 @@ export function compilerSfc(APP) {
   return sfcCache.get(APP);
 }
 
+// Paths under an order's subComponentDir that another order delivers (HM-468). work-orders.mjs derives subComponentDir
+// from the target, so a nested route's page lands inside its parent page's directory: page.uc.personLoan.detailInfo
+// (target apps/uc/src/views/personLoan/detailInfo.vue) sits in page.uc.personLoan's apps/uc/src/views/personLoan/.
+// Such files are the other order's deliverable, judged by its own gate. → { files: Set(another order's target),
+// dirs: [another order's subComponentDir, deeper than this one's] }, repo-relative; orders sharing this order's target
+// or subComponentDir (its segments) are not "another order".
+const queueCache = new Map();
+function queueOrders(queueDir) {
+  if (!queueCache.has(queueDir)) queueCache.set(queueDir, (existsSync(queueDir) ? readdirSync(queueDir) : []).filter((n) => n.endsWith(".json")).flatMap((n) => { try { const o = JSON.parse(readFileSync(path.join(queueDir, n), "utf8")); return o?.id ? [o] : []; } catch { return []; } }));
+  return queueCache.get(queueDir);
+}
+const repoPath = (p) => p?.replace(/^restore\//, "").replace(/^\.\//, "");
+const dirPath = (p) => p && repoPath(p).replace(/\/?$/, "/");
+export function foreignPaths(order, queueDir = path.join(ROOT, "queue")) {
+  const dir = dirPath(order.subComponentDir), files = new Set(), dirs = [];
+  if (!dir) return { files, dirs };
+  for (const o of queueOrders(queueDir)) {
+    const t = repoPath(o.target), d = dirPath(o.subComponentDir);
+    if (t && t.startsWith(dir) && t !== repoPath(order.target)) files.add(t);
+    if (d && d.startsWith(dir) && d !== dir) dirs.push(d);
+  }
+  return { files, dirs };
+}
+
+// Every file under an order's subComponentDir except what another order delivers (foreignPaths); `skip(name)` drops
+// entries by name (orderFiles skips _seg/).
+export function subDirFiles(order, APP, { skip = () => false, queueDir } = {}) {
+  if (!order.subComponentDir) return [];
+  const { files, dirs } = foreignPaths(order, queueDir);
+  const foreign = (p) => { const r = path.relative(path.resolve(APP), p).split(path.sep).join("/"); return files.has(r) || dirs.some((d) => `${r}/`.startsWith(d)); };
+  const walk = (d) => existsSync(d) ? readdirSync(d).flatMap((n) => { const p = path.join(d, n); return skip(n) || foreign(p) ? [] : statSync(p).isDirectory() ? walk(p) : [p]; }) : [];
+  return walk(path.resolve(APP, order.subComponentDir));
+}
+
 // The .vue files a page/segment/shared order delivers: its target, the relative .vue imports reachable from it, and the
-// files under subComponentDir (excluding segment fragments).
+// files under subComponentDir (excluding segment fragments and files of a nested order, see foreignPaths).
 export function orderFiles(order, APP) {
   const abs = (rel) => path.resolve(APP, rel);
   const files = new Set();
-  const walk = (d) => existsSync(d) ? readdirSync(d).flatMap((n) => { const p = path.join(d, n); return n === "_seg" ? [] : statSync(p).isDirectory() ? walk(p) : p.endsWith(".vue") ? [p] : []; }) : [];
   const start = order.target && existsSync(abs(order.target)) ? [abs(order.target)] : [];
   const q = [...start];
   while (q.length) {
@@ -37,7 +70,7 @@ export function orderFiles(order, APP) {
     if (!/\.(vue|ts)$/.test(f)) continue;
     for (const m of readFileSync(f, "utf8").matchAll(/from\s+["'](\.{1,2}\/[^"']+\.vue)["']/g)) { const p = path.resolve(path.dirname(f), m[1]); if (existsSync(p)) q.push(p); }
   }
-  if (order.subComponentDir) for (const f of walk(abs(order.subComponentDir))) files.add(f);
+  for (const f of subDirFiles(order, APP, { skip: (n) => n === "_seg" })) if (f.endsWith(".vue")) files.add(f);
   return [...files];
 }
 
