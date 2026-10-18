@@ -21,8 +21,8 @@ for (const app of ["portal", "uc"]) {
     const vite = await import(pathToFileURL(path.join(APP, "node_modules/vite/dist/node/index.js")).href);
     const tmp = mkdtempSync(path.join(os.tmpdir(), "gate-assets-"));
     try {
-      // The app's own images are all under the inline limit today; two extra files cover emitted assets (one with a
-      // character Rollup sanitises) and the exact-limit edge.
+      // Three extra files cover emitted assets (one with a character Rollup sanitises) and the exact-limit edge, whether
+      // or not the app's own images include any over the inline limit.
       const extra = [["big+name.png", 9000], ["edge.jpg", 4096], ["under.gif", 4095]].map(([n, size]) => { const f = path.join(tmp, n); writeFileSync(f, randomBytes(size)); return f; });
       const files = [...walk(path.join(APP, "apps", app, "src")).filter((f) => IMG.test(f)).sort(), ...extra];
       const entry = path.join(tmp, "entry.js");
@@ -41,7 +41,7 @@ for (const app of ["portal", "uc"]) {
       const ours = files.map((f) => JSON.parse(/^export default (.*)$/.exec(plugin.load(f))[1]));
       const diff = files.map((f, i) => [path.relative(APP, f), built[i], ours[i]]).filter(([, b, o]) => b !== o);
       assert.deepEqual(diff.map(([f, b, o]) => `${f}: build ${b.slice(0, 60)} | gate ${o.slice(0, 60)}`), []);
-      assert.ok(ours.some((u) => u.startsWith("data:")) && ours.filter((u) => u.startsWith("/assets/")).length === 2, "inline and emitted assets covered");
+      assert.ok(ours.some((u) => u.startsWith("data:")) && ["/assets/big_name-", "/assets/edge-"].every((p) => ours.some((u) => u.startsWith(p))) && ours.some((u) => u.startsWith("data:image/gif")), "inline and emitted assets covered");
     } finally { rmSync(tmp, { recursive: true, force: true }); }
   });
 }
