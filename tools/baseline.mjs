@@ -16,7 +16,7 @@ import { chromium } from "playwright";
 import { chmodSync, existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { ROOT, assetsDir, authStorage, findHar, interactScript, loadWorkOrder, opt, origSelOf, positionals, stateDir } from "./gate/common.mjs";
+import { ROOT, assetsDir, authStorage, findHar, interactScript, loadWorkOrder, opt, origSelOf, pageScopeId, positionals, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256 } from "./gate/har.mjs";
 import { runPage } from "./gate/replay.mjs";
 import { serveStatic } from "./gate/serve.mjs";
@@ -41,7 +41,7 @@ export async function recordOriginal({ browser, wo, harFile, assets, shotDir, ru
     // in all (the POC re-ran the original up to 4 times). If steps still fail they stay in the baseline as recorded.
     const runs = [];
     for (let n = 1; runs.length < 2 && n <= 4; n++) {
-      const run = await runPage(browser, { origin: srv.origin, url: wo.recordPath, storage, har, sel, steps, shotDir, tag: runs.length === 0 ? "shot" : "shot.r2", pageScopes: wo.scopeIds });
+      const run = await runPage(browser, { origin: srv.origin, url: wo.recordPath, storage, har, sel, steps, shotDir, tag: runs.length === 0 ? "shot" : "shot.r2", pageScopes: wo.scopeIds, componentScope: wo.recordVia ? pageScopeId(wo) : null });
       run.attempt = n;
       if (run.steps?.some((s) => s.err) && n < 4 - (1 - runs.length)) continue;
       runs.push(run);
@@ -95,7 +95,7 @@ async function main() {
     writeFileSync(path.join(tmp, "seq.json"), JSON.stringify({ load: runs[0].load.requests, shell: rec.shell.requests, steps: runs[0].stepLog ?? [], opened: runs[0].opened ?? [] }, null, 1));
     writeFileSync(path.join(tmp, "baseline.json"), JSON.stringify({
       version: BASELINE_VERSION, wo: id, site: wo.site, app: wo.app, recordPath: wo.recordPath, role: wo.role, sourceChunk: wo.sourceChunk,
-      har: { path: harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version, sel: rec.sel,
+      har: { path: harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version, sel: rec.sel, ...(wo.recordVia ? { offscopeFixed: true } : {}),
       shell: rec.shell, steps: rec.steps, script: rec.script, unstable: rec.unstable, runs,
     }));
     writeFileSync(path.join(tmp, "storage.json"), JSON.stringify(rec.storagePatch), { mode: 0o600 });
