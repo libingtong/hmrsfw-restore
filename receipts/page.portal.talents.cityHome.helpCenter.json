@@ -2,7 +2,7 @@
   "id": "page.portal.talents.cityHome.helpCenter",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/cityHome/helpCenter.vue"
   ],
@@ -21,6 +21,8 @@
   "notes": [
     "fix 1：未改代码。逐段对照 helpCenter.1783320636200.js：模板结构（marT20 / marT40 / main flex / w70 a-skeleton rows 8 / helpContent / w45 帮助中心·最新问题列表 / w40 moreInfo 图 + helpCont 猜你想问·换一批·newQueList / 右侧两张图 / 意见反馈弹窗 / 登录弹窗）、props、emits、state 字段、跳转函数 x/S/U/Z/j 均与原 chunk 一致；scoped CSS 与原 css 逐条一致",
     "两处差异都在页面之外：public/sjz 缺失（HM-796）与 images.ts 的 moreInfoImg 去哈希地址（HM-800 同类）；页面单不得改 shared/ 和 public 公共资源，快速通道不自动建升级单，交门槛 / 裁定员处理",
-    "self-check pass（restore/fast-lane c85352b）；npm run build:portal 通过；无代码改动，未 land"
+    "self-check pass（restore/fast-lane c85352b）；npm run build:portal 通过；无代码改动，未 land",
+    "fix 2：仍未改代码。门槛第 2 次（同 commit c85352b）失败项与第 1 次逐项相同；复查时 HM-796 仍 in_review、HM-800 仍 todo，hmrsfw-vue origin/restore/fast-lane（c85352b）与 origin/integration（8a39c05）都没有 apps/portal/public/sjz/，images.ts 的 moreInfoImg 仍为 /assets/shared/moreInfo.png。页面侧无可改之处，再送门槛只会同样失败；建议裁定员确认按共享层问题挂起，待 HM-796、HM-800 合入 integration 并进入 restore/fast-lane 后重跑门槛",
+    "self-check pass（restore/fast-lane c85352b，fix 2 复跑）"
   ]
 }
