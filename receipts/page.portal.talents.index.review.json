@@ -1,0 +1,27 @@
+{
+  "id": "page.portal.talents.index.review",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/index/review.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "521afbd1c91d72b9f68a61a3cee1914a55010ddb"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题：本单是 recordVia 子视图（只被 page.portal.talents.index.index 当组件用），门槛原侧回放父页面 /talents/index 整页并取 main > * 的根（页头 headerBox），还原侧在同一路由单独挂载 review.vue 且不传 codeList，两侧比的不是同一个东西；页面代码无法修到通过，需门槛对 recordVia 页面改为在父页面内定位子组件根（按 scopeId）或在父页面通过后一并判定，走规则变更单"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐处对照 review.1783320636200.js：模板结构、codeList 遍历（default_organization_id / orgCode / index_ad_kstd / index_wjhg）、queryLatestQuestionsList 与 queryQuestionsList 的参数、换一批翻页逻辑都与原 chunk 一致",
+    "html / text / pixel（load、final）：原侧根元素 class 为 headerBox（父页面页头，1920x90），还原侧根元素为本组件 marT20（1920x494）。同批另两个 recordVia 页 page.portal.talents.index.jobFair、page.portal.talents.newPark.industry 的 gate a1 报告原侧根同样是 headerBox，属同一问题，疑似比对器问题",
+    "requests（load 缺 queryLatestQuestionsList、queryQuestionsList）：原 chunk 只在 codeList 含 default_organization_id 时才发这两个请求（me() → Ae()、T()）；codeList 由父页面 index 经 props 传入，门槛单独挂载时 props 为默认空数组，所以不发。疑似比对器问题",
+    "requests（steps 参数缺 organizationId）与 overlay（还原侧多一条「操作失败」提示）：同因，organizationId 未经 props 赋值，点「换一批」发出的请求在 HAR 中找不到（restRequests 标 not-in-har），由 utils/request 拦截器弹出失败提示。疑似比对器问题",
+    "self-check pass（renderEquiv 仅 izHighHome 取值写法 props.izHighHome / 模板直接取 prop 的 token 差，渲染行为相同，未改）；npm run build:portal 通过；restore/fast-lane 无新提交（HEAD 521afbd）"
+  ]
+}
