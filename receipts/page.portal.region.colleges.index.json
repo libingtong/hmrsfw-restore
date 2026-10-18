@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.region.colleges.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/region/colleges/index.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "521afbd1c91d72b9f68a61a3cee1914a55010ddb"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题：tools/gate/compare.mjs compareRuns 只对原版一侧 project(...) 传 shellToasts（扣掉外壳探测里的 toast），还原版一侧没扣；docs/gate.md 第 85 行写的前提「还原版暂时没有外壳」已不成立（restore/fast-lane 的门户已有外壳 legacy/components/App.vue、TopHead、Foot，gate.1 restRequests 里有外壳请求）。外壳自己弹的那条服务端 500 提示在原版被扣、在还原版被计入，load.overlay 就多一条。需要走规则变更单：还原版也扣外壳 toast，或改为两侧都不扣"
+  ],
+  "notes": [
+    "fix 1：未改代码。gate.1 失败项只有 load.overlay：原版 1 条、还原版 2 条，内容都是同一条服务端 500 提示（11 字），由 utils/request 响应拦截器统一弹出，本页没有自己的 message 调用",
+    "逐段对照原 chunk：setup 里的四个本地接口函数（getArticleList、getFairList、findJobList、freeRecommendCompanyList）、Ke / Qe / V / X / la 的调用顺序和参数、onMounted 里 Ke()、X(\"1\")、la(\"1\")、Qe() 都与还原版一致；gate.1 load.requests 两侧相同，load.html、load.text、像素均通过",
+    "同一现象出现在别的快速通道单：HM-251 overlay 字数 0/11、HM-250 字数 26/40（多 \" | \" 加 11 字），都是还原版恰好多出同一条 11 字提示；HM-250 第 1 轮改了请求时序后复测仍是同样的 overlay 差异。判断多出的这条来自外壳，不是页面",
+    "self-check pass（restore/fast-lane 521afbd）；npm run build:portal 通过；无代码改动，未 land"
+  ]
+}
