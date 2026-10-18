@@ -29,8 +29,12 @@ export function pixelDiff(a, b, out, threshold) {
   return { ratio: n / (w * h), sizeA: [A.width, A.height], sizeB: [B.width, B.height] };
 }
 
-// Pick the original candidate the restored root corresponds to (POC: same class attribute, else the first one).
-export const pickCandidate = (cands, cls) => cands?.find((c) => cls != null && c.cls === cls) ?? cands?.[0] ?? null;
+// Pick the candidate the comparison uses in one phase. `cls` undefined → the first candidate (the restored side:
+// #poc-main holds only the page). Otherwise the candidate whose class attribute equals `cls` (null = no class
+// attribute), i.e. the original element that corresponds to the restored root of the same phase; none → null, which
+// compareRuns reports as a "root" failure. No fallback to the first candidate: on the portal that is the layout header
+// (`main > *` also matches homeView's header), so the comparison silently compared a different element (HM-779).
+export const pickCandidate = (cands, cls) => (cls === undefined ? cands?.[0] : cands?.find((c) => c.cls === cls)) ?? null;
 
 // Overlay → one string: open modals, then the toasts shown in the phase minus the app shell's own toasts (the shell
 // probe's; the restored app has no shell yet). Older baselines stored the overlay as a plain string.
@@ -41,23 +45,26 @@ export function overlayText(ov, shellToasts = []) {
   return [...ov.modals, ...toasts].join(" | ");
 }
 
-// Projections of one run (original or restored) used for comparison. `cls` = class of the restored root.
-export function project(run, { rules, shell, exclude, cls, known, side, used, shellToasts }) {
+// Projections of one run (original or restored) used for comparison. `cls` = {load, final}: class of the restored root
+// in each phase (the root's class can change with the interaction, e.g. a v-if/v-else root); omitted → first candidate.
+// A phase whose root is not found has html/text null and root[phase] false.
+export function project(run, { rules, shell, exclude, cls = {}, known, side, used, shellToasts }) {
   const k = (where, v) => (known ? applyKnown(where, side, v, known, used) : v);
-  const lc = pickCandidate(run.load?.candidates, cls);
+  const lc = pickCandidate(run.load?.candidates, cls.load), lFound = !!lc || cls.load === undefined;
   const p = {
-    "load.html": k("load.html", normHtml(lc, rules)),
-    "load.text": k("load.text", normText(lc?.text, rules)),
+    "load.html": lFound ? k("load.html", normHtml(lc, rules)) : null,
+    "load.text": lFound ? k("load.text", normText(lc?.text, rules)) : null,
     "load.overlay": k("load.overlay", normOverlay(overlayText(run.load?.overlay, shellToasts), rules)),
     "load.requests": k("load.requests", loadSet(run.load?.requests ?? [], new Set([...shell, ...exclude]))),
-    shot: lc?.shot ?? null, cls: lc?.cls ?? null, empty: !lc || lc.empty || !lc.tree,
+    shot: lc?.shot ?? null, cls: lc?.cls ?? null, empty: !lc || lc.empty || !lc.tree, root: { load: lFound },
   };
   if (run.steps) {
-    const fc = pickCandidate(run.final?.candidates, cls);
+    const fc = pickCandidate(run.final?.candidates, cls.final), fFound = !!fc || cls.final === undefined;
+    p.finalCls = fc?.cls ?? null; p.root.final = fFound;
     p["steps.errors"] = run.steps.filter((s) => s.err).map((s) => `step ${s.i}: ${s.err}`);
     p["steps.requests"] = k("steps.requests", stepSeq(run.stepLog ?? [], new Set([...exclude, ...shell])));
-    p["final.html"] = k("final.html", normHtml(fc, rules));
-    p["final.text"] = k("final.text", normText(fc?.text, rules));
+    p["final.html"] = fFound ? k("final.html", normHtml(fc, rules)) : null;
+    p["final.text"] = fFound ? k("final.text", normText(fc?.text, rules)) : null;
     p["final.overlay"] = k("final.overlay", normOverlay(overlayText(run.final?.overlay, shellToasts), rules));
   }
   return p;
@@ -119,18 +126,27 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }
   const shell = new Set(baseline.shell?.requests ?? []);
   const exclude = rules.shellRequests(site);
   const used = new Set();
-  const restRoot = rest.load?.candidates?.[0]?.cls ?? null;
-  const R = project(rest, { rules, shell, exclude, cls: null, known, side: "rest", used });
-  const O = baseline.runs.map((run) => project(run, { rules, shell, exclude, cls: restRoot, known, side: "orig", used, shellToasts: baseline.shell?.toasts ?? [] }));
+  // The original element compared with the restored root, per phase: the one with the restored root's class in that
+  // phase (load root for load, final root for final) — same element on both sides, same content compared (HM-779).
+  const restCls = { load: rest.load?.candidates?.[0]?.cls ?? null, final: rest.final?.candidates?.[0]?.cls ?? null };
+  const R = project(rest, { rules, shell, exclude, known, side: "rest", used });
+  const O = baseline.runs.map((run) => project(run, { rules, shell, exclude, cls: restCls, known, side: "orig", used, shellToasts: baseline.shell?.toasts ?? [] }));
   const failed = [];
-  if (O.every((o) => o.empty)) failed.push({ check: "baseline", where: "load", hint: "original page root not found in the baseline" });
+  const noRoot = (ph) => ph in R.root && O.every((o) => o.root[ph] === false);
+  // original candidates by class only (element paths, no page text)
+  const rootHint = (ph) => `no original root candidate with class ${JSON.stringify(restCls[ph])} (restored ${ph} root); original candidates: ${[...new Set(baseline.runs.flatMap((r) => (r[ph]?.candidates ?? []).map((c) => JSON.stringify(c.cls))))].join(", ")}`;
+  for (const ph of ["load", "final"]) if (noRoot(ph)) failed.push({ check: "root", where: ph, hint: rootHint(ph) });
+  if (!noRoot("load") && O.every((o) => o.empty)) failed.push({ check: "baseline", where: "load", hint: "original page root not found in the baseline" });
   if (R.empty) failed.push({ check: "render", where: "load", hint: "restored page root (#poc-main > *) is empty" });
   const keys = Object.keys(R).filter((k) => k.includes(".") && k !== "steps.errors");
   for (const where of keys) {
     if (!(where in O[0])) { failed.push({ check: where.split(".")[1], where: where.split(".")[0], hint: "baseline has no interaction run" }); continue; }
-    if (O.some((o) => same(o[where], R[where]))) continue;
-    if (O.length > 1 && volatileMatch(where, O[0][where], O[1][where], R[where])) continue;
-    failed.push({ check: where.split(".")[1], where: where.split(".")[0], hint: hint(where, O[0][where], R[where]) });
+    // runs whose root was found in this phase; none → already reported as "root"
+    const os = O.filter((o) => o[where] !== null);
+    if (!os.length) continue;
+    if (os.some((o) => same(o[where], R[where]))) continue;
+    if (os.length > 1 && volatileMatch(where, os[0][where], os[1][where], R[where])) continue;
+    failed.push({ check: where.split(".")[1], where: where.split(".")[0], hint: hint(where, os[0][where], R[where]) });
   }
   if (R["steps.errors"]?.length) failed.push({ check: "step-error", where: "steps", hint: R["steps.errors"].slice(0, 3).join("; ") });
   let pixel = null;
@@ -149,8 +165,9 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }
 // Which comparison keys differ between two original runs (→ baseline "unstable").
 export function unstableKeys(runA, runB, { rules, site, shell, shellToasts }) {
   const exclude = rules.shellRequests(site);
-  const a = project(runA, { rules, shell, exclude, cls: runA.load?.candidates?.[0]?.cls ?? null, shellToasts });
-  const b = project(runB, { rules, shell, exclude, cls: runA.load?.candidates?.[0]?.cls ?? null, shellToasts });
+  const cls = { load: runA.load?.candidates?.[0]?.cls ?? null, final: runA.final?.candidates?.[0]?.cls ?? null };
+  const a = project(runA, { rules, shell, exclude, cls, shellToasts });
+  const b = project(runB, { rules, shell, exclude, cls, shellToasts });
   const out = Object.keys(a).filter((k) => k.includes(".") && !same(a[k], b[k]));
   if (a.shot && b.shot) { const d = pixelDiff(a.shot, b.shot, null, rules.pixel.threshold); if (d.ratio > rules.pixel.maxRatio) out.push("load.pixel"); }
   return out;
