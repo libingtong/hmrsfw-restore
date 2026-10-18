@@ -1,0 +1,25 @@
+{
+  "id": "page.portal.sjz.talent.talentList",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/sjz/talent/talentList.vue",
+    "apps/portal/src/views/sjz/talent/talentList/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "dd509163d67d8d29bd655143cceed19831be7e92"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：talentList.vue 模板里 div.bgBoxTop 提前闭合，div.main（学历/经验筛选卡片、人才列表、分页）落在根级成了它的兄弟节点；改为 div.bgBoxTop 包住 a-row 与 div.main，div.main 内容整体缩进 2 格，其余不动。对应 gate.1 load/final 在 div.bgBoxTop 下的 HTML/innerText 截断（还原版只到搜索栏）以及像素比对高度 1372 vs 300",
+    "依据：原 chunk render 为 u(_,null,[n(\"div\",P,[l(S,{class:\"padT30 padB30 main\"},…),n(\"div\",q,[…])]),Interviewvisible…,visible…,visiblelogin…],64)，P={class:\"bgBoxTop marB30\"}、q={class:\"main\"}，三个弹窗组件仍在 Fragment 根级",
+    "未改：self-check 的 renderEquiv 报告 talentList DIFF（tokens 2806/2810），修改前后相同，不是本轮门槛失败项",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane 499c1d4"
+  ]
+}
