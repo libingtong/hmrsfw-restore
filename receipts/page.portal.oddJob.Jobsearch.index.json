@@ -2,7 +2,7 @@
   "id": "page.portal.oddJob.Jobsearch.index",
   "branch": "restore/fast-lane",
   "result": "fail",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/oddJob/Jobsearch/index.vue"
   ],
@@ -14,17 +14,16 @@
   "build": "not-run",
   "todos": [],
   "unresolved": [
-    "gate.1 html load/final：sm 图片 src 不同，来自共享层 @/shared/images 的 smImg，页面侧无可改之处",
-    "gate.1 requests steps：还原侧 step3（点「搜索」）记录到两次 body 相同的 findJoblist，页面逻辑与原 chunk 相同，本地复现只有一次"
+    "gate.1（第 2 轮，commit e432b50）html load/final：sm 图片 src 不同，来自共享层 @/shared/images 的 smImg，页面侧无可改之处"
   ],
   "needsFromSkeleton": [
     "疑似共享层问题：apps/portal/src/shared/images.ts:134 smImg 导出字符串 \"/assets/shared/sm.png\"（public 文件），原 chunk legacy-dist/portal/assets/sm.1783320636200.js 的导出 _ 是内联 data:image/png;base64（1211 字节，小于 assetsInlineLimit 4096）；registry/portal.json「sm.1783320636200.js」条目也标 inline:true。public 路径不经 Vite 资源管线，vite build 和门槛按需编译都不会内联，DOM 里 img src 必然与原包不同。需要共享层（shared.portal.modules）把 smImg 改成 import 资源文件（如 import smImg from \"./images/sm.png\"），可走 HM-778 已有的资源内联路径；public/assets/shared/sm.png 与原 data URI 解码后逐字节相同（sha256 前 10 位 5599f25435），只是写法问题。同文件其他「内联 base64 图片」导出（adr、s10 等）同理"
   ],
   "notes": [
-    "fix 1：未改页面代码。gate.1 的两项失败都不在 target / subComponentDir 范围内",
-    "html（load、final）：把原侧 data URI 视作同一记号后做标签级比对，1065/1065 个标签中只有 10 处不同，全是列表项里的 <img class=\"marL10\" :src=\"smImg\">（原 src=data:image/png;base64…，还原 src=/assets/shared/sm.png），长度差 70723/54553 全部来自这 10 个 data URI。页面按清单从 @/shared/images 导入 smImg，用法正确，见 needsFromSkeleton",
-    "requests（steps）：原侧 step3=1 次、step6=1 次；还原侧 step3=2 次（两次 body 哈希相同）、step6=1 次。依据：原 chunk 的搜索函数 ye() 与 handleSearch 逐句相同（pageNo=1、最低/最高工资互换、调用一次 y()=loadList），模板中按钮 onClick:ye、分页 onChange:y、单选 onChange:he 与还原一致；本地用 vite dev 起还原版、所有接口以假数据应答（不访问测试环境，不读 HAR），按同一份交互脚本跑 3 种搜索返回（0 条 / 3 条 / 120 条），step3 每次都只有 1 次 findJoblist",
-    "疑似比对器问题：tools/gate/replay.mjs runPage 对失败的步骤 1 秒后重试一次，steps.errors 只记最终错误。若第一次 click 已派发但 Playwright 在动作后续阶段超时（机器繁忙，本次 browser 阶段 108 s），重试会再点一次「搜索」，表现为同一步两次 body 相同的请求、steps.errors 为空——与 gate.1 完全吻合。建议门槛员重跑时留意；如稳定复现再请裁定员看",
-    "self-check pass（renderEquiv 报 index DIFF tokens 2511/2520，不是门槛失败项，本轮未动）；未改代码，故未提交 hmrsfw-vue、未重新构建"
+    "fix 2：仍未改页面代码。第 2 轮门槛（e432b50）requests 已通过，只剩 html load/final 两项",
+    "html：把原侧 data URI 视作同一记号后做标签级比对，load、final 各 1065/1065 个标签，差异只有列表项 10 个 <img class=\"marL10\" :src=\"smImg\">（原 src=data:image/png;base64…，还原 src=/assets/shared/sm.png）；load/final 文本两侧完全相同，pixel 0。原因与处理见 needsFromSkeleton（共享层 images.ts:134），页面按清单从 @/shared/images 导入 smImg，用法正确",
+    "requests：第 1 轮记录的 step3 重复 findJoblist 在第 2 轮代码未变的情况下消失，印证第 1 轮判断（门槛步骤重试导致的偶发重复，不是页面问题）",
+    "self-check pass（renderEquiv 报 index DIFF tokens 2511/2520，修正前后相同，不是门槛失败项）；未改代码，故未提交 hmrsfw-vue、未重新构建",
+    "按快速通道规则两轮修正仍失败交裁定员：需要共享层把 smImg（及同文件其他「内联 base64 图片」导出）改成 import 资源文件，或由裁定员走规则变更单"
   ]
 }
