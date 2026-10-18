@@ -2,7 +2,7 @@
   "id": "page.uc.personLoan",
   "branch": "restore/fast-lane",
   "result": "fail",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/uc/src/views/personLoan.vue"
   ],
@@ -28,6 +28,7 @@
     "personLoan.vue 与原 chunk index.175161560754513.js 对照：无 v-else 的 v-if 共 4 处（title 插槽 addShow、bodyCell 的 column.key==='operation'、checkStatus!='10' 的编辑链接、showModal 的 Notice），与原 render 的 4 个 r(\"\",!0) 一致；静态文本 新增申请/查看/编辑 3 处一致；组件 1 个（index）一致",
     "detailInfo.vue（4d4008b，HM-42 快速通道）属于 page.uc.personLoan.detailInfo，按「只改本单 target 和 subComponentDir」不动；删除或移动会破坏该页和 /personLoan/detailInfo 路由",
     "slot-scope / Page / index 未定义为原代码问题，原样保留；本次 diff 不涉及",
-    "修正员按两轮规则重复送门槛只会得到同样的结果，建议直接交裁定员处理比对器的文件归属"
+    "修正员按两轮规则重复送门槛只会得到同样的结果，建议直接交裁定员处理比对器的文件归属",
+    "fix 2：仍未改代码。gate 第 2 次结果与第 1 次相同（同一提交 dd01d1b、同样 13 项，全部指向 detailInfo.vue 或由它计入）；远端 restore/fast-lane 和工具仓库期间无变化，复跑 self-check 结果一致（files 含 detailInfo.vue，branches 4/11）。修正员这条路已经走完，需裁定员按 needsFromSkeleton 处理比对器的文件归属"
   ]
 }
