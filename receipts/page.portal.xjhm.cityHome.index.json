@@ -1,0 +1,27 @@
+{
+  "id": "page.portal.xjhm.cityHome.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/xjhm/cityHome/index.vue",
+    "apps/portal/src/views/xjhm/cityHome/index/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "9f54b8e9feedd49acae11875579a5c3b8ca48739"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似共享层问题：@/shared/images 的 zphImg_ 导出 public 路径 /assets/shared/zph.png，原 chunk 是内联 data:image/png;base64（<4KB 被 Vite 内联）。门槛对 public/ 文件不改写 URL，所以「返回主页」按钮内 img 的 src 两侧不同（gate.1 load/final 在 div.homeTopLogo button.ant-btn 下 offset 423、长度 799/523 的 HTML 差异就是这一处）。页面按 maps 只能从 @/shared/images 导入，不能在页面里绕；需要共享层把内联图片改成可被构建内联的资源导入，或走规则变更单认定等价"
+  ],
+  "notes": [
+    "fix 1：补上原 chunk 自带的非 scoped 样式表（入口 __vitePreload 列表里本页的最后一项 CSS；工单 cssCandidates 里列的 index.1783320636200106.css 实为 xjhm/home 的样式，homeNews 的属共享组件）。用 css-utils renderCss 机械展开成页面末尾的 <style>，往返校验 79 条规则全部一致；postprocess-vue 把 .impActive 的 data: 背景图抽到 index/assets，样式块等价校验通过。对应 gate.1 pixel：根元素 1920x300 vs 1920x116（.homeTopLogo 原为 height:300px + 背景图）",
+    "未改：按钮 img src 差异来自共享层 @/shared/images（见 needsFromSkeleton），修完样式后 html load/final 仍会在这一处不一致，pixel 预计也会残留这张 10x16 小图的差别（图片内容相同时为 0）",
+    "工单 cssCandidates 有误（疑似工单生成问题）：本页实际加载的样式表不在候选里",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane 1f11463"
+  ]
+}
