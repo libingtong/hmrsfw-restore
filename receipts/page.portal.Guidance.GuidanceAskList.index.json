@@ -2,14 +2,14 @@
   "id": "page.portal.Guidance.GuidanceAskList.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/Guidance/GuidanceAskList/index.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "cac41a9a974d6818bf8dc8f7f467d019f81a741a"
+    "gitBase": "168c7ba3220d066321ed4d7f2a18b0fa165d3755"
   },
   "build": "pass",
   "todos": [],
@@ -17,13 +17,13 @@
     "load html：a.askFrom 的 img src、经典问答两处 img src 与原包不同，来自共享层 @/shared/images，页面侧无可改之处（见 needsFromSkeleton）"
   ],
   "needsFromSkeleton": [
-    "疑似共享层问题：apps/portal/src/shared/images.ts 把 askImg、daImg_、daImgA 导出为 public 固定路径 /assets/shared/ask.png、/assets/shared/da.png、/assets/shared/da-a.png；原包 ask.1783320636200.js 导出 /assets/ask.1783320636200.png，da.1783320636200.js 导出两段内联 data:image/png;base64（registry/portal.json 的 ask.1783320636200.js、da.1783320636200.js 条目 value/inline 字段也是这样记录的）。页面按清单从 @/shared/images 导入 askImg、daImg_、daImgA，渲染出的 src 必然不同，门槛 html 检查在 a.askFrom 处报差异。需要共享层让这几个常量的值与原包一致（例如改成 import 图片文件，按 vite build 的 assetsInlineLimit 内联小图），或者走规则变更单；页面不绕"
+    "疑似共享层问题：apps/portal/src/shared/images.ts 在 restore/fast-lane（168c7ba）把 askImg、daImg_、daImgA 导出为 /assets/shared/ask.png、/assets/shared/da.png、/assets/shared/da-a.png；原包 ask.1783320636200.js 导出 /assets/ask.1783320636200.png，da.1783320636200.js 导出两段内联 data:image/png;base64（registry/portal.json 对应条目的 value/inline 也是这样记录的）。共享层升级单 HM-800（hmrsfw-vue restore/upg-6-a1 eb2b5ff）已把这三个常量改成与原包一致（askImg 用原包地址，daImg_/daImgA 改为 import ./imageAssets/da*.png 按 assetsInlineLimit 内联），但该分支尚未并入 restore/fast-lane。本页等 HM-800 合入 restore/fast-lane 后重送门槛即可，页面不需要再改"
   ],
   "notes": [
-    "fix 1：gate.1 两项失败，一项页面问题已改（restore/fast-lane 168c7ba），一项疑似共享层问题未改",
-    "text 第 7 行起差异：提问时间前多一个空格。原 chunk 是 g(f(s.createTime),1)，没有前导空格；还原把 {{ item.createTime }} 放在 </a-space> 之后另起一行，编译出 \" \" + createTime。改成 </a-space\\n>{{ item.createTime }} 紧贴。回复数那处原 chunk 是 g(\" \"+f(s.replyCount),1)，保持原样",
-    "html 差异（a.askFrom img、经典问答 img.marR5）：src 来自 @/shared/images 的 askImg/daImg_/daImgA，见 needsFromSkeleton，未改",
-    "render-equiv 仍报 DIFF（1359/1364），首处差异是 resolveComponent 顺序（router-link 被提前），不影响 DOM，未处理",
-    "self-check pass（fl-vue restore/fast-lane 168c7ba），npm run build:portal 通过"
+    "fix 2：gate 第 2 次只剩 html 一项（text 已通过），三处差异全部是 img src：a.askFrom 的 askImg、经典问答两处 img.marR5 的 daImg_（data URI vs /assets/shared/da.png）。没有页面侧差异，本轮未改代码",
+    "页面按 registry/portal.json 从 @/shared/images 导入 askImg、daImg_、daImgA，导入路径和导出名都与清单一致；值来自共享层，页面不能绕",
+    "依据：HM-800（restore/upg-6-a1 eb2b5ff）里这三个常量已与原包一致，git merge-base 确认未并入 restore/fast-lane。同类回执见 page.portal.Guidance.GuidanceMentorList.index（dianzanImg）、page.portal.oddJob.Jobsearch.index（smImg）、page.portal.talents.cityHome.index（moreInfoImg）",
+    "fix 1 的修改（提问时间前多余空格，168c7ba）已生效，text 检查通过",
+    "self-check pass（fl-vue restore/fast-lane 168c7ba）"
   ]
 }
