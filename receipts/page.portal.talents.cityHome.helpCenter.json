@@ -1,28 +1,35 @@
 {
   "id": "page.portal.talents.cityHome.helpCenter",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 2,
+  "ticket": "page.portal.talents.cityHome.helpCenter",
+  "kind": "upgrade",
+  "upgradeTask": "01a1510c-705d-7d85-ae75-8c23a34f53ae",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-9-a1",
+  "result": "ok",
   "outputs": [
-    "apps/portal/src/views/talents/cityHome/helpCenter.vue"
+    "apps/portal/src/shared/images.ts"
   ],
+  "todos": [
+    "自检 imports 失败 1 项（images.ts「本单不能修改」）：self-check / gate 按 metadata.workOrders 把升级单当页面单判，与 HM-800 的 [ERROR]（tools/check-imports.mjs:220-230、tools/gate.mjs:107-111）同一问题，仍未修复；撤销等于撤销升级本身，未按 hint 改"
+  ],
+  "needsFromSkeleton": [],
   "selfCheck": {
-    "pass": true,
-    "failed": [],
-    "gitBase": "c85352b16c260b71633c7d591520e5e146a9ade2"
+    "pass": false,
+    "failed": [
+      { "check": "imports", "where": "apps/portal/src/shared/images.ts", "note": "按页面单规则判升级单改公共库，不适用（同 HM-800 / HM-796）" },
+      { "check": "readability", "where": "(eslint)", "severity": "warn", "note": "hmrsfw-vue 未装 eslint，warn 级" },
+      { "check": "readability", "where": "(prettier)", "severity": "warn", "note": "hmrsfw-vue 未装 prettier，warn 级" }
+    ],
+    "components": { "expected": 1, "delivered": 1 },
+    "textNodes": { "original": 6, "restored": 6 },
+    "directives": { "original": 0, "restored": 0, "branches": [1, 1] }
   },
-  "build": "pass",
-  "todos": [],
-  "unresolved": [],
-  "needsFromSkeleton": [
-    "疑似共享层问题（public/sjz 缺失，对应升级单 HM-796）：gate.1 的 pixel@load 43.227% 集中在左侧 .helpContent 区域（794×316）。本页 scoped CSS 与 helpCenter.1783320636200.css（data-v-15a5e3de）逐条一致，.helpContent 背景为 url(/sjz/newHome/helpBg.png)；原包 legacy-dist/portal/sjz/newHome/helpBg.png 存在，hmrsfw-vue restore/fast-lane 与 integration 的 apps/portal/public/ 下都没有 sjz/ 目录，还原侧 404，背景空白、白字落在浅灰底上。HM-796（补 apps/portal/public/sjz/）在 in_review、未进 integration；fast-lane 上的 cherry-pick 27d2c1f 已由 fc8d72e 撤销（HM-287 裁定：公共库改动先合 integration 再进快速通道）",
-    "疑似共享层问题（images.ts 哈希图地址，对应升级单 HM-800 第 2 点同类）：load/final HTML 唯一差异在 div.w40 > img 的 src——原版 /assets/moreInfo.1783320636200.png，还原版 /assets/shared/moreInfo.png（长度差 7 字符）。页面按 registry/portal.json「moreInfo.1783320636200.js」条目（path @/shared/images，export moreInfoImg，value /assets/moreInfo.1783320636200.png）导入，但共享层 apps/portal/src/shared/images.ts:78 把它导出为去哈希地址 /assets/shared/moreInfo.png，与清单 value 不符。HM-800 已指出 askImg 同类问题（大图地址需与原包一致），需把 moreInfoImg 一并改回原包地址"
-  ],
   "notes": [
-    "fix 1：未改代码。逐段对照 helpCenter.1783320636200.js：模板结构（marT20 / marT40 / main flex / w70 a-skeleton rows 8 / helpContent / w45 帮助中心·最新问题列表 / w40 moreInfo 图 + helpCont 猜你想问·换一批·newQueList / 右侧两张图 / 意见反馈弹窗 / 登录弹窗）、props、emits、state 字段、跳转函数 x/S/U/Z/j 均与原 chunk 一致；scoped CSS 与原 css 逐条一致",
-    "两处差异都在页面之外：public/sjz 缺失（HM-796）与 images.ts 的 moreInfoImg 去哈希地址（HM-800 同类）；页面单不得改 shared/ 和 public 公共资源，快速通道不自动建升级单，交门槛 / 裁定员处理",
-    "self-check pass（restore/fast-lane c85352b）；npm run build:portal 通过；无代码改动，未 land",
-    "fix 2：仍未改代码。门槛第 2 次（同 commit c85352b）失败项与第 1 次逐项相同；复查时 HM-796 仍 in_review、HM-800 仍 todo，hmrsfw-vue origin/restore/fast-lane（c85352b）与 origin/integration（8a39c05）都没有 apps/portal/public/sjz/，images.ts 的 moreInfoImg 仍为 /assets/shared/moreInfo.png。页面侧无可改之处，再送门槛只会同样失败；建议裁定员确认按共享层问题挂起，待 HM-796、HM-800 合入 integration 并进入 restore/fast-lane 后重跑门槛",
-    "self-check pass（restore/fast-lane c85352b，fix 2 复跑）"
+    "images.ts:76-78：moreInfoImg 由 /assets/shared/moreInfo.png 改为原包地址 /assets/moreInfo.1783320636200.png（原包 moreInfo.1783320636200.js：const s=\"/assets/moreInfo.1783320636200.png\"），与 registry/portal.json 条目 value 一致；导出名不变，页面无需改动",
+    "文件本已在 apps/portal/public/assets/moreInfo.1783320636200.png；npm run build:portal 通过，dist/portal/assets/moreInfo.1783320636200.png 与 legacy-dist 原文件逐字节一致，构建后 images chunk 引用新地址、不再引用 /assets/shared/moreInfo.png",
+    "改动两行与 upg-6（HM-800，restore/upg-6-a1 eb2b5ff，未合入 integration）同一处逐字相同，两分支合并不冲突；public/assets/shared/moreInfo.png 未删（upg-6 会删）",
+    "清单：工具仓库分支 restore/upg-9-a1-registry（6e36d36，基于 main）把 moreInfo.1783320636200.js#_ 的 status 置为 restored（做法同 upg-8-a1-registry），modules 不计入 stats，无需改计数",
+    "renderEquiv 报告 helpCenter DIFF（tokens 679/711）为报告项、非失败项，本单未改页面",
+    "页面另一处差异 public/sjz/newHome/helpBg.png 缺失归 HM-796，本单未涉及 sjz/"
   ]
 }
