@@ -2,7 +2,7 @@
   "id": "page.portal.talents.overseasRecruitment.antDetail",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/overseasRecruitment/antDetail.vue"
   ],
@@ -15,7 +15,7 @@
   "todos": [],
   "unresolved": [],
   "needsFromSkeleton": [
-    "疑似比对器问题（pixel/load 1.331%）：与 talents.greenchannel.index、talents.newPark.index 同类——原版 /talents/antDetail 是 /talents（views/talents/homeView）的子路由，布局头部 .headerBox 高 90px、.headerCls{position:fixed;z-index:1000}，元素截图滚动后固定头部叠进页面根顶部；门槛兜底路由让还原侧不包 homeView，所以没有这条头部。规则变更单 HM-262（rule/hm-262-fast-lane f210ede「shell-layout-shots」）处理此问题，其 docs/rule-changes/HM-262.md（4320154）影响表已列出 talents.overseasRecruitment.antDetail（无 class 根 0 → 1.3–1.6）。f210ede 尚未并入 main 和 restore/fast-lane；HM-262 合入并按其要求重录本页基线后重送门槛即可，页面里补头部会引入原 chunk 没有的内容，不改"
+    "疑似比对器问题（pixel/load 1.330%）：talents 布局 homeView 固定头部（.headerBox 90px、.headerCls position:fixed）在原版元素截图时叠进页面根顶部，还原侧不包布局。规则变更单 HM-262 的 shell-layout-shots（f210ede）处理此问题，已于 2026-10-18T11:01:56Z 以 dd382da 合入工具仓库 restore/fast-lane；docs/rule-changes/HM-262.md 第 4 节把本页列在 12 页重录清单里（无 class 根 0 → 1.3–1.6），要求合并时用新 baseline.mjs 重录基线。门槛请用 dd382da 之后的规则、重录后的本页基线复检；若基线尚未重录，需先重录（修正员不读 $RESTORE_ASSETS，无法核实）"
   ],
   "notes": [
     "fix 1：gate.1 唯一失败项 load pixel 1.331%；load.html / final.html、文字、请求、overlay 两边一致（发布时间秒位不同：本录制无 query.id，原 chunk 不请求详情，createTime 为空，dayjs 取当前时间，原版两次录制之间也不同，原代码行为）",
@@ -23,6 +23,9 @@
     "改动：LoginModal 移出页面根 div，与之同级。原 chunk antDetail.1783320636200.js 根为 Fragment（x(G,null,[div, n.visiblelogin?E(X,…):T()],64)），还原时被放进了外层 div；LoginModal 自身渲染内联 div，弹出时位置不同。load 阶段只多一个注释节点，不影响本次比对",
     "render-equiv：首个差异从根 Fragment 后移到 dayjs 命名（ext:default vs ext:shared.dayjs，映射 ee→entry d→dayjs default 与清单一致，已知误报）",
     "self-check pass、build:portal pass（fl-vue restore/fast-lane 3c17499，已推送）",
-    "HM-262 合入前再送门槛，pixel 结果预计与 gate.1 相同"
+    "HM-262 合入前再送门槛，pixel 结果预计与 gate.1 相同",
+    "fix 2：未改代码。第 2 次门槛（commit 3c17499，rules 8ada37b35e61，10:55Z）只有 load pixel 1.330%，与第 1 次相同；load.html / final.html（忽略发布时间秒位）、overlay、交互请求序列两边逐项一致",
+    "原因同 fix 1：这次复检跑在 HM-262 合入（dd382da，11:01:56Z）之前，用的是旧截图规则，结果不变在预期内；HM-262 已在 restore/fast-lane，按新规则 + 重录基线复检即可",
+    "代码仍为 fl-vue restore/fast-lane 3c17499（已推送），self-check pass、build:portal pass"
   ]
 }
