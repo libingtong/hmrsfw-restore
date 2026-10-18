@@ -41,7 +41,7 @@ export async function recordOriginal({ browser, wo, harFile, assets, shotDir, ru
     // in all (the POC re-ran the original up to 4 times). If steps still fail they stay in the baseline as recorded.
     const runs = [];
     for (let n = 1; runs.length < 2 && n <= 4; n++) {
-      const run = await runPage(browser, { origin: srv.origin, url: wo.recordPath, storage, har, sel: site.origSel, steps, shotDir, tag: runs.length === 0 ? "shot" : "shot.r2" });
+      const run = await runPage(browser, { origin: srv.origin, url: wo.recordPath, storage, har, sel: site.origSel, steps, shotDir, tag: runs.length === 0 ? "shot" : "shot.r2", pageScopes: wo.scopeIds });
       run.attempt = n;
       if (run.steps?.some((s) => s.err) && n < 4 - (1 - runs.length)) continue;
       runs.push(run);

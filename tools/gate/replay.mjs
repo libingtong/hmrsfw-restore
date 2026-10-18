@@ -24,6 +24,25 @@ function toastRecorder(sel) {
   new MutationObserver((muts) => { for (const m of muts) for (const n of m.addedNodes) if (n.nodeType === 1) { if (n.matches(sel)) grab(n); n.querySelectorAll?.(sel).forEach(grab); } }).observe(document, { childList: true, subtree: true });
 }
 const HIDE_OVERLAYS = ".ant-modal-root,.ant-modal-mask,.ant-modal-wrap,.ant-message,.ant-notification{visibility:hidden!important}";
+// Shell layout in screenshots (HM-262). On the original side the app shell's layout sits next to the page's roots under
+// origSel: the portal's homeView renders [header, RouterView, footer] and its header is position: fixed. An element
+// screenshot of a root taller than the viewport scrolls, and the fixed header is drawn over the root wherever the
+// viewport top then is. The restored side has no shell (the gate mounts the page as a top-level route), so that strip is
+// shell, not page. While each screenshot is taken, the siblings under `sel` that carry none of the page's scopeIds are
+// made invisible (visibility only: layout is unchanged; DOM and text are captured before, with the shell visible). The
+// page's own fixed parts (a root of its own, or inside one) carry the page's scopeId and stay visible. Only when some
+// candidate carries a page scopeId (pages without scoped styles, or recorded through a parent page, are shot as before).
+// Returns the CSS or "". The scopeIds come from runPage's opts.pageScopes (original side only: baseline.mjs passes the
+// work order's scopeIds; the restored side passes none and is shot as before).
+const PAGE_SCOPES = new WeakMap();
+export async function shellLayoutCss(page, sel, scopes) {
+  const ids = (scopes ?? []).filter((s) => /^data-v-[0-9a-f]{8}$/.test(s));
+  if (!ids.length) return "";
+  const own = await page.evaluate(([q, ss]) => ss.some((s) => document.querySelector(`${q}[${s}]`)), [sel, ids]).catch(() => false);
+  if (!own) return "";
+  const shell = sel + ids.map((s) => `:not([${s}])`).join("");
+  return `${shell},${shell} *{visibility:hidden!important}`;
+}
 // Stability: the page counts as settled when body text length and element count stay the same for `stableMs`, no UI
 // animation or transition (50 ms – 2 s: antd collapse/fade, a carousel sliding) is running and no /xf-api/ request was
 // made in that window (HAR answers are immediate). POC: 3 × 1 s on body text length only.
@@ -82,15 +101,19 @@ async function captureRoot(page, sel, shotBase, withShots, phases) {
   const candidates = [];
   let hide = null;
   if (withShots) hide = await page.addStyleTag({ content: HIDE_OVERLAYS }).catch(() => null);
+  const shellCss = withShots ? await shellLayoutCss(page, sel, PAGE_SCOPES.get(page)) : "";
   for (const [i, el] of els.entries()) {
     const c = { ...(await el.evaluate(domTreeInPage)), ...(await el.evaluate((n) => ({ html: n.outerHTML, text: n.innerText, cls: n.getAttribute("class") }))) };
     if (withShots) {
       const file = `${shotBase}${i ? "." + i : ""}.png`;
       const box = await el.boundingBox();
+      // added only around the screenshot: the DOM tree and innerText above are taken with the shell visible
+      const shell = shellCss ? await page.addStyleTag({ content: shellCss }).catch(() => null) : null;
       // Element screenshots wait for the element to stop moving; a page with a running carousel can exceed that on a
       // busy machine, so fall back to a full-page clip of the same box.
       if (box?.height && box.width) await el.screenshot({ path: file, timeout: 15000 }).catch(async () => { const b = await el.evaluate((n) => { const r = n.getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, width: r.width, height: r.height }; }); await page.screenshot({ path: file, fullPage: true, clip: b }); });
       else await page.screenshot({ path: file });
+      if (shell) await shell.evaluate((n) => n.remove()).catch(() => {});
       c.shot = file;
     }
     candidates.push(c);
@@ -164,6 +187,7 @@ export async function runPage(browser, opts) {
     await ctx.close();
     return res;
   }
+  if (opts.pageScopes?.length) PAGE_SCOPES.set(page, opts.pageScopes); // shellLayoutCss
   const base = path.join(opts.shotDir, opts.tag);
   res.load = { ...(await captureRoot(page, opts.sel, base, true, /^load$/)), requests: log.map((x) => ({ ...x })), opened: opened.map((x) => ({ ...x })) };
   if (opts.steps?.length) {
