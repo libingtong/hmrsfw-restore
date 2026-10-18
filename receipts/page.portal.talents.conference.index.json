@@ -1,0 +1,27 @@
+{
+  "id": "page.portal.talents.conference.index",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/conference/index.vue",
+    "apps/portal/src/views/talents/conference/index/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "fc8d72ee0a5341c2e765874a65f27dc740e3144d"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "兄弟工单问题（不在本单 target / subComponentDir 内）：gate.1 load/final 的 html 差异只有一处，在 div.texeCenter 下的 img.bgimg 的 src（offset 352，长度 3066/3094）。该节点由工单 page.portal.talents.conference.abouts（HM-362）的 apps/portal/src/views/talents/conference/abouts.vue 渲染，它写成 new URL(\"./abouts/assets/re-gt-cbc957f20f.png\", import.meta.url).href，得到带主机的绝对 URL；原 chunk abouts.1783320636200.js 是字符串常量 \"/assets/re-gt.1783320636200.png\"，apps/portal/public/assets/ 下已有与原包逐字节相同的同名文件。按 guide/index.vue、jobMarket/index.vue 的现有写法，abouts.vue 改为同一字符串常量即可消除，应由 HM-362 修；HM-362 录完送门槛时也会遇到同一差异",
+    "疑似比对器问题：gate.1 load 的 pixel 1.999% 全部来自一条 90px 高的横带（截图 y≈295–385，横贯全宽）。原版这里叠着 talents 布局 homeView 的固定顶栏（homeView/headers.vue：.headerBox 高 90px，.headerCls position: fixed，左侧波浪背景、右侧导航链接）；还原侧门槛按兜底路由把页面顶层挂在 #poc-main 下（tools/gate/appserver.mjs 第 68–73 行注释），没有这个父布局，所以没有这条顶栏。本页根节点内的 DOM 除上面那处 src 外完全一致，原 chunk 也不操作外壳；页面层无法修，需要裁定员判断（规则变更单或比对时排除父布局 fixed 元素）"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐项核对了 gate.1：html（load/final）的唯一差异来自兄弟工单 abouts.vue 的图片 src，pixel 来自父布局的 fixed 顶栏，均不在本单 target / subComponentDir 范围内，见 needsFromSkeleton",
+    "本单 index.vue 的滚动监听、右侧导航逻辑与原 chunk 一致，没有操作外壳",
+    "self-check pass；npm run build:portal 通过；restore/fast-lane 仍为 fc8d72e（与 gate.1 比对的 commit 相同）"
+  ]
+}
