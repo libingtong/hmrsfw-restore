@@ -1,0 +1,27 @@
+{
+  "id": "page.portal.train.trainOrganDetail",
+  "branch": "restore/fast-lane",
+  "result": "needs-skeleton",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/train/trainOrganDetail.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": []
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [
+    "gate.1 pixel（load）：apps/portal/public 缺 /sjz/home/marketTop.jpg，页面无权补（见 needsFromSkeleton）"
+  ],
+  "needsFromSkeleton": [
+    "疑似共享层问题：门户外壳 apps/portal/public 下没有 sjz/（restore/fast-lane cac41a9、origin/integration、origin/main 均无），.bgTop 的 background:url(/sjz/home/marketTop.jpg) 在还原版 404，头部 1920x300 背景图缺失（原版由 legacy-dist/portal/sjz/home/marketTop.jpg 提供）。HM-796 的 7f7ad2d（目前只在 restore/upg-5-a1）已补这份资源，需要它进 integration 后再进 restore/fast-lane，然后重跑门槛。与 page.portal.recruitMarket.marketDetail.index、page.portal.train.trainDetail 同一根因"
+  ],
+  "notes": [
+    "fix 1：未改代码，疑似共享层问题（外壳 public/）。依据：gate.1（commit cac41a9）原版两次与还原版的 load/final HTML、文本、cls、root、empty 逐字一致；像素差 44.860% 集中在顶部 300px 的 .bgTop（diff 图是背景图纹理），以下区域无差异",
+    "页面样式与原 chunk 一致：trainOrganDetail.1783320636200.css 的 .bgTop[data-v-6bc41e89]{background:url(/sjz/home/marketTop.jpg);height:300px;background-size:100% 100%}，trainOrganDetail.vue 的 scoped .bgTop 相同",
+    "不在页面里绕（不把图片拷进 subComponentDir 改相对路径）：快速通道手册第 2 节第 5 条，public/ 不在本单 target / subComponentDir 内",
+    "self-check pass；npm run build:portal 通过；restore/fast-lane cac41a9 无新提交"
+  ]
+}
