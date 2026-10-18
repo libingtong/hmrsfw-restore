@@ -3,20 +3,19 @@
   "ticket": "page.portal.talents.eMap.index",
   "branch": "restore/fast-lane",
   "result": "fail",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": ["apps/portal/src/views/talents/eMap/index.vue"],
   "todos": [],
   "needsFromSkeleton": [
-    "疑似比对器问题（html/text/pixel，load 与 final）：原版侧根选择器 SITES.portal.origSel = \"main > *\"（tools/gate/common.mjs）在 /talents/eMap 上取到的是 homeView 布局的头部 div.headerBox，不是页面根。homeView.1783320636200.js 的渲染函数是 Fragment[动态头部组件, RouterView, 动态底部组件]，头部是 main 的第一个子元素；原版两次采样 cls 都是 headerBox，截图高 90px（还原侧取到页面根 div > div.jyEmap，高 900px）。页面侧无法也不应补出布局头部，需走规则变更单让原版侧跳过布局头部（或按页面 scopeId 取根）",
-    "疑似比对器问题（requests load 缺 freeCompanyPositionPageList、steps 请求差异、step 2/3/4/7 超时）：本页首个列表请求由百度地图 zoomend → getCenter 非 0 后才发出，地图中心来自百度在线 IP 定位（LocalCity / bm-geolocation autoLocation）。门槛 routeApi（tools/gate/har.mjs）只拦截 /xf-api/ 与 rencaidanao.com，api.map.baidu.com 走真实外网，不从 HAR 应答。本次还原侧定位未返回（errors 里有 net::ERR_CONNECTION_CLOSED，截图地图停在经纬度 0,0 的海面），zoomend 一直轮询，initMap 未置位，load 阶段就不会发列表请求，后续请求也不带经纬度；step2「重置」把中心设为未赋值的 centerLat/centerLng，地图拿到无效坐标后主线程繁忙，之后的点击/填写超时（step7 实际已切到找服务并发出请求，仍报超时）。原代码同样如此，结果取决于当时百度在线服务，需在门槛里对百度定位做确定性应答（或两侧同次运行），页面侧无可改之处"
+    "疑似比对器问题（html/text/pixel，load 与 final；第 2 轮门槛仅剩这 5 项）：原版侧根选择器 SITES.portal.origSel = \"main > *\"（tools/gate/common.mjs，restore/fast-lane 687fdc7 仍未变）在 /talents/eMap 上取到的是 homeView 布局的头部 div.headerBox，不是页面根。homeView.1783320636200.js 的渲染函数是 Fragment[动态头部组件, RouterView, 动态底部组件]，头部是 main 的第一个子元素；两轮门槛原版两次采样 cls 都是 headerBox、截图高 90px，还原侧取到页面根 div > div.jyEmap、高 900px。页面侧无法也不应补出布局头部，需走规则变更单让原版侧跳过布局头部（或按页面 scopeId 取根）",
+    "疑似比对器问题（门槛不确定性，本轮未复现）：本页首个列表请求依赖百度在线 IP 定位，门槛 routeApi（tools/gate/har.mjs）不拦截 api.map.baidu.com。第 1 轮定位未返回时 load 缺列表请求、step 2/3/4/7 超时；第 2 轮代码未变，requests 与 steps 全部通过，印证该差异来自外网而非页面。建议门槛对百度定位做确定性应答"
   ],
   "selfCheck": { "pass": true, "failed": [] },
   "build": "pass",
   "notes": [
-    "未改代码：逐段对照原 chunk index.178332063620096.js，地图 ready（LocalCity）、zoomend 轮询、ct 边界取值、h/I/E 三个列表请求、te/le/re 三个重置函数、vt/ft/wt 页签切换与还原版 index.vue 逻辑逐条一致；ref/reactive 别名按 maps.vue（Vt=ref、Ut=reactive）",
-    "依据 1（html/text/pixel）：gate.1 原版侧 load.html 与 final.html 根节点均为 div.headerBox（站点头部，826 字符），还原侧为页面根（31199 字符）；两者比较的不是同一层",
-    "依据 2（请求/交互）：还原 DOM 中「查 询」「重 置」「找机构」各只有一个匹配目标，不是定位器歧义；step1 查询请求正常发出，失败都发生在地图未定位之后",
-    "公共层对照：vue-baidu-map-3x 1.0.40 的加载地址与原包一致（api.map.baidu.com/api?v=…&ak=…&callback=_initBaiduMap），ak 同样取自后台设置项，main.ts 注册方式与原包一致",
-    "自检 self-check pass:true；npm run build:portal 退出码 0；restore/fast-lane 无新提交"
+    "第 1 轮未改代码：逐段对照原 chunk index.178332063620096.js，地图 ready（LocalCity）、zoomend 轮询、ct 边界取值、h/I/E 三个列表请求、te/le/re 三个重置函数、vt/ft/wt 页签切换与还原版 index.vue 逻辑逐条一致；ref/reactive 别名按 maps.vue（Vt=ref、Ut=reactive）",
+    "第 1 轮依据：还原 DOM 中「查 询」「重 置」「找机构」各只有一个匹配目标，不是定位器歧义；vue-baidu-map-3x 1.0.40 加载地址与原包一致，ak 同样取自后台设置项",
+    "第 2 轮未改代码：门槛（commit 1b20769）requests/steps 已通过，只剩 html/text/pixel；原版侧 cls 仍为 headerBox，与第 1 轮判断一致，页面侧无可改之处",
+    "第 2 轮自检：fl-vue 更新到 restore/fast-lane 1b20769 后 self-check pass:true；本页文件自 9ca12ff/1bde32c 后无变化"
   ]
 }
