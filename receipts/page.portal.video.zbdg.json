@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.video.zbdg",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/video/zbdg.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "9f54b8e9feedd49acae11875579a5c3b8ca48739"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似共享层问题：apps/portal/public/sjz/（原包 legacy-dist/portal/sjz/ 的静态资源）在 restore/fast-lane 上缺失，页面 .vidTop 的 background url(/sjz/home/vidBg.jpg) 404。hmrsfw-vue 7f7ad2d（HM-796 / upg-5，仅在 restore/upg-5-a1）已原样补齐 34 个文件，需带进 restore/fast-lane 后重跑门槛"
+  ],
+  "notes": [
+    "fix 1 未改页面：gate.1 load pixel 33.144% 全部落在顶部 1920x300 的 div.bgBoxTop.vidTop 背景区域（原版有背景图，还原为白底），搜索卡片、标题按钮等前景一致",
+    "依据：zbdg.vue 的 .vidTop 规则与原 chunk CSS（zbdg.1783320636200.css）逐字一致，都是 url(/sjz/home/vidBg.jpg)；门槛 page 模式静态服务 [outDir, apps/portal/public]（tools/gate.mjs:178、tools/gate/appserver.mjs:303），而 restore/fast-lane 的 apps/portal/public 下没有 sjz/，原版侧 legacy-dist/portal/sjz/home/vidBg.jpg 存在",
+    "public/ 不在本单 target / subComponentDir 内，按规则不在页面里绕（不改成内联或 import 资源），记入 needsFromSkeleton",
+    "self-check pass（restore/fast-lane 9f54b8e，未新增提交）"
+  ]
+}
