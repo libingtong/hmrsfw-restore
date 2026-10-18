@@ -1,0 +1,27 @@
+{
+  "id": "page.portal.talents.talentnew.talentList",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/talentnew/talentList.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "dd509163d67d8d29bd655143cceed19831be7e92"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似共享层问题（load.pixel）：gate.1 的 1.290% 像素差全部落在元素截图 y≈290–390 这一条（带外 0 像素差）。原版这一条是 /talents 布局的固定头部（.headerCls{position:fixed;z-index:1000}，原 homeView / headers chunk）——元素高 1372、视口约 1080，截图滚动后固定头部叠在视口顶部，即元素内 y≈295 处；还原版截图里没有这层头部。页面模板不含头部，问题在外壳 / 布局：views/talents/homeView.vue + homeView/headers.vue 是否挂在 /talents/talentsHome 上、头部是否渲染为固定定位，需由外壳负责方核对",
+    "疑似共享层或比对器问题（load.html）：HTML 的全部差异是原版 18 个 <input>（a-input 1 个、a-radio-button 16 个、分页快速跳转 a-input-number 1 个）多一个空的 style=\"\"，还原版没有；其余逐字相同。原 chunk 给这几个组件传的 props 只有 class / value / placeholder / size，没有 style，页面无法也不应产生它；带固定 style 的 select 搜索框不受影响，说明是原版运行时 / 外壳对无行内样式的 input 的副作用，不是页面代码。rules/compare/44-motion-state.json（把 style=\"\" 视同没有 style）目前 enabled:false 待审计，是否启用请走规则变更单"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐段对照原 chunk talentList.17833206362002.js：四个本地接口、state 初值（pageSize 9、education \"80\" 等）、onMounted 里 Qe()+d()、模板结构与 props、Recommend type=10 tag=/talents 均与还原版一致；样式块与原 CSS 的定位 / z-index 规则一致",
+    "gate.1 load.html：差异只有原版 input 上的空 style=\"\"（18 处），见 needsFromSkeleton 第 2 条",
+    "gate.1 load.pixel：差异只在原版固定头部叠加的那一条，页面内容区像素一致，见 needsFromSkeleton 第 1 条",
+    "self-check pass（restore/fast-lane dd50916）；npm run build:portal 通过；无代码改动，未 land"
+  ]
+}
