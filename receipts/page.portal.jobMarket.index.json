@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.jobMarket.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/jobMarket/index.vue",
+    "apps/portal/src/views/jobMarket/index/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "521afbd1c91d72b9f68a61a3cee1914a55010ddb"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：index.vue 两张抽出的图片（introImg、tipsImg）由 new URL(\"./index/assets/*.png\", import.meta.url).href 改为 import 默认导入。原 chunk 里二者是内联 data:image/png;base64（均小于 assetsInlineLimit）；门槛 page 模式 ondemand 的 buildAssetsPlugin 不处理 new URL 形式，还原版得到 /src/views/jobMarket/index/assets/*.png，即 gate.1 load/final 在 section.main 下的两处 img src 差异（offset 260，长度差即 base64 内容）",
+    "依据：HM-26 已合并，同分支 customerService.index（HM-240）、recruitMarket.marketHome.home（HM-248）已同样改回 import；本次 npm run build:portal 产物页面 chunk 内含 2 处 data:image/png;base64，与原 chunk 相同",
+    "未改：rest 侧 console 报错 Cannot read properties of null (reading 'coverPicPath') 来自 loadIntro 中 queryById 返回 result 为空时读取 coverPicPath，原 chunk 写法相同（原代码问题），不影响 DOM",
+    "文档不一致：tools/fast-lane/restorer-instructions.md 第 46 行仍要求 new URL 写法（HM-26 前的说法）；疑似比对器问题：buildAssetsPlugin 不镜像 new URL(…, import.meta.url)",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane dd50916"
+  ]
+}
