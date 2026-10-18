@@ -3,7 +3,7 @@
   "task": "HM-295",
   "branch": "restore/fast-lane",
   "result": "no-page-fix",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/region/innovation/index.vue",
     "apps/portal/src/views/region/innovation/index/"
@@ -15,7 +15,7 @@
   },
   "todos": [],
   "unresolved": [
-    "gate.1 load/final html 差异两类均不在页面代码里，本轮未改代码、未提交 hmrsfw-vue（restore/fast-lane 仍为 fc8d72e）"
+    "gate.1（第 1、2 次门槛）load/final html 差异两类均不在页面代码里，两轮都未改代码、未提交 hmrsfw-vue（restore/fast-lane 仍为 fc8d72e，这是有意的，不是漏推送）"
   ],
   "needsFromSkeleton": [
     "疑似比对器问题：快捷服务四个 div.text 的 background 用 new URL(\"/xjhm/innovation/*_icon.jpg\", self.location).href 生成绝对地址（原 chunk 写法，还原版逐字一致），门槛 tools/gate/serve.mjs 每次 listen(0) 随机端口，基线与还原版的 127.0.0.1:<端口> 不同；rules/compare 没有归一化本机源，gate.1 首差 offset 2866（div.clipperServiceContent > div.box）即此处。需要门槛对本机 origin 做规范化（规则变更单）或登记已知差异",
@@ -25,6 +25,7 @@
     "fix 1：未改代码。逐项对照 sourceChunk index.178332063620066.js：Swiper 的 loop/autoplay/speed/navigation/spaceBetween/coverflowEffect/centeredSlides/slidesPerView/effect/pagination 属性、SwiperCore.use 模块顺序、quickServiceIcons 的 new URL(…, self.location) 均与原代码一致",
     "疑似比对器问题：本机端口进入 background url（见 needsFromSkeleton 第 1 条）",
     "疑似共享层问题：swiper 8.4.7 与原包版本不同（见 needsFromSkeleton 第 2 条）",
-    "self-check pass（renderEquiv 报告 DIFF 为既有报告项，非失败项）"
+    "self-check pass（renderEquiv 报告 DIFF 为既有报告项，非失败项）",
+    "fix 2：未改代码。门槛第 2 次结果与第 1 次逐行相同（本机端口 4 处 + swiper 分页器位置/watch-progress 类/slide 样式顺序/final 轮播位置），产物提交仍为 fc8d72e 是因为两轮都没有页面层可改的差异；按快速通道规则第 2 轮后应交裁定员，需裁定：本机 origin 归一化（规则变更单）或登记已知差异，以及 swiper 降版本（E7）"
   ]
 }
