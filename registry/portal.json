@@ -4986,7 +4986,7 @@
      "inline": false,
      "path": "@/shared/images",
      "export": "moreInfoImg",
-     "status": "reserved",
+     "status": "restored",
      "owner": "shared.portal.modules",
      "original": "moreInfo.1783320636200.js#_"
     }
