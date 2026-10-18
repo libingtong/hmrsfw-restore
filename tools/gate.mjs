@@ -29,13 +29,13 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { appDir as resolveAppDir } from "./app-dir.mjs";
 import { gitExclude } from "./lib/git-exclude.mjs";
-import { REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, stateDir } from "./gate/common.mjs";
+import { REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, origSelOf, scopeRootSel, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256 } from "./gate/har.mjs";
 import { runPage } from "./gate/replay.mjs";
 import { compareRuns } from "./gate/compare.mjs";
 import { loadKnownDiffs, loadRules } from "./gate/rules.mjs";
 import { staticStage, pageFiles } from "./gate/static.mjs";
-import { buildApp, startOnDemand } from "./gate/appserver.mjs";
+import { buildApp, realpathOr, scopeIdPlugin, startOnDemand } from "./gate/appserver.mjs";
 import { serveStatic } from "./gate/serve.mjs";
 import { createShimmer, loadRegistry, reservedShared, shimPlugin, ShimError } from "./gate/shim.mjs";
 import { readBaseline } from "./baseline.mjs";
@@ -60,7 +60,19 @@ async function baselineFor(wo, state) {
   if (sha256(readFileSync(b.har.path)) !== b.har.sha256) return { missing: "HAR changed since the baseline" };
   const script = await interactScript(wo.id);
   if ((script ? sha256(JSON.stringify(script)) : null) !== (b.script ?? null)) return { missing: "interaction script changed since the baseline" };
+  // Same HAR and script, only the root selector changed (baselines from before HM-251 took a recordVia page's root with
+  // `origSel`, i.e. the parent page's): recomputed from the same HAR, offline, see refreshBaseline().
+  if ((b.sel ?? SITES[wo.site].origSel) !== origSelOf(wo)) return { missing: "root selector changed since the baseline", refresh: b.har.path };
   return { baseline: b, dir };
+}
+
+// Re-runs baseline.mjs for one order with the HAR its baseline was recorded with (legacy-dist replayed under that HAR,
+// nothing goes to the test environment). Dry runs write into their own directory, never over the shared baseline.
+function refreshBaseline(wo, har, state, dry) {
+  const out = dry ? path.join(state, "gate", `baseline-dry${process.pid}`, wo.id) : path.join(state, "baseline", wo.id);
+  let r;
+  try { r = JSON.parse(execFileSync(process.execPath, [path.join(ROOT, "tools/baseline.mjs"), wo.id, "--har", har, "--out", out], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], timeout: 15 * 60000 }).trim().split("\n").pop()); } catch (e) { r = { ok: false, error: String(e.stdout || e.message).trim().split("\n").pop().slice(0, 200) }; }
+  return r.ok ? { baseline: readBaseline(out), dir: out } : { missing: `baseline refresh failed: ${r.error ?? "?"}` };
 }
 
 // --branch: a private worktree of the hmrsfw-vue checkout at origin/<branch>, inside the gate dir.
@@ -112,7 +124,7 @@ export async function gate(argv) {
 
   // Baselines first: without one there is nothing to compare against.
   const bases = {}, missing = [];
-  for (const wo of wos) { const b = await baselineFor(wo, state); if (b.missing) missing.push({ wo: wo.id, why: b.missing }); else bases[wo.id] = b.baseline; }
+  for (const wo of wos) { let b = await baselineFor(wo, state); if (b.refresh) b = refreshBaseline(wo, b.refresh, state, dry); if (b.missing) missing.push({ wo: wo.id, why: b.missing }); else bases[wo.id] = b.baseline; }
   if (missing.length && !regress) return { pending: "record", missing, attempt, durationMs: Date.now() - t0 };
   const judged = wos.filter((w) => bases[w.id]);
 
@@ -156,20 +168,29 @@ export async function gate(argv) {
     const tb = Date.now();
     const apps = [...new Set(judged.map((w) => w.app))];
     const servers = {};
-    const routesOf = (a) => judged.filter((w) => w.app === a && w.target).map((w) => ({ route: w.route, recordPath: w.recordPath, file: path.join(appDir, w.target) }));
+    // A recordVia page is mounted inside its parent's restored page (common.mjs scopeRootSel): the parent passes the
+    // props, the restored component is found by its compiled scope id (scopeIdPlugin).
+    const mountOf = {};
     const buildFail = {};
+    for (const w of judged.filter((x) => x.target)) {
+      const p = w.recordVia ? loadWorkOrder(w.recordVia) : null;
+      mountOf[w.id] = path.join(appDir, p ? p.target ?? "" : w.target);
+      if (p && !(p.target && existsSync(mountOf[w.id]))) buildFail[w.id] = [{ check: "build", where: w.recordVia, hint: `parent page ${w.recordVia} (recordVia) has no restored file on this branch (${p.target})` }];
+    }
+    const routesOf = (a) => judged.filter((w) => w.app === a && w.target && !buildFail[w.id]).map((w) => ({ route: w.route, recordPath: w.recordPath, file: mountOf[w.id] }));
+    const scopeIds = new Map();
     for (const a of apps) {
       const site = Object.keys(SITES).find((s) => SITES[s].app === a);
       const registry = mode === "page" ? loadRegistry(a, opt(argv, "--registry")) : null;
       const used = new Set();
       const shimDir = path.join(gateDir, "shims", a);
-      const plugins = registry && reservedShared(registry).length ? [shimPlugin({ app: a, appDir, registry, shimDir, used, shimmer: createShimmer({ site, registry, outDir: shimDir }) })] : [];
+      const plugins = [scopeIdPlugin(scopeIds), ...(registry && reservedShared(registry).length ? [shimPlugin({ app: a, appDir, registry, shimDir, used, shimmer: createShimmer({ site, registry, outDir: shimDir }) })] : [])];
       try {
         if (mode === "page" && buildKind === "ondemand") {
           const srv = await startOnDemand({ appDir, app: a, gateDir, stateRoot: state, routes: routesOf(a), plugins, allow: [path.join(ROOT, "legacy-dist")] });
           closers.push(() => srv.close());
-          for (const w of judged.filter((x) => x.app === a)) {
-            const errs = await srv.precompile(pageFiles(w, appDir).filter((f) => /\.(vue|ts|js)$/.test(f)));
+          for (const w of judged.filter((x) => x.app === a && !buildFail[x.id])) {
+            const errs = await srv.precompile([...pageFiles(w, appDir), ...(w.recordVia ? [mountOf[w.id]] : [])].filter((f) => /\.(vue|ts|js)$/.test(f)));
             if (errs.length) buildFail[w.id] = errs.map((e) => ({ check: /\[shim\]|ShimError|registry/.test(e.error) ? "shim" : "compile", where: e.file, hint: e.error }));
           }
           servers[a] = srv;
@@ -208,9 +229,12 @@ export async function gate(argv) {
       const steps = await interactScript(wo.id);
       const known = loadKnownDiffs(wo.id, { state, site: wo.site });
       const har = loadHar(base.har.path);
+      const restSid = wo.recordVia ? scopeIds.get(realpathOr(path.join(appDir, wo.target))) : null;
+      if (wo.recordVia && !restSid) { out.pages.push({ wo: wo.id, pass: false, stage: "browser", failed: [{ check: "root", where: "load", hint: `restored ${wo.target} has no scope id (no <style scoped>): it cannot be found inside the parent page ${wo.recordVia}` }] }); continue; }
+      const restSel = restSid ? scopeRootSel(restSid) : REST_SEL;
       const once = async (tag) => {
-        const rest = await runPage(browser, { origin: servers[wo.app].origin, url: wo.recordPath, storage: restStorage(wo, assets, base.storagePatch, har), har, sel: REST_SEL, steps, shotDir: dir, tag });
-        return { rest, cmp: compareRuns(base, rest, { rules, site: wo.site, known: known.list, shotOut: path.join(dir, `${tag}.diff.png`) }) };
+        const rest = await runPage(browser, { origin: servers[wo.app].origin, url: wo.recordPath, storage: restStorage(wo, assets, base.storagePatch, har), har, sel: restSel, steps, shotDir: dir, tag });
+        return { rest, cmp: compareRuns(base, rest, { rules, site: wo.site, known: known.list, shotOut: path.join(dir, `${tag}.diff.png`), restSel, inParent: !!restSid }) };
       };
       // A failing restored run is repeated once (busy machine: animations, toasts and timers land differently); the
       // first run's failures stay in the local report.

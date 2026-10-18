@@ -122,14 +122,16 @@ function hint(where, a, b) {
 }
 
 // baseline: { runs:[run, run?], shell:{requests} }, rest: restored run. Returns { pass, failed, waived, pixel, knownUsed }.
-export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }) {
+// inParent: the restored component runs inside its restored parent page (recordVia, HM-251), so the toasts the shell
+// probe saw (the parent's and its other components') are dropped on the restored side too, as the shell's requests are.
+export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, restSel = "#poc-main > *", inParent = false }) {
   const shell = new Set(baseline.shell?.requests ?? []);
   const exclude = rules.shellRequests(site);
   const used = new Set();
   // The original element compared with the restored root, per phase: the one with the restored root's class in that
   // phase (load root for load, final root for final) — same element on both sides, same content compared (HM-779).
   const restCls = { load: rest.load?.candidates?.[0]?.cls ?? null, final: rest.final?.candidates?.[0]?.cls ?? null };
-  const R = project(rest, { rules, shell, exclude, known, side: "rest", used });
+  const R = project(rest, { rules, shell, exclude, known, side: "rest", used, ...(inParent ? { shellToasts: baseline.shell?.toasts ?? [] } : {}) });
   const O = baseline.runs.map((run) => project(run, { rules, shell, exclude, cls: restCls, known, side: "orig", used, shellToasts: baseline.shell?.toasts ?? [] }));
   const failed = [];
   const noRoot = (ph) => ph in R.root && O.every((o) => o.root[ph] === false);
@@ -137,7 +139,7 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }
   const rootHint = (ph) => `no original root candidate with class ${JSON.stringify(restCls[ph])} (restored ${ph} root); original candidates: ${[...new Set(baseline.runs.flatMap((r) => (r[ph]?.candidates ?? []).map((c) => JSON.stringify(c.cls))))].join(", ")}`;
   for (const ph of ["load", "final"]) if (noRoot(ph)) failed.push({ check: "root", where: ph, hint: rootHint(ph) });
   if (!noRoot("load") && O.every((o) => o.empty)) failed.push({ check: "baseline", where: "load", hint: "original page root not found in the baseline" });
-  if (R.empty) failed.push({ check: "render", where: "load", hint: "restored page root (#poc-main > *) is empty" });
+  if (R.empty) failed.push({ check: "render", where: "load", hint: `restored page root (${restSel}) is empty` });
   const keys = Object.keys(R).filter((k) => k.includes(".") && k !== "steps.errors");
   for (const where of keys) {
     if (!(where in O[0])) { failed.push({ check: where.split(".")[1], where: where.split(".")[0], hint: "baseline has no interaction run" }); continue; }
