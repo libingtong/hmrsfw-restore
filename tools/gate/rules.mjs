@@ -33,7 +33,12 @@ const stripMotion = (tree) => mapTree(tree, (n) => {
   if (!bases.size) return { ...n, a: n.a.filter(([k, v]) => !(k === "style" && v.trim() === "")) };
   return { ...n, a: n.a.filter(([k]) => k !== "style").map(([k, v]) => (k === "class" ? [k, tokens.filter((t) => !MOTION.test(t) && !bases.has(t)).join(" ")] : [k, v])) };
 });
-const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition };
+// An inline style with no declarations (style="") renders as no style attribute. The gate itself leaves it behind:
+// Playwright screenshots hide the caret by setting caret-color on every input/textarea/[contenteditable] of the page and
+// restoring the old value afterwards, which leaves style="" where there was none; captureRoot reads each candidate's HTML
+// before its own screenshot, so whether an input has it depends on how many candidates were shot before (HM-336).
+const dropEmptyStyle = (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k, v]) => !(k === "style" && v.trim() === "")) }));
+const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle };
 const dropAttrs = (names) => (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k]) => !names.has(k)) }));
 
 export function loadRules(dir = path.join(ROOT, "rules/compare")) {
