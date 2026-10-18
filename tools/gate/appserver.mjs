@@ -65,6 +65,20 @@ function cloneDir(src, dst) {
 
 // Plugin: make sure the work order's route reaches the page even when the app router does not list it yet (page
 // orders may not edit router.ts); appended after the router is created, before the app uses it.
+// The fallback route keeps the page mounted top-level under #poc-main (the restored root is #poc-main's first child,
+// HM-779), but carries the meta the app's own record would give: the portal router adds the records of the router file
+// (router-xjhm.json, meta such as hideHeader / hideFooter) in its first beforeEach, after this code ran, and the
+// meta-less fallback hid them from the shell, which then showed the header and footer the original hides (HM-250).
+// Every app addRoute re-adds the fallback with the merged meta of the app's records for that path (none → {}). The
+// fallback is `strict` (+0.7 path score in vue-router 4, root path included), so it still wins over a same-path record
+// added later, as it did by insertion order before. It has no name, so a navigation spread from a route it matched
+// (`next({ ...to, replace: true })`) still resolves by path.
+export const gateRouteCode = (routes) => routes.map((r) => {
+  const P = JSON.stringify(r.recordPath), rec = (meta) => `{ path: ${JSON.stringify(r.route)}, strict: true, meta: ${meta}, component: () => import(${JSON.stringify(r.file)}) }`;
+  return `{ const unmatched = () => { const m = router.resolve(${P}).matched; return !m.length || /pathMatch/.test(m[m.length - 1].path); };
+  if (unmatched()) { const add = router.addRoute; let drop = add(${rec("{}")});
+    router.addRoute = (...a) => { const out = add(...a); drop(); const meta = unmatched() ? {} : { ...router.resolve(${P}).meta }; drop = add(${rec("meta")}); return out; }; } }`;
+}).join("\n");
 function routePlugin({ appDir, app, routes }) {
   const routerFile = path.join(appDir, "apps", app, "src/router.ts");
   return {
@@ -72,8 +86,7 @@ function routePlugin({ appDir, app, routes }) {
     enforce: "post",
     transform(code, id) {
       if (id.split("?")[0] !== routerFile || !routes.length || !/export const router\b/.test(code)) return null;
-      const add = routes.map((r) => `{ const m = router.resolve(${JSON.stringify(r.recordPath)}).matched; if (!m.length || /pathMatch/.test(m[m.length - 1].path)) router.addRoute({ path: ${JSON.stringify(r.route)}, component: () => import(${JSON.stringify(r.file)}) }); }`).join("\n");
-      return { code: code + "\n// gate: routes of the work orders under test\n" + add + "\n", map: null };
+      return { code: code + "\n// gate: routes of the work orders under test\n" + gateRouteCode(routes) + "\n", map: null };
     },
   };
 }
