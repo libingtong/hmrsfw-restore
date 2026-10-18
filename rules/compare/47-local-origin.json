@@ -1,0 +1,14 @@
+{
+ "id": "local-origin",
+ "kind": "html",
+ "enabled": true,
+ "since": "HM-295",
+ "why": "原包用 new URL(\"/<路径>\", self.location).href 生成绝对地址（还原版逐字相同；门槛按需编译时 gate-build-assets-url 也改写成同一形式，HM-778），地址的 origin 是门槛自己的回放服务器。两侧回放服务器都是 127.0.0.1 上的随机端口（tools/gate/serve.mjs、tools/gate/appserver.mjs 都 listen 端口 0），所以只把端口号换成占位：协议、主机、路径、参数、属性在不在、在哪个元素上照常比较，相对地址与绝对地址仍算不同。证据：legacy-dist/portal/assets/index.178332063620066.js 偏移 3135、3198、3261、3324（innovation 四个 _icon.jpg）；statistics.17833206362002.js 偏移 15742（lll.png）。见 docs/rule-changes/HM-295.md",
+ "subs": [
+  [
+   "http://127\\.0\\.0\\.1:\\d+",
+   "g",
+   "http://127.0.0.1:#"
+  ]
+ ]
+}
