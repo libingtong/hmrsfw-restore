@@ -1,0 +1,28 @@
+{
+  "id": "page.uc.myaccuse",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/uc/src/views/myaccuse.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "dd01d1b"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题（高负载下点击超时）：gate.1 两遍还原侧回放都失败在 Playwright 点击上，且失败的步骤不同。第一遍（firstFailed）是 step0「查询」按钮点击超时（页面顶部），重跑那遍（rest.retry）是 step2 .ant-pagination-item-2 点击超时；replay.mjs 的 step() 失败后 1 s 重试一次，两次都超时（5000 ms）。requests 失败项是连带结果：分页 2 没点上，pageNo=2 的 volist 改由 step4 的 .ant-pagination-next（从第 1 页翻到第 2 页）发出；原版点了 2 之后已在末页，next 不再发请求。两侧请求总数、参数、顺序都一样（4/4），只是落在不同步骤。load.html 与原版逐字一致（分页 ul 的 li、class、tabindex 相同），截图像素差 0，errors 为空。本轮 browser 阶段 252 s，本机负载均值 25–35（10 核）"
+  ],
+  "notes": [
+    "fix 1：没有改代码（页面与门槛同一提交 dd01d1b），无需 fl.sh land",
+    "myaccuse.vue 与原 chunk myaccuse.1751615607545.js 对照：a-pagination 的 modelValue/onUpdate:modelValue、total、page-size、onChange=onPageChange（原 S：current=t; l()）、onShowSizeChange、show-total 一一对应；查询 onSearch（原 k）、重置 onReset→reloadcontent（原 v→b()）一致。render-equiv EQUAL 817/817 token",
+    "失败步骤不固定（第一遍 step0 顶部按钮，第二遍 step2 底部分页），页面里没有定时器、遮罩或会让元素持续移动的逻辑，点击不可达不是页面代码造成；与 page.uc.allconsult fix 1 记录的同类现象一致",
+    "建议：门槛员在空闲时段复跑。若稳定复现，请裁定员评估在 report 里输出每一步的 err/重试信息，或放宽高负载下的点击等待（走规则变更单）",
+    "模板里 Page.current / index 引用未定义（原 chunk 的 t.Page 同样未定义）属原代码问题，原样保留；本次 diff 不涉及",
+    "self-check pass（私有克隆 restore/fast-lane dd01d1b）、build:uc pass"
+  ]
+}
