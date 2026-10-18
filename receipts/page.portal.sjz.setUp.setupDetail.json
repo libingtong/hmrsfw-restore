@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.sjz.setUp.setupDetail",
+  "branch": "restore/fast-lane",
+  "result": "needs-skeleton",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/sjz/setUp/setupDetail.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "9f54b8e9feedd49acae11875579a5c3b8ca48739"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "门户外壳 public 缺 apps/portal/public/sjz/setup/detailBg.png（原包 legacy-dist/portal/sjz/setup/detailBg.png）：restore/fast-lane 上 apps/portal/public/sjz/ 整个不存在，.bgTop 背景 url(/sjz/setup/detailBg.png) 404。HM-796 / upg-5 的 7f7ad2d 已把 legacy-dist/portal/sjz/ 原样补进 apps/portal/public/sjz/（detailBg.png 内容与原包一致），但只在 origin/restore/upg-5-a1，未进 restore/fast-lane；需要把这份外壳资源合进 restore/fast-lane 后重跑门槛"
+  ],
+  "notes": [
+    "未改代码：疑似共享层问题（外壳 public/）。依据：gate.1 的 load/final HTML、文本、请求、弹层与原版逐字一致；像素差 91.48% 分布在整块 1920x385 的 .bgTop 区域（diff 图是背景图纹理），还原截图该区域为白底白字",
+    "页面样式与原 chunk 一致：setupDetail.1783320636200.css 的 .bgTop[data-v-80c8c83d]{background:url(/sjz/setup/detailBg.png);height:385px}，还原 setupDetail.vue 的 scoped .bgTop 相同",
+    "不在页面里绕（如把图片拷进 subComponentDir 改相对路径）：快速通道手册第 2 节第 5 条，公共库/外壳缺东西记阻塞、写明要改什么；public/ 不在本单 target / subComponentDir 内",
+    "self-check pass（renderEquiv 仍为 DIFF 1611/1635，与本次像素失败无关，未动）；npm run build:portal 通过；restore/fast-lane 9f54b8e 无新提交"
+  ]
+}
