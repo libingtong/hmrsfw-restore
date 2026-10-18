@@ -1,0 +1,7 @@
+{
+ "id": "baidu-tile-order",
+ "kind": "tree",
+ "enabled": true,
+ "since": "HM-239",
+ "why": "百度地图 JS API（vue-baidu-map-3x 从 api.map.baidu.com 加载，原版与还原版同一个库）的底图瓦片 <img> 在各自的 onload 里才 appendChild 到瓦片层（getscript `this.hb.onload=function(){…f.Mb.appendChild(i.hb)…}`），兄弟顺序就是下载完成的顺序；HM-239 两次原版运行的 45 张瓦片集合相同、顺序不同。只在一个元素的子节点全是百度瓦片图时按瓦片 (z, y, x) 排序；有哪些瓦片、src（域名分片、x/y/z、版本）和 style（位置、尺寸）照常比较。见 docs/rule-changes/HM-239-C.md"
+}
