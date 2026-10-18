@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.talents.index.jobFair",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/index/jobFair.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "521afbd1c91d72b9f68a61a3cee1914a55010ddb"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题：本单是 recordVia 子视图（只被 page.portal.talents.index.index 当组件用，recordPath /talents/index）。门槛原侧回放父页面整页，按 SITES.portal.origSel「main > *」取根；原 chunk index.178332063620098.js 里 jobFair 挂在 .bgColor > .marB80 内，不是 main 的直接子节点，原侧候选里没有 class 为 bgcImg 的元素，pickCandidate 回退到第一个候选（页头 headerBox，1920x90）；还原侧在同一路由单独挂载 jobFair.vue，取到本组件根 bgcImg（1920x526）。两侧比的不是同一个元素，页面代码无法修到通过。与同批 page.portal.talents.index.review 第 1 轮回执所述同一问题，需走规则变更单：recordVia 页面在父页面内按 scopeId（data-v-bb4a8a3f）定位子组件根，或随父页面一并判定"
+  ],
+  "notes": [
+    "fix 1：未改代码。gate.1 失败项 html / text（load、final）与 pixel（load）全部由原侧根取成页头 headerBox 引起：原侧 cls=headerBox、innerText 3 行，还原侧 cls=bgcImg、innerText 9 行，offset 12 起即不同（根 class 不同）",
+    "逐段对照 jobFair.1783320636200.js：Lt（queryPageZcyzList 取 netPageList / outPageList、补 url / name / letter、list 取前 5 条）、Bt（onSlideChange）、Nt（onFairHover）、F（switchSlide）、selectItem、P（日期格式化）与 swiper 配置均与还原版一致；props 只有 izHighHome，父页面不传参；gate.1 load.requests 两侧都是 queryPageZcyzList，一致",
+    "steps 里还原侧 console 有 3 条 slideTo of null：列表为空时 swiper 不渲染、specSwiper 未赋值，点 .left-zp / .right-zp 调 switchSlide → slideTo，原 chunk 的 F 同样直接调 t.specSwiper.slideTo，行为一致，不属失败项，原样保留（原代码问题）",
+    "self-check pass（restore/fast-lane 521afbd）；npm run build:portal 通过；无代码改动，未 land"
+  ]
+}
