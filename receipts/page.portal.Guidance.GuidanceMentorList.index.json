@@ -2,25 +2,28 @@
   "id": "page.portal.Guidance.GuidanceMentorList.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/Guidance/GuidanceMentorList/index.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "e432b50"
+    "gitBase": "9f54b8e"
   },
   "build": "not-run",
   "todos": [],
   "unresolved": [],
   "needsFromSkeleton": [
-    "共享层 @/shared/images：dianzanImg 原包 dianzan.1783320636200.js 导出的是内联 data:image/png;base64（registry/portal.json 该条目也标 inline:true），共享层 images.ts 导出为 /assets/shared/dianzan.png。gate.1 load/final 两处 helpBox 下的差异全部是这张点赞图的 img src（每次 3 处，长度差 1200 = 3 × 400）。页面按 registry 从 @/shared/images 导入 dianzanImg，不能在页面里绕。同一问题已由公共库升级单 HM-800（分支 restore/upg-6-a1，images.ts 内联图改 import，目前 in_review、未合入 restore/fast-lane）处理，合入后本页应可通过"
+    "共享层 @/shared/images：dianzanImg 原包 dianzan.1783320636200.js 导出的是内联 data:image/png;base64（registry/portal.json 该条目也标 inline:true），共享层 images.ts 导出为 /assets/shared/dianzan.png。gate.1 load/final 两处 helpBox 下的差异全部是这张点赞图的 img src（每次 3 处，长度差 1200 = 3 × 400）。页面按 registry 从 @/shared/images 导入 dianzanImg，不能在页面里绕。同一问题已由公共库升级单 HM-800（分支 restore/upg-6-a1，images.ts 内联图改 import，第 2 轮时仍 in_review、未合入 restore/fast-lane（9f54b8e 的 images.ts 仍导出 /assets/shared/dianzan.png））处理，合入后本页应可通过"
   ],
   "notes": [
     "fix 1：页面未改。对照 sourceChunk index.178332063620010.js，点赞图来自 dianzan chunk 的导出 _，页面写法 <img :src=\"dianzanImg\" /> 与原代码一致",
     "疑似共享层问题：helpBox 内 img src 原版为内联 data URI、还原版为 /assets/shared/dianzan.png，来自 shared/images.ts 的值，依据见 needsFromSkeleton",
     "把 3 处 dianzan 图片 src 抹平后，gate.1 的 load、final HTML 两侧完全一致（两次原版取样也一致），页面自身没有剩余差异",
-    "建议：HM-800 合入 restore/fast-lane 后再送门槛；self-check pass（restore/fast-lane e432b50），无新提交"
+    "建议：HM-800 合入 restore/fast-lane 后再送门槛；self-check pass（restore/fast-lane e432b50），无新提交",
+    "fix 2：页面仍未改。门槛复跑（commit 9f54b8e）的 load/final 差异与第 1 轮相同，仍只有 3 处 dianzan 图片 src，抹平后两侧 HTML 完全一致，两次原版取样一致",
+    "疑似共享层问题，同 HM-800：restore/upg-6-a1 尚未合入 restore/fast-lane，本页在其合入前无法通过，页面单没有可改之处；建议裁定员把本页与 HM-249 一并挂到 HM-800",
+    "self-check pass（restore/fast-lane 9f54b8e），无新提交"
   ]
 }
