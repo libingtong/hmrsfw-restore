@@ -2,7 +2,7 @@
   "id": "page.portal.talents.setUp.setupList",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/setUp/setupList.vue",
     "apps/portal/src/views/talents/setUp/setupList/projectInfo.vue"
@@ -27,6 +27,9 @@
     "html 差异 2：#weightTags 的 class/color 随机（共享 tagcanvas 的 Math.random），原版两次运行之间也不同，非页面问题",
     "pixel 2.24%：按 rest.diff.png 标红像素统计：y<70 顶部 27590、标签云框 9830、其他区域 0。顶部是原版外壳页头叠层，标签云是共享 tagcanvas 未接 TagCanvas 库；页面自身区域无像素差",
     "load.text、final.text、overlay、cls 两边一致；final.html 只剩 #weightTags 随机项",
-    "self-check pass（私有克隆 restore/fast-lane c56909a）；无代码改动，无需 fl.sh land"
+    "self-check pass（私有克隆 restore/fast-lane c56909a）；无代码改动，无需 fl.sh land",
+    "fix 2：仍未改代码。gate.2 失败项与 gate.1 相同：load.html 只有搜索框 style=\"\" 和 #weightTags 随机 class/color 两处（这次随机值又与上次不同，佐证随机），pixel 2.24% 的标红像素仍是顶部 27590、标签云框 9830、其他 0",
+    "回应门槛员「两次 commit 同为 c56909ac」：第 1 轮按依据判定差异不在 target/subComponentDir，未提交代码，commit 不变是预期；页面文件最后一次改动仍是 210f301",
+    "两轮修正后仍失败，三处都需要共享层（tagcanvas 接入 TagCanvas）、外壳（页头叠层）或比对器（空 style、随机标签不稳定项）层面裁定，建议交裁定员"
   ]
 }
