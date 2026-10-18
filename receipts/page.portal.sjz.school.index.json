@@ -1,0 +1,25 @@
+{
+  "id": "page.portal.sjz.school.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/sjz/school/index.vue",
+    "apps/portal/src/views/sjz/school/index/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "1b207691e35933dab4a840c240f928eb6c6adc6e"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：index.vue 3 个本页局部接口的 URL 改回原 chunk（局部常量 _ / $ / O）：fetchArticleList → GET /xf-job/job/licenseFree/getArticleList，fetchFairList → POST /xf-job/job/licenseFree/xfJobFair/getFairList，fetchJobList → POST /xf-job/job/licenseFree/findJobList。原还原员为避开 self-check 的「与公共库同名」警告给函数改名时，把 URL 里的路径段也一起改成了 fetch*，导致 gate.1 load 请求缺 3 个、多 3 个（不在 HAR 中）",
+    "函数名保留 fetch* 前缀（原 chunk 中是本页自己定义的，不是从公共模块导入，按 self-check 提示改不同名字）；改后 self-check 无警告",
+    "gate.1 steps 差异（step2 原版发 getFairList、还原版无请求）同源：交互脚本的 optional 点击依赖招聘会列表分页，旧 URL 拿不到 HAR 应答，列表和分页没渲染，点击被跳过；URL 改对后应随之恢复。本机无门槛加密密钥，未在本地跑回放，留给门槛员复测",
+    "self-check pass；npm run build:portal 通过；合入 restore/fast-lane fe4e53a"
+  ]
+}
