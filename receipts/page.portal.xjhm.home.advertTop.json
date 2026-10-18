@@ -1,0 +1,24 @@
+{
+  "id": "page.portal.xjhm.home.advertTop",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/xjhm/home/advertTop.vue",
+    "apps/portal/src/views/xjhm/home/advertTop/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": []
+  },
+  "todos": [],
+  "unresolved": [
+    "gate.1 browser:root（load/final）未修：原因不在页面代码，见 notes"
+  ],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：未改代码。gate.1 两项 root 失败都在原版一侧：报告里两次原版运行的 empty 均为 true，load/final 的 html 均为 null，root.load/final 均为 false；也就是原版选择器 portal origSel「main > *」一个元素都没抓到（没有元素时 replay.mjs 会补一个 cls:null 的占位候选，hint 里的「original candidates: null」就是这个占位）。还原一侧根节点 div.relative、style height:512px，与原 chunk advertTop.17833206362006.js 里的 class:\"relative\",style:{height:\"512px\"} 一致",
+    "疑似比对器问题（recordVia 页）：本单 routes 为空，recordVia 是 page.portal.xjhm.home.index，录制路径为 /。在同一路径 /、同一门槛提交 ca4dc51 下，home.index 自己那次门槛（HM-279 gate.1）能抓到原版根节点，而且 advertTop 的根 div.relative 就是它的子节点（HM-279 的 hint 路径是 div > div.relative > …）。所以 ① 本单的原版基线是空的，需要门槛员或录制员核对基线；② 就算基线正常，「main > *」只能取到 home.index 那个没有 class 的根 div，取不到嵌在下一层的 div.relative。compare.mjs 的 pickCandidate 只在「main > *」的直接子元素里按 class 匹配，所以只被引用、不单独挂路由的页面，root 这项永远对不上。这需要比对器给 recordVia 页定位嵌套组件的根节点，按规则变更单流程处理",
+    "页面代码从门槛提交 ca4dc51 到 restore/fast-lane HEAD e432b50 没有改动；self-check page.portal.xjhm.home.advertTop pass:true；没有在 restore/fast-lane 上提交或推送任何东西"
+  ]
+}
