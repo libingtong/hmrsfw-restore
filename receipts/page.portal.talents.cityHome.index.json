@@ -2,26 +2,30 @@
   "id": "page.portal.talents.cityHome.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/cityHome/index.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "ca4dc51"
+    "gitBase": "fc8d72e"
   },
   "todos": [],
   "unresolved": [],
   "needsFromSkeleton": [
     "疑似共享层问题（load.html / final.html）：两侧 HTML 只差一处，在子组件 views/talents/cityHome/helpCenter.vue 的 <img :src=\"moreInfoImg\">（原 helpCenter chunk 导入 moreInfo.<hash>.js 的 _）。原版 src 为 /assets/moreInfo.<hash>.png，还原版为 /assets/shared/moreInfo.png，长度差 7 即这段路径差；两张 PNG 逐字节相同。值来自 @/shared/images 的 moreInfoImg（registry/portal.json moreInfo 条目原值即 /assets/moreInfo.<hash>.png）。共享层升级单 HM-800（hmrsfw-vue restore/upg-6-a1 eb2b5ff）已把 moreInfoImg 改回原包地址，但尚未进入 restore/fast-lane（当前 ca4dc51 仍是 /assets/shared/moreInfo.png），需把该升级合入 restore/fast-lane 后重跑门槛",
-    "疑似共享层问题（load.pixel 2.883%）：主要差异在帮助中心区块。helpCenter.vue 按原 CSS 用 url(/sjz/newHome/helpBg.png) 作 .helpContent 背景、@/shared/images 的 yjfkImg_ / yjfkImgA 为 /sjz/newHome/wjdc.png、/sjz/newHome/yjfk.png，与原包一致；但 hmrsfw-vue 的 apps/portal/public/ 下没有原包静态目录 sjz/（legacy-dist/portal/sjz/newHome/ 有 helpBg.png 等；integration、main、upg-6 也都没有），page 模式门槛从 apps/portal/public 提供静态文件，于是背景和两张图 404（report errors 里的 404 即此）。同样缺的还有 baotou、binhai、jsonpCity、luoyang、xinxiang、zcyz、zzgj。需共享层 / E7 补齐 public 静态目录，页面单不能改 public",
+    "疑似共享层问题（load.pixel 2.883%）：主要差异在帮助中心区块。helpCenter.vue 按原 CSS 用 url(/sjz/newHome/helpBg.png) 作 .helpContent 背景、@/shared/images 的 yjfkImg_ / yjfkImgA 为 /sjz/newHome/wjdc.png、/sjz/newHome/yjfk.png，与原包一致；但 hmrsfw-vue 的 apps/portal/public/ 下没有原包静态目录 sjz/（legacy-dist/portal/sjz/newHome/ 有 helpBg.png 等；integration、main、upg-6 也都没有），page 模式门槛从 apps/portal/public 提供静态文件，于是背景和两张图 404（report errors 里的 404 即此）。同样缺的还有 baotou、binhai、jsonpCity、luoyang、xinxiang、zcyz、zzgj。需共享层 / E7 补齐 public 静态目录，页面单不能改 public。HM-796 的 public/sjz/ 曾以 27d2c1f cherry-pick 进 restore/fast-lane，随后按 HM-281 裁定由 fc8d72e 撤销，因此 gate.2 仍缺",
     "疑似外壳 / 共享层问题（load.pixel 次要部分）：右侧悬浮条「点击展开」（@/shared/homeRight.vue，固定定位）整块被标为差异，不在比对的 HTML 根节点内；原版截图未保留，无法逐像素判断，多半是固定定位元素在元素截图中的位置不同，待前两项修好后看是否仍存在"
   ],
   "notes": [
     "fix 1：未改代码。index.vue 与原 chunk index.178332063620094.js 对照（模板、state 初值、onMounted 调用顺序、子组件 props）无出入；HTML 差异只在 helpCenter.vue 的 moreInfo 图地址，不在本单 target / subComponentDir 内",
     "load.html / final.html：差异即 moreInfoImg 地址，见 needsFromSkeleton 第 1 条；HM-800 的共享层修改合入 restore/fast-lane 即可消除",
     "load.pixel：帮助中心背景与两张入口图因 public/sjz 缺失 404，见 needsFromSkeleton 第 2 条；右侧悬浮条见第 3 条",
-    "self-check pass（restore/fast-lane ca4dc51）；无代码改动，未 land"
+    "self-check pass（restore/fast-lane ca4dc51）；无代码改动，未 land",
+    "fix 2：仍未改代码。gate.2（restore/fast-lane fc8d72e）与 gate.1 差异逐字相同：load/final.html 唯一差异仍是 moreInfo.<hash> ↔ shared/moreInfo（offset 26081，长度 26866/26859）；load.pixel 2.882%，report 中 4 个 404 即 /sjz/newHome 下的背景与入口图",
+    "fc8d72e 时 moreInfoImg 仍为 /assets/shared/moreInfo.png，restore/upg-6-a1 未并入；public/ 下仍无 sjz/（27d2c1f 带入后又被 fc8d72e 撤销）",
+    "两轮修正均判定差异不在 target / subComponentDir 内，按快速通道规则交裁定员：需决定 HM-800 images.ts 与 HM-796 public/sjz/ 如何进入 restore/fast-lane（或本页等共享层合入后再 --regate）",
+    "fix 2 self-check pass（restore/fast-lane fc8d72e）；无代码改动，未 land"
   ]
 }
