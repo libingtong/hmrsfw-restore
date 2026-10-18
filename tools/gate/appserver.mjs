@@ -104,7 +104,16 @@ function singleRoutePlugin({ appDir, app, routes }) {
 // which turns relative, absolute and aliased src into imports. vueBuildAssetUrls() sets the build value as the plugin's
 // own template.transformAssetUrls (base: null overrides the dev base in plugin-vue's merge), so the template compiles
 // to the same imports as in the build and the asset goes through load() like an explicit import.
+// new URL("./a.png", import.meta.url): Vite's vite:asset-import-meta-url gives it fileToDevUrl when serving and
+// fileToBuiltUrl when building (HM-778). The second plugin, gate-build-assets-url, runs as a normal plugin (after
+// plugin-vue has compiled the SFC, before vite:asset-import-meta-url) and rewrites such an expression the way the build
+// does: new URL("<built URL>", self.location). Same match as Vite 4.4.9 (string literal first argument; a template
+// literal with ${} is a glob and left to Vite); a relative URL is resolved against the importer, others with the
+// resolver (aliases). Left to Vite, same URL in both modes: public/ files, files that do not exist (Vite keeps the URL
+// as written). Not mirrored: Vite skips matches inside comments and strings (strip-literal); rewriting a commented-out
+// expression has no effect, and an asset URL expression spelled inside a string literal does not occur in the app.
 const SKIP_QUERY = /[?&](raw|inline|worker|sharedworker)\b/;
+const IMPORT_META_URL = /\bnew\s+URL\s*\(\s*('[^']+'|"[^"]+"|`[^`]+`)\s*,\s*import\.meta\.url\s*(?:,\s*)?\)/g; // Vite 4.4.9 assetImportMetaUrlPlugin
 const INVALID_CHAR = /[\u0000-\u001F"#$&*+,:;<=>?[\]^`{|}\u007F]/g; // Rollup sanitizeFileName
 function viteMimes(appDir) {
   const dir = path.join(appDir, "node_modules/vite/dist/node/chunks");
@@ -121,10 +130,13 @@ function vueBuildAssetUrls(t) {
   if (!t || typeof t !== "object") return { base: null, includeAbsolute: t !== false };
   return Object.values(t).some((v) => Array.isArray(v)) ? { base: null, includeAbsolute: true, tags: t } : { base: null, includeAbsolute: true, ...t };
 }
+// Returns two plugins (Vite flattens the array): gate-build-assets (pre: imports, template src, serving the URLs) and
+// gate-build-assets-url (normal: new URL(…, import.meta.url)).
 export function buildAssetsPlugin({ appDir }) {
   let config, mimes;
   const emitted = new Map(); // "/assets/a-1234abcd.png" → source file
-  return {
+  const isPublic = (file) => config.publicDir && file.startsWith(config.publicDir + path.sep);
+  const assets = {
     name: "gate-build-assets",
     enforce: "pre",
     configResolved(c) {
@@ -145,10 +157,31 @@ export function buildAssetsPlugin({ appDir }) {
       if (id[0] === "\0" || SKIP_QUERY.test(id)) return null;
       const file = id.split(/[?#]/)[0];
       if (!/[?&]url\b/.test(id) && !config.assetsInclude(file)) return null;
-      if (!existsSync(file) || (config.publicDir && file.startsWith(config.publicDir + path.sep))) return null;
+      if (!existsSync(file) || isPublic(file)) return null;
       return `export default ${JSON.stringify(builtUrl(file))}`;
     },
   };
+  const importMetaUrl = {
+    name: "gate-build-assets-url",
+    async transform(code, id, options) {
+      if (options?.ssr || id[0] === "\0" || !code.includes("new URL") || !code.includes("import.meta.url")) return null;
+      const importer = id.split(/[?#]/)[0];
+      const edits = [];
+      for (const m of code.matchAll(IMPORT_META_URL)) {
+        const lit = m[1];
+        if (lit[0] === "`" && lit.includes("${")) continue;
+        const url = lit.slice(1, -1);
+        const file = url[0] === "." ? path.resolve(path.dirname(importer), url) : (await this.resolve(url, id))?.id?.split(/[?#]/)[0];
+        if (!file || !path.isAbsolute(file) || !existsSync(file) || !statSync(file).isFile() || isPublic(file)) continue;
+        edits.push([m.index, m.index + m[0].length, `new URL(${JSON.stringify(builtUrl(file))}, self.location)`]);
+      }
+      if (!edits.length) return null;
+      let out = code;
+      for (const [a, b, rep] of edits.reverse()) out = out.slice(0, a) + rep + out.slice(b);
+      return { code: out, map: null };
+    },
+  };
+  return [assets, importMetaUrl];
   function builtUrl(file) {
     const content = readFileSync(file);
     const lfs = content.subarray(0, 100).toString().startsWith("version https://git-lfs.github.com");
