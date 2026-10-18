@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.train.trainDetail",
+  "branch": "restore/fast-lane",
+  "result": "needs-skeleton",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/train/trainDetail.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "fc8d72ee0a5341c2e765874a65f27dc740e3144d"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "门户外壳 public 缺 apps/portal/public/sjz/setup/detailBg.png（原包 legacy-dist/portal/sjz/setup/detailBg.png）：restore/fast-lane 上 apps/portal/public/sjz/ 不存在（27d2c1f 带入后已被 fc8d72e 按 HM-287 裁定撤回，origin/integration 也没有），.bgTop 背景 url(/sjz/setup/detailBg.png) 404。HM-796 的 7f7ad2d 已补这份资源，需要它进 integration 后再进 restore/fast-lane，然后重跑门槛。与 page.portal.sjz.setUp.setupDetail 同一根因"
+  ],
+  "notes": [
+    "fix 1：未改代码，疑似共享层问题（外壳 public/）。依据：gate.1（commit fc8d72e）的 load/final HTML、文本、请求、弹层与原版逐字一致；像素差 92.259% 覆盖整块 1920x385 的 .bgTop（diff 图是背景图纹理），还原截图该区域白底白字",
+    "页面样式与原 chunk 一致：trainDetail.1783320636200.css 的 .bgTop[data-v-a17c8330]{background:url(/sjz/setup/detailBg.png) no-repeat top center;background-size:cover;height:385px}，trainDetail.vue 的 scoped .bgTop 相同",
+    "不在页面里绕（不把图片拷进 subComponentDir 改相对路径）：快速通道手册第 2 节第 5 条，public/ 不在本单 target / subComponentDir 内",
+    "self-check pass；npm run build:portal 通过；restore/fast-lane fc8d72e 无新提交"
+  ]
+}
