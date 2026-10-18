@@ -1,0 +1,29 @@
+{
+  "id": "page.portal.oddJob.Jobsearch.JobsearchDetail",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/oddJob/Jobsearch/JobsearchDetail.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "9f54b8e9feedd49acae11875579a5c3b8ca48739"
+  },
+  "build": "not-run（本轮未改代码）",
+  "todos": [],
+  "unresolved": [
+    "gate.1 browser:html（load/final，div.u-58 下 offset 4327）：唯一差异是实名图标 img 的 src，页面侧无法修正"
+  ],
+  "needsFromSkeleton": [
+    "@/shared/images 的 smImg（清单 sm.1783320636200.js#_，inline:true）应为原包内联 data:image/png;base64，现为 \"/assets/shared/sm.png\"。hmrsfw-vue eb2b5ff（HM-800 / upg-6，分支 restore/upg-6-a1）已把 31 个内联图改为从 src/shared/imageAssets/ import，需带进 restore/fast-lane 后重送门槛"
+  ],
+  "notes": [
+    "未改代码：gate.1 两处 html 失败（load、final）把 img 的 src 替换成同一占位后整段 HTML 逐字相同，差异只有这一处；页面按清单从 @/shared/images 导入 smImg，导入正确",
+    "疑似共享层问题。依据：原 chunk 从 ./sm.1783320636200.js 导入 _ 作为 img src，该 chunk 导出的是内联 data URL；shared/images.ts 的 smImg 是 public/ 下的固定路径，门槛 buildAssetsPlugin 不处理 public/ 文件，所以渲染出的是路径而不是 data URL",
+    "页面内不绕：把 data URL 写进页面或改从 public 外的文件导入都等于在页面里补公共库，违反「页面只按 registry 路径导入公共代码」；shared/ 不在本单可改范围",
+    "快速通道不自动开升级单（pipeline.mjs onFail 对 fastLane 跳过 openUpgrade），需裁定员 / 合并员把 eb2b5ff 的共享层改动合入 restore/fast-lane；page.portal.oddJob.Jobsearch.index 同样导入 smImg，会受同一问题影响",
+    "self-check pass（gitBase 9f54b8e）；本轮无提交、无推送"
+  ]
+}
