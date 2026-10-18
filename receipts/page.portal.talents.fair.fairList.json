@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.talents.fair.fairList",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/fair/fairList.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "0f9895b"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：gate.1 失败项 html/text（load、final）、pixel 33.648%、requests（还原 0 次）、step-error（step 0/2 click 超时）同一根因：页面根结构不对",
+    "改动：jobFairType 条件 div（WebFairList / OutFairList）移出 div.bgBoxTop，与之同级。原 chunk fairList.17833206362002.js 根为 Fragment（n(k,null,[c(\"div\",t,[标题]), a.jobFairType==\"20\"?div(v):div(b)],64)），还原时两个列表被放进了 bgBoxTop，比对根 bgBoxTop 下多出搜索卡片和列表",
+    "click 超时与请求缺失：列表在 bgBoxTop 内时 .searchCont（margin-top:-65px）叠在标题页签上拦截点击，步骤点不到页签，所以不触发 getFairList；移出后页签可点",
+    "子组件映射核对：v=list.178332063620012 → webFair/list.vue，b=list.178332063620010 → outFair/list.vue，与工单 deps 一致，未改",
+    "onMounted 里 state.zph.cityAreaId 为原代码问题（state 无 zph，带 area 参数会抛错），原样保留",
+    "self-check pass（render-equiv EQUAL 223/223）、build:portal pass；fl-vue restore/fast-lane 0f9895b 已推送"
+  ]
+}
