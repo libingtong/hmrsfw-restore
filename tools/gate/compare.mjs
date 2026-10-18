@@ -37,7 +37,7 @@ export function pixelDiff(a, b, out, threshold) {
 export const pickCandidate = (cands, cls) => (cls === undefined ? cands?.[0] : cands?.find((c) => c.cls === cls)) ?? null;
 
 // Overlay → one string: open modals, then the toasts shown in the phase minus the app shell's own toasts (the shell
-// probe's; the restored app has no shell yet). Older baselines stored the overlay as a plain string.
+// probe's: the original app shell's own failing requests). Older baselines stored the overlay as a plain string.
 export function overlayText(ov, shellToasts = []) {
   if (typeof ov === "string" || ov == null) return ov ?? "";
   const drop = [...shellToasts];
@@ -129,8 +129,13 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut }
   // The original element compared with the restored root, per phase: the one with the restored root's class in that
   // phase (load root for load, final root for final) — same element on both sides, same content compared (HM-779).
   const restCls = { load: rest.load?.candidates?.[0]?.cls ?? null, final: rest.final?.candidates?.[0]?.cls ?? null };
-  const R = project(rest, { rules, shell, exclude, known, side: "rest", used });
-  const O = baseline.runs.map((run) => project(run, { rules, shell, exclude, cls: restCls, known, side: "orig", used, shellToasts: baseline.shell?.toasts ?? [] }));
+  // The shell probe's toasts come off both sides when the restored app runs the shell too (it makes the shell probe's
+  // requests: legacy App.vue / main.ts, e.g. the portal's getDictValueByCodes answered with the server's 500 message).
+  // A restored app without a shell (POC App.vue, only <router-view/>) keeps all its toasts (HM-250).
+  const shellToasts = baseline.shell?.toasts ?? [];
+  const restShell = (rest.load?.requests ?? []).some((r) => shell.has(typeof r === "string" ? r : r.method + " " + r.path));
+  const R = project(rest, { rules, shell, exclude, known, side: "rest", used, shellToasts: restShell ? shellToasts : [] });
+  const O = baseline.runs.map((run) => project(run, { rules, shell, exclude, cls: restCls, known, side: "orig", used, shellToasts }));
   const failed = [];
   const noRoot = (ph) => ph in R.root && O.every((o) => o.root[ph] === false);
   // original candidates by class only (element paths, no page text)
