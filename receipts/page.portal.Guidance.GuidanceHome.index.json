@@ -1,0 +1,30 @@
+{
+  "id": "page.portal.Guidance.GuidanceHome.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/Guidance/GuidanceHome/index.vue",
+    "apps/portal/src/views/Guidance/GuidanceHome/index/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "a1482b9040f52473fc7ef403ab4aeaa37700987e"
+  },
+  "build": "not-run",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "依赖 swiper 版本：原包内置的 swiper/vue 把 .swiper-scrollbar 渲染在 .swiper-wrapper 之前（index.1783320636200.js 的 Swiper render：button-prev/next → scrollbar → pagination → wrapper），scrollbar 模块不加 swiper-scrollbar-horizontal；package.json 的 swiper 8.4.7 把 scrollbar 渲染在 wrapper 之后，并加 swiper-scrollbar-horizontal。gate.1 load/final 第一处差异（div.swiper 下 offset 3066）和 pixel 差异（差异图里只有滚动条拖动块一条线）都来自这里；需要按原包版本锁定 swiper 或走规则变更单，页面不能改",
+    "共享层 @/shared/images：dianzanImg、daImg_、daImgA 原包是内联 data:image/png;base64，共享层导出为 /assets/shared/*.png；askImg 原包为 /assets/ask.1783320636200.png，共享层导出 /assets/shared/ask.png。页面按 registry 导入，不能在页面里绕"
+  ],
+  "notes": [
+    "fix 1：页面未改。对照 sourceChunk index.17833206362006.js，两个 Swiper 的 props（modules、scrollbar:{draggable:!1}、loop、autoplay、slidesPerView 等）与还原版一致",
+    "疑似共享层问题（依赖版本）：swiper-scrollbar 的位置和 class 由 swiper/vue 版本决定，依据见 needsFromSkeleton 第 1 条",
+    "疑似共享层问题：点赞、问答、ask 图片 src 与原包不同，来自 shared/images.ts 的值，依据见 needsFromSkeleton 第 2 条",
+    "final 处 swiper-wrapper 的 transition-duration 0ms/10ms 不同：原代码 speed:10 + autoplay，取样时刻在切换过渡中，属时序差异，疑似比对器问题（不稳定项）",
+    "把上述三类差异抹平后，gate.1 的 load、final HTML 两侧完全一致，页面自身没有剩余差异",
+    "self-check pass（restore/fast-lane a1482b9），无新提交"
+  ]
+}
