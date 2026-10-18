@@ -1,0 +1,30 @@
+{
+  "id": "page.portal.oddJob.news.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/oddJob/news/index.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "168c7ba3220d066321ed4d7f2a18b0fa165d3755"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [
+    "load/final html：div.swiper 下 swiper-pagination 与 swiper-wrapper 两个子节点顺序相反，由 swiper/vue 组件生成，来自依赖版本（见 needsFromSkeleton），页面侧无可改之处"
+  ],
+  "needsFromSkeleton": [
+    "疑似共享层问题（swiper 依赖版本）：原入口 index.1783320636200.js 内置的 swiper/vue Swiper render 顺序为 container-start → 导航 → scrollbar → pagination → swiper-wrapper → container-end；restore/fast-lane（168c7ba）package.json 锁 swiper 8.4.7，其 node_modules/swiper/vue/swiper.js:645-659 为 swiper-wrapper 在前、pagination 在后。npm 包逐版核对：≤8.1.4 为 pagination 在前，8.1.5 起为 wrapper 在前。共享层升级单 HM-800（hmrsfw-vue restore/upg-6-a1 eb2b5ff）已把门户 swiper 按原包指纹锁到 8.0.1（别名 swiper-portal），git merge-base 确认未并入 restore/fast-lane。本页等 HM-800 合入 restore/fast-lane 后重送门槛即可，页面不需要再改"
+  ],
+  "notes": [
+    "fix 1：未改代码。gate.1 失败项 html/load、html/final（div.searchBox > div.swiper，offset 558，两边长度相同），pixel 0",
+    "唯一差异是 swiper-pagination 与 swiper-wrapper 两个节点的先后顺序；把还原侧这两个节点对调后，load、final 的 HTML 与原版两次采样逐字一致",
+    "页面代码与原 chunk index.178332063620049.js 核对一致：Swiper 属性（modules=[Autoplay, Pagination, Navigation, Scrollbar]、space-between 30、slides-per-view auto、pagination clickable、navigation）、SwiperSlide 循环；导入按 maps（swiper/vue、swiper）",
+    "页面侧没有等价改法：节点顺序由 swiper/vue 组件决定，改只能换 swiper 版本（package.json，页面单不许改）或手写原 chunk 没有的结构，两种都不做",
+    "同类回执：page.portal.region.findworker.index、page.portal.region.innovation.index（同为 swiper 版本差异）；依赖修复在 HM-800",
+    "self-check pass、npm run build:portal 通过（私有克隆 restore/fast-lane 168c7ba）；无代码改动，无需 fl.sh land"
+  ]
+}
