@@ -1,0 +1,30 @@
+{
+  "id": "page.portal.region.innovation.index",
+  "task": "HM-295",
+  "branch": "restore/fast-lane",
+  "result": "no-page-fix",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/region/innovation/index.vue",
+    "apps/portal/src/views/region/innovation/index/"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "fc8d72ee0a5341c2e765874a65f27dc740e3144d"
+  },
+  "todos": [],
+  "unresolved": [
+    "gate.1 load/final html 差异两类均不在页面代码里，本轮未改代码、未提交 hmrsfw-vue（restore/fast-lane 仍为 fc8d72e）"
+  ],
+  "needsFromSkeleton": [
+    "疑似比对器问题：快捷服务四个 div.text 的 background 用 new URL(\"/xjhm/innovation/*_icon.jpg\", self.location).href 生成绝对地址（原 chunk 写法，还原版逐字一致），门槛 tools/gate/serve.mjs 每次 listen(0) 随机端口，基线与还原版的 127.0.0.1:<端口> 不同；rules/compare 没有归一化本机源，gate.1 首差 offset 2866（div.clipperServiceContent > div.box）即此处。需要门槛对本机 origin 做规范化（规则变更单）或登记已知差异",
+    "疑似共享层问题：package.json 固定 swiper 8.4.7，原包内置的 swiper 版本更早——原包 index.1783320636200.js 里 swiper/vue 渲染顺序是 container-start、navigation、scrollbar、pagination、swiper-wrapper（8.4.7 的 vue/swiper.js 把 pagination 放在 wrapper 之后），原包没有 watch-progress 类和 loopedSlidesLimit 参数（8.4.7 core/classes/addClasses.js 有 watch-progress）。由此产生 innovationActivityContent 下 swiper-pagination 位置、swiper-watch-progress 类、slide 内联样式 margin-right 顺序三处差异；final 阶段轮播停在不同 slide 疑似同源（自动播放时序），页面模板与原 chunk 一致。需要 E7 按指纹把 swiper 降到原包版本，页面单不能改 package.json"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐项对照 sourceChunk index.178332063620066.js：Swiper 的 loop/autoplay/speed/navigation/spaceBetween/coverflowEffect/centeredSlides/slidesPerView/effect/pagination 属性、SwiperCore.use 模块顺序、quickServiceIcons 的 new URL(…, self.location) 均与原代码一致",
+    "疑似比对器问题：本机端口进入 background url（见 needsFromSkeleton 第 1 条）",
+    "疑似共享层问题：swiper 8.4.7 与原包版本不同（见 needsFromSkeleton 第 2 条）",
+    "self-check pass（renderEquiv 报告 DIFF 为既有报告项，非失败项）"
+  ]
+}
