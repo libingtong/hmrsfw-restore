@@ -63,6 +63,9 @@ async function baselineFor(wo, state) {
   // Same HAR and script, only the root selector changed (baselines from before HM-251 took a recordVia page's root with
   // `origSel`, i.e. the parent page's): recomputed from the same HAR, offline, see refreshBaseline().
   if ((b.sel ?? SITES[wo.site].origSel) !== origSelOf(wo)) return { missing: "root selector changed since the baseline", refresh: b.har.path };
+  // Same again for recordVia baselines whose component shots still include the fixed elements outside the component
+  // (taken before HM-253, replay.mjs markOffscopeFixed).
+  if (wo.recordVia && !b.offscopeFixed) return { missing: "component shots taken with off-scope fixed elements (before HM-253)", refresh: b.har.path };
   return { baseline: b, dir };
 }
 
@@ -233,7 +236,7 @@ export async function gate(argv) {
       if (wo.recordVia && !restSid) { out.pages.push({ wo: wo.id, pass: false, stage: "browser", failed: [{ check: "root", where: "load", hint: `restored ${wo.target} has no scope id (no <style scoped>): it cannot be found inside the parent page ${wo.recordVia}` }] }); continue; }
       const restSel = restSid ? scopeRootSel(restSid) : REST_SEL;
       const once = async (tag) => {
-        const rest = await runPage(browser, { origin: servers[wo.app].origin, url: wo.recordPath, storage: restStorage(wo, assets, base.storagePatch, har), har, sel: restSel, steps, shotDir: dir, tag });
+        const rest = await runPage(browser, { origin: servers[wo.app].origin, url: wo.recordPath, storage: restStorage(wo, assets, base.storagePatch, har), har, sel: restSel, steps, shotDir: dir, tag, componentScope: restSid });
         return { rest, cmp: compareRuns(base, rest, { rules, site: wo.site, known: known.list, shotOut: path.join(dir, `${tag}.diff.png`), restSel, inParent: !!restSid }) };
       };
       // A failing restored run is repeated once (busy machine: animations, toasts and timers land differently); the

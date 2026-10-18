@@ -44,6 +44,31 @@ export async function shellLayoutCss(page, sel, scopes) {
   const shell = sel + ids.map((s) => `:not([${s}])`).join("");
   return `${shell},${shell} *{visibility:hidden!important}`;
 }
+// Off-scope fixed elements in component shots (HM-253). A recordVia page's root is a component inside its parent page
+// (HM-251). Fixed or sticky elements outside that component (the app shell's customer-service tab, a parent's side
+// panel) are drawn over the component's box at an offset that depends on where the element screenshot scrolled the
+// whole parent page, i.e. on the parent's and the shell's layout, not on the component. While each screenshot of such a
+// root is taken, the fixed and sticky elements that are neither inside the root, nor one of its ancestors, nor carrying
+// the component's scopeId (teleported template content) are made invisible (visibility only: layout is unchanged; DOM,
+// text and requests are captured before, as with shellLayoutCss). Both sides: runPage's opts.componentScope is the
+// component's scopeId (baseline.mjs: the work order's, gate.mjs: the restored file's); other pages are shot as before.
+const OFFSCOPE = "data-gate-offscope";
+export const OFFSCOPE_CSS = `[${OFFSCOPE}],[${OFFSCOPE}] *{visibility:hidden!important}`;
+export async function markOffscopeFixed(el, scopeId) {
+  if (!/^data-v-[0-9a-f]+$/.test(scopeId ?? "")) return 0; // spliced into a selector: only scope ids
+  return el.evaluate((root, [attr, sid]) => {
+    let n = 0;
+    for (const e of document.body.querySelectorAll("*")) {
+      if (root.contains(e) || e.contains(root) || e.hasAttribute(sid) || e.querySelector(`[${sid}]`)) continue;
+      const p = getComputedStyle(e).position;
+      if (p === "fixed" || p === "sticky") { e.setAttribute(attr, ""); n++; }
+    }
+    return n;
+  }, [OFFSCOPE, scopeId]).catch(() => 0);
+}
+export const unmarkOffscope = (page) => page.evaluate((attr) => document.querySelectorAll(`[${attr}]`).forEach((e) => e.removeAttribute(attr)), OFFSCOPE).catch(() => {});
+const COMPONENT_SCOPE = new WeakMap();
+
 // Stability: the page counts as settled when body text length and element count stay the same for `stableMs`, no UI
 // animation or transition (50 ms – 2 s: antd collapse/fade, a carousel sliding) is running and no /xf-api/ request was
 // made in that window (HAR answers are immediate). POC: 3 × 1 s on body text length only.
@@ -128,11 +153,13 @@ async function captureRoot(page, sel, shotBase, withShots, phases) {
       const box = await el.boundingBox();
       // added only around the screenshot: the DOM tree and innerText above are taken with the shell visible
       const shell = shellCss ? await page.addStyleTag({ content: shellCss }).catch(() => null) : null;
+      const offscope = (await markOffscopeFixed(el, COMPONENT_SCOPE.get(page))) ? await page.addStyleTag({ content: OFFSCOPE_CSS }).catch(() => null) : null;
       // Element screenshots wait for the element to stop moving; a page with a running carousel can exceed that on a
       // busy machine, so fall back to a full-page clip of the same box.
       if (box?.height && box.width) await el.screenshot({ path: file, timeout: 15000 }).catch(async () => { const b = await el.evaluate((n) => { const r = n.getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, width: r.width, height: r.height }; }); await page.screenshot({ path: file, fullPage: true, clip: b }); });
       else await page.screenshot({ path: file });
       if (shell) await shell.evaluate((n) => n.remove()).catch(() => {});
+      if (offscope) { await offscope.evaluate((n) => n.remove()).catch(() => {}); await unmarkOffscope(page); }
       c.shot = file;
     }
     candidates.push(c);
@@ -208,6 +235,7 @@ export async function runPage(browser, opts) {
     return res;
   }
   if (opts.pageScopes?.length) PAGE_SCOPES.set(page, opts.pageScopes); // shellLayoutCss
+  if (opts.componentScope) COMPONENT_SCOPE.set(page, opts.componentScope); // markOffscopeFixed
   const base = path.join(opts.shotDir, opts.tag);
   res.load = { ...(await captureRoot(page, opts.sel, base, true, /^load$/)), requests: log.map((x) => ({ ...x })), opened: opened.map((x) => ({ ...x })) };
   if (opts.steps?.length) {
