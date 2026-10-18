@@ -5,7 +5,8 @@
 // Writes $RESTORE_STATE/baseline/<id>/ (or --out), replacing it atomically:
 //   dom.html       page root outerHTML (run 1, first root candidate)      text.txt   its innerText
 //   shot.png       its screenshot (shot.<n>.png: other root candidates, *.r2.png: run 2)
-//   seq.json       /xf-api/ requests: load-time set, app-shell set, post-load step sequence (bodies as SHA-256 only)
+//   seq.json       /xf-api/ requests: load-time set, app-shell set, post-load step sequence (bodies as SHA-256 only),
+//                  pages the steps opened (target="_blank", window.open)
 //   baseline.json  everything the gate reads: both runs (DOM trees, texts, overlays, requests, step results), the HAR
 //                  path and SHA-256, the shell probe, `unstable`
 //   storage.json   (mode 600) localStorage changes the original app shell makes before the page mounts, applied to the
@@ -56,8 +57,8 @@ export async function recordOriginal({ browser, wo, harFile, assets, shotDir, ru
 // Run → what goes on disk (step request bodies reduced to SHA-256; load requests to method + path).
 const slimRun = (run, dir) => ({
   settleMs: run.settleMs, errors: run.errors.slice(0, 8),
-  load: { overlay: run.load.overlay, requests: [...new Set(run.load.requests.map((x) => x.method + " " + x.path))].sort(), candidates: run.load.candidates.map((c) => ({ cls: c.cls, tree: c.tree, ltgt: c.ltgt, text: c.text, shot: c.shot && path.basename(c.shot), empty: c.empty })) },
-  ...(run.steps ? { steps: run.steps, stepLog: run.stepLog.map(redact), final: { overlay: run.final.overlay, candidates: run.final.candidates.map((c) => ({ cls: c.cls, tree: c.tree, ltgt: c.ltgt, text: c.text })) } } : {}),
+  load: { overlay: run.load.overlay, requests: [...new Set(run.load.requests.map((x) => x.method + " " + x.path))].sort(), opened: run.load.opened, candidates: run.load.candidates.map((c) => ({ cls: c.cls, tree: c.tree, ltgt: c.ltgt, text: c.text, shot: c.shot && path.basename(c.shot), empty: c.empty })) },
+  ...(run.steps ? { steps: run.steps, stepLog: run.stepLog.map(redact), opened: run.opened, final: { overlay: run.final.overlay, candidates: run.final.candidates.map((c) => ({ cls: c.cls, tree: c.tree, ltgt: c.ltgt, text: c.text })) } } : {}),
 });
 
 // Baseline on disk → the shape compareRuns() expects (absolute screenshot paths).
@@ -91,7 +92,7 @@ async function main() {
     const runs = rec.runs.map((r) => slimRun(r, tmp));
     writeFileSync(path.join(tmp, "dom.html"), c0.html);
     writeFileSync(path.join(tmp, "text.txt"), c0.text);
-    writeFileSync(path.join(tmp, "seq.json"), JSON.stringify({ load: runs[0].load.requests, shell: rec.shell.requests, steps: runs[0].stepLog ?? [] }, null, 1));
+    writeFileSync(path.join(tmp, "seq.json"), JSON.stringify({ load: runs[0].load.requests, shell: rec.shell.requests, steps: runs[0].stepLog ?? [], opened: runs[0].opened ?? [] }, null, 1));
     writeFileSync(path.join(tmp, "baseline.json"), JSON.stringify({
       version: BASELINE_VERSION, wo: id, site: wo.site, app: wo.app, recordPath: wo.recordPath, role: wo.role, sourceChunk: wo.sourceChunk,
       har: { path: harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version,
