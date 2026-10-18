@@ -69,16 +69,17 @@ export function matchHar(har, method, url, reqBody) {
   return { entry: list[0], tier: "path" };
 }
 
-// Installs the /xf-api/ router on a browser context. log(rec) receives every request except static resources.
+// Installs the /xf-api/ router on a browser context. log(rec, request) receives every request except static resources,
+// from every page of the context (the Playwright request is passed so the caller can tell which page made it).
 // Requests to the real test or production hosts are aborted (and logged): the replay never leaves the machine.
 export async function routeApi(ctx, har, { log, phase }) {
-  await ctx.route((u) => /(^|\.)rencaidanao\.com$/.test(u.hostname), (r) => { log({ phase: phase(), method: r.request().method(), path: "EXTERNAL " + new URL(r.request().url()).host, query: "", bodyKind: "none", body: "", tier: "aborted" }); return r.abort(); });
+  await ctx.route((u) => /(^|\.)rencaidanao\.com$/.test(u.hostname), (r) => { log({ phase: phase(), method: r.request().method(), path: "EXTERNAL " + new URL(r.request().url()).host, query: "", bodyKind: "none", body: "", tier: "aborted" }, r.request()); return r.abort(); });
   await ctx.route(/\/xf-api\//, (r) => {
     const q = r.request();
     const p = new URL(q.url()).pathname.replace(/^\/xf-api/, "");
     const b = bodyOf(q.postData());
     const m = matchHar(har, q.method(), q.url(), b);
-    if (!p.startsWith("/jeecg-system/sys/common/static/")) log({ phase: phase(), method: q.method(), path: p, query: queryOf(q.url()), bodyKind: b.kind, body: b.canon, tier: m.tier ?? "not-in-har" });
+    if (!p.startsWith("/jeecg-system/sys/common/static/")) log({ phase: phase(), method: q.method(), path: p, query: queryOf(q.url()), bodyKind: b.kind, body: b.canon, tier: m.tier ?? "not-in-har" }, q);
     if (!m.entry) return r.fulfill({ status: 200, contentType: "application/json", body: NOT_IN_HAR });
     return r.fulfill({ status: m.entry.status, headers: m.entry.headers, body: m.entry.body });
   });
