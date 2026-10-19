@@ -1,0 +1,9 @@
+[
+  {"wait":800},
+  {"click":"立即报名","optional":true},
+  {"wait":1000},
+  {"click":"我要报名","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-modal-close","optional":true},
+  {"wait":300}
+]
