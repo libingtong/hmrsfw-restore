@@ -284,22 +284,44 @@ function regressDiff(out, state, dry) {
   return { regress: { total: out.pages.length, passed: out.pages.filter((p) => p.pass).length, newPass, newFail, previous: Object.keys(prev).length } };
 }
 
-// Task metadata values are capped at 8 KB by the server; stay well under it.
+// The server caps an issue's metadata as a whole — every key together — at 8 KB, not each value (HM-876, measured on
+// HM-876 itself: Σ(key + value as stored + 8) + 8 ≤ 8192; escaping does not count, objects are stored as their JSON
+// text). A large integration order's workOrders alone takes 4–5 KB, so gate.<attempt> gets what the task's other keys
+// leave free, less headroom for the keys tick writes after the verdict (advanced, waitRecord, gateSeq, merge.<n> …), and
+// never more than META_BUDGET.
+export const META_CAP = 8192;
+export const META_HEADROOM = 1024;
 export const META_BUDGET = 7000;
+export const META_FLOOR = 256; // below this a refused write is retried once more with the bare verdict (budget 0)
 const bytes = (v) => Buffer.byteLength(JSON.stringify(v));
 const clip = (s, n) => String(s ?? "").slice(0, n);
+const storedBytes = (v) => Buffer.byteLength(typeof v === "string" ? v : JSON.stringify(v));
+export const metaBytes = (m) => Object.entries(m ?? {}).reduce((n, [k, v]) => n + Buffer.byteLength(k) + storedBytes(v) + 8, 8);
+// Budget for `key` on an issue whose current (raw, as `issue get` returns it) metadata is `meta`: its own old value is
+// replaced, so it does not count.
+export function metaBudget(meta, key) {
+  const rest = Object.fromEntries(Object.entries(meta ?? {}).filter(([k]) => k !== key));
+  return Math.max(0, Math.min(META_BUDGET, META_CAP - META_HEADROOM - metaBytes(rest) - Buffer.byteLength(key) - 8));
+}
 
-// What goes into gate.<attempt>: the fields tick.mjs advance reads (pass, pending, missing, error, stage, failed, pages
-// [{wo, pass, stage}], global), shrunk until they fit META_BUDGET. Every page keeps an entry — advance reads a page
-// without one as failed — passing pages shrink to {wo, pass}, then to a count (passedOmitted). The full result is in the
-// file named by `detail`.
-export function slimResult(out, detail) {
+// What goes into gate.<attempt>: the fields tick.mjs advance reads (pass, pending, missingTotal, error, stage, failed,
+// pages [{wo, pass, stage}], global), shrunk until they fit `budget`. The full result is in the file named by `detail`.
+// pending: counts by reason, the missing ids while they fit, else the first ones as a sample (missingTruncated).
+// pass/fail: every page keeps an entry — advance reads a page without one as failed — passing pages shrink to {wo, pass},
+// then to a count (passedOmitted).
+export function slimResult(out, detail, budget = META_BUDGET) {
   if (out.pending === "record") {
     const ids = out.missing.map((m) => m.wo), byReason = {};
     for (const m of out.missing) byReason[m.why] = (byReason[m.why] ?? 0) + 1;
     const slim = { pending: "record", missingTotal: ids.length, byReason, missing: ids, attempt: out.attempt, durationMs: out.durationMs, detail };
-    while (bytes(slim) > META_BUDGET && slim.missing.length) slim.missing = ids.slice(0, Math.floor(slim.missing.length / 2));
+    if (bytes(slim) > budget) slim.missing = ids.slice(0, 10);
+    while (bytes(slim) > budget && slim.missing.length) slim.missing = ids.slice(0, Math.floor(slim.missing.length / 2));
     if (slim.missing.length < ids.length) slim.missingTruncated = true;
+    if (bytes(slim) > budget) delete slim.durationMs;
+    // many distinct reasons (each names a page-specific cause): keep the most frequent ones
+    const top = Object.entries(byReason).sort((a, b) => b[1] - a[1]);
+    while (bytes(slim) > budget && Object.keys(slim.byReason).length > 1) { slim.byReason = Object.fromEntries(top.slice(0, Object.keys(slim.byReason).length - 1)); slim.byReasonTruncated = true; }
+    if (bytes(slim) > budget) delete slim.detail; // the [GATE] comment names it too
     return slim;
   }
   // page-level failures first: hundreds of app-wide zero-reference hits must not push them out of the ones kept
@@ -317,7 +339,7 @@ export function slimResult(out, detail) {
     if (pendingIds) slim.pending = pendingIds;
     if (ordered.length > lv.failed) slim.failedTotal = ordered.length;
     for (const k of lv.drop ?? []) delete slim[k];
-    if (bytes(slim) <= META_BUDGET) return slim;
+    if (bytes(slim) <= budget) return slim;
   }
   // Hundreds of pages: list the failing pages only and count the passing ones (advance reads an unlisted page as passed
   // when passedOmitted is set). Failing pages that still do not fit are cut, without passedOmitted: every unlisted page
@@ -325,11 +347,14 @@ export function slimResult(out, detail) {
   const bad = (out.pages ?? []).filter((p) => !p.pass).map((p) => ({ wo: p.wo, pass: false, stage: p.stage }));
   slim.pages = bad;
   slim.passedOmitted = (out.pages ?? []).length - bad.length;
-  if (bytes(slim) <= META_BUDGET) return slim;
+  if (bytes(slim) <= budget) return slim;
   delete slim.passedOmitted;
   slim.failedPagesTotal = bad.length;
   slim.pagesTruncated = true;
-  while (bytes(slim) > META_BUDGET && slim.pages.length) slim.pages = bad.slice(0, Math.floor(slim.pages.length / 2));
+  while (bytes(slim) > budget && slim.pages.length) slim.pages = bad.slice(0, Math.floor(slim.pages.length / 2));
+  // still too large (a tiny budget): the verdict, its stage and counts only — failed ids then come from `detail`
+  if (bytes(slim) > budget && pendingIds) { slim.pendingTotal = pendingIds.length; delete slim.pending; }
+  if (bytes(slim) > budget) { slim.failed = []; delete slim.global; delete slim.commit; delete slim.rules; delete slim.build; }
   return slim;
 }
 
@@ -347,10 +372,23 @@ export function report(task, attempt, out, ids) {
     mkdirSync(path.dirname(detail), { recursive: true });
     writeFileSync(detail, JSON.stringify(out, null, 1));
   } catch (e) { process.stderr.write("result file write failed: " + e.message + "\n"); detail = undefined; }
-  const slim = slimResult(out, detail);
-  try { multica(["issue", "metadata", "set", task, "--key", `gate.${attempt}`, "--value", JSON.stringify(slim)]); } catch (e) { process.stderr.write("metadata write failed: " + e.message + "\n"); }
+  // The budget is what the task's other metadata leaves free (HM-876). A refused write (another key grew meanwhile,
+  // or the server counts differently) is retried with half the budget, down to META_FLOOR, then once with the bare
+  // verdict (budget 0).
+  const key = `gate.${attempt}`;
+  let budget;
+  try { budget = metaBudget(JSON.parse(multica(["issue", "get", task, "--output", "json"])).metadata, key); } catch (e) { process.stderr.write("metadata read failed: " + e.message + "\n"); budget = META_FLOOR; }
+  let slim;
+  for (;;) {
+    slim = slimResult(out, detail, budget);
+    try { multica(["issue", "metadata", "set", task, "--key", key, "--value", JSON.stringify(slim)]); break; } catch (e) {
+      const msg = String(e.stderr || e.message);
+      if (!/exceeds/i.test(msg) || budget === 0) { process.stderr.write("metadata write failed: " + msg.trim().split("\n").pop() + "\n"); break; }
+      budget = budget > META_FLOOR ? Math.max(META_FLOOR, Math.floor(budget / 2)) : 0;
+    }
+  }
   const secs = (ms) => (ms / 1000).toFixed(1) + "s";
-  const head = out.pending === "record" ? `[GATE] PENDING record ${idList(ids)} a${attempt}: ${Object.entries(slim.byReason).map(([why, n]) => `${why} ×${n}`).join("; ")}` : `[GATE] ${out.pass ? "PASS" : "FAIL"} ${idList(ids)} a${attempt} ${out.mode} — ${secs(out.durationMs)} (static ${secs(out.stages.static ?? 0)}, build ${secs(out.stages.build ?? 0)}, browser ${secs(out.stages.browser ?? 0)})`;
+  const head = out.pending === "record" ? `[GATE] PENDING record ${idList(ids)} a${attempt}: ${Object.entries(out.missing.reduce((a, m) => ((a[m.why] = (a[m.why] ?? 0) + 1), a), {})).map(([why, n]) => `${why} ×${n}`).join("; ")}` : `[GATE] ${out.pass ? "PASS" : "FAIL"} ${idList(ids)} a${attempt} ${out.mode} — ${secs(out.durationMs)} (static ${secs(out.stages.static ?? 0)}, build ${secs(out.stages.build ?? 0)}, browser ${secs(out.stages.browser ?? 0)})`;
   const lines = [head];
   if (out.pages?.length > 5) lines.push(`- pages: ${out.pages.filter((p) => p.pass).length}/${out.pages.length} passed${out.pass ? "" : `; failed: ${idList(out.pages.filter((p) => !p.pass).map((p) => p.wo), 10)}`}`);
   if (out.global) lines.push(`- app-wide: ${out.global.total} (${Object.entries(out.global.byLayer).map(([k, n]) => `${k} ${n}`).join(", ")})`);
