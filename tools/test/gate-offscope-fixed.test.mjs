@@ -1,12 +1,13 @@
 // node --test tools/test/gate-offscope-fixed.test.mjs
-// Off-scope fixed elements in component shots (HM-253): a recordVia page's root is a component inside its parent page;
+// Off-scope elements in component shots (HM-253, HM-342): a recordVia page's root is a component inside its parent page;
 // a fixed element outside it (the parent's side tab) lands on the component's box at an offset that depends
-// on where the component sits in the page (the shell's header is there on the original side only) and on scrolling. markOffscopeFixed hides only those elements while a
-// screenshot is taken; the component (its own fixed parts included), its ancestors and everything static stay.
+// on where the component sits in the page (the shell's header is there on the original side only) and on scrolling. markOffscope hides the
+// elements outside the component while a screenshot is taken (HM-342: static ones too, see gate-offscope-edge.test.mjs);
+// the component (its own fixed parts included), its ancestors and teleported content stay.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { chromium } from "playwright";
-import { markOffscopeFixed, unmarkOffscope, OFFSCOPE_CSS, VIEWPORT } from "../gate/replay.mjs";
+import { markOffscope, unmarkOffscope, OFFSCOPE_CSS, VIEWPORT } from "../gate/replay.mjs";
 
 const C = "data-v-bb4a8a3f", PARENT = "data-v-4c1ba3f2", SEL = `[${C}]:not([${C}] *)`;
 // [shell header placeholder (original side only)], parent page: [block above, wrapper (sticky nav inside), component root
@@ -27,15 +28,15 @@ async function withPage(fn) {
 }
 const vis = (page, q) => page.$eval(q, (n) => getComputedStyle(n).visibility);
 
-test("hides fixed/sticky elements outside the component; keeps its own, its ancestors' and teleported content", () => withPage(async (page) => {
+test("hides the elements outside the component; keeps its own, its ancestors' and teleported content", () => withPage(async (page) => {
   await page.setContent(doc());
   const el = await page.$(SEL);
-  assert.equal(await markOffscopeFixed(el, C), 2); // .nav (sticky sibling of the root) and .kefu
+  // outermost ones only: .headerBox, .above, .nav (sticky sibling of the root), .below, .kefu (its span is covered by the CSS)
+  assert.equal(await markOffscope(el, C), 5);
   const tag = await page.addStyleTag({ content: OFFSCOPE_CSS });
-  assert.equal(await vis(page, ".kefu"), "hidden");
-  assert.equal(await vis(page, ".kefu span"), "hidden");
-  assert.equal(await vis(page, ".nav"), "hidden");
-  for (const q of [".bgcImg", ".own", ".bgColor", ".above", ".below", ".teleport", ".tp"]) assert.equal(await vis(page, q), "visible", q);
+  for (const q of [".headerBox", ".above", ".nav", ".below", ".kefu", ".kefu span"]) assert.equal(await vis(page, q), "hidden", q);
+  assert.equal(await page.$$eval("[data-gate-offscope] [data-gate-offscope]", (a) => a.length), 0);
+  for (const q of [".bgcImg", ".own", ".bgColor", "main", ".teleport", ".tp"]) assert.equal(await vis(page, q), "visible", q);
   await tag.evaluate((n) => n.remove());
   await unmarkOffscope(page);
   assert.equal(await page.$$eval("[data-gate-offscope]", (a) => a.length), 0); // DOM left as it was
@@ -44,9 +45,9 @@ test("hides fixed/sticky elements outside the component; keeps its own, its ance
 test("no or invalid scope id: nothing is marked (other pages are shot as before)", () => withPage(async (page) => {
   await page.setContent(doc());
   const el = await page.$(SEL);
-  assert.equal(await markOffscopeFixed(el, null), 0);
-  assert.equal(await markOffscopeFixed(el, undefined), 0);
-  assert.equal(await markOffscopeFixed(el, "x]{}*{display:none"), 0);
+  assert.equal(await markOffscope(el, null), 0);
+  assert.equal(await markOffscope(el, undefined), 0);
+  assert.equal(await markOffscope(el, "x]{}*{display:none"), 0);
   assert.equal(await page.$$eval("[data-gate-offscope]", (a) => a.length), 0);
 }));
 
@@ -54,7 +55,7 @@ test("component shot no longer depends on the parent's layout around it; without
   const shot = async (opts, hide) => {
     await page.setContent(doc(opts));
     const el = await page.$(SEL);
-    const tag = hide && (await markOffscopeFixed(el, C)) ? await page.addStyleTag({ content: OFFSCOPE_CSS }) : null;
+    const tag = hide && (await markOffscope(el, C)) ? await page.addStyleTag({ content: OFFSCOPE_CSS }) : null;
     const buf = await el.screenshot();
     if (tag) { await tag.evaluate((n) => n.remove()); await unmarkOffscope(page); }
     return buf;
