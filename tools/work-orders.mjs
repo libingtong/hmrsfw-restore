@@ -105,6 +105,22 @@ function depsOf(maps, selfId) {
   return deps;
 }
 
+// recordPath corrections of recordVia pages (tools/record-path-overrides.json, HM-949): a parent page that renders one
+// section per query parameter needs it in the path, or the component never renders. Applied on every regeneration so a
+// hand edit of queue/ is never needed (that is how main and restore/fast-lane drifted apart). Only an extension of the
+// derived path is accepted ("/fairList" → "/fairList?type=30"), never another page.
+export function applyRecordPathOverrides(orders, overrides = JSON.parse(readFileSync(path.join(ROOT, "tools/record-path-overrides.json"), "utf8"))) {
+  for (const [id, ov] of Object.entries(overrides)) {
+    if (id.startsWith("_")) continue;
+    const o = orders.find((x) => x.id === id);
+    if (!o) continue;
+    if (!o.recordPath || !ov.recordPath.startsWith(o.recordPath) || !/^[?#]/.test(ov.recordPath.slice(o.recordPath.length))) throw new Error(`record-path-overrides.json: ${id} ${ov.recordPath} does not extend the derived ${o.recordPath}`);
+    if (!ov.evidence) throw new Error(`record-path-overrides.json: ${id} has no evidence`);
+    o.recordPath = ov.recordPath;
+  }
+  return orders;
+}
+
 export function buildOrders(APP) {
   const orders = []; const routes = []; const blockedRoutes = []; const roles = {}; const summary = { generatedFrom: {}, sites: {} };
   for (const site of Object.keys(SITES)) {
@@ -146,6 +162,7 @@ export function buildOrders(APP) {
       while (q.length && !via) { const next = []; for (const c of q) for (const imp of scope.importedBy.get(c) ?? []) { if (seen.has(imp)) continue; seen.add(imp); const po = byChunk.get(`${site}/${imp}`); if (po?.recordPath) { via = po; break; } next.push(imp); } q = next; }
       if (via) { o.recordPath = via.recordPath; o.recordVia = via.id; }
     }
+    applyRecordPathOverrides(siteOrders);
     // identity to record with: portal needs none; user center by route and chunk, undecided → null + notes (never guessed)
     if (site === "usercenter") for (const [id, r] of ucRoles(siteOrders.filter((x) => x.type === "page"))) { const o = siteOrders.find((x) => x.id === id); o.role = r.role; if (!r.role) o.notes = r.notes; roles[id] = r; }
     else for (const o of siteOrders) if (o.type === "page") roles[o.id] = { role: "general", by: "门户不需要身份" };

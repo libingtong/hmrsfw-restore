@@ -54,3 +54,22 @@ test("a chunk whose import has no registry entry is `missing`, the order is not 
   assert.equal(isDispatchable({ id: "page.y" }), true);
   assert.equal(isDispatchable({ id: "page.z", missing: [] }), true);
 });
+
+test("recordPath overrides extend the derived path of a recordVia page and need evidence (HM-949)", async () => {
+  const { applyRecordPathOverrides } = await import("../work-orders.mjs");
+  const orders = () => [{ id: "page.portal.sjz.fair.outFair.list", recordPath: "/fairList", recordVia: "page.portal.sjz.fair.fairList" }];
+  assert.equal(applyRecordPathOverrides(orders(), { _source: "x", "page.portal.sjz.fair.outFair.list": { recordPath: "/fairList?type=30", evidence: "chunk:1" } })[0].recordPath, "/fairList?type=30");
+  assert.throws(() => applyRecordPathOverrides(orders(), { "page.portal.sjz.fair.outFair.list": { recordPath: "/talents/fairList?type=30", evidence: "chunk:1" } }), /does not extend/);
+  assert.throws(() => applyRecordPathOverrides(orders(), { "page.portal.sjz.fair.outFair.list": { recordPath: "/fairListX", evidence: "chunk:1" } }), /does not extend/);
+  assert.throws(() => applyRecordPathOverrides(orders(), { "page.portal.sjz.fair.outFair.list": { recordPath: "/fairList?type=30" } }), /no evidence/);
+  assert.equal(applyRecordPathOverrides(orders(), { "page.other": { recordPath: "/x?y", evidence: "e" } })[0].recordPath, "/fairList", "orders not in this run are skipped");
+});
+
+test("the checked-in overrides are what queue/ holds", async () => {
+  const { readFileSync } = await import("node:fs");
+  const overrides = JSON.parse(readFileSync(new URL("../record-path-overrides.json", import.meta.url), "utf8"));
+  for (const [id, ov] of Object.entries(overrides)) {
+    if (id.startsWith("_")) continue;
+    assert.equal(JSON.parse(readFileSync(new URL(`../../queue/${id}.json`, import.meta.url), "utf8")).recordPath, ov.recordPath, id);
+  }
+});

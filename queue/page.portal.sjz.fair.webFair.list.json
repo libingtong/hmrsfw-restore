@@ -23,7 +23,7 @@
  "target": "apps/portal/src/views/sjz/fair/webFair/list.vue",
  "subComponentDir": "apps/portal/src/views/sjz/fair/webFair/list/",
  "routes": [],
- "recordPath": "/fairList",
+ "recordPath": "/fairList?type=web",
  "role": "general",
  "maps": "out/maps/page.portal.sjz.fair.webFair.list.json",
  "hints": "out/hints/page.portal.sjz.fair.webFair.list.md",
