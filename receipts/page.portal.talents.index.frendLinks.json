@@ -1,0 +1,25 @@
+{
+  "id": "page.portal.talents.index.frendLinks",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/index/frendLinks.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "78cdd063aa42693968b5da4f938594fe1d130698"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题：gate.1 唯一失败项是 load pixel 0.909%，两侧尺寸都是 1200x110，html/text/overlay/requests 全部一致；差异只在截图最后一行（rest.diff.png 第 109 行整行 1200px，1200/132000=0.909%，第 0–108 行全部在阈值内）。原因：frendLinks 是父页 talents/index 最后一个 .bgColor 里的最后一块，根节点 class marB70 在原包和还原侧都没有对应规则（margin-bottom 实际为 0），所以原版里根节点下边缘紧贴外壳的 footer（div.footCls，背景 rgba(51,51,51,.9)），而且下边缘落在小数像素上（离线渲染 legacy-dist 时根节点高 108.59px）。Chromium 元素截图把小数框取整成 110 行时，最后一行整行取自根节点下方：原版是外壳 footer 的深色（离线复现得到 71,71,71；隐藏 footer 后为 255），还原侧挂在无外壳的路由下，下方没有 footer（241,243,244）。HM-262 的 shellLayoutCss 只对页面级根节点生效，HM-253 的 markOffscopeFixed 只隐藏 fixed/sticky 元素，recordVia 组件根节点紧邻的非 fixed 外壳元素（footer）会经取整渗进截图。页面层没有正当改法（加边距或改高度都会偏离原代码）。需要裁定员判断：登记 known-diff，或走规则变更单让 recordVia 组件截图时也隐藏外壳（header/footer）"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐项核对原 chunk frendLinks.17833206362002.js 和 frendLinks.17833206362002.css：模板（div.marB70.marT40 > 标题 span「友情链接」+ i.border-btm、div.youqingtitle.marT25、div.friend-link.flex.marT40 > v-for item-link）、props codeList、watch deep、onMounted init、getArticleListByCode 参数、scopeId data-v-0b7f2f66 的样式都和原代码逐条一致；门槛 DOM（load/final html）两侧相同",
+    "gate.1 唯一失败项 pixel 来自截图最后一行渗入原版外壳 footer（见 needsFromSkeleton），不在本单 target / subComponentDir 内；依据是离线用 legacy-dist 复现：给父页加 0.6px 偏移后，原版截图最后一行变成 footer 深色，隐藏 .footCls 后变白",
+    "self-check pass（私有克隆 fl-vue，restore/fast-lane = 78cdd06，和 gate.1 比对的是同一个 commit）；restore/fast-lane 没有新提交"
+  ]
+}
