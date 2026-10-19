@@ -32,6 +32,14 @@ export function pixelDiff(a, b, out, threshold) {
   if (out) writeFileSync(out, PNG.sync.write(D));
   return { ratio: n / (w * h), sizeA: [A.width, A.height], sizeB: [B.width, B.height] };
 }
+// A root that paints nothing (zero-area box, no painted content: replay.mjs paintedBoxInPage, HM-380) has no shot, only
+// `blank`. Two blank roots are equal; a blank root against a shot differs in every pixel the other side paints.
+const pngSize = (f) => { const P = PNG.sync.read(readFileSync(f)); return [P.width, P.height]; };
+export function shotDiff(a, b, out, threshold) {
+  if (a.blank && b.blank) return { ratio: 0, sizeA: [0, 0], sizeB: [0, 0] };
+  if (a.blank || b.blank) return { ratio: 1, sizeA: a.blank ? [0, 0] : pngSize(a.shot), sizeB: b.blank ? [0, 0] : pngSize(b.shot) };
+  return pixelDiff(a.shot, b.shot, out, threshold);
+}
 
 // Pick the candidate the comparison uses in one phase. `cls` undefined → the first candidate (the restored side:
 // #poc-main holds only the page). Otherwise the candidate whose class attribute equals `cls` (null = no class
@@ -60,7 +68,7 @@ export function project(run, { rules, shell, exclude, cls = {}, known, side, use
     "load.text": lFound ? k("load.text", normText(lc?.text, rules)) : null,
     "load.overlay": k("load.overlay", normOverlay(overlayText(run.load?.overlay, shellToasts), rules)),
     "load.requests": k("load.requests", loadSet(run.load?.requests ?? [], new Set([...shell, ...exclude]))),
-    shot: lc?.shot ?? null, cls: lc?.cls ?? null, empty: !lc || lc.empty || !lc.tree, root: { load: lFound },
+    shot: lc?.shot ?? null, blank: !!lc?.blank, cls: lc?.cls ?? null, empty: !lc || lc.empty || !lc.tree, root: { load: lFound },
   };
   // pages opened by the page under test, in order; a run recorded before HM-797 has none stored and counts as having
   // opened none (re-record its baseline if the original does open a page)
@@ -171,10 +179,10 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, 
   }
   if (R["steps.errors"]?.length) failed.push({ check: "step-error", where: "steps", hint: R["steps.errors"].slice(0, 3).join("; ") });
   let pixel = null;
-  if (R.shot) {
+  if (R.shot || R.blank) {
     for (const [i, o] of O.entries()) {
-      if (!o.shot) continue;
-      const d = pixelDiff(o.shot, R.shot, i === 0 ? shotOut : null, rules.pixel.threshold);
+      if (!o.shot && !o.blank) continue;
+      const d = shotDiff(o, R, i === 0 ? shotOut : null, rules.pixel.threshold);
       if (!pixel || d.ratio < pixel.ratio) pixel = d;
     }
     if (pixel && pixel.ratio > rules.pixel.maxRatio) failed.push({ check: "pixel", where: "load", hint: `${(pixel.ratio * 100).toFixed(3)}% of pixels differ (max ${(rules.pixel.maxRatio * 100).toFixed(1)}%), size ${pixel.sizeA.join("x")} vs ${pixel.sizeB.join("x")}` });
@@ -190,6 +198,6 @@ export function unstableKeys(runA, runB, { rules, site, shell, shellToasts }) {
   const a = project(runA, { rules, shell, exclude, cls, shellToasts });
   const b = project(runB, { rules, shell, exclude, cls, shellToasts });
   const out = Object.keys(a).filter((k) => k.includes(".") && !same(a[k], b[k]));
-  if (a.shot && b.shot) { const d = pixelDiff(a.shot, b.shot, null, rules.pixel.threshold); if (d.ratio > rules.pixel.maxRatio) out.push("load.pixel"); }
+  if ((a.shot || a.blank) && (b.shot || b.blank)) { const d = shotDiff(a, b, null, rules.pixel.threshold); if (d.ratio > rules.pixel.maxRatio) out.push("load.pixel"); }
   return out;
 }
