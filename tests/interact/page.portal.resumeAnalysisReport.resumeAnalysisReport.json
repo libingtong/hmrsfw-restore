@@ -1,0 +1,7 @@
+[
+  {"wait":1500},
+  {"clickSel":".topBtn .btn","optional":true},
+  {"wait":1000},
+  {"clickSel":".ant-modal-close","optional":true},
+  {"wait":500}
+]
