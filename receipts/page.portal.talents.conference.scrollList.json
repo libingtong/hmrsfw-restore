@@ -1,0 +1,25 @@
+{
+  "id": "page.portal.talents.conference.scrollList",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/conference/scrollList.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "c85352b16c260b71633c7d591520e5e146a9ade2"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题：gate.1 只有 load pixel 22.537% 一项失败，html/text/overlay/requests 全部一致（两侧根都是 div.marT20.scrolls > div.scrollContent，宿主页传入空列表，无子项）。根节点内容为空、boundingBox 高度为 0，tools/gate/replay.mjs captureRoot 第 159–160 行在 box.height 为 0 时改用 page.screenshot() 截整个视口，比的是宿主页 /talents/conference 和外壳，不是本组件。rest.diff.png 的差异：原版内容整体比还原侧低约 85–90px（「关于大会」标题、abouts 左侧列表成对重影）、顶部横幅区一条横带不同，与 HM-34 index 单回执记录的 talents 布局 homeView 固定顶栏（headers.vue .headerBox 高 90px、position: fixed；还原侧按兜底路由挂在 #poc-main 下没有此父布局）一致。同一宿主页上 abouts、swperSlides 用元素截图，pixel 为 0。页面层无法修，需要裁定员判断（规则变更单：根为 0 尺寸时像素项的处理，或排除父布局 fixed 元素）"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐项核对原 chunk scrollList.1783320636200.js：props(list 默认 [{id:0}]、loading)、useRoute/useRouter/reactive/onBeforeMount/onMounted 空调用、v-for 生成 s-item（序号补零、title、点击 openLinkAddress=入口 bs）、scopeId data-v-9e281131 的样式与 scrollList.css 逐条一致",
+    "gate.1 唯一失败项 pixel 来自 0 高度根回退为整屏视口截图（见 needsFromSkeleton），不在本单 target / subComponentDir 内",
+    "self-check pass（私有克隆 fl-vue，restore/fast-lane = c85352b，与 gate.1 比对的 commit 相同）；restore/fast-lane 无新提交"
+  ]
+}
