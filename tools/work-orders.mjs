@@ -110,13 +110,31 @@ function depsOf(maps, selfId) {
 // section per query parameter needs it in the path, or the component never renders. Applied on every regeneration so a
 // hand edit of queue/ is never needed (that is how main and restore/fast-lane drifted apart). Only an extension of the
 // derived path is accepted ("/fairList" → "/fairList?type=30"), never another page.
-export function applyRecordPathOverrides(orders, overrides = JSON.parse(readFileSync(path.join(ROOT, "tools/record-path-overrides.json"), "utf8"))) {
+// Another parent (`recordVia` in the entry, HM-953): when the nearest routed importer cannot render the component with
+// the test data, a different routed page that also imports the chunk (directly or through other chunks, checked with
+// importedBy when given) may record it; recordPath must then be that page's own path, optionally extended with ?/#.
+export function applyRecordPathOverrides(orders, overrides = JSON.parse(readFileSync(path.join(ROOT, "tools/record-path-overrides.json"), "utf8")), importedBy = null) {
+  const extendsPath = (p, base, exact) => !!base && p.startsWith(base) && (exact && p === base || /^[?#]/.test(p.slice(base.length)));
   for (const [id, ov] of Object.entries(overrides)) {
     if (id.startsWith("_")) continue;
     const o = orders.find((x) => x.id === id);
     if (!o) continue;
-    if (!o.recordPath || !ov.recordPath.startsWith(o.recordPath) || !/^[?#]/.test(ov.recordPath.slice(o.recordPath.length))) throw new Error(`record-path-overrides.json: ${id} ${ov.recordPath} does not extend the derived ${o.recordPath}`);
     if (!ov.evidence) throw new Error(`record-path-overrides.json: ${id} has no evidence`);
+    if (ov.recordVia) {
+      const via = orders.find((x) => x.id === ov.recordVia);
+      if (!via || via.type !== "page" || via.recordVia || !via.routes?.length) throw new Error(`record-path-overrides.json: ${id} recordVia ${ov.recordVia} is not a routed page order`);
+      if (!extendsPath(ov.recordPath, via.recordPath, true)) throw new Error(`record-path-overrides.json: ${id} ${ov.recordPath} is not the path of ${ov.recordVia} (${via.recordPath})`);
+      if (importedBy) {
+        const chunkOf = (x) => x.sourceChunk.split("/").pop();
+        const seen = new Set([chunkOf(o)]); let q = [chunkOf(o)], found = false;
+        while (q.length && !found) { const next = []; for (const c of q) for (const imp of importedBy.get(c) ?? []) { if (seen.has(imp)) continue; seen.add(imp); if (imp === chunkOf(via)) found = true; next.push(imp); } q = next; }
+        if (!found) throw new Error(`record-path-overrides.json: ${id} recordVia ${ov.recordVia}: ${chunkOf(via)} does not import ${chunkOf(o)}`);
+      }
+      o.recordVia = via.id;
+      o.recordPath = ov.recordPath;
+      continue;
+    }
+    if (!extendsPath(ov.recordPath, o.recordPath, false)) throw new Error(`record-path-overrides.json: ${id} ${ov.recordPath} does not extend the derived ${o.recordPath}`);
     o.recordPath = ov.recordPath;
   }
   return orders;
@@ -163,7 +181,7 @@ export function buildOrders(APP) {
       while (q.length && !via) { const next = []; for (const c of q) for (const imp of scope.importedBy.get(c) ?? []) { if (seen.has(imp)) continue; seen.add(imp); const po = byChunk.get(`${site}/${imp}`); if (po?.recordPath) { via = po; break; } next.push(imp); } q = next; }
       if (via) { o.recordPath = via.recordPath; o.recordVia = via.id; }
     }
-    applyRecordPathOverrides(siteOrders);
+    applyRecordPathOverrides(siteOrders, undefined, scope.importedBy);
     // identity to record with: portal needs none; user center by route and chunk, undecided → null + notes (never guessed)
     if (site === "usercenter") for (const [id, r] of ucRoles(siteOrders.filter((x) => x.type === "page"))) { const o = siteOrders.find((x) => x.id === id); o.role = r.role; if (r.notes) o.notes = r.notes; roles[id] = r; }
     else for (const o of siteOrders) if (o.type === "page") roles[o.id] = { role: "general", by: "门户不需要身份" };

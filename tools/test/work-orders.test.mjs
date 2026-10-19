@@ -65,11 +65,34 @@ test("recordPath overrides extend the derived path of a recordVia page and need 
   assert.equal(applyRecordPathOverrides(orders(), { "page.other": { recordPath: "/x?y", evidence: "e" } })[0].recordPath, "/fairList", "orders not in this run are skipped");
 });
 
+test("a recordPath override may move a recordVia page to another routed page that imports its chunk (HM-953)", async () => {
+  const { applyRecordPathOverrides } = await import("../work-orders.mjs");
+  const orders = () => [
+    { id: "page.portal.fair.signModal", type: "page", sourceChunk: "legacy-dist/portal/assets/signModal.js", routes: [], recordPath: "/cityHome/:cityCode", recordVia: "page.portal.cityHome.index" },
+    { id: "page.portal.cityHome.index", type: "page", sourceChunk: "legacy-dist/portal/assets/cityHome.js", routes: [{ path: "/cityHome/:cityCode" }], recordPath: "/cityHome/:cityCode" },
+    { id: "page.portal.sjz.fair.fairList", type: "page", sourceChunk: "legacy-dist/portal/assets/fairList.js", routes: [{ path: "/fairList" }], recordPath: "/fairList" },
+    { id: "page.portal.sjz.fair.webFair.list", type: "page", sourceChunk: "legacy-dist/portal/assets/list.js", routes: [], recordPath: "/fairList", recordVia: "page.portal.sjz.fair.fairList" },
+    { id: "page.portal.other", type: "page", sourceChunk: "legacy-dist/portal/assets/other.js", routes: [{ path: "/other" }], recordPath: "/other" },
+  ];
+  const importedBy = new Map([["signModal.js", ["cityHome.js", "list.js"]], ["list.js", ["fairs.js"]], ["fairs.js", ["fairList.js"]]]);
+  const ov = (x) => ({ "page.portal.fair.signModal": { evidence: "chunk:1", ...x } });
+  const moved = applyRecordPathOverrides(orders(), ov({ recordVia: "page.portal.sjz.fair.fairList", recordPath: "/fairList" }), importedBy)[0];
+  assert.deepEqual([moved.recordVia, moved.recordPath], ["page.portal.sjz.fair.fairList", "/fairList"]);
+  assert.equal(applyRecordPathOverrides(orders(), ov({ recordVia: "page.portal.sjz.fair.fairList", recordPath: "/fairList?type=web" }), importedBy)[0].recordPath, "/fairList?type=web");
+  assert.throws(() => applyRecordPathOverrides(orders(), ov({ recordVia: "page.portal.sjz.fair.fairList", recordPath: "/cityHome/:cityCode" }), importedBy), /is not the path of/);
+  assert.throws(() => applyRecordPathOverrides(orders(), ov({ recordVia: "page.portal.other", recordPath: "/other" }), importedBy), /does not import/);
+  assert.throws(() => applyRecordPathOverrides(orders(), ov({ recordVia: "page.portal.sjz.fair.webFair.list", recordPath: "/fairList" }), importedBy), /not a routed page order/);
+  assert.throws(() => applyRecordPathOverrides(orders(), ov({ recordVia: "page.portal.nope", recordPath: "/fairList" }), importedBy), /not a routed page order/);
+  assert.throws(() => applyRecordPathOverrides(orders(), { "page.portal.fair.signModal": { recordVia: "page.portal.sjz.fair.fairList", recordPath: "/fairList" } }, importedBy), /no evidence/);
+});
+
 test("the checked-in overrides are what queue/ holds", async () => {
   const { readFileSync } = await import("node:fs");
   const overrides = JSON.parse(readFileSync(new URL("../record-path-overrides.json", import.meta.url), "utf8"));
   for (const [id, ov] of Object.entries(overrides)) {
     if (id.startsWith("_")) continue;
-    assert.equal(JSON.parse(readFileSync(new URL(`../../queue/${id}.json`, import.meta.url), "utf8")).recordPath, ov.recordPath, id);
+    const o = JSON.parse(readFileSync(new URL(`../../queue/${id}.json`, import.meta.url), "utf8"));
+    assert.equal(o.recordPath, ov.recordPath, id);
+    if (ov.recordVia) assert.equal(o.recordVia, ov.recordVia, id);
   }
 });

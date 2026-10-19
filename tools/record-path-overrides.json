@@ -1,5 +1,5 @@
 {
- "_source": "recordVia 组件页的录制路径修正（work-orders.mjs applyRecordPathOverrides）：父页面按 query 只渲染其中一栏时，按「最近的路由父页面」推出来的 recordPath 渲染不到组件，要带上参数。每条都要有原 chunk 证据；只改 recordPath，覆盖值必须以推出来的路径开头。重新生成 queue/ 时保留，不会丢（HM-949）",
+ "_source": "recordVia 组件页的录制路径修正（work-orders.mjs applyRecordPathOverrides）：父页面按 query 只渲染其中一栏时，按「最近的路由父页面」推出来的 recordPath 渲染不到组件，要带上参数。每条都要有原 chunk 证据；只改 recordPath 时，覆盖值必须以推出来的路径开头；带 recordVia 时改由另一个同样引用该 chunk 的路由页面录制，recordPath 必须是那个页面自己的路径（可加 ?/#，HM-953）。重新生成 queue/ 时保留，不会丢（HM-949）",
  "page.portal.sjz.fair.outFair.list": {
   "recordPath": "/fairList?type=30",
   "evidence": "legacy-dist/portal/assets/fairs.1783320636200.js:1456 query.type web/20→20、scene/10→10、其他→30（户外栏），不带 type 时 jobFairType 为空，户外栏不渲染",
@@ -14,5 +14,11 @@
   "recordPath": "/talents/fairList?type=30",
   "evidence": "legacy-dist/portal/assets/fairList.17833206362002.js:1257 默认 jobFairType=\"20\" 只渲染线上栏；query.type 非 web 时为 30，才渲染线下栏 list.178332063620010.js（data-v-7c10e688）",
   "by": "HM-881"
+ },
+ "page.portal.fair.signModal": {
+  "recordVia": "page.portal.sjz.fair.fairList",
+  "recordPath": "/fairList?type=web",
+  "evidence": "legacy-dist/portal/assets/fairs.1783320636200.js:1439 query.type=web → jobFairType=\"20\"，:2454 渲染网络招聘会栏 list.17833206362008.js；list.17833206362008.js:8083 卡片 izEnrollStatus===\"1\"&&signStatus!==\"1\" 时出「报名参会」，:3290 ca() 通过单位校验后 signShow=true，:10813 signShow 时渲染 signModal（data-v-484c8df1）。推出来的 /cityHome/:cityCode（index.178332063620024.js:21507 同条件）在测试环境没有可报名的招聘会（HM-937）；/fairList 原版基线（page.portal.sjz.fair.fairs，2026-10-19）里网络招聘会栏渲染出 2 个「报名参会」",
+  "by": "HM-953"
  }
 }
