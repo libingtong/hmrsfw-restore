@@ -1,0 +1,11 @@
+[
+  {"wait":800},
+  {"fill":["可输入单位名称进行搜索","测试"]},
+  {"click":"搜索"},
+  {"wait":800},
+  {"click":"重置"},
+  {"wait":800},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"wait":800},
+  {"click":"更多招聘会信息","optional":true}
+]
