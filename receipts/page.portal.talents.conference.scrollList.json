@@ -2,7 +2,7 @@
   "id": "page.portal.talents.conference.scrollList",
   "branch": "restore/fast-lane",
   "result": "fail",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/conference/scrollList.vue"
   ],
@@ -20,6 +20,7 @@
   "notes": [
     "fix 1：未改代码。逐项核对原 chunk scrollList.1783320636200.js：props(list 默认 [{id:0}]、loading)、useRoute/useRouter/reactive/onBeforeMount/onMounted 空调用、v-for 生成 s-item（序号补零、title、点击 openLinkAddress=入口 bs）、scopeId data-v-9e281131 的样式与 scrollList.css 逐条一致",
     "gate.1 唯一失败项 pixel 来自 0 高度根回退为整屏视口截图（见 needsFromSkeleton），不在本单 target / subComponentDir 内",
-    "self-check pass（私有克隆 fl-vue，restore/fast-lane = c85352b，与 gate.1 比对的 commit 相同）；restore/fast-lane 无新提交"
+    "self-check pass（私有克隆 fl-vue，restore/fast-lane = c85352b，与 gate.1 比对的 commit 相同）；restore/fast-lane 无新提交",
+    "fix 2（第 2 轮）：未改代码。第 2 次门槛（同一 commit c85352b，restore/fast-lane 远端仍为此 commit）结果与第 1 次完全相同：只有 load pixel 22.537%，两侧 load.html 一致，rest.png/rest.diff.png 字节数相同；原因仍是 0 高度根回退整屏截图 + 父布局固定顶栏，不在本单 target / subComponentDir 内；按 README 第 5 节两轮修正未过应交裁定员"
   ]
 }
