@@ -44,24 +44,29 @@ export async function shellLayoutCss(page, sel, scopes) {
   const shell = sel + ids.map((s) => `:not([${s}])`).join("");
   return `${shell},${shell} *{visibility:hidden!important}`;
 }
-// Off-scope fixed elements in component shots (HM-253). A recordVia page's root is a component inside its parent page
-// (HM-251). Fixed or sticky elements outside that component (the app shell's customer-service tab, a parent's side
-// panel) are drawn over the component's box at an offset that depends on where the element screenshot scrolled the
-// whole parent page, i.e. on the parent's and the shell's layout, not on the component. While each screenshot of such a
-// root is taken, the fixed and sticky elements that are neither inside the root, nor one of its ancestors, nor carrying
-// the component's scopeId (teleported template content) are made invisible (visibility only: layout is unchanged; DOM,
-// text and requests are captured before, as with shellLayoutCss). Both sides: runPage's opts.componentScope is the
+// Off-scope elements in component shots (HM-253, HM-342). A recordVia page's root is a component inside its parent page
+// (HM-251). Anything outside that component is the parent page's or the app shell's, and still lands in the component's
+// shot: fixed or sticky elements (the shell's customer-service tab, a parent's side panel) at an offset that depends on
+// where the element screenshot scrolled the whole parent page (HM-253), and the neighbours of the component's box (the
+// shell's footer right below a component that ends its parent page) in the edge rows and columns, because the shot is
+// the box's enclosing whole-pixel rectangle and a box with fractional edges leaves a partial pixel row at each edge
+// (HM-342: the original side's homeView footer is dark there, the restored side's App footer light). While each
+// screenshot of such a root is taken, every element that is neither inside the root, nor one of its ancestors, nor
+// carrying the component's scopeId or holding an element that does (teleported template content, the component's other
+// roots and instances) is made invisible (visibility only: layout is unchanged; DOM, text and requests are captured
+// before, as with shellLayoutCss). Only the outermost such element is marked, OFFSCOPE_CSS covers its content. What
+// stays in the shot is the component on its ancestors' backgrounds. Both sides: runPage's opts.componentScope is the
 // component's scopeId (baseline.mjs: the work order's, gate.mjs: the restored file's); other pages are shot as before.
 const OFFSCOPE = "data-gate-offscope";
 export const OFFSCOPE_CSS = `[${OFFSCOPE}],[${OFFSCOPE}] *{visibility:hidden!important}`;
-export async function markOffscopeFixed(el, scopeId) {
+export async function markOffscope(el, scopeId) {
   if (!/^data-v-[0-9a-f]+$/.test(scopeId ?? "")) return 0; // spliced into a selector: only scope ids
   return el.evaluate((root, [attr, sid]) => {
     let n = 0;
     for (const e of document.body.querySelectorAll("*")) {
       if (root.contains(e) || e.contains(root) || e.hasAttribute(sid) || e.querySelector(`[${sid}]`)) continue;
-      const p = getComputedStyle(e).position;
-      if (p === "fixed" || p === "sticky") { e.setAttribute(attr, ""); n++; }
+      if (e.parentElement?.hasAttribute(attr)) continue; // inside an element already marked
+      e.setAttribute(attr, ""); n++;
     }
     return n;
   }, [OFFSCOPE, scopeId]).catch(() => 0);
@@ -175,7 +180,7 @@ async function captureRoot(page, sel, shotBase, withShots, phases) {
       const box = await el.boundingBox();
       // added only around the screenshot: the DOM tree and innerText above are taken with the shell visible
       const shell = shellCss ? await page.addStyleTag({ content: shellCss }).catch(() => null) : null;
-      const offscope = (await markOffscopeFixed(el, COMPONENT_SCOPE.get(page))) ? await page.addStyleTag({ content: OFFSCOPE_CSS }).catch(() => null) : null;
+      const offscope = (await markOffscope(el, COMPONENT_SCOPE.get(page))) ? await page.addStyleTag({ content: OFFSCOPE_CSS }).catch(() => null) : null;
       // Element screenshots wait for the element to stop moving; a page with a running carousel can exceed that on a
       // busy machine, so fall back to a full-page clip of the same box.
       if (box?.height && box.width) await el.screenshot({ path: file, timeout: 15000 }).catch(async () => { const b = await el.evaluate((n) => { const r = n.getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, width: r.width, height: r.height }; }); await page.screenshot({ path: file, fullPage: true, clip: b }); });
@@ -257,7 +262,7 @@ export async function runPage(browser, opts) {
     return res;
   }
   if (opts.pageScopes?.length) PAGE_SCOPES.set(page, opts.pageScopes); // shellLayoutCss
-  if (opts.componentScope) COMPONENT_SCOPE.set(page, opts.componentScope); // markOffscopeFixed
+  if (opts.componentScope) COMPONENT_SCOPE.set(page, opts.componentScope); // markOffscope
   const base = path.join(opts.shotDir, opts.tag);
   res.load = { ...(await captureRoot(page, opts.sel, base, true, /^load$/)), requests: log.map((x) => ({ ...x })), opened: opened.map((x) => ({ ...x })) };
   if (opts.steps?.length) {

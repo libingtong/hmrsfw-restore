@@ -64,8 +64,10 @@ async function baselineFor(wo, state) {
   // `origSel`, i.e. the parent page's): recomputed from the same HAR, offline, see refreshBaseline().
   if ((b.sel ?? SITES[wo.site].origSel) !== origSelOf(wo)) return { missing: "root selector changed since the baseline", refresh: b.har.path };
   // Same again for recordVia baselines whose component shots still include the fixed elements outside the component
-  // (taken before HM-253, replay.mjs markOffscopeFixed).
+  // (taken before HM-253), or the parent page's and the shell's other elements next to it (before HM-342; replay.mjs
+  // markOffscope). `offscopeAll` implies `offscopeFixed`.
   if (wo.recordVia && !b.offscopeFixed) return { missing: "component shots taken with off-scope fixed elements (before HM-253)", refresh: b.har.path };
+  if (wo.recordVia && !b.offscopeAll) return { missing: "component shots taken with off-scope elements around the component (before HM-342)", refresh: b.har.path };
   // Same again for baselines that may hold a zero-area root shot as the whole viewport (taken before HM-380, replay.mjs
   // paintedBoxInPage): any load shot of exactly the viewport's size. A root that really is that size is shot the same way
   // again, so recomputing it changes nothing.
