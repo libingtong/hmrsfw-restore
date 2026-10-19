@@ -1,0 +1,8 @@
+[
+  {"wait":800},
+  {"click":"立即发布"},
+  {"wait":800},
+  {"clickSel":".public-btn-green","optional":true},
+  {"wait":800},
+  {"click":"换一批","optional":true}
+]
