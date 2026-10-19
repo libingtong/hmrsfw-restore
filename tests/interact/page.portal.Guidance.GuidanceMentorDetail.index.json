@@ -1,0 +1,12 @@
+[
+  {"click":"提交","optional":true},
+  {"wait":500},
+  {"fill":["请您输入咨询内容（500字以内）","测试咨询内容"],"optional":true},
+  {"click":"重置","optional":true},
+  {"wait":300},
+  {"fill":["请您输入咨询内容（500字以内）","Tst-0001"],"optional":true},
+  {"click":"提交","optional":true},
+  {"wait":1000},
+  {"clickSel":".collect","optional":true},
+  {"wait":1000}
+]
