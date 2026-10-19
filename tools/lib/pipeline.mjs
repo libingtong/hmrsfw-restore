@@ -986,7 +986,12 @@ export class Pipeline {
     if (!gate) return { ok: false, summary: `no gate result on ${taskId}`, anomalies: [{ issue: taskId, what: "integration advance without gate result", suggestedAction: "门槛员重跑" }] };
     if (gate.error) return { ok: false, summary: "gate error", anomalies: [{ issue: taskId, what: `integration gate error: ${String(gate.error).slice(0, 200)}`, suggestedAction: "建排障单交给裁定员" }] };
     // No verdict: pages without a usable baseline. Not a failure — a rule/lib regression must not be reverted on it.
-    if (gate.pending === "record") return { ok: false, summary: "integration gate pending record", anomalies: [{ issue: taskId, what: `integration gate pending record: ${(gate.missing || []).length} pages without a usable baseline`, suggestedAction: "补录基线后 --regate，或由人决定回归范围" }] };
+    // missingTotal: gate.mjs keeps only a sample of the ids when the list does not fit the metadata (HM-876)
+    if (gate.pending === "record") {
+      const n = gate.missingTotal ?? (gate.missing || []).length;
+      const why = Object.entries(gate.byReason || {}).map(([w, k]) => `${w} ×${k}`).join("; ");
+      return { ok: false, summary: "integration gate pending record", anomalies: [{ issue: taskId, what: `integration gate pending record: ${n} pages without a usable baseline${why ? ` (${why})` : ""}`, suggestedAction: "补录基线后 --regate，或由人决定回归范围" }] };
+    }
     const wos = meta.workOrders || [];
     const failed = gate.pass ? [] : this.failedWos(gate, wos);
     this.gateGlobal = gate.global ?? null; // app-wide failures by layer / owner (integration mode), for the reports below
