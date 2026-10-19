@@ -90,8 +90,11 @@ const same = (a, b) => (Array.isArray(a) ? a.join("\n") === b.join("\n") : a ===
 
 // Volatile mask from two original runs A and B: tokens equal in both must match in order; each hunk where A and B
 // differ matches anything. Tokens: tags and text runs for HTML; digit runs, whitespace and other runs for text.
+// → null (too different to mask), or the literal segments between the hunks: r matches when it starts with the first,
+// ends with the last and holds the others in order in between — the language of /^S0[\s\S]*?S1…[\s\S]*?Sk$/, tested
+// with startsWith/indexOf instead of compiling that RegExp: for a 40–80 KB HTML V8 throws "Regular expression too large" (HM-902).
 const tokens = (where, s) => (where.endsWith(".html") ? s.split(/(<[^>]+>)/) : s.split(/(\d+|\s+)/)).filter((x) => x !== "");
-function maskRegex(where, a, b) {
+export function maskSegments(where, a, b) {
   const A = tokens(where, a), B = tokens(where, b);
   let p = 0; while (p < A.length && p < B.length && A[p] === B[p]) p++;
   let q = 0; while (q < A.length - p && q < B.length - p && A[A.length - 1 - q] === B[B.length - 1 - q]) q++;
@@ -100,24 +103,32 @@ function maskRegex(where, a, b) {
   // LCS of the middle part → the common subsequence stays literal, everything else becomes a wildcard hunk.
   const n = a2.length, m = b2.length, L = Array.from({ length: n + 1 }, () => new Uint32Array(m + 1));
   for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = a2[i] === b2[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
-  const parts = A.slice(0, p).map(esc);
-  let i = 0, j = 0, hole = false, holes = 0;
+  const segs = [A.slice(0, p).join("")];
+  let i = 0, j = 0, hole = false;
   while (i < n || j < m) {
-    if (i < n && j < m && a2[i] === b2[j]) { parts.push(esc(a2[i])); i++; j++; hole = false; continue; }
-    if (!hole) { parts.push("[\\s\\S]*?"); hole = true; holes++; }
+    if (i < n && j < m && a2[i] === b2[j]) { segs[segs.length - 1] += a2[i]; i++; j++; hole = false; continue; }
+    if (!hole) { segs.push(""); hole = true; }
     if (j >= m || (i < n && L[i + 1][j] >= L[i][j + 1])) i++; else j++;
   }
-  if (holes > 50) return null;
-  parts.push(...A.slice(A.length - q).map(esc));
-  return new RegExp("^" + parts.join("") + "$");
+  if (segs.length - 1 > 50) return null;
+  segs[segs.length - 1] += A.slice(A.length - q).join("");
+  return segs;
 }
-const esc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+// Leftmost placement of each middle segment is enough: a later occurrence never leaves more room for the rest.
+export function maskTest(segs, r) {
+  if (segs.length === 1) return r === segs[0];
+  const first = segs[0], last = segs[segs.length - 1], end = r.length - last.length;
+  if (end < first.length || !r.startsWith(first) || !r.endsWith(last)) return false;
+  let at = first.length;
+  for (const s of segs.slice(1, -1)) { const k = r.indexOf(s, at); if (k < 0 || k + s.length > end) return false; at = k + s.length; }
+  return true;
+}
 function volatileMatch(where, a, b, r) {
   if (same(a, b)) return false;
   if (where === "load.requests") { const both = a.filter((x) => b.includes(x)), any = new Set([...a, ...b]); return both.every((x) => r.includes(x)) && r.every((x) => any.has(x)); }
   if (Array.isArray(a)) return false;
-  const re = maskRegex(where, a, b);
-  return !!re && re.test(r);
+  const segs = maskSegments(where, a, b);
+  return !!segs && maskTest(segs, r);
 }
 function hint(where, a, b) {
   if (where.endsWith(".html")) { const d = firstDiff(a, b); return `HTML differs under ${d.path} (offset ${d.offset}; lengths ${d.lengths.join("/")})`; }
