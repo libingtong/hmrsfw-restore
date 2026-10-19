@@ -23,7 +23,7 @@
  "target": "apps/portal/src/views/talents/fair/outFair/list.vue",
  "subComponentDir": "apps/portal/src/views/talents/fair/outFair/list/",
  "routes": [],
- "recordPath": "/talents/fairList",
+ "recordPath": "/talents/fairList?type=30",
  "role": "general",
  "maps": "out/maps/page.portal.talents.fair.outFair.list.json",
  "hints": "out/hints/page.portal.talents.fair.outFair.list.md",
