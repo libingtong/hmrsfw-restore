@@ -1,0 +1,9 @@
+[
+  {"wait":800},
+  {"click":"资料下载"},
+  {"wait":600},
+  {"clickSel":".swiper-button-next","optional":true},
+  {"wait":600},
+  {"clickSel":".swiper-button-prev","optional":true},
+  {"wait":600}
+]
