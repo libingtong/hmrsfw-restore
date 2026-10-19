@@ -13,6 +13,8 @@
 //          --from build (with --dry-run only): diagnostic, keep going after static failures
 //          --registry <file> (default registry/<app>.json), --keep (keep the gate dir even when passing)
 //          --fast-lane (implied by task metadata fastLane: true): the branch is shared by many page orders (HM-526)
+//          --interact-ref <commit>|worktree: where tests/interact comes from (interactRef; integration mode default: a
+//            fresh origin/integration of the tool repo, page mode default: this checkout's working tree) (HM-914)
 // Output: one JSON line on stdout:
 //   {pass, failed:[{check, where, hint, wo?}], stage, diff, shimmed:[…], durationMs, stages:{static, build, browser},
 //    pages:[{wo, pass, stage, failed, pixel}], mode, attempt}
@@ -29,7 +31,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { appDir as resolveAppDir } from "./app-dir.mjs";
 import { gitExclude } from "./lib/git-exclude.mjs";
-import { REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, origSelOf, scopeRootSel, stateDir } from "./gate/common.mjs";
+import { INTERACT_BRANCH, REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, origSelOf, scopeRootSel, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256 } from "./gate/har.mjs";
 import { VIEWPORT, runPage } from "./gate/replay.mjs";
 import { compareRuns } from "./gate/compare.mjs";
@@ -51,14 +53,35 @@ function taskMeta(task) {
   return decodeAll(issue.metadata); // the server keeps arrays/objects as JSON strings (workOrders, history, …)
 }
 
+// Where the interaction scripts come from (HM-914). record-page.mjs commits them to the tool repo's `integration` branch
+// and the baselines were recorded with those; main and restore/fast-lane, where the gate's tools come from, carry only
+// the 8 POC scripts, so an integration run that read its own checkout saw "interaction script changed" on almost every
+// page. Integration mode therefore takes tests/interact from a fresh origin/integration, pinned to one commit for the
+// whole run (the hash check, the steps replayed and a refreshed baseline read the same scripts). --interact-ref names
+// another commit, `worktree` keeps the checkout's files. Page mode reads the working tree as before. null = working tree.
+export function interactRef(argv, mode, { root = ROOT, remote = "origin" } = {}) {
+  const want = opt(argv, "--interact-ref", mode === "integration" ? `${remote}/${INTERACT_BRANCH}` : "worktree");
+  if (want === "worktree") return null;
+  const git = (args) => execFileSync("git", ["-C", root, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], timeout: 120000 }).trim();
+  if (want !== `${remote}/${INTERACT_BRANCH}`) { try { return git(["rev-parse", "--verify", "--quiet", `${want}^{commit}`]); } catch { throw new Error(`--interact-ref ${want}: no such commit in the tool repo`); } }
+  const tmp = `refs/gate-interact/${process.pid}-${Date.now()}`; // a private ref: concurrent gates never share one
+  for (let i = 1; ; i++) { // same retries as checkoutBranch, then it is the gate's own error
+    try { git(["fetch", "-q", "--no-write-fetch-head", remote, `+refs/heads/${INTERACT_BRANCH}:${tmp}`]); break; } catch (e) {
+      if (i >= 3) throw new Error(`git fetch of the tool repo's ${INTERACT_BRANCH} branch (interaction scripts) failed 3 times`);
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5000 * i);
+    }
+  }
+  try { return git(["rev-parse", `${tmp}^{commit}`]); } finally { try { git(["update-ref", "-d", tmp]); } catch {} }
+}
+
 // Baseline present and still matching the HAR and interaction script it was recorded with?
-async function baselineFor(wo, state) {
+export async function baselineFor(wo, state, { interact = null } = {}) {
   const dir = path.join(state, "baseline", wo.id);
   if (!existsSync(path.join(dir, "baseline.json"))) return { missing: "no baseline" };
   const b = readBaseline(dir);
   if (!existsSync(b.har.path)) return { missing: "HAR gone" };
   if (sha256(readFileSync(b.har.path)) !== b.har.sha256) return { missing: "HAR changed since the baseline" };
-  const script = await interactScript(wo.id);
+  const script = await interactScript(wo.id, { ref: interact });
   if ((script ? sha256(JSON.stringify(script)) : null) !== (b.script ?? null)) return { missing: "interaction script changed since the baseline" };
   // Same HAR and script, only the root selector changed (baselines from before HM-251 took a recordVia page's root with
   // `origSel`, i.e. the parent page's): recomputed from the same HAR, offline, see refreshBaseline().
@@ -78,10 +101,10 @@ const sameSize = (file, { width, height }) => { const h = readFileSync(file).sub
 
 // Re-runs baseline.mjs for one order with the HAR its baseline was recorded with (legacy-dist replayed under that HAR,
 // nothing goes to the test environment). Dry runs write into their own directory, never over the shared baseline.
-function refreshBaseline(wo, har, state, dry) {
+function refreshBaseline(wo, har, state, dry, interact) {
   const out = dry ? path.join(state, "gate", `baseline-dry${process.pid}`, wo.id) : path.join(state, "baseline", wo.id);
   let r;
-  try { r = JSON.parse(execFileSync(process.execPath, [path.join(ROOT, "tools/baseline.mjs"), wo.id, "--har", har, "--out", out], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], timeout: 15 * 60000 }).trim().split("\n").pop()); } catch (e) { r = { ok: false, error: String(e.stdout || e.message).trim().split("\n").pop().slice(0, 200) }; }
+  try { r = JSON.parse(execFileSync(process.execPath, [path.join(ROOT, "tools/baseline.mjs"), wo.id, "--har", har, "--out", out, ...(interact ? ["--interact-ref", interact] : [])], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], timeout: 15 * 60000 }).trim().split("\n").pop()); } catch (e) { r = { ok: false, error: String(e.stdout || e.message).trim().split("\n").pop().slice(0, 200) }; }
   return r.ok ? { baseline: readBaseline(out), dir: out } : { missing: `baseline refresh failed: ${r.error ?? "?"}` };
 }
 
@@ -131,11 +154,12 @@ export async function gate(argv) {
   if (!ids.length && regress) { const { readdirSync } = await import("node:fs"); ids = existsSync(path.join(state, "baseline")) ? readdirSync(path.join(state, "baseline")).filter((d) => existsSync(path.join(state, "baseline", d, "baseline.json"))).sort() : []; }
   if (!ids.length) throw new Error("no work orders: pass --task (metadata workOrders) or --wo");
   const wos = ids.map(loadWorkOrder);
+  const interact = interactRef(argv, mode);
 
   // Baselines first: without one there is nothing to compare against.
   const bases = {}, missing = [];
-  for (const wo of wos) { let b = await baselineFor(wo, state); if (b.refresh) b = refreshBaseline(wo, b.refresh, state, dry); if (b.missing) missing.push({ wo: wo.id, why: b.missing }); else bases[wo.id] = b.baseline; }
-  if (missing.length && !regress) return { pending: "record", missing, attempt, durationMs: Date.now() - t0 };
+  for (const wo of wos) { let b = await baselineFor(wo, state, { interact }); if (b.refresh) b = refreshBaseline(wo, b.refresh, state, dry, interact); if (b.missing) missing.push({ wo: wo.id, why: b.missing }); else bases[wo.id] = b.baseline; }
+  if (missing.length && !regress) return { pending: "record", missing, attempt, durationMs: Date.now() - t0, ...(interact ? { interactRef: interact } : {}) };
   const judged = wos.filter((w) => bases[w.id]);
 
   const runId = regress ? `regress-${new Date().toISOString().replace(/[:.]/g, "-")}-${process.pid}` : mode === "integration" ? `integration-${ids[0]}-a${attempt}` : `${ids[0]}-a${attempt}`;
@@ -143,7 +167,7 @@ export async function gate(argv) {
   rmSync(gateDir, { recursive: true, force: true });
   mkdirSync(gateDir, { recursive: true });
   const stages = {};
-  const out = { pass: false, failed: [], stage: null, diff: gateDir, shimmed: [], durationMs: 0, stages, pages: [], mode, attempt, build: buildKind };
+  const out = { pass: false, failed: [], stage: null, diff: gateDir, shimmed: [], durationMs: 0, stages, pages: [], mode, attempt, build: buildKind, ...(interact ? { interactRef: interact } : {}) };
   let app = null, closers = [];
   try {
     const baseApp = resolveAppDir(argv);
@@ -236,7 +260,7 @@ export async function gate(argv) {
       const base = bases[wo.id];
       const dir = path.join(gateDir, wo.id);
       mkdirSync(dir, { recursive: true });
-      const steps = await interactScript(wo.id);
+      const steps = await interactScript(wo.id, { ref: interact });
       const known = loadKnownDiffs(wo.id, { state, site: wo.site });
       const har = loadHar(base.har.path);
       const restSid = wo.recordVia ? scopeIds.get(realpathOr(path.join(appDir, wo.target))) : null;

@@ -1,7 +1,9 @@
 // Original-side baseline for the gate (docs/pipeline.md §7.2, §12). Replays the ORIGINAL build (legacy-dist/<site>)
 // under the page's HAR twice and stores what the gate compares against, so the gate only runs the restored side.
 // Called by record-page.mjs (D) after recording; can be re-run any time (the HAR and login state are only read).
-//   node tools/baseline.mjs <work order id> [--har <path>] [--out <dir>] [--no-coverage]
+//   node tools/baseline.mjs <work order id> [--har <path>] [--out <dir>] [--no-coverage] [--interact-ref <commit>]
+// --interact-ref: take tests/interact/<id>.json from that tool-repo commit, not the working tree (gate.mjs passes the
+// one its integration run reads when it refreshes a baseline; HM-914).
 // Writes $RESTORE_STATE/baseline/<id>/ (or --out), replacing it atomically:
 //   dom.html       page root outerHTML (run 1, first root candidate)      text.txt   its innerText
 //   shot.png       its screenshot (shot.<n>.png: other root candidates, *.r2.png: run 2)
@@ -30,11 +32,11 @@ export const BASELINE_VERSION = 1;
 
 // Shell probe + two original runs for one work order. Used by this CLI and by the POC comparison wrappers
 // (verify-confirm.mjs), which keep the result in memory instead of writing it.
-export async function recordOriginal({ browser, wo, harFile, assets, shotDir, rules, coverage = false }) {
+export async function recordOriginal({ browser, wo, harFile, assets, shotDir, rules, coverage = false, interactRef = null }) {
   const sel = origSelOf(wo); // the component's own root for recordVia pages (HM-251)
   const har = loadHar(harFile);
   const storage = authStorage(wo, assets, har);
-  const steps = await interactScript(wo.id);
+  const steps = await interactScript(wo.id, { ref: interactRef });
   const pageChunk = path.basename(wo.sourceChunk), sharedChunks = (Array.isArray(wo.deps?.shared) ? wo.deps.shared : []).map((x) => path.basename(x)).filter((x) => x !== pageChunk);
   const srv = await serveStatic(path.join(ROOT, "legacy-dist", wo.site));
   try {
@@ -79,7 +81,7 @@ export function readBaseline(dir) {
 
 async function main() {
   const argv = process.argv.slice(2);
-  const [id] = positionals(argv, ["--har", "--out", "--app"]);
+  const [id] = positionals(argv, ["--har", "--out", "--app", "--interact-ref"]);
   if (!id) throw new Error("usage: node tools/baseline.mjs <work order id> [--har <path>] [--out <dir>]");
   const t0 = Date.now();
   const wo = loadWorkOrder(id);
@@ -93,7 +95,7 @@ async function main() {
   const rules = loadRules();
   const browser = await chromium.launch();
   try {
-    const rec = await recordOriginal({ browser, wo, harFile, assets, shotDir: tmp, rules, coverage: !flag(argv, "--no-coverage") });
+    const rec = await recordOriginal({ browser, wo, harFile, assets, shotDir: tmp, rules, coverage: !flag(argv, "--no-coverage"), interactRef: opt(argv, "--interact-ref") ?? null });
     const r1 = rec.runs[0], c0 = r1.load.candidates[0];
     if (!c0 || c0.empty) throw new Error(`original page root (${rec.sel}) not found at ${wo.recordPath}`);
     const runs = rec.runs.map((r) => slimRun(r, tmp));
