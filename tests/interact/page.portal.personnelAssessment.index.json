@@ -1,0 +1,7 @@
+[
+  {"wait":800},
+  {"clickSel":".topBanner .slick-next","optional":true},
+  {"wait":500},
+  {"clickSel":".topBanner .slick-prev","optional":true},
+  {"wait":500}
+]
