@@ -1,0 +1,18 @@
+{
+ "_source": "recordVia 组件页的录制路径修正（work-orders.mjs applyRecordPathOverrides）：父页面按 query 只渲染其中一栏时，按「最近的路由父页面」推出来的 recordPath 渲染不到组件，要带上参数。每条都要有原 chunk 证据；只改 recordPath，覆盖值必须以推出来的路径开头。重新生成 queue/ 时保留，不会丢（HM-949）",
+ "page.portal.sjz.fair.outFair.list": {
+  "recordPath": "/fairList?type=30",
+  "evidence": "legacy-dist/portal/assets/fairs.1783320636200.js:1456 query.type web/20→20、scene/10→10、其他→30（户外栏），不带 type 时 jobFairType 为空，户外栏不渲染",
+  "by": "HM-848"
+ },
+ "page.portal.sjz.fair.webFair.list": {
+  "recordPath": "/fairList?type=web",
+  "evidence": "legacy-dist/portal/assets/fairs.1783320636200.js:1456 query.type 为 web 时 jobFairType=20，渲染网络招聘会栏",
+  "by": "HM-848"
+ },
+ "page.portal.talents.fair.outFair.list": {
+  "recordPath": "/talents/fairList?type=30",
+  "evidence": "legacy-dist/portal/assets/fairList.17833206362002.js:1257 默认 jobFairType=\"20\" 只渲染线上栏；query.type 非 web 时为 30，才渲染线下栏 list.178332063620010.js（data-v-7c10e688）",
+  "by": "HM-881"
+ }
+}
