@@ -2,7 +2,7 @@
   "id": "page.portal.talents.index.frendLinks",
   "branch": "restore/fast-lane",
   "result": "fail",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/talents/index/frendLinks.vue"
   ],
@@ -20,6 +20,7 @@
   "notes": [
     "fix 1：未改代码。逐项核对原 chunk frendLinks.17833206362002.js 和 frendLinks.17833206362002.css：模板（div.marB70.marT40 > 标题 span「友情链接」+ i.border-btm、div.youqingtitle.marT25、div.friend-link.flex.marT40 > v-for item-link）、props codeList、watch deep、onMounted init、getArticleListByCode 参数、scopeId data-v-0b7f2f66 的样式都和原代码逐条一致；门槛 DOM（load/final html）两侧相同",
     "gate.1 唯一失败项 pixel 来自截图最后一行渗入原版外壳 footer（见 needsFromSkeleton），不在本单 target / subComponentDir 内；依据是离线用 legacy-dist 复现：给父页加 0.6px 偏移后，原版截图最后一行变成 footer 深色，隐藏 .footCls 后变白",
-    "self-check pass（私有克隆 fl-vue，restore/fast-lane = 78cdd06，和 gate.1 比对的是同一个 commit）；restore/fast-lane 没有新提交"
+    "self-check pass（私有克隆 fl-vue，restore/fast-lane = 78cdd06，和 gate.1 比对的是同一个 commit）；restore/fast-lane 没有新提交",
+    "fix 2：仍未改代码。gate.1 第 2 轮比对的仍是同一 commit 78cdd06，结果与第 1 轮完全相同（0.909%，rest.diff.png 与 rest.retry.diff.png 都只有第 109 行整行 1200px 标红），差异稳定可复现，与比对器把原版外壳 footer 截进组件末行的判断一致；self-check 复跑 pass，restore/fast-lane 无新提交；两轮修正仍失败，按快速通道规则应交裁定员（登记 known-diff 或走规则变更单让 recordVia 组件截图隐藏外壳）"
   ]
 }
