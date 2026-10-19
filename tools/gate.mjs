@@ -31,7 +31,7 @@ import { appDir as resolveAppDir } from "./app-dir.mjs";
 import { gitExclude } from "./lib/git-exclude.mjs";
 import { REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, origSelOf, scopeRootSel, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256 } from "./gate/har.mjs";
-import { runPage } from "./gate/replay.mjs";
+import { VIEWPORT, runPage } from "./gate/replay.mjs";
 import { compareRuns } from "./gate/compare.mjs";
 import { loadKnownDiffs, loadRules } from "./gate/rules.mjs";
 import { staticStage, pageFiles } from "./gate/static.mjs";
@@ -66,8 +66,15 @@ async function baselineFor(wo, state) {
   // Same again for recordVia baselines whose component shots still include the fixed elements outside the component
   // (taken before HM-253, replay.mjs markOffscopeFixed).
   if (wo.recordVia && !b.offscopeFixed) return { missing: "component shots taken with off-scope fixed elements (before HM-253)", refresh: b.har.path };
+  // Same again for baselines that may hold a zero-area root shot as the whole viewport (taken before HM-380, replay.mjs
+  // paintedBoxInPage): any load shot of exactly the viewport's size. A root that really is that size is shot the same way
+  // again, so recomputing it changes nothing.
+  if (!b.paintedBox && b.runs.some((r) => r.load.candidates.some((c) => c.shot && existsSync(c.shot) && sameSize(c.shot, VIEWPORT)))) return { missing: "zero-area root shot as the whole viewport (before HM-380)", refresh: b.har.path };
   return { baseline: b, dir };
 }
+
+// PNG header: width and height at bytes 16–23.
+const sameSize = (file, { width, height }) => { const h = readFileSync(file).subarray(16, 24); return h.length === 8 && h.readUInt32BE(0) === width && h.readUInt32BE(4) === height; };
 
 // Re-runs baseline.mjs for one order with the HAR its baseline was recorded with (legacy-dist replayed under that HAR,
 // nothing goes to the test environment). Dry runs write into their own directory, never over the shared baseline.

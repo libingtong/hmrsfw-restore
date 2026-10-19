@@ -68,6 +68,28 @@ export async function markOffscopeFixed(el, scopeId) {
 }
 export const unmarkOffscope = (page) => page.evaluate((attr) => document.querySelectorAll(`[${attr}]`).forEach((e) => e.removeAttribute(attr)), OFFSCOPE).catch(() => {});
 const COMPONENT_SCOPE = new WeakMap();
+// Roots without an area (HM-380), e.g. a list wrapper whose list is empty (height 0). An element screenshot needs a box,
+// so these used to be shot as the whole viewport: the parent page and the shell, which differ between the sides (the
+// shell's 90 px header exists on the original side only), not the root. Now the shot is the root's painted content: the
+// union of the boxes of its visible descendants and text (content overflowing a zero-height root still paints), minus
+// content under a zero-area element that clips it (overflow other than visible on that axis). Runs in the page →
+// {x, y, width, height} in document coordinates, or null when the root paints nothing: captureRoot then takes no shot
+// and marks the candidate `blank`, and compareRuns requires the other side to paint nothing too.
+export function paintedBoxInPage(root) {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  const add = (r) => { if (r.width > 0 && r.height > 0) { x0 = Math.min(x0, r.left); y0 = Math.min(y0, r.top); x1 = Math.max(x1, r.right); y1 = Math.max(y1, r.bottom); } };
+  const clipsAll = (e, s) => { const r = e.getBoundingClientRect(); return (r.height === 0 && s.overflowY !== "visible") || (r.width === 0 && s.overflowX !== "visible"); };
+  const walk = (e) => {
+    const s = getComputedStyle(e);
+    if (s.display === "none" || clipsAll(e, s)) return;
+    for (const k of e.childNodes) {
+      if (k.nodeType === 3) { if (s.visibility !== "visible") continue; const rg = document.createRange(); rg.selectNodeContents(k); for (const r of rg.getClientRects()) add(r); }
+      else if (k.nodeType === 1) { if (getComputedStyle(k).visibility === "visible") for (const r of k.getClientRects()) add(r); walk(k); }
+    }
+  };
+  walk(root);
+  return x0 === Infinity ? null : { x: x0 + scrollX, y: y0 + scrollY, width: x1 - x0, height: y1 - y0 };
+}
 
 // Stability: the page counts as settled when body text length and element count stay the same for `stableMs`, no UI
 // animation or transition (50 ms – 2 s: antd collapse/fade, a carousel sliding) is running and no /xf-api/ request was
@@ -157,10 +179,10 @@ async function captureRoot(page, sel, shotBase, withShots, phases) {
       // Element screenshots wait for the element to stop moving; a page with a running carousel can exceed that on a
       // busy machine, so fall back to a full-page clip of the same box.
       if (box?.height && box.width) await el.screenshot({ path: file, timeout: 15000 }).catch(async () => { const b = await el.evaluate((n) => { const r = n.getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, width: r.width, height: r.height }; }); await page.screenshot({ path: file, fullPage: true, clip: b }); });
-      else await page.screenshot({ path: file });
+      else { const b = await el.evaluate(paintedBoxInPage); if (b) await page.screenshot({ path: file, fullPage: true, clip: b }); else c.blank = true; }
       if (shell) await shell.evaluate((n) => n.remove()).catch(() => {});
       if (offscope) { await offscope.evaluate((n) => n.remove()).catch(() => {}); await unmarkOffscope(page); }
-      c.shot = file;
+      if (!c.blank) c.shot = file;
     }
     candidates.push(c);
   }
