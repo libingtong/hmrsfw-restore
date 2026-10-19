@@ -1,0 +1,25 @@
+{
+  "id": "page.portal.zcyz.bigData.components.pieCommon",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/zcyz/bigData/components/pieCommon.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "c85352b16c260b71633c7d591520e5e146a9ade2"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "原代码问题 / 疑似比对器问题：gate.1 只有 load pixel 一项失败（17.693%，首跑 14.569%），html/text/overlay/requests 全部通过；基线 unstable 本身就列了 load.html、load.text、load.pixel，即原版两次运行互不一致。原因在原代码：pieCommon 渲染共享 pie（pie.vue_vue_type_style_index_0_lang.1783320636200.js，l() 里调用 timeOut 的 f/h），timeOut.1783320636200.js 的 h() 用 setInterval（bigDataLoopTimer 缺省 1e3 ms）逐项 dispatchAction downplay → highlight → showTip 轮播，截图时刻落在哪一项由时间决定（两次原版运行和还原侧的 tooltip 各停在不同的扇区，高亮扇区放大/其余扇区淡化，整圈像素都变）。还原侧共享层 apps/portal/src/shared/pie.vue、shared/timeOut.ts 与原包逐条一致，轮播间隔相同。compare.mjs 对 html/text 有 volatile 遮罩，但 pixel 只取与两次原版的最小差、不看 unstable 里的 load.pixel，计时器驱动的轮播在页面层无法稳定对齐。需要裁定员判断：按原代码登记 known-diff（load.pixel，证据 timeOut.1783320636200.js 的 h() setInterval），或走规则变更单让 unstable 含 load.pixel 时像素项按遮罩/放宽处理"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐项核对原 chunk pieCommon.17833206362007.js：props(title 默认「大学生学历结构分布」、option 默认 {}、data 默认 null)、setup 内 useRoute()/useRouter() 空调用、渲染 div.w100.relative > div.w100.h100 > Pie(option, data, types=\"all\") + p.u-f.textCenter.p-t{{title}}、scopeId data-v-e9d67e9e 样式与 pieCommon.17833206362004.css 逐条一致",
+    "gate.1 唯一失败项 pixel 来自原代码 timeOut 的 1 秒 tooltip/高亮轮播（见 needsFromSkeleton），不在本单 target / subComponentDir 内",
+    "self-check pass（私有克隆 fl-vue，restore/fast-lane = c85352b，与 gate.1 比对的 commit 相同）；restore/fast-lane 无新提交"
+  ]
+}
