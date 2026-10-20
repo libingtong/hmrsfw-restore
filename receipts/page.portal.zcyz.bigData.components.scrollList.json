@@ -2,7 +2,7 @@
   "id": "page.portal.zcyz.bigData.components.scrollList",
   "branch": "restore/fast-lane",
   "result": "fail",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/zcyz/bigData/components/scrollList.vue"
   ],
@@ -12,14 +12,20 @@
     "gitBase": "78cdd063aa42693968b5da4f938594fe1d130698"
   },
   "build": "pass",
-  "todos": [],
+  "todos": [
+    {
+      "file": "apps/portal/src/views/zcyz/bigData/components/scrollList.vue",
+      "line": 5,
+      "why": "原代码 vue3-seamless-scroll 逐帧连续滚动，加载截图位移不稳定，保留原行为，待登记已知差异 load.pixel"
+    }
+  ],
   "unresolved": [],
   "needsFromSkeleton": [
-    "原代码问题 / 疑似比对器问题：gate.1 只有 load pixel 21.442% 一项失败；基线 unstable 本身列了 load.html、load.pixel，即原版两次运行互不一致。把 load.html 里 translate(...) 换成占位后，原版两次与还原侧的 load.html、load.text、load.overlay 完全相同，唯一差别是 vue3-seamless-scroll 外层 div 的 transform 纵向位移（原版两次不同，还原侧又是第三个值）。原因在原代码：scrollList.17833206362002.js 渲染 vue3-seamless-scroll.es.1783320636200.js 的 V（ue），其 B()/y() 用 requestAnimationFrame 每帧 i.value -= step（step 缺省 1），列表条数 >= limitScrollNum(3) 即在 onMounted / list watch 后开始连续滚动，截图时的位移取决于数据到达到截图之间经过的帧数，页面层无法对齐。还原侧用 npm vue3-seamless-scroll@2.0.1（registry 条目 status npm），其 dist 的 props 缺省值（step 1、limitScrollNum 3、ease ease-in、delay 0）与 animation/move 逻辑与旧包逐条一致。需要裁定员判断：按原代码登记 known-diff（load.pixel，证据 vue3-seamless-scroll.es.1783320636200.js 中 B() 的 requestAnimationFrame 步进），或走规则变更单对 seamless-scroll 的 transform 位移做遮罩"
+    "原代码问题：gate.1 第 2 次（22.911%）与第 1 次（21.442%）同为唯一一项 load pixel 失败，基线 unstable 列 load.html、load.pixel；diff 图为整列表纵向错位，原因同 fix 1：原 chunk scrollList.17833206362002.js 渲染 vue3-seamless-scroll.es.1783320636200.js 的 V，B()/y() 用 requestAnimationFrame 每帧 i.value -= step(1)，条数 >= limitScrollNum(3) 即连续滚动，截图位移取决于帧数，页面层无法对齐。已按 docs/pipeline.md 裁定员处理第 3 条、参照 pieCommon（HM-381）先例在页面加 TODO:restore 并保留原行为；两轮修正已用完，请裁定员登记 known-diff（load.pixel，证据 vue3-seamless-scroll.es.1783320636200.js 中 B() 的 requestAnimationFrame 步进）后重跑门槛"
   ],
   "notes": [
-    "fix 1：未改代码。逐项核对原 chunk scrollList.17833206362002.js：props(data: Array 默认 [])、reactive({data:[]})、deep watch props.data 与 onMounted 都调用同一个同步函数把 props.data 赋给 state.data、渲染 Vue3SeamlessScroll(list=state.data, class=scrollList) > v-for div.item.u-f.flex.flex_center(key=index) > i + div.w100(padding-left:5px) > span.left.ellipsis{name}{value} + span.right[time]、scopeId data-v-85ac4362，与现有 scrollList.vue 一致",
-    "gate.1 唯一失败项 pixel 来自 seamless-scroll 逐帧滚动的时间相关位移（见 needsFromSkeleton），不在本单 target / subComponentDir 内",
-    "self-check pass（私有克隆 fl-vue，restore/fast-lane = 78cdd06，与 gate.1 比对的 commit 相同；renderEquiv 提示 DIFF 但 token 数 173/173 相同，不是失败项）；restore/fast-lane 无新提交"
+    "fix 2：scrollList.vue import 后加 2 行 TODO:restore 注释（seamless-scroll 逐帧滚动导致 load.pixel 不稳定，保留原行为，待登记已知差异），未改渲染/逻辑，与原 chunk 仍逐项一致",
+    "self-check pass、build:portal 通过；fl.sh land 合入 restore/fast-lane = b407330 并已推送",
+    "fix 1 记录：未改代码，原 chunk 逐项核对一致，见上一轮回执"
   ]
 }
