@@ -18,11 +18,16 @@
 // the script clicks the portal's entry itself, as in all mode (HM-951).
 // Run in $RESTORE_ASSETS. Usage: node tools/pw-login.mjs <portal|usercenter|all> [timeoutMinutes] [--from-portal]
 //   all: log in to the portal once; the user center follows through the portal's 「用户中心」 entry. pw-usercenter.json is
-//     saved first, then pw-portal.json again; both tokens' exp must match.
+//     saved first, then pw-portal.json again.
+//   Afterwards every saved site is checked on its own (pw-login-check.mjs, HM-967): file present, token not expired, its
+//   expiry printed, a hint when less than 2 hours are left. The two sites' expiries differ by design: the user center's
+//   autoLogin trades the portal token for its own. Exit code: 0 all saved and valid, 2 not logged in / timed out, 3 a
+//   saved state is missing, unreadable or expired.
 //   --from-portal (usercenter only): start from the saved .auth/pw-portal.json (portal origin only, as record-page does) and
 //     enter the user center through the same entry, no second login.
 import { chromium } from "playwright";
 import { readFileSync, appendFileSync, mkdirSync, renameSync } from "node:fs";
+import { tokenExp as expIn, checkSaved } from "./pw-login-check.mjs";
 const SITES = {
   portal: { url: "https://hamiwebportaltest.rencaidanao.com/login", home: "https://hamiwebportaltest.rencaidanao.com/", name: "门户" },
   // user center: wait for the identity list too, record-page needs it to switch identities
@@ -41,15 +46,7 @@ const LOGIN_FLOW = /\/(login|sys\/login|randomImage|getEncryptedString|phoneLogi
 mkdirSync(".auth", { recursive: true });
 if (fromPortal && which !== "usercenter") { console.error("--from-portal only goes with usercenter"); process.exit(1); }
 // exp (seconds) of the token stored for the site's own origin in a saved state; only the exp claim is read, the token is never printed
-function tokenExp(file, site) {
-  try {
-    const st = JSON.parse(readFileSync(file, "utf8"));
-    const origin = new URL(SITES[site].url).origin;
-    const t = st.origins.find((o) => o.origin === origin)?.localStorage.find((x) => x.name === "token")?.value;
-    const exp = JSON.parse(Buffer.from(String(t).replace(/^"|"$/g, "").split(".")[1], "base64url").toString()).exp;
-    return Number.isFinite(exp) ? exp : null;
-  } catch { return null; }
-}
+const tokenExp = (file, site) => expIn(file, new URL(SITES[site].url).origin);
 if (fromPortal) {
   const exp = tokenExp(".auth/pw-portal.json", "portal"), left = exp === null ? null : Math.floor((exp * 1000 - Date.now()) / 60000);
   if (left === null) { console.error("--from-portal: .auth/pw-portal.json 不存在或读不出 token 过期时间，请先 pw-login.mjs portal"); process.exit(1); }
@@ -199,12 +196,12 @@ for (const [i, site] of sites.entries()) {
 }
 await browser.close().catch(() => {});
 let code = results.length === sites.length && results.every(Boolean) ? 0 : 2;
-// both sites saved from one login → both files exist and their tokens expire at the same moment (only exp is printed)
-if (code === 0 && (which === "all" || fromPortal)) {
-  const exp = { portal: tokenExp(".auth/pw-portal.json", "portal"), usercenter: tokenExp(".auth/pw-usercenter.json", "usercenter") };
-  for (const [k, v] of Object.entries(exp)) console.log(`[${k}] token 过期时间：${v === null ? "读不出" : new Date(v * 1000).toLocaleString("zh-CN", { hour12: false })}`);
-  if (exp.portal === null || exp.usercenter === null) { console.error("校验失败：有登录态文件不存在或读不出 token 过期时间"); code = 3; }
-  else if (exp.portal !== exp.usercenter) { console.error("校验失败：门户和用户中心的 token 过期时间不一致，两站登录态不是同一次登录"); code = 3; }
-  else console.log("校验通过：两站 token 过期时间一致");
+// every site this run relies on (both with all / --from-portal) is checked on its own: file present, token not expired.
+// The two expiries are not compared, the user center's autoLogin issues its own token (HM-967). Only exp is printed.
+if (code === 0) {
+  const keys = which === "all" || fromPortal ? ["portal", "usercenter"] : sites;
+  const { ok, lines } = checkSaved(keys.map((k) => ({ key: k, name: SITES[k].name, file: `.auth/pw-${k}.json`, origin: new URL(SITES[k].url).origin })));
+  for (const l of lines) console[l.level](l.text);
+  if (!ok) code = 3;
 }
 process.exitCode = code;
