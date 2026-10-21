@@ -7,7 +7,7 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { otherPagesOnly, pageOwners } from "../check-imports.mjs";
+import { changedFiles, otherPagesOnly, pageOwners } from "../check-imports.mjs";
 
 const A = "apps/portal/src/views/a.vue", B = "apps/portal/src/views/b.vue", BSUB = "apps/portal/src/views/b/Sub.vue";
 const C = "apps/portal/src/views/c.vue", SHARED = "apps/portal/src/shared/x.ts";
@@ -81,4 +81,37 @@ test("pageOwners: target and subComponentDir of page and segment orders, segment
   assert.equal(own("apps/uc/src/views/zcyzCorpAttestationapprove/BusinessModal.vue"), "page.uc.zcyzCorpAttestationapprove");
   assert.equal(own("apps/portal/src/shared/index.ts"), null);
   assert.equal(own("package.json"), null);
+});
+
+// HM-990: an upgrade merged into integration reaches the fast lane as a cherry-pick (syncFastLane), so the branch's
+// merge-base with integration stays put; changedFiles must not charge the pages gated there with the upgrade's files.
+test("changedFiles: files only cherry-picks of base commits touch are not the branch's change", () => {
+  const r = repo();
+  try {
+    r.git("checkout", "-q", "-b", "integration");
+    r.git("checkout", "-q", "-b", "upg");
+    const PUB = "apps/portal/public/sjz/bg.jpg";
+    r.commit([PUB, SHARED], "upgrade(shared)");
+    r.git("checkout", "-q", "integration");
+    r.git("merge", "-q", "--no-ff", "-m", "Merge upg into integration", "upg");
+    const up = r.git("rev-parse", "HEAD");
+    r.git("checkout", "-q", "-b", "fast", r.base);
+    r.commit([B], "fix(page): page.b");
+    r.git("cherry-pick", "-x", "-m", "1", up);
+    r.commit([A], "fix(page): page.a");
+    let ch = changedFiles(r.dir);
+    assert.equal(ch.base, "integration");
+    assert.deepEqual(ch.files.sort(), [A, B].sort());
+    assert.deepEqual(ch.picked.sort(), [PUB, SHARED].sort());
+    // a later commit of the branch on a picked file keeps that file the branch's
+    r.commit([SHARED], "fix(page): page.a 改了 shared");
+    ch = changedFiles(r.dir);
+    assert.deepEqual(ch.files.sort(), [A, B, SHARED].sort());
+    // a pick of a commit that is not in the base is the branch's own change
+    r.git("checkout", "-q", "-b", "elsewhere", r.base);
+    const other = r.commit([C], "fix(page): page.c 别处");
+    r.git("checkout", "-q", "fast");
+    r.git("cherry-pick", "-x", other);
+    assert.ok(changedFiles(r.dir).files.includes(C));
+  } finally { r.done(); }
 });
