@@ -8,7 +8,10 @@
 //      files, other pages) — judged from git in the hmrsfw-vue checkout against origin/integration (or origin/main).
 //      On a branch several page orders share (HMRSFW_SHARED_BRANCH=1, set by the gate for fast-lane tasks: every fix lands
 //      on `restore/fast-lane` itself), a file another page owns is that page's change, not this order's, when every commit
-//      since the base that touches it touches only files other pages own and does not name this order (otherPagesOnly).
+//      since the base that touches it touches only files other pages own and does not name this order (otherPagesOnly),
+//      and a file whose content at HEAD is the base's (origin/integration) is no change of this branch at all: public-
+//      library upgrades merged into integration are picked onto the fast lane (HM-990), and a cherry-pick does not move
+//      the merge base (sameAsBase).
 // Items that only differ in form from the registry (a barrel re-exporting the same symbol, a duplicate API file, a POC
 // wrapper around an npm package, a function named like a public one) are reported with severity "warn" and do not fail.
 // Usage: node tools/check-imports.mjs <order id> --app <hmrsfw-vue>   → JSON {pass, failed:[{check, where, hint, severity?}]}
@@ -67,6 +70,15 @@ export function changedFiles(APP) {
     const work = git("status", "--porcelain", "--untracked-files=all").split("\n").filter(Boolean).map((l) => l.slice(3).replace(/^.* -> /, ""));
     return { files: [...new Set([...committed, ...work])], base, mb, work: new Set(work) };
   } catch { return { files: null, base: null }; }
+}
+
+// Rule 4 on a shared branch: of the changed files, those whose committed content at HEAD is the same as on `base` (and
+// that the working tree does not change) — what an upgrade merged into integration brought to the fast lane by
+// cherry-pick (pipeline.mjs syncFastLane, HM-990). Such a file differs from the merge base only because integration
+// changed it too; against integration itself the branch changes nothing there.
+export function sameAsBase(APP, { base, files, work = new Set() }) {
+  const differ = new Set(execFileSync("git", ["-C", APP, "diff", "--name-only", "--no-renames", base, "HEAD"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], maxBuffer: 64 << 20 }).split("\n").filter(Boolean));
+  return new Set(files.filter((p) => !work.has(p) && !differ.has(p)));
 }
 
 // page id owning a file (target or subComponentDir of a page / segment order; segments count as their page), or null
@@ -202,10 +214,13 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
     const { files: changed, base, mb, work } = changedFiles(APP); stats.gitBase = base;
     if (changed) {
       const mine = (p) => (order.target && p === order.target) || (order.subComponentDir && p.startsWith(order.subComponentDir)) || files.some((f) => rel(f) === p);
-      const others = pageOrder && process.env.HMRSFW_SHARED_BRANCH === "1" ? otherPagesOnly(APP, { mb, files: changed, work, me: [order.id, order.page], mine }) : new Map();
+      const shared = pageOrder && process.env.HMRSFW_SHARED_BRANCH === "1";
+      const others = shared ? otherPagesOnly(APP, { mb, files: changed, work, me: [order.id, order.page], mine }) : new Map();
       if (others.size) stats.otherPages = Object.fromEntries(others);
+      const synced = shared ? sameAsBase(APP, { base, files: changed, work }) : new Set();
+      if (synced.size) stats.sameAsBase = synced.size;
       for (const p of changed) {
-        if (mine(p) || others.has(p)) continue;
+        if (mine(p) || others.has(p) || synced.has(p)) continue;
         if (order.type === "shared" && (p.startsWith(`apps/${order.app}/src/shared/`) || p.startsWith(`apps/${order.app}/public/`))) continue;
         failed.push({ check: "imports", where: p, hint: `本单不能修改 ${p}${/\/(legacy|shared|api|utils)\/|package(-lock)?\.json$/.test(p) ? "（公共库文件只由入口包、共享组件工单修改）" : ""}：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton` });
       }

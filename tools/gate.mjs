@@ -243,6 +243,8 @@ export async function gate(argv) {
   try {
     const baseApp = resolveAppDir(argv);
     if (branch && !flag(argv, "--no-checkout")) { app = checkoutBranch(baseApp, branch, gateDir); closers.push(app.cleanup); out.commit = app.sha; }
+    // a fast-lane page's rule 4 compares with origin/integration (check-imports sameAsBase): it has to be today's
+    if (app && (flag(argv, "--fast-lane") || [true, "true"].includes(meta.fastLane))) fetchBranches(baseApp, ["integration"]);
     const appDir = app?.dir ?? baseApp;
     // Fast-lane pages (HM-48) share one branch, `restore/fast-lane`, and their fixes land on it directly: rule 4 of
     // check-imports attributes each commit to the page whose files it touches instead of charging this page with all of them
