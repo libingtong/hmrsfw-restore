@@ -1,7 +1,8 @@
-// Git writes the scheduler makes: merge a restore branch into `integration` (--no-ff), revert such a merge, fast-forward
-// `main`, and commit receipts to the tool repo. Every write happens in a throw-away worktree on the remote branch, so the
-// caller's own checkout (the gate agent is sitting on the restore branch) is never touched. Callers hold
-// locks/integration around merge/revert/fast-forward (docs/pipeline.md §9 并发安全).
+// Git writes the scheduler makes: merge a restore branch into `integration` (--no-ff), revert such a merge, pick an
+// upgrade merge onto the fast lane, fast-forward `main`, and commit receipts to the tool repo. Every write happens in a
+// throw-away worktree on the remote branch, so the caller's own checkout (the gate agent is sitting on the restore branch)
+// is never touched. Callers hold locks/integration around merge/revert/fast-forward, locks/fast-lane around the pick
+// (docs/pipeline.md §9 并发安全).
 // dryRun: fetches and reads run, writes are printed and skipped.
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, rmSync, writeFileSync, mkdirSync } from "node:fs";
@@ -134,6 +135,33 @@ export class Git {
       if (!r.ok) { this.raw(["revert", "--abort"], { cwd: wt, allowFail: true }); return { ok: false, conflict: true }; }
       return { ok: this.raw(["push", "--quiet", "--force", this.remote, `HEAD:refs/heads/${newBranch}`], { cwd: wt, allowFail: true }).ok };
     });
+  }
+
+  // Apply commit `sha` onto `into` as one new commit and push (HM-990: an upgrade merged into integration, brought to the
+  // fast lane). A merge commit is picked against its first parent (-m 1), i.e. everything the merged branch brought in.
+  // → {picked, sha} | {picked, already} (the change is on `into` already) | {missingBranch} | {conflict, conflicts}
+  //   (nothing pushed) | {pushRejected} (twice).
+  cherryPick({ sha, into, message }) {
+    for (let tryNo = 0; tryNo < 2; tryNo++) {
+      if (!this.fetchOptional(into) || !this.revParse(this.remoteRef(into))) return { picked: false, missingBranch: true };
+      if (this.dryRun) { this.log(`[dry-run] git cherry-pick -m 1 ${sha} onto ${into} && git push`); return { picked: true, dryRun: true }; }
+      const parents = this.out(["rev-list", "--parents", "-n", "1", sha]).split(" ").length - 1;
+      const res = this.withWorktree(this.remoteRef(into), (wt) => {
+        const r = this.raw([...this.identity(wt), "cherry-pick", "--no-commit", ...(parents > 1 ? ["-m", "1"] : []), sha], { cwd: wt, allowFail: true });
+        if (!r.ok) {
+          const conflicts = this.out(["diff", "--name-only", "--diff-filter=U"], { cwd: wt, allowFail: true }).split("\n").filter(Boolean);
+          this.raw(["cherry-pick", "--abort"], { cwd: wt, allowFail: true });
+          return { picked: false, conflict: true, conflicts };
+        }
+        if (this.raw(["diff", "--cached", "--quiet"], { cwd: wt, allowFail: true }).ok) return { picked: true, already: true };
+        this.raw([...this.identity(wt), "commit", "--quiet", "--no-verify", "-m", `${message || `Pick ${sha} into ${into}`}\n\n(cherry picked from commit ${this.out(["rev-parse", sha])})`], { cwd: wt });
+        const out = this.out(["rev-parse", "HEAD"], { cwd: wt });
+        if (!this.push(wt, into)) return { pushRejected: true };
+        return { picked: true, sha: out };
+      });
+      if (!res.pushRejected) return res;
+    }
+    return { picked: false, pushRejected: true };
   }
 
   // Move `to` forward to sha; refuses anything that is not a fast-forward.

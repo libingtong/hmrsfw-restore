@@ -15,6 +15,7 @@ node tools/baseline.mjs <工单id> [--har <path>]                       # 录制
 node tools/gate.mjs --task <任务id> --branch <b> --mode page            # 门槛员
 node tools/gate.mjs --wo c01,c02 --dry-run                              # 测试：不写元数据、不评论
 node tools/gate.mjs --mode integration --wo … [--dry-run]               # 集成模式：不顶替、零引用全开、整站构建
+node tools/gate.mjs --task <升级单id> --branch <b> --mode upgrade       # 升级单模式（kind=upgrade 的任务即使传 --mode page 也自动用它）
 node tools/gate.mjs --regress [--dry-run]                               # 全量回归：所有有基线的页面，输出新通过 / 新失败
 ```
 
@@ -34,6 +35,18 @@ pending 记 `missingTotal`、按原因计数的 `byReason` 和缺失页 id 列�
 pass/fail 超预算时逐级收紧：`failed` 30→10→3 条（`failedTotal` 记总数）、hint 200→120→80 字，通过的页只留 `{wo, pass}`；还放不下时 `pages` 只列未通过的页，通过的页记数 `passedOmitted`（`advance` 把未列出的页当通过）；未通过的页仍放不下时截断并标 `pagesTruncated`，不写 `passedOmitted`，未列出的页一律按失败处理（只会扩大回归范围，不会误判通过）。
 评论文件写在门槛员的工作目录（`process.cwd()`），multica 不接受工作目录外的 `--content-file`；页数多时标题写「N 页」加前几个 id。
 hint 只含检查名、元素路径（标签名 + 第一个 class）、接口路径和步骤号，不含页面文字和接口数据；带页面内容的完整比对留在 `$RESTORE_STATE/gate/<run>/<工单>/report.json`。
+
+## 升级单模式（--mode upgrade，HM-990）
+
+公共库升级单按「公共库改动」判，不再拿它要解挂的页面（元数据 `workOrders`）跑页面单的判据。`kind=upgrade`（或 `restoreKind=upgrade`）的任务，`gate.mjs` 自动用这个模式；调度器送门槛时也会写元数据 `gateMode: "upgrade"`。
+
+| 阶段 | 内容 |
+| --- | --- |
+| static | 先判改动范围：分支相对最新的 `origin/integration`（门槛先 fetch）改了哪些文件，用 `tools/lib/upgrade-scope.mjs` 的 `scopeViolations` 判，和调度器合并时 `ownerViolations` 是**同一个函数**。`apps/<app>/public/**`、`package.json`、锁文件、公共库文件放行；`apps/<app>/src/views/**` 一律不行。「owner 有进行中的任务」这一条只有调度器看得到，合并时再判。范围通过后，对改动的文件跑 `self-check.mjs` 里与工单无关的几项：编译（SFC、`src/` 下的脚本）、零引用、个人信息扫描 |
+| build | 改动能影响到的每个应用整站 `vite build`（`apps/` 以外的文件，如 `package.json`、锁文件，影响所有应用） |
+| browser | 回归页 = 已经在该分支上（即已合入 integration 或已验收）、且工单 `deps` 引用了改动文件的页面，去掉本单要解挂的页；按 integration 模式回放比对（交互脚本取 `origin/integration`），任何一页失败升级单就不通过。没有基线的页列在 `pending`，不判、不拦。`--wo` 可指定回归页 |
+
+要解挂的页面不在升级单门槛里判：升级合并后它们恢复，由各自的页面门槛验证。升级单 verdict 是整条分支的一个结论，`advance` 不按 `pages` 逐页判。
 
 ## 三个阶段，失败即停
 
