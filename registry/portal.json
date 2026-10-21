@@ -1666,7 +1666,7 @@
   },
   "bc": {
    "path": "@ant-design/icons-vue",
-   "export": "DownOutlined",
+   "export": "CaretDownOutlined",
    "npm": true,
    "status": "npm",
    "users": 4,

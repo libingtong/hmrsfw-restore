@@ -79,7 +79,7 @@
   "Xa": {
    "original": "bc",
    "path": "@ant-design/icons-vue",
-   "export": "DownOutlined",
+   "export": "CaretDownOutlined",
    "status": "npm"
   },
   "Q": {
