@@ -4,8 +4,17 @@
 //   build   — page mode: the page compiled on demand by Vite with production semantics (tools/gate/appserver.mjs);
 //             integration mode: a full `vite build` of the app
 //   browser — HAR replay of the restored page in one shared browser, compared with the baseline
+// Upgrade mode (public-library upgrade orders, HM-990; a task of kind upgrade always runs in it): the branch is judged as
+// a public-library change, not as the pages it unblocks (metadata workOrders — those are judged by their own gates once
+// resumed):
+//   static  — scope: the files the branch changed against integration, by tools/lib/upgrade-scope.mjs (the rule the
+//             scheduler's merge applies: public/**, package.json, lock files, library files allowed, views/** never);
+//             then compile, zero-reference and secrets on those files (self-check.mjs selfCheckFiles)
+//   build   — a full `vite build` of every app the change can reach
+//   browser — integration-mode replay of the pages already restored on the branch that depend on a changed file (queue
+//             deps, the scheduler's lib-regression set); any failure fails the upgrade
 //
-//   node tools/gate.mjs --task <id> --branch <b> --mode page|integration [--app <hmrsfw-vue checkout>] [--dry-run]
+//   node tools/gate.mjs --task <id> --branch <b> --mode page|integration|upgrade [--app <hmrsfw-vue checkout>] [--dry-run]
 //   node tools/gate.mjs --wo <id>[,<id>…] [--attempt N] --mode page|integration --dry-run        (no task: tests)
 //   node tools/gate.mjs --regress [--wo …] [--dry-run]     integration mode over every page that has a baseline (or the
 //                                                            listed ones); prints newly passing / newly failing pages
@@ -13,8 +22,8 @@
 //          --from build (with --dry-run only): diagnostic, keep going after static failures
 //          --registry <file> (default registry/<app>.json), --keep (keep the gate dir even when passing)
 //          --fast-lane (implied by task metadata fastLane: true): the branch is shared by many page orders (HM-526)
-//          --interact-ref <commit>|worktree: where tests/interact comes from (interactRef; integration mode default: a
-//            fresh origin/integration of the tool repo, page mode default: this checkout's working tree) (HM-914)
+//          --interact-ref <commit>|worktree: where tests/interact comes from (interactRef; integration and upgrade mode
+//            default: a fresh origin/integration of the tool repo, page mode default: this checkout's working tree) (HM-914)
 // Output: one JSON line on stdout:
 //   {pass, failed:[{check, where, hint, wo?}], stage, diff, shimmed:[…], durationMs, stages:{static, build, browser},
 //    pages:[{wo, pass, stage, failed, pixel}], mode, attempt}
@@ -42,6 +51,10 @@ import { serveStatic } from "./gate/serve.mjs";
 import { createShimmer, loadRegistry, reservedShared, shimPlugin, ShimError } from "./gate/shim.mjs";
 import { readBaseline } from "./baseline.mjs";
 import { decodeAll } from "./lib/multica.mjs";
+import { scopeViolations, registryOwnerOf } from "./lib/upgrade-scope.mjs";
+import { isPage, loadWorkOrders, reverseDeps } from "./lib/workorders.mjs";
+import { changedFiles } from "./check-imports.mjs";
+import { selfCheckFiles } from "./self-check.mjs";
 
 const MULTICA = process.env.MULTICA_BIN || "multica";
 const rel = (p) => path.relative(ROOT, p);
@@ -110,15 +123,20 @@ function refreshBaseline(wo, har, state, dry, interact) {
   return r.ok ? { baseline: readBaseline(out), dir: out } : { missing: `baseline refresh failed: ${r.error ?? "?"}` };
 }
 
-// --branch: a private worktree of the hmrsfw-vue checkout at origin/<branch>, inside the gate dir.
-function checkoutBranch(baseApp, branch, gateDir) {
-  const wt = path.join(gateDir, "app");
-  for (let i = 1; ; i++) { // GitHub connections occasionally drop: three tries, then it is the gate's own error
-    try { execFileSync("git", ["-C", baseApp, "fetch", "-q", "origin", `+refs/heads/${branch}:refs/remotes/origin/${branch}`], { stdio: "ignore", timeout: 120000 }); break; } catch (e) {
-      if (i >= 3) throw new Error(`git fetch of ${branch} failed 3 times`);
+// GitHub connections occasionally drop: three tries, then it is the gate's own error.
+function fetchBranches(baseApp, branches) {
+  for (let i = 1; ; i++) {
+    try { execFileSync("git", ["-C", baseApp, "fetch", "-q", "origin", ...branches.map((b) => `+refs/heads/${b}:refs/remotes/origin/${b}`)], { stdio: "ignore", timeout: 120000 }); return; } catch (e) {
+      if (i >= 3) throw new Error(`git fetch of ${branches.join(", ")} failed 3 times`);
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5000 * i);
     }
   }
+}
+
+// --branch: a private worktree of the hmrsfw-vue checkout at origin/<branch>, inside the gate dir.
+function checkoutBranch(baseApp, branch, gateDir) {
+  const wt = path.join(gateDir, "app");
+  fetchBranches(baseApp, [branch]);
   rmSync(wt, { recursive: true, force: true });
   execFileSync("git", ["-C", baseApp, "worktree", "add", "-q", "--detach", wt, `origin/${branch}`], { stdio: "ignore" });
   symlinkSync(realpathSync(path.join(baseApp, "node_modules")), path.join(wt, "node_modules"));
@@ -126,6 +144,51 @@ function checkoutBranch(baseApp, branch, gateDir) {
   // `node_modules` that is no order's change (HM-526)
   gitExclude(wt, "node_modules", "tools/gate.mjs: the --branch worktree links node_modules");
   return { dir: wt, sha: execFileSync("git", ["-C", wt, "rev-parse", "HEAD"], { encoding: "utf8" }).trim(), cleanup: () => { try { execFileSync("git", ["-C", baseApp, "worktree", "remove", "--force", wt], { stdio: "ignore" }); } catch {} } };
+}
+
+// Upgrade mode: what the branch changed against integration and which pages that can reach. `branch` null: the
+// checkout's own HEAD and working tree (--no-checkout, tests). files: repo paths, deleted ones included. pages: page
+// orders already restored on the branch (their target is in its tree, i.e. merged into integration before the upgrade
+// was cut, or accepted) whose queue deps name a changed file, minus the pages the upgrade unblocks; `only` (--wo)
+// replaces that list. apps: the apps a change can reach (a file outside apps/ — package.json, lock files, root config —
+// reaches all of them).
+export function upgradePlan({ appDir, branch = null, unblocks = [], only = [], root = ROOT }) {
+  const git = (...a) => execFileSync("git", ["-C", appDir, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], maxBuffer: 64 << 20 }).trim();
+  let files, tree;
+  if (branch) {
+    fetchBranches(appDir, ["integration", branch]); // a stale origin/integration would charge the upgrade with integration's own changes
+    const head = `origin/${branch}`;
+    files = git("diff", "--name-only", `${git("merge-base", head, "origin/integration")}...${head}`).split("\n").filter(Boolean);
+    tree = new Set(git("ls-tree", "-r", "--name-only", head).split("\n"));
+  } else {
+    const ch = changedFiles(appDir);
+    if (!ch.files) throw new Error(`upgrade mode: cannot tell what ${appDir} changed (no origin/integration or main)`);
+    files = ch.files;
+    tree = new Set(git("ls-files").split("\n").concat(files.filter((f) => existsSync(path.join(appDir, f)))));
+  }
+  const orders = loadWorkOrders(root);
+  const byId = new Map(orders.map((w) => [w.id, w]));
+  let pages = only;
+  if (!only.length) {
+    const idx = reverseDeps(orders, root), set = new Set();
+    for (const f of files) for (const id of idx.get(f) ?? []) { const w = byId.get(id); if (isPage(w) && w.target && tree.has(w.target) && !unblocks.includes(id)) set.add(id); }
+    pages = [...set].sort();
+  }
+  const all = [...new Set(Object.values(SITES).map((s) => s.app))];
+  const apps = new Set(pages.map((id) => byId.get(id)?.app).filter(Boolean));
+  for (const f of files) { const m = /^apps\/([^/]+)\//.exec(f); if (!m) all.forEach((a) => apps.add(a)); else if (all.includes(m[1])) apps.add(m[1]); }
+  return { files, pages, apps: [...apps].sort() };
+}
+
+// Upgrade mode, static stage: scope first (nothing else is worth checking on a branch that changed a page), then the
+// order-independent self-check items on the changed files that still exist.
+function upgradeStatic({ appDir, plan, unblocks }) {
+  const t0 = Date.now();
+  if (!plan.files.length) return { global: [{ check: "scope", where: "branch", hint: "the upgrade branch changes nothing against integration" }], ms: Date.now() - t0 };
+  const scope = scopeViolations(plan.files, { kind: "upgrade", wos: unblocks, ownerOf: registryOwnerOf(ROOT) });
+  if (scope.length) return { global: scope.map((v) => ({ check: "scope", where: v.split(": ")[0], hint: v.slice(v.indexOf(": ") + 2) })), ms: Date.now() - t0 };
+  const present = plan.files.map((f) => path.join(appDir, f)).filter((f) => existsSync(f));
+  return { global: selfCheckFiles(present, appDir), ms: Date.now() - t0 };
 }
 
 function restStorage(wo, assets, patch, har) {
@@ -144,32 +207,38 @@ export async function gate(argv) {
   if (skipStatic && !dry) throw new Error("--from build is a diagnostic option and needs --dry-run");
   const task = opt(argv, "--task");
   const meta = task ? taskMeta(task) : {};
-  const mode = regress ? "integration" : opt(argv, "--mode", "page");
-  if (!["page", "integration"].includes(mode)) throw new Error("--mode must be page or integration");
+  // An upgrade task is always judged as an upgrade: in page mode it would be judged by the pages it unblocks (HM-858).
+  const upgradeTask = [meta.kind, meta.restoreKind].includes("upgrade");
+  let mode = regress ? "integration" : opt(argv, "--mode", upgradeTask ? "upgrade" : "page");
+  if (upgradeTask && mode === "page") mode = "upgrade";
+  if (!["page", "integration", "upgrade"].includes(mode)) throw new Error("--mode must be page, integration or upgrade");
+  const upgrade = mode === "upgrade";
   const buildKind = opt(argv, "--build", mode === "page" ? "ondemand" : "full");
   const attempt = Number(opt(argv, "--attempt", meta.attempt ?? 1));
   const branch = opt(argv, "--branch", meta.branch);
   const state = stateDir();
   const assets = assetsDir();
   let ids = (opt(argv, "--wo") ?? "").split(",").filter(Boolean);
-  if (!ids.length && meta.workOrders) ids = meta.workOrders;
+  if (!ids.length && meta.workOrders && !upgrade) ids = meta.workOrders;
   if (!ids.length && regress) { const { readdirSync } = await import("node:fs"); ids = existsSync(path.join(state, "baseline")) ? readdirSync(path.join(state, "baseline")).filter((d) => existsSync(path.join(state, "baseline", d, "baseline.json"))).sort() : []; }
-  if (!ids.length) throw new Error("no work orders: pass --task (metadata workOrders) or --wo");
+  const plan = upgrade ? upgradePlan({ appDir: resolveAppDir(argv), branch: flag(argv, "--no-checkout") ? null : branch, unblocks: meta.workOrders || [], only: ids }) : null;
+  if (plan) ids = plan.pages;
+  if (!ids.length && !upgrade) throw new Error("no work orders: pass --task (metadata workOrders) or --wo");
   const wos = ids.map(loadWorkOrder);
-  const interact = interactRef(argv, mode);
+  const interact = interactRef(argv, upgrade ? "integration" : mode); // upgrade: merged pages, recorded with integration's scripts
 
   // Baselines first: without one there is nothing to compare against.
   const bases = {}, missing = [];
   for (const wo of wos) { let b = await baselineFor(wo, state, { interact }); if (b.refresh) b = refreshBaseline(wo, b.refresh, state, dry, interact); if (b.missing) missing.push({ wo: wo.id, why: b.missing }); else bases[wo.id] = b.baseline; }
-  if (missing.length && !regress) return { pending: "record", missing, attempt, durationMs: Date.now() - t0, ...(interact ? { interactRef: interact } : {}) };
+  if (missing.length && !regress && !upgrade) return { pending: "record", missing, attempt, durationMs: Date.now() - t0, ...(interact ? { interactRef: interact } : {}) };
   const judged = wos.filter((w) => bases[w.id]);
 
-  const runId = regress ? `regress-${new Date().toISOString().replace(/[:.]/g, "-")}-${process.pid}` : mode === "integration" ? `integration-${ids[0]}-a${attempt}` : `${ids[0]}-a${attempt}`;
+  const runId = regress ? `regress-${new Date().toISOString().replace(/[:.]/g, "-")}-${process.pid}` : upgrade ? `upgrade-${String(branch || task || "head").replace(/[^\w.-]+/g, "_")}-a${attempt}` : mode === "integration" ? `integration-${ids[0]}-a${attempt}` : `${ids[0]}-a${attempt}`;
   const gateDir = path.join(state, "gate", runId + (dry && !regress ? `-dry${process.pid}` : ""));
   rmSync(gateDir, { recursive: true, force: true });
   mkdirSync(gateDir, { recursive: true });
   const stages = {};
-  const out = { pass: false, failed: [], stage: null, diff: gateDir, shimmed: [], durationMs: 0, stages, pages: [], mode, attempt, build: buildKind, ...(interact ? { interactRef: interact } : {}) };
+  const out = { pass: false, failed: [], stage: null, diff: gateDir, shimmed: [], durationMs: 0, stages, pages: [], mode, attempt, build: buildKind, ...(interact ? { interactRef: interact } : {}), ...(plan ? { branch: branch ?? null, changed: plan.files.length, apps: plan.apps } : {}) };
   let app = null, closers = [];
   try {
     const baseApp = resolveAppDir(argv);
@@ -185,11 +254,14 @@ export async function gate(argv) {
     out.rules = rules.version;
 
     // ── static ──
-    const st = await staticStage({ wos: judged, appDir, mode });
+    // upgrade mode: the branch's own checks only; the judged pages are unchanged by it (no views/**), their self-check
+    // would charge each of them with the upgrade's files (check-imports rule 4)
+    const st = upgrade ? { ...upgradeStatic({ appDir, plan, unblocks: meta.workOrders || [] }), failed: {} } : await staticStage({ wos: judged, appDir, mode });
     stages.static = st.ms;
     const pageFail = {};
     for (const wo of judged) pageFail[wo.id] = [...(st.failed[wo.id] ?? [])];
     if (st.global.length) out.failed.push(...st.global);
+    if (upgrade && !skipStatic && st.global.length) { out.stage = "static"; return out; }
     const staticBad = judged.filter((w) => pageFail[w.id].length);
     // Integration mode keeps going after app-wide zero-reference hits (each carries its layer and owning order): the
     // pages are still judged, so a failing page and a library file that still points into the archive are told apart.
@@ -202,12 +274,13 @@ export async function gate(argv) {
 
     // ── build ──
     const tb = Date.now();
-    const apps = [...new Set(judged.map((w) => w.app))];
+    const apps = upgrade ? plan.apps : [...new Set(judged.map((w) => w.app))];
     const servers = {};
     // A recordVia page is mounted inside its parent's restored page (common.mjs scopeRootSel): the parent passes the
     // props, the restored component is found by its compiled scope id (scopeIdPlugin).
     const mountOf = {};
     const buildFail = {};
+    const appFail = []; // upgrade mode: a failing build fails the branch even when no page of that app is judged
     for (const w of judged.filter((x) => x.target)) {
       const p = w.recordVia ? loadWorkOrder(w.recordVia) : null;
       mountOf[w.id] = path.join(appDir, p ? p.target ?? "" : w.target);
@@ -239,16 +312,17 @@ export async function gate(argv) {
       } catch (e) {
         const msg = String(e.message).split("\n")[0].slice(0, 240);
         for (const w of judged.filter((x) => x.app === a)) buildFail[w.id] = [{ check: e instanceof ShimError ? "shim" : "build", where: a, hint: msg }];
+        if (upgrade) appFail.push({ check: "build", where: a, hint: msg });
       }
       out.shimmed.push(...used);
       servers[a] && (servers[a].used = used);
     }
     stages.build = Date.now() - tb;
     for (const [id, f] of Object.entries(buildFail)) pageFail[id].push(...f);
-    if (!regress && Object.keys(buildFail).length) {
+    if (!regress && (Object.keys(buildFail).length || appFail.length)) {
       out.stage = "build";
       out.pages = judged.map((w) => ({ wo: w.id, pass: false, stage: buildFail[w.id] ? "build" : null, failed: buildFail[w.id] ?? [] }));
-      out.failed.push(...Object.entries(buildFail).flatMap(([id, f]) => f.map((x) => ({ ...x, wo: id }))));
+      out.failed.push(...(Object.keys(buildFail).length ? [] : appFail), ...Object.entries(buildFail).flatMap(([id, f]) => f.map((x) => ({ ...x, wo: id }))));
       return out;
     }
 
@@ -287,7 +361,8 @@ export async function gate(argv) {
     out.failed.push(...out.pages.filter((p) => !p.pass).flatMap((p) => p.failed.map((f) => ({ ...f, wo: p.wo }))));
     out.stage = out.pages.some((p) => p.stage === "static") || (st.global.length && out.pages.every((p) => p.pass)) ? "static" : out.pages.some((p) => p.stage === "build") ? "build" : "browser";
     if (st.global.length) out.global = summarizeGlobal(st.global);
-    out.pass = out.failed.length === 0 && out.pages.length === wos.length;
+    // upgrade mode: pages without a baseline are listed in `pending` and not judged; they do not hold the upgrade back
+    out.pass = out.failed.length === 0 && out.pages.length === (upgrade ? judged.length : wos.length);
     if (missing.length) out.pending = missing;
     return out;
   } finally {
@@ -425,6 +500,7 @@ export function report(task, attempt, out, ids) {
   const lines = [head];
   if (out.pages?.length > 5) lines.push(`- pages: ${out.pages.filter((p) => p.pass).length}/${out.pages.length} passed${out.pass ? "" : `; failed: ${idList(out.pages.filter((p) => !p.pass).map((p) => p.wo), 10)}`}`);
   if (out.global) lines.push(`- app-wide: ${out.global.total} (${Object.entries(out.global.byLayer).map(([k, n]) => `${k} ${n}`).join(", ")})`);
+  if (out.mode === "upgrade") lines.push(`- upgrade: ${out.changed ?? 0} changed file(s), build ${(out.apps ?? []).join("+") || "-"}, regression ${out.pages?.filter((p) => p.pass).length ?? 0}/${out.pages?.length ?? 0} page(s)${Array.isArray(out.pending) && out.pending.length ? `, ${out.pending.length} without baseline` : ""}`);
   if (!out.pass && out.failed?.length) lines.push(...ordered.slice(0, 5).map((f) => `- ${f.wo ? f.wo + " " : ""}${f.where} ${f.check}: ${clip(f.hint, 160)}`));
   if (out.shimmed?.length) lines.push(`- shimmed: ${out.shimmed.join("; ")}`);
   if (detail) lines.push(`- detail: \`${path.basename(path.dirname(detail))}/${path.basename(detail)}\``);
@@ -451,7 +527,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     printed = true;
     console.log(JSON.stringify(r));
     const task = opt(argv, "--task");
-    if (task && !flag(argv, "--dry-run")) report(task, r.attempt ?? Number(opt(argv, "--attempt", 1)), r, r.pages?.map((p) => p.wo) ?? r.missing?.map((m) => m.wo) ?? []);
+    if (task && !flag(argv, "--dry-run")) report(task, r.attempt ?? Number(opt(argv, "--attempt", 1)), r, r.mode === "upgrade" ? [`upgrade ${r.branch ?? task}`] : r.pages?.map((p) => p.wo) ?? r.missing?.map((m) => m.wo) ?? []);
     process.exitCode = r.pending ? 0 : r.pass ? 0 : 1;
   }, (e) => {
     printed = true;

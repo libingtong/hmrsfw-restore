@@ -21,6 +21,7 @@ import { P, Locks, woLock, readJson } from "./state.mjs";
 import { Roster, reviewKey } from "./roster.mjs";
 import { Multica } from "./multica.mjs";
 import { Git, pageForbidden } from "./gitops.mjs";
+import { scopeViolations, registryOwnerOf } from "./upgrade-scope.mjs";
 import { classifyRunError, FAILED_RUN_STATUSES } from "./error-classes.mjs";
 import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isAccepted, isDispatchable, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
 import { Ledger, runRow, recordCapability, recordAudit, auditTier, seedFromConfirm, mergeCapability } from "../ledger.mjs";
@@ -489,7 +490,9 @@ export class Pipeline {
     const gate = this.leastLoaded("gate", [], meta.workOrders || []);
     const key = `gate.${meta.attempt || 1}`;
     if (meta[key] !== undefined) this.mc.deleteMeta(taskId, key);
-    this.mc.setMeta(taskId, "gateSeq", (meta.gateSeq || 0) + 1);
+    // gateMode tells the gate agent which mode to run; gate.mjs also switches an upgrade task to --mode upgrade by itself
+    if (baseKind(meta) === "upgrade") this.mc.setMetaMany(taskId, { gateSeq: (meta.gateSeq || 0) + 1, gateMode: "upgrade" });
+    else this.mc.setMeta(taskId, "gateSeq", (meta.gateSeq || 0) + 1);
     const cur = this.mc.getIssue(taskId);
     if (cur && cur.assignee_id === gate.id) { this.mc.update(taskId, { status: "in_review", noStart: true }); this.mc.rerun(taskId); }
     else this.mc.update(taskId, { status: "in_review", assigneeId: gate.id });
@@ -536,7 +539,9 @@ export class Pipeline {
     if (gate.pending === "record") return this.waitForRecord(taskId, meta);
     if (gate.error) return { ok: false, summary: `gate error on ${taskId}`, anomalies: [{ issue: taskId, what: `gate error: ${String(gate.error).slice(0, 200)}`, suggestedAction: "建排障单交给裁定员" }] };
     const wos = meta.workOrders || [];
-    const results = this.pageResults(gate, wos);
+    // An upgrade's verdict is one verdict for the branch (gate.mjs --mode upgrade): its pages[] are the regression pages,
+    // not the pages it unblocks (workOrders), which are judged by their own gates once resumed (HM-990).
+    const results = meta.kind === "upgrade" ? Object.fromEntries(wos.map((w) => [w, gate])) : this.pageResults(gate, wos);
     const passed = wos.filter((w) => results[w]?.pass), failed = wos.filter((w) => !results[w]?.pass);
     const agent = this.roster.get(meta.agent);
     const tier = this.tierOf(wos);
@@ -643,28 +648,11 @@ export class Pipeline {
   }
 
   // Public-library files have an owner in registry/<app>.json; an entry/shared order may only change files it owns
-  // (or unowned ones). Upgrades may change any public file whose owner has no active task.
+  // (or unowned ones). Upgrades may change any public file whose owner has no active task, never a page (views/).
+  // The rule itself is tools/lib/upgrade-scope.mjs, shared with gate.mjs --mode upgrade (HM-990).
   ownerViolations(files, wos, meta) {
-    const bad = [];
     const L = this.ledger.read();
-    for (const f of files) {
-      const m = f.match(/^apps\/([^/]+)\/src\/(legacy|shared|api|utils)\//);
-      if (!m) continue;
-      const owner = this.ownerOfFile(f);
-      if (!owner) continue;
-      if (meta.kind === "upgrade") { if (this.activeTasks(L, owner).length && !wos.includes(owner)) bad.push(`${f}: owner ${owner} has an active task`); }
-      else if (!wos.includes(owner)) bad.push(`${f}: owned by ${owner}`);
-    }
-    return bad;
-  }
-  ownerOfFile(f) {
-    const m = f.match(/^apps\/([^/]+)\/src\/(.+)$/);
-    if (!m) return null;
-    const regFile = path.join(this.toolRoot, "registry", `${m[1]}.json`);
-    const reg = readJson(regFile, null);
-    if (!reg) return null;
-    for (const sec of ["shared", "entry", "api"]) for (const v of Object.values(reg[sec] || {})) if (v.path === `@/${m[2]}` && v.owner) return v.owner;
-    return null;
+    return scopeViolations(files, { kind: meta.kind, wos, ownerOf: registryOwnerOf(this.toolRoot), ownerBusy: (owner) => this.activeTasks(L, owner).length > 0 });
   }
 
   afterMerge(taskId, meta, wos0, merge, isLib, extra = {}) {
@@ -891,7 +879,8 @@ export class Pipeline {
     return { ok: true, summary: `${taskId} suspended for upgrade ${upId}`, upgrade: upId, anomalies: [] };
   }
 
-  // Lib merged: regress every passed page that depends on a changed public file; resume pages the upgrade was for.
+  // Lib merged: regress every passed page that depends on a changed public file; resume pages the upgrade was for. An
+  // upgrade is also brought to the fast lane first (syncFastLane), so its fast-lane pages resume with the content.
   afterLibMerge(taskId, meta, merge) {
     const L = this.ledger.read();
     const idx = reverseDeps(this.orders(), this.toolRoot);
@@ -899,10 +888,45 @@ export class Pipeline {
     for (const f of merge.files || []) for (const w of idx.get(f) || []) if (this.isMergedWo(L, w) || isAccepted(this.wo(w))) deps.add(w);
     if (deps.size) this.openIntegration({ purpose: "lib-regression", workOrders: [...deps].sort(), sha: merge.sha, key: `integration:lib-regression:${merge.sha}`, extra: { libTask: taskId, libMergeSha: merge.sha } });
     const up = L.tick.upgrades?.[taskId];
+    if (meta.kind === "upgrade" && (merge.sha || !this.dryRun)) this.syncFastLane(taskId, merge.sha);
     if (meta.kind === "upgrade" && up) {
       this.ledger.tx((L2) => { L2.tick.upgrades[taskId].state = "merged"; L2.tick.upgrades[taskId].files = merge.files || []; });
       for (const t of up.forTasks) { try { if (this.ownsTask(this.meta(t))) this.resumeSuspended(t, taskId); } catch (e) { this.anomaly(t, `resume after upgrade: ${e.message.slice(0, 200)}`, "下一轮 tick 重试"); } }
     }
+  }
+
+  // HM-990 (decision 2 of HM-858): an upgrade merged into integration is cherry-picked onto the app repo's fast-lane
+  // branch (`restore/fast-lane`, config fastLane.branch), where the fast-lane pages and their gates live — the same as the
+  // rule branches of HM-848, but done here instead of by hand. The merge commit is picked against its first parent, i.e.
+  // the upgrade's whole change in one commit. The outcome is kept in the upgrade's metadata `fastLaneSync`, which every
+  // machine sees: ok | already (the change is on the branch) | no-branch (no fast lane: nothing to do) | conflict (an
+  // anomaly; nothing is pushed and the fast-lane pages stay suspended until someone lands it and sets the state to ok) |
+  // retry (lock busy, push rejected twice: the next resumeSuspendedOwned tries again).
+  fastLaneBranchName() { return this.cfg.fastLane?.branch || "restore/fast-lane"; }
+  syncFastLane(upgradeId, sha) {
+    const into = this.fastLaneBranchName();
+    if (!sha) { const st = { state: "conflict", why: "no merge commit to pick", at: this.iso() }; this.mc.setMeta(upgradeId, "fastLaneSync", st); this.anomaly(upgradeId, `upgrade merged without a known merge commit: not brought to ${into}`, `裁定员把升级内容 cherry-pick 到 ${into} 并推送，再把元数据 fastLaneSync 设为 {"state":"ok"}`); return st; }
+    const r = this.locks.with("fast-lane", () => this.appGit.cherryPick({ sha, into, message: `Pick upgrade ${upgradeId} into ${into} (integration ${short(sha)}; HM-990)` }), 5 * 60_000);
+    const st = r.locked || r.pushRejected ? { state: "retry", sha } : r.missingBranch ? { state: "no-branch" } : r.conflict ? { state: "conflict", sha, conflicts: (r.conflicts || []).slice(0, 20) } : { state: r.already ? "already" : "ok", sha, picked: r.sha || null };
+    st.at = this.iso();
+    this.mc.setMeta(upgradeId, "fastLaneSync", st);
+    this.ledger.tx((L) => L.newEvents.push({ type: "fast-lane-sync", task: upgradeId, sha, state: st.state, picked: st.picked }));
+    if (st.state === "conflict") {
+      this.anomaly(upgradeId, `cherry-pick of upgrade merge ${short(sha)} onto ${into} conflicts (${(r.conflicts || []).slice(0, 3).join(", ")}): its fast-lane pages stay suspended`, `裁定员在 ${into} 上手工 cherry-pick -m 1 ${short(sha)} 解决冲突并推送，再把升级单元数据 fastLaneSync 设为 {"state":"ok"}`);
+      this.comment(upgradeId, `[GATE] 升级已合入 integration（${short(sha)}），同步到 \`${into}\` 时冲突（${(r.conflicts || []).slice(0, 3).join("、")}），未推送；快速通道页保持挂起，手工合入后把元数据 fastLaneSync 设为 {"state":"ok"}`);
+    }
+    else if (st.state === "ok" || st.state === "already") this.comment(upgradeId, `[GATE] 升级已同步到 \`${into}\`（integration ${short(sha)}${st.picked ? ` → ${short(st.picked)}` : "，分支上已有"}）`);
+    return st;
+  }
+  // May a fast-lane page suspended for this upgrade resume? Yes once the upgrade's change is on the fast lane, or when the
+  // upgrade never merged (dropped: there is nothing to wait for). A missing or "retry" sync is tried again here.
+  fastLaneReady(upgradeId) {
+    const um = this.meta(upgradeId);
+    const sha = um[`merge.${um.attempt || 1}`]?.sha;
+    let st = um.fastLaneSync;
+    if (!st && !sha) return true;
+    if (!st || st.state === "retry") st = this.syncFastLane(upgradeId, sha || st?.sha);
+    return ["ok", "already", "no-branch"].includes(st.state);
   }
 
   // Suspended tasks of this machine whose upgrade (opened here or on the other machine) has merged or was dropped.
@@ -911,26 +935,44 @@ export class Pipeline {
     for (const i of this.pipelineIssues().filter((x) => x.metadata.suspendedBy && x.status === "backlog" && this.ownsTask(x.metadata))) {
       const up = byId.get(i.metadata.suspendedBy);
       if (!up || !(up.metadata.kind === "audit" || !OPEN(up))) continue;
-      this.safe(i.id, () => { this.resumeSuspended(i.id, up.id); this.act(`resumed ${i.id} after upgrade ${up.id} (${up.status})`); });
+      this.safe(i.id, () => { if (this.resumeSuspended(i.id, up.id)) this.act(`resumed ${i.id} after upgrade ${up.id} (${up.status})`); });
     }
   }
 
+  // A normal page is re-dispatched to a restorer on a new branch (restore/<order>-a<n>). A fast-lane page (HM-990,
+  // decision 3 of HM-858) keeps its branch and fast-lane metadata: its code is already on the fast lane and only the
+  // library was missing, so once the upgrade is there (fastLaneReady) it goes straight back to the gate; a failure then
+  // takes the fast lane's fixer → arbiter path as usual. Returns true when the task was resumed.
   resumeSuspended(taskId, upgradeId) {
     const meta = this.meta(taskId);
-    if (meta.suspendedBy !== upgradeId) return;
+    if (meta.suspendedBy !== upgradeId) return false;
+    const fast = [true, "true"].includes(meta.fastLane);
+    if (fast && !this.fastLaneReady(upgradeId)) return false;
+    let done = false;
     this.withWo(meta.workOrders || [], () => {
       const L = this.ledger.read();
-      if (this.meta(taskId).suspendedBy !== upgradeId) return; // resumed meanwhile
-      const p = pick(route(this.wo(meta.workOrders[0]), this.routeCtx(L), { exclude: this.restoreExclude(meta.workOrders) }))[0];
-      const agent = p ? this.roster.get(p.agent.id) : this.pickDefault(this.wo(meta.workOrders[0]), L);
-      const attempt = Math.max(meta.attempt || 1, ...meta.workOrders.map((w) => L.tasks.wos[w]?.attempts || 0)) + 1;
-      const history = [...(meta.history || []), { attempt: meta.attempt, agent: meta.agent, family: meta.family, branch: meta.branch, result: "suspended", upgrade: upgradeId }];
-      this.mc.setMetaMany(taskId, { kind: "restore", suspendedBy: null, attempt, branch: this.branchFor(meta.workOrders, attempt), fixRound: 0, agent: agent.id, family: agent.family, history, fixers: [] });
+      const cur = this.meta(taskId);
+      if (cur.suspendedBy !== upgradeId) return; // resumed meanwhile
+      const attempt = Math.max(cur.attempt || 1, ...cur.workOrders.map((w) => L.tasks.wos[w]?.attempts || 0)) + 1;
+      const history = [...(cur.history || []), { attempt: cur.attempt, agent: cur.agent, family: cur.family, branch: cur.branch, result: "suspended", upgrade: upgradeId }];
+      if (fast) {
+        this.mc.setMetaMany(taskId, { kind: "restore", suspendedBy: null, attempt, branch: cur.branch, fixRound: 0, history, fixers: [], waitRecord: false });
+        this.ledger.tx((L2) => { for (const w of cur.workOrders) { const s = (L2.tasks.wos[w] ??= { tasks: [] }); s.state = "active"; s.active = [taskId]; s.suspendedBy = null; s.attempts = attempt; } });
+        const gate = this.sendToGate(taskId, { ...cur, attempt });
+        this.comment(taskId, `[REDO] 升级单 ${upgradeId} 已合并并同步到 \`${cur.branch}\`，快速通道页重跑门槛 → ${gate.name}`);
+        done = true;
+        return;
+      }
+      const p = pick(route(this.wo(cur.workOrders[0]), this.routeCtx(L), { exclude: this.restoreExclude(cur.workOrders) }))[0];
+      const agent = p ? this.roster.get(p.agent.id) : this.pickDefault(this.wo(cur.workOrders[0]), L);
+      this.mc.setMetaMany(taskId, { kind: "restore", suspendedBy: null, attempt, branch: this.branchFor(cur.workOrders, attempt), fixRound: 0, agent: agent.id, family: agent.family, history, fixers: [] });
       this.mc.update(taskId, { status: "todo", assigneeId: agent.id });
       this.bump(agent.id);
-      this.ledger.tx((L2) => { for (const w of meta.workOrders) { const s = (L2.tasks.wos[w] ??= { tasks: [] }); s.state = "active"; s.active = [taskId]; s.suspendedBy = null; s.attempts = attempt; } });
+      this.ledger.tx((L2) => { for (const w of cur.workOrders) { const s = (L2.tasks.wos[w] ??= { tasks: [] }); s.state = "active"; s.active = [taskId]; s.suspendedBy = null; s.attempts = attempt; } });
       this.comment(taskId, `[REDO] 升级单 ${upgradeId} 已合并，重派 → ${agent.name}`);
+      done = true;
     }, 60_000);
+    return done;
   }
 
   // ---- integration tasks (regression, bisect, lib/rule regression, integration gate) ----------------------------------
