@@ -1,0 +1,8 @@
+[
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"clickSel":".ant-pagination-item-1","optional":true},
+  {"click":"新增申请","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-modal-close","optional":true}
+]
