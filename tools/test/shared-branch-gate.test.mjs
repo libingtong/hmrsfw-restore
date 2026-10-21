@@ -7,7 +7,7 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { otherPagesOnly, pageOwners } from "../check-imports.mjs";
+import { otherPagesOnly, pageOwners, sameAsBase } from "../check-imports.mjs";
 
 const A = "apps/portal/src/views/a.vue", B = "apps/portal/src/views/b.vue", BSUB = "apps/portal/src/views/b/Sub.vue";
 const C = "apps/portal/src/views/c.vue", SHARED = "apps/portal/src/shared/x.ts";
@@ -81,4 +81,28 @@ test("pageOwners: target and subComponentDir of page and segment orders, segment
   assert.equal(own("apps/uc/src/views/zcyzCorpAttestationapprove/BusinessModal.vue"), "page.uc.zcyzCorpAttestationapprove");
   assert.equal(own("apps/portal/src/shared/index.ts"), null);
   assert.equal(own("package.json"), null);
+});
+
+// HM-990: an upgrade merged into integration is cherry-picked onto the fast lane; the merge base does not move, so its
+// public files looked like the fast-lane page's own change. A file whose HEAD content is integration's is not.
+test("sameAsBase: a public file picked from integration is not the branch's change; one that differs from integration is", () => {
+  const r = repo();
+  try {
+    r.git("branch", "integration");
+    r.git("checkout", "-q", "-b", "fast-lane");
+    r.commit([A], "fix(page): page.a");
+    r.git("checkout", "-q", "integration");
+    const IMG = "apps/portal/public/sjz/top.jpg";
+    r.commit([SHARED, IMG], "upgrade");
+    const up = r.git("rev-parse", "HEAD");
+    r.git("checkout", "-q", "fast-lane");
+    r.git("cherry-pick", up);
+    const files = [A, SHARED, IMG];
+    assert.deepEqual([...sameAsBase(r.dir, { base: "integration", files })].sort(), [IMG, SHARED].sort());
+    // the fast lane changes the picked file again: now it is a change against integration
+    r.commit([SHARED], "local tweak");
+    assert.deepEqual([...sameAsBase(r.dir, { base: "integration", files })], [IMG]);
+    // an uncommitted change in the working tree is never "same as base"
+    assert.deepEqual([...sameAsBase(r.dir, { base: "integration", files, work: new Set([IMG]) })], []);
+  } finally { r.done(); }
 });
