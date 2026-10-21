@@ -1,0 +1,14 @@
+{
+ "id": "tinymce-generated-id",
+ "kind": "html",
+ "enabled": true,
+ "since": "HM-1021",
+ "why": "TinyMCE 和 @tinymce/tinymce-vue 给元素生成的 id 是 前缀 + \"_\" + Math.floor(Math.random()*1e9) + 自增计数 + 毫秒时间戳，每次运行都不同（含随机数，固定页面时钟也去不掉），只用来让 aria-describedby 等属性指回对应元素。只把前缀后的数字换成占位：前缀、属性在不在、在哪个元素上、同一个 id 被谁引用，照常比较。证据：legacy-dist/usercenter/assets/Editor.1751615607545.js 偏移 921714（tinymce-vue C$(\"tiny-vue\")：Rn+\"_\"+An+y$+String(Date.now())，作编辑器 textarea 的 id，编辑区 iframe 是它加 _ifr）、459035（alloy Fe：t+\"_\"+s+Vr+String(o)）、766849（Fe(\"aria\") 写进 id 和 aria-describedby）、114048（核心 nh 同一写法）。见 docs/rule-changes/HM-1021.md",
+ "subs": [
+  [
+   "\\b(tiny-vue|aria)_\\d{15,}",
+   "g",
+   "$1_#"
+  ]
+ ]
+}
