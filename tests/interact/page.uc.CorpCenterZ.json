@@ -1,0 +1,7 @@
+[
+  {"click":"推荐人才","optional":true},
+  {"click":"推荐招聘会","optional":true},
+  {"click":"推荐政策","optional":true},
+  {"click":"我发布的职位","optional":true},
+  {"click":"今日不再提醒","optional":true}
+]
