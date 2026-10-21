@@ -547,3 +547,113 @@ test("an order whose chunk imports something the registry lacks (`missing`) is n
   assert.ok(restoreTasks(fx).length > 0, "the clean order is dispatched");
   assert.ok(!JSON.stringify(restoreTasks(fx).map((t) => meta(fx, t.id))).includes('"P1"'), `P1 must not be dispatched: ${JSON.stringify(ids)}`);
 });
+
+// HM-990 (decisions of HM-858): an upgrade is judged and merged as a public-library change; its merge is picked onto the
+// app repo's fast lane; a fast-lane page suspended for it keeps restore/fast-lane and goes back to the gate.
+const upgradeFixture = ({ fastLaneDict = null } = {}) => {
+  const fx = makeFixture({ orders: [page("P3", 12), page("F1", 12), page("P4", 12, { accepted: true }), { id: "S1", type: "shared", kb: 6, app: "portal", files: ["apps/portal/src/shared/Dict.vue"] }], config: { audit: { coldRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "P3", "F1");
+  writeFileSync(path.join(fx.state, "ledger", "tasks.json"), JSON.stringify({ wos: { S1: { state: "done", tasks: [] } }, tasks: {}, seq: 0 }));
+  git(fx.root, "--git-dir", fx.appOrigin, "branch", "restore/fast-lane", "integration");
+  pushBranch(fx, { branch: "restore/fast-lane", files: { "apps/portal/src/views/F1/index.vue": vue("f1"), ...(fastLaneDict ? { "apps/portal/src/shared/Dict.vue": fastLaneDict } : {}) } });
+  node(fx, "tick.mjs", ["tick"]);
+  const p3 = restoreTasks(fx).find((i) => meta(fx, i.id).workOrders[0] === "P3");
+  const f1 = restoreTasks(fx).find((i) => meta(fx, i.id).workOrders[0] === "F1");
+  mc(fx, "issue", "metadata", "set", f1.id, "--key", "fastLane", "--type", "bool", "--value", "true"); setMeta(fx, f1.id, "branch", "restore/fast-lane");
+  for (const t of [p3, f1]) assert.equal(node(fx, "tick.mjs", ["open-upgrade", t.id, "--reason", "Dict 缺 size；sjz/home/marketTop.jpg 缺"]).ok, true);
+  const up = issuesOf(fx).find((i) => i.title.startsWith("[upgrade]"));
+  assert.equal(meta(fx, p3.id).suspendedBy, up.id); assert.equal(meta(fx, f1.id).suspendedBy, up.id);
+  return { fx, p3, f1, up };
+};
+const tickState = (fx) => readJson(path.join(fx.state, "ledger", "tick-state.json"), {});
+
+test("upgrade (HM-990): one verdict for the branch; merged → picked onto restore/fast-lane; fast-lane page keeps its branch and goes back to the gate, a normal page is re-dispatched", () => {
+  const { fx, p3, f1, up } = upgradeFixture();
+  deliver(fx, up.id, { "apps/portal/src/shared/Dict.vue": "<template><span>dict v2</span></template>\n", "apps/portal/public/sjz/home/marketTop.jpg": "jpg" });
+  assert.equal(meta(fx, up.id).gateMode, "upgrade", "sent to the gate in upgrade mode");
+  // gate.mjs --mode upgrade: pages[] are the regression pages, not the unblocked P3/F1
+  const r = gate(fx, up.id, { pass: true, mode: "upgrade", stage: "browser", failed: [], pages: [{ wo: "P4", pass: true }] });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.match(showRemote(fx, "app", "integration", "apps/portal/src/shared/Dict.vue"), /v2/, "merged into integration");
+  assert.equal(tickState(fx).upgrades[up.id].state, "merged");
+
+  // decision 2: the upgrade's change is on the fast lane too, next to the fast-lane pages
+  assert.match(showRemote(fx, "app", "restore/fast-lane", "apps/portal/src/shared/Dict.vue"), /v2/);
+  assert.equal(showRemote(fx, "app", "restore/fast-lane", "apps/portal/public/sjz/home/marketTop.jpg"), "jpg");
+  assert.equal(showRemote(fx, "app", "restore/fast-lane", "apps/portal/src/views/F1/index.vue"), vue("f1"), "fast-lane pages untouched");
+  const sync = meta(fx, up.id).fastLaneSync;
+  assert.equal(sync.state, "ok");
+  assert.equal(sync.picked, lsRemote(fx, "app", "restore/fast-lane"));
+  const msg = git(fx.root, "--git-dir", fx.appOrigin, "log", "-1", "--format=%B", "restore/fast-lane");
+  assert.match(msg, new RegExp(`cherry picked from commit ${lsRemote(fx, "app", "integration")}`));
+
+  // decision 3: the fast-lane page keeps restore/fast-lane and its metadata, and is gated again
+  const fm = meta(fx, f1.id);
+  assert.equal(fm.branch, "restore/fast-lane");
+  assert.equal(fm.fastLane, true);
+  assert.equal(fm.suspendedBy, undefined);
+  assert.equal(fm.attempt, 2);
+  assert.equal(fm.history.at(-1).result, "suspended");
+  assert.equal(issue(fx, f1.id).status, "in_review");
+  assert.equal(issue(fx, f1.id).assignee_id, fx.id("gate"));
+  assert.match(lastComment(fx, f1.id), /restore\/fast-lane.*重跑门槛/);
+  // a normal page: unchanged behaviour, a restorer on restore/<order>-a<n>
+  assert.equal(meta(fx, p3.id).branch, "restore/P3-a2");
+  assert.equal(issue(fx, p3.id).status, "todo");
+});
+
+test("upgrade (HM-990): the merge refuses a page file (the gate's scope rule); a fast-lane conflict stops there with an anomaly", () => {
+  // refused: an upgrade branch that changes a page
+  let { fx, up } = upgradeFixture();
+  deliver(fx, up.id, { "apps/portal/src/shared/Dict.vue": "<template><span>dict v2</span></template>\n", "apps/portal/src/views/P3/index.vue": vue("patched") });
+  gate(fx, up.id, { pass: true, mode: "upgrade", failed: [], pages: [] });
+  assert.match(showRemote(fx, "app", "integration", "apps/portal/src/shared/Dict.vue"), /v1/, "not merged");
+  assert.ok(issue(fx, up.id).comments.some((c) => /合并被拒.*views\/P3\/index\.vue: page file/.test(c.content)));
+
+  // conflict on the fast lane: integration gets the upgrade, the fast-lane page waits
+  ({ fx, up } = upgradeFixture({ fastLaneDict: "<template><span>dict fast-lane</span></template>\n" }));
+  const f1 = restoreTasks(fx).find((i) => meta(fx, i.id).workOrders[0] === "F1");
+  const p3 = restoreTasks(fx).find((i) => meta(fx, i.id).workOrders[0] === "P3");
+  const flSha = lsRemote(fx, "app", "restore/fast-lane");
+  deliver(fx, up.id, { "apps/portal/src/shared/Dict.vue": "<template><span>dict v2</span></template>\n" });
+  const r = gate(fx, up.id, { pass: true, mode: "upgrade", failed: [], pages: [] });
+  assert.match(showRemote(fx, "app", "integration", "apps/portal/src/shared/Dict.vue"), /v2/);
+  assert.equal(lsRemote(fx, "app", "restore/fast-lane"), flSha, "nothing pushed to the fast lane");
+  assert.equal(meta(fx, up.id).fastLaneSync.state, "conflict");
+  assert.deepEqual(meta(fx, up.id).fastLaneSync.conflicts, ["apps/portal/src/shared/Dict.vue"]);
+  assert.ok(r.anomalies.some((a) => a.issue === up.id && /conflicts/.test(a.what)), JSON.stringify(r));
+  assert.equal(issue(fx, f1.id).status, "backlog", "fast-lane page stays suspended");
+  assert.equal(issue(fx, p3.id).status, "todo", "normal page resumed");
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(issue(fx, f1.id).status, "backlog", "still waiting on the next tick");
+
+  // someone lands it by hand and marks it: the next tick resumes the fast-lane page
+  setMeta(fx, up.id, "fastLaneSync", { state: "ok", manual: true });
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(issue(fx, f1.id).status, "in_review");
+  assert.equal(meta(fx, f1.id).branch, "restore/fast-lane");
+});
+
+test("fast lane (HM-990): a fast-lane page whose receipt names a library gap opens an upgrade; resumed on restore/fast-lane, its pass is a fast-lane pass", () => {
+  const fx = makeFixture({ orders: [page("F1", 12), { id: "S1", type: "shared", kb: 6, app: "portal", files: ["apps/portal/src/shared/Dict.vue"] }], config: { audit: { coldRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "F1");
+  writeFileSync(path.join(fx.state, "ledger", "tasks.json"), JSON.stringify({ wos: { S1: { state: "done", tasks: [] } }, tasks: {}, seq: 0 }));
+  git(fx.root, "--git-dir", fx.appOrigin, "branch", "restore/fast-lane", "integration");
+  node(fx, "tick.mjs", ["tick"]);
+  const [t] = restoreTasks(fx);
+  mc(fx, "issue", "metadata", "set", t.id, "--key", "fastLane", "--type", "bool", "--value", "true"); setMeta(fx, t.id, "branch", "restore/fast-lane");
+  deliver(fx, t.id, { "apps/portal/src/views/F1/index.vue": vue("f1") }, { receipt: { needsFromSkeleton: ["sjz/home/marketTop.jpg 缺"] } });
+  gate(fx, t.id, { pass: false, stage: "browser", failed: [{ check: "pixel", where: "load" }] });
+  const up = issuesOf(fx).find((i) => i.title.startsWith("[upgrade]"));
+  assert.ok(up, "upgrade opened for a fast-lane page");
+  assert.equal(issue(fx, t.id).status, "backlog");
+  deliver(fx, up.id, { "apps/portal/public/sjz/home/marketTop.jpg": "jpg" });
+  gate(fx, up.id, { pass: true, mode: "upgrade", failed: [], pages: [] });
+  assert.equal(showRemote(fx, "app", "restore/fast-lane", "apps/portal/public/sjz/home/marketTop.jpg"), "jpg");
+  assert.equal(meta(fx, t.id).branch, "restore/fast-lane");
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("gate"));
+  gate(fx, t.id, { pass: true, stage: "browser", failed: [], pages: [{ wo: "F1", pass: true }] });
+  assert.equal(issue(fx, t.id).status, "done");
+  assert.match(lastComment(fx, t.id), /快速通道/);
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/F1/index.vue"), null, "a fast-lane pass merges nothing into integration");
+});

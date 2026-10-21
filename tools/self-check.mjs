@@ -116,6 +116,23 @@ export function selfCheck(order, APP, { renderEquivReport = true } = {}) {
   return { pass: errors.length === 0, failed, id: order.id, type: order.type, stats, reports };
 }
 
+// The order-independent part of the self-check, on a list of changed files (gate.mjs --mode upgrade, HM-990): an upgrade
+// has no work order whose chunk, maps or text nodes could be compared, so what is left is compile (SFCs, and scripts under
+// src/), zero references to the original build, and secrets — the same items, hints and severities as selfCheck.
+export function selfCheckFiles(files, APP) {
+  APP = path.resolve(APP);
+  const failed = [];
+  const rel = (f) => path.relative(APP, f).split(path.sep).join("/");
+  let sfc = null; // hmrsfw-vue's own compiler, loaded only when an SFC changed
+  for (const f of files) {
+    if (f.endsWith(".vue")) { for (const e of compileSfc((sfc ??= compilerSfc(APP)), f).errors) failed.push({ check: "compile", where: rel(f), hint: `编译失败：${e.split("\n")[0].slice(0, 240)}` }); }
+    else if (/\.(ts|js)$/.test(f) && /^apps\/[^/]+\/src\//.test(rel(f))) { try { parse(readFileSync(f, "utf8"), { sourceType: "module", plugins: ["typescript", "topLevelAwait"] }); } catch (e) { failed.push({ check: "compile", where: rel(f), hint: `脚本语法错误：${String(e.message).split("\n")[0]}` }); } }
+  }
+  for (const h of scanNoLegacy({ root: APP, files }).hits) failed.push({ check: "no-legacy", where: h.file, hint: `${h.rule} ×${h.count}：源码、注释和资源文件名里不能出现原包路径（legacy-dist）、带构建哈希的文件名或编译产物` });
+  for (const h of scanSecretFiles(files, rel)) failed.push({ check: "secrets", where: `${h.file}:${h.line}`, hint: `命中规则 ${h.rule}：代码、注释里不能出现密钥、token、手机号、证件号、邮箱等；密钥只从环境变量读取` });
+  return failed;
+}
+
 function loadOrderSafe(id) { try { return id ? loadOrder(id) : null; } catch { return null; } }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

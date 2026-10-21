@@ -97,6 +97,8 @@
 | `auditor`、`auditTier`、`auditProcessed` | advance / tick | 审计员、抽检档位、已处理的审计（`<attempt>:<合并 sha>`）。再次抽中审计时先删掉旧的 `audit.<attempt>` |
 | `waitRecord` | advance | 门槛返回 `{"pending":"record"}` 时置为 `true` |
 | `suspendedBy`、`upgradeTried` | open-upgrade | 挂起本页的升级单 |
+| `gateMode` | handoff / tick | 升级单送门槛时为 `upgrade`：门槛员用 `--mode upgrade` |
+| `fastLaneSync` | advance / tick | 升级单合并后同步到 `restore/fast-lane` 的结果：`{state: ok\|already\|no-branch\|conflict\|retry, sha, picked, conflicts, at}`，见上文「升级单与快速通道」 |
 | `twinLost` | advance | 双派落选 |
 | `purpose`、`sha`、`mainSha`、`bisect`、`libTask`、`libMergeSha`、`ruleChange`、`ruleSha` | tick | `kind=integration` 任务的用途和参数 |
 | `branch`、`round`、`reviewer` | open-rule-review | `kind=rule-review` 任务 |
@@ -123,13 +125,15 @@
 
 **合并后被回退**（审计、集成回归、公共库回归）：原分支不能再合并（git 认为它已经合进去了）。脚本从当前 `integration` 拉新分支 `<原分支>-r<n>`，在上面 revert 那次回退，也就是把被回退的内容放回去，任务改用这条分支继续走失败规则（修正员在新分支上修）。这一步冲突时，改为默认模型开新的尝试。
 
-**合并**：`git merge --no-ff`，在 `origin/integration` 的临时 worktree 里做，持有 `locks/integration`。页面单改到 `src/legacy|shared|api|utils/`、`package.json`、锁文件时拒绝合并，按失败处理。入口包、共享组件单只能改清单里 `owner` 是自己（或没有 owner）的公共库文件；升级单只能改 owner 当前没有进行中任务的文件。冲突就放弃合并，元数据记 `mergeConflict.<attempt>`，按失败处理（`merge_conflict`）。
+**合并**：`git merge --no-ff`，在 `origin/integration` 的临时 worktree 里做，持有 `locks/integration`。页面单改到 `src/legacy|shared|api|utils/`、`package.json`、锁文件时拒绝合并，按失败处理。入口包、共享组件单只能改清单里 `owner` 是自己（或没有 owner）的公共库文件；升级单只能改 owner 当前没有进行中任务的文件，不能改页面文件（`src/views/**`）。这条规则在 `tools/lib/upgrade-scope.mjs`，门槛 `--mode upgrade` 用同一个函数（HM-990）。冲突就放弃合并，元数据记 `mergeConflict.<attempt>`，按失败处理（`merge_conflict`）。
 
 **审计**：抽检率按生成家族的档位：审计不满 20 次为冷启动 50%，漏检率 > 10% 为加严 100%，满 50 次且漏检率 < 3% 为放宽 10%，其余 20%。是否抽中由任务 id 和尝试次数的哈希决定，重复处理结果不变。复核员从「家族不属于本分支所有参与者」的复核员里选负载最低的。例如 DeepSeek 还原、Opus 修正的分支只能由 GLM 家族的复核员复核。没有可用的复核员时不卡住：页面照常 `done`，评论写明跳过审计和参与家族，`advance` / `tick` 输出一条 anomaly（检查名册的复核员），并计入每日摘要。
 
 **集成回归**：`integration` 新合入满 20 单，或没有还原、审计、裁定中的任务时，建 `purpose=regression` 的集成任务（固定在当时的 `integration` 提交上）。通过就把 `main` 快进到该提交；失败就对 `main..该提交` 之间、还没被回退过的合并提交二分。每一步是一张 `purpose=bisect` 的集成任务，只测回归里失败的页（门槛没给出失败页时测全部已通过页），并且只测在被测提交里已经存在的页；没有这样的页时这一步直接算通过、不建任务。找到后回退该合并，相应任务重新走失败规则，再跑一次回归。回归、二分任务的创建键带「回归轮次」，新一轮不会撞上上一轮已结束的任务。
 
 **公共库变更**：入口包、共享组件、升级单合并后，用工单 `deps` 的反向索引找出依赖改动文件的已通过页面，建 `purpose=lib-regression` 的集成任务；失败就回退这次公共库合并，公共库单重新走失败规则。升级单合并后，挂起的页面自动重派（新的尝试，按正常路由）。
+
+**升级单与快速通道（HM-990）**：升级单送门槛时写 `gateMode: "upgrade"`，门槛给整条分支一个结论（`docs/gate.md`「升级单模式」）。合并进 `integration` 后，调度器把这次合并提交（`-m 1`，即升级的全部改动）cherry-pick 到产物仓库的 `restore/fast-lane`（配置 `fastLane.branch`）并推送，持有 `locks/fast-lane`；结果写进升级单元数据 `fastLaneSync`：`ok` / `already`（分支上已有）/ `no-branch`（没有快速通道，不用做）/ `conflict`（记 anomaly 并在升级单评论，什么都不推，快速通道页保持挂起；人工合入后把 `fastLaneSync` 设为 `{"state":"ok"}`，下一轮 tick 恢复）/ `retry`（锁忙或推送两次被拒，下一轮重试）。被挂起的快速通道页（`fastLane: true`）等到同步成功才恢复：分支保持 `restore/fast-lane`，快速通道元数据原样保留，尝试次数加一，直接送门槛（代码已在快速通道上，缺的只是公共库）；失败后照快速通道的修正员 → 裁定员流程走。普通页不变（`restore/<工单>-a<n>`，交还原员）。
 
 **规则变更**：`open-rule-review <分支>` 给两个与裁定员不同家族的复核员各建一张 `rule-review` 任务。两人都写了 `review.<复核员 agent id>` 后（平台 metadata 键只接受 `^[a-zA-Z_][a-zA-Z0-9_.-]{0,63}$`，名册名称带 `@` 和中文，不能当键；任务描述里写明了确切键名）：都 `approve` → 合并到工具仓库 `main`，建 `purpose=rule-regression` 的全量回归，失败就回退；有人 `reject` → 第 1 轮给裁定员建排障单，裁定员修改后再运行一次 `open-rule-review` 开第 2 轮；第 2 轮仍被否决 → `blocked` 并指派名册里的 `escalateTo`。
 

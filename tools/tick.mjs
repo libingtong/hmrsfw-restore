@@ -37,7 +37,12 @@ export function run(argv) {
       if (process.env.HMRSFW_TICK_NO_GLOBAL_LOCK === "1") return pl.tick();
       return pl.locks.with("tick", () => pl.tick());
     }
-    case "advance": if (!target) throw new Error("usage: tick.mjs advance <任务id> [--regate]"); return pl.advance(target, { regate: argv.includes("--regate") });
+    case "advance": {
+      if (!target) throw new Error("usage: tick.mjs advance <任务id> [--regate]");
+      const r = pl.advance(target, { regate: argv.includes("--regate") });
+      // what the steps after the verdict noted (a fast-lane pick that conflicts, a resume that failed) is reported here too
+      return pl.anomalies.length ? { ...r, anomalies: [...(r.anomalies || []), ...pl.anomalies] } : r;
+    }
     case "digest": return pl.digest();
     case "open-upgrade": {
       const reason = flag(argv, "--reason");
