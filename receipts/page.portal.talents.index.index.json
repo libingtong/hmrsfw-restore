@@ -1,34 +1,29 @@
 {
+  "ticket": "page.portal.talents.index.index",
   "id": "page.portal.talents.index.index",
-  "branch": "restore/fast-lane",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-16-a1",
   "result": "fail",
-  "fixRound": 2,
-  "outputs": [
-    "apps/portal/src/views/talents/index/index.vue",
-    "apps/portal/src/views/talents/index/index/"
+  "outputs": [],
+  "todos": [
+    "升级单 #16 无可改内容（no-op）：所报 robotImg 已在 integration eb2b5ff（HM-800 / upg-6）改为 import ./imageAssets/robot.png（3374 字节，与原包 robot.1783320636200.js 内联 base64 解码后逐字节相同，小于 assetsInlineLimit 4096，vite build 与 appserver.mjs builtUrl 都内联成 data:image/png;base64）；womanImgM / womanImgW 同一提交已改为原包地址 /assets/man.1783320636200.png、/assets/woman.1783320636200.png",
+    "该修复已同步到 restore/fast-lane（cf7b014 Pick upgrade 01a14d24…，integration d1c8903）。回执所据的 gate 提交 78cdd06 / b407330 早于同步，当时 images.ts:100 仍是 /assets/shared/robot.png；本页最新 gate.1（commit 49a611e，已含修复）失败项是 step-error「step 0: locator.click: Timeout 5000ms exceeded」，不是 robot src",
+    "restore/upg-16-a1 与 origin/integration 5d0a4dc 相同、没有提交，升级单门槛 static 会判「the upgrade branch changes nothing against integration」。建议裁定员关闭本升级单、解挂 page.portal.talents.index.index，按其最新 gate.1 的 step-error 处理；轮播 / CountUp 时序差异按原回执走 known-diff 或规则变更单",
+    "registry/portal.json 的 robot.1783320636200.js#_、woman.1783320636200.js#m/#w 为 status reserved：tools/registry.mjs 对落在 @/shared/images 的图片常量恒标 reserved（54 条全是），不是本单要改的条目，未改清单"
   ],
+  "needsFromSkeleton": [],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "b407330674224d6401b1875bd309dbeea6789444"
-  },
-  "todos": [],
-  "unresolved": [
-    "gate.1（第 2 次，commit b407330）browser:html（load/final）、text（load）、pixel（load 0.587%）未修：原因与第 1 轮相同，都在子页面的共享层图片地址和轮播/CountUp 时序，不在 index.vue 和 index/ 下，见 needsFromSkeleton"
-  ],
-  "needsFromSkeleton": [
-    "疑似共享层问题（shared.portal.modules，@/shared/images）：robotImg。gate.1 html 首个差异（div.aiBackdropnew，offset 8514）是 jobRecommend / talentRecommend / infoRecommend 里 robot 图片的 src：原包 robot.1783320636200.js 导出 Vite 内联的 data:image/png;base64（registry/portal.json robot.1783320636200.js._ inline:true），共享层 apps/portal/src/shared/images.ts:100 导出 public 路径 \"/assets/shared/robot.png\"。应在共享层改为模块资源导入（构建内联为 data URI，appserver.mjs builtUrl 同理），与 page.portal.talents.index.jobRecommend / talentRecommend 回执同一结论",
-    "疑似共享层问题（同上）：womanImgM / womanImgW。talentRecommend 的 a-image 兜底头像，原包值为 /assets/man.1783320636200.png、/assets/woman.1783320636200.png，共享层导出 /assets/shared/man.png、/assets/shared/woman.png（images.ts:158、160）",
-    "疑似比对器问题 / 原代码问题：其余差异是 jobRecommend、talentRecommend 的 a-carousel autoplay 停在不同页（idotitem-active、slick-track translate3d、slick-slide 激活态）和 CountUp 数字（text 第 11 行、第 324 行），原版两次基线之间这几处也不相同（report.json orig[0]/orig[1] 的 html 不同、text 第 324 行不同），但 report.unstable 为空。像素 6.676% 集中在两个推荐区的卡片和计数（rest.diff.png），同一原因。页面代码无法控制截图时机，需裁定员登记 known-diff 或走规则变更单"
-  ],
-  "notes": [
-    "fix 1：未改代码。把 gate.1 report.json 两侧所有 img src 归一、CountUp 数字和轮播位置（idotitem-active、translate3d、slick-slide class、aria-hidden）归一后，load.html、final.html 两侧逐字符相同（65468/65468），index.vue 与 index/homeLeft.vue 渲染的结构无差",
-    "差异所在组件 jobRecommend.vue / talentRecommend.vue / infoRecommend.vue 属于其他工单（deps.views），共享层 images.ts 属于 shared.portal.modules，均不在本单 target / subComponentDir，修正员不能改",
-    "还原侧控制台有 jobFair.vue onFairHover 读 null.slideTo 的 TypeError（悬停时 swiper 未就绪），属 page.portal.talents.index.jobFair 工单，未进入本次失败项，供该单参考",
-    "self-check pass:true（私有克隆 fl-vue，restore/fast-lane = 78cdd06，与 gate.1 的 commit 相同）；renderEquiv 对 index 报 DIFF（771/344）只是报告项，运行时 DOM 已证实一致；restore/fast-lane 无新提交",
-    "建议交裁定员：共享层 robotImg / womanImgM / womanImgW 改为与原包一致的值，轮播与 CountUp 时序登记 known-diff 或走规则变更单；修复后本页与 jobRecommend、talentRecommend 一并重跑门槛",
-    "fix 2：未改代码。第 2 次门槛（commit b407330，与 78cdd06 相比 views/talents 和 shared/images.ts 都没有改动）失败项同类：html 首个差异仍是 div.aiBackdropnew 里 robot 的 src；归一 img src、CountUp 数字、轮播位置（idotitem-active、translate3d、slick-slide class、aria-hidden）后，剩余差异只有 jobRecommend 轮播 ul.slick-dots 里 li.slick-active 的位置（原版 load 停在第 3 页、final 在第 1 页，还原侧相反），同属轮播时序",
-    "text 差异是两个推荐区 CountUp 的数字（第 11 行、第 324 行）：原版两次运行之间第 324 行也不同，但 report.unstable 仍为空；像素 0.587% 同一原因",
-    "self-check pass:true（私有克隆 fl-vue，restore/fast-lane = b407330）；restore/fast-lane 无新提交。两轮修正都没有页面侧可改之处，按 tools/fast-lane/README.md 第 5 节应交裁定员"
-  ]
+    "warnings": [
+      "readability (eslint)：Cannot find module 'eslint'，仅 warn",
+      "readability (prettier)：Cannot find module 'prettier'，仅 warn"
+    ],
+    "gitBase": "origin/integration",
+    "commit": "5d0a4dc117bf93bd7561035f1540a1f2b4873d30",
+    "components": 2,
+    "scopedSlots": 0,
+    "directives": 0,
+    "textNodesChecked": true
+  }
 }
