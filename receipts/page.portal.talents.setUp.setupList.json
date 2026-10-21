@@ -1,33 +1,22 @@
 {
   "id": "page.portal.talents.setUp.setupList",
   "ticket": "page.portal.talents.setUp.setupList",
-  "kind": "upgrade",
-  "upgradeTask": "01a14df3-9eba-79ec-b70f-bbe809f44274",
-  "group": "还原-Opus@Mac",
-  "branch": "restore/upg-8-a1",
-  "result": "ok",
-  "outputs": [
-    "apps/portal/src/shared/tagcanvas.vue",
-    "apps/portal/src/shared/tagcanvas/tagcanvas.js"
+  "kind": "fix",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "outputs": [],
+  "todos": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题（pixel，标签云易变区）：门槛 a2 只剩 load 像素差 0.919%（首跑 0.983%），diff 图里的差异全部落在「热门领域」卡片的 TagCanvas 画布内，页面其余区域无差异。画布内容由共享层 @/shared/tagcanvas.vue 决定：shuffleTags:true、initial 旋转、标签颜色/字号用 Math.random，两次原版基线之间画布本身就差约 0.705%（裁定员 HM-302 评论、升级单回执 todos 均已预告）。需要裁定员提像素易变区的规则变更单（或把画布纳入 unstable），页面侧无可改之处"
   ],
-  "todos": [
-    "工具仓库清单改动在 hmrsfw-restore 分支 restore/upg-8-a1-registry（c9c4f8c）：registry/portal.json 中 tagcanvas 条目 status reserved→restored，stats.shared 同步。handoff.mjs 只提交回执，升级单没有合入工具仓库 main 的路径，需裁定员按规则变更流程或人工合入（与 upg-1/4/7 相同）",
-    "restore/fast-lane：HM-302 的 setupList 门槛跑在 restore/fast-lane 上，需把 hmrsfw-vue f91d14a、5ffa940、4800ba5 cherry-pick 到 restore/fast-lane 后再重跑门槛（与 HM-796、HM-815 做法相同）",
-    "标签云本身含随机量（TagCanvas shuffleTags:true，标签颜色/字号 Math.random），两次原版基线之间画布本身差约 0.705%，接上库之后 setupList 的像素差仍会含这部分"
-  ],
-  "needsFromSkeleton": [],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "note": "修正第 2 轮：按门槛升级单模式 static 的同一组函数（upgradePlan → scopeViolations → selfCheckFiles）在本机复现，改动 2 个文件，范围 0 条、编译/零引用/个人信息 0 条；整站 build:portal 通过。完整门槛需要 RESTORE_ASSETS，修正员不读，未跑"
+    "note": "本单范围（target + subComponentDir）0 条失败；整份报告的 26 条失败全是 imports 越界检查，指向其他页面文件，原因是 gitBase=origin/integration 而产物在 restore/fast-lane（共享检出里按 README 不跑 fl.sh base）。门槛 a2 的 commit bf4d726 即当前 restore/fast-lane HEAD，本轮未改代码"
   },
   "notes": [
-    "库版本核对：原 chunk 开头 41.5KB 的 IIFE 与 TagCanvas 2.11 官方 tagcanvas.min.js（取自 npm react-icon-cloud@4.1.7 src/lib/tag_canvas_string.ts 的原始文本）两边都用 esbuild 0.18.20（target es2020，与 Vite 构建一致）压缩，再用 @babel/traverse 按声明顺序统一改名后逐行一致；唯一差别是官方文件中一个从未引用、无初值的局部变量，原构建被 rollup 摇掉",
-    "npm 上没有可直接加载的 2.11：jquery-tagcanvas 只有 2.9.0（无 audio/altImage 选项）；tag-canvas@0.0.1–0.0.5 是更早的版本；react-icon-cloud 的 dist 里该字符串丢了反斜杠（/\\s*,\\s*/ 变成 /s*,s*/），只能取 src 里的原始文本",
-    "提供方式：官方文件连同 LGPL 版权头原样收录，文件头只去掉作者联系邮箱一行（scan-secrets 命中）；tagcanvas.vue 以副作用方式导入，执行顺序与原 chunk 一致（vue 导入之后、组件定义之前）。没有放 public/third + index.html，以免每个页面都多一次脚本请求",
-    "验证：只构建 tagcanvas.vue 的内存 vite build（门户配置）里库位于组件定义之前，window.TagCanvas 赋值与 TagCanvas.Start 调用都在；vm 冒烟测试 TagCanvas.Start/Update 为函数，window load 后 loaded=1；check-copied 对整个 legacy-dist 0 命中；scan-secrets 0 命中。整站 build:portal 因本机磁盘写满中断（只剩约 150MB，输出已清理），未跑完",
-    "修正第 2 轮（门槛 a1 static/no-legacy minified-line）：删掉单行压缩的 tagcanvas.min.js，改收录同版本官方未压缩源码 apps/portal/src/shared/tagcanvas/tagcanvas.js（作者官网 TagCanvas 2.11，LGPL 头保留，只去掉作者联系邮箱一行），最长行远低于 2000 字符；没有改门槛规则或豁免表",
-    "等价核对：官网当前 tagcanvas.min.js 与原先收录的文件只差首尾一个空格和分号；tagcanvas.js 与 tagcanvas.min.js 各用 esbuild（es2020）重新压缩、统一改名后 token 数相同（5833），差别只有 a?(b):!1 与 !!a&&(b) 这类等价写法；vm 冒烟测试两者挂出的 window.TagCanvas 键集合相同，Start/Update 均为函数",
-    "tagcanvas.vue：副作用导入改为 ./tagcanvas/tagcanvas.js，文件头说明同步，组件代码未改；产物分支提交 4800ba5"
+    "未改代码：setupList.vue 向 TagCanvas 传 wordArr=state.dataList、onChangeName，与原 chunk（setupList.17833206362002.js）的 t(Fe,{wordArr:e.dataList,onChangeName:B}) 及外层 a-card height 230px 一致",
+    "a1 的 html 差异（搜索框空 style）与顶部外壳叠层已由 HM-262 规则变更消掉，a2 只剩 pixel",
+    "另记：裁定员指出 tools/gate/compare.mjs 的 unstableKeys 取 candidates[0]（/talents 布局下是 headerBox），基线 unstable 漏报页面根的不稳定；本单未改门槛脚本"
   ]
 }
