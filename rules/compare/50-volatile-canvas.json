@@ -1,0 +1,11 @@
+{
+ "id": "volatile-canvas",
+ "kind": "param",
+ "enabled": true,
+ "since": "HM-302",
+ "why": "<canvas> 的内容是位图，不在 DOM 里；原版自己两次运行就画得不同的画布（门户 TagCanvas 标签云：颜色、字号、顺序用 Math.random，球体一直在转；原 chunk legacy-dist/portal/assets/tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js 组件部分 Math.random 三处、shuffleTags:!0，库本体 Start 后定时重绘），像素比对与 HTML、文本的易变掩码一样不比较这块：同一位置（±1 px）在原版两次、还原版一次截图里都有这个画布，且原版两次截图在画布框内有差异，才把画布框从像素比对里去掉，分母同时扣除；框外照常比较，阈值不变。画布本身的元素、属性和它读取的标签列表照常按 HTML 比较。代替逐像素比较：还原版画布的着墨比例（与框内最常见颜色不同的像素占比）须在原版两次的 [inkRange[0] × 较小值, inkRange[1] × 较大值] 内，画布空白或画了别的东西照常失败。见 docs/rule-changes/HM-302.md",
+ "inkRange": [
+  0.5,
+  2
+ ]
+}

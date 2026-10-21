@@ -178,6 +178,24 @@ export async function runStep(page, s) {
   }
 }
 
+// Canvases in root shots (HM-302). A <canvas> is a bitmap: what it shows is not in the DOM tree, and a canvas that draws
+// with Math.random or keeps animating (the portal's TagCanvas tag cloud) differs between two runs of the same original.
+// For each shot, the boxes of the visible canvases inside the root are stored with the candidate, so compare.mjs
+// (volatileCanvases) can find the canvases whose pixels differ between the original's two runs. Runs in the page →
+// [{x, y, w, h}] in shot pixels, the whole-pixel rectangle enclosing the canvas box. `clip` = the shot's clip in document
+// coordinates (paintedBoxInPage), or null for an element screenshot (the shot starts at the root's box).
+export function canvasBoxesInPage(root, clip) {
+  const o = clip ? { x: clip.x - scrollX, y: clip.y - scrollY } : root.getBoundingClientRect();
+  const ox = Math.floor(o.x), oy = Math.floor(o.y), out = [];
+  for (const cv of root.querySelectorAll("canvas")) {
+    const s = getComputedStyle(cv), r = cv.getBoundingClientRect();
+    if (s.display === "none" || s.visibility !== "visible" || r.width < 1 || r.height < 1) continue;
+    const x = Math.floor(r.left) - ox, y = Math.floor(r.top) - oy;
+    out.push({ x, y, w: Math.ceil(r.right) - ox - x, h: Math.ceil(r.bottom) - oy - y });
+  }
+  return out;
+}
+
 async function captureRoot(page, sel, shotBase, withShots, phases) {
   const els = await page.$$(sel);
   await page.waitForTimeout(60); // toast texts are read 50 ms after they appear
@@ -199,8 +217,9 @@ async function captureRoot(page, sel, shotBase, withShots, phases) {
       const offscope = (await markOffscope(el, COMPONENT_SCOPE.get(page))) ? await page.addStyleTag({ content: OFFSCOPE_CSS }).catch(() => null) : null;
       // Element screenshots wait for the element to stop moving; a page with a running carousel can exceed that on a
       // busy machine, so fall back to a full-page clip of the same box.
+      if (box?.height && box.width) c.canvases = await el.evaluate(canvasBoxesInPage, null).catch(() => null);
       if (box?.height && box.width) await el.screenshot({ path: file, timeout: 15000 }).catch(async () => { const b = await el.evaluate((n) => { const r = n.getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, width: r.width, height: r.height }; }); await page.screenshot({ path: file, fullPage: true, clip: b }); });
-      else { const b = await el.evaluate(paintedBoxInPage); if (b) await page.screenshot({ path: file, fullPage: true, clip: b }); else c.blank = true; }
+      else { const b = await el.evaluate(paintedBoxInPage); if (b) { c.canvases = await el.evaluate(canvasBoxesInPage, b).catch(() => null); await page.screenshot({ path: file, fullPage: true, clip: b }); } else c.blank = true; }
       if (shell) await shell.evaluate((n) => n.remove()).catch(() => {});
       if (offscope) { await offscope.evaluate((n) => n.remove()).catch(() => {}); await unmarkOffscope(page); }
       if (!c.blank) c.shot = file;
