@@ -1,0 +1,7 @@
+[
+  {"clickSel":"button[type=submit]","optional":true},
+  {"fill":["请输入职位名称","测试职位"]},
+  {"fill":["请输入余工人数","3"]},
+  {"fill":["请输入联系人","测试"]},
+  {"clickSel":"button[type=submit]","optional":true}
+]
