@@ -1,26 +1,35 @@
 {
+  "ticket": "page.uc.sign.corpInfo",
   "id": "page.uc.sign.corpInfo",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 2,
-  "outputs": [
-    "apps/uc/src/views/sign/corpInfo.vue"
+  "group": "还原-Opus@Mac",
+  "kind": "upgrade",
+  "task": "01a15f01-e36b-70a6-a1ab-6cddd1ce9216",
+  "branch": "restore/upg-18-a1",
+  "result": "fail",
+  "outputs": [],
+  "summary": "未改公共库：升级单原因是「疑似比对器问题（提示捕获时序）」，逐项核对公共库后没有与原包不一致之处，没有可做的公共库修改。分支 restore/upg-18-a1 与 integration 头 afed44f 相同（无提交），门槛 upgrade 模式静态阶段会按「分支没有改动」判失败，属预期，应转裁定员。",
+  "verification": [
+    "apps/uc/src/utils/request.ts 的错误拦截 handleError 与入口 chunk index.1751615607545.js 的 upt 逐分支一致：isCancel 早退、404 文案「请求地址出错: ${response.config.url}」、timeout / Network 覆盖、status!=401 时 message.error；响应拦截器 onRejected 先 handleError 再 Promise.reject，与原包 e=>(upt(e),Promise.reject(e)) 同序",
+    "提示组件来源一致：原包 Ec 即 ant-design-vue message（入口里只有 ConfigProvider 的 Ec.config({rtl})，无 maxCount / getContainer / top 配置）；还原版 import { message } from \"ant-design-vue\"，package.json 锁 3.2.20，main.ts / App.vue / utils 下无 message.config",
+    "重复请求登记（registerPending / requestKey）与原包 spt / fpt 一致：只登记不取消，不会把本页请求变成 CanceledError",
+    "接口模块 @/api/collegeWqCompanyExpand 的 getWqCompanyExpandInfoByJob：url、method=post、params 与 index.api.175161560754514.js#a 相同，经 @/utils/request 的同一实例发出；registry/uc.json 条目 index.api.175161560754514.js#a 路径与导出名正确",
+    "修正员回执已说明：还原侧 errors 有 404 与 AxiosError，请求在 load 阶段按 HAR 命中；第 1 轮门槛同一页面逻辑首跑缺这条提示、重试后对上。同一份公共库代码时有时无，说明不是公共库缺失",
+    "本机无 RESTORE_ASSETS（HAR、登录态在门槛员环境），未复跑门槛 browser 阶段"
   ],
+  "todos": [
+    "非公共库问题，建议裁定员按 pipeline.md 第十五节 2.2「问题在比对器」处理：tools/gate/replay.mjs toastRecorder 在节点加入 50ms 后读 innerText 并记录加入时的 __gatePhase；可让门槛在 report 里输出还原侧全部 __gateToasts（含 phase），先确认还原侧这条 404 提示是没出现、读到空文本，还是记进了 steps 阶段，再决定是否提规则变更单（只认等价，不放宽）",
+    "若裁定员认定为偶发，可直接对 page.uc.sign.corpInfo 重跑门槛；本升级单无公共库改动可合并"
+  ],
+  "needsFromSkeleton": [],
+  "registry": "未改 registry/uc.json：涉及条目（入口 m=message 为 npm，api index.api.175161560754514.js#a 为 reserved 且实现文件已存在、内容与原 chunk 一致）无需改 status",
   "selfCheck": {
     "pass": true,
-    "failed": [],
-    "gitBase": "e074ffe"
-  },
-  "build": "pass",
-  "todos": [],
-  "unresolved": [],
-  "needsFromSkeleton": [
-    "疑似比对器问题（提示捕获时序）：gate.1（e074ffe）唯一失败项 load overlay，原版两次基线都记到 404 提示「请求地址出错: …/getWqCompanyExpandInfoByJob」，还原版 load/final 都没记到。还原版同一请求在 load 阶段发出并按 HAR 命中（tier=path，与原版同一条录制应答），errors 里有 404 和 AxiosError，说明 404 已到达错误拦截器；页面调用、参数和 then 分支与原 chunk 一致（两边都没有 catch），提示由公共请求层 handleError 弹出，与原入口 chunk 的 404 分支一致。第 1 轮门槛同一页面逻辑首跑缺这条提示、重试后对上（当时最终失败项只有 html），本轮未出现重试成功，属不稳定的提示捕获，不是页面差异"
-  ],
-  "notes": [
-    "fix 1：gate.1 load/final 的 html 差异都在档案转寄邮政编码输入框（archiveSendPostalCode）的 oninput 属性：原 chunk 的属性字符串保留 \\u4e00-\\u9fa5 转义原文，还原版写成了已解码的汉字区间字符（两处长度差 10 字符正对应）；改回转义原文，构建产物已核对与原 chunk 字符串一致",
-    "fix 2：未改代码（页面与本轮门槛同一提交 e074ffe）。逐项核对：接口模块 getWqCompanyExpandInfoByJob 的 url/method/params 与 index.api chunk 相同；onMounted→loadInfo 与原 chunk 的 O(()=>w()) 相同；request.ts 404 分支文案与 message.error 调用与入口 chunk 相同",
-    "推测：提示节点在阶段切换后才被记录（记成步骤阶段，load/final 都不收），或首跑时机导致漏记；建议门槛员重跑一次，若稳定复现请裁定员评估在 report 中输出还原侧全部 toasts 及其阶段以便定位",
-    "本轮未能本地复跑门槛（dry-run 需要 RESTORE_ASSETS，修正员不读该目录）；self-check pass（私有克隆 restore/fast-lane e074ffe）、build:uc 上轮已通过；无代码提交，无需 fl.sh land"
-  ]
+    "gitBase": "origin/integration",
+    "failed": [
+      { "check": "readability", "where": "(eslint)", "severity": "warn", "hint": "eslint 没有跑起来（依赖缓存里没有 eslint）" },
+      { "check": "readability", "where": "(prettier)", "severity": "warn", "hint": "prettier 没有跑起来（依赖缓存里没有 prettier）" }
+    ],
+    "components": 1,
+    "textNodesChecked": true
+  }
 }
