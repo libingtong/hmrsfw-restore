@@ -75,12 +75,14 @@ export function loadRules(dir = path.join(ROOT, "rules/compare")) {
   for (const r of on) if (r.kind === "tree" && !TREE[r.id]) throw new Error(`rules: unknown tree rule ${r.id}`);
   const subs = (kind) => on.filter((r) => r.kind === kind).flatMap((r) => r.subs.map(([p, f, rep]) => [new RegExp(p, f), rep]));
   const pixel = on.find((r) => r.id === "pixel") ?? { maxRatio: 0.005, threshold: 0.1 };
+  const vc = on.find((r) => r.id === "volatile-canvas");
   const version = createHash("sha256").update(JSON.stringify(on)).digest("hex").slice(0, 12);
   return {
     version, ids: on.map((r) => r.id),
     tree: on.filter((r) => r.kind === "tree" || r.kind === "drop-attrs").map((r) => (r.kind === "tree" ? TREE[r.id] : dropAttrs(new Set(r.attrs)))),
     html: subs("html"), text: subs("text"), overlay: subs("overlay"),
     pixel: { maxRatio: pixel.maxRatio, threshold: pixel.threshold },
+    volatileCanvas: vc ? { inkRange: vc.inkRange } : null,
     shellRequests: (site) => new Set(on.filter((r) => r.kind === "shell-requests" && r.site === site).flatMap((r) => r.requests)),
   };
 }
