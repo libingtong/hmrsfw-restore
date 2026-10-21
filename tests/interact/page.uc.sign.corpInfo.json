@@ -1,0 +1,9 @@
+[
+  {"click":"编辑","optional":true},
+  {"wait":500},
+  {"fill":["请输入单位联系人","测试"]},
+  {"fill":["请输入单位电话","Tst-0001"]},
+  {"fill":["请输入单位邮箱","Tst-0001"]},
+  {"clickSel":"button[type=submit]","optional":true},
+  {"wait":500}
+]
