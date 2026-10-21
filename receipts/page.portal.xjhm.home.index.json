@@ -7,16 +7,12 @@
   "branch": "restore/upg-7-a1",
   "result": "ok",
   "outputs": [
-    "apps/portal/src/views/xjhm/home/advertTop/areaCont.vue",
-    "apps/portal/src/views/fair/sceneFair/list.vue",
-    "apps/portal/src/views/fair/webFair/list.vue",
-    "apps/portal/src/views/fair/outFair/list.vue",
     "apps/portal/src/legacy/index.ts",
     "apps/portal/src/legacy/components/AreaCont.vue"
   ],
   "todos": [
     "工具仓库清单改动在 hmrsfw-restore 分支 restore/upg-7-a1（ad7a93c）：registry/portal.json、registry/names.portal.json 的 bc 条目，以及 4 份 out/maps、out/hints。handoff.mjs 只提交回执，调度脚本只有规则变更单会合入工具仓库 main，升级单没有合入路径，需裁定员按规则变更流程或人工合入 main（及 restore/fast-lane）",
-    "restore/fast-lane：本单产物分支从 integration 拉出；快速通道页需把 hmrsfw-vue aa92469 cherry-pick 到 restore/fast-lane（与 HM-796 的做法相同），与 HM-800 的 swiper 修正一起进 fast-lane 后再重跑 HM-279 门槛"
+    "restore/fast-lane：快速通道页需把 hmrsfw-vue restore/upg-7-a1 上的入口改动（aa92469 中两个 legacy 文件 + b5a96e4）带到 restore/fast-lane，与 HM-800 的 swiper 修正一起进 fast-lane 后再重跑 HM-279 门槛；4 个页面文件的 DownOutlined→CaretDownOutlined 已按 da86fcd 撤出，交各自页面的修正流程"
   ],
   "needsFromSkeleton": [],
   "selfCheck": {
@@ -25,7 +21,7 @@
       {
         "check": "imports",
         "where": "apps/portal/src/legacy/index.ts、apps/portal/src/legacy/components/AreaCont.vue 以及 4 个使用方页面（按各工单交叉报出）",
-        "note": "按页面单规则跑自检，把升级单改的入口文件和其他页面判为“本单不能修改”。本单是升级单（ownerViolations 只拦有活跃工单的 owner；这几个文件在清单里无 owner），不适用，未按 hint 撤销（与 HM-796、HM-800 相同）"
+        "note": "按页面单规则跑自检，把升级单改的两个入口文件判为“本单不能修改”；门槛已改为 upgrade 模式单独判范围（HM-990），不适用，未撤销"
       },
       {
         "check": "text-nodes / readability / imports",
@@ -42,6 +38,8 @@
     "views/customerService/index.vue 的 DownOutlined 不来自 bc（该 chunk 不导入 bc），未动",
     "清单：registry/names.portal.json 的 bc 来自 shim-map（POC 对照表）写错，改为 CaretDownOutlined 并标 curated；registry/portal.json 只改这一条的 export。没有整体重跑 registry.mjs（当前 --check 本来就与已提交清单不同，重跑会带入无关改动）",
     "maps 用 node tools/slice-maps.mjs 重新生成，4 份各只有 bc 一行变化；hints 表格里 bc 一行同步改正；out/maps/c17.json 是 20 页确认期的旧文件，未动",
-    "npm run build:portal 通过；scan-secrets（两个仓库）0 命中"
+    "npm run build:portal 通过；scan-secrets（两个仓库）0 命中",
+    "修正第 2 轮（门槛 a1 upgrade 模式 static/no-legacy compiled-sfc-helper，legacy/index.ts）：删掉入口里未被引用的 _export_sfc 辅助函数（含 sfc.__vccOpts）。清单 registry/portal.json 的 `_` 为 status ignore（“SFC 里不需要”），hmrsfw-vue 全仓没有任何文件导入 _export_sfc；该函数早于本单就在 integration 上，本单改到这个文件后被 upgrade 模式整文件扫描报出",
+    "修正第 2 轮验证：check-no-legacy 扫两个改动文件 0 命中；vite build -c vite.portal.config.ts 通过；自检除页面单口径的“本单不能修改”2 条外无新增失败。产物提交 b5a96e4"
   ]
 }
