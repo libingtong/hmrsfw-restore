@@ -1,0 +1,40 @@
+{
+  "comment": "tools/record-page.mjs 的写接口拦截名单（HM-992）。录制时 /xf-api/ 请求按接口路径（去掉 /xf-api 前缀和查询串）匹配：先查 allow，命中就照常发到测试环境；再查 deny，命中就不发，用固定的成功响应回答，HAR 条目带 _intercepted。都没命中、方法是 POST、末段又不像查询（queryShape）的照常发出，但记进录制结果的 warnings，供人补名单。默认拦截：deny 宁宽勿窄，放行项逐条写理由。re 是 JavaScript 正则（对整条路径），words 是末段按驼峰拆出的词（小写，任一命中即算；re 与 words 同时给出时两者都要命中），flags 缺省为大小写敏感；methods 缺省为除 OPTIONS、HEAD 外的全部方法。exceptQuery: true 的项在末段像查询时不拦截（只用于按整条路径里的名词匹配的项）。改名单走 PR，同时更新 tools/test/record-write-guard.test.mjs。",
+  "queryShape": { "re": "^(?:query|get|list|page|find|search|check|iz|is|has|count|select|load|preview|statistics|statics|stat|free|recommend|popular|popula|need|applet|history|scroll|view|detail)|(?:List|list|Page|Detail|Tree|Info|ById|ByCode|ByType|Statistic|Count)", "why": "接口末段以查询动词开头，或带列表、分页、详情、按某键查询这类名词。只用来判断兜底警告和 exceptQuery，不会放行 deny 里的其他项。" },
+  "deny": [
+    { "id": "method-write", "methods": ["PUT", "DELETE", "PATCH"], "re": ".", "why": "jeecg 的编辑、删除接口用 PUT、DELETE；这三种方法一律是写。" },
+    { "id": "submit", "re": "/(?:submit|sumbit)[^/]*$", "flags": "i", "why": "企业认证与资料提交（sumbitImportantCompanyInfo、sumbitBaseCompanyInfo 每次都把企业送回待审核，HM-48）以及其他提交。" },
+    { "id": "add", "re": "/add(?:[A-Z_][^/]*)?$", "why": "新增：xfOddPositionApply/add、callRecord/add、xfOddUserCollect/add、xfJobComplaintRecord/add、xfJobFeedbackRecord/add 等。大小写敏感，避免误伤 address*。" },
+    { "id": "save", "re": "/save[^/]*$", "flags": "i", "why": "保存：xfSysConsult/saveOne、xfJobOverseasRecruitRegistration/saveOrCancel 等。" },
+    { "id": "release", "re": "/(?:release|publish)[^/]*$", "flags": "i", "why": "发布：*/release、*/publish*。末段中间带 Release、Publish 的（userRelease）见 write-words。" },
+    { "id": "edit-update", "re": "/(?:edit|update|modify|change)[^/]*$", "flags": "i", "why": "修改。浏览计数类见 allow。" },
+    { "id": "delete", "re": "/(?:delete|remove|clear)[^/]*$", "flags": "i", "why": "删除：*/delete*、*/remove*、*/clear*。" },
+    { "id": "del", "re": "/del(?:[A-Z_][^/]*)?$", "why": "删除：*/del、*/delBatch、*/delById。大小写敏感，避免误伤 deliver*。" },
+    { "id": "cancel", "re": "/(?:cancel|revoke|withdraw|undo)[^/]*$|/[^/]*(?:OrCancel|Cancel)$", "why": "撤销、取消：*/cancel*、saveOrCancel、cancelCollect。" },
+    { "id": "apply-sign", "re": "/(?:apply|sign|enroll|join|deliver|register|registration)[^/]*$", "flags": "i", "why": "报名、投递、申请、签到、注册（末段是这些动词）。", "exceptQuery": true },
+    { "id": "registration-enroll", "re": "(?:Registration|Enroll|SignUp)", "flags": "i", "exceptQuery": true, "why": "报名类资源（*Registration*、*Enroll*、*SignUp*）下除查询外的接口，如 xfJobOverseasRecruitRegistration/saveOrCancel。" },
+    { "id": "complaint-consult-feedback", "re": "(?:Complaint|Consult|Feedback|Comment|Reply|Message)[^/]*/", "flags": "i", "exceptQuery": true, "why": "投诉、咨询、反馈、留言类资源下除查询外的接口：xfJobComplaintRecord/add、xfSysConsult/saveOne、xfJobFeedbackRecord/add。" },
+    { "id": "complaint-consult-feedback-exact", "re": "^/xf-job/job/(?:xfJobComplaintRecord/add|xfSysConsult/saveOne|xfJobFeedbackRecord/add)$", "why": "HM-992 审计查到的三处真实写入，逐条列出，与上面的通配项互为兜底。" },
+    { "id": "collect-follow", "re": "/(?:collect|follow|subscribe|unsubscribe|attention|like|unlike|praise|vote|care)(?:[A-Z_][^/]*)?$", "why": "收藏、关注、订阅、点赞、投票（末段是这些动词）。大小写敏感：xfOddUser/Collect 是查询，见 allow；subscribelist 是查询，末段不是整词。", "exceptQuery": true },
+    { "id": "be-identity", "re": "/be[A-Z][^/]*$", "why": "成为某身份（beSchoolGraduate、beStidentAndBeJobSeeker）：认证并给账号加身份，会改账号身份数据。" },
+    { "id": "account", "re": "/(?:logout|loginOut|passwordChange|changePassword|updatePassword|resetPassword|bind|unbind|bindPhone|unbindPhone)[^/]*$", "flags": "i", "why": "退出登录、改密码、绑定解绑：会让登录态失效或改账号。" },
+    { "id": "login", "words": ["login", "forget", "authentication", "scan"], "exceptQuery": true, "why": "登录、单点登录、忘记密码、扫码登录（school/user/login、phoneLogin、portalSingleLogin、licenseFree/xfAuthentication、forgetPassword、scanCode、easemobim/loginImUser）：硬规则 2，智能体不调用登录接口；录制用的登录态由人准备。izLogin 这类查询不算。" },
+    { "id": "send", "re": "/(?:send|sms|push|notify|invite|remindSend)[^/]*$", "flags": "i", "why": "发短信、推送、邀请：会通知真人。", "exceptQuery": true },
+    { "id": "upload-import", "re": "/(?:upload|import)[^/]*$", "flags": "i", "why": "上传、导入：写入文件或数据。" },
+    { "id": "audit", "re": "/(?:audit|approve|reject|confirm|accept|refuse|review|pass|handle|process|evaluate|score|answer|report)(?:[A-Z_][^/]*)?$", "why": "审核、确认、处理、评价、作答、举报（末段是这些动词）。", "exceptQuery": true },
+    { "id": "set", "re": "/set[A-Z][^/]*$", "why": "设置（setDefault、setTop 等）。" },
+    { "id": "write-words", "words": ["add", "save", "submit", "sumbit", "update", "edit", "modify", "delete", "del", "remove", "cancel", "revocation", "revoke", "release", "publish", "upload", "import", "invite", "invitation", "register", "registration", "enroll", "subscribe", "unsubscribe", "sub", "apply", "sign", "notarize", "refresh", "pause", "enable", "disable", "restore", "certification", "certify", "authenticate", "ask", "grounding", "undercarriage", "entrust", "pay", "reminders", "collect", "follow", "praise", "vote", "answer", "audit", "approve", "reject", "confirm", "bind", "unbind", "send", "push", "down", "download", "transfer", "handle", "complaint", "consult", "feedback", "report", "evaluate", "score", "join", "deliver", "top", "recall", "receive", "exchange", "buy", "order", "sms"], "exceptQuery": true, "why": "末段任意位置出现写动词（旧前端实测：staggingOrSubmit、companyPositionAdd、companyFileSave、companyFileDataUpload、interviewInvitation、fairSubscribe、unSubscribe、notarizeOrRevocationSign、refreshBatch、batchPause、enableAuseBatch、restoreTalent、certificationUser、askQuestion、grounding、lookUpStateUpdate、newRegister、noMoreRemindersToday、scanPay、entrust、downPdf）。末段像查询的不算（getDeliverList、subscribelist）。" },
+    { "id": "refresh-pay", "re": "/(?:refresh|entrust|pay|scanPay|down)(?:[A-Z_][^/]*)?$", "why": "刷新简历、委托、支付、下载简历（GET 也拦：xfSysOrderPayRecord/alipay/scanPay、xfJobCurriculumVitae/refreshByXfUserId、downPdf 会扣额度或涉及钱）。末段带 ById 也拦。" }
+  ],
+  "allow": [
+    { "re": "^/xf-job/job/licenseFree/xfJobFair/updateBrowseCount$", "why": "招聘会浏览计数：后端 xfJobFairService.updateBrowseCount 只把该招聘会的浏览数加一，不涉及账号与审核状态；页面加载就会调，拦截后各招聘会页的请求序列都会多出一处人为差异。" },
+    { "re": "^/xf-job/school/licenseFree/updateScanTimes$", "why": "文章扫码/浏览次数：后端只累加 XfSysArticle 的次数，免登录接口，不涉及账号数据。" },
+    { "re": "^/xf-oddjob/oddjob/xfOddUser/Collect$", "why": "零工「我的收藏」列表查询（XfOddUserController.Collect 调 getCollect 分页查询），不是收藏动作。" },
+    { "re": "/xfOddUserBrowse/browseRecords$", "why": "零工浏览记录分页查询（getBrowseRecords），不写入。" },
+    { "re": "^/xf-job/job/xfJobCompanyPosition/expired/remind$", "why": "查询职位临期是否需要提醒，只返回布尔值，不写入。" },
+    { "re": "^/jeecg-system/sys/user/phoneVerification$", "why": "核对手机验证码并返回用户名，不改账号数据；录制不会收短信，实际只会得到「验证码错误」。" },
+    { "re": "^/xf-job/communal/xfpermission/getUserPermissionByRoleId$", "why": "身份切换（record-lib switchIdentity、pw-switch-role）取该身份菜单，必须真实发出。" },
+    { "re": "^/xf-job/job/xfJobCompany/getCompanyInfo$", "why": "身份切换到招聘单位时取单位信息，必须真实发出。" },
+    { "re": "^/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByCompanyId$", "why": "身份切换时查单位认证项，必须真实发出。" }
+  ]
+}
