@@ -24,7 +24,22 @@ function toastRecorder(sel) {
   const grab = (el) => { if (seen.has(el)) return; seen.add(el); const phase = window.__gatePhase; setTimeout(() => { const t = el.innerText.trim(); if (t) window.__gateToasts.push({ phase, t }); }, 50); };
   new MutationObserver((muts) => { for (const m of muts) for (const n of m.addedNodes) if (n.nodeType === 1) { if (n.matches(sel)) grab(n); n.querySelectorAll?.(sel).forEach(grab); } }).observe(document, { childList: true, subtree: true });
 }
-const HIDE_OVERLAYS = ".ant-modal-root,.ant-modal-mask,.ant-modal-wrap,.ant-message,.ant-notification{visibility:hidden!important}";
+// Carousel autoplay (HM-273). ant-design-vue's a-carousel (vc-slick) advances every autoplaySpeed + 50 ms
+// (setInterval) from the moment it mounts, so which slide is active at a capture depends on how long the page took to
+// settle: the original side (recorded through its parent page, the shell around it) settles seconds later than the
+// restored page alone, and the two sides land on different slides for the same code. Both sides now pause every
+// autoplaying carousel the way the library itself does on hover: a mouseover on .slick-track runs the track's
+// onTrackOver → pause("hovered"), which clears the timer, and the library's own "update" restarts skip a hovered
+// slider. The event does not bubble (only the track's own listener sees it, no page hover handler runs) and is sent
+// every `everyMs` (a slider mounted or re-created later, a real pointer leaving the track during a step), well below any
+// autoplay period. Sliders without autoplay ignore it (onTrackOver checks autoplay); pauseOnHover: false sliders keep
+// playing as before. What is compared stays the same: slides, their order and content, the initial slide.
+export const CAROUSEL_PAUSE_MS = 200;
+export function pauseCarousels(everyMs) {
+  const pause = () => { for (const t of document.querySelectorAll(".slick-track")) t.dispatchEvent(new MouseEvent("mouseover", { bubbles: false })); };
+  setInterval(pause, everyMs);
+}
+const HIDE_OVERLAYS =".ant-modal-root,.ant-modal-mask,.ant-modal-wrap,.ant-message,.ant-notification{visibility:hidden!important}";
 // Shell layout in screenshots (HM-262). On the original side the app shell's layout sits next to the page's roots under
 // origSel: the portal's homeView renders [header, RouterView, footer] and its header is position: fixed. An element
 // screenshot of a root taller than the viewport scrolls, and the fixed header is drawn over the root wherever the
@@ -219,6 +234,7 @@ export function openedTarget(url, origin) {
 export async function runPage(browser, opts) {
   const ctx = await browser.newContext({ viewport: VIEWPORT, locale: "zh-CN" });
   await ctx.addInitScript(toastRecorder, TOAST_SEL);
+  await ctx.addInitScript(pauseCarousels, CAROUSEL_PAUSE_MS);
   await ctx.addInitScript((s) => { for (const [k, v] of Object.entries(s.localStorage)) localStorage.setItem(k, v); for (const [k, v] of Object.entries(s.sessionStorage ?? {})) sessionStorage.setItem(k, v); }, opts.storage);
   await ctx.addInitScript(fixedLocalCity, FIXED_CITY); // Baidu IP location: same city on both sides (thirdparty.mjs)
   const log = [], errors = [], opened = [], otherRequests = [];
