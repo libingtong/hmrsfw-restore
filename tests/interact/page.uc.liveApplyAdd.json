@@ -1,0 +1,9 @@
+[
+  {"clickSel":".new-form button[type=submit]","optional":true},
+  {"fill":["请输入直播宣讲人","测试"]},
+  {"click":"+ 添加"},
+  {"fill":["请输入岗位信息（必填）","Tst-0001"]},
+  {"fill":["请输入招聘数量（必填,不超过5位数）","5"]},
+  {"clickSel":".modalCls button[type=submit]","optional":true},
+  {"clickSel":"button.marginRight","optional":true}
+]
