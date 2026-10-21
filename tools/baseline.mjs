@@ -58,7 +58,7 @@ export async function recordOriginal({ browser, wo, harFile, assets, shotDir, ru
 
 // Run → what goes on disk (step request bodies reduced to SHA-256; load requests to method + path).
 const slimRun = (run, dir) => ({
-  settleMs: run.settleMs, errors: run.errors.slice(0, 8),
+  settleMs: run.settleMs, errors: run.errors.slice(0, 8), clock: run.clock,
   load: { overlay: run.load.overlay, requests: [...new Set(run.load.requests.map((x) => x.method + " " + x.path))].sort(), opened: run.load.opened, candidates: run.load.candidates.map((c) => ({ cls: c.cls, tree: c.tree, ltgt: c.ltgt, text: c.text, shot: c.shot && path.basename(c.shot), canvases: c.canvases, blank: c.blank, empty: c.empty })) },
   ...(run.steps ? { steps: run.steps, stepLog: run.stepLog.map(redact), opened: run.opened, final: { overlay: run.final.overlay, candidates: run.final.candidates.map((c) => ({ cls: c.cls, tree: c.tree, ltgt: c.ltgt, text: c.text })) } } : {}),
 });
