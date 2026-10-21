@@ -7,16 +7,17 @@
   "outputs": [],
   "todos": [],
   "needsFromSkeleton": [
-    "疑似比对器问题（pixel，标签云易变区）：门槛 a2 只剩 load 像素差 0.919%（首跑 0.983%），diff 图里的差异全部落在「热门领域」卡片的 TagCanvas 画布内，页面其余区域无差异。画布内容由共享层 @/shared/tagcanvas.vue 决定：shuffleTags:true、initial 旋转、标签颜色/字号用 Math.random，两次原版基线之间画布本身就差约 0.705%（裁定员 HM-302 评论、升级单回执 todos 均已预告）。需要裁定员提像素易变区的规则变更单（或把画布纳入 unstable），页面侧无可改之处"
+    "疑似比对器问题（pixel，标签云易变区）：门槛 a2 两次重跑只剩 load 像素差 0.919%、0.936%，diff 图里的差异全部落在「热门领域」卡片的 TagCanvas 画布内，页面其余区域无差异。画布内容由共享层 @/shared/tagcanvas.vue 决定：shuffleTags:true、initial 旋转、标签颜色/字号用 Math.random，两次原版基线之间画布本身就差约 0.705%（裁定员 HM-302 评论、升级单回执 todos 均已预告）。需要裁定员提像素易变区的规则变更单（或把画布纳入 unstable），页面侧无可改之处"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "note": "本单范围（target + subComponentDir）0 条失败；整份报告的 26 条失败全是 imports 越界检查，指向其他页面文件，原因是 gitBase=origin/integration 而产物在 restore/fast-lane（共享检出里按 README 不跑 fl.sh base）。门槛 a2 的 commit bf4d726 即当前 restore/fast-lane HEAD，本轮未改代码"
+    "note": "本单范围（target + subComponentDir）0 条失败；整份报告的 26 条失败全是 imports 越界检查，指向其他页面文件，原因是 gitBase=origin/integration 而产物在 restore/fast-lane（共享检出里按 README 不跑 fl.sh base）。门槛 a2 的 commit bf4d726 即当前 restore/fast-lane HEAD，本轮未改代码；第 2 轮复跑结论相同"
   },
   "notes": [
     "未改代码：setupList.vue 向 TagCanvas 传 wordArr=state.dataList、onChangeName，与原 chunk（setupList.17833206362002.js）的 t(Fe,{wordArr:e.dataList,onChangeName:B}) 及外层 a-card height 230px 一致",
     "a1 的 html 差异（搜索框空 style）与顶部外壳叠层已由 HM-262 规则变更消掉，a2 只剩 pixel",
-    "另记：裁定员指出 tools/gate/compare.mjs 的 unstableKeys 取 candidates[0]（/talents 布局下是 headerBox），基线 unstable 漏报页面根的不稳定；本单未改门槛脚本"
+    "另记：裁定员指出 tools/gate/compare.mjs 的 unstableKeys 取 candidates[0]（/talents 布局下是 headerBox），基线 unstable 漏报页面根的不稳定；本单未改门槛脚本",
+    "修正第 2 轮：门槛重跑 0.936%，commit 仍是 bf4d726；diff 图差异仍只在 TagCanvas 画布内，且两轮标签排列不同（shuffleTags 随机），再次确认与页面代码无关，未改代码。修正轮次用完后应转裁定员走规则变更"
   ]
 }
