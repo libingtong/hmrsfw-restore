@@ -1,0 +1,9 @@
+[
+  {"fill":["请输入姓名搜索","测试"]},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"click":"查询"},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"clickSel":".ant-table-tbody a","optional":true},
+  {"clickSel":".ant-modal-confirm-btns .ant-btn:not(.ant-btn-primary)","optional":true}
+]
