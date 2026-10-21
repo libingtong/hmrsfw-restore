@@ -114,6 +114,8 @@ DOM 存成 JSON 树而不是只存字符串，所以规范化规则以后变了�
 2. 方法 + 路径，取第一条；
 3. 都没有：统一返回 `{"success":false,"code":404,"result":null,"message":"not in HAR"}`。
 
+录制时被写接口拦截名单挡下的条目（HAR 里 `_intercepted: true`，见 `docs/pipeline.md` 第六节）照常参与匹配，两边都拿到录制时那份固定的成功响应；请求日志里档位记为 `intercepted`（档位不参与比对），不算差异。测试：`node --test tools/test/record-write-guard.test.mjs`。
+
 发往两个测试站或生产站域名的请求一律中止。`node tools/gate/har.mjs --selftest` 用临时生成的密钥对验证三档匹配。
 
 ## 规则文件化

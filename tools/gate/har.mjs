@@ -4,6 +4,9 @@
 //   1. method + path (incl. query string, as Playwright's routeFromHAR did in the POC) + decrypted, canonical body;
 //   2. method + path → the first entry;
 //   3. none → NOT_IN_HAR.
+// Entries record-page's write guard answered instead of sending (_intercepted, HM-992) are matched like any other and
+// replay the guard's fixed response, the same on both sides; the request log marks them tier "intercepted" (the tier is
+// not compared), so a submit the recording never sent is not a difference.
 // Request bodies are decrypted in memory only (SM2 private key from the environment, never logged or written).
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -48,7 +51,7 @@ export function loadHar(file) {
     const headers = {};
     for (const h of e.response.headers ?? []) { const n = h.name.toLowerCase(); if (!["content-length", "content-encoding", "transfer-encoding"].includes(n)) headers[n] = h.value; }
     if (!headers["content-type"] && c.mimeType) headers["content-type"] = c.mimeType;
-    const entry = { status: e.response.status || 200, headers, body, postData: e.request.postData?.text ?? null, bodyCanon: null };
+    const entry = { status: e.response.status || 200, headers, body, postData: e.request.postData?.text ?? null, bodyCanon: null, intercepted: e._intercepted === true };
     if (!byKey.has(key)) byKey.set(key, []);
     byKey.get(key).push(entry);
   }
@@ -79,7 +82,7 @@ export async function routeApi(ctx, har, { log, phase }) {
     const p = new URL(q.url()).pathname.replace(/^\/xf-api/, "");
     const b = bodyOf(q.postData());
     const m = matchHar(har, q.method(), q.url(), b);
-    if (!p.startsWith("/jeecg-system/sys/common/static/")) log({ phase: phase(), method: q.method(), path: p, query: queryOf(q.url()), bodyKind: b.kind, body: b.canon, tier: m.tier ?? "not-in-har" }, q);
+    if (!p.startsWith("/jeecg-system/sys/common/static/")) log({ phase: phase(), method: q.method(), path: p, query: queryOf(q.url()), bodyKind: b.kind, body: b.canon, tier: m.entry?.intercepted ? "intercepted" : m.tier ?? "not-in-har" }, q);
     if (!m.entry) return r.fulfill({ status: 200, contentType: "application/json", body: NOT_IN_HAR });
     return r.fulfill({ status: m.entry.status, headers: m.entry.headers, body: m.entry.body });
   });
