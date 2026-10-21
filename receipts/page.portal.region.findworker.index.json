@@ -2,7 +2,7 @@
   "id": "page.portal.region.findworker.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/portal/src/views/region/findworker/index.vue"
   ],
@@ -28,6 +28,7 @@
     "fix 1（a2，2026-10-21）：未改代码。gate.2 失败项 html/load、html/final 缩到 div.swiper > div.swiper-scrollbar，pixel 0.081",
     "swiper 8.0.1（HM-800 升级）后节点顺序、类名已一致；剩余差异只是 .swiper-scrollbar-drag 的 height/transform，来自轨道尺寸",
     "原包本页不加载 scrollbar 样式（入口 css 无 .swiper-scrollbar，本页 deps 无 swiper-bundle.css）；还原 main.ts 全局引入 swiper/css/scrollbar，疑似共享层问题，见 needsFromSkeleton",
-    "页面代码与原 chunk index.178332063620065.js 一致（只导入 navigation/pagination/scrollbar/autoplay/grid/effect-coverflow 模块 js，无 scrollbar css）；self-check pass（私有克隆 restore/fast-lane 49a611e）；无代码改动，无需 fl.sh land"
+    "页面代码与原 chunk index.178332063620065.js 一致（只导入 navigation/pagination/scrollbar/autoplay/grid/effect-coverflow 模块 js，无 scrollbar css）；self-check pass（私有克隆 restore/fast-lane 49a611e）；无代码改动，无需 fl.sh land",
+    "fix 2（a2，2026-10-21）：仍未改代码。门槛复跑 commit 49a611e 与第 1 轮相同，失败项不变（swiper-scrollbar 拖块 height/transform）；origin/restore/fast-lane 仍是 49a611e，main.ts:26 仍全局引入 swiper/css/scrollbar。页面侧无等价改法，需入口层升级单或裁定员决定"
   ]
 }
