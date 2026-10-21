@@ -2,5 +2,6 @@
   {"fill":["请输入职位名称","测试职位"]},
   {"fill":["请输入招聘人数","3"]},
   {"fill":["请输入联系人","测试"]},
-  {"clickSel":".ant-btn-primary","optional":true}
+  {"click":"去提取"},
+  {"wait":1500}
 ]
