@@ -14,7 +14,7 @@ import { PNG } from "pngjs";
 import pixelmatch from "pixelmatch";
 import { sha256 } from "./har.mjs";
 import { firstDiff } from "./dom.mjs";
-import { applyKnown, normHtml, normOverlay, normText, waiveKnown } from "./rules.mjs";
+import { applyKnown, normHtml, normNow, normOverlay, normText, waiveKnown } from "./rules.mjs";
 
 export const loadSet = (requests, shell) => [...new Set(requests.map((r) => (typeof r === "string" ? r : r.method + " " + r.path)))].filter((k) => !k.includes("EXTERNAL ") && !shell.has(k)).sort();
 export const seqKey = (x) => `${x.phase} ${x.method} ${x.path} ${x.query} ${x.bodyKind === "sm2" ? "sm2:" : ""}${x.bodySha ?? sha256(x.body ?? "")}`;
@@ -116,13 +116,15 @@ export function overlayText(ov, shellToasts = []) {
 // Projections of one run (original or restored) used for comparison. `cls` = {load, final}: class of the restored root
 // in each phase (the root's class can change with the interaction, e.g. a v-if/v-else root); omitted → first candidate.
 // A phase whose root is not found has html/text null and root[phase] false.
-export function project(run, { rules, shell, exclude, cls = {}, known, side, used, shellToasts }) {
+// `clock`: the page clock of the baseline's first run (rules.mjs normNow), the same for every run projected in one comparison.
+export function project(run, { rules, shell, exclude, cls = {}, known, side, used, shellToasts, clock = null }) {
   const k = (where, v) => (known ? applyKnown(where, side, v, known, used) : v);
+  const now = (v) => normNow(v, rules, clock);
   const lc = pickCandidate(run.load?.candidates, cls.load), lFound = !!lc || cls.load === undefined;
   const p = {
-    "load.html": lFound ? k("load.html", normHtml(lc, rules)) : null,
-    "load.text": lFound ? k("load.text", normText(lc?.text, rules)) : null,
-    "load.overlay": k("load.overlay", normOverlay(overlayText(run.load?.overlay, shellToasts), rules)),
+    "load.html": lFound ? k("load.html", now(normHtml(lc, rules))) : null,
+    "load.text": lFound ? k("load.text", now(normText(lc?.text, rules))) : null,
+    "load.overlay": k("load.overlay", now(normOverlay(overlayText(run.load?.overlay, shellToasts), rules))),
     "load.requests": k("load.requests", loadSet(run.load?.requests ?? [], new Set([...shell, ...exclude]))),
     shot: lc?.shot ?? null, canvases: lc?.canvases ?? null, blank: !!lc?.blank, cls: lc?.cls ?? null, empty: !lc || lc.empty || !lc.tree, root: { load: lFound },
   };
@@ -135,9 +137,9 @@ export function project(run, { rules, shell, exclude, cls = {}, known, side, use
     p["steps.errors"] = run.steps.filter((s) => s.err).map((s) => `step ${s.i}: ${s.err}`);
     p["steps.requests"] = k("steps.requests", stepSeq(run.stepLog ?? [], new Set([...exclude, ...shell])));
     p["steps.opened"] = k("steps.opened", (run.opened ?? []).map(openedKey));
-    p["final.html"] = fFound ? k("final.html", normHtml(fc, rules)) : null;
-    p["final.text"] = fFound ? k("final.text", normText(fc?.text, rules)) : null;
-    p["final.overlay"] = k("final.overlay", normOverlay(overlayText(run.final?.overlay, shellToasts), rules));
+    p["final.html"] = fFound ? k("final.html", now(normHtml(fc, rules))) : null;
+    p["final.text"] = fFound ? k("final.text", now(normText(fc?.text, rules))) : null;
+    p["final.overlay"] = k("final.overlay", now(normOverlay(overlayText(run.final?.overlay, shellToasts), rules)));
   }
   return p;
 }
@@ -225,8 +227,9 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, 
   // component mounted in its restored parent page (inParent) always drops them: the probe's toasts are the parent's (HM-251).
   const shellToasts = baseline.shell?.toasts ?? [];
   const restShell = inParent || (rest.load?.requests ?? []).some((r) => shell.has(typeof r === "string" ? r : r.method + " " + r.path));
-  const R = project(rest, { rules, shell, exclude, known, side: "rest", used, shellToasts: restShell ? shellToasts : [] });
-  const O = baseline.runs.map((run) => project(run, { rules, shell, exclude, cls: restCls, known, side: "orig", used, shellToasts }));
+  const clock = baseline.runs[0]?.clock ?? null; // both sides replay the same HAR: one clock start for all (normNow)
+  const R = project(rest, { rules, shell, exclude, known, side: "rest", used, shellToasts: restShell ? shellToasts : [], clock });
+  const O = baseline.runs.map((run) => project(run, { rules, shell, exclude, cls: restCls, known, side: "orig", used, shellToasts, clock }));
   const failed = [];
   const noRoot = (ph) => ph in R.root && O.every((o) => o.root[ph] === false);
   // original candidates by class only (element paths, no page text)
@@ -264,8 +267,9 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, 
 export function unstableKeys(runA, runB, { rules, site, shell, shellToasts }) {
   const exclude = rules.shellRequests(site);
   const cls = { load: runA.load?.candidates?.[0]?.cls ?? null, final: runA.final?.candidates?.[0]?.cls ?? null };
-  const a = project(runA, { rules, shell, exclude, cls, shellToasts });
-  const b = project(runB, { rules, shell, exclude, cls, shellToasts });
+  const clock = runA.clock ?? null;
+  const a = project(runA, { rules, shell, exclude, cls, shellToasts, clock });
+  const b = project(runB, { rules, shell, exclude, cls, shellToasts, clock });
   const out = Object.keys(a).filter((k) => k.includes(".") && !same(a[k], b[k]));
   const masks = rules.volatileCanvas ? volatileCanvases([a, b], null, { threshold: rules.pixel.threshold, inkRange: rules.volatileCanvas.inkRange }).masks : [];
   if ((a.shot || a.blank) && (b.shot || b.blank)) { const d = shotDiff(a, b, null, rules.pixel.threshold, masks); if (d.ratio > rules.pixel.maxRatio) out.push("load.pixel"); }
