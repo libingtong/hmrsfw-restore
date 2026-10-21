@@ -43,7 +43,7 @@ mkdir -p $W/replay && cp tools/fast-lane/replay/* $W/replay/
 
 3. 编排者复核（不信回执，自己跑）：`cd RESTORE && node tools/self-check.mjs <id> --app $W/wt/<短名>` 为 `pass:true`，`npm --prefix $W/wt/<短名> run build:<app>` 退出码 0。
 4. 通过 → `$W/fl.sh land <短名> "restore(page): <id>（HM-xx 快速通道）"`，再 `$W/fl.sh drop <短名>`。
-5. 不通过 → 把失败项发回给同一子智能体（SendMessage）或另派 Opus 修正，最多 3 轮；仍不过就不合入，记进阻塞清单（原因写具体：哪项检查、哪一行、为什么修不了）。公共库缺东西、清单/工单错了，不要在页面里绕，记阻塞并写明需要改什么。
+5. 不通过 → 把失败项发回给同一子智能体（SendMessage）或另派 Opus 修正，最多 3 轮；仍不过就不合入，记进阻塞清单（原因写具体：哪项检查、哪一行、为什么修不了）。清单/工单错了，不要在页面里绕，记阻塞并写明需要改什么。公共库缺东西（共享组件、入口导出、`public/` 资源、依赖）不再记进阻塞清单（HM-990）：走公共库升级单（`tick.mjs open-upgrade <任务id> --reason …`，页面挂起），升级合并进 `integration` 后调度器自动 cherry-pick 到 `restore/fast-lane`，挂起的页面保持快速通道分支重跑门槛。
 
 ## 3. 同步（约每 10 单一次，以及批次结束时）
 
@@ -88,3 +88,4 @@ node tools/fast-lane/inventory.mjs --ids       # 录制顺序：门户先，用�
 - 录制报 `login-expired` / `need-login`：暂停新的录制（门槛和修正照常），等李炳通重新登录后运行 `node tools/tick.mjs fast-lane login-ok`，被拦的页面重新录制。
 - `node tools/tick.mjs fast-lane status` 看进度；`fast-lane report --write` 写 `results/replay.json`（只有页面 id、结论、原因）。
 - 门槛判据、归一化规则、公共库清单、HAR 一概不动。
+- **公共库升级单（HM-990，HM-858 决定）**：升级单按 `gate.mjs --mode upgrade` 过门槛（改动范围与调度器合并同一判定，页面文件不能改），合并进 `integration` 后由调度器把合并提交 cherry-pick 到产物仓库 `restore/fast-lane`，结果记在升级单元数据 `fastLaneSync`；冲突时记 anomaly、不推送，挂起页等人工合入并把 `fastLaneSync` 设为 `{"state":"ok"}`。挂起的快速通道页恢复时分支仍是 `restore/fast-lane`、`fastLane` 等元数据不变，直接送门槛。
