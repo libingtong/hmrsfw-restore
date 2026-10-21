@@ -1,0 +1,7 @@
+[
+  {"fill":["请选择职位名称","测试职位"]},
+  {"click":"查询","wait":1500},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"click":"重置","wait":1500}
+]
