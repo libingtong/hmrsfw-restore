@@ -234,7 +234,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 ## 步骤
 1. 读元数据 workOrders、branch、attempt。
 2. multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkout <branch>，运行 node tools/setup-workdir.mjs。
-3. 运行 node tools/gate.mjs --task <任务id> --branch <branch> --mode page。
+3. 运行 node tools/gate.mjs --task <任务id> --branch <branch> --mode page；公共库升级单（kind=upgrade，元数据 gateMode=upgrade）用 --mode upgrade（gate.mjs 读到 kind=upgrade 也会自动切换）。
 4. 运行 node tools/tick.mjs advance <任务id>。gate.mjs 已经写好元数据和 [GATE] 评论，不需要你再写。
 
 ## 异常
@@ -254,6 +254,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 4. **写请求匹配**：先按「方法 + 路径 + 解密并归一化后的请求体」找 HAR 记录；找不到时退回按「方法 + 路径」取第一条；都找不到返回统一的「not in HAR」。
 5. **共享组件顶替（page 模式）**：本页依赖的共享组件或入口导出在 `integration` 上还没有还原版时，用原编译 chunk 的薄包装顶替。零引用检查只对本页自己的文件生效。输出里列出本次顶替了哪些模块。
 6. **集成模式（`--mode integration`）**：不顶替，零引用检查全开，可以一次跑多页。
+   **升级单模式（`--mode upgrade`）**：静态阶段按公共库改动的范围判（与调度器合并时同一个判定函数），再对改动文件做编译、零引用、个人信息扫描；整站构建；对依赖改动文件的已通过页面跑 integration 模式回归。要解挂的页面不在这里判（HM-990，见 `docs/gate.md`）。
 7. **输出**（stdout 一行 JSON，同时写入元数据 `gate.<attempt>`）：`{pass, failed:[...], stage:"static|build|browser", diff, shimmed:[...], durationMs}`。
 
 ## 八、路由规则与抽检率
@@ -366,7 +367,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | 命令 | 输出 |
 | --- | --- |
 | `self-check.mjs <工单id>` | `{pass, failed:[{check, where, hint}]}`，不需要 `RESTORE_ASSETS` |
-| `gate.mjs --task <id> --branch <b> --mode page\|integration` | 见第七节 |
+| `gate.mjs --task <id> --branch <b> --mode page\|integration\|upgrade` | 见第七节、`docs/gate.md` |
 | `handoff.mjs <任务id> [--fix]` | 写元数据、评论、状态 `in_review`、负责人改为门槛员 |
 | `tick.mjs tick` / `tick.mjs advance <任务id>` | `{ok, summary, anomalies:[{issue, what, suggestedAction}]}`；拿不到锁输出 `{"locked":true}` |
 | `route.mjs <工单id>` | `{candidates:[{family, agents:[...], expectedCost, reason}], features, dual:bool}` |

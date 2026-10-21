@@ -64,7 +64,9 @@ function scriptOf(sfc, file) {
   return [descriptor.script, descriptor.scriptSetup].filter(Boolean).map((b) => ({ content: b.content, setup: !!b.setup }));
 }
 
-function changedFiles(APP) {
+// Files the checkout at APP changed against the integration base (merge base with origin/integration, else main), plus
+// uncommitted and untracked ones. Also used by gate.mjs --mode upgrade for the upgrade's scope (HM-990).
+export function changedFiles(APP) {
   const git = (...a) => execFileSync("git", ["-C", APP, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trimEnd(); // keep the leading space of porcelain lines
   try {
     const base = ["origin/integration", "origin/main", "integration", "main"].find((r) => { try { git("rev-parse", "--verify", "--quiet", r); return true; } catch { return false; } });
