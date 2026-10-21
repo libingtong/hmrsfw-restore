@@ -739,8 +739,9 @@ export class Pipeline {
     const tw = this.twinState(meta);
     if (tw && (tw.merged || tw.twinAlive)) return this.closeTwin(taskId, meta, `本单失败（${reason}），另一张仍在进行或已通过`);
     const needs = Object.values(meta[`receipt.${meta.attempt || 1}`] || {}).flatMap((r) => r?.needsFromSkeleton || []);
-    // fast-lane pages: an upgrade order is cut from integration and merges there, it never reaches `restore/fast-lane` — no automatic upgrade, the fixer/arbiter path handles the needs
-    if (needs.length && meta.kind !== "upgrade" && !meta.suspendedBy && !meta.upgradeTried && !meta.fastLane) return this.openUpgrade(taskId, { reason: `回执 needsFromSkeleton：${needs.join("；").slice(0, 500)}`, meta, auto: true });
+    // fast-lane pages too (HM-990): an upgrade merged into integration is picked onto `restore/fast-lane` (syncFastLane) and
+    // the page resumes there, so a library gap is no longer left to the fixer/arbiter or the blocked list
+    if (needs.length && meta.kind !== "upgrade" && !meta.suspendedBy && !meta.upgradeTried) return this.openUpgrade(taskId, { reason: `回执 needsFromSkeleton：${needs.join("；").slice(0, 500)}`, meta, auto: true });
     if (forceRedo && wos.length) return this.redo(taskId, meta, reason, failed);
     const wo = this.orderOf(meta);
     const fr = meta.fixRound || 0;
