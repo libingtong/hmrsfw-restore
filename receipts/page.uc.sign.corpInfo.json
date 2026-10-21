@@ -2,22 +2,25 @@
   "id": "page.uc.sign.corpInfo",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 1,
+  "fixRound": 2,
   "outputs": [
     "apps/uc/src/views/sign/corpInfo.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "bf4d726"
+    "gitBase": "e074ffe"
   },
   "build": "pass",
   "todos": [],
   "unresolved": [],
-  "needsFromSkeleton": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题（提示捕获时序）：gate.1（e074ffe）唯一失败项 load overlay，原版两次基线都记到 404 提示「请求地址出错: …/getWqCompanyExpandInfoByJob」，还原版 load/final 都没记到。还原版同一请求在 load 阶段发出并按 HAR 命中（tier=path，与原版同一条录制应答），errors 里有 404 和 AxiosError，说明 404 已到达错误拦截器；页面调用、参数和 then 分支与原 chunk 一致（两边都没有 catch），提示由公共请求层 handleError 弹出，与原入口 chunk 的 404 分支一致。第 1 轮门槛同一页面逻辑首跑缺这条提示、重试后对上（当时最终失败项只有 html），本轮未出现重试成功，属不稳定的提示捕获，不是页面差异"
+  ],
   "notes": [
     "fix 1：gate.1 load/final 的 html 差异都在档案转寄邮政编码输入框（archiveSendPostalCode）的 oninput 属性：原 chunk 的属性字符串保留 \\u4e00-\\u9fa5 转义原文，还原版写成了已解码的汉字区间字符（两处长度差 10 字符正对应）；改回转义原文，构建产物已核对与原 chunk 字符串一致",
-    "firstFailed 里的 load overlay 差异在重试后未复现，正式失败项只有上述 html，疑似加载时序引起的偶发提示，未改代码",
-    "self-check pass、build:uc pass；fl.sh land 合入 restore/fast-lane（e074ffe）并已推送"
+    "fix 2：未改代码（页面与本轮门槛同一提交 e074ffe）。逐项核对：接口模块 getWqCompanyExpandInfoByJob 的 url/method/params 与 index.api chunk 相同；onMounted→loadInfo 与原 chunk 的 O(()=>w()) 相同；request.ts 404 分支文案与 message.error 调用与入口 chunk 相同",
+    "推测：提示节点在阶段切换后才被记录（记成步骤阶段，load/final 都不收），或首跑时机导致漏记；建议门槛员重跑一次，若稳定复现请裁定员评估在 report 中输出还原侧全部 toasts 及其阶段以便定位",
+    "本轮未能本地复跑门槛（dry-run 需要 RESTORE_ASSETS，修正员不读该目录）；self-check pass（私有克隆 restore/fast-lane e074ffe）、build:uc 上轮已通过；无代码提交，无需 fl.sh land"
   ]
 }
