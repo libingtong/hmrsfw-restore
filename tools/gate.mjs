@@ -111,6 +111,10 @@ export async function baselineFor(wo, state, { interact = null } = {}) {
   // Same again for baselines with an a-carousel captured while it autoplayed (before HM-273, replay.mjs pauseCarousels):
   // the active slide depended on when the original side settled. Recomputed from the same HAR with the slider paused.
   if (!b.carouselPaused && b.runs.some((r) => [r.load, r.final].some((p) => p?.candidates?.some((c) => JSON.stringify(c.tree ?? null).includes("slick-track"))))) return { missing: "carousel captured while autoplaying (before HM-273)", refresh: b.har.path };
+  // Same again for baselines whose shots hold a <canvas> but not its box (before HM-302, replay.mjs canvasBoxesInPage):
+  // without it compareRuns cannot tell a canvas that differs between the original's two runs (volatileCanvases).
+  // Recomputed from the same HAR; the shots, DOM and requests are taken as before.
+  if (!b.canvasBoxes && b.runs.some((r) => r.load?.candidates?.some((c) => c.shot && JSON.stringify(c.tree ?? null).includes('"t":"canvas"')))) return { missing: "canvas boxes not recorded (before HM-302)", refresh: b.har.path };
   return { baseline: b, dir };
 }
 
@@ -356,7 +360,7 @@ export async function gate(argv) {
       if (cmp.failed.length) { firstFailed = cmp.failed; ({ rest, cmp } = await once("rest.retry")); }
       const pass = cmp.failed.length === 0;
       // Local report with the full projections (page text included): stays in $RESTORE_STATE, never in metadata.
-      writeFileSync(path.join(dir, "report.json"), JSON.stringify({ wo: wo.id, pass, failed: cmp.failed, firstFailed, pixel: cmp.pixel, knownUsed: cmp.knownUsed, waived: cmp.waived, knownUnusable: known.unusable, unstable: base.unstable, settleMs: rest.settleMs, errors: rest.errors, restRequests: [...(rest.load?.requests ?? []), ...(rest.stepLog ?? [])].map((x) => `${x.phase} ${x.method} ${x.path} ${x.tier}`), restOpened: [...(rest.load?.opened ?? []), ...(rest.opened ?? [])].map((x) => `${x.phase} ${x.target.split("?")[0]}`), restOtherRequests: (rest.otherRequests ?? []).map((x) => `${x.phase} ${x.method} ${x.path}`), orig: cmp.projections.orig.map(strip), rest: strip(cmp.projections.rest) }, null, 1));
+      writeFileSync(path.join(dir, "report.json"), JSON.stringify({ wo: wo.id, pass, failed: cmp.failed, firstFailed, pixel: cmp.pixel, ...(cmp.volatileCanvases?.length ? { volatileCanvases: cmp.volatileCanvases } : {}), knownUsed: cmp.knownUsed, waived: cmp.waived, knownUnusable: known.unusable, unstable: base.unstable, settleMs: rest.settleMs, errors: rest.errors, restRequests: [...(rest.load?.requests ?? []), ...(rest.stepLog ?? [])].map((x) => `${x.phase} ${x.method} ${x.path} ${x.tier}`), restOpened: [...(rest.load?.opened ?? []), ...(rest.opened ?? [])].map((x) => `${x.phase} ${x.target.split("?")[0]}`), restOtherRequests: (rest.otherRequests ?? []).map((x) => `${x.phase} ${x.method} ${x.path}`), orig: cmp.projections.orig.map(strip), rest: strip(cmp.projections.rest) }, null, 1));
       out.pages.push({ wo: wo.id, pass, stage: pass ? null : "browser", failed: cmp.failed, pixel: cmp.pixel, ...(firstFailed ? { retried: true } : {}), ...(cmp.knownUsed.length ? { knownDiffs: cmp.knownUsed } : {}), ...(known.unusable.length ? { knownUnusable: known.unusable } : {}), ...(base.unstable?.length ? { unstable: base.unstable } : {}), ms: rest.totalMs, ...(skipStatic && pageFail[wo.id].length ? { staticFailed: pageFail[wo.id].map((f) => `${f.check} ${f.hint}`) } : {}) });
     }
     stages.browser = Date.now() - tw;
