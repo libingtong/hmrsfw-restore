@@ -1,0 +1,7 @@
+[
+  {"wait":1000},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"clickSel":".ant-tabs-tab:nth-child(2)","optional":true},
+  {"wait":500}
+]
