@@ -1,0 +1,11 @@
+[
+  {"click":"基地风采照片"},
+  {"wait":800},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"click":"基地风采视频"},
+  {"wait":800},
+  {"click":"基地信息"},
+  {"fill":["请输入招聘联系人","测试"]},
+  {"fill":["请输入联系电话","Tst-0001"]},
+  {"click":"保存"}
+]
