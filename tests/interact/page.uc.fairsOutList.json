@@ -1,0 +1,10 @@
+[
+  {"click":"查询"},
+  {"fill":["请输入招聘会名称","测试"]},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"fill":["请输入招聘会名称","Tst-0001"]},
+  {"click":"查询"}
+]
