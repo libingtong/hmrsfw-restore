@@ -1,0 +1,28 @@
+{
+  "id": "page.uc.zcyzPositionRelease",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/uc/src/views/zcyzPositionRelease.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "bf4d726"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：未改代码（页面与门槛同一提交 bf4d726），无需 fl.sh land。gate.1 的 load html / load overlay 两侧完全一致，差异只在 step3 之后的 final",
+    "差异内容：① 基线 final 里提取职位弹窗（shared extractpositionmodal，getContainer 挂在页面根内）的 ant-modal-mask / ant-modal 仍带入场动画类 fade-enter-active fade-enter / zoom-enter-active zoom-enter，还原版已入场完成；② 还原版表格第 6 行带 ant-table-cell-row-hover（鼠标停在点击位置，弹窗出现在指针下），基线没有；③ 基线 final overlay 仍有「温馨提示」确认框，还原版已关闭",
+    "触发路径：交互脚本 step3 clickSel .ant-btn-primary 取最后一个可见匹配，即挂载时 confirmExtract 弹出的确认框「去提取」；两侧点击位置相同（弹窗 transform-origin 一致），且 step3 都发出 historyUsePositionList，说明两侧都执行了 onOk → openExtract",
+    "页面侧核对：openExtract/closeExtract、ExtractPositionModal 的 v-if 与 props/事件、onMounted 里 initExtractButton（getExtractPositionConfig → alert 时设 btnName 并 confirmExtract(openExtract, name)）与原 chunk 的 U/G/ke/Ue/Ve 等价；共享层 confirmExtract 与原包 r9t 逐字一致（onOk 无返回值 → antd 关闭确认框）；antd 3.2.20 / vue 3.3.4 与原包同版本",
+    "结论（疑似比对器问题，基线侧）：基线两次原版回放 final 完全相同，确认框离场与提取弹窗入场的过渡都停在中途、悬停也未生效，相当于点击后原版页面不再出帧（动画结束事件未触发）；还原版同样的点击按 antd 默认行为关闭确认框、完成入场。页面代码里没有可让还原版「停在动画中途、保留已确认的确认框」的等价写法，不在页面里迁就",
+    "建议：门槛员复测一次；若稳定复现，请裁定员评估基线侧 step3 后的出帧/过渡状态（重录或比对器对 *-enter / *-enter-active 过渡类与离场中的确认框做规范化，走规则变更单）",
+    "附带：self-check renderEquiv 报 DIFF（2444/2449 token），首个分歧在职位描述机器人图标 img 的 src 表达式（原包常量、还原版 ROBOT_IMG），load html 两侧一致，与本次失败无关",
+    "self-check pass（私有克隆 restore/fast-lane bf4d726）、build:uc pass"
+  ]
+}
