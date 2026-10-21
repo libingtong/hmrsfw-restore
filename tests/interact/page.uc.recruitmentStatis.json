@@ -1,0 +1,11 @@
+[
+  {"fill":["请输入招聘公告名称","测试"]},
+  {"click":"查询"},
+  {"wait":800},
+  {"click":"重置"},
+  {"wait":800},
+  {"fill":["请输入求职者姓名","测试"]},
+  {"click":"查询"},
+  {"wait":800},
+  {"clickSel":".ant-pagination-item-2","optional":true}
+]
