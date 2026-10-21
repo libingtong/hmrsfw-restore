@@ -11,6 +11,8 @@
 //      On a branch several page orders share (HMRSFW_SHARED_BRANCH=1, set by the gate for fast-lane tasks: every fix lands
 //      on `restore/fast-lane` itself), a file another page owns is that page's change, not this order's, when every commit
 //      since the base that touches it touches only files other pages own and does not name this order (otherPagesOnly).
+//      A file a cherry-pick of a commit already in the base touched, and that HEAD holds exactly as that commit does (an
+//      upgrade synced to the fast lane, HM-990), is the base's content, not a change of the branch (pickedFromBase).
 // Items that only differ in form from the registry (a barrel re-exporting the same symbol, a duplicate API file, a POC
 // wrapper around an npm package, a function named like a public one) are reported with severity "warn" and do not fail.
 // Usage: node tools/check-imports.mjs <order id> --app <hmrsfw-vue>   → JSON {pass, failed:[{check, where, hint, severity?}]}
@@ -67,15 +69,36 @@ function scriptOf(sfc, file) {
 // Files the checkout at APP changed against the integration base (merge base with origin/integration, else main), plus
 // uncommitted and untracked ones. Also used by gate.mjs --mode upgrade for the upgrade's scope (HM-990).
 export function changedFiles(APP) {
-  const git = (...a) => execFileSync("git", ["-C", APP, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trimEnd(); // keep the leading space of porcelain lines
+  const git = (...a) => execFileSync("git", ["-C", APP, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], maxBuffer: 64 << 20 }).trimEnd(); // keep the leading space of porcelain lines
   try {
     const base = ["origin/integration", "origin/main", "integration", "main"].find((r) => { try { git("rev-parse", "--verify", "--quiet", r); return true; } catch { return false; } });
     if (!base) return { files: null, base: null };
     const mb = git("merge-base", "HEAD", base);
-    const committed = git("diff", "--name-only", `${mb}...HEAD`).split("\n").filter(Boolean);
     const work = git("status", "--porcelain", "--untracked-files=all").split("\n").filter(Boolean).map((l) => l.slice(3).replace(/^.* -> /, ""));
-    return { files: [...new Set([...committed, ...work])], base, mb, work: new Set(work) };
+    const picked = pickedFromBase(git, mb, base);
+    const committed = git("diff", "--name-only", `${mb}...HEAD`).split("\n").filter((p) => p && !picked.has(p));
+    return { files: [...new Set([...committed, ...work])], base, mb, work: new Set(work), picked: [...picked] };
   } catch { return { files: null, base: null }; }
+}
+
+// Files of mb..HEAD that are the base's content, not the branch's change: a cherry-pick of a commit already in `base`
+// touched the file and HEAD holds it exactly as that base commit does (both absent counts). The fast lane gets each merged
+// upgrade this way (syncFastLane, HM-990) and its merge-base with integration does not move, so without this every
+// fast-lane page would be charged with the upgrades' public files. A pick is recognised by git's "(cherry picked from
+// commit <sha>)" trailer with <sha> an ancestor of base; a file the branch changed again after the pick differs from the
+// picked version and stays in. With any merge in mb..HEAD nothing is dropped (a merge's own changes are not listed per commit).
+export function pickedFromBase(git, mb, base) {
+  const out = new Set();
+  if (git("rev-list", "--merges", "-n", "1", `${mb}..HEAD`).trim()) return out;
+  const blob = (rev, p) => { try { return git("rev-parse", "--verify", "--quiet", `${rev}:${p}`); } catch { return null; } };
+  const srcs = new Map(); // file → base commits picked onto the branch that touched it
+  for (const rec of git("log", "--no-merges", "--no-renames", "--name-only", "--format=%x00%B%x01", `${mb}..HEAD`).split("\0").slice(1)) {
+    const [msg, rest = ""] = rec.split("\x01");
+    const src = [...msg.matchAll(/\(cherry picked from commit ([0-9a-f]{40})\)/g)].map((m) => m[1]).filter((s) => { try { git("merge-base", "--is-ancestor", s, base); return true; } catch { return false; } });
+    if (src.length) for (const p of rest.split("\n").filter(Boolean)) srcs.set(p, [...(srcs.get(p) ?? []), ...src]);
+  }
+  for (const [p, src] of srcs) { const head = blob("HEAD", p); if (src.some((s) => blob(s, p) === head)) out.add(p); }
+  return out;
 }
 
 // page id owning a file (target or subComponentDir of a page / segment order; segments count as their page), or null
