@@ -1,28 +1,24 @@
 {
   "id": "page.portal.talents.index.jobRecommend",
-  "branch": "restore/fast-lane",
+  "ticket": "page.portal.talents.index.jobRecommend",
+  "kind": "upgrade",
+  "upgradeTask": "01a15e72-2cd9-72d7-a493-c4566acef5e0",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-13-a1",
   "result": "fail",
-  "fixRound": 2,
-  "outputs": [
-    "apps/portal/src/views/talents/index/jobRecommend.vue"
+  "outputs": [],
+  "todos": [
+    "本单无需改动：请求的修复已在 integration。HM-800（upg-6，eb2b5ff，合并 d1c8903）已把 apps/portal/src/shared/images.ts 的 robotImg 改为 import robotImg from \"./imageAssets/robot.png\"；该 PNG 与原包 robot.1783320636200.js 的 data URI 解码后逐字节相同（3374 字节）。restore/fast-lane 已经 pick 进来（cf7b014），images.ts 和 robot.png 与 integration 相同。restore/upg-13-a1 与 origin/integration 相同、没有提交，升级单门槛会以 scope「changes nothing」不通过，这是预期结果",
+    "本单是重复单：advance 在 2026-10-21 12:31Z 用页面 2026-10-19 的旧回执 receipt.1.needsFromSkeleton 开出（HM-800 时代裁定员设的是 waitUpgrade 而不是 suspendedBy/upgradeTried，所以 regate 失败后又自动开了单）。建议裁定员把本单按重复 HM-800 处理",
+    "HM-326 的真正阻塞不在公共库：12:30Z/12:31Z 的门槛在 static 阶段失败，原因是 imports 检查认为本页改了 README.md 和 apps/portal/public/**（restore/fast-lane 相对 merge-base 改了 72 个文件，都是 upg-6 pick 带进来的升级单改动），页面模式的范围检查把这些算到了页面头上。这属于快速通道同步（HM-990）和页面门槛范围判定的问题，交裁定员处理"
   ],
+  "needsFromSkeleton": [],
   "selfCheck": {
     "pass": true,
-    "failed": [],
-    "gitBase": "78cdd063aa42693968b5da4f938594fe1d130698"
-  },
-  "build": "pass",
-  "todos": [],
-  "unresolved": [],
-  "needsFromSkeleton": [
-    "疑似共享层问题（shared.portal.modules）：load/final html 首处差异 offset 274 是 .aiBackdropnew 里 robot 图片的 src。原 chunk jobRecommend.1783320636200.js 用 robot.1783320636200.js 的导出 _（registry/portal.json 条目 inline:true，Vite 内联的 data:image/png;base64），页面按清单从 @/shared/images 导入 robotImg，而 apps/portal/src/shared/images.ts:100 把它定义成 public 路径字符串 \"/assets/shared/robot.png\"。该 png 与原 data URI 解码后逐字节相同（3374 字节 < assetsInlineLimit 4096），所以只要共享层改成模块资源导入（如 import robotImg from \"./images/robot.png\"），vite build 与门槛按需编译（appserver.mjs builtUrl）都会得到和原包相同的 data URI。images.ts 里其他「内联 base64」类导出（adr、s04 等）同理。页面侧按清单导入，不能绕",
-    "原代码问题 / 疑似比对器问题：其余 html 差异（idotitem-active 位置、slick-track translate3d、slick-active/slick-current、dots li.slick-active）和像素 3.3% 都是 a-carousel 停在不同页：基线两次原版运行截图时都已自动翻到第 2 页，还原侧首次与重试都停在第 1 页；countup 数字差异是翻页回调 beforeChange 把 startVal 改成 +100 引起的连带变化（基线 unstable 已含 load.html/final.html）。原代码 a-carousel autoplay:true、autoplayspeed:\"1000\"（小写，不命中 autoplaySpeed prop，实际用默认 3000ms），vc-slick setInterval(play, autoplaySpeed+50)，是否在截图前翻页取决于轮播挂载到 waitStable（stableMs 2000）结束之间是否超过约 3.05s，页面层无法对齐。A/B 实测（不用 HAR、不联网，两侧同一份假接口应答，1920x1080）：原包 legacy-dist/portal 与还原侧 vite build 的轮播都在出现后约 3.2–3.4s 第一次翻页，之后周期约 3.05–3.1s，行为一致。需要裁定员判断：按原代码登记 known-diff（证据 jobRecommend.1783320636200.js 中 a-carousel 的 autoplay:!0,autoplayspeed:\"1000\"），或走规则变更单"
-  ],
-  "notes": [
-    "fix 2：未改代码。门槛第 2 次结果与第 1 次相同：load/final html 首处差异仍是 robot 图片 src（共享层 images.ts，见 needsFromSkeleton 第 1 条）；其余差异仍是 a-carousel 页码与随之变化的 countup 数字",
-    "final 状态复核：原版两次 load 停在第 2 页、final 在第 3 页；还原侧 load 停在第 1 页、final 在第 2 页。两侧在交互步骤（clickSel .idotitem + wait 1500）前后都只前进一页，final 的差异完全由 load 时的翻页竞态延续而来，交互行为本身一致",
-    "fix 1 已逐项核对原 chunk jobRecommend.1783320636200.js 与 jobRecommend.1783320636200.css，与现有 jobRecommend.vue 一致；A/B 实测（假接口应答，不用 HAR、不联网）原包与还原构建的轮播首次翻页时机和周期一致",
-    "self-check pass（私有克隆 fl-vue，restore/fast-lane = 78cdd06，与 gate.1 比对的 commit 相同）；npm run build:portal 通过；restore/fast-lane 无新提交",
-    "两轮修正均无页面侧可改之处，按 tools/fast-lane/README.md 第 5 节应交裁定员：共享层问题建公共库升级单（robotImg 改为模块资源导入），轮播竞态登记 known-diff 或走规则变更单"
-  ]
+    "failed": [
+      { "check": "readability", "where": "(eslint)", "severity": "warn", "note": "hmrsfw-vue 未装 eslint，warn 级" },
+      { "check": "readability", "where": "(prettier)", "severity": "warn", "note": "hmrsfw-vue 未装 prettier，warn 级" }
+    ],
+    "note": "在 restore/upg-13-a1（= origin/integration d1c8903）上对 page.portal.talents.index.jobRecommend 跑自检"
+  }
 }
