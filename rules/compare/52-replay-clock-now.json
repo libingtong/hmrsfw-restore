@@ -1,0 +1,8 @@
+{
+ "id": "replay-clock-now",
+ "kind": "now",
+ "enabled": true,
+ "since": "HM-1021",
+ "windowMinutes": 15,
+ "why": "两侧回放的页面时钟都从 HAR 录制那一分钟的开头起正常走（tools/gate/replay.mjs setSystemTime），页面把 new Date() 按秒打印出来时，秒数是从导航到挂载经过的时间，任意两次运行都不同（原版自己两次基线就不同）。精确到秒的日期时间（分隔符 - 或 /，空格或 T）落在 [时钟起点, 起点 + windowMinutes) 内的，就是回放时钟的读数：只把数字换成 #，分隔符、格式、出现的位置照常比较；时钟起点取基线第一次运行的，两侧同用，旧基线没有记录就两侧都不替换。HAR 里的数据时间、昨天、几天前等其他日期时间照常比较。不冻结 Date：lodash debounce 等按 Date.now 计时的代码在冻结的时钟下永远不触发，会改变页面行为。证据：legacy-dist/usercenter/assets/addNewsDetails.1751615607545.js 偏移 2838、2903，挂载时 t.user.time=d(y(Me(new Date)))、publishTime=y(t.user.time).format(\"YYYY-MM-DD HH:mm:ss\")，日期框 #basic_time 的 title 两次基线为 22:41:05 / 22:41:01。见 docs/rule-changes/HM-1021.md"
+}
