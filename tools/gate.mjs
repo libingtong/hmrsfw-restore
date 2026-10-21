@@ -108,6 +108,9 @@ export async function baselineFor(wo, state, { interact = null } = {}) {
   // paintedBoxInPage): any load shot of exactly the viewport's size. A root that really is that size is shot the same way
   // again, so recomputing it changes nothing.
   if (!b.paintedBox && b.runs.some((r) => r.load.candidates.some((c) => c.shot && existsSync(c.shot) && sameSize(c.shot, VIEWPORT)))) return { missing: "zero-area root shot as the whole viewport (before HM-380)", refresh: b.har.path };
+  // Same again for baselines with an a-carousel captured while it autoplayed (before HM-273, replay.mjs pauseCarousels):
+  // the active slide depended on when the original side settled. Recomputed from the same HAR with the slider paused.
+  if (!b.carouselPaused && b.runs.some((r) => [r.load, r.final].some((p) => p?.candidates?.some((c) => JSON.stringify(c.tree ?? null).includes("slick-track"))))) return { missing: "carousel captured while autoplaying (before HM-273)", refresh: b.har.path };
   return { baseline: b, dir };
 }
 
