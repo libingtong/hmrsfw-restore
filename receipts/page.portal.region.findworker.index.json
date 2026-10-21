@@ -2,20 +2,20 @@
   "id": "page.portal.region.findworker.index",
   "branch": "restore/fast-lane",
   "result": "pass",
-  "fixRound": 2,
+  "fixRound": 1,
   "outputs": [
     "apps/portal/src/views/region/findworker/index.vue"
   ],
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "gitBase": "cac41a9a974d6818bf8dc8f7f467d019f81a741a"
+    "gitBase": "49a611e4117aeb97d4c832876885020dc33778c5"
   },
   "build": "pass",
   "todos": [],
   "unresolved": [],
   "needsFromSkeleton": [
-    "疑似共享层问题（swiper 依赖版本，html/load + html/final，pixel 0.081）：原包内置的 swiper 早于 8.4，而 package.json / registry/portal.json npmVersions 锁的是 swiper 8.4.7。依据 1：原入口 index.1783320636200.js 里 swiper/vue 的 Swiper render 顺序是 container-start → 导航 → swiper-scrollbar → swiper-pagination → swiper-wrapper → container-end，8.4.7 的 node_modules/swiper/vue/swiper.js:645-655 是 swiper-wrapper 在前、scrollbar 在后；依据 2：原包 scrollbar.1783320636200.js 的默认参数只有 el/dragSize/hide/draggable/snapOnRelease/lockClass/dragClass，8.4.7 的 modules/scrollbar/scrollbar.js:28-30 多了 scrollbarDisabledClass/horizontalClass/verticalClass，所以还原侧多出 swiper-scrollbar-vertical 类，拖块尺寸也不一样。页面模板/模块（[Navigation, Scrollbar, Grid]、scrollbar:{draggable:true}、direction vertical）与原 chunk 一致。需要把 swiper 降到与原包一致的版本（按指纹核对，E7 依赖核对一类），或由裁定员走规则变更单；页面里改 Swiper 结构会引入原 chunk 没有的写法，不改"
+    "疑似共享层问题（入口全局样式，gate.2 html/load + html/final，div.swiper > div.swiper-scrollbar，pixel 0.081）：swiper 降到 8.0.1 后滚动条节点的位置和类名已与原版一致，只剩拖块 style 的 height（原 0px，还原 368.662px）和 final 的 translate3d（原 0px，还原 94.5845px）。原因是滚动条轨道尺寸：原包本页没有加载任何 swiper scrollbar 样式——入口样式 legacy-dist/portal/assets/index.178332063620015.css 只含 swiper 核心与 navigation 规则，没有 .swiper-scrollbar；本页预加载清单（index.1783320636200.js 里 /src/views/region/findworker/index.vue 的 deps）只有 index.178332063620062.css、pagination.css、navigation.css、empty.css，不含 swiper-bundle.css；全包只有 swiper-bundle.1783320636200.css 带 .swiper-vertical>.swiper-scrollbar{position:absolute;height:98%…}。所以原版轨道 offsetHeight 为 0，Scrollbar 模块算出拖块 0px；还原侧 apps/portal/src/main.ts:26 全局 import \"swiper/css/scrollbar\"（以及 :24 pagination、:25 effect-coverflow、:27 grid，原入口样式同样没有），轨道变成 98% 高，拖块按比例算出 368px。main.ts 是入口层（E7，b600c1c），不在本单 target/subComponentDir 内；页面里用覆盖样式去压会引入原 chunk 没有的 CSS，不做。需要入口层按原包核对全局 swiper 样式引入（去掉原入口没有的 scrollbar/pagination/grid/effect-coverflow 全局样式，改为按原包的 chunk 预加载关系提供），走公共库升级单，修改后需全量回归其他用到 swiper 的门户页"
   ],
   "notes": [
     "fix 1：未改代码。gate.1 失败项 html/load、html/final（div.swiper 下），pixel 0.081",
@@ -24,6 +24,10 @@
     "原因是 swiper 版本差异（原包 <8.4，工程 8.4.7），见 needsFromSkeleton；疑似共享层问题，不在 target/subComponentDir 内",
     "self-check pass（私有克隆 restore/fast-lane cac41a9）；无代码改动，无需 fl.sh land",
     "fix 2：仍未改代码。门槛复跑（commit cac41a9）失败项与第 1 轮相同：html/load、html/final 只差 swiper-scrollbar 节点（位置、swiper-scrollbar-vertical 类、拖块尺寸），pixel 0.081",
-    "页面侧没有等价改法：scrollbar 节点由 swiper/vue 组件和 Scrollbar 模块生成，要和原版一致只能换 swiper 版本（package.json / registry，页面单不许改），或用手写节点等原 chunk 没有的写法去凑，两种都不做；请裁定员定是降 swiper 版本还是走规则变更单"
+    "页面侧没有等价改法：scrollbar 节点由 swiper/vue 组件和 Scrollbar 模块生成，要和原版一致只能换 swiper 版本（package.json / registry，页面单不许改），或用手写节点等原 chunk 没有的写法去凑，两种都不做；请裁定员定是降 swiper 版本还是走规则变更单",
+    "fix 1（a2，2026-10-21）：未改代码。gate.2 失败项 html/load、html/final 缩到 div.swiper > div.swiper-scrollbar，pixel 0.081",
+    "swiper 8.0.1（HM-800 升级）后节点顺序、类名已一致；剩余差异只是 .swiper-scrollbar-drag 的 height/transform，来自轨道尺寸",
+    "原包本页不加载 scrollbar 样式（入口 css 无 .swiper-scrollbar，本页 deps 无 swiper-bundle.css）；还原 main.ts 全局引入 swiper/css/scrollbar，疑似共享层问题，见 needsFromSkeleton",
+    "页面代码与原 chunk index.178332063620065.js 一致（只导入 navigation/pagination/scrollbar/autoplay/grid/effect-coverflow 模块 js，无 scrollbar css）；self-check pass（私有克隆 restore/fast-lane 49a611e）；无代码改动，无需 fl.sh land"
   ]
 }
