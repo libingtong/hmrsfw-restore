@@ -1,34 +1,43 @@
 {
+  "ticket": "page.portal.region.findworker.index",
   "id": "page.portal.region.findworker.index",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 2,
+  "group": "还原-Opus@Mac",
+  "kind": "upgrade",
+  "task": "01a15e9c-c343-7382-a52b-1b5d606d77c0",
+  "branch": "restore/upg-15-a1",
+  "result": "ok",
   "outputs": [
-    "apps/portal/src/views/region/findworker/index.vue"
+    "apps/portal/src/main.ts",
+    "apps/portal/src/router.ts",
+    "apps/portal/src/styles/index.ts"
   ],
+  "summary": "原包入口样式 index.178332063620015.css 只有 swiper 核心（.swiper、3d 阴影、css-mode、centered、swiper-icons 字体、--swiper-theme-color），没有 navigation、pagination、scrollbar、grid 规则（.swiper-button-* 只有带 data-v 的组件规则）。原包只有 navigation、pagination、swiper-bundle 三份 swiper 模块样式，按页面预加载：入口 glob 444 个页面里 94 个带，其中哈密路由文件 router-xjhm.json 里 24 个（navigation 13、navigation+pagination 5、pagination+navigation 5、navigation+swiper-bundle 1 即 xjhm/home）；原包没有单独的 scrollbar、grid、effect-coverflow 样式。改动：main.ts 只留 import \"swiper/css\"；router.ts 的 resolveView 对这 24 页把对应的 swiper/css/navigation、swiper/css/pagination、swiper/css/bundle 与页面一起懒加载（顺序同原 deps）；被别的页面当组件引用的子页面随父页面路由加载，已含在父页面里。findworker 现在只带 pagination+navigation，不再有 scrollbar 样式。",
+  "verification": [
+    "门户整站 vite build 通过（7 分 15 秒）",
+    "构建产物入口 CSS：.swiper{ 1 条，.swiper-scrollbar{、.swiper-pagination{、--swiper-navigation-size、.swiper-grid> 均为 0",
+    "navigation.min、pagination.min、swiper-bundle.min 三份样式各成独立 CSS chunk，router 产物里 findworker 路由加载 pagination+navigation，不含 scrollbar 样式",
+    "本机无 RESTORE_ASSETS（HAR、登录态在门槛员环境），门槛 browser 阶段与回归未在本机跑"
+  ],
+  "todos": [
+    "门槛 page 模式下页面不在路由文件里时，兜底路由直接 import 页面文件、不经 resolveView，不带 swiper 模块样式；哈密 24 页都在路由文件里，不受影响。singleRoutePlugin（单页生产构建）同理",
+    "swiper 样式与页面样式的插入顺序：原包 deps 里两者交错（有的页面样式在前，有的在后）；还原版与页面并行加载，不保证同序。已核对这 24 页 deps 里的 72 份页面/共享组件样式：涉及 swiper 的选择器只有 3 个不带 data-v（xjhm/home 的 FriendLinks 样式：.swiper-pagination 为 !important，.swiper-button-next1/.swiper-button-prev1 与 swiper 自带类名不同），其余都带 data-v、比 swiper 规则更具体，顺序不影响结果"
+  ],
+  "needsFromSkeleton": [],
+  "registry": "main.ts、router.ts、styles/index.ts 不在 registry/portal.json 的条目里（swiper 各模块为 npm 条目，无 status），无需更新条目",
   "selfCheck": {
-    "pass": true,
-    "failed": [],
-    "gitBase": "49a611e4117aeb97d4c832876885020dc33778c5"
-  },
-  "build": "pass",
-  "todos": [],
-  "unresolved": [],
-  "needsFromSkeleton": [
-    "疑似共享层问题（入口全局样式，gate.2 html/load + html/final，div.swiper > div.swiper-scrollbar，pixel 0.081）：swiper 降到 8.0.1 后滚动条节点的位置和类名已与原版一致，只剩拖块 style 的 height（原 0px，还原 368.662px）和 final 的 translate3d（原 0px，还原 94.5845px）。原因是滚动条轨道尺寸：原包本页没有加载任何 swiper scrollbar 样式——入口样式 legacy-dist/portal/assets/index.178332063620015.css 只含 swiper 核心与 navigation 规则，没有 .swiper-scrollbar；本页预加载清单（index.1783320636200.js 里 /src/views/region/findworker/index.vue 的 deps）只有 index.178332063620062.css、pagination.css、navigation.css、empty.css，不含 swiper-bundle.css；全包只有 swiper-bundle.1783320636200.css 带 .swiper-vertical>.swiper-scrollbar{position:absolute;height:98%…}。所以原版轨道 offsetHeight 为 0，Scrollbar 模块算出拖块 0px；还原侧 apps/portal/src/main.ts:26 全局 import \"swiper/css/scrollbar\"（以及 :24 pagination、:25 effect-coverflow、:27 grid，原入口样式同样没有），轨道变成 98% 高，拖块按比例算出 368px。main.ts 是入口层（E7，b600c1c），不在本单 target/subComponentDir 内；页面里用覆盖样式去压会引入原 chunk 没有的 CSS，不做。需要入口层按原包核对全局 swiper 样式引入（去掉原入口没有的 scrollbar/pagination/grid/effect-coverflow 全局样式，改为按原包的 chunk 预加载关系提供），走公共库升级单，修改后需全量回归其他用到 swiper 的门户页"
-  ],
-  "notes": [
-    "fix 1：未改代码。gate.1 失败项 html/load、html/final（div.swiper 下），pixel 0.081",
-    "去掉 swiper-scrollbar 节点后两边 swiper 区域一致；唯一差异是 scrollbar 节点的位置（原版在 swiper-wrapper 前，还原在后）、类名（还原多 swiper-scrollbar-vertical）和拖块 height/transform",
-    "页面代码与原 chunk index.178332063620065.js 核对一致：Swiper 属性、modules（ae=[M,Je,R]）、SwiperSlide 循环",
-    "原因是 swiper 版本差异（原包 <8.4，工程 8.4.7），见 needsFromSkeleton；疑似共享层问题，不在 target/subComponentDir 内",
-    "self-check pass（私有克隆 restore/fast-lane cac41a9）；无代码改动，无需 fl.sh land",
-    "fix 2：仍未改代码。门槛复跑（commit cac41a9）失败项与第 1 轮相同：html/load、html/final 只差 swiper-scrollbar 节点（位置、swiper-scrollbar-vertical 类、拖块尺寸），pixel 0.081",
-    "页面侧没有等价改法：scrollbar 节点由 swiper/vue 组件和 Scrollbar 模块生成，要和原版一致只能换 swiper 版本（package.json / registry，页面单不许改），或用手写节点等原 chunk 没有的写法去凑，两种都不做；请裁定员定是降 swiper 版本还是走规则变更单",
-    "fix 1（a2，2026-10-21）：未改代码。gate.2 失败项 html/load、html/final 缩到 div.swiper > div.swiper-scrollbar，pixel 0.081",
-    "swiper 8.0.1（HM-800 升级）后节点顺序、类名已一致；剩余差异只是 .swiper-scrollbar-drag 的 height/transform，来自轨道尺寸",
-    "原包本页不加载 scrollbar 样式（入口 css 无 .swiper-scrollbar，本页 deps 无 swiper-bundle.css）；还原 main.ts 全局引入 swiper/css/scrollbar，疑似共享层问题，见 needsFromSkeleton",
-    "页面代码与原 chunk index.178332063620065.js 一致（只导入 navigation/pagination/scrollbar/autoplay/grid/effect-coverflow 模块 js，无 scrollbar css）；self-check pass（私有克隆 restore/fast-lane 49a611e）；无代码改动，无需 fl.sh land",
-    "fix 2（a2，2026-10-21）：仍未改代码。门槛复跑 commit 49a611e 与第 1 轮相同，失败项不变（swiper-scrollbar 拖块 height/transform）；origin/restore/fast-lane 仍是 49a611e，main.ts:26 仍全局引入 swiper/css/scrollbar。页面侧无等价改法，需入口层升级单或裁定员决定"
-  ]
+    "pass": false,
+    "note": "self-check 按页面单判：imports 三项是本升级单改了 main.ts、router.ts、styles/index.ts（升级单范围由 gate --mode upgrade 的 scopeViolations 判，这三个文件不属 views/ 也不属有 owner 的公共库文件）；readability 第 7 行等是页面文件 views/region/findworker/index.vue 原有问题，升级单不能改页面；eslint、prettier 未跑起来（hmrsfw-vue 依赖缓存里没有这两个包）",
+    "failed": [
+      "imports apps/portal/src/main.ts",
+      "imports apps/portal/src/router.ts",
+      "imports apps/portal/src/styles/index.ts",
+      "readability apps/portal/src/views/region/findworker/index.vue:7",
+      "readability (eslint) 未运行：Cannot find module 'eslint'",
+      "readability (prettier) 未运行：Cannot find module 'prettier'"
+    ],
+    "components": 0,
+    "scopedSlots": 0,
+    "directives": 0,
+    "textNodesChecked": false
+  }
 }
