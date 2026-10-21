@@ -9,13 +9,16 @@
 //      different identities queue on an account lock (lockIdentity), runs of the same identity may go together;
 //   3. pins account + identity (全局说明 §6「流程」3): they must match the first recording of that identity;
 //   4. opens <test site><recordPath> headless and runs tests/interact/<id>.json for real; the identity is checked again
-//      after the page load (changed → blocked role-drift). Every request to the two test hosts goes out, writes included
-//      (HMRSFW_NO_WHITELIST=1 is required as the acknowledgement); every other host, production included, is aborted;
+//      after the page load (changed → blocked role-drift). Requests to the two test hosts go out, except the writes in
+//      tools/record-write-denylist.json (tools/record-write-guard.mjs, HM-992): those are NOT sent, they get a fixed
+//      success response and their HAR entry carries _intercepted; a POST neither listed nor query-shaped goes out and is
+//      listed in warnings (HMRSFW_NO_WHITELIST=1 is still required: unlisted writes do reach the test environment);
+//      every other host, production included, is aborted;
 //   5. writes all /xf-api/ traffic of the page (not of the identity switch) as HAR 1.2 to $RESTORE_ASSETS/har/pages/<id>.har:
 //      request bodies exactly as sent (SM2 ciphertext kept; tools/har-body.mjs decrypts them in memory), responses as
 //      received (encrypted ones keep their crypto_opt header and ciphertext), auth headers and token-named query
 //      parameters redacted. Extra per-entry fields: _seq (request order), _phase
-//      ("load" | "step<i>" | "after"), _crypto; log._record carries the identity and the page's localStorage after the switch
+//      ("load" | "step<i>" | "after"), _crypto, _intercepted + _interceptRule (answered by the write guard); log._record carries the identity and the page's localStorage after the switch
 //      with the token removed (replay needs the identity keys, e.g. radiotype, routermenu);
 //   6. runs the original baseline: tools/baseline.mjs <id> --har <har> (A); until A is merged,
 //      tools/record-baseline-placeholder.mjs with the same command line;
@@ -29,7 +32,7 @@
 //        --offline <old.har> --out <new.har>: self-test without network. The test hosts are answered from legacy-dist and
 //        <old.har>; the HAR goes to <new.har>; no commit, no role pin, no notes in $RESTORE_STATE.
 // Output (one JSON line): {ok, id, steps, unstable:[...], blocked?, hint?, evidence?, error?, har, entries, writes:[{method,
-//        path, count, phases, statuses}], sm2:{bodies, decrypted, undecryptable}, baseline, committed, warnings, durationMs}
+//        path, count, phases, statuses}] (sent), intercepted:[{… , rules}] (not sent), sm2:{bodies, decrypted, undecryptable}, baseline, committed, warnings, durationMs}
 // Exit: 0 ok · 1 error or unstable · 2 blocked (needs a human: login, identity). {"locked":true} when the order is
 //       already being recorded, {"locked":true, identityBusy} when another identity kept the account past --wait-identity.
 //       HAR contents and response data are never printed.
@@ -40,6 +43,7 @@ import path from "node:path";
 import { evaluate, thresholds } from "./coverage.mjs";
 import { apiTracker, describeStep, loadScript, runStepRetry, scriptPath, settle } from "./interact.mjs";
 import { entryKey, fulfillOptions, harResponder, requestBody } from "./har-body.mjs";
+import { splitWrites, writeGuard } from "./record-write-guard.mjs";
 import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, pin, pinKey, resolveOrder, switchIdentity, tokenInfo, validId } from "./record-lib.mjs";
 
 const t0 = Date.now();
@@ -83,10 +87,12 @@ async function record({ order, steps, assets, state, harFile }) {
     }
     const external = new Set();
     const offline = OFFLINE ? harResponder(JSON.parse(readFileSync(path.resolve(OFFLINE), "utf8"))) : null;
+    const guard = writeGuard(); // the identity switch too: its own requests are on the allow list
     await context.route("**/*", (r) => {
       const q = r.request(), u = new URL(q.url());
       if (!/^https?:$/.test(u.protocol)) return r.continue();
       if (!TEST_HOSTS.has(u.host)) { external.add(u.host); return r.abort(); }
+      if (isApi(q.url()) && guard.route(r)) return;
       if (!offline) return r.continue();
       if (/\/xf-api\//.test(q.url())) return r.fulfill(fulfillOptions(offline.lookup(q.method(), q.url(), q.postData()).entry));
       return r.fulfill(legacyFile(order.site, u.pathname));
@@ -131,7 +137,7 @@ async function record({ order, steps, assets, state, harFile }) {
           ? { status: res.status(), statusText: res.statusText(), httpVersion: "HTTP/1.1", cookies: [], headers: Object.entries(resHeaders).filter(([k]) => k !== "set-cookie").map(([name, value]) => ({ name, value })), content: { size: text.length, mimeType: resHeaders["content-type"] ?? "", text, ...(encoding ? { encoding } : {}) }, redirectURL: "", headersSize: -1, bodySize: -1 }
           : { status: 0, statusText: "", httpVersion: "HTTP/1.1", cookies: [], headers: [], content: { size: 0, mimeType: "x-unknown" }, redirectURL: "", headersSize: -1, bodySize: -1, _error: req.failure()?.errorText ?? "failed" },
         cache: {}, timings: { send: 0, wait: ms, receive: 0 },
-        _seq: rec.seq, _phase: rec.phase, _crypto: resHeaders["crypto_opt"] === "true",
+        _seq: rec.seq, _phase: rec.phase, _crypto: resHeaders["crypto_opt"] === "true", ...guard.harFields(req),
       });
     };
     context.on("requestfinished", (req) => jobs.push(collect(req, false)));
@@ -195,6 +201,8 @@ async function record({ order, steps, assets, state, harFile }) {
     if (!entries.length) warnings.push("no /xf-api/ request recorded");
     if (external.size) warnings.push(`aborted non-test hosts: ${[...external].sort().join(", ")}`);
     if (pageErrors.length) warnings.push(`${pageErrors.length} page error(s) on the original, first: ${pageErrors[0]}`);
+    for (const f of guard.failed) warnings.push(`write guard could not answer ${f} (not sent; the request failed)`);
+    for (const k of [...guard.unlisted].sort()) warnings.push(`unlisted write? ${k} was sent: not on tools/record-write-denylist.json, not query-shaped; add it to deny or allow (with why)`);
 
     const har = { log: { version: "1.2", creator: { name: "record-page", version: "1" }, pages: [], entries, _record: { id: order.id, site: order.site, role: order.role, ...(uc ? { identity: IDENTITIES[order.role].label, localStorage: Object.fromEntries(Object.entries(live).filter(([k]) => !/token/i.test(k))) } : {}), recordPath: order.recordPath, finalPath, textLength, steps: stepResults, recordedAt: new Date().toISOString() } } };
     if (!offline && pin(state, pinKey(order.site, order.role), identityFingerprint(order.site, uc ? switched : auth.localStorage))) warnings.push(`${pinKey(order.site, order.role)} pinned by this recording`);
@@ -212,17 +220,10 @@ async function record({ order, steps, assets, state, harFile }) {
       if (b.kind === "sm2-undecryptable") sm2.undecryptable++;
     }
     if (sm2.bodies && !decrypt) warnings.push(`SM2_PRIVATE_KEY not set: ${sm2.bodies} encrypted request bodies not checked`);
-    // Non-GET requests grouped by endpoint (this backend also POSTs reads); no bodies, no response data.
-    const writes = [];
-    for (const e of entries.filter((x) => !["GET", "HEAD", "OPTIONS"].includes(x.request.method))) {
-      const p = entryKey(e.request.method, e.request.url).split(" ")[1];
-      let w = writes.find((x) => x.method === e.request.method && x.path === p);
-      if (!w) writes.push((w = { method: e.request.method, path: p, count: 0, phases: [], statuses: [] }));
-      w.count++;
-      if (!w.phases.includes(e._phase)) w.phases.push(e._phase);
-      if (!w.statuses.includes(e.response.status)) w.statuses.push(e.response.status);
-    }
-    return { entries: entries.length, writes, sm2, finalPath, stepResults };
+    // Non-GET requests that went out, grouped by endpoint (this backend also POSTs reads), and the requests the write guard
+    // answered instead; no bodies, no response data.
+    const { writes, intercepted } = splitWrites(entries);
+    return { entries: entries.length, writes, intercepted, sm2, finalPath, stepResults };
   } finally { await browser.close().catch(() => {}); }
 }
 
@@ -247,7 +248,7 @@ try {
   const { assets, state } = envDirs();
   const baselineOnly = flag("--baseline-only");
   if (OFFLINE && !opt("--out")) throw fail("--offline <har> needs --out <file.har>: an offline self-test never writes the page HAR");
-  if (!baselineOnly && !OFFLINE && process.env.HMRSFW_NO_WHITELIST !== "1") throw fail("HMRSFW_NO_WHITELIST=1 is required: recording sends every request, writes included, to the test environment");
+  if (!baselineOnly && !OFFLINE && process.env.HMRSFW_NO_WHITELIST !== "1") throw fail("HMRSFW_NO_WHITELIST=1 is required: recording sends requests to the test environment, writes not on tools/record-write-denylist.json included");
   const order = resolveOrder(id, opt("--order"));
   if (order.role == null) {
     emit({ ok: false, id, steps: null, unstable: [], blocked: "need-role-decision", hint: `工单没有判定身份（role 为 null）：先裁定该页面属于哪个身份（${Object.keys(IDENTITIES).join(" / ")}），写进工单的 role 后重跑 record-page。不按默认身份录制。`, ...(order.notes ? { evidence: [order.notes] } : {}) }, 2);
@@ -272,7 +273,7 @@ try {
   const harFile = OFFLINE ? path.resolve(opt("--out")) : path.join(assets, "har", "pages", `${id}.har`);
   const noteDir = path.join(state, "record", id);
 
-  let rec = { entries: null, writes: [], sm2: null };
+  let rec = { entries: null, writes: [], intercepted: [], sm2: null };
   if (baselineOnly) { if (!existsSync(harFile)) throw fail(`--baseline-only: no HAR for ${id} yet`); }
   else {
     try { rec = await record({ order, steps, assets, state, harFile }); }
@@ -286,7 +287,7 @@ try {
     mkdirSync(noteDir, { recursive: true });
     const wf = path.join(noteDir, "writes.json");
     const prev = existsSync(wf) ? JSON.parse(readFileSync(wf, "utf8")) : [];
-    writeFileSync(wf, JSON.stringify([...prev, { recordedAt: new Date().toISOString(), role: order.role, writes: rec.writes }], null, 1));
+    writeFileSync(wf, JSON.stringify([...prev, { recordedAt: new Date().toISOString(), role: order.role, writes: rec.writes, intercepted: rec.intercepted }], null, 1));
   }
   const base = flag("--no-baseline") ? null : baseline({ id, harFile });
   if (!base) warnings.push("baseline skipped (--no-baseline)");
@@ -300,7 +301,7 @@ try {
   // `node tools/coverage.mjs report <id>` and adds interactions or hands the data gaps to the D7 request.
   const cov = base?.coverage ?? null;
   const verdict = cov && thresholds() ? evaluate({ page: cov.page && { loaded: true, function: { pct: cov.page.function }, block: { pct: cov.page.block } }, stable: cov.stable }, thresholds()) : null;
-  const out = { ok, id, steps: steps.length, unstable, ...(cov ? { coverage: cov, belowThreshold: verdict?.below ?? null, ...(verdict?.below ? { coverageReasons: verdict.reasons } : {}) } : {}), har: harFile.startsWith(assets + path.sep) ? "$RESTORE_ASSETS/" + path.relative(assets, harFile) : harFile, entries: rec.entries, writes: rec.writes, sm2: rec.sm2, baseline: base && { tool: base.tool, placeholder: base.placeholder, ...(base.placeholder ? { replay: base.result.replay } : {}) }, committed };
+  const out = { ok, id, steps: steps.length, unstable, ...(cov ? { coverage: cov, belowThreshold: verdict?.below ?? null, ...(verdict?.below ? { coverageReasons: verdict.reasons } : {}) } : {}), har: harFile.startsWith(assets + path.sep) ? "$RESTORE_ASSETS/" + path.relative(assets, harFile) : harFile, entries: rec.entries, writes: rec.writes, intercepted: rec.intercepted, sm2: rec.sm2, baseline: base && { tool: base.tool, placeholder: base.placeholder, ...(base.placeholder ? { replay: base.result.replay } : {}) }, committed };
   if (!OFFLINE) { mkdirSync(noteDir, { recursive: true }); writeFileSync(path.join(noteDir, "result.json"), JSON.stringify({ ...out, warnings, at: new Date().toISOString() }, null, 1)); }
   emit(out, ok ? 0 : 1);
 } catch (e) {

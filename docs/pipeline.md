@@ -220,7 +220,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 - 不要 @ 任何智能体，不要改为 done。
 ```
 
-录制会对测试环境真实写入。全部录完后，人工重置一次测试环境。门槛运行时不需要测试环境。
+录制时，`tools/record-write-denylist.json` 里的写接口（提交、新增、保存、发布、修改、删除、撤销、报名、投诉咨询反馈等）不发到测试环境，由 `tools/record-write-guard.mjs` 用固定的成功响应 `{"success":true,"code":200,"result":null,"message":"intercepted"}` 回答（明文、不带 `crypto_opt` 头，两个应用只在该头为 `true` 时才解密），HAR 条目带 `_intercepted`、`_interceptRule`，`writes.json` 和录制结果里单列 `intercepted`，与真实发出的 `writes` 分开（HM-992）。名单按接口路径的正则和末段驼峰分词（`staggingOrSubmit` 里的 submit、`companyPositionAdd` 里的 add）匹配，GET 的写接口（`scanPay`、`refresh`、`downPdf`）和登录类接口（硬规则 2）也拦；名单默认拦截，放行项逐条写理由（如招聘会浏览计数 `updateBrowseCount`、身份切换用到的三个接口）。`tools/test/record-write-guard.test.mjs` 会把 `legacy-dist` 里声明的全部接口过一遍：查询动词开头的一个都不拦，已知写接口全拦。没进名单、方法是 POST、末段又不像查询的请求照常发出，并列进录制结果的 `warnings`（`unlisted write? …`），请人补进名单。逐个核对某条路径：`node tools/record-write-guard.mjs POST <路径>`。名单外的写入仍会到测试环境，全部录完后人工重置一次测试环境。门槛运行时不需要测试环境。
 
 ## 七、门槛员指令与门槛要求
 
