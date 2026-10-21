@@ -1,27 +1,15 @@
 {
-  "id": "page.portal.video.zbdg",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 2,
-  "outputs": [
-    "apps/portal/src/views/video/zbdg.vue"
+  "id": "01a15e50-0d0b-7543-8aca-455b91b9f01b",
+  "ticket": "page.portal.video.zbdg",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-11-a1",
+  "result": "ok",
+  "outputs": [],
+  "todos": [
+    "升级单不适用、无改动：apps/portal/public/sjz/ 的 34 个文件已在 hmrsfw-vue origin/integration（含 7f7ad2d）和 origin/restore/fast-lane（d8395b7，HM-990 自动 pick 升级 HM-796，10-21 11:40Z，早于本单创建）上，两边 sjz 树哈希与 7f7ad2d 相同（79b74f6），逐文件与 legacy-dist/portal/sjz/ 一致；/sjz/home/vidBg.jpg 在 fast-lane 上存在（32934 字节）。restore/upg-11-a1 = integration d1c8903，没有新提交，升级门槛会报 scope「changes nothing」。",
+    "触发页 HM-281 当前的门槛失败（11:55Z 复跑，fast-lane cf7b014，static imports 76 项）不是公共库缺失：门槛把快速通道上 HM-990 已 pick 的共享层文件（README.md、public/assets/shared、public/sjz、shared/imageAssets、package.json 等）算作本页改动。属于 check-imports 在快速通道上的改动范围判定（HM-526 otherPagesOnly 未覆盖升级 pick 提交），需裁定员走规则变更单；本单按规定不改门槛。",
+    "建议裁定员关闭本单（不适用），HM-281 解除挂起；同因的 HM-995（upg-10，setupDetail）情况相同。"
   ],
-  "selfCheck": {
-    "pass": true,
-    "failed": [],
-    "gitBase": "9f54b8e9feedd49acae11875579a5c3b8ca48739"
-  },
-  "build": "pass",
-  "todos": [],
-  "unresolved": [],
-  "needsFromSkeleton": [
-    "疑似共享层问题：apps/portal/public/sjz/（原包 legacy-dist/portal/sjz/ 的静态资源）在 restore/fast-lane 上缺失，页面 .vidTop 的 background url(/sjz/home/vidBg.jpg) 404。hmrsfw-vue 7f7ad2d（HM-796 / upg-5，仅在 restore/upg-5-a1）已原样补齐 34 个文件，需带进 restore/fast-lane 后重跑门槛"
-  ],
-  "notes": [
-    "fix 1 未改页面：gate.1 load pixel 33.144% 全部落在顶部 1920x300 的 div.bgBoxTop.vidTop 背景区域（原版有背景图，还原为白底），搜索卡片、标题按钮等前景一致",
-    "依据：zbdg.vue 的 .vidTop 规则与原 chunk CSS（zbdg.1783320636200.css）逐字一致，都是 url(/sjz/home/vidBg.jpg)；门槛 page 模式静态服务 [outDir, apps/portal/public]（tools/gate.mjs:178、tools/gate/appserver.mjs:303），而 restore/fast-lane 的 apps/portal/public 下没有 sjz/，原版侧 legacy-dist/portal/sjz/home/vidBg.jpg 存在",
-    "public/ 不在本单 target / subComponentDir 内，按规则不在页面里绕（不改成内联或 import 资源），记入 needsFromSkeleton",
-    "self-check pass（restore/fast-lane 9f54b8e，未新增提交）",
-    "fix 2 仍未改页面：门槛第 2 次结果与第 1 次相同（load pixel 33.144%，同一 1920x300 背景区）；复查 origin/restore/fast-lane（1f11463）apps/portal/public 下仍无 sjz/，7f7ad2d 仍只在 restore/upg-5-a1。页面侧无可改项，需裁定员决定把 public/sjz/ 带进 restore/fast-lane（共享层，超出本单 target / subComponentDir）"
-  ]
+  "needsFromSkeleton": [],
+  "selfCheck": { "pass": true, "failed": 0, "warn": 3, "note": "node tools/self-check.mjs page.portal.video.zbdg 在 restore/upg-11-a1 上 pass:true，仅 readability warn 3 条（v-if=\"false\" 死分支、eslint/prettier 未安装）", "components": null, "scopedSlots": null, "directives": null, "textNodesChecked": null }
 }
