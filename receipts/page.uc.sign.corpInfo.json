@@ -1,0 +1,23 @@
+{
+  "id": "page.uc.sign.corpInfo",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/uc/src/views/sign/corpInfo.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "bf4d726"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：gate.1 load/final 的 html 差异都在档案转寄邮政编码输入框（archiveSendPostalCode）的 oninput 属性：原 chunk 的属性字符串保留 \\u4e00-\\u9fa5 转义原文，还原版写成了已解码的汉字区间字符（两处长度差 10 字符正对应）；改回转义原文，构建产物已核对与原 chunk 字符串一致",
+    "firstFailed 里的 load overlay 差异在重试后未复现，正式失败项只有上述 html，疑似加载时序引起的偶发提示，未改代码",
+    "self-check pass、build:uc pass；fl.sh land 合入 restore/fast-lane（e074ffe）并已推送"
+  ]
+}
