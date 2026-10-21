@@ -1,0 +1,6 @@
+[
+  {"fill":["请输入姓名搜索","测试"]},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"clickSel":".ant-pagination-item-2","optional":true}
+]
