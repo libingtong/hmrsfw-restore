@@ -1,6 +1,5 @@
 [
-  {"click":"现场招聘会"},
+  {"wait":1500},
   {"clickSel":".ant-pagination-item-2","optional":true},
-  {"click":"网络招聘会"},
-  {"clickSel":".ant-pagination-next","optional":true}
+  {"wait":1500}
 ]
