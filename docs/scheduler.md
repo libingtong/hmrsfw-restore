@@ -101,7 +101,7 @@
 | `auditor`、`auditTier`、`auditProcessed` | advance / tick | 审计员、抽检档位、已处理的审计（`<attempt>:<合并 sha>`）。再次抽中审计时先删掉旧的 `audit.<attempt>` |
 | `waitRecord` | advance | 门槛返回 `{"pending":"record"}` 时置为 `true` |
 | `waitRecordFrom` | advance / rerecord | 等录制时每张缺基线工单的录制标记 `a<最高 ok 录制尝试>:<baseline.json 指纹>`。只有之后完成的录制（更高尝试号的录制单 ok，或基线换了）才算「录制已完成」；没有这个键的任务（快速通道新建的、旧任务）照旧只看有没有录制 |
-| `recordPending` | advance | `{why, n}`：连续第几次 `pending:record`、原因是什么。门槛给出真正的结论（通过或失败）后删除，`rerecord` 也会清掉 |
+| `recordPending` | advance | `{why, n, key}`：连续第几次 `pending:record`、原因是什么、是哪一轮门槛（`advKey`，同一轮结果重复 `advance` 只算一次）。门槛给出真正的结论（通过或失败）后删除，`rerecord` 和手动 `--regate` 也会清掉 |
 | `suspendedBy`、`upgradeTried` | open-upgrade | 挂起本页的升级单 |
 | `gateMode` | handoff / tick | 升级单送门槛时为 `upgrade`：门槛员用 `--mode upgrade` |
 | `fastLaneSync` | advance / tick | 升级单合并后同步到 `restore/fast-lane` 的结果：`{state: ok\|already\|no-branch\|conflict\|retry, sha, picked, conflicts, at}`，见上文「升级单与快速通道」 |
@@ -226,7 +226,7 @@ node tools/tick.mjs fast-lane retire --app "$HMRSFW_APP_DIR"
 
 - `advance` 在不拥有该工单的机器上调用（门槛员可能在任一台）：只写 `advanceRequested`，返回 `{"ok":true,"deferred":true}`；所属机器下一轮立即推进，不等 10 分钟的兜底。`--regate` 同理。
 - 主控回退了别的机器的合并：写 `reopenRequest`，由所属机器重开。
-- 等录制（HM-1131）：门槛返回 `pending:record` 时，`advance` 只等门槛点名的工单（`missing`；列表被截断时等全部），并记下 `waitRecordFrom`。工单还没有录制：照旧由主控开录制单。工单已有录制但门槛用不了（交互脚本或 HAR 在基线之后变了、基线刷新失败等）：像 `rerecord` 一样在本机开一次新的录制尝试，已有打开的录制单就不再开。录制完成判据只认 `waitRecordFrom` 之后的录制，所以旧录制不会让任务每轮都被送回门槛。同一原因连续 `recordPendingLimit` 次（默认 2）：交裁定员（`kind=arbitrate`，`arbitrateReason: record-loop: <原因>`）并报异常；裁定员判断是录制问题（`rerecord`）还是原站不稳定（按 10-21 / 10-22 的决定登记已知差异）。
+- 等录制（HM-1131）：门槛返回 `pending:record` 时，`advance` 只等门槛点名的工单（`missing`；列表被截断时等全部），并记下 `waitRecordFrom`。工单还没有录制：照旧由主控开录制单。工单已有录制但门槛用不了（交互脚本或 HAR 在基线之后变了、基线刷新失败等）：像 `rerecord` 一样在本机开一次新的录制尝试，已有打开的录制单就不再开。为它开的录制尝试被取消（快速通道 `login-ok`、手动取消）时，等录制的任务在下一轮自己开下一次尝试（`dispatchRecords` 会跳过已有录制的页）；被挡住（`blocked`）或仍打开的不动。录制完成判据只认 `waitRecordFrom` 之后的录制，所以旧录制不会让任务每轮都被送回门槛。同一原因连续 `recordPendingLimit` 次（默认 2）：交裁定员（`kind=arbitrate`，`arbitrateReason: record-loop: <原因>`）并报异常；裁定员判断是录制问题（`rerecord`）还是原站不稳定（按 10-21 / 10-22 的决定登记已知差异）。
 - `resplit`、`rerecord`、`open-upgrade` 会改动工单的任务，所以只在工单所属机器上执行。在另一台机器上调用时（裁定员或被改派的还原员可能在另一台），只在 `claims` 分支写一条 `req/*.json`，返回 `deferred`；所属机器下一轮执行后删掉这条请求。
 - 主控每一步全局操作前都会重新确认租约，剩余时间不到四分之一（7.5 分钟）就跳过。所以 tick 跑得慢，或各台时钟偏差在这个范围内，都不会出现两个主控。多台机器要开 NTP 对时。
 - 暂停：停止条件建的排障单带 `paused=true`，各台都看到；`resume` 在任一台运行都把它标成 `resumed`，发起暂停那台账本里的暂停标记也随之失效。
