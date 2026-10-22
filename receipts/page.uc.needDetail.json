@@ -7,17 +7,21 @@
   "branch": "restore/fast-lane",
   "result": "fail",
   "outputs": [],
-  "summary": "修正第 1 轮未改页面：gate.1 唯一失败项是 load.html 在百度地图 SDK 自己生成的版权控件 div.BMap_cpyCtrl 内，还原侧一个 span 少了 SDK 异步写入的 style=\"display: inline;\"；地图组件已被门槛换成 legacy-dist mapInfo chunk（shimmed），页面传给它的 props 与原 chunk 逐项一致，页面本身无可改之处。",
+  "summary": "修正第 2 轮仍未改页面：gate.1 第 10 次门槛（同一提交 e074ffe）失败项全部在百度地图区——还原侧地图 SDK 未完成初始化（瓦片坐标未定位、无 Marker、无比例尺/版权/Logo 控件、AutoComplete 未绑定输入框），连带 innerText 少百度版权与比例尺两行、像素差 5.3%；第 1 轮同一代码只差版权控件一个属性，结果随运行环境/外网 SDK 时序变化，页面无可改之处。",
   "verification": [
     "门槛已把 @/shared/mapInfo.vue 换成 legacy-dist mapInfo.1751615607545.js（shimmed），两侧地图组件代码相同；BMap_cpyCtrl 及其 span 由 api.map.baidu.com 的在线 SDK 运行时生成，不在任何还原代码里",
     "页面对 MapInfo 的用法与原 chunk detail.1751615607545.js 一致：belongAddress/disabled/longitude/latitude 绑同名 state.user 字段，width 500、height 300、onOkclick；无 v-if，挂载时机相同；state.user 初始值无 longitude/latitude/hopeWorkAddress，与原版相同",
     "原版两次基线自身在地图区不稳定（report.unstable 含 load.html）：BMap_Marker 的 style 不同，BMap_cpyCtrl 在两次运行中的 DOM 位置也不同（一次在 anchorTL 控件前，一次在后）",
     "还原侧与原版第一次基线逐标签比对：只差 BMap_cpyCtrl 下 span[_cid=1] 的 style=\"display: inline;\" 一处；innerText 相同、请求集合通过、pixel 0",
     "门槛首轮（firstFailed）另有 innerText 第 21 行差异，即百度版权文字那一行，重试后消失，说明该处随 SDK 异步时序变化",
-    "self-check pass:true（renderEquiv 报告 DIFF 3665/3665 tokens，不是失败项）"
+    "self-check pass:true（renderEquiv 报告 DIFF 3665/3665 tokens，不是失败项）",
+    "第 2 轮门槛与第 1 轮是同一提交 e074ffe，needDetail.vue 自 c2bb9ad 后未变；第 1 轮还原侧地图完整（只差 cpyCtrl span 的 display:inline），第 2 轮还原侧地图未初始化完，说明差异不来自代码",
+    "第 2 轮 browser 阶段 437s（第 1 轮 99s），首次尝试 firstFailed 还原侧页面根为空、step 4 点击超时，重试后页面才渲染：本轮运行环境明显过载",
+    "还原侧缺的元素全部由 api.map.baidu.com 在线 SDK 运行时生成（瓦片 img、BMap_Marker、BMap_scaleCtrl、BMap_cpyCtrl、copyright_logo、zoomer）；第一个输入框缺 autocomplete=\"off\" 也是 BMap.Autocomplete 按 id 绑定时写入的，同属 SDK 未就绪",
+    "地图组件仍由门槛 shim 为 legacy-dist mapInfo chunk，两侧代码相同；第 2 轮 self-check 仍 pass:true"
   ],
   "todos": [
-    "疑似比对器问题：百度地图 SDK 的版权控件按自己的异步时序给 span 写 display:inline，原版两次基线里该控件位置还会互换，volatile mask 按位置对齐，没覆盖到这处属性差异；建议裁定员按 pipeline.md 第十五节 2 处理（例如对 .BMap_cpyCtrl 这类第三方运行时控件做等价归一化，或在 thirdparty.mjs 让版权控件更新确定化），走规则变更单",
+    "疑似比对器问题（门槛不确定性）：百度地图在线 SDK 不在 HAR 内，加载与初始化时序随外网和机器负载变化；两轮修正同一代码分别得到「差一个属性」与「地图未初始化」，页面修不了。按 README 第 5 节两轮修正仍失败交裁定员：建议规则变更单让门槛对 api.map.baidu.com 做确定性应答/等待地图 tilesloaded 再截取，或对 .BMap_* 第三方运行时节点做等价归一化",
     "同一问题会影响所有用 @/shared/mapInfo.vue 的页面（工单 usedBy 还有 page.uc.gongfuWorkshop.positionPosting）"
   ],
   "needsFromSkeleton": [],
@@ -29,8 +33,9 @@
     "textNodesChecked": true
   },
   "notes": [
-    "修正员第 1 轮：未改任何文件（apps/uc/src/views/needDetail.vue 不动），restore/fast-lane 无新提交",
-    "疑似比对器问题：差异在百度地图 SDK 运行时生成的 div.BMap_cpyCtrl 内（span 的 display:inline 由 SDK 异步写入），地图组件已 shim 成原 chunk，页面无关",
-    "原版两次基线在同一控件区自身不稳定（控件顺序、Marker style 不同），首轮 innerText 差异重试后消失，同样是 SDK 时序"
+    "修正员第 2 轮：未改任何文件（apps/uc/src/views/needDetail.vue 不动），restore/fast-lane 无新提交",
+    "疑似比对器问题：本轮还原侧百度地图 SDK 未完成初始化（瓦片/Marker/控件/AutoComplete 缺失），innerText 与像素差异均由此连带，同一代码第 1 轮几乎全等",
+    "运行环境过载迹象：browser 阶段 437s，首次尝试页面根为空、step 4 超时",
+    "两轮修正均不改代码，交裁定员"
   ]
 }
