@@ -41,7 +41,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { evaluate, thresholds } from "./coverage.mjs";
-import { apiTracker, describeStep, loadScript, runStepRetry, scriptPath, settle } from "./interact.mjs";
+import { NOT_REPEATED, apiTracker, describeStep, loadScript, runStepRetry, scriptPath, settle } from "./interact.mjs";
 import { entryKey, fulfillOptions, harResponder, requestBody } from "./har-body.mjs";
 import { splitWrites, writeGuard } from "./record-write-guard.mjs";
 import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, pin, pinKey, resolveOrder, switchIdentity, tokenInfo, validId } from "./record-lib.mjs";
@@ -60,7 +60,10 @@ const LOGIN_MSG = /(token|登录).{0,6}(失效|过期|无效)|请重新登录|�
 const SECRET_HEADER = /^(x-access-token|token|authorization|cookie)$/i;
 const SECRET_PARAM = /token/i; // e.g. portal getSysUserByToken?curToken=…
 const redactUrl = (raw) => { const u = new URL(raw); for (const k of [...u.searchParams.keys()]) if (SECRET_PARAM.test(k)) u.searchParams.set(k, "[redacted]"); return u.href; };
-const brief = (e) => String(e.message).split("\n").map((l) => l.trim()).filter((l) => l && !/^=+/.test(l)).slice(0, 6).join(" | ").slice(0, 400);
+// First lines of an error plus the lines of Playwright's call log that say why an action did not go through (a 6-line
+// cut showed only "waiting for element to be visible, enabled and stable" and hid "… intercepts pointer events").
+const WHY = /intercepts pointer events|element is not|not attached|performing \w+ action|\w+ action done|scheduled navigations/;
+const brief = (e) => { const ls = String(e.message).split("\n").map((l) => l.trim()).filter((l) => l && !/^=+/.test(l)); return [...new Set([...ls.slice(0, 4), ...ls.slice(4).filter((l) => WHY.test(l))])].join(" | ").slice(0, 600); };
 const loginHint = (site) => `登录态失效或缺失：请人工在有界面的浏览器里重新登录测试站（${ORIGIN[site]}），在 $RESTORE_ASSETS 下运行 node <本仓库>/tools/pw-login.mjs all 30，只登录门户一次（用户中心由门户的「用户中心」入口自动进入），两站都保存后窗口自动关闭，然后重跑 record-page。只需登录，不用切身份（身份由 record-page 切）。脚本不会自动登录。`;
 
 function emit(o, code) {
@@ -182,7 +185,7 @@ async function record({ order, steps, assets, state, harFile }) {
     for (const [i, s] of steps.entries()) {
       phase = `step${i}`;
       let err = null, note = null;
-      try { const r = await runStepRetry(page, s, () => tracker.idle(page)); note = r.note; if (r.retried) warnings.push(`step ${i} retried once after an action timeout`); }
+      try { const r = await runStepRetry(page, s, () => tracker.idle(page)); note = r.note; if (r.retried) warnings.push(`step ${i} retried once after an action timeout`); if (r.note === NOT_REPEATED) warnings.push(`step ${i} timed out after its action was sent; not repeated`); }
       catch (e) { err = brief(e); }
       await tracker.idle(page);
       stepResults.push({ i, step: describeStep(s), err, note });

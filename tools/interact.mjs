@@ -9,7 +9,7 @@
 //   "optional": true                     a missing target is noted as "absent" instead of failing the step
 // Fill values must be obvious test values ("测试", "Tst-0001"); validate() rejects anything that looks like a phone
 // number, ID number or e-mail address.
-// Library:  import { loadScript, validate, runStep, runStepRetry, describeStep, apiTracker, settle } from "./interact.mjs";
+// Library:  import { loadScript, validate, runStep, runStepRetry, actionSent, describeStep, apiTracker, settle } from "./interact.mjs";
 // CLI:      node tools/interact.mjs --check [files...]   (default: every tests/interact/*.json) → {ok, files:[{file, steps, errors}]}
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
@@ -71,13 +71,23 @@ export async function runStep(page, s) {
   return null;
 }
 
-// runStep with one retry when Playwright reports an action timeout: the action did not happen (target not actionable
-// yet, e.g. under load), so retrying cannot submit twice. "no visible target" is a script error and is not retried.
+// Playwright logs "performing <action> action" right before it sends the input events and "<action> action done" after
+// them. A timeout after that point (the click handler keeps the main thread busy on a loaded machine) means the action
+// already reached the page: doing it again would click twice, and the second click usually lands on what the first one
+// opened (a modal mask "intercepts pointer events") and fails the step. Same rule as tools/gate/replay.mjs (HM-245).
+const ACTION_SENT = /\bperforming \w+ action\b|\b\w+ action done\b/;
+export const actionSent = (e) => ACTION_SENT.test(String(e?.message ?? ""));
+export const NOT_REPEATED = "timed out after the action was sent; not repeated";
+
+// runStep with one retry when Playwright reports an action timeout BEFORE the action was sent (target not actionable
+// yet, e.g. under load), so retrying cannot submit twice. A timeout after the action was sent is not repeated: the step
+// gets its usual wait and the note NOT_REPEATED. "no visible target" is a script error and is not retried.
 // → { note, retried }
 export async function runStepRetry(page, s, beforeRetry = async () => {}) {
   try { return { note: await runStep(page, s), retried: false }; }
   catch (e) {
     if (!/Timeout \d+ms exceeded/.test(e.message)) throw e;
+    if (actionSent(e)) { await page.waitForTimeout(s.wait ?? 1200); return { note: NOT_REPEATED, retried: false }; }
     await beforeRetry();
     return { note: await runStep(page, s), retried: true };
   }

@@ -24,7 +24,7 @@ import { Multica } from "./multica.mjs";
 import { Git, pageForbidden } from "./gitops.mjs";
 import { scopeViolations, registryOwnerOf } from "./upgrade-scope.mjs";
 import { classifyRunError, FAILED_RUN_STATUSES } from "./error-classes.mjs";
-import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isAccepted, isDispatchable, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
+import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isRecordable, isAccepted, isDispatchable, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
 import { Ledger, runRow, recordCapability, recordAudit, auditTier, seedFromConfirm, mergeCapability } from "../ledger.mjs";
 import { route, pick, agentLoad, freeSlots } from "../route.mjs";
 import { Claims, claimPath, statsPath, fileKey } from "./claims.mjs";
@@ -375,7 +375,7 @@ export class Pipeline {
     if (!recs.length) return 0;
     const waiting = new Set(this.pipelineIssues().filter((i) => i.metadata.waitRecord === true && OPEN(i)).flatMap((i) => i.metadata.workOrders || []));
     const openRec = new Set(this.pipelineIssues().filter((i) => i.metadata.kind === "record" && OPEN(i)).flatMap((i) => i.metadata.workOrders || []));
-    let pages = this.orders().filter((w) => isPage(w) && !w.superseded && !["superseded", "held"].includes(L.tasks.wos[w.id]?.state)).sort((a, b) => (waiting.has(b.id) - waiting.has(a.id)) || (b.kb || 0) - (a.kb || 0));
+    let pages = this.orders().filter((w) => isRecordable(w) && !w.superseded && !["superseded", "held"].includes(L.tasks.wos[w.id]?.state)).sort((a, b) => (waiting.has(b.id) - waiting.has(a.id)) || (b.kb || 0) - (a.kb || 0));
     if (FL.fastLaneOn(this)) { // only the fast lane's recordable pages, portal first, user center by role; none while a login is needed
       if (FL.loginNeeded(this)) { this.act("fast lane: recording paused, waiting for a login"); return 0; }
       const rank = new Map(FL.recordQueue(this).map((id, i) => [id, i]));
@@ -396,6 +396,7 @@ export class Pipeline {
   }
 
   openRecord(woId, agent = this.leastLoaded("recorder", [], [woId]), attempt = 1) {
+    if (!isRecordable(this.wo(woId))) return { skipped: true, notRecordable: true }; // shared / npm order: nothing to record
     const c = this.createTask({ key: `record:${woId}:a${attempt}`, title: `[record] ${woId}${attempt > 1 ? ` a${attempt}` : ""}`, description: FL.fastLaneOn(this) ? FL.recordDescription(woId, FL.fastLaneBranch(this)) : `录制工单 \`${woId}\`：写交互脚本、录 HAR、算原版基线。按录制员指令执行。`, meta: { kind: "record", workOrders: [woId], attempt }, assigneeId: agent.id, wos: [woId] });
     if (c.id) this.ledger.tx((L) => { const s = (L.tasks.wos[woId] ??= { tasks: [] }); s.record = "pending"; s.recordTask = c.id; s.recordAttempts = Math.max(s.recordAttempts || 0, attempt); });
     return c;
@@ -572,7 +573,9 @@ export class Pipeline {
     this.mc.setMeta(taskId, "waitRecord", true);
     const L = this.ledger.read();
     // record tasks belong to the leader; elsewhere the leader's next dispatchRecords picks the waiting pages first
-    if (this.isLeader) for (const w of meta.workOrders || []) if (!L.tasks.wos[w]?.record && !this.recorded(L, w)) this.openRecord(w);
+    const unrecordable = (meta.workOrders || []).filter((w) => !isRecordable(this.wo(w)));
+    if (unrecordable.length) this.anomaly(taskId, `gate pending record on order(s) that are never recorded: ${unrecordable.join(", ")}`, "共享库/npm 工单不录制，交裁定员处理该任务");
+    if (this.isLeader) for (const w of meta.workOrders || []) if (!unrecordable.includes(w) && !L.tasks.wos[w]?.record && !this.recorded(L, w)) this.openRecord(w);
     this.ledger.tx((L2) => L2.newEvents.push({ type: "wait-record", task: taskId, wos: meta.workOrders }));
     this.comment(taskId, `[GATE] 等录制：${(meta.workOrders || []).join("、")}`);
     return { ok: true, summary: `${taskId} waiting for recording`, anomalies: [] };
@@ -1305,6 +1308,21 @@ export class Pipeline {
     this.openIntegration({ purpose: "rule-regression", workOrders: this.passedPages(L), sha: null, key: `integration:rule-regression:${r.sha}`, extra: { ruleChange: branch, ruleSha: r.sha } });
   }
 
+  // Leader: bring the tool repo's main into its integration branch (HM-1135). Tool and rule changes land on main; the
+  // recorder runs record-page and baseline from an integration checkout (record-page commits tests/interact there,
+  // handoff the receipts), and nothing else brings main over: from 10-16 to 10-23 it recorded baselines with tools and
+  // rules 243 commits old. Conflicts are not resolved here, they are reported for the arbiter (main's side wins).
+  syncToolIntegration() {
+    const g = this.toolGit;
+    g.fetch("main", "integration");
+    if (g.isAncestor(g.remoteRef("main"), g.remoteRef("integration"))) return 0;
+    const r = this.locks.with("tool-integration", () => g.merge({ branch: "main", into: "integration", message: "Merge main into integration: tools and rules for the recorder (tick, HM-1135)" }), 5 * 60_000);
+    if (r.merged) { if (!r.alreadyMerged) this.act(`tool integration ← main${r.sha ? ` ${r.sha.slice(0, 7)}` : ""}`); return 0; }
+    if (r.locked || r.pushRejected) return 0; // next tick
+    this.anomaly(null, `tool repo integration is behind main and main does not merge into it${r.conflict ? `: conflicts in ${r.conflicts.join(", ")}` : `: ${JSON.stringify(r).slice(0, 200)}`}`, "裁定员把工具仓库 main 合入 integration（tools/、rules/ 以 main 为准）；在此之前录制员用的是旧工具");
+    return 0;
+  }
+
   rejectRule(branch, rc, verdicts) {
     const why = Object.entries(verdicts).filter(([, v]) => v.verdict !== "approve").map(([a, v]) => `${this.roster.get(a)?.name}: ${v.why || "reject"}`).join("；");
     if (rc.round >= 2) {
@@ -1585,6 +1603,7 @@ export class Pipeline {
     step("records", () => this.syncRecords());
     step("audits", () => this.processAudits());
     if (this.isLeader && this.confirmLeader()) step("rule reviews", () => this.processRuleReviews());
+    if (this.isLeader && this.confirmLeader()) step("tool integration", () => this.syncToolIntegration()); // before the record dispatch
     this.issues(true);
     const rec = this.isLeader && this.confirmLeader() ? step("dispatch records", () => this.dispatchRecords()) : 0;
     const neu = step("dispatch", () => this.dispatchNew());
@@ -1765,6 +1784,7 @@ export class Pipeline {
   }
 
   rerecord(woId) {
+    if (!isRecordable(this.wo(woId))) return { ok: false, summary: `${woId} is a shared/npm order: nothing to record`, anomalies: [] };
     return this.withWo([woId], () => {
       const L = this.ledger.read();
       const n = (L.tasks.wos[woId]?.recordAttempts || 1) + 1;
