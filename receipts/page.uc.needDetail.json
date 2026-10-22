@@ -1,0 +1,36 @@
+{
+  "ticket": "page.uc.needDetail",
+  "id": "page.uc.needDetail",
+  "group": "修正员",
+  "kind": "restore",
+  "task": "01a140d3-a529-7b59-a10a-7039c1f05ac3",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "outputs": [],
+  "summary": "修正第 1 轮未改页面：gate.1 唯一失败项是 load.html 在百度地图 SDK 自己生成的版权控件 div.BMap_cpyCtrl 内，还原侧一个 span 少了 SDK 异步写入的 style=\"display: inline;\"；地图组件已被门槛换成 legacy-dist mapInfo chunk（shimmed），页面传给它的 props 与原 chunk 逐项一致，页面本身无可改之处。",
+  "verification": [
+    "门槛已把 @/shared/mapInfo.vue 换成 legacy-dist mapInfo.1751615607545.js（shimmed），两侧地图组件代码相同；BMap_cpyCtrl 及其 span 由 api.map.baidu.com 的在线 SDK 运行时生成，不在任何还原代码里",
+    "页面对 MapInfo 的用法与原 chunk detail.1751615607545.js 一致：belongAddress/disabled/longitude/latitude 绑同名 state.user 字段，width 500、height 300、onOkclick；无 v-if，挂载时机相同；state.user 初始值无 longitude/latitude/hopeWorkAddress，与原版相同",
+    "原版两次基线自身在地图区不稳定（report.unstable 含 load.html）：BMap_Marker 的 style 不同，BMap_cpyCtrl 在两次运行中的 DOM 位置也不同（一次在 anchorTL 控件前，一次在后）",
+    "还原侧与原版第一次基线逐标签比对：只差 BMap_cpyCtrl 下 span[_cid=1] 的 style=\"display: inline;\" 一处；innerText 相同、请求集合通过、pixel 0",
+    "门槛首轮（firstFailed）另有 innerText 第 21 行差异，即百度版权文字那一行，重试后消失，说明该处随 SDK 异步时序变化",
+    "self-check pass:true（renderEquiv 报告 DIFF 3665/3665 tokens，不是失败项）"
+  ],
+  "todos": [
+    "疑似比对器问题：百度地图 SDK 的版权控件按自己的异步时序给 span 写 display:inline，原版两次基线里该控件位置还会互换，volatile mask 按位置对齐，没覆盖到这处属性差异；建议裁定员按 pipeline.md 第十五节 2 处理（例如对 .BMap_cpyCtrl 这类第三方运行时控件做等价归一化，或在 thirdparty.mjs 让版权控件更新确定化），走规则变更单",
+    "同一问题会影响所有用 @/shared/mapInfo.vue 的页面（工单 usedBy 还有 page.uc.gongfuWorkshop.positionPosting）"
+  ],
+  "needsFromSkeleton": [],
+  "selfCheck": {
+    "pass": true,
+    "gitBase": "origin/integration",
+    "failed": [],
+    "components": 1,
+    "textNodesChecked": true
+  },
+  "notes": [
+    "修正员第 1 轮：未改任何文件（apps/uc/src/views/needDetail.vue 不动），restore/fast-lane 无新提交",
+    "疑似比对器问题：差异在百度地图 SDK 运行时生成的 div.BMap_cpyCtrl 内（span 的 display:inline 由 SDK 异步写入），地图组件已 shim 成原 chunk，页面无关",
+    "原版两次基线在同一控件区自身不稳定（控件顺序、Marker style 不同），首轮 innerText 差异重试后消失，同样是 SDK 时序"
+  ]
+}
