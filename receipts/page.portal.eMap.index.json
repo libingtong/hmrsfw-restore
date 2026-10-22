@@ -23,6 +23,7 @@
     "第 2 轮自检：fl-vue 在 restore/fast-lane e074ffe（与门槛 commit 相同，本页文件自 fa72725 后无变化），self-check pass:true",
     "修正第 1 轮：未改任何文件。门槛 static:scope 失败只因升级分支相对 integration 无改动，而本升级单本就无公共库改动可做（见 todos）",
     "疑似比对器问题：差异来自门槛回放中百度在线底图 tilesloaded 时序（vue-baidu-map-3x@1.0.40 Map.vue init() 只在 tilesloaded 后发 ready），不在 target/subComponentDir 或公共库内；修正员不得改门槛/规则/清单，也不得为凑改动制造空提交",
-    "建议：走第十五节 2.2，由裁定员开规则变更单对百度底图/版权控件做确定性处理（参照 HM-239-B/C），本升级单可作废，HM-234 解挂后按规则变更结果重跑"
+    "建议：走第十五节 2.2，由裁定员开规则变更单对百度底图/版权控件做确定性处理（参照 HM-239-B/C），本升级单可作废，HM-234 解挂后按规则变更结果重跑",
+    "升级单 HM-1064 修正第 2 轮：仍未改任何文件。门槛第 2 次 static:scope 失败原因不变（restore/upg-21-a1 与 integration 同为 afed44f）；本单无公共库可改，再修只会重复失败，应转裁定员处理（规则变更单或重录基线）并作废本升级单"
   ]
 }
