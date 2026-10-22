@@ -1,0 +1,29 @@
+{
+  "id": "shared.portal.vue3-seamless-scroll",
+  "ticket": "shared.portal.vue3-seamless-scroll",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/shared.portal.vue3-seamless-scroll-a1",
+  "result": "ok",
+  "outputs": [],
+  "todos": [
+    "工单 status=npm（打包进来的 npm 组件库，用依赖代替，不出还原单），无文件可交付；分支与 integration 50ba66f 相同，未提交改动",
+    "self-check 对 npm 代替单报 compile『没有找到本单要交付的文件』：工单本就没有 target/files，属自检脚本未跳过 status=npm（gate/static.mjs 已跳过），非还原缺陷"
+  ],
+  "needsFromSkeleton": [],
+  "verification": {
+    "npmDependency": "hmrsfw-vue/package.json 与 package-lock.json 已锁定 vue3-seamless-scroll 2.0.1，node_modules 版本 2.0.1",
+    "fingerprint": "原 chunk 与 npm 2.0.1 dist/vue3-seamless-scroll.es.js 的 props（17 项，含 singleLine/copyNum）、emits [stop,count,move]、name 一致",
+    "registry": "registry/portal.json 条目 status 已为 npm，导出 V → Vue3SeamlessScroll（path vue3-seamless-scroll），无需改动",
+    "consumers": "apps/portal 下 7 处均 import { Vue3SeamlessScroll } from \"vue3-seamless-scroll\"，src/shared 无包装文件残留"
+  },
+  "selfCheck": {
+    "components": 0,
+    "scopedSlots": 0,
+    "directives": 0,
+    "textNodesChecked": true,
+    "pass": false,
+    "failed": [
+      { "check": "compile", "where": "shared.portal.vue3-seamless-scroll", "hint": "没有找到本单要交付的文件（）：确认写到了工单指定的路径，并且在 --app 指向的 hmrsfw-vue 检出里" }
+    ]
+  }
+}
