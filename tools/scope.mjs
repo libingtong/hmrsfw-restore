@@ -167,9 +167,18 @@ export function componentsOf(site, file) {
   // `re({__name:"x",…})` (defineComponent) or a plain `X={__name:"x",…}` (script setup without defineComponent)
   for (const m of c.matchAll(/[\w$][(=]\{(__name|name):"([^"]+)"/g)) {
     const at = m.index + 2; const body = c.slice(at, objectEnd(at + 0));
-    if (m[1] === "name" && !/[,{](setup|render)\s*[(:]/.test(body)) continue; // a plain {name:"…"} object (route, push) is not a component
+    if (m[1] === "name" && !/[,{](setup|render)\s*[(:]/.test(body)) {
+      // a plain {name:"…"} object (route, push) is not a component, unless it is the defineOptions({name}) half of a
+      // <script setup> component compiled without object spread: `O=re({name:"x"}),X=re(sp(sv({},O),{setup(…`. The
+      // component is X; its position is X's, so the scopeId lookup below finds X's _export_sfc wrapper (HM-1132)
+      const v = c.slice(Math.max(0, at - 60), at).match(/([\w$]+)=(?:[\w$]+\()?$/)?.[1];
+      const def = v ? new RegExp(`([\\w$]+)=(?:[\\w$]+\\()*[\\w$]+\\(\\{\\},${v.replace(/\$/g, "\\$")}\\),\\{(?:setup|render)\\s*[(:]`).exec(c) : null;
+      if (def) out.push({ name: m[2], at: def.index + def[1].length + 1 });
+      continue;
+    }
     out.push({ name: m[2], at });
   }
+  out.sort((a, b) => a.at - b.at);
   const scopes = [...c.matchAll(/"(data-v-[0-9a-f]{8})"/g)].map((m) => ({ id: m[1], at: m.index }));
   // a component's scopeId comes from its _export_sfc wrapper `w(X,[["__scopeId","data-v-x"]])`, X being the variable the
   // definition is assigned to; without a recognisable variable, the first scopeId after the definition
