@@ -55,6 +55,7 @@ import { scopeViolations, registryOwnerOf } from "./lib/upgrade-scope.mjs";
 import { isPage, loadWorkOrders, reverseDeps } from "./lib/workorders.mjs";
 import { changedFiles } from "./check-imports.mjs";
 import { selfCheckFiles } from "./self-check.mjs";
+import { ensureLegacyDist } from "./lib/shared-deps.mjs";
 
 const MULTICA = process.env.MULTICA_BIN || "multica";
 const rel = (p) => path.relative(ROOT, p);
@@ -303,7 +304,7 @@ export async function gate(argv) {
       const plugins = [scopeIdPlugin(scopeIds), ...(registry && reservedShared(registry).length ? [shimPlugin({ app: a, appDir, registry, shimDir, used, shimmer: createShimmer({ site, registry, outDir: shimDir }) })] : [])];
       try {
         if (mode === "page" && buildKind === "ondemand") {
-          const srv = await startOnDemand({ appDir, app: a, gateDir, stateRoot: state, routes: routesOf(a), plugins, allow: [path.join(ROOT, "legacy-dist")] });
+          const srv = await startOnDemand({ appDir, app: a, gateDir, stateRoot: state, routes: routesOf(a), plugins, allow: [path.join(ROOT, "legacy-dist"), realpathOr(path.join(ROOT, "legacy-dist"))] });
           closers.push(() => srv.close());
           for (const w of judged.filter((x) => x.app === a && !buildFail[x.id])) {
             const errs = await srv.precompile([...pageFiles(w, appDir), ...(w.recordVia ? [mountOf[w.id]] : [])].filter((f) => /\.(vue|ts|js)$/.test(f)));
@@ -522,6 +523,8 @@ export function report(task, attempt, out, ids) {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const argv = process.argv.slice(2);
   let printed = false;
+  const relinked = ensureLegacyDist(ROOT); // HM-1130: legacy-dist may be a link into the shared cache
+  if (relinked) process.stderr.write(relinked + "\n");
   // Every run ends with one JSON line: if the event loop drains while a step is still pending (it happened inside Vite's
   // dependency optimizer), that is the gate's own error, not a silent exit 0.
   process.on("beforeExit", () => {

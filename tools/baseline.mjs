@@ -27,6 +27,7 @@ import { serveStatic } from "./gate/serve.mjs";
 import { loadRules } from "./gate/rules.mjs";
 import { redact, unstableKeys } from "./gate/compare.mjs";
 import { buildCoverage, summaryOf } from "./gate/coverage.mjs";
+import { ensureLegacyDist } from "./lib/shared-deps.mjs";
 
 export const BASELINE_VERSION = 1;
 
@@ -81,6 +82,8 @@ export function readBaseline(dir) {
 
 async function main() {
   const argv = process.argv.slice(2);
+  const relinked = ensureLegacyDist(ROOT); // HM-1130: legacy-dist may be a link into the shared cache
+  if (relinked) process.stderr.write(relinked + "\n");
   const [id] = positionals(argv, ["--har", "--out", "--app", "--interact-ref"]);
   if (!id) throw new Error("usage: node tools/baseline.mjs <work order id> [--har <path>] [--out <dir>]");
   const t0 = Date.now();
