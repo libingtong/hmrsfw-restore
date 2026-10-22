@@ -38,7 +38,8 @@
    "original": "aZ",
    "path": "@/legacy/api",
    "export": "getArticleList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Y": {
    "original": "B",
@@ -66,7 +67,8 @@
    "original": "a_",
    "path": "@/legacy/utils",
    "export": "validateContactPhone",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "W": {
    "original": "v",
@@ -103,35 +105,35 @@
  "api": {
   "Ie": {
    "original": "index.api.175161560754512.js#g",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-175161560754512",
    "export": "checkIzShowApplySameNetworkFair",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair"
   },
   "ke": {
    "original": "index.api.175161560754512.js#j",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-175161560754512",
    "export": "queryBoothPlaceInfo",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/queryBoothPlaceInfo"
   },
   "xe": {
    "original": "index.api.175161560754512.js#k",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-175161560754512",
    "export": "queryBoothView",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/queryBoothView"
   },
   "Ce": {
    "original": "index.api.175161560754512.js#l",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-175161560754512",
    "export": "getCompanyAttachmentList",
    "status": "restored",
    "url": "/xf-job/communal/xfSysAttachment/getCompanyAttachmentList"
   },
   "ze": {
    "original": "index.api.175161560754512.js#d",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-175161560754512",
    "export": "companyPositionAdd",
    "status": "restored",
    "url": "/xf-job/job/xfJobFairApplyInfo/companyPositionAdd"

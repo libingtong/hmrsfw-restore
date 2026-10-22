@@ -15,6 +15,6 @@
 | `H` | index.1751615607545.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `ce` | index.1751615607545.js | entry | dayjs `default` | `Oa(Trt)` |
 | `S` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `oe` | index.1751615607545.js | api | @/legacy/api `queryAnnouncementList` | `t=>Ee.request({url:"/xf-common/common/xfAnnouncementSendRedcord/queryAnnouncementList",method:"post",params:t})` |
-| `le` | index.1751615607545.js | entry | @/legacy/utils `stripHtml` | `t=>{let e="";if(t){let n=/<[^>]+>/g;e=t.replace(n,"")}return e}` |
-| `de` | index.api.1751615607545.js | api | @/api/jobSupermarketMerchants `getFairListNew` | `e=>t.request({url:"/xf-job/job/licenseFree/xfJobFair/getFairListNew",method:"post",data:{dataSourceType:0,provincialLevel:1,pageSize:e\|\|"100"}})` |
+| `oe` | index.1751615607545.js | api | @/legacy/api `queryAnnouncementList`（reserved） | `t=>Ee.request({url:"/xf-common/common/xfAnnouncementSendRedcord/queryAnnouncementList",method:"post",params:t})` |
+| `le` | index.1751615607545.js | entry | @/legacy/utils `stripHtml`（reserved） | `t=>{let e="";if(t){let n=/<[^>]+>/g;e=t.replace(n,"")}return e}` |
+| `de` | index.api.1751615607545.js | api | @/api/jobSupermarketMerchants `getFairListNew`（reserved） | `e=>t.request({url:"/xf-job/job/licenseFree/xfJobFair/getFairListNew",method:"post",data:{dataSourceType:0,provincialLevel:1,pageSize:e\|\|"100"}})` |

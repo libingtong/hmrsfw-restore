@@ -1,7 +1,7 @@
 {
  "id": "page.portal.oddJob.index",
  "type": "page",
- "status": "todo",
+ "status": "regression",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -72,7 +72,13 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.portal.c03"
+  ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/oddJob",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
 }

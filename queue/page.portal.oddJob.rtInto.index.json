@@ -43,7 +43,10 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03"
+  ]
  },
  "stylesProvidedByScript": true,
  "recordVia": "page.portal.oddJob.Jobshortage.index"

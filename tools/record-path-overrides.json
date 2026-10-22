@@ -1,0 +1,114 @@
+{
+ "_source": "recordVia 组件页的录制路径修正（work-orders.mjs applyRecordPathOverrides）：父页面按 query 只渲染其中一栏时，按「最近的路由父页面」推出来的 recordPath 渲染不到组件，要带上参数。每条都要有原 chunk 证据；只改 recordPath 时，覆盖值必须以推出来的路径开头；带 recordVia 时改由另一个同样引用该 chunk 的路由页面录制，recordPath 必须是那个页面自己的路径（可加 ?/#，HM-953）。重新生成 queue/ 时保留，不会丢（HM-949）。recordPath 可把路由里的 :param 段填成测试数据的值（HM-48）；条目可以只带 recordNotes（录制说明，带进工单），不改 recordPath（HM-48）",
+ "page.portal.sjz.fair.outFair.list": {
+  "recordPath": "/fairList?type=30",
+  "evidence": "legacy-dist/portal/assets/fairs.1783320636200.js:1456 query.type web/20→20、scene/10→10、其他→30（户外栏），不带 type 时 jobFairType 为空，户外栏不渲染",
+  "by": "HM-848"
+ },
+ "page.portal.sjz.fair.webFair.list": {
+  "recordPath": "/fairList?type=web",
+  "evidence": "legacy-dist/portal/assets/fairs.1783320636200.js:1456 query.type 为 web 时 jobFairType=20，渲染网络招聘会栏",
+  "by": "HM-848"
+ },
+ "page.portal.talents.fair.outFair.list": {
+  "recordPath": "/talents/fairList?type=30",
+  "evidence": "legacy-dist/portal/assets/fairList.17833206362002.js:1257 默认 jobFairType=\"20\" 只渲染线上栏；query.type 非 web 时为 30，才渲染线下栏 list.178332063620010.js（data-v-7c10e688）",
+  "by": "HM-881"
+ },
+ "page.portal.fair.signModal": {
+  "recordVia": "page.portal.sjz.fair.fairList",
+  "recordPath": "/fairList?type=web",
+  "evidence": "legacy-dist/portal/assets/fairs.1783320636200.js:1439 query.type=web → jobFairType=\"20\"，:2454 渲染网络招聘会栏 list.17833206362008.js；list.17833206362008.js:8083 卡片 izEnrollStatus===\"1\"&&signStatus!==\"1\" 时出「报名参会」，:3290 ca() 通过单位校验后 signShow=true，:10813 signShow 时渲染 signModal（data-v-484c8df1）。推出来的 /cityHome/:cityCode（index.178332063620024.js:21507 同条件）在测试环境没有可报名的招聘会（HM-937）；/fairList 原版基线（page.portal.sjz.fair.fairs，2026-10-19）里网络招聘会栏渲染出 2 个「报名参会」",
+  "by": "HM-953"
+ },
+ "page.portal.Guidance.GuidanceAskDetail.index": {
+  "recordPath": "/GuidanceAskDetail?id=1891408087354544130&izClassic=1",
+  "evidence": "legacy-dist/portal/assets/index.17833206362003.js:1:2305 R() 用 query.id、query.izClassic 查详情，不带 id 时详情为空，根节点不出现；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "by": "HM-48"
+ },
+ "page.portal.jobMarket.marketDetail": {
+  "recordPath": "/jobMarketDetail?id=1909238332610678786",
+  "evidence": "legacy-dist/portal/assets/marketDetail.1783320636200.js:1:1640 挂载时 e.id=query.id 再取详情，不带 id 时详情为空；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "by": "HM-48"
+ },
+ "page.portal.region.innovation.innovationDetail": {
+  "recordPath": "/region/innovationDetail?id=1920065802416500738",
+  "evidence": "legacy-dist/portal/assets/innovationDetail.1783320636200.js:1:1214 只有 query.id 存在时才调详情接口 T()；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "by": "HM-48"
+ },
+ "page.portal.sjz.unitMain.unitMain": {
+  "recordPath": "/unitMain?id=2111900000000000101",
+  "evidence": "legacy-dist/portal/assets/unitMain.1783320636200.js:1:12418 i.id=query.id，不带 id 时单位主页为空、根节点不出现；地址里只能带 id 这一个参数（HM-1070）；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "by": "HM-48"
+ },
+ "page.uc.corpLoan.corpLoanInfo": {
+  "recordPath": "/corpLoan/corpLoanInfo?id=2110365316960813058&type=check",
+  "evidence": "legacy-dist/usercenter/assets/corpLoanInfo.1751615607545.js:1:1872 无 query.id 且已申请过时报「只允许申请一次」并跳走；1:5728 type=check 为只读查看，1:5786 按 query.id 取详情；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "企业页（招聘单位身份）。type=check 是只读查看，不点提交或保存。",
+  "by": "HM-48"
+ },
+ "page.uc.personLoan.detailInfo": {
+  "recordPath": "/personLoan/detailInfo?id=2101650488935157762&type=check",
+  "evidence": "legacy-dist/usercenter/assets/detailInfo.1751615607545.js:1:1781 无 query.id 且已申请过时报「只允许申请一次」并跳回；1:6428 type=check 为只读查看，1:6486 按 query.id 取详情；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "type=check 是只读查看，不点提交或保存。",
+  "by": "HM-48"
+ },
+ "page.uc.previewresume": {
+  "recordPath": "/previewresume?id=2100450711757230082",
+  "evidence": "legacy-dist/usercenter/assets/previewresume.1751615607545.js:1:10892 setInfo 取 query.id 等参数加载简历，不带 id 时原页面无根节点；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "by": "HM-48"
+ },
+ "page.uc.zcyzJobFairRelease": {
+  "recordPath": "/zcyzJobFairRelease?jobfairid=2092158729399631874&jobFairBoothRelationId=2092158731777802242&classify=30",
+  "evidence": "legacy-dist/usercenter/assets/zcyzJobFairRelease.1751615607545.js:1:2366 jobFairId=query.jobfairid、jobFairBoothId=query.jobFairBoothId||query.jobFairBoothRelationId；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "企业页（招聘单位身份）。只做查看类交互，不点发布、保存或提交。",
+  "by": "HM-48"
+ },
+ "page.uc.sceneFairSign": {
+  "recordPath": "/sceneFairSign/2092885417695219713?identitytype=1&classify=30",
+  "evidence": "legacy-dist/usercenter/assets/sceneFairSign.1751615607545.js:1:5858 招聘会信息和展位都按路由参数 params.zphId 查询（路径段 :zphId 填真实招聘会 id）；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "企业页（招聘单位身份）。绝不能点报名、提交或选展位确认，交互脚本只做查看、展开、切换。",
+  "by": "HM-48"
+ },
+ "page.portal.sjz.bigData.components.Dashboard1": {
+  "evidence": "/sjzbigData 的 type=0 大屏配置（4 个模块）；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "/sjzbigData 的 type=0 大屏配置已造好（4 个模块）。",
+  "by": "HM-48"
+ },
+ "page.portal.sjz.bigData.components.Dashboard2": {
+  "evidence": "/sjzbigData 的 type=0 大屏配置（4 个模块）；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "/sjzbigData 的 type=0 大屏配置已造好（4 个模块）。原站加载期不稳定时按李炳通 10-21「不稳定页接受」交裁定员。",
+  "by": "HM-48"
+ },
+ "page.portal.sjz.fair.fairsList": {
+  "evidence": "系统设置 iz_scene_outdoor_add 改为 1；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "/fairList 的 iz_scene_outdoor_add 已改为 1，页面走 fairsList 分支。",
+  "by": "HM-48"
+ },
+ "page.portal.talents.index.advertTop": {
+  "evidence": "/talents/index 顶部广告位造了 1 条；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "/talents/index 顶部广告位已有 1 条。原站加载期浮层不稳定时按李炳通 10-21「不稳定页接受」交裁定员。",
+  "by": "HM-48"
+ },
+ "page.portal.sjz.newHome.resource": {
+  "evidence": "/archivesSearch 第 7 个 tab（keywords=2）数据；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "/archivesSearch 第 7 个 tab（keywords=2）：交互脚本先点第 7 个 tab 再取根。",
+  "by": "HM-48"
+ },
+ "page.portal.special.page1.jobNews": {
+  "evidence": "/archivesSearch 第 8 个 tab（keywords=3）数据；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "/archivesSearch 第 8 个 tab（keywords=3）：交互脚本先点第 8 个 tab 再取根。",
+  "by": "HM-48"
+ },
+ "page.portal.answer.passwordModal": {
+  "evidence": "/answer 下名为 test 的问卷设了密码；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
+  "recordNotes": "/answer：点名为 test 的问卷会弹出密码框；只录弹窗本身，不输入密码、不提交、不点「立即进入」。",
+  "by": "HM-48"
+ },
+ "page.uc.formDone": {
+  "recordPath": "/formDone/bshbt",
+  "evidence": "legacy-dist/usercenter/assets/formDone.1751615607545.js:1:110146 按 route.params.type 只渲染一个子表单（bmgjjl、lsajbt、zctsjl、zsgxjl、bshbt、szftsjt、bshky），字面 :type 时一个都不渲染；legacy-dist/usercenter/assets/doneList.1751615607545.js:1:24445 原版入口 router.push(\"/formDone/bshbt\") 打开空白申报表（无单位认证前置条件，不读 corpInfo）。取值由 HM-1113 裁定",
+  "recordNotes": "只录 bshbt 子表单的空白申报表（不带 id）。绝不能点提交、保存或上传，交互脚本只做查看、展开、切换。",
+  "by": "HM-1116"
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "id": "echarts-instance-id",
+ "kind": "html",
+ "enabled": true,
+ "since": "HM-652",
+ "why": "echarts.init 给容器写 _echarts_instance_=\"ec_<n>\"，n 是 echarts 模块加载时刻的毫秒时间戳加实例序号，每次运行都不同，只供 echarts 按 DOM 找回实例。只把数字换成占位，属性在不在、在哪个元素上照常比较。证据：legacy-dist/portal/assets/index.1783320636200118.js 偏移 318969（d5=+new Date-0）、319119（r.id=\"ec_\"+d5++，随后写进 _echarts_instance_）；用户中心 index.175161560754527.js 同一写法。见 docs/rule-changes/HM-652.md",
+ "subs": [
+  [
+   "_echarts_instance_=\"ec_\\d+\"",
+   "g",
+   "_echarts_instance_=\"ec_#\""
+  ]
+ ]
+}

@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/extractpositionmodal.vue",
  "exports": {
   "e": {
-   "export": "default"
+   "export": "default",
+   "original": "extractpositionmodal.1751615607545.js#e"
   }
  },
  "registryKey": "extractpositionmodal.1751615607545.js",

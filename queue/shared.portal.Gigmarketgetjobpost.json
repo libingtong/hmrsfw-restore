@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/Gigmarketgetjobpost.vue",
  "exports": {
   "G": {
-   "export": "default"
+   "export": "default",
+   "original": "Gigmarketgetjobpost.1783320636200.js#G"
   }
  },
  "registryKey": "Gigmarketgetjobpost.1783320636200.js",

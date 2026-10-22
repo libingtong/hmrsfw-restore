@@ -29,7 +29,8 @@
    "original": "V",
    "path": "@/legacy",
    "export": "VideoPlayer",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c05"
   },
   "na": {
    "original": "d",
@@ -60,7 +61,7 @@
    "original": "index.api.178332063620039.js#q",
    "path": "@/api/sysMeeting",
    "export": "queryById",
-   "status": "restored",
+   "status": "reserved",
    "url": "xf-job/communal/licenseFree/xfSysMeeting/queryById"
   }
  },

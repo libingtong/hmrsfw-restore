@@ -4,8 +4,15 @@
 //   2. a page does not redefine a public symbol: no top-level declaration named like a registry export, no request to a
 //      url that a registry function already wraps;
 //   3. every component / directive the templates resolve by name is imported or registered globally (registry.globals);
+//      a name the original chunk itself resolves without any registration (registry.globals.unregistered lists it for
+//      that chunk) is rendered as an unknown element there, and the same tag in the restored template is the same call;
 //   4. a page or segment order changes nothing outside its own files (legacy/, shared/, api/, utils/, package.json, lock
 //      files, other pages) — judged from git in the hmrsfw-vue checkout against origin/integration (or origin/main).
+//      On a branch several page orders share (HMRSFW_SHARED_BRANCH=1, set by the gate for fast-lane tasks: every fix lands
+//      on `restore/fast-lane` itself), a file another page owns is that page's change, not this order's, when every commit
+//      since the base that touches it touches only files other pages own and does not name this order (otherPagesOnly).
+//      A file a cherry-pick of a commit already in the base touched, and that HEAD holds exactly as that commit does (an
+//      upgrade synced to the fast lane, HM-990), is the base's content, not a change of the branch (pickedFromBase).
 // Items that only differ in form from the registry (a barrel re-exporting the same symbol, a duplicate API file, a POC
 // wrapper around an npm package, a function named like a public one) are reported with severity "warn" and do not fail.
 // Usage: node tools/check-imports.mjs <order id> --app <hmrsfw-vue>   → JSON {pass, failed:[{check, where, hint, severity?}]}
@@ -34,6 +41,13 @@ export function registryIndex(reg) {
   for (const s of Object.values(reg.shared)) for (const x of Object.values(s.exports)) { if (x.npm) continue; add(x.path ?? s.path, x.export); if (x.export !== "default") publicNames.set(x.export, x.path ?? s.path); }
   for (const a of Object.values(reg.api)) { add(a.path, a.export); publicNames.set(a.export, a.path); urls.set(a.url, `${a.path} 的 ${a.export}`); }
   for (const m of Object.values(reg.modules)) for (const x of Object.values(m.exports)) if (x.path?.startsWith("@/")) add(x.path, x.export);
+  // earlier names of a renamed export that restored pages still import (record.aliases): accepted, with a warning
+  const aliases = new Map(); // normalized path → Map(old name → current name)
+  const addAlias = (p, x) => { for (const a of x.aliases ?? []) { const k = normSpec(p); if (!aliases.has(k)) aliases.set(k, new Map()); aliases.get(k).set(a, x.export); } };
+  for (const s of Object.values(reg.shared)) for (const x of Object.values(s.exports)) addAlias(x.path ?? s.path, x);
+  for (const m of Object.values(reg.modules)) for (const x of Object.values(m.exports)) if (x.path?.startsWith("@/")) addAlias(x.path, x);
+  for (const e of Object.values(reg.entry)) if (e.path && !e.npm) addAlias(e.path, e);
+  for (const a of Object.values(reg.api)) addAlias(a.path, a);
   for (const m of Object.values(reg.apiModules ?? {})) add(m.path);
   for (const [spec, names] of Object.entries(reg.utils ?? {})) for (const n of names) { add(spec, n); if (!publicNames.has(n)) publicNames.set(n, spec); }
   // npm symbols the original reached through a chunk (entry exports, shared chunks that bundled a package)
@@ -42,7 +56,7 @@ export function registryIndex(reg) {
   for (const sh of Object.values(reg.shared)) for (const x of Object.values(sh.exports)) if (x.npm) npmNames.set(x.export, x.path);
   for (const m of Object.values(reg.modules)) for (const x of Object.values(m.exports)) if (x.path && !x.path.startsWith("@/") && x.export) npmNames.set(x.export, x.path);
   const npm = new Set([...BUILTIN_NPM, ...Object.keys(reg.npm ?? {})]);
-  return { paths, publicNames, urls, npm, npmNames };
+  return { paths, publicNames, urls, npm, npmNames, aliases };
 }
 
 function scriptOf(sfc, file) {
@@ -52,16 +66,78 @@ function scriptOf(sfc, file) {
   return [descriptor.script, descriptor.scriptSetup].filter(Boolean).map((b) => ({ content: b.content, setup: !!b.setup }));
 }
 
-function changedFiles(APP) {
-  const git = (...a) => execFileSync("git", ["-C", APP, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trimEnd(); // keep the leading space of porcelain lines
+// Files the checkout at APP changed against the integration base (merge base with origin/integration, else main), plus
+// uncommitted and untracked ones. Also used by gate.mjs --mode upgrade for the upgrade's scope (HM-990).
+export function changedFiles(APP) {
+  const git = (...a) => execFileSync("git", ["-C", APP, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], maxBuffer: 64 << 20 }).trimEnd(); // keep the leading space of porcelain lines
   try {
     const base = ["origin/integration", "origin/main", "integration", "main"].find((r) => { try { git("rev-parse", "--verify", "--quiet", r); return true; } catch { return false; } });
     if (!base) return { files: null, base: null };
     const mb = git("merge-base", "HEAD", base);
-    const committed = git("diff", "--name-only", `${mb}...HEAD`).split("\n").filter(Boolean);
     const work = git("status", "--porcelain", "--untracked-files=all").split("\n").filter(Boolean).map((l) => l.slice(3).replace(/^.* -> /, ""));
-    return { files: [...new Set([...committed, ...work])], base };
+    const picked = pickedFromBase(git, mb, base);
+    const committed = git("diff", "--name-only", `${mb}...HEAD`).split("\n").filter((p) => p && !picked.has(p));
+    return { files: [...new Set([...committed, ...work])], base, mb, work: new Set(work), picked: [...picked] };
   } catch { return { files: null, base: null }; }
+}
+
+// Files of mb..HEAD that are the base's content, not the branch's change: a cherry-pick of a commit already in `base`
+// touched the file and HEAD holds it exactly as that base commit does (both absent counts). The fast lane gets each merged
+// upgrade this way (syncFastLane, HM-990) and its merge-base with integration does not move, so without this every
+// fast-lane page would be charged with the upgrades' public files. A pick is recognised by git's "(cherry picked from
+// commit <sha>)" trailer with <sha> an ancestor of base; a file the branch changed again after the pick differs from the
+// picked version and stays in. With any merge in mb..HEAD nothing is dropped (a merge's own changes are not listed per commit).
+export function pickedFromBase(git, mb, base) {
+  const out = new Set();
+  if (git("rev-list", "--merges", "-n", "1", `${mb}..HEAD`).trim()) return out;
+  const blob = (rev, p) => { try { return git("rev-parse", "--verify", "--quiet", `${rev}:${p}`); } catch { return null; } };
+  const srcs = new Map(); // file → base commits picked onto the branch that touched it
+  for (const rec of git("log", "--no-merges", "--no-renames", "--name-only", "--format=%x00%B%x01", `${mb}..HEAD`).split("\0").slice(1)) {
+    const [msg, rest = ""] = rec.split("\x01");
+    const src = [...msg.matchAll(/\(cherry picked from commit ([0-9a-f]{40})\)/g)].map((m) => m[1]).filter((s) => { try { git("merge-base", "--is-ancestor", s, base); return true; } catch { return false; } });
+    if (src.length) for (const p of rest.split("\n").filter(Boolean)) srcs.set(p, [...(srcs.get(p) ?? []), ...src]);
+  }
+  for (const [p, src] of srcs) { const head = blob("HEAD", p); if (src.some((s) => blob(s, p) === head)) out.add(p); }
+  return out;
+}
+
+// page id owning a file (target or subComponentDir of a page / segment order; segments count as their page), or null
+export function pageOwners(queueDir = path.join(ROOT, "queue")) {
+  const files = new Map(), dirs = [];
+  for (const n of readdirSync(queueDir).filter((f) => /^(page|seg)\..*\.json$/.test(f))) {
+    const o = JSON.parse(readFileSync(path.join(queueDir, n), "utf8")); const page = o.type === "segment" ? o.page : o.id;
+    if (!page) continue;
+    if (o.target) files.set(o.target, page);
+    if (o.subComponentDir) dirs.push([o.subComponentDir.replace(/\/?$/, "/"), page]);
+  }
+  dirs.sort((a, b) => b[0].length - a[0].length);
+  return (p) => files.get(p) ?? dirs.find(([d]) => p.startsWith(d))?.[1] ?? null;
+}
+
+// Rule 4 on a shared branch: of the changed files outside this order, those that are another page's own change → Map(file →
+// owning page). A file qualifies only if it is not in the working tree, at least one commit in mb..HEAD touches it, and every
+// such commit is attributable to other pages: every file it touches (renames as delete + add) is owned by a
+// page other than this one, and its message does not name this order or its page; with any merge in mb..HEAD nothing
+// qualifies. Everything else stays this order's.
+export function otherPagesOnly(APP, { mb, files, work, me, mine, owner = pageOwners() }) {
+  const git = (...a) => execFileSync("git", ["-C", APP, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], maxBuffer: 64 << 20 });
+  const ids = [...new Set(me)].filter(Boolean);
+  const names = (msg) => { const t = new Set(msg.split(/[^\w.-]+/).map((w) => w.replace(/\.+$/, ""))); return ids.some((id) => t.has(id)); };
+  const commits = [];
+  if (git("rev-list", "--merges", "-n", "1", `${mb}..HEAD`).trim()) return new Map(); // a merge's own changes are not listed per commit
+  for (const rec of git("log", "--no-renames", "--name-only", "--format=%x00%H%x01%B%x01", `${mb}..HEAD`).split("\0").slice(1)) {
+    const [, msg, rest = ""] = rec.split("\x01");
+    const touched = rest.split("\n").filter(Boolean);
+    const others = touched.length > 0 && !names(msg) && touched.every((p) => !mine(p) && owner(p) && !ids.includes(owner(p)));
+    commits.push({ touched: new Set(touched), others });
+  }
+  const out = new Map();
+  for (const p of files) {
+    if (mine(p) || work.has(p) || !owner(p) || ids.includes(owner(p))) continue;
+    const by = commits.filter((c) => c.touched.has(p));
+    if (by.length && by.every((c) => c.others)) out.set(p, owner(p));
+  }
+  return out;
 }
 
 export function checkImports(order, APP, { files = orderFiles(order, APP), maps = order.maps ? loadJson(order.maps) : null, reg = loadRegistry(order.app), allTargets = null } = {}) {
@@ -76,11 +152,20 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
   const views = new Map(Object.values(maps?.views ?? {}).filter((v) => v.path).map((v) => [normSpec(v.path), v]));
   allTargets ??= new Map(readdirSync(path.join(ROOT, "queue")).filter((f) => /^(page|seg)\./.test(f)).map((f) => JSON.parse(readFileSync(path.join(ROOT, "queue", f), "utf8"))).filter((o) => o.target).map((o) => [path.resolve(APP, o.target), o.id]));
   const pageOrder = order.type === "page" || order.type === "segment";
+  // a segment's fragments are pasted as they are into the assembled SFC (assemble-segments.mjs), so a relative import in
+  // <subComponentDir>_seg/<Comp>.script.ts is written — and resolved here — from the assembled file's directory; and a
+  // segment's own files are its page's (the same set rule 4's mine() allows), including what the other segments deliver
+  const page = order.type === "segment" ? (() => { try { return loadOrder(order.page); } catch { return null; } })() : null;
+  const segDir = page ? path.resolve(APP, page.subComponentDir, "_seg") + path.sep : null;
+  const assembledOf = (name) => path.resolve(APP, name === page.components.at(-1)?.name ? page.target : `${page.subComponentDir}${name}.vue`);
+  const importDir = (f) => segDir && f.startsWith(segDir) && f.endsWith(".script.ts") ? path.dirname(assembledOf(path.basename(f, ".script.ts"))) : path.dirname(f);
+  if (page) for (const f of [...orderFiles(page, APP), ...(page.components ?? []).map((c) => assembledOf(c.name))]) own.add(path.resolve(f));
   // hmrsfw-vue as it is: barrels that re-export a registry symbol, duplicate API files, POC wrappers around npm packages
   const appIdx = appExportIndex(APP, order.app);
   const dupApi = new Map(Object.values(reg.apiModules ?? {}).flatMap((m) => (m.duplicates ?? []).map((d) => [normSpec(d), m.path])));
   const warn = (where, hint) => failed.push({ check: "imports", where, hint, severity: "warn" });
   const origSrc = order.sourceChunk ? chunkSource(order.site, order.sourceChunk.split("/").pop()) ?? "" : "";
+  const unregistered = (n) => !!order.sourceChunk && (reg.globals.unregistered?.[n] ?? []).includes(order.sourceChunk.split("/").pop());
 
   for (const f of files) {
     const local = new Set(); const imported = new Set(); const bound = new Set(); // bound: every top-level name (template may use it as a component)
@@ -93,7 +178,7 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
           names.forEach((x) => imported.add(x.local));
           if (n.importKind === "type") continue;
           if (spec.startsWith(".")) {
-            const target = path.resolve(path.dirname(f), spec); const cands = [target, `${target}.ts`, `${target}.vue`, path.join(target, "index.ts")];
+            const target = path.resolve(importDir(path.resolve(f)), spec); const cands = [target, `${target}.ts`, `${target}.vue`, path.join(target, "index.ts")];
             const hit = cands.find((c) => own.has(c)) ?? cands.find((c) => existsSync(c));
             if (!hit) { failed.push({ check: "imports", where: rel(f), hint: `相对导入 "${spec}" 找不到文件` }); continue; }
             if (own.has(hit) || ownAsset(hit)) continue;
@@ -113,6 +198,8 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
               failed.push({ check: "imports", where: rel(f), hint: `"${spec}" 不是公共库清单里的路径。按 maps 给出的路径导入；清单里没有的东西写进回执 needsFromSkeleton，不要自己补` }); continue;
             }
             for (const x of names) if (x.imported !== "*" && allowed.size && !allowed.has(x.imported)) {
+              const renamed = idx.aliases.get(k)?.get(x.imported);
+              if (renamed) { warn(rel(f), `"${spec}" 的 ${x.imported} 是旧导出名，清单里现在叫 ${renamed}：新代码用 import { ${renamed} } from "${spec}"（已还原页面里的旧名暂时照常通过，registry 清理时统一改）`); continue; }
               const at = idx.publicNames.get(x.imported) ?? idx.npmNames.get(x.imported);
               const viaBarrel = appIdx.get(k)?.exports.has(x.imported);
               const readable = appIdx.get(k)?.aliasOf.get(x.imported);
@@ -147,7 +234,7 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
       const c = compileSfc(sfc, f);
       if (c.errors.length) continue; // compile errors are reported by the compile check
       const facts = renderFacts(c.code, compiledNameOf);
-      const ok = (n) => VUE_BUILTIN_COMPONENTS.has(n) || reg.globals.components.includes(n) || reg.globals.components.includes(camel(n)) || reg.globals.componentPatterns.some((p) => new RegExp(p).test(n)) || [...imported, ...local, ...bound].some((l) => l === n || l === pascal(n) || l === camel(n));
+      const ok = (n) => VUE_BUILTIN_COMPONENTS.has(n) || reg.globals.components.includes(n) || reg.globals.components.includes(camel(n)) || reg.globals.componentPatterns.some((p) => new RegExp(p).test(n)) || unregistered(n) || [...imported, ...local, ...bound].some((l) => l === n || l === pascal(n) || l === camel(n));
       for (const n of new Set(facts.components)) if (!ok(n)) failed.push({ check: "imports", where: rel(f), hint: `模板用到组件 <${n}>，但既没有导入也不是全局组件（清单 globals）：按 maps 导入它；如果原包里它是全局组件而清单没有，写进回执 needsFromSkeleton` });
       for (const n of new Set(facts.directiveNames)) if (!reg.globals.directives.includes(n) && ![...local, ...imported, ...bound].includes(`v${pascal(camel(n))}`)) failed.push({ check: "imports", where: rel(f), hint: `模板用到指令 v-${n}，它不是全局指令（清单 globals.directives：${reg.globals.directives.join("、")}）` });
     }
@@ -155,11 +242,13 @@ export function checkImports(order, APP, { files = orderFiles(order, APP), maps 
 
   // rule 4: what the branch changed in hmrsfw-vue
   if (pageOrder || order.type === "shared") {
-    const { files: changed, base } = changedFiles(APP); stats.gitBase = base;
+    const { files: changed, base, mb, work } = changedFiles(APP); stats.gitBase = base;
     if (changed) {
       const mine = (p) => (order.target && p === order.target) || (order.subComponentDir && p.startsWith(order.subComponentDir)) || files.some((f) => rel(f) === p);
+      const others = pageOrder && process.env.HMRSFW_SHARED_BRANCH === "1" ? otherPagesOnly(APP, { mb, files: changed, work, me: [order.id, order.page], mine }) : new Map();
+      if (others.size) stats.otherPages = Object.fromEntries(others);
       for (const p of changed) {
-        if (mine(p)) continue;
+        if (mine(p) || others.has(p)) continue;
         if (order.type === "shared" && (p.startsWith(`apps/${order.app}/src/shared/`) || p.startsWith(`apps/${order.app}/public/`))) continue;
         failed.push({ check: "imports", where: p, hint: `本单不能修改 ${p}${/\/(legacy|shared|api|utils)\/|package(-lock)?\.json$/.test(p) ? "（公共库文件只由入口包、共享组件工单修改）" : ""}：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton` });
       }

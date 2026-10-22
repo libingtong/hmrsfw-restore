@@ -13,5 +13,5 @@
 | `$` | three.1783320636200.js | shared | @/shared/images `threeImgA` | `"/sjz/setup/two.png"` |
 | `aa` | three.1783320636200.js | shared | @/shared/images `threeImgB` | `"/sjz/setup/three.png"` |
 | `na` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
-| `ua` | index.1783320636200117.js | api | @/api/jobCompany `hotListForWebsite` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/hotListForWebsite",method:"get",params:e})` |
-| `da` | index.1783320636200117.js | api | @/api/jobCompany `listForWebsite` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:e})` |
+| `ua` | index.1783320636200117.js | api | @/api/api-117 `hotListForWebsite` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/hotListForWebsite",method:"get",params:e})` |
+| `da` | index.1783320636200117.js | api | @/api/api-117 `listForWebsite` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:e})` |

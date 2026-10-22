@@ -11,14 +11,14 @@
 | `Ke` | index.1751615607545.js | api | @/legacy `getCompanyInfo` | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/getCompanyInfo",method:"get",params:t})` |
 | `Ue` | index.1751615607545.js | entry | @/legacy `decryptText` | `t=>{if(t&&typeof t=="string")try{return Df.sm4.decrypt(t,yC)}catch(e){return console.error("解密失败:",e),null}else return null}` |
 | `V` | index.1751615607545.js | entry | ant-design-vue `Modal` | `re({compatConfig:{MODE:3},name:"AModal",inheritAttrs:!1,props:xt(Cdt(),{width:520,transitionName:"zoom",maskTransitionName:"fade",confirmLoading:!1,visible:!1,okType:"primary"}),setup:function(e,n){va` |
-| `Re` | index.1751615607545.js | api | @/legacy/api `isPublishingPosition` | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/isPublishingPosition",method:"get",params:t})` |
+| `Re` | index.1751615607545.js | api | @/legacy/api `isPublishingPosition`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/isPublishingPosition",method:"get",params:t})` |
 | `$` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `Ve` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `ze` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `queryPageListByCompanyIdForFair` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeDeliver/queryPageListByCompanyIdForFair",method:"post",data:e})` |
-| `Pe` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `queryPageListByCompanyId` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeDeliver/queryPageListByCompanyId",method:"get",params:e})` |
-| `je` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `getHouseSetting` | `()=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeDeliver/getHouseSetting",method:"post"})` |
-| `Ae` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `addTalent` | `e=>t.request({url:"/xf-job/job/xfJobCompanyTalents/addTalent",method:"post",data:e})` |
-| `Fe` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `downPdf` | `e=>t.request({url:"/xf-job/job/xfJobCompanyCurriculumDownload/downPdf",method:"get",responseType:"blob",headers:{"Content-Type":"application/json; application/octet-stream"},params:e})` |
+| `ze` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `queryPageListByCompanyIdForFair`（reserved） | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeDeliver/queryPageListByCompanyIdForFair",method:"post",data:e})` |
+| `Pe` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `queryPageListByCompanyId`（reserved） | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeDeliver/queryPageListByCompanyId",method:"get",params:e})` |
+| `je` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `getHouseSetting`（reserved） | `()=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeDeliver/getHouseSetting",method:"post"})` |
+| `Ae` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `addTalent`（reserved） | `e=>t.request({url:"/xf-job/job/xfJobCompanyTalents/addTalent",method:"post",data:e})` |
+| `Fe` | index.api.175161560754510.js | api | @/api/jobCurriculumVitaeDeliver `downPdf`（reserved） | `e=>t.request({url:"/xf-job/job/xfJobCompanyCurriculumDownload/downPdf",method:"get",responseType:"blob",headers:{"Content-Type":"application/json; application/octet-stream"},params:e})` |
 | `D` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |
 | `qe` | setStatusinterview.1751615607545.js | shared | @/shared/setStatusinterview.vue `default` | `B(A,[["__scopeId","data-v-99a2d30a"]])` |
 | `Oe` | InterviewInvitation.17516156075452.js | shared | @/shared/InterviewInvitation.vue `default` | `E(ae,[["__scopeId","data-v-85ce95bb"]])` |

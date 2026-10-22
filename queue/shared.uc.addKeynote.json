@@ -30,11 +30,13 @@
  "exports": {
   "a": {
    "path": "@/shared/addKeynote/AddBeOnProbation.vue",
-   "export": "default"
+   "export": "default",
+   "original": "addKeynote.1751615607545.js#a"
   },
   "b": {
    "path": "@/shared/addKeynote/AddKeynote.vue",
-   "export": "default"
+   "export": "default",
+   "original": "addKeynote.1751615607545.js#b"
   }
  },
  "registryKey": "addKeynote.1751615607545.js",
@@ -67,6 +69,7 @@
   "modules": [],
   "views": [],
   "orders": [
+   "entry.uc.E6",
    "shared.uc.corporganic"
   ]
  },

@@ -15,6 +15,7 @@ node tools/baseline.mjs <工单id> [--har <path>]                       # 录制
 node tools/gate.mjs --task <任务id> --branch <b> --mode page            # 门槛员
 node tools/gate.mjs --wo c01,c02 --dry-run                              # 测试：不写元数据、不评论
 node tools/gate.mjs --mode integration --wo … [--dry-run]               # 集成模式：不顶替、零引用全开、整站构建
+node tools/gate.mjs --task <升级单id> --branch <b> --mode upgrade       # 升级单模式（kind=upgrade 的任务即使传 --mode page 也自动用它）
 node tools/gate.mjs --regress [--dry-run]                               # 全量回归：所有有基线的页面，输出新通过 / 新失败
 ```
 
@@ -28,7 +29,24 @@ stdout 一行 JSON：
 
 另外两种输出：`{"pending":"record","missing":[{wo, why}]}`（没有基线，或 HAR、交互脚本在基线之后变了）；`{"error":"…"}`（门槛自身的问题）。
 `--task` 且不带 `--dry-run` 时，同一份结果写元数据 `gate.<attempt>`（截短的 hint），并评论一条 `[GATE] PASS|FAIL …`。
+平台的 8 KB 上限算的是**一张单全部元数据的总和**（HM-876 实测：Σ(键名 + 存储的值 + 8) + 8 ≤ 8192，转义不计，对象按 JSON 文本计），不是单个值。大集成单的 `workOrders` 一项就占 4–5 KB，所以 `gate.<attempt>` 的预算 = 8192 − 1 KB 余量（留给 tick 之后写的 `advanced`、`waitRecord`、`gateSeq`、`merge.<n>` 等）− 写入前读到的其他键，最多 7 KB（HM-839）；写入仍被拒（`metadata exceeds`）时预算减半重试，减到 256 字节后再用最小形态试一次，不报错。
+完整结果写到 `$RESTORE_STATE/gate/<run>/result.json`（pending 写 `$RESTORE_STATE/gate/pending-<任务>-a<attempt>.json`），元数据用 `detail` 记路径。
+pending 记 `missingTotal`、按原因计数的 `byReason` 和缺失页 id 列表 `missing`；放不下时 `missing` 只留前 10 个（再不够继续减半）作样例并标 `missingTruncated`，完整清单只在明细文件里；`advance` 用 `missingTotal` 计数，不读 `missing` 的长度。预算极小时依次去掉 `durationMs`、次要原因（标 `byReasonTruncated`）、`detail`；
+pass/fail 超预算时逐级收紧：`failed` 30→10→3 条（`failedTotal` 记总数）、hint 200→120→80 字，通过的页只留 `{wo, pass}`；还放不下时 `pages` 只列未通过的页，通过的页记数 `passedOmitted`（`advance` 把未列出的页当通过）；未通过的页仍放不下时截断并标 `pagesTruncated`，不写 `passedOmitted`，未列出的页一律按失败处理（只会扩大回归范围，不会误判通过）。
+评论文件写在门槛员的工作目录（`process.cwd()`），multica 不接受工作目录外的 `--content-file`；页数多时标题写「N 页」加前几个 id。
 hint 只含检查名、元素路径（标签名 + 第一个 class）、接口路径和步骤号，不含页面文字和接口数据；带页面内容的完整比对留在 `$RESTORE_STATE/gate/<run>/<工单>/report.json`。
+
+## 升级单模式（--mode upgrade，HM-990）
+
+公共库升级单按「公共库改动」判，不再拿它要解挂的页面（元数据 `workOrders`）跑页面单的判据。`kind=upgrade`（或 `restoreKind=upgrade`）的任务，`gate.mjs` 自动用这个模式；调度器送门槛时也会写元数据 `gateMode: "upgrade"`。
+
+| 阶段 | 内容 |
+| --- | --- |
+| static | 先判改动范围：分支相对最新的 `origin/integration`（门槛先 fetch）改了哪些文件，用 `tools/lib/upgrade-scope.mjs` 的 `scopeViolations` 判，和调度器合并时 `ownerViolations` 是**同一个函数**。`apps/<app>/public/**`、`package.json`、锁文件、公共库文件放行；`apps/<app>/src/views/**` 一律不行。「owner 有进行中的任务」这一条只有调度器看得到，合并时再判。范围通过后，对改动的文件跑 `self-check.mjs` 里与工单无关的几项：编译（SFC、`src/` 下的脚本）、零引用、个人信息扫描 |
+| build | 改动能影响到的每个应用整站 `vite build`（`apps/` 以外的文件，如 `package.json`、锁文件，影响所有应用） |
+| browser | 回归页 = 已经在该分支上（即已合入 integration 或已验收）、且工单 `deps` 引用了改动文件的页面，去掉本单要解挂的页；按 integration 模式回放比对（交互脚本取 `origin/integration`），任何一页失败升级单就不通过。没有基线的页列在 `pending`，不判、不拦。`--wo` 可指定回归页 |
+
+要解挂的页面不在升级单门槛里判：升级合并后它们恢复，由各自的页面门槛验证。升级单 verdict 是整条分支的一个结论，`advance` 不按 `pages` 逐页判。
 
 ## 三个阶段，失败即停
 
@@ -57,7 +75,9 @@ self-check 的结论只认干净的通过（`pass:true`、退出码 0）。以�
 
 依赖预打包（antd、图标、echarts 等）只取决于锁文件、vite 配置和 node_modules 位置，第一次运行后发布到 `$RESTORE_STATE/gate-cache/vite-deps/<键>/`（原子改名，先到先得），之后每次复制到本次运行自己的 `cacheDir`（`$RESTORE_STATE/gate/<run>/vite`），不写共用依赖缓存，也不改 `hmrsfw-vue` 的 vite 配置。
 
-**资源与 `vite build` 一致**（`tools/gate/appserver.mjs` 的 `buildAssetsPlugin`）：按需编译时，资源导入（`import x from "./a.png"`、模板里的 `src="./a.png"`、`?url`）得到的是 `vite build` 会给的 URL，不是开发服务器的 `/src/…/a.png`。照 Vite 4.4.9 `fileToBuiltUrl` 和 Rollup 3 `generateAssetFileName`：小于 `build.assetsInlineLimit`（默认 4096 字节；`.svg`、`.html`、Git LFS 占位文件除外）的内联成 `data:<mime>;base64,…`，mime 表取自 Vite 自带的那份；其余是 `<base><assetFileNames>`（默认 `assets/[name]-[hash].[ext]`，`[hash]` = 内容 SHA-256 前 8 位，文件名按 Rollup 规则清洗），开发服务器按这个 URL 返回源文件。`public/` 里的文件和 `?raw`、`?inline`、`?worker` 仍交给 Vite，两种构建结果本来相同。CSS 里的 `url()` 保留开发 URL：它不在比对的 DOM 里，像素也相同。没有照做的一处：内容完全相同、文件名不同的两个资源，Rollup 会合并成先发出的那个名字。测试：`HMRSFW_APP_DIR=… node --test tools/test/gate-assets.test.mjs`，对两个应用的全部图片和三个合成文件（超过上限、刚好 4096、4095 字节）各做一次真实 `vite build`，逐个比 URL。
+**工单路由带上应用自己的 meta**（`appserver.mjs` 的 `routePlugin` / `gateRouteCode`）：页面单不能改 `router.ts`，门槛在 `router.ts` 末尾给工单补一条兜底路由，条件是此刻还解析不到；页面由它顶层挂在 `#poc-main` 下（还原侧根节点取 `#poc-main` 的第一个子元素，HM-779）。门户的路由表在第一次导航的 `beforeEach` 里才从 `router-xjhm.json` 装上（带 `hideHeader`、`hideFooter` 等 meta），比兜底路由晚，而兜底路由原先没有 meta，外壳拿不到 `hideHeader`，页头页脚照常显示，原版则隐藏（HM-250）。现在应用每次 `addRoute` 后重新加一次兜底路由，meta 取应用自己记录在该路径上合并后的 meta（没有就是空）。兜底路由设 `strict`（vue-router 4 路径分加 0.7，根路径也加），同路径记录后加入时仍是兜底路由生效，与原先按加入顺序的结果相同，页面挂载方式不变。兜底路由不起名字，`next({ ...to, replace: true })` 仍按路径解析。测试：`HMRSFW_APP_DIR=… node --test tools/test/gate-route.test.mjs`（用应用自己的 vue-router）。
+
+**资源与 `vite build` 一致**（`tools/gate/appserver.mjs` 的 `buildAssetsPlugin`）：按需编译时，资源导入（`import x from "./a.png"`、模板里的 `src="./a.png"`、`?url`、`new URL("./a.png", import.meta.url)`）得到的是 `vite build` 会给的 URL，不是开发服务器的 `/src/…/a.png`。模板 src：plugin-vue 在开发服务器下会把相对 src 直接改写成开发 URL、不产生 import，门槛把它的 `template.transformAssetUrls` 设成构建时的值（`includeAbsolute: true`，`base: null`），模板编译成和构建相同的 import。`new URL(…)`：第二个插件 `gate-build-assets-url` 在 plugin-vue 之后、Vite 的 `vite:asset-import-meta-url` 之前，按构建的做法改写成 `new URL("<构建 URL>", self.location)`（HM-778，见 `docs/rule-changes/HM-778.md`）。照 Vite 4.4.9 `fileToBuiltUrl` 和 Rollup 3 `generateAssetFileName`：小于 `build.assetsInlineLimit`（默认 4096 字节；`.svg`、`.html`、Git LFS 占位文件除外）的内联成 `data:<mime>;base64,…`，mime 表取自 Vite 自带的那份；其余是 `<base><assetFileNames>`（默认 `assets/[name]-[hash].[ext]`，`[hash]` = 内容 SHA-256 前 8 位，文件名按 Rollup 规则清洗），开发服务器按这个 URL 返回源文件。`public/` 里的文件和 `?raw`、`?inline`、`?worker` 仍交给 Vite，两种构建结果本来相同。CSS 里的 `url()` 保留开发 URL：它不在比对的 DOM 里，像素也相同。没有照做的一处：内容完全相同、文件名不同的两个资源，Rollup 会合并成先发出的那个名字。测试：`HMRSFW_APP_DIR=… node --test tools/test/gate-assets.test.mjs`，对两个应用的全部图片和三个合成文件（超过上限、刚好 4096、4095 字节）各做一次真实 `vite build`，逐个比 URL；另用真实按需服务器和真实构建各编译一个 SFC 和一个模块（模板相对 src、`new URL`，上限以下和以上各一张），逐个比 URL。
 
 一致性的保证：`--mode integration`（及 `--regress`）用整站 `vite build`，`--build full` 用同一页的真实单页 `vite build`，比对完全相同。实测 30 页：按需编译与整站构建逐页结论相同，失败项的检查名和位置也相同（见下文「验证」）。
 
@@ -81,8 +101,8 @@ DOM 存成 JSON 树而不是只存字符串，所以规范化规则以后变了�
 ## 比对内容
 
 - 加载后：页面根元素规范化 HTML、innerText、浮层文字、`/xf-api/` 请求集合（去掉外壳请求：外壳探测得到的本页外壳请求 + 规则文件里的站点级外壳请求）、截图像素差 ≤ 0.5%（截图前隐藏浮层）。
-- 有交互脚本时（`tests/interact/<id>.json`，没有就用 POC 的 `tools/interact-scripts.mjs`）：步骤无报错、交互后的请求序列（阶段、方法、路径、查询、请求体 SHA-256）、交互后的 HTML、文本、浮层。交互后等到没有进行中的界面动画、页面根元素 600 ms 不变（最多 3 秒）再截取。
-- 浮层文字 = 截取时打开的弹窗 + 本阶段出现过的全部 message / notification（页面里装了 MutationObserver，出现即记录），减去外壳探测里出现的 toast（原站外壳自己的请求报错，还原版暂时没有外壳）。toast 约 3 秒后消失，只看截取那一刻会随机器快慢而变。
+- 有交互脚本时（`tests/interact/<id>.json`，没有就用 POC 的 `tools/interact-scripts.mjs`；page 模式读本检出的工作区，integration 模式读工具仓库现取的 `origin/integration`，整次运行固定在同一个提交，`--interact-ref <提交>|worktree` 可改，HM-914）：步骤无报错、交互后的请求序列（阶段、方法、路径、查询、请求体 SHA-256）、交互后的 HTML、文本、浮层。交互后等到没有进行中的界面动画、页面根元素 600 ms 不变（最多 3 秒）再截取。
+- 浮层文字 = 截取时打开的弹窗 + 本阶段出现过的全部 message / notification（页面里装了 MutationObserver，出现即记录），减去外壳探测里出现的 toast（原站外壳自己的请求报错）。还原版也跑外壳时（加载时发出了外壳探测里的请求，即 legacy `App.vue` / `main.ts` 已接上）两侧都减；还原版没有外壳（POC `App.vue` 只有 `<router-view/>`）时只减原版一侧（HM-250）。toast 约 3 秒后消失，只看截取那一刻会随机器快慢而变。
 - 页面稳定的判据：正文文字长度和元素数 2 秒不变、没有进行中的界面动画（50 ms–2 s 的过渡和动画；逐帧滚动、无限旋转不算）、这段时间没有新的 `/xf-api/` 请求；最少 2 秒，最多 30 秒。
 - 页面时钟从 HAR 录制时刻所在的那一分钟开始正常走（不冻结计时器），显示「现在」的页面在基线和以后的门槛里得到同一分钟。
 - 原版自身不稳定的地方：两次基线不同的位置不比较（HTML 按标签和文本切分，文本按数字、空白切分，求两次运行的公共子序列，其余是通配）；请求集合接受两次运行的交集到并集之间。
@@ -93,6 +113,8 @@ DOM 存成 JSON 树而不是只存字符串，所以规范化规则以后变了�
 1. 方法 + 路径（含查询串，与 POC 用的 Playwright `routeFromHAR` 一致）+ 解密并规范化后的请求体（SM2 私钥从环境变量 `SM2_PRIVATE_KEY` 读，只在内存里解密）；
 2. 方法 + 路径，取第一条；
 3. 都没有：统一返回 `{"success":false,"code":404,"result":null,"message":"not in HAR"}`。
+
+录制时被写接口拦截名单挡下的条目（HAR 里 `_intercepted: true`，见 `docs/pipeline.md` 第六节）照常参与匹配，两边都拿到录制时那份固定的成功响应；请求日志里档位记为 `intercepted`（档位不参与比对），不算差异。测试：`node --test tools/test/record-write-guard.test.mjs`。
 
 发往两个测试站或生产站域名的请求一律中止。`node tools/gate/har.mjs --selftest` 用临时生成的密钥对验证三档匹配。
 

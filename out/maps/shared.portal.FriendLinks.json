@@ -28,7 +28,8 @@
    "original": "ab",
    "path": "@/legacy/api",
    "export": "getArticleListNoCheck",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "j": {
    "original": "a",

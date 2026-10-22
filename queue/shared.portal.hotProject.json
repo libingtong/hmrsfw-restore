@@ -24,14 +24,17 @@
  "subComponentDir": "apps/portal/src/shared/hotProject/",
  "exports": {
   "a": {
-   "export": "a"
+   "export": "getPxCourseListForWebsite",
+   "original": "hotProject.1783320636200.js#a"
   },
   "g": {
-   "export": "g"
+   "export": "getPxCourseDetailById",
+   "original": "hotProject.1783320636200.js#g"
   },
   "h": {
    "path": "@/shared/hotProject/HotProject.vue",
-   "export": "default"
+   "export": "default",
+   "original": "hotProject.1783320636200.js#h"
   }
  },
  "registryKey": "hotProject.1783320636200.js",

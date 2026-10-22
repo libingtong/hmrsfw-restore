@@ -1,6 +1,7 @@
 // Shared plumbing for the gate (gate.mjs) and the original-side baseline (baseline.mjs): locations, work orders,
 // HAR / login-state / interaction-script lookup (docs/pipeline.md §7, §12).
 // Nothing here writes outside $RESTORE_STATE; HAR files, login state and legacy-dist are only read.
+import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -16,6 +17,25 @@ export const SITES = {
 };
 export const REST_SEL = "#poc-main > *";
 export const siteOfApp = (app) => Object.keys(SITES).find((s) => SITES[s].app === app);
+
+// Pages that only exist as a component of another page (`recordVia`, docs/work-orders.md) are recorded on the parent's
+// route: the original side replays the whole parent page, where `origSel` matches the layout and the parent's root, not
+// the component. Both sides therefore mount the parent page (the restored side its restored file, so the component gets
+// the props the parent passes) and take the component's own root(s): the outermost elements carrying its scope id
+// (every element of a scoped component's template has it, the root also carries the parent's). (HM-251)
+export const scopeRootSel = (scopeId) => `[${scopeId}]:not([${scopeId}] *)`;
+// The page component's scope id in the original chunk: the only component, or the one named after the target file.
+export function pageScopeId(wo) {
+  const comps = wo.components ?? [];
+  const base = path.basename(wo.target ?? "", ".vue");
+  return (comps.length === 1 ? comps[0] : comps.find((c) => c.name === base))?.scopeId ?? null;
+}
+export function origSelOf(wo) {
+  if (!wo.recordVia) return SITES[wo.site].origSel;
+  const sid = pageScopeId(wo);
+  if (!sid) throw new Error(`work order ${wo.id} is recorded via ${wo.recordVia} but its component has no scope id: its root cannot be told apart inside the parent page`);
+  return scopeRootSel(sid);
+}
 
 export function flag(argv, name) { return argv.includes(name); }
 export function opt(argv, name, dflt) {
@@ -132,9 +152,17 @@ function loginStorage(wo, assets) {
 }
 
 // Interaction script: tests/interact/<id>.json (recorder) > the POC confirmation scripts. null = page has none.
-export async function interactScript(id) {
-  const f = path.join(ROOT, "tests/interact", `${id}.json`);
-  if (existsSync(f)) return JSON.parse(readFileSync(f, "utf8"));
+// `ref`: a commit of the tool repo to take tests/interact from instead of the working tree (integration mode reads the
+// branch record-page.mjs commits the scripts to, gate.mjs interactRef; HM-914). The caller has verified the commit, so a
+// failing `cat-file` only means the page has no script there.
+export const INTERACT_BRANCH = "integration"; // record-lib.mjs commitToIntegration
+export async function interactScript(id, { ref = null } = {}) {
+  const rel = `tests/interact/${id}.json`;
+  if (ref) {
+    let text = null;
+    try { text = execFileSync("git", ["-C", ROOT, "cat-file", "blob", `${ref}:${rel}`], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }); } catch {}
+    if (text !== null) return JSON.parse(text);
+  } else if (existsSync(path.join(ROOT, rel))) return JSON.parse(readFileSync(path.join(ROOT, rel), "utf8"));
   const { SCRIPTS } = await import("../interact-scripts.mjs");
   return SCRIPTS[id] ?? null;
 }

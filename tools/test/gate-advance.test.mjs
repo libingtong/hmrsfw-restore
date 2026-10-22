@@ -104,3 +104,43 @@ test("integration gate: failed pages counted from the pages array; app-wide fail
   assert.deepEqual(issue(fx, inc.id).metadata.details ? JSON.parse(JSON.stringify(meta(fx, inc.id).details)).failed : null, ["P2"]);
   assert.deepEqual(meta(fx, inc.id).details.global.byOwner, { "shared.uc.Editor": 1 });
 });
+
+test("slimmed verdict in metadata: the failure category comes from the wo-tagged top-level checks (HM-450)", async () => {
+  const { Pipeline } = await import("../lib/pipeline.mjs");
+  const p = Object.create(Pipeline.prototype);
+  // as gate.mjs writes gate.<attempt>: pages without `failed`, checks in failed[] tagged with wo
+  const slim = { pass: false, stage: "browser", failed: [{ check: "requests", where: "steps", hint: "request #3 after load", wo: "S-b" }, { check: "html", where: "final", hint: "HTML differs", wo: "S-a" }],
+    pages: [{ wo: "S-a", pass: false, stage: "browser", pixel: 0 }, { wo: "S-b", pass: false, stage: "browser", pixel: 0 }, { wo: "S-c", pass: true, stage: null, pixel: 0 }] };
+  const r = p.pageResults(slim, ["S-a", "S-b", "S-c"]);
+  assert.equal(p.failCategory(r["S-a"]), "browser:html");
+  assert.equal(p.failCategory(r["S-b"]), "browser:requests");
+  assert.equal(r["S-c"].pass, true);
+  // full verdicts keep their own per-page checks
+  assert.equal(p.failCategory(p.pageResults(realFail("F1"), ["F1"]).F1), "browser:pixel");
+});
+
+test("integration gate: pending record is no verdict — a rule regression is neither passed nor reverted", () => {
+  const ids = ["P1", "P2"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
+  const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (2 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
+  for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: "abc1234" })) setMeta(fx, t.id, k, v);
+  const r = gate(fx, t.id, { pending: "record", missing: [{ wo: "P1", why: "no baseline" }, { wo: "P2", why: "interaction script changed since the baseline" }], attempt: 1, durationMs: 4 });
+  assert.equal(r.ok, false);
+  assert.match(r.anomalies[0].what, /pending record: 2 pages/);
+  assert.equal(issue(fx, t.id).status, "in_review", "not closed");
+  assert.equal(meta(fx, t.id).advanced, undefined, "not marked advanced: a later --regate can still be advanced");
+  assert.ok(!issue(fx, t.id).comments.some((c) => /已回退|reverted/.test(c.content)), "no revert");
+});
+
+test("integration gate: pending record summary (HM-876) — the count comes from missingTotal, not the id sample", () => {
+  const ids = Array.from({ length: 12 }, (_, i) => `Q${i}`);
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
+  const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (12 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
+  for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: "abc1234" })) setMeta(fx, t.id, k, v);
+  // what gate.mjs slimResult writes when the list does not fit: counts, a sample, the detail file
+  const r = gate(fx, t.id, { pending: "record", missingTotal: 12, byReason: { "interaction script changed since the baseline": 9, "no baseline": 3 }, missing: ids.slice(0, 2), missingTruncated: true, attempt: 1, detail: "/state/gate/pending-x-a1.json" });
+  assert.equal(r.ok, false);
+  assert.match(r.anomalies[0].what, /pending record: 12 pages without a usable baseline \(interaction script changed since the baseline ×9; no baseline ×3\)/);
+  assert.equal(issue(fx, t.id).status, "in_review", "not closed");
+  assert.equal(meta(fx, t.id).advanced, undefined);
+});

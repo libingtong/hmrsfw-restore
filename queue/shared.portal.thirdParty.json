@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/thirdParty.vue",
  "exports": {
   "t": {
-   "export": "default"
+   "export": "default",
+   "original": "thirdParty.1783320636200.js#t"
   }
  },
  "registryKey": "thirdParty.1783320636200.js",

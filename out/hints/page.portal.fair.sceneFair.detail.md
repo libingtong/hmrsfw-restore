@@ -15,7 +15,7 @@
 | `gs` | index.1783320636200.js | entry | @/legacy `BusinessDictLabels` | `(e=>(e.PROVINCE_NAME="provinceName",e.TEACHIN_STATUS="teachin_status",e.WEBSITE_CONFIG="website_config",e.PLATFORM="\u5E73\u53F0\u914D\u7F6E",e.INDEX_QRCODE="index_qrcode",e.TOPNAV="topNav",e.HIDE_COD` |
 | `ks` | index.1783320636200.js | api | @/legacy `getDictValueByCodeAndItems` | `e=>ut.request({url:"/xf-job/job/licenseFree/getDictValueByCodeAndItems",method:"post",params:e})` |
 | `zs` | index.1783320636200.js | api | @/legacy `getArticleListByTypeIds` | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleListByTypeIds",method:"post",params:e})` |
-| `bs` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `bs` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
 | `ws` | index.1783320636200.js | entry | @/legacy `checkIdentity` | `function(e){let t=e.type,n=e.content,r=e.content2,a=e.textbtn,o=e.textbtn2,i=e.alert==!1?e.alert:!0;const l=Ze.getUser(),c=Ze.getCorp();return console.log("\u5224\u65AD\u5F53\u524D\u8D26\u53F7\u662F\u` |
 | `_s` | index.1783320636200.js | api | @/legacy `checkIzDishonesty` | `e=>ut.request({url:"/xf-job/job/xfJobFairApplyInfo/checkIzDishonesty",method:"post",data:e})` |
 | `Is` | index.1783320636200.js | entry | @/legacy `openUserCenter` | `(e,t)=>{let n=rr.getters.userUrl;t=t\|\|"_blank",n&&n.charAt(n.length-1)==="/"&&(n=n.slice(0,-1)),window.open(n+"/autoLogin?toPath="+encodeURIComponent(e)+"&token="+Ze.getToken(),t)}` |
@@ -31,17 +31,17 @@
 | `Ls` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
 | `Fs` | industryCode.1783320636200.js | shared | @/shared/industryCode.vue `default` | `S(i,[["render",d]])` |
 | `M` | dictCode.1783320636200.js | shared | @/shared/dictCode.vue `default` | `S(i,[["render",p]])` |
-| `Es` | index.api.178332063620017.js | api | @/api/jobFair `updateBrowseCount` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/updateBrowseCount",method:"post",data:e})` |
-| `Rs` | index.api.178332063620017.js | api | @/api/jobFair `queryById` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/queryById",method:"get",params:e})` |
-| `Ms` | index.api.178332063620017.js | api | @/api/jobFair `queryJobFairStatistics` | `e=>o.request({url:"/xf-job/job/licenseFree/statistics/queryJobFairStatistics",method:"post",data:e})` |
-| `Ds` | index.api.178332063620017.js | api | @/api/jobFair `scrollBarData` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFairApplyInfo/scrollBarData",method:"post",data:e})` |
-| `Us` | index.api.178332063620017.js | api | @/api/jobFair `queryAttendeesCompany` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesCompany",method:"post",data:e})` |
-| `As` | index.api.178332063620017.js | api | @/api/jobFair `queryAttendeesPosition` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesPosition",method:"post",data:e})` |
-| `Os` | index.api.178332063620017.js | api | @/api/jobFair `queryBoothPlaceInfo` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/queryBoothPlaceInfo",method:"post",data:e})` |
-| `qs` | index.api.178332063620017.js | api | @/api/jobFair `queryBoothView` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/queryBoothView",method:"post",data:e})` |
+| `Es` | index.api.178332063620017.js | api | @/api/api-17 `updateBrowseCount` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/updateBrowseCount",method:"post",data:e})` |
+| `Rs` | index.api.178332063620017.js | api | @/api/api-17 `queryById` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/queryById",method:"get",params:e})` |
+| `Ms` | index.api.178332063620017.js | api | @/api/api-17 `queryJobFairStatistics` | `e=>o.request({url:"/xf-job/job/licenseFree/statistics/queryJobFairStatistics",method:"post",data:e})` |
+| `Ds` | index.api.178332063620017.js | api | @/api/api-17 `scrollBarData` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFairApplyInfo/scrollBarData",method:"post",data:e})` |
+| `Us` | index.api.178332063620017.js | api | @/api/api-17 `queryAttendeesCompany` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesCompany",method:"post",data:e})` |
+| `As` | index.api.178332063620017.js | api | @/api/api-17 `queryAttendeesPosition` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesPosition",method:"post",data:e})` |
+| `Os` | index.api.178332063620017.js | api | @/api/api-17 `queryBoothPlaceInfo` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/queryBoothPlaceInfo",method:"post",data:e})` |
+| `qs` | index.api.178332063620017.js | api | @/api/api-17 `queryBoothView` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/queryBoothView",method:"post",data:e})` |
 | `Ys` | vue3-seamless-scroll.es.1783320636200.js | shared | vue3-seamless-scroll `Vue3SeamlessScroll` | `K({name:"vue3-seamless-scroll",inheritAttrs:!1,props:ae,emits:["stop","count","move"],setup(a,{slots:r,emit:v,attrs:d}){const e=a,x=o(null),b=o(null),w=o(null),T=o(null),s=o(null),c=o(0),A=o(0),u=o(0)` |
 | `Ks` | workType.1783320636200.js | shared | @/shared/workType.vue `default` | `ye(pe,[["__scopeId","data-v-c9091e07"]])` |
 | `We` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
 | `Zs` | city.1783320636200.js | shared | @/shared/city.vue `default` | `oe(J,[["__scopeId","data-v-911d64a4"]])` |
 | `Qs` | qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js | shared | @/shared/qrcode.vue `default` | `V(Y(Q({},O),{props:{text:{type:String,default:""},width:{type:Number,default:100},height:{type:Number,default:100},index:{type:Number,default:1},showTitle:{type:Boolean,default:!0},level:{type:String,` |
-| `ao` | index.1783320636200117.js | api | @/api/jobCompany `getQrcodeImgByObjectId` | `e=>o.request({url:"xf-job/job/licenseFree/getQrcodeImgByObjectId",method:"post",params:e})` |
+| `ao` | index.1783320636200117.js | api | @/api/api-117 `getQrcodeImgByObjectId` | `e=>o.request({url:"xf-job/job/licenseFree/getQrcodeImgByObjectId",method:"post",params:e})` |

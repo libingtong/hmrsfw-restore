@@ -73,6 +73,7 @@ export function semanticCheck(cfg, dataRoot, { files = true } = {}) {
     const bad = m.holdsSecrets === false ? (m.roles ?? []).filter((r) => SECRET_ROLES.includes(r)) : [];
     if (bad.length) errors.push({ path: `/machines/${i}/roles`, message: `holdsSecrets is false but roles include ${bad.join(", ")}` });
   });
+  for (const k of ["minFunction", "minBlock"]) if (cfg.coverage && !(cfg.coverage[k] >= 0 && cfg.coverage[k] <= 100)) errors.push({ path: `/coverage/${k}`, message: "must be between 0 and 100" });
   const allowed = new Set(cfg.recording.allowedHosts);
   apps.forEach((a, i) => {
     if (a.testOrigin) {

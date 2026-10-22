@@ -56,13 +56,15 @@
    "original": "V",
    "path": "@/legacy",
    "export": "VideoPlayer",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c05"
   },
   "ze": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Pe": {
    "original": "o",
@@ -117,42 +119,42 @@
  "api": {
   "Ye": {
    "original": "index.api.17833206362008.js#c",
-   "path": "@/api/sysArticle",
+   "path": "@/api/api-08",
    "export": "positionList",
    "status": "restored",
    "url": "/xf-job/communal/xfSysArticlePosition/positionList"
   },
   "Be": {
    "original": "index.api.17833206362008.js#p",
-   "path": "@/api/sysArticle",
+   "path": "@/api/api-08",
    "export": "deliver",
    "status": "restored",
    "url": "/xf-job/communal/xfSysArticlePositionDeliver/deliver"
   },
   "Oe": {
    "original": "index.api.17833206362008.js#q",
-   "path": "@/api/sysArticle",
+   "path": "@/api/api-08",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-job/school/licenseFree/XfSysArticle/queryById"
   },
   "je": {
    "original": "index.api.17833206362008.js#u",
-   "path": "@/api/sysArticle",
+   "path": "@/api/api-08",
    "export": "updateScanTimes",
    "status": "restored",
    "url": "/xf-job/school/licenseFree/updateScanTimes"
   },
   "$e": {
    "original": "index.api.17833206362008.js#d",
-   "path": "@/api/sysArticle",
+   "path": "@/api/api-08",
    "export": "queryByIdDeliver",
    "status": "restored",
    "url": "/xf-job/school/licenseFree/xfSysArticle/queryByIdDeliver"
   },
   "ie": {
    "original": "index.1783320636200117.js#v",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "list2",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/list"

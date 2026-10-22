@@ -1,7 +1,7 @@
 {
  "id": "page.portal.talents.fair.outFair.detail",
  "type": "page",
- "status": "todo",
+ "status": "regression",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -68,8 +68,13 @@
    "page.portal.fair.signModal"
   ],
   "orders": [
+   "entry.portal.c03",
    "page.portal.fair.signModal"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/talents/outFairDetail/:zphId",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
 }

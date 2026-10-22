@@ -35,20 +35,22 @@
    "exportedAs": [
     "aE"
    ],
-   "file": "apps/portal/src/legacy/components/SlideCaptcha.vue"
+   "file": "apps/portal/src/legacy/SlideCaptcha.vue",
+   "replacesStub": true
   }
  ],
  "files": [
   "apps/portal/src/legacy/components/Passwordhint.vue",
   "apps/portal/src/legacy/components/Index.vue",
-  "apps/portal/src/legacy/components/SlideCaptcha.vue"
+  "apps/portal/src/legacy/SlideCaptcha.vue"
  ],
  "owns": [
   {
    "alias": "aE",
    "path": "@/legacy",
    "export": "SlideCaptcha",
-   "status": "restored"
+   "status": "reserved",
+   "stub": "apps/portal/src/legacy/SlideCaptcha.vue"
   }
  ],
  "note": "只还原哈密（appCode 018）用到的变体；组件定义在入口 chunk 内，按 binding 名定位",

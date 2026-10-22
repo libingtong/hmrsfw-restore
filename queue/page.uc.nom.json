@@ -60,7 +60,9 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.E6"
+  ]
  },
  "stylesProvidedByScript": true
 }

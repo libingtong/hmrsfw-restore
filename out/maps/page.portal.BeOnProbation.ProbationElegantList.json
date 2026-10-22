@@ -90,7 +90,7 @@
  "api": {
   "fe": {
    "original": "index.api.1783320636200.js#g",
-   "path": "@/api/company",
+   "path": "@/api/api-1783320636200",
    "export": "getArticleList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/getArticleList"

@@ -1,7 +1,7 @@
 {
  "id": "page.portal.sjz.archivesSearch.index",
  "type": "page",
- "status": "todo",
+ "status": "regression",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -68,10 +68,15 @@
    "page.portal.special.page1.jobNews"
   ],
   "orders": [
+   "entry.portal.c02",
    "page.portal.sjz.newHome.resource",
    "page.portal.special.page1.jobNews",
    "shared.portal.modules"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/archivesSearch",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
 }

@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/FriendLink.vue",
  "exports": {
   "F": {
-   "export": "default"
+   "export": "default",
+   "original": "FriendLink.1783320636200.js#F"
   }
  },
  "registryKey": "FriendLink.1783320636200.js",

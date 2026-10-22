@@ -80,6 +80,7 @@
    "page.portal.fair.webFair.NumVideo"
   ],
   "orders": [
+   "entry.portal.c03",
    "page.portal.fair.signModal",
    "page.portal.fair.webFair.NumVideo",
    "shared.portal.modules"

@@ -4,6 +4,9 @@
 //   1. method + path (incl. query string, as Playwright's routeFromHAR did in the POC) + decrypted, canonical body;
 //   2. method + path → the first entry;
 //   3. none → NOT_IN_HAR.
+// Entries record-page's write guard answered instead of sending (_intercepted, HM-992) are matched like any other and
+// replay the guard's fixed response, the same on both sides; the request log marks them tier "intercepted" (the tier is
+// not compared), so a submit the recording never sent is not a difference.
 // Request bodies are decrypted in memory only (SM2 private key from the environment, never logged or written).
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -48,7 +51,7 @@ export function loadHar(file) {
     const headers = {};
     for (const h of e.response.headers ?? []) { const n = h.name.toLowerCase(); if (!["content-length", "content-encoding", "transfer-encoding"].includes(n)) headers[n] = h.value; }
     if (!headers["content-type"] && c.mimeType) headers["content-type"] = c.mimeType;
-    const entry = { status: e.response.status || 200, headers, body, postData: e.request.postData?.text ?? null, bodyCanon: null };
+    const entry = { status: e.response.status || 200, headers, body, postData: e.request.postData?.text ?? null, bodyCanon: null, intercepted: e._intercepted === true };
     if (!byKey.has(key)) byKey.set(key, []);
     byKey.get(key).push(entry);
   }
@@ -69,16 +72,17 @@ export function matchHar(har, method, url, reqBody) {
   return { entry: list[0], tier: "path" };
 }
 
-// Installs the /xf-api/ router on a browser context. log(rec) receives every request except static resources.
+// Installs the /xf-api/ router on a browser context. log(rec, request) receives every request except static resources,
+// from every page of the context (the Playwright request is passed so the caller can tell which page made it).
 // Requests to the real test or production hosts are aborted (and logged): the replay never leaves the machine.
 export async function routeApi(ctx, har, { log, phase }) {
-  await ctx.route((u) => /(^|\.)rencaidanao\.com$/.test(u.hostname), (r) => { log({ phase: phase(), method: r.request().method(), path: "EXTERNAL " + new URL(r.request().url()).host, query: "", bodyKind: "none", body: "", tier: "aborted" }); return r.abort(); });
+  await ctx.route((u) => /(^|\.)rencaidanao\.com$/.test(u.hostname), (r) => { log({ phase: phase(), method: r.request().method(), path: "EXTERNAL " + new URL(r.request().url()).host, query: "", bodyKind: "none", body: "", tier: "aborted" }, r.request()); return r.abort(); });
   await ctx.route(/\/xf-api\//, (r) => {
     const q = r.request();
     const p = new URL(q.url()).pathname.replace(/^\/xf-api/, "");
     const b = bodyOf(q.postData());
     const m = matchHar(har, q.method(), q.url(), b);
-    if (!p.startsWith("/jeecg-system/sys/common/static/")) log({ phase: phase(), method: q.method(), path: p, query: queryOf(q.url()), bodyKind: b.kind, body: b.canon, tier: m.tier ?? "not-in-har" });
+    if (!p.startsWith("/jeecg-system/sys/common/static/")) log({ phase: phase(), method: q.method(), path: p, query: queryOf(q.url()), bodyKind: b.kind, body: b.canon, tier: m.entry?.intercepted ? "intercepted" : m.tier ?? "not-in-har" }, q);
     if (!m.entry) return r.fulfill({ status: 200, contentType: "application/json", body: NOT_IN_HAR });
     return r.fulfill({ status: m.entry.status, headers: m.entry.headers, body: m.entry.body });
   });

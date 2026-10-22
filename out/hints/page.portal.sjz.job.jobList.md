@@ -14,8 +14,8 @@
 | `$e` | index.1783320636200.js | entry | @/legacy `useStore` | `function(e){return e===void 0&&(e=null),Ft(e!==null?e:Ru)}` |
 | `Ke` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
 | `g` | dictCode.1783320636200.js | shared | @/shared/dictCode.vue `default` | `S(i,[["render",p]])` |
-| `ea` | index.api.17833206362006.js | api | @/api/job `findJobListForWebRedis` | `e=>o.request({url:"/xf-job/job/licenseFree/findJobListForWebRedis",method:"post",data:e})` |
-| `aa` | index.api.17833206362006.js | api | @/api/job `findJobListForDistance` | `e=>o.request({url:"/xf-job/job/licenseFree/findJobListForDistance",method:"post",data:e})` |
+| `ea` | index.api.17833206362006.js | api | @/api/job `findJobListForWebRedis`（reserved） | `e=>o.request({url:"/xf-job/job/licenseFree/findJobListForWebRedis",method:"post",data:e})` |
+| `aa` | index.api.17833206362006.js | api | @/api/job `findJobListForDistance`（reserved） | `e=>o.request({url:"/xf-job/job/licenseFree/findJobListForDistance",method:"post",data:e})` |
 | `sa` | city.1783320636200.js | shared | @/shared/city.vue `default` | `oe(J,[["__scopeId","data-v-911d64a4"]])` |
 | `ra` | workType.1783320636200.js | shared | @/shared/workType.vue `default` | `ye(pe,[["__scopeId","data-v-c9091e07"]])` |
 | `oa` | workItem.17833206362002.js | shared | @/shared/workItem.vue `default`（reserved） | `Ra(ca,[["__scopeId","data-v-23adcd83"]])` |

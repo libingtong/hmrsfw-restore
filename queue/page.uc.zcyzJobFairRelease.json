@@ -63,7 +63,9 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.E6"
+  ]
  },
  "stylesProvidedByScript": true,
  "recordNotes": "企业页（招聘单位身份）。只做查看类交互，不点发布、保存或提交。"

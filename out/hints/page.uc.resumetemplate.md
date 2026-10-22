@@ -9,5 +9,5 @@
 | `S` | index.1751615607545.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `P` | index.1751615607545.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `w` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `R` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `vitaeTempListForUserContent` | `e=>t.request({url:"/xf-job/job/xfJobVitaeTemplate/vitaeTempListForUserContent",method:"post",data:e,headers:{"Content-Type":"application/x-www-form-urlencoded"}})` |
-| `U` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `saveVitaeTemplateId` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/saveVitaeTemplateId",method:"post",data:e,headers:{"Content-Type":"application/x-www-form-urlencoded"}})` |
+| `R` | index.api.17516156075456.js | api | @/api/api-56 `vitaeTempListForUserContent` | `e=>t.request({url:"/xf-job/job/xfJobVitaeTemplate/vitaeTempListForUserContent",method:"post",data:e,headers:{"Content-Type":"application/x-www-form-urlencoded"}})` |
+| `U` | index.api.17516156075456.js | api | @/api/api-56 `saveVitaeTemplateId` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/saveVitaeTemplateId",method:"post",data:e,headers:{"Content-Type":"application/x-www-form-urlencoded"}})` |

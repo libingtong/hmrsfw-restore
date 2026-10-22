@@ -43,7 +43,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "ve": {
    "original": "B",
@@ -85,7 +86,8 @@
    "original": "Q",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_CERTIFIED",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "A": {
    "original": "M",

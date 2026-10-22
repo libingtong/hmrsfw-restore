@@ -55,19 +55,22 @@
    "original": "ac",
    "path": "@/legacy/api",
    "export": "checkPositionName",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "se": {
    "original": "aB",
    "path": "@/legacy/api",
    "export": "getrefreshTime",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "le": {
    "original": "ae",
    "path": "@/legacy/api",
    "export": "addOrEdit",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "ue": {
    "original": "m",

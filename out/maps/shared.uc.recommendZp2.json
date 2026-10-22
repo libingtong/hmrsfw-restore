@@ -99,13 +99,15 @@
    "original": "s",
    "path": "@/legacy/api",
    "export": "queryAnnouncementList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "le": {
    "original": "ah",
    "path": "@/legacy/utils",
    "export": "stripHtml",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   }
  },
  "api": {
@@ -113,7 +115,7 @@
    "original": "index.api.1751615607545.js#h",
    "path": "@/api/jobSupermarketMerchants",
    "export": "getFairListNew",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobFair/getFairListNew"
   }
  },

@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/setStatusinterview.vue",
  "exports": {
   "s": {
-   "export": "default"
+   "export": "default",
+   "original": "setStatusinterview.1751615607545.js#s"
   }
  },
  "registryKey": "setStatusinterview.1751615607545.js",
@@ -55,7 +56,9 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.E6"
+  ]
  },
  "stylesProvidedByScript": true
 }

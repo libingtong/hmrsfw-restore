@@ -50,7 +50,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "F": {
    "original": "o",
@@ -102,21 +103,21 @@
  "api": {
   "ga": {
    "original": "index.api.17833206362002.js#e",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "add",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/add"
   },
   "pa": {
    "original": "index.api.17833206362002.js#h",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "cancel",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/cancel"
   },
   "va": {
    "original": "index.api.17833206362002.js#q",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "queryIzCanDeliver",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver"

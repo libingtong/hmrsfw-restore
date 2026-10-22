@@ -58,7 +58,8 @@
    "original": "aV",
    "path": "@/legacy/api",
    "export": "getAllLevelArticleListByTypeId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Ge": {
    "original": "ar",
@@ -76,7 +77,8 @@
    "original": "V",
    "path": "@/legacy",
    "export": "VideoPlayer",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c05"
   },
   "E": {
    "original": "B",
@@ -100,7 +102,7 @@
    "original": "index.api.178332063620013.js#g",
    "path": "@/api/jobLiveTelecast",
    "export": "list",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/list?izFromWebSite=1"
   }
  },

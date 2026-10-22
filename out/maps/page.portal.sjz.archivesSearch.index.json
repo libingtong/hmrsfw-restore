@@ -53,7 +53,8 @@
    "original": "aE",
    "path": "@/legacy",
    "export": "SlideCaptcha",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c02"
   },
   "wt": {
    "original": "u",
@@ -117,42 +118,42 @@
  "api": {
   "At": {
    "original": "index.api.17833206362008.js#q",
-   "path": "@/api/sysArticle",
+   "path": "@/api/api-08",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-job/school/licenseFree/XfSysArticle/queryById"
   },
   "zt": {
    "original": "index.api.178332063620015.js#g",
-   "path": "@/api/archive",
+   "path": "@/api/api-15",
    "export": "getChildArticleTypeList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
   },
   "F": {
    "original": "index.api.178332063620015.js#a",
-   "path": "@/api/archive",
+   "path": "@/api/api-15",
    "export": "getArticleList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/getArticleList"
   },
   "qt": {
    "original": "index.api.178332063620015.js#b",
-   "path": "@/api/archive",
+   "path": "@/api/api-15",
    "export": "freeArchiveServiceOrgList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeArchiveServiceOrgList"
   },
   "Zt": {
    "original": "index.api.178332063620015.js#c",
-   "path": "@/api/archive",
+   "path": "@/api/api-15",
    "export": "freeArchiveInfoPageList3",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/hm/freeArchiveInfoPageList"
   },
   "Dt": {
    "original": "index.api.178332063620015.js#d",
-   "path": "@/api/archive",
+   "path": "@/api/api-15",
    "export": "freeArchiveInfoPageList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeArchiveInfoPageList"

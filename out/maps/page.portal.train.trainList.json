@@ -83,7 +83,7 @@
  "api": {
   "da": {
    "original": "index.api.17833206362008.js#b",
-   "path": "@/api/sysArticle",
+   "path": "@/api/api-08",
    "export": "getChildArticleTypeList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
@@ -92,21 +92,21 @@
    "original": "index.api.178332063620021.js#c",
    "path": "@/api/jobPxCourse",
    "export": "hotListForWebsite",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/hotListForWebsite"
   },
   "ma": {
    "original": "index.api.178332063620021.js#b",
    "path": "@/api/jobPxCourse",
    "export": "getArticleList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/getArticleList"
   },
   "ya": {
    "original": "index.api.178332063620021.js#g",
    "path": "@/api/jobPxCourse",
    "export": "listForWebsite",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
   }
  },

@@ -1,7 +1,7 @@
 {
  "id": "page.uc.industrySkillTree",
  "type": "page",
- "status": "todo",
+ "status": "regression",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -45,5 +45,10 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/industrySkillTree",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ },
+ "notes": "裁定（uc-role-decisions.json）。局限：原版里没有找到打开它的入口（路由表有，直接打开可达）；测试账号没有订阅行业时列表为空"
 }

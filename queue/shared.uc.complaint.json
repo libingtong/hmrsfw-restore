@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/complaint.vue",
  "exports": {
   "c": {
-   "export": "default"
+   "export": "default",
+   "original": "complaint.1751615607545.js#c"
   }
  },
  "registryKey": "complaint.1751615607545.js",

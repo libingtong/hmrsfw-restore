@@ -7,5 +7,5 @@
 | `K` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `$` | index.1751615607545.js | api | @/legacy `getDictItemsByCode` | `t=>Ee.request({url:"/jeecg-system/sys/dict/getDictItemsByCode",method:"get",params:t})` |
 | `q` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `L` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `listWithSort` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort",method:"get",params:e})` |
-| `T` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `listNoPage` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/listNoPage",method:"get",params:e})` |
+| `L` | index.api.17516156075456.js | api | @/api/api-56 `listWithSort` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort",method:"get",params:e})` |
+| `T` | index.api.17516156075456.js | api | @/api/api-56 `listNoPage` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/listNoPage",method:"get",params:e})` |

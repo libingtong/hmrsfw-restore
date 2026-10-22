@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/likeBtn.vue",
  "exports": {
   "l": {
-   "export": "default"
+   "export": "default",
+   "original": "likeBtn.1783320636200.js#l"
   }
  },
  "registryKey": "likeBtn.1783320636200.js",

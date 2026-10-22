@@ -32,13 +32,15 @@
    "original": "bi",
    "path": "@/legacy/api",
    "export": "listByUserId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "L": {
    "original": "bj",
    "path": "@/legacy/api",
    "export": "jobEventReleaseSignUpCancel",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "O": {
    "original": "m",

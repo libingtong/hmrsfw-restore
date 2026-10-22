@@ -93,7 +93,7 @@
   "Oe": {
    "original": "hotProject.1783320636200.js#a",
    "path": "@/shared/hotProject.ts",
-   "export": "a",
+   "export": "getPxCourseListForWebsite",
    "status": "reserved",
    "owner": "shared.portal.hotProject"
   },

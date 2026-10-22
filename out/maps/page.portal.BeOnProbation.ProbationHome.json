@@ -104,7 +104,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "dt": {
    "original": "o",
@@ -177,28 +178,28 @@
  "api": {
   "kt": {
    "original": "index.api.1783320636200.js#a",
-   "path": "@/api/company",
+   "path": "@/api/api-1783320636200",
    "export": "freeCompanyExpandPositionList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyExpandPositionList"
   },
   "xt": {
    "original": "index.api.1783320636200.js#b",
-   "path": "@/api/company",
+   "path": "@/api/api-1783320636200",
    "export": "freeCompanyExpandList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyExpandList"
   },
   "Bt": {
    "original": "index.api.1783320636200.js#c",
-   "path": "@/api/company",
+   "path": "@/api/api-1783320636200",
    "export": "freeCompanyAttachmentList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyAttachmentList"
   },
   "ie": {
    "original": "index.api.1783320636200.js#g",
-   "path": "@/api/company",
+   "path": "@/api/api-1783320636200",
    "export": "getArticleList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/getArticleList"

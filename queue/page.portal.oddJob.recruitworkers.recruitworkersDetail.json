@@ -64,6 +64,8 @@
   "modules": [],
   "views": [],
   "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
    "shared.portal.complaint",
    "shared.portal.map2",
    "shared.portal.nowContact"

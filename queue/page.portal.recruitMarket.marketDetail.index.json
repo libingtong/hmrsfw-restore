@@ -68,6 +68,7 @@
   ],
   "views": [],
   "orders": [
+   "entry.portal.c03",
    "shared.portal.map2",
    "shared.portal.modules",
    "shared.portal.unfold"

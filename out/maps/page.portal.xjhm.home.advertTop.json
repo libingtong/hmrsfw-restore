@@ -53,12 +53,13 @@
    "original": "cD",
    "path": "@/legacy/api",
    "export": "queryOrganizationByAreaId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "At": {
    "original": "bc",
    "path": "@ant-design/icons-vue",
-   "export": "DownOutlined",
+   "export": "CaretDownOutlined",
    "status": "npm"
   },
   "ye": {
@@ -69,13 +70,15 @@
    "original": "aq",
    "path": "@/legacy/store",
    "export": "useStoreGetters",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E4"
   },
   "fe": {
    "original": "ab",
    "path": "@/legacy/api",
    "export": "getArticleListNoCheck",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Z": {
    "original": "D",
@@ -93,7 +96,8 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Ht": {
    "original": "w",
@@ -105,7 +109,8 @@
    "original": "af",
    "path": "@/legacy/api",
    "export": "logout",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "q": {
    "original": "B",
@@ -123,7 +128,8 @@
    "original": "bs",
    "path": "@/legacy/utils",
    "export": "openLinkAddress",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Vt": {
    "original": "v",
@@ -135,7 +141,8 @@
    "original": "bt",
    "path": "@/legacy/store",
    "export": "store",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E4"
   }
  },
  "api": {},

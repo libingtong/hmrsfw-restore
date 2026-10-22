@@ -5,7 +5,9 @@
 // probe, step runner); the whitelist is gone (v3: every /xf-api/ request is answered locally).
 import path from "node:path";
 import { routeApi } from "./har.mjs";
+import { FIXED_CITY, fixedLocalCity } from "./thirdparty.mjs";
 import { domTreeInPage } from "./dom.mjs";
+import { pickScripts } from "./coverage.mjs";
 
 export const VIEWPORT = { width: 1920, height: 1080 };
 // Overlay text = open modals at capture time + every message / notification shown during the phase (recorded by a
@@ -23,7 +25,93 @@ function toastRecorder(sel) {
   const grab = (el) => { if (seen.has(el)) return; seen.add(el); const phase = window.__gatePhase; setTimeout(() => { const t = el.innerText.trim(); if (t) window.__gateToasts.push({ phase, t }); }, 50); };
   new MutationObserver((muts) => { for (const m of muts) for (const n of m.addedNodes) if (n.nodeType === 1) { if (n.matches(sel)) grab(n); n.querySelectorAll?.(sel).forEach(grab); } }).observe(document, { childList: true, subtree: true });
 }
-const HIDE_OVERLAYS = ".ant-modal-root,.ant-modal-mask,.ant-modal-wrap,.ant-message,.ant-notification{visibility:hidden!important}";
+// Carousel autoplay (HM-273). ant-design-vue's a-carousel (vc-slick) advances every autoplaySpeed + 50 ms
+// (setInterval) from the moment it mounts, so which slide is active at a capture depends on how long the page took to
+// settle: the original side (recorded through its parent page, the shell around it) settles seconds later than the
+// restored page alone, and the two sides land on different slides for the same code. Both sides now pause every
+// autoplaying carousel the way the library itself does on hover: a mouseover on .slick-track runs the track's
+// onTrackOver → pause("hovered"), which clears the timer, and the library's own "update" restarts skip a hovered
+// slider. The event does not bubble (only the track's own listener sees it, no page hover handler runs) and is sent
+// every `everyMs` (a slider mounted or re-created later, a real pointer leaving the track during a step), well below any
+// autoplay period. Sliders without autoplay ignore it (onTrackOver checks autoplay); pauseOnHover: false sliders keep
+// playing as before. What is compared stays the same: slides, their order and content, the initial slide.
+export const CAROUSEL_PAUSE_MS = 200;
+export function pauseCarousels(everyMs) {
+  const pause = () => { for (const t of document.querySelectorAll(".slick-track")) t.dispatchEvent(new MouseEvent("mouseover", { bubbles: false })); };
+  setInterval(pause, everyMs);
+}
+const HIDE_OVERLAYS =".ant-modal-root,.ant-modal-mask,.ant-modal-wrap,.ant-message,.ant-notification{visibility:hidden!important}";
+// Shell layout in screenshots (HM-262). On the original side the app shell's layout sits next to the page's roots under
+// origSel: the portal's homeView renders [header, RouterView, footer] and its header is position: fixed. An element
+// screenshot of a root taller than the viewport scrolls, and the fixed header is drawn over the root wherever the
+// viewport top then is. The restored side has no shell (the gate mounts the page as a top-level route), so that strip is
+// shell, not page. While each screenshot is taken, the siblings under `sel` that carry none of the page's scopeIds are
+// made invisible (visibility only: layout is unchanged; DOM and text are captured before, with the shell visible). The
+// page's own fixed parts (a root of its own, or inside one) carry the page's scopeId and stay visible. Only when some
+// candidate carries a page scopeId (pages without scoped styles, or recorded through a parent page, are shot as before).
+// Returns the CSS or "". The scopeIds come from runPage's opts.pageScopes (original side only: baseline.mjs passes the
+// work order's scopeIds; the restored side passes none and is shot as before).
+const PAGE_SCOPES = new WeakMap();
+export async function shellLayoutCss(page, sel, scopes) {
+  const ids = (scopes ?? []).filter((s) => /^data-v-[0-9a-f]{8}$/.test(s));
+  if (!ids.length) return "";
+  const own = await page.evaluate(([q, ss]) => ss.some((s) => document.querySelector(`${q}[${s}]`)), [sel, ids]).catch(() => false);
+  if (!own) return "";
+  const shell = sel + ids.map((s) => `:not([${s}])`).join("");
+  return `${shell},${shell} *{visibility:hidden!important}`;
+}
+// Off-scope elements in component shots (HM-253, HM-342). A recordVia page's root is a component inside its parent page
+// (HM-251). Anything outside that component is the parent page's or the app shell's, and still lands in the component's
+// shot: fixed or sticky elements (the shell's customer-service tab, a parent's side panel) at an offset that depends on
+// where the element screenshot scrolled the whole parent page (HM-253), and the neighbours of the component's box (the
+// shell's footer right below a component that ends its parent page) in the edge rows and columns, because the shot is
+// the box's enclosing whole-pixel rectangle and a box with fractional edges leaves a partial pixel row at each edge
+// (HM-342: the original side's homeView footer is dark there, the restored side's App footer light). While each
+// screenshot of such a root is taken, every element that is neither inside the root, nor one of its ancestors, nor
+// carrying the component's scopeId or holding an element that does (teleported template content, the component's other
+// roots and instances) is made invisible (visibility only: layout is unchanged; DOM, text and requests are captured
+// before, as with shellLayoutCss). Only the outermost such element is marked, OFFSCOPE_CSS covers its content. What
+// stays in the shot is the component on its ancestors' backgrounds. Both sides: runPage's opts.componentScope is the
+// component's scopeId (baseline.mjs: the work order's, gate.mjs: the restored file's); other pages are shot as before.
+const OFFSCOPE = "data-gate-offscope";
+export const OFFSCOPE_CSS = `[${OFFSCOPE}],[${OFFSCOPE}] *{visibility:hidden!important}`;
+export async function markOffscope(el, scopeId) {
+  if (!/^data-v-[0-9a-f]+$/.test(scopeId ?? "")) return 0; // spliced into a selector: only scope ids
+  return el.evaluate((root, [attr, sid]) => {
+    let n = 0;
+    for (const e of document.body.querySelectorAll("*")) {
+      if (root.contains(e) || e.contains(root) || e.hasAttribute(sid) || e.querySelector(`[${sid}]`)) continue;
+      if (e.parentElement?.hasAttribute(attr)) continue; // inside an element already marked
+      e.setAttribute(attr, ""); n++;
+    }
+    return n;
+  }, [OFFSCOPE, scopeId]).catch(() => 0);
+}
+export const unmarkOffscope = (page) => page.evaluate((attr) => document.querySelectorAll(`[${attr}]`).forEach((e) => e.removeAttribute(attr)), OFFSCOPE).catch(() => {});
+const COMPONENT_SCOPE = new WeakMap();
+// Roots without an area (HM-380), e.g. a list wrapper whose list is empty (height 0). An element screenshot needs a box,
+// so these used to be shot as the whole viewport: the parent page and the shell, which differ between the sides (the
+// shell's 90 px header exists on the original side only), not the root. Now the shot is the root's painted content: the
+// union of the boxes of its visible descendants and text (content overflowing a zero-height root still paints), minus
+// content under a zero-area element that clips it (overflow other than visible on that axis). Runs in the page →
+// {x, y, width, height} in document coordinates, or null when the root paints nothing: captureRoot then takes no shot
+// and marks the candidate `blank`, and compareRuns requires the other side to paint nothing too.
+export function paintedBoxInPage(root) {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  const add = (r) => { if (r.width > 0 && r.height > 0) { x0 = Math.min(x0, r.left); y0 = Math.min(y0, r.top); x1 = Math.max(x1, r.right); y1 = Math.max(y1, r.bottom); } };
+  const clipsAll = (e, s) => { const r = e.getBoundingClientRect(); return (r.height === 0 && s.overflowY !== "visible") || (r.width === 0 && s.overflowX !== "visible"); };
+  const walk = (e) => {
+    const s = getComputedStyle(e);
+    if (s.display === "none" || clipsAll(e, s)) return;
+    for (const k of e.childNodes) {
+      if (k.nodeType === 3) { if (s.visibility !== "visible") continue; const rg = document.createRange(); rg.selectNodeContents(k); for (const r of rg.getClientRects()) add(r); }
+      else if (k.nodeType === 1) { if (getComputedStyle(k).visibility === "visible") for (const r of k.getClientRects()) add(r); walk(k); }
+    }
+  };
+  walk(root);
+  return x0 === Infinity ? null : { x: x0 + scrollX, y: y0 + scrollY, width: x1 - x0, height: y1 - y0 };
+}
+
 // Stability: the page counts as settled when body text length and element count stay the same for `stableMs`, no UI
 // animation or transition (50 ms – 2 s: antd collapse/fade, a carousel sliding) is running and no /xf-api/ request was
 // made in that window (HAR answers are immediate). POC: 3 × 1 s on body text length only.
@@ -72,6 +160,42 @@ export async function step(page, s) {
   return null;
 }
 
+// Playwright logs "performing <action> action" right before it sends the input events and "<action> action done" after
+// them. A step that fails after that point (the click handler keeps the main thread busy, or the wait for scheduled
+// navigations runs out on a busy machine) has already reached the page: doing it again would click twice (HM-245).
+const ACTION_SENT = /\bperforming \w+ action\b|\b\w+ action done\b/;
+export const actionSent = (e) => ACTION_SENT.test(String(e?.message ?? ""));
+
+// One step as runPage runs it → { note, err }. A step that failed before its action was sent (target not actionable
+// yet on a busy machine, as record-page does) is tried once more after 1 s; one whose action was sent is not repeated:
+// it gets the step's usual wait and a note, and what it did is compared like any other step.
+export async function runStep(page, s) {
+  try { return { note: (await step(page, s)) ?? null, err: null }; }
+  catch (e) {
+    if (actionSent(e)) { await page.waitForTimeout(s.wait ?? 1200); return { note: "timed out after the action was sent; not repeated", err: null }; }
+    await page.waitForTimeout(1000);
+    try { return { note: (await step(page, s)) ?? null, err: null }; } catch (e2) { return { note: null, err: e2.message.split("\n")[0].slice(0, 160) }; }
+  }
+}
+
+// Canvases in root shots (HM-302). A <canvas> is a bitmap: what it shows is not in the DOM tree, and a canvas that draws
+// with Math.random or keeps animating (the portal's TagCanvas tag cloud) differs between two runs of the same original.
+// For each shot, the boxes of the visible canvases inside the root are stored with the candidate, so compare.mjs
+// (volatileCanvases) can find the canvases whose pixels differ between the original's two runs. Runs in the page →
+// [{x, y, w, h}] in shot pixels, the whole-pixel rectangle enclosing the canvas box. `clip` = the shot's clip in document
+// coordinates (paintedBoxInPage), or null for an element screenshot (the shot starts at the root's box).
+export function canvasBoxesInPage(root, clip) {
+  const o = clip ? { x: clip.x - scrollX, y: clip.y - scrollY } : root.getBoundingClientRect();
+  const ox = Math.floor(o.x), oy = Math.floor(o.y), out = [];
+  for (const cv of root.querySelectorAll("canvas")) {
+    const s = getComputedStyle(cv), r = cv.getBoundingClientRect();
+    if (s.display === "none" || s.visibility !== "visible" || r.width < 1 || r.height < 1) continue;
+    const x = Math.floor(r.left) - ox, y = Math.floor(r.top) - oy;
+    out.push({ x, y, w: Math.ceil(r.right) - ox - x, h: Math.ceil(r.bottom) - oy - y });
+  }
+  return out;
+}
+
 async function captureRoot(page, sel, shotBase, withShots, phases) {
   const els = await page.$$(sel);
   await page.waitForTimeout(60); // toast texts are read 50 ms after they appear
@@ -82,16 +206,23 @@ async function captureRoot(page, sel, shotBase, withShots, phases) {
   const candidates = [];
   let hide = null;
   if (withShots) hide = await page.addStyleTag({ content: HIDE_OVERLAYS }).catch(() => null);
+  const shellCss = withShots ? await shellLayoutCss(page, sel, PAGE_SCOPES.get(page)) : "";
   for (const [i, el] of els.entries()) {
     const c = { ...(await el.evaluate(domTreeInPage)), ...(await el.evaluate((n) => ({ html: n.outerHTML, text: n.innerText, cls: n.getAttribute("class") }))) };
     if (withShots) {
       const file = `${shotBase}${i ? "." + i : ""}.png`;
       const box = await el.boundingBox();
+      // added only around the screenshot: the DOM tree and innerText above are taken with the shell visible
+      const shell = shellCss ? await page.addStyleTag({ content: shellCss }).catch(() => null) : null;
+      const offscope = (await markOffscope(el, COMPONENT_SCOPE.get(page))) ? await page.addStyleTag({ content: OFFSCOPE_CSS }).catch(() => null) : null;
       // Element screenshots wait for the element to stop moving; a page with a running carousel can exceed that on a
       // busy machine, so fall back to a full-page clip of the same box.
+      if (box?.height && box.width) c.canvases = await el.evaluate(canvasBoxesInPage, null).catch(() => null);
       if (box?.height && box.width) await el.screenshot({ path: file, timeout: 15000 }).catch(async () => { const b = await el.evaluate((n) => { const r = n.getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, width: r.width, height: r.height }; }); await page.screenshot({ path: file, fullPage: true, clip: b }); });
-      else await page.screenshot({ path: file });
-      c.shot = file;
+      else { const b = await el.evaluate(paintedBoxInPage); if (b) { c.canvases = await el.evaluate(canvasBoxesInPage, b).catch(() => null); await page.screenshot({ path: file, fullPage: true, clip: b }); } else c.blank = true; }
+      if (shell) await shell.evaluate((n) => n.remove()).catch(() => {});
+      if (offscope) { await offscope.evaluate((n) => n.remove()).catch(() => {}); await unmarkOffscope(page); }
+      if (!c.blank) c.shot = file;
     }
     candidates.push(c);
   }
@@ -100,21 +231,58 @@ async function captureRoot(page, sel, shotBase, withShots, phases) {
   return { candidates, overlay };
 }
 
-// opts: { origin, url, storage: {localStorage, sessionStorage}, har, sel, steps, shotDir, tag, stubChunk }
+// Pages the page under test opens (a target="_blank" link, window.open) → "<path>?<query>#<hash>" on the replay origin
+// (`_t` cache-busters dropped, other parameters sorted), "<host><path>" elsewhere. Both sides serve on different local
+// origins, so only the target is compared.
+export function openedTarget(url, origin) {
+  let u;
+  try { u = new URL(url); } catch { return String(url); }
+  if (u.protocol === "about:") return u.href;
+  if (u.origin !== origin) return u.host + u.pathname;
+  const q = new URLSearchParams([...u.searchParams].filter(([k]) => k !== "_t").sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)));
+  return u.pathname + (q.size ? "?" + q : "") + u.hash;
+}
+
+// opts: { origin, url, storage: {localStorage, sessionStorage}, har, sel, steps, shotDir, tag, stubChunk, coverage }
+// coverage = names of the scripts to measure (basenames under /assets/): V8 precise coverage over the whole run, load and
+// steps, returned as res.coverage = [{url, source, functions}] for those scripts only (tools/gate/coverage.mjs).
 // stubChunk = basename of the page chunk: replaced by an empty component that snapshots localStorage at mount (shell
 // probe: what the app shell alone requests, and the storage the page component sees when it mounts).
+// Measurement scope (HM-797): the requests compared are the ones the page under test makes (its main frame and its
+// iframes). A page it opens (target="_blank", window.open) is not part of it: the opening is recorded as {phase, target}
+// (res.load.opened during load, res.opened during the steps), and that page's own requests go to res.otherRequests
+// (diagnostics only, never compared), so whether they land before the capture (a race between the two pages' start-up
+// speed) no longer matters. The other page is left running as before; only what is measured changes.
 export async function runPage(browser, opts) {
   const ctx = await browser.newContext({ viewport: VIEWPORT, locale: "zh-CN" });
   await ctx.addInitScript(toastRecorder, TOAST_SEL);
+  await ctx.addInitScript(pauseCarousels, CAROUSEL_PAUSE_MS);
   await ctx.addInitScript((s) => { for (const [k, v] of Object.entries(s.localStorage)) localStorage.setItem(k, v); for (const [k, v] of Object.entries(s.sessionStorage ?? {})) sessionStorage.setItem(k, v); }, opts.storage);
-  const log = [], errors = [];
-  let phase = "load", lastRequestAt = 0, outdated = 0;
-  await routeApi(ctx, opts.har, { log: (r) => { lastRequestAt = Date.now(); log.push(r); }, phase: () => phase });
+  await ctx.addInitScript(fixedLocalCity, FIXED_CITY); // Baidu IP location: same city on both sides (thirdparty.mjs)
+  const log = [], errors = [], opened = [], otherRequests = [];
+  let phase = "load", lastRequestAt = 0, outdated = 0, page = null;
+  // A request without a frame (service worker) cannot be attributed: it stays with the page under test, as before.
+  const fromOther = (q) => { try { return !!page && q.frame().page() !== page; } catch { return false; } };
+  await routeApi(ctx, opts.har, { log: (r, q) => { if (q && fromOther(q)) { otherRequests.push(r); return; } lastRequestAt = Date.now(); log.push(r); }, phase: () => phase });
   if (opts.stubChunk) await ctx.route((u) => u.pathname === "/assets/" + opts.stubChunk, (r) => r.fulfill({ status: 200, contentType: "text/javascript", body: "const c={name:'ShellProbe',setup(){window.__shellMountStorage=Object.fromEntries(Object.keys(localStorage).map((k)=>[k,localStorage.getItem(k)]));return()=>null}};export default c;export const __tla=Promise.resolve();" }));
-  const page = await ctx.newPage();
+  page = await ctx.newPage();
+  // A new page's first navigation request comes before the page exists (Playwright has no frame for it yet) and carries
+  // the target the page under test asked for; the page itself may end on an error page (hosts outside the replay are
+  // aborted). A page opened without one (window.open() with no URL) is recorded with its own URL when it appears.
+  const pendingNav = [];
+  ctx.on("request", (q) => { if (!q.isNavigationRequest()) return; try { q.frame(); } catch { pendingNav.push({ url: q.url(), phase }); } });
+  ctx.on("page", (p) => {
+    if (p === page) return;
+    const i = pendingNav.findIndex((x) => x.url === p.url());
+    const nav = i >= 0 ? pendingNav.splice(i, 1)[0] : p.url().startsWith("chrome-error:") ? pendingNav.shift() : null;
+    opened.push({ phase: nav?.phase ?? phase, target: openedTarget(nav?.url ?? p.url(), opts.origin) });
+  });
+  if (opts.coverage?.length) await page.coverage.startJSCoverage({ resetOnNavigation: false, reportAnonymousScripts: false });
   // The page's clock starts at the beginning of the HAR's recording minute and runs normally (no fake timers), so pages
-  // that print "now" show the same minute in the baseline and in later gate runs.
-  await page.clock.setSystemTime(new Date(Math.floor(opts.har.recordedAt / 60000) * 60000));
+  // that print "now" show the same minute in the baseline and in later gate runs. The start and the page's time-zone
+  // offset go into the run (res.clock): rules.mjs normNow (HM-1021) recognises "now" printed to the second by them.
+  const clockStart = Math.floor(opts.har.recordedAt / 60000) * 60000;
+  await page.clock.setSystemTime(new Date(clockStart));
   page.on("pageerror", (e) => errors.push(String(e.message).slice(0, 160)));
   page.on("console", (m) => { if (m.type() === "error") errors.push("console: " + m.text().slice(0, 200)); });
   page.on("dialog", (d) => d.dismiss().catch(() => {}));
@@ -124,8 +292,9 @@ export async function runPage(browser, opts) {
   const go = () => page.goto(opts.origin + opts.url, { waitUntil: "load", timeout: 60000 }).catch((e) => errors.push("goto " + e.message.slice(0, 80)));
   await go();
   let settle = await waitStable(page, () => lastRequestAt);
-  if (outdated) { errors.push(`reloaded after ${outdated} outdated dependency responses`); outdated = 0; log.length = 0; await go(); settle = await waitStable(page, () => lastRequestAt); }
-  const res = { settleMs: settle, loadMs: Date.now() - t0, errors };
+  if (outdated) { errors.push(`reloaded after ${outdated} outdated dependency responses`); outdated = 0; log.length = 0; opened.length = 0; otherRequests.length = 0; await go(); settle = await waitStable(page, () => lastRequestAt); }
+  const tzOffset = await page.evaluate((t) => new Date(t).getTimezoneOffset(), clockStart).catch(() => null);
+  const res = { settleMs: settle, loadMs: Date.now() - t0, errors, clock: { start: clockStart, tzOffset } };
   if (opts.stubChunk) {
     await page.waitForTimeout(Math.max(0, 6000 - (Date.now() - t0)));
     res.storageAtMount = await page.evaluate(() => window.__shellMountStorage ?? null).catch(() => null);
@@ -134,24 +303,26 @@ export async function runPage(browser, opts) {
     await ctx.close();
     return res;
   }
+  if (opts.pageScopes?.length) PAGE_SCOPES.set(page, opts.pageScopes); // shellLayoutCss
+  if (opts.componentScope) COMPONENT_SCOPE.set(page, opts.componentScope); // markOffscope
   const base = path.join(opts.shotDir, opts.tag);
-  res.load = { ...(await captureRoot(page, opts.sel, base, true, /^load$/)), requests: log.map((x) => ({ ...x })) };
+  res.load = { ...(await captureRoot(page, opts.sel, base, true, /^load$/)), requests: log.map((x) => ({ ...x })), opened: opened.map((x) => ({ ...x })) };
   if (opts.steps?.length) {
     res.steps = [];
     for (const [i, s] of opts.steps.entries()) {
       phase = "step" + i;
       await page.evaluate((p) => { window.__gatePhase = p; }, phase).catch(() => {});
-      let err = null, note = null;
-      // A failed step is tried once more after 1 s (as record-page does): on a busy machine a click can time out while
-      // the page is still busy.
-      try { note = (await step(page, s)) ?? null; } catch { await page.waitForTimeout(1000); try { note = (await step(page, s)) ?? null; } catch (e) { err = e.message.split("\n")[0].slice(0, 160); } }
+      const { err, note } = await runStep(page, s);
       res.steps.push({ i, step: s.fill ? { fill: [s.fill[0], "<test value>"] } : s, err, note });
     }
     await waitQuiet(page, opts.sel);
     res.final = await captureRoot(page, opts.sel, base + ".final", false, /^step/);
     res.stepLog = log.filter((x) => x.phase !== "load");
+    res.opened = opened.filter((x) => x.phase !== "load");
   }
+  res.otherRequests = otherRequests.map((x) => ({ phase: x.phase, method: x.method, path: x.path }));
   res.totalMs = Date.now() - t0;
+  if (opts.coverage?.length) res.coverage = pickScripts(await page.coverage.stopJSCoverage(), opts.coverage);
   await ctx.close();
   return res;
 }

@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/CancelReasonModal.vue",
  "exports": {
   "p": {
-   "export": "default"
+   "export": "default",
+   "original": "index.175161560754529.js#p"
   }
  },
  "registryKey": "index.175161560754529.js",

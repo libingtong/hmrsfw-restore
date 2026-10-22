@@ -4,7 +4,7 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `_e` | index.api.178332063620041.js | api | @/api/jobOverseasRecruitNotice `queryList` | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobOverseasRecruitNotice/queryList",method:"get",params:e})` |
+| `_e` | index.api.178332063620041.js | api | @/api/jobOverseasRecruitNotice `queryList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobOverseasRecruitNotice/queryList",method:"get",params:e})` |
 | `ke` | index.1783320636200.js | entry | @/legacy `getDictItemsByCode` | `e=>IN("/jeecg-system/sys/dict/getDictItemsByCode",e,"get")` |
 | `xe` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
 | `ze` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |

@@ -43,7 +43,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Pt": {
    "original": "h",
@@ -108,21 +109,21 @@
  "api": {
   "Jt": {
    "original": "index.api.178332063620033.js#a",
-   "path": "@/api/jobCompanyPosition",
+   "path": "@/api/api-178332063620033",
    "export": "freeCompanyPositionDetail",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyPositionDetail"
   },
   "Zt": {
    "original": "index.api.178332063620033.js#b",
-   "path": "@/api/jobCompanyPosition",
+   "path": "@/api/api-178332063620033",
    "export": "viewVoByIdFromPerson",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromPerson"
   },
   "qt": {
    "original": "index.api.178332063620033.js#c",
-   "path": "@/api/jobCompanyPosition",
+   "path": "@/api/api-178332063620033",
    "export": "getMatchingDegree",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompanyPosition/getMatchingDegree"
@@ -149,7 +150,10 @@
    "value": "/assets/noResumeR.1783320636200.png",
    "inline": false,
    "path": "@/shared/noResumeR",
-   "export": "_",
+   "export": "noResumeImg",
+   "aliases": [
+    "_"
+   ],
    "status": "restored"
   },
   "q": {

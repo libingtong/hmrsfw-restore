@@ -56,7 +56,9 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.c01"
+  ]
  },
  "stylesProvidedByScript": true,
  "recordNotes": "type=check 是只读查看，不点提交或保存。"

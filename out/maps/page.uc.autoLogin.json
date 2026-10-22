@@ -20,7 +20,8 @@
    "original": "bC",
    "path": "@/legacy/utils",
    "export": "getUrlParams",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "_": {
    "original": "k",
@@ -32,13 +33,15 @@
    "original": "bD",
    "path": "@/legacy/store",
    "export": "vuexStore",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E4"
   },
   "N": {
    "original": "bE",
    "path": "@/legacy/api",
    "export": "getSysUserByToken",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "S": {
    "original": "f",
@@ -56,13 +59,15 @@
    "original": "l",
    "path": "@/legacy/utils",
    "export": "setLocalStorage",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "P": {
    "original": "n",
    "path": "@/legacy/api",
    "export": "listOneForWebSite",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "w": {
    "original": "v",
@@ -86,13 +91,15 @@
    "original": "bG",
    "path": "@/legacy/api",
    "export": "queryByIdJM",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "E": {
    "original": "j",
    "path": "@/legacy/api",
    "export": "sysUserAuthenticateIdentityList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   }
  },
  "api": {},

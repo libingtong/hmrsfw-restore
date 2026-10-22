@@ -1,6 +1,6 @@
 录制工具（`tools/record-page.mjs`）的验收样例，都是 POC 没有 HAR 的页面：
 
-- 3 张带交互脚本：`rv-uc-feedback`（求职者，带提交，会真实写入一条意见反馈）、`rv-uc-mynews`（求职者）、`rv-portal-trainList`（门户）。
+- 3 张带交互脚本：`rv-uc-feedback`（求职者，带提交；提交接口 `xfJobFeedbackRecord/add` 在写接口拦截名单里，不再真实写入，HM-992）、`rv-uc-mynews`（求职者）、`rv-portal-trainList`（门户）。
 - 2 张只录加载，用来验证身份切换：`rv-uc-mentorhome`（职业导师）、`rv-uc-corpcenter`（招聘单位）。
 
 身份由工单的 `role` 决定，record-page 开录前会自动切换，见根目录 README「录制」。它们不是流水线工单，工单 id 以 `rv-` 开头，交互脚本不放在 `tests/interact/`，也不会被提交到 `integration`。
@@ -15,4 +15,4 @@ for id in rv-uc-mentorhome rv-uc-corpcenter; do
 done
 ```
 
-`rv-uc-feedback` 每录一次会在测试环境新增一条标题为「测试反馈Tst-0001」的意见反馈（`POST /xf-job/job/xfJobFeedbackRecord/add`），测试环境重置时一并清掉。
+`rv-uc-feedback` 的提交（`POST /xf-job/job/xfJobFeedbackRecord/add`）由写接口拦截名单挡下，不发到测试环境，录制结果的 `intercepted` 里能看到它（HM-992 之前每录一次会新增一条「测试反馈Tst-0001」）。

@@ -6,8 +6,8 @@
    "pages": 161,
    "routeViews": 111,
    "importedViews": 50,
-   "accepted": 3,
-   "pageOrders": 153,
+   "accepted": 17,
+   "pageOrders": 140,
    "segmentedPages": [
     {
      "id": "page.portal.cityHome.index",
@@ -17,11 +17,6 @@
     {
      "id": "page.portal.eMap.index",
      "kb": 30.8,
-     "segments": 2
-    },
-    {
-     "id": "page.portal.fair.sceneFair.detail",
-     "kb": 35.1,
      "segments": 2
     },
     {
@@ -35,7 +30,7 @@
      "segments": 2
     }
    ],
-   "segments": 10,
+   "segments": 8,
    "sizeBands": {
     "<5": 51,
     "5-30": 105,
@@ -56,7 +51,7 @@
     {
      "id": "page.portal.fair.sceneFair.detail",
      "kb": 35.1,
-     "status": "segmented"
+     "status": "regression"
     },
     {
      "id": "page.portal.guide.jobHunt",
@@ -78,7 +73,7 @@
    "sharedModulesOrders": 1,
    "entry": 16,
    "entryComponents": 25,
-   "smallPagesForBundling": 49,
+   "smallPagesForBundling": 46,
    "blockedRoutes": 1,
    "bigChunks": [
     {
@@ -170,19 +165,9 @@
    "pages": 133,
    "routeViews": 133,
    "importedViews": 0,
-   "accepted": 0,
-   "pageOrders": 122,
+   "accepted": 16,
+   "pageOrders": 111,
    "segmentedPages": [
-    {
-     "id": "page.uc.doneList",
-     "kb": 35.8,
-     "segments": 2
-    },
-    {
-     "id": "page.uc.formDone",
-     "kb": 113.6,
-     "segments": 4
-    },
     {
      "id": "page.uc.CorpAttestation",
      "kb": 63.1,
@@ -194,24 +179,9 @@
      "segments": 2
     },
     {
-     "id": "page.uc.CorpAttestationapprove",
-     "kb": 71.7,
-     "segments": 3
-    },
-    {
      "id": "page.uc.zcyzCorpAttestationapprove",
      "kb": 63.4,
      "segments": 3
-    },
-    {
-     "id": "page.uc.corpFairs",
-     "kb": 70.6,
-     "segments": 3
-    },
-    {
-     "id": "page.uc.Createaresume",
-     "kb": 58.9,
-     "segments": 1
     },
     {
      "id": "page.uc.collage.studentApply",
@@ -229,7 +199,7 @@
      "segments": 2
     }
    ],
-   "segments": 26,
+   "segments": 13,
    "sizeBands": {
     "<5": 35,
     "5-30": 87,
@@ -240,7 +210,7 @@
     {
      "id": "page.uc.doneList",
      "kb": 35.8,
-     "status": "segmented"
+     "status": "regression"
     },
     {
      "id": "page.uc.zcyzCorpAttestation",
@@ -250,7 +220,7 @@
     {
      "id": "page.uc.Createaresume",
      "kb": 58.9,
-     "status": "segmented"
+     "status": "regression"
     },
     {
      "id": "page.uc.collage.studentApply",
@@ -274,7 +244,7 @@
    "sharedModulesOrders": 1,
    "entry": 10,
    "entryComponents": 8,
-   "smallPagesForBundling": 35,
+   "smallPagesForBundling": 29,
    "blockedRoutes": 0,
    "bigChunks": [
     {
@@ -305,14 +275,14 @@
   }
  },
  "totals": {
-  "orders": 448,
-  "dispatchable": 396,
+  "orders": 433,
+  "dispatchable": 357,
   "withMissing": 0,
   "pages": 294,
-  "pageOrders": 275,
-  "regression": 34,
-  "segmentedPages": 16,
-  "segments": 36,
+  "pageOrders": 251,
+  "regression": 64,
+  "segmentedPages": 10,
+  "segments": 21,
   "shared": 90,
   "sharedTodo": 57,
   "sharedModules": 2,

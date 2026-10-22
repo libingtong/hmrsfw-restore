@@ -169,13 +169,15 @@
    "original": "K",
    "path": "@/legacy/api",
    "export": "sumbitBaseCompanyInfo",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Dt": {
    "original": "L",
    "path": "@/legacy/api",
    "export": "sumbitImportantCompanyInfo",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Ht": {
    "original": "_",

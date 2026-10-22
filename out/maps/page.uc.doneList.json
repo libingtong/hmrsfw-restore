@@ -92,56 +92,56 @@
  "api": {
   "ye": {
    "original": "index.api.17516156075455.js#g",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "list3",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/list"
   },
   "se": {
    "original": "index.api.17516156075455.js#a",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "list2",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/list"
   },
   "ke": {
    "original": "index.api.17516156075455.js#b",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "list4",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentPfiPromotion/list"
   },
   "be": {
    "original": "index.api.17516156075455.js#s",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "addCollegeInfo",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentStayUniversity/addCollegeInfo"
   },
   "ve": {
    "original": "index.api.17516156075455.js#c",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "list",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentStayUniversity/list"
   },
   "Se": {
    "original": "index.api.17516156075455.js#d",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "getCollegeInfo",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentStayUniversity/getCollegeInfo"
   },
   "le": {
    "original": "index.api.17516156075455.js#e",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "list5",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentPostdocPerk/list"
   },
   "xe": {
    "original": "index.api.17516156075455.js#f",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "queryOpenStatus",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobMattermanage/queryOpenStatus"

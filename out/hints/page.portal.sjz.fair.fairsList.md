@@ -10,5 +10,5 @@
 | `I` | index.1783320636200.js | entry | @/legacy `BusinessDictLabels` | `(e=>(e.PROVINCE_NAME="provinceName",e.TEACHIN_STATUS="teachin_status",e.WEBSITE_CONFIG="website_config",e.PLATFORM="\u5E73\u53F0\u914D\u7F6E",e.INDEX_QRCODE="index_qrcode",e.TOPNAV="topNav",e.HIDE_COD` |
 | `O` | index.1783320636200.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `U` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
-| `V` | index.1783320636200.js | entry | @/legacy/components/MoveWindow.vue `default` | `mt(cne,[["__scopeId","data-v-a15b1e15"]])` |
+| `V` | index.1783320636200.js | entry | @/legacy/components/MoveWindow.vue `default`（reserved） | `mt(cne,[["__scopeId","data-v-a15b1e15"]])` |
 | `W` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |

@@ -69,7 +69,7 @@
  "api": {
   "D": {
    "original": "index.api.17516156075453.js#e",
-   "path": "@/api/user",
+   "path": "@/api/api-17516156075453",
    "export": "setXfSysUserPhoto",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUser/setXfSysUserPhoto"

@@ -7,10 +7,12 @@
 //   open-upgrade <任务id> --reason "<依据>"  public-library upgrade order; the page is suspended until it merges
 //   open-rule-review <分支>                 rule change review by two reviewers of families other than the arbiter's
 //   resplit <工单id> / rerecord <工单id>      re-segment the order / send it back to the recorder
-//   resume                                 lift the dispatch pause after an incident (on both machines)
+//   resume                                 lift the dispatch pause after an incident (on every machine)
 //   fast-lane status|adopt|login-ok|report fast-lane mode (HM-48, config fastLane.enabled): progress / create the restore tasks of
 //                                          the inventory's pages / lift the recording pause after the human logged in again /
 //                                          report [--write]: results/replay.json (verdict per page)
+//   fast-lane retire [--dry-run]           after restore/fast-lane is merged into integration: write what the fast lane did into
+//                                          the ledger so a normal tick doesn't redo it (HM-1068); release <工单id> ...: let a held one go
 //   claims list                            work orders per machine, leader lease, heartbeats
 //   claims reclaim --from <machine> [--wo <工单id> ...] [--force]
 //                                          take over a dead machine's work orders (refused while its heartbeat is fresh)
@@ -37,7 +39,12 @@ export function run(argv) {
       if (process.env.HMRSFW_TICK_NO_GLOBAL_LOCK === "1") return pl.tick();
       return pl.locks.with("tick", () => pl.tick());
     }
-    case "advance": if (!target) throw new Error("usage: tick.mjs advance <任务id> [--regate]"); return pl.advance(target, { regate: argv.includes("--regate") });
+    case "advance": {
+      if (!target) throw new Error("usage: tick.mjs advance <任务id> [--regate]");
+      const r = pl.advance(target, { regate: argv.includes("--regate") });
+      // what the steps after the verdict noted (a fast-lane pick that conflicts, a resume that failed) is reported here too
+      return pl.anomalies.length ? { ...r, anomalies: [...(r.anomalies || []), ...pl.anomalies] } : r;
+    }
     case "digest": return pl.digest();
     case "open-upgrade": {
       const reason = flag(argv, "--reason");
@@ -50,7 +57,7 @@ export function run(argv) {
     case "resume": return pl.resume();
     case "fast-lane": return pl.fastLaneCmd(target);
     case "claims": { const wo = all(argv, "--wo"); return pl.claimsCmd(target, { from: flag(argv, "--from"), keys: wo.length ? wo : null, force: argv.includes("--force") }); }
-    default: throw new Error("usage: tick.mjs tick | advance <任务id> [--regate] | digest | fast-lane status|adopt|login-ok|report | open-upgrade <任务id> --reason .. | open-rule-review <分支> | resplit <工单id> | rerecord <工单id> | resume | claims list|reclaim");
+    default: throw new Error("usage: tick.mjs tick | advance <任务id> [--regate] | digest | fast-lane status|adopt|login-ok|report|retire|release | open-upgrade <任务id> --reason .. | open-rule-review <分支> | resplit <工单id> | rerecord <工单id> | resume | claims list|reclaim");
   }
 }
 

@@ -74,6 +74,8 @@
   ],
   "views": [],
   "orders": [
+   "entry.portal.c03",
+   "entry.portal.c05",
    "shared.portal.ellipsisText",
    "shared.portal.modules"
   ]

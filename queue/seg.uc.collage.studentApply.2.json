@@ -12,11 +12,21 @@
  "after": [
   "seg.uc.collage.studentApply.1"
  ],
- "kb": 14.9,
+ "kb": 20.4,
  "sourceChunk": "legacy-dist/usercenter/assets/apply.1751615607545.js",
  "range": [
-  18105,
+  12571,
   33451
+ ],
+ "factRanges": [
+  [
+   12571,
+   23102
+  ],
+  [
+   23102,
+   33451
+  ]
  ],
  "components": [
   {
@@ -50,8 +60,8 @@
   }
  ],
  "recordPath": "/collage/studentApply",
- "role": null,
- "notes": "待人确认（uc-role-decisions.json）：在校生的签约信息管理，页面链到在校生主页 /collage/studentInfo 和 /collage/nojob；测试账号没有在校生身份；建议 不录（记阻塞）或 general；需要确认：同 /collage/studentInfo",
+ "role": "general",
+ "notes": "裁定（uc-role-decisions.json）。局限：按普通用户录，录出来可能是空状态或没有权限的状态；需造数（D7）：在校生身份（同 /collage/studentInfo）下有就业 / 非就业签约数据",
  "maps": "out/maps/page.uc.collage.studentApply.json",
  "hints": "out/hints/page.uc.collage.studentApply.md",
  "deps": {
@@ -82,7 +92,7 @@
  },
  "stylesProvidedByScript": true,
  "instructions": [
-  "本单只还原原 chunk 的字节区间 [18105, 33451)（约 14.9KB），其余部分由同页的其他分段负责。",
+  "本单只还原原 chunk 的字符区间 [12571, 33451)（JS 字符串下标，不是字节偏移；约 20.4KB），其余部分由同页的其他分段负责。",
   "完整还原这些组件并写成 SFC：protocol → apps/uc/src/views/collage/studentApply/protocol.vue；apply → apps/uc/src/views/collage/studentApply.vue。",
   "本单是最后一段：等其他分段合入后，运行 node tools/assemble-segments.mjs page.uc.collage.studentApply --app \"$HMRSFW_APP_DIR\" 把 _seg/ 下的片段合成 SFC（会删除 _seg/），再对整页跑 self-check。门槛只在本单之后对整页运行。"
  ]

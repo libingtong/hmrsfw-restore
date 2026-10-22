@@ -26,13 +26,15 @@
    "original": "Y",
    "path": "@/legacy/components/Phone.vue",
    "export": "default",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "M": {
    "original": "cj",
    "path": "@/legacy/api",
    "export": "jobPxRegistrationAdd",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "P": {
    "original": "A",

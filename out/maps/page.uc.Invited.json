@@ -51,14 +51,14 @@
  "api": {
   "q": {
    "original": "index.api.17516156075456.js#d",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "listNew",
    "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/listNew"
   },
   "b": {
    "original": "index.api.17516156075456.js#p",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "acceptOrRefuse",
    "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse"

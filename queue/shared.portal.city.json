@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/city.vue",
  "exports": {
   "c": {
-   "export": "default"
+   "export": "default",
+   "original": "city.1783320636200.js#c"
   }
  },
  "registryKey": "city.1783320636200.js",

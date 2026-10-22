@@ -82,6 +82,9 @@
    "page.portal.fair.signModal"
   ],
   "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
+   "entry.portal.c04",
    "page.portal.cityHome.titles",
    "page.portal.fair.signModal",
    "shared.portal.modules"

@@ -1,0 +1,1299 @@
+{
+ "generatedAt": "2026-10-22T03:49:23.608Z",
+ "counts": {
+  "pass": 221,
+  "blocked": 18,
+  "pending": 17
+ },
+ "pages": {
+  "page.portal.guide.jobHunt": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14082-a88d-7507-b5a7-d8622c3f5adf"
+  },
+  "page.portal.cityHome.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14082-c0d8-7cb9-a25e-cd1398209adf"
+  },
+  "page.portal.eMap.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14082-d892-739a-905b-ea688b5cf1ac"
+  },
+  "page.portal.guide.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14082-f386-7df7-967b-c705b66a1194"
+  },
+  "page.portal.fair.webFair.detail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14083-074d-704e-be61-a7a358117fce"
+  },
+  "page.portal.fair.outFair.detail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14083-20c7-7e40-aece-c0cc968ca607"
+  },
+  "page.portal.xjhm.bigData.statistics": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14083-321a-7068-9f8c-592ba151aac3"
+  },
+  "page.portal.talents.eMap.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14083-43d1-7f3b-be6c-9c75ac7aaac6"
+  },
+  "page.portal.customerService.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14083-553a-7a72-8208-da606d5dd36b"
+  },
+  "page.portal.talents.fair.webFair.detail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14083-653b-7b87-b4de-eb641d79f497"
+  },
+  "page.portal.LookForJob.PostDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14083-774d-7c4e-986c-81e2549d804c"
+  },
+  "page.portal.sjz.school.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14083-ad78-731d-b58f-80830517fc6d"
+  },
+  "page.portal.login": {
+   "pass": null,
+   "status": "pending",
+   "task": "01a14083-d42d-7068-a9ab-2a5e6ce00fec"
+  },
+  "page.portal.recruitMarket.marketDetail.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14083-e294-77e8-8110-65ba511457b7"
+  },
+  "page.portal.answer.details": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14084-0aae-70b0-aed8-b4b0b93497b0"
+  },
+  "page.portal.LookForJob.CorpDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14084-486c-77db-86f7-a26831353711"
+  },
+  "page.portal.recruitMarket.marketHome.home": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14084-6243-7b36-bff6-a951c53d2892"
+  },
+  "page.portal.Guidance.GuidanceHome.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14084-8611-7939-b73b-5042338fd72c"
+  },
+  "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14084-98f3-7013-aefd-7b508a2c06ce"
+  },
+  "page.portal.talents.index.review": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14084-aaae-7cf1-b564-e6c374a6cdbb"
+  },
+  "page.portal.region.colleges.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14084-ccce-7a55-b6d7-17b25f7de3a4"
+  },
+  "page.portal.talents.index.jobFair": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14084-e259-7de8-ac11-6ecaf23bac31"
+  },
+  "page.portal.park.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14084-f5e0-7490-bd20-e62dd1a3a64a"
+  },
+  "page.portal.jobMarket.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14085-0cae-745e-8873-09e0271be48c"
+  },
+  "page.portal.talents.newPark.industry": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14085-246d-773c-abb7-3b901445cecc"
+  },
+  "page.portal.sjz.talent.talentList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14090-7686-7076-9490-5a8bc6c74b91"
+  },
+  "page.portal.livejob.detail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14090-8cbc-706e-a492-2c71c3b5fcd2"
+  },
+  "page.portal.talents.talentnew.talentList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14090-a733-765c-93f6-36b417795005"
+  },
+  "page.portal.sjz.job.jobList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14090-be4f-728a-ad10-01fc63920663"
+  },
+  "page.portal.sjz.unitMain.unitMain": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:need-recordpath-id(原版无根节点，recordPath 缺详情 id)",
+   "task": "01a14090-dd6c-7750-b530-0dcaf4edf649"
+  },
+  "page.portal.zzgj.trainCourse.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14090-f576-786d-83ef-b638eb556603"
+  },
+  "page.portal.sjz.bigData.mobile.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14091-0c6d-70a1-b03a-f1d7cb750b66"
+  },
+  "page.portal.RecruitTalents.ResumePreview": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14091-23be-78a6-beff-27682940cd71"
+  },
+  "page.portal.talents.cityHome.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14091-682f-7b69-a569-21d1f3e4a6ee"
+  },
+  "page.portal.oddJob.recruitworkers.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14091-a0f3-70a8-b11c-8ce4db203404"
+  },
+  "page.portal.talents.job.jobList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14091-ba13-7e4e-aa66-8210e9195b0f"
+  },
+  "page.portal.fair.sceneFair.list": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14091-eded-750e-ac71-a0d4e7e3839e"
+  },
+  "page.portal.oddJob.Jobsearch.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14092-22e5-7952-999d-fc8f5eaf1146"
+  },
+  "page.portal.xjhm.home.advertTop": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14092-5b9f-79c7-b85d-8e384ae19e13"
+  },
+  "page.portal.oddJob.recruitworkers.recruitworkersDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14092-a70d-73df-a08e-0f0ce452e272"
+  },
+  "page.portal.sjz.fair.sceneFair.list": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14093-05b6-7816-a523-4f6fe12b325f"
+  },
+  "page.portal.sjz.fair.webFair.list": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14093-2739-7604-9a83-fd2ee65bab03"
+  },
+  "page.portal.Guidance.GuidanceMentorList.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14093-619c-7842-9842-5bb44071a48b"
+  },
+  "page.portal.sjz.fair.outFair.list": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14093-b7a7-76ae-9799-9ccdef2aec6b"
+  },
+  "page.portal.xjhm.home.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14093-cd2c-70e2-b17a-d58bf18cf022"
+  },
+  "page.portal.train.trainList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14093-e99d-7456-83d3-6164ab0ba125"
+  },
+  "page.portal.video.zbdg": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14094-4f12-7ebb-982b-d7b3cf9234bb"
+  },
+  "page.portal.talents.fair.outFair.list": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14094-607a-71d1-bdc5-0db7365c88b8"
+  },
+  "page.portal.oddJob.Jobsearch.JobsearchDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14094-8b63-702b-a509-0f8206e0ba48"
+  },
+  "page.portal.oddJob.Jobshortage.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14094-9d4e-78aa-9abe-7ffbb6c238e0"
+  },
+  "page.portal.xjhm.cityHome.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14099-b36f-78bf-9a7e-34d10549be2f"
+  },
+  "page.portal.answer.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14099-ca38-7034-a1a0-a0b8f16b7b66"
+  },
+  "page.portal.BeOnProbation.ProbationBaseList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a14099-deee-7890-bedd-738b0751401e"
+  },
+  "page.portal.sjz.bigData.components.Dashboard1": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:needs-data",
+   "task": "01a14099-f146-773f-ab1c-414b14f148ce"
+  },
+  "page.portal.sjz.setUp.setupDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409a-07fc-78b3-86d1-dff1b413d12b"
+  },
+  "page.portal.talents.fair.webFair.list": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409a-573c-701c-8dea-b2bca1756d4f"
+  },
+  "page.portal.talents.homeView": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409a-701a-7737-a03c-a3c9270ecb83"
+  },
+  "page.portal.oddJob.Sparework.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409a-ac35-78e7-9e03-7b9ea6841405"
+  },
+  "page.portal.region.innovation.index": {
+   "pass": null,
+   "status": "pending",
+   "task": "01a1409b-1f03-702e-9846-77764167e940"
+  },
+  "page.portal.train.trainDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409b-3825-7172-b18e-a91dbc2daa6c"
+  },
+  "page.portal.BeOnProbation.ProbationPostList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409b-9c34-7e21-b7d1-159947995241"
+  },
+  "page.portal.sjz.corp.corpList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409b-d5b7-7a65-a3c5-5afc653801ed"
+  },
+  "page.portal.talents.conference.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409b-ea5d-7d4d-b142-0415c2f7e40d"
+  },
+  "page.portal.loginviews.siginbig": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-15a4-7c55-a8a1-6f3efc264ccd"
+  },
+  "page.portal.talents.setUp.setupDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-25e4-7455-ab60-ef31f567b3ec"
+  },
+  "page.portal.talents.setUp.setupList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-3503-7964-b02c-ca8f15e35086"
+  },
+  "page.portal.setUp.setupList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-43e8-7cab-b6ac-a71cbd050433"
+  },
+  "page.portal.BeOnProbation.ProbationBaseDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-51c9-7bf6-88fa-964ec80bc9f1"
+  },
+  "page.portal.BeOnProbation.ProbationPostDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-6086-77f0-900b-f7ac22a99d14"
+  },
+  "page.portal.loginviews.passwordhintbig": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-6e56-71e8-a8de-11b54629d217"
+  },
+  "page.portal.oddJob.shareUser.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-7e9d-7a01-9fd7-e0f4861e54c3"
+  },
+  "page.portal.livejob.index": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:live-tab-absent",
+   "task": "01a1409c-8e57-72b9-bdcb-54837e06f34a"
+  },
+  "page.portal.talents.newPark.talentPark": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-9c47-7d2d-89ff-22919bb8952b"
+  },
+  "page.portal.recruitMarket.corpList.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-abb0-752d-befb-09bc3f1ef4a9"
+  },
+  "page.portal.talents.greenchannel.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1409c-ba11-798d-9c07-ce2d0505c98d"
+  },
+  "page.portal.talents.cityHome.talentArea": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a3-ff0a-78e4-bcf8-82b857c3f465"
+  },
+  "page.portal.talents.index.homeList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a4-0f22-7669-b4a1-b94cfcdc3293"
+  },
+  "page.portal.oddJob.Jobshortage.JobshortageDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a4-1ffe-77e7-a965-4b7421760f20"
+  },
+  "page.portal.live.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a4-35bb-725b-af2e-bdedaedd32db"
+  },
+  "page.portal.sjz.news.newsList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a4-491b-7876-9fc1-94f457e3b3d5"
+  },
+  "page.portal.oddJob.Sparework.SpareworkDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a4-5c16-7820-9c71-443edb0861e1"
+  },
+  "page.portal.region.findworker.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a4-727b-78c7-8c17-6076ba45f730"
+  },
+  "page.portal.region.skill.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a4-9586-71b0-932d-d56fd8560fcc"
+  },
+  "page.portal.talents.index.talentRecommend": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a4-da42-7884-b628-02c82af2e503"
+  },
+  "page.portal.oddJob.shareUser.detail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a4-f909-7b60-8945-9de19983fa58"
+  },
+  "page.portal.talents.index.infoRecommend": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a5-0c2a-7b2f-af1d-752db686548d"
+  },
+  "page.portal.talents.index.jobRecommend": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a5-400e-7762-8dda-f6e7f84b6417"
+  },
+  "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a5-8388-7263-826b-34fea8123ecf"
+  },
+  "page.portal.train.trainOrganDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a6-09af-7c52-98ff-77537456d5c8"
+  },
+  "page.portal.talents.index.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a6-1b49-7e67-82e2-6ce7adc2e212"
+  },
+  "page.portal.talents.overseasRecruitment.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a6-7bc3-76d3-92da-e5719ad644f1"
+  },
+  "page.portal.Guidance.GuidanceAskDetail.index": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:recordpath-missing-id",
+   "task": "01a140a6-b2ad-75a5-8d8e-dbedfa0faca9"
+  },
+  "page.portal.Guidance.GuidanceAskList.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a6-c81b-75cf-b826-5377d15df117"
+  },
+  "page.portal.Guidance.GuidanceConsult.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a7-278b-7dfd-833c-0e06e1b146c0"
+  },
+  "page.portal.oddJob.news.index": {
+   "pass": null,
+   "status": "pending",
+   "task": "01a140a7-56e1-73da-b5fb-42305519e26b"
+  },
+  "page.portal.sjz.bigData.components.Dashboard2": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:needs-data",
+   "task": "01a140a7-6aec-722a-b313-397a3b8a6778"
+  },
+  "page.portal.talents.information.newsList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a7-91ba-762d-8db0-5076d25e8595"
+  },
+  "page.portal.talents.newPark.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a7-b1a6-77f3-8ffb-5422a1d8ab3d"
+  },
+  "page.portal.BeOnProbation.ProbationElegantList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a7-d1d6-74b8-aae9-29ca74864b94"
+  },
+  "page.portal.BeOnProbation.UserAdminJobPlacement": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140a7-eb14-7e84-8a09-481158e4c8f1"
+  },
+  "page.portal.Guidance.GuidanceVideo.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ad-493c-725c-ba19-0fd8d72d15cf"
+  },
+  "page.portal.service.filesSearch.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ad-6693-78f5-be82-64a4236d0a9e"
+  },
+  "page.portal.talents.index.frendLinks": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ad-7f6c-73ca-92ac-c4a2d4b17c1e"
+  },
+  "page.portal.Guidance.GuidanceMentorFrom.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ad-9696-71a4-afb6-9e765569d098"
+  },
+  "page.portal.oddJob.rtInto.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ad-aa8a-7369-b2fb-05f437bc54b8"
+  },
+  "page.portal.talents.cityHome.helpCenter": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ad-bdc9-7beb-be30-3c51893fbd1f"
+  },
+  "page.portal.talents.overseasRecruitment.antDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ad-d151-7225-8b01-110cddd1a5db"
+  },
+  "page.portal.train.trainOrganList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ad-e602-762c-bfe6-ab997e37dc97"
+  },
+  "page.portal.talents.conference.detail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ad-fb63-7d36-9c91-e5362a89d84f"
+  },
+  "page.portal.livejob.components.commentItem": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:needs-data",
+   "task": "01a140ae-0e8a-74a5-9b25-19722bcedfdf"
+  },
+  "page.portal.talents.newPark.homeList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ae-2479-7a81-b052-88f7f3ca3628"
+  },
+  "page.portal.jobMarket.marketDetail": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:need-record-id",
+   "task": "01a140ae-3939-70ef-901e-aeb61591d5bc"
+  },
+  "page.portal.sjz.fair.fairsList": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:needs-data",
+   "task": "01a140ae-4a97-7d13-a5cd-45a89e3dd932"
+  },
+  "page.portal.talents.conference.swperSlides": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ae-59bc-7206-937e-777a68956b2e"
+  },
+  "page.portal.talents.index.advertTop": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:needs-data",
+   "task": "01a140ae-6ad4-7ee1-b5fb-4487deaac330"
+  },
+  "page.portal.answer.passwordModal": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:need-data",
+   "task": "01a140ae-7de8-73b9-816f-d91c5263ceb5"
+  },
+  "page.portal.sjz.fair.fairs": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ae-920a-75bb-9a8f-d37ba00451ba"
+  },
+  "page.portal.talents.newPark.servicePark": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ae-a56c-703d-a098-dcf48c8b6c73"
+  },
+  "page.portal.talents.cityHome.job": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ae-b8e6-7b40-9ddb-0d429ef0bfe9"
+  },
+  "page.portal.eMap.list": {
+   "pass": null,
+   "status": "pending",
+   "task": "01a140ae-d078-765d-8f41-ecbdf2da1608"
+  },
+  "page.portal.oddJob.rtInto.odd": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ae-eb18-7aaa-9da3-07a04062d067"
+  },
+  "page.portal.talents.eMap.list": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:needs-data",
+   "task": "01a140af-01f9-769f-a3b6-3be8b710ae07"
+  },
+  "page.portal.talents.conference.abouts": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140af-19d5-77a7-b8e9-ddb06cffc098"
+  },
+  "page.portal.talents.cityHome.corp": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140af-2f73-7336-8463-d1532be8adb2"
+  },
+  "page.portal.zcyz.bigData.components.pieRader": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140af-56a8-7e7e-9b89-025c495698c7"
+  },
+  "page.portal.talents.information.newsDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b6-1983-7a42-a6b7-dccd60386830"
+  },
+  "page.portal.region.innovation.innovationDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b6-329b-7227-98ea-da38771b0113"
+  },
+  "page.portal.fair.webFair.NumVideo": {
+   "pass": null,
+   "status": "pending",
+   "task": "01a140b6-5014-703e-ae8c-4be04543a1b1"
+  },
+  "page.portal.sjz.bigData.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b6-b953-75f4-8a3f-764f20a173c6"
+  },
+  "page.portal.talents.cityHome.titles": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b6-e91f-758e-b377-799d9745a23c"
+  },
+  "page.portal.talents.fair.fairList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b6-ff8e-7380-8943-2f9441f85d49"
+  },
+  "page.portal.sjz.fair.fairList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b7-28a7-76a4-bd3a-b6bf19815669"
+  },
+  "page.portal.sjz.bigData.TopTitle": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b7-425c-7b6c-ae1a-1bf09aa4f24f"
+  },
+  "page.portal.talents.conference.medias": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b7-570d-7259-a709-101afbed04df"
+  },
+  "page.portal.zcyz.bigData.components.scrollList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b7-6dcb-7f2b-8bfc-ff746b6986ca"
+  },
+  "page.portal.cityHome.titles": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b7-855e-79b6-8849-86c0fa255c91"
+  },
+  "page.portal.sjz.bigData.screen": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b7-a4b1-76fc-982a-d93df110d834"
+  },
+  "page.portal.sjz.webvirtualjobfairs.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b8-08e7-7ca6-ad0f-ea86a21f596f"
+  },
+  "page.portal.talents.conference.scrollList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b8-2a01-75dc-a2d6-41f4b22ae5e8"
+  },
+  "page.portal.zcyz.bigData.components.pieCommon": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b8-600c-77ee-9bd9-e5839033f242"
+  },
+  "page.portal.talents.conference.cTitles": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b8-9995-7339-b5ba-44409c63e751"
+  },
+  "page.portal.talents.newPark.titles": {
+   "pass": null,
+   "status": "pending",
+   "task": "01a140b8-f3c4-705e-aa4e-049f18db2c2e"
+  },
+  "page.portal.sjz.virtualjobfairs.index": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b9-284d-76c9-b37e-edf324800a97"
+  },
+  "page.uc.zcyzCorpAttestationapprove": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d3-504b-7567-8807-ba41bafd50e6"
+  },
+  "page.uc.collage.studentApply": {
+   "pass": null,
+   "status": "pending"
+  },
+  "page.uc.gongfuWorkshop.positionPosting": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d3-648b-7f3c-8553-9e5dedb2a720"
+  },
+  "page.uc.personLoan.detailInfo": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:landed-on-main-redirect",
+   "task": "01a140d3-7a1a-7259-b6fe-e933622dd33b"
+  },
+  "page.uc.gongfuWorkshop.jobPosting": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d3-8f3b-74f3-8d68-46d292196596"
+  },
+  "page.uc.main": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b9-69f1-7db4-8509-fdc860f02038"
+  },
+  "page.uc.needDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d3-a529-7b59-a10a-7039c1f05ac3"
+  },
+  "page.uc.marketCenter": {
+   "pass": null,
+   "status": "pending"
+  },
+  "page.uc.collage.studentInfo": {
+   "pass": null,
+   "status": "pending"
+  },
+  "page.uc.addmysubscribe": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d3-bc1f-741e-b6a2-7e8d0aadf814"
+  },
+  "page.uc.oddjob.sharepage": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d3-d1ef-706c-9a11-2fd56546245f"
+  },
+  "page.uc.expert": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d3-e68e-7ba0-8172-e745f12d10e6"
+  },
+  "page.uc.Unitposition": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d4-1a28-7f3a-9b91-e5e8cb3abf72"
+  },
+  "page.uc.nom": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b9-8412-72e3-a07e-9c7117431126"
+  },
+  "page.uc.findDetail": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d4-2c7a-70d7-a2a1-59633e714ef8"
+  },
+  "page.uc.Enterpriseonlineservices": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d4-3e26-7148-a431-89c96c2b97b6"
+  },
+  "page.uc.Personalonlineservice": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d4-7c69-78c5-b4a3-3a5ee890c079"
+  },
+  "page.uc.collage.nojob": {
+   "pass": null,
+   "status": "pending"
+  },
+  "page.uc.allianceUnitposition": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d4-b386-7c7d-8503-3751c398b9ca"
+  },
+  "page.uc.myRegistration": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d4-caca-78ee-b86d-7f0b58bbc250"
+  },
+  "page.uc.trainCourseHis": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d4-dd0d-7290-8070-e67755d5767a"
+  },
+  "page.uc.userFairs": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d5-035c-7e68-8f53-09863065c728"
+  },
+  "page.uc.feedback": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d5-1500-763a-8004-6af50304a7ae"
+  },
+  "page.uc.changephone": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b9-a60f-7a54-8a46-b9237ef7215a"
+  },
+  "page.uc.collectOdd": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d5-24ae-784b-82de-1fe75217298e"
+  },
+  "page.uc.allianceSend": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140d5-db68-7ca4-99d6-a2d0d6b967ed"
+  },
+  "page.uc.activitySign": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e2-8d40-775d-a35c-587030007677"
+  },
+  "page.uc.teachIn": {
+   "pass": null,
+   "status": "pending"
+  },
+  "page.uc.needList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e2-ab3e-7065-9077-19850fbb6bb7"
+  },
+  "page.uc.collectmentor": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e2-c72c-7c9a-b9c5-156dabb3b0f7"
+  },
+  "page.uc.findList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e2-e114-7629-b224-ae0b833a9e65"
+  },
+  "page.uc.consult": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e3-0599-75e6-8e12-6a4974b9ebe5"
+  },
+  "page.uc.overseasRecruitment": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e3-91c0-7040-bda5-7421d28c029c"
+  },
+  "page.uc.audit": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e3-e25e-7cd1-982e-6a281dbfe99d"
+  },
+  "page.uc.graduates": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e4-000c-78f7-bf3f-0c8c8150ee26"
+  },
+  "page.uc.myaccuse": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e4-2d70-7707-8d3d-94d40c6d51ab"
+  },
+  "page.uc.changeRole": {
+   "pass": null,
+   "status": "pending"
+  },
+  "page.uc.autoLogin": {
+   "pass": null,
+   "status": "pending",
+   "task": "01a140b9-c522-73e1-a42a-3fa8a3ec5f5e"
+  },
+  "page.uc.businessSingUp": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e7-0b9c-710c-8412-0d34666a98a6"
+  },
+  "page.uc.courseSingUp": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e7-1ebc-77e6-86d9-d311b67b96f3"
+  },
+  "page.uc.lookList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e7-315e-7706-af3f-0946c05048f0"
+  },
+  "page.uc.projectSingUp": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e8-69d0-7df1-895b-cf5372c91c90"
+  },
+  "page.uc.converList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e8-7e58-76eb-a31d-5d630937aa2a"
+  },
+  "page.uc.inSurvey": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e9-0d78-7390-a93d-57c6604e1314"
+  },
+  "page.uc.mynews": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140b9-e482-78cf-bf25-3dd54432286f"
+  },
+  "page.uc.mysubscribe": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140e9-c822-720a-b616-7f0a4236609b"
+  },
+  "page.uc.recruitmentSignMng": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ea-14f5-7bcf-8bbd-6e24e1ac54d2"
+  },
+  "page.uc.personLoan": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ea-29b7-7705-850d-9642fc16c98b"
+  },
+  "page.uc.changeavatar": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ee-a7ea-78ed-a43a-c91b6c050c66"
+  },
+  "page.uc.experthome": {
+   "pass": null,
+   "status": "pending"
+  },
+  "page.uc.login": {
+   "pass": null,
+   "status": "pending",
+   "task": "01a140ba-205c-73a4-bc18-cb83757ae3fd"
+  },
+  "page.uc.projectApplyDetails": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ee-b9ca-77bc-a3dd-f5a5096e4974"
+  },
+  "page.uc.previewresume": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:baseline-root-missing"
+  },
+  "page.uc.myresume": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ba-3ed2-7309-b2d4-a4be67f5faec"
+  },
+  "page.uc.personalstyle": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bb-945a-741e-9c18-3ce32f2738e1"
+  },
+  "page.uc.send": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bb-d9e9-78b8-8e57-6e48433f0a8a"
+  },
+  "page.uc.Invited": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bb-f5bc-777c-9d54-7f0299d4fc7f"
+  },
+  "page.uc.myPoints": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bc-0ea7-7d21-af9e-8ad5a42fb1d2"
+  },
+  "page.uc.lookresume": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bc-2640-70c6-b85e-549791057fb0"
+  },
+  "page.uc.userImg": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bc-3ca0-7a62-98f7-f5c1233e7cad"
+  },
+  "page.uc.CorpAttestation": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bc-54bc-792b-ba9a-2f6cda8a3da2"
+  },
+  "page.uc.zcyzCorpAttestation": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:submits-corp-attestation(交互脚本会提交企业认证 sumbitImportantCompanyInfo，现有脚本永久不录)",
+   "task": "01a140bc-6b60-7237-bfc7-e649a7f6b31a"
+  },
+  "page.uc.sign.corpApply": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ee-c8dd-75c0-ba5d-bdf50e184233"
+  },
+  "page.uc.PositionAdmin": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bc-84c9-7ee5-87eb-48d03a0954de"
+  },
+  "page.uc.CorpCenter": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bc-a169-7480-befa-f9d7cec4ae71"
+  },
+  "page.uc.JobFairRelease": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ee-d8d2-7d83-9a8a-55e0cbc5d2cc"
+  },
+  "page.uc.PositionRelease": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bc-bd41-7454-a642-1d7b0bb618cd"
+  },
+  "page.uc.corpLoan.corpLoanInfo": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:redirected-to-CorpCenter",
+   "task": "01a140bc-d3bd-75de-a822-7fcc4fc39561"
+  },
+  "page.uc.PositionReleaseAbroad": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bc-eaa1-77b2-abcb-954b7f4e3872"
+  },
+  "page.uc.zcyzwebFairWork": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140ef-0b06-7cab-a308-b11ce58a9887"
+  },
+  "page.uc.CorpCenterZ": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bc-ffc3-75db-8fc8-b662f08fe55f"
+  },
+  "page.uc.zcyzPositionRelease": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bd-0f73-7bbb-8e1c-5c96c91e549a"
+  },
+  "page.uc.zcyzJobFairRelease": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:need-recordpath-id(zphId 招聘会 id + query id)",
+   "task": "01a140ef-1bc9-7dea-b6a6-3e13662bf16f"
+  },
+  "page.uc.liveApplyAdd": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410c-9a72-7a86-9a40-afba7c2ff43e"
+  },
+  "page.uc.sceneFairSign": {
+   "pass": null,
+   "status": "pending",
+   "task": "01a140bd-1f78-773f-ae76-976ffe79e62a"
+  },
+  "page.uc.oddjob.lack.add": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410c-a763-7703-83f5-d39f2223f9d3"
+  },
+  "page.uc.oddjob.need.add": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410c-b417-72dd-b278-599316d21750"
+  },
+  "page.uc.sign.corpInfo": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410c-c10a-7eaa-8f3e-7ab7e6aa8f88"
+  },
+  "page.uc.WorkStyleAdmin": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bd-31a5-7132-87fc-b3474108a333"
+  },
+  "page.uc.addNewsDetails": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:need-role:corp",
+   "task": "01a1410c-cde8-7686-8690-2417e15fdc66"
+  },
+  "page.uc.fairsList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bd-42e6-7b30-9113-03655586ba2a"
+  },
+  "page.uc.WebWorkResume": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bd-53b7-76b4-8732-9c0677dfdb3c"
+  },
+  "page.uc.ReceivedResume": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bd-62b3-7894-9d80-4e04bab87439"
+  },
+  "page.uc.BeOnProbationAdmin": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410c-dac3-745d-90e9-b57cd253aac5"
+  },
+  "page.uc.collectme": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bd-731e-7d81-bb04-33ddeb78010d"
+  },
+  "page.uc.liveApply": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410c-e7e0-7ddb-818f-58b6ca706e3e"
+  },
+  "page.uc.corpNoJob": {
+   "pass": null,
+   "status": "pending"
+  },
+  "page.uc.TalentSearch": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bd-832e-78c0-bb51-b7a5f85d2457"
+  },
+  "page.uc.BeOnProbation": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bd-a9c6-79fd-b66e-243690e48ca8"
+  },
+  "page.uc.RecIntResume": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bd-e479-710c-b2aa-aeb174cefd68"
+  },
+  "page.uc.BeOnAdmin": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bd-f642-7a9c-a6ef-5cb4657156f2"
+  },
+  "page.uc.enterprisetemplate": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-470a-7149-bcb5-190aed0c223a"
+  },
+  "page.uc.recruitmentInformation": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410c-f4da-7688-904f-b0b0ce61e736"
+  },
+  "page.uc.teachInCancel": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410d-01f3-7a4a-a74d-23c40a48262d"
+  },
+  "page.uc.teachInManage": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410d-0ecd-76cf-9dc2-8c6f466be440"
+  },
+  "page.uc.fairsOutList": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-5766-7983-a3a3-d9ea580078a4"
+  },
+  "page.uc.recruitmentStatis": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410d-1b86-7dae-a85a-4fedf82ef300"
+  },
+  "page.uc.downnoviciate": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-689e-72cd-a50d-67356782e5b1"
+  },
+  "page.uc.noviciateInvited": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410d-283d-7e94-ab74-a3e44eebc5e6"
+  },
+  "page.uc.oddjob.lack": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410d-351c-7b80-a2c5-1b5fdaff078a"
+  },
+  "page.uc.oddjob.need": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410d-41d9-7ea3-bda0-702c535fc762"
+  },
+  "page.uc.pool": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-7855-768a-896f-877536e32a59"
+  },
+  "page.uc.InterviewInvitation": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-874d-766a-b282-930a8603ff2b"
+  },
+  "page.uc.trash": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410d-4eeb-7451-aef8-5887423a4a19"
+  },
+  "page.uc.DownloadResume": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-9857-74e0-9080-8fb8b891666d"
+  },
+  "page.uc.ReceivedResumeLive": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a1410d-5bc9-7df4-8b37-5b382bbc0944"
+  },
+  "page.uc.corpLoan": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-aa81-7875-bdf8-daec3e0cc90d"
+  },
+  "page.uc.corpImg": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-c087-728b-8a60-b161633f0cb3"
+  },
+  "page.uc.CenterFairResume": {
+   "pass": false,
+   "status": "blocked",
+   "reason": "blocked:form-not-rendered(查询表单在企业身份下不渲染，需有界面复查)",
+   "task": "01a1410d-6850-74a7-be28-6f3c550968a0"
+  },
+  "page.uc.mentor": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-d4fb-7561-9737-55f3771efbdd"
+  },
+  "page.uc.mentorhome": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-e6ca-7e90-8514-465a35bcff8b"
+  },
+  "page.uc.allconsult": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140bf-f856-789d-8a6e-cec1c0e2d9b5"
+  },
+  "page.uc.myconsult": {
+   "pass": true,
+   "status": "pass",
+   "task": "01a140c0-35ea-780d-9a21-70bb7f73a5bc"
+  }
+ }
+}

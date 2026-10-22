@@ -30,7 +30,8 @@
    "original": "b6",
    "path": "@/legacy/api",
    "export": "getAllInfo",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "L": {
    "original": "d",
@@ -54,21 +55,21 @@
    "original": "index.api.175161560754513.js#s",
    "path": "@/api/collegeWqCancelDetail",
    "export": "getStudentInfoById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-college/student/xfCollegeStudent/getStudentInfoById"
   },
   "ee": {
    "original": "index.api.175161560754513.js#h",
    "path": "@/api/collegeWqCancelDetail",
    "export": "queryById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-college/wqStudResult/xfCollegeWqStudResult/queryById"
   },
   "le": {
    "original": "index.api.175161560754513.js#i",
    "path": "@/api/collegeWqCancelDetail",
    "export": "edit2",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-college/wqStudResult/xfCollegeWqStudResult/edit"
   }
  },

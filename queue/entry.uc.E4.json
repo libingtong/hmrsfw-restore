@@ -24,19 +24,19 @@
    "alias": "bA",
    "path": "@/legacy/store",
    "export": "usePermissStore",
-   "status": "restored"
+   "status": "reserved"
   },
   {
    "alias": "bD",
    "path": "@/legacy/store",
    "export": "vuexStore",
-   "status": "restored"
+   "status": "reserved"
   },
   {
    "alias": "u",
    "path": "@/legacy/store",
    "export": "useCommonStore",
-   "status": "restored"
+   "status": "reserved"
   }
  ],
  "note": "门户 vuex，用户中心 pinia（+ autoLogin 用的 vuex）",

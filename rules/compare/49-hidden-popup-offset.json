@@ -1,0 +1,7 @@
+{
+ "id": "hidden-popup-offset",
+ "kind": "tree",
+ "enabled": true,
+ "since": "HM-292",
+ "why": "ant-design-vue 弹层（vc-trigger PopupInner）每次 visible 变化都走 measure → align，关闭也一样；vc-align 只检查触发元素可见，不检查弹层本身。所以弹层关闭后会在 display:none（零尺寸）时再对齐一次，行内 left/top 只取决于触发元素在整个文档里的位置（页面上方多 90px 的布局头部，top 就差 90px），与页面代码无关；再次打开前会重新对齐（对齐完成前 opacity 为 0），这两个值从不被渲染。只对被 vc-align 定位过（带 <前缀>-placement-<方位> 类）且行内 style 含 display: none 的元素去掉 left、top 两条声明；style 的其余声明、可见弹层的位置、其他元素照常比较。证据：HM-292 门槛 final.html 只差隐藏下拉框 top（原版 -293px、还原版 -383px，原版有 homeView 头部 headerBox、还原版顶层挂载没有）；同一 a-select 夹具上方加 0/90px，打开时两边都是 top: 44px，关闭后 -655px/-565px，再打开恢复 44px。见 docs/rule-changes/HM-292.md"
+}

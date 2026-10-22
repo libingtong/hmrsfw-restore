@@ -73,7 +73,8 @@ test("semantic: duplicate app names and missing chunks", () => {
 });
 
 test("semantic: duplicate escalation category, secret roles on a machine without secrets", () => {
-  const c = clone(); c.escalation.categories.push({ ...c.escalation.categories[1] }); c.machines[1].roles.push("gate", "fixer");
+  const c = clone(); c.escalation.categories.push({ ...c.escalation.categories[1] });
+  c.machines.push({ name: "spare", holdsSecrets: false, roles: ["restorer", "gate", "fixer"] });
   assert.deepEqual(validate(schema, c), []);
   const { errors } = semanticCheck(c, ROOT, { files: false });
   assert.deepEqual(errors.map((e) => e.path).sort(), ["/escalation/categories", "/machines/1/roles"]);

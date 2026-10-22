@@ -58,7 +58,9 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.c01"
+  ]
  },
  "stylesProvidedByScript": true,
  "recordNotes": "企业页（招聘单位身份）。type=check 是只读查看，不点提交或保存。"

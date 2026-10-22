@@ -21,7 +21,8 @@
  "target": "apps/portal/src/shared/map.vue",
  "exports": {
   "m": {
-   "export": "default"
+   "export": "default",
+   "original": "map.17833206362002.js#m"
   }
  },
  "registryKey": "map.17833206362002.js",

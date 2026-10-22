@@ -11,8 +11,8 @@ v3 的目标是**尽可能并行、尽快完成**。v3.1 按《哈密公共就�
 | 产物工程 | `/Users/dylan/Projects/hmrsfw-vue`：最终交付的 Vue 工程，已有 30 页、入口层、共享层、接口模块。还原员只往这里写 |
 | 仓库 | 两个 GitHub 私有仓库（2026-10-09 已定）：`libingtong/hmrsfw-vue`（产物，只放干净源码，分支 `main` / `integration` / `restore/*`）+ `libingtong/hmrsfw-restore`（工具、`legacy-dist`、映射、工单、回执、`registry`） |
 | 分支 | `main`（集成回归通过后自动合并）、`integration`（门槛通过后自动合并）、`restore/<工单id>-a<attempt>`（每次尝试） |
-| Mac mini（`DylandeMac-mini.local`） | 调度员、门槛员、录制员、修正员、少量还原员。持有 HAR、登录态、SM2 私钥 |
-| Office-Server（`Dylan-Office-Server`） | 主力还原员、审计员。**不放**任何 HAR、登录态、私钥 |
+| Mac mini（`DylandeMac-mini.local`，16GB） | **唯一运行机器**（2026-10-15 起，HM-212）：全部智能体，见第四节。持有 HAR、登录态、SM2 私钥 |
+| Office-Server（`Dylan-Office-Server`） | **已停用**（2026-10-15）。原先放主力还原员和审计员；因 Claude 命令行路径失效、GitHub 凭据和仓库缓存反复出问题而停用，派单不再指向它 |
 | `RESTORE_ASSETS`（仅 Mac mini） | `/Users/dylan/Projects/hmrsfw-restore-poc` |
 | `RESTORE_STATE`（仅 Mac mini） | `/Users/dylan/Projects/hmrsfw-restore-state`：账本、能力表、锁、门槛产物、原版基线、修正 diff |
 | 模型 | 页面默认 Sonnet 5.5；入口包、共享组件、修正用 Opus 5.5；DeepSeek `deepseek-official/deepseek-flash`、GLM `zhipuai-coding-plan/glm-5.3-flash` 作为便宜档，**小样本重测通过后**才启用，且只接 < 30KB 的页面；Codex 审计。**不用 Haiku** |
@@ -51,7 +51,7 @@ flowchart LR
   E[入口包] --> W
   S[共享组件] --> W
   P[页面] --> W
-  W[还原员：两台机器，交付前跑 self-check] -->|handoff.mjs| G
+  W[还原员：Mac mini，交付前跑 self-check] -->|handoff.mjs| G
   G[门槛员：只跑还原版一侧，先快后慢] -->|通过| I[自动合入 integration]
   G -->|失败| F[修正员 1 轮 / Sonnet 重做]
   F --> G
@@ -72,26 +72,44 @@ flowchart LR
 
 ## 四、智能体清单
 
-共 12 个（v3.1 新增还原-Opus@Office），加上第十五节的裁定员，合计 13 个。一个智能体只能绑一台机器的运行时，所以两台机器上的还原员各建一个。权限全部设为「仅自己」。
+**单机运行**（2026-10-15 起）：Office-Server 已停用，全部智能体都在 Mac mini 上，`tick` 只在 Mac mini 上跑（`node tools/tick.mjs tick`，或写明 `--machine mac`）。`restore.config.json` 的 `machines` 只剩 `mac`，承担全部角色。名册（`$RESTORE_STATE/agents.roster.json`）里原 `@Office` 的智能体保留为 `enabled: false`，Multica 里的这些智能体由李炳通确认后统一归档。权限全部设为「仅自己」。
 
-| 名称 | 机器 | 运行时 | 模型 | 思考强度 | 并发 | 职责 |
+| 名称 | 机器 | 运行时 | 模型 | 名册角色 | 并发（名册当前值） | 职责 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 调度员 | Mac mini | Claude Code | Sonnet 5.5 | 低 | 3 | 运行 `tick.mjs`，处理异常 |
-| 门槛员 | Mac mini | Claude Code | Sonnet 5.5 | 低 | 3 → 5–6 | 跑门槛，调用 `advance`。联调测完内存后再提 |
-| 录制员 | Mac mini | Claude Code | Sonnet 5.5 | 中 | 2 | 写交互脚本、录 HAR、算原版基线 |
-| 修正员 | Mac mini | Claude Code | Opus 5.5 | 高 | 2 | 读门槛 diff 修复。diff 可能含测试数据，所以留在 Mac mini |
-| 还原-Sonnet@Mac | Mac mini | Claude Code | Sonnet 5.5 | 中 | 1 | 页面（默认）、重做 |
-| 还原-Opus@Office | Office-Server | Claude Code | Opus 5.5 | 高 | 3 | 入口包、共享组件、公共库升级单 |
-| 还原-DeepSeek@Mac | Mac mini | dsh | `deepseek-official/deepseek-flash` | 默认 | 1 | 普通页面 |
-| 还原-GLM@Mac | Mac mini | Opencode | `zhipuai-coding-plan/glm-5.3-flash` | 默认 | 1 | 普通页面 |
-| 还原-Sonnet@Office | Office-Server | Claude Code | Sonnet 5.5 | 中 | 4 | 同上 |
-| 还原-DeepSeek@Office | Office-Server | dsh | 同上，创建时核对 profile | 默认 | 3 | 同上 |
-| 还原-GLM@Office | Office-Server | Opencode | 同上，创建时核对 provider 前缀 | 默认 | 3 | 同上 |
-| 审计员 | Office-Server | Codex | 运行时默认，创建时记下模型 ID | 高 | 3 | 抽检，只读 |
+| 调度员 | Mac mini | Claude Code | Sonnet 5.5 | `dispatcher` | 1 | 运行 `tick.mjs`，处理异常 |
+| 门槛员 | Mac mini | Claude Code | Sonnet 5.5 | `gate` | 3 | 跑门槛，调用 `advance` |
+| 录制员 | Mac mini | Claude Code | Sonnet 5.5 | `recorder` | 2 | 写交互脚本、录 HAR、算原版基线 |
+| 修正员 | Mac mini | Claude Code | Opus 5.5 | `fixer` | 2 | 读门槛 diff 修复 |
+| 裁定员 | Mac mini | Claude Code | Opus 5.5 | `arbiter` | 2 | 第十五节 |
+| 还原-Sonnet@Mac | Mac mini | Claude Code | Sonnet 5.5 | `restorer` | 2 | 页面（默认）、重做 |
+| 还原-Opus@Mac | Mac mini | Claude Code | Opus 5.5 | `restorer-core` | 2 | 入口包、共享组件、公共库升级单（接替还原-Opus@Office） |
+| 还原-DeepSeek@Mac | Mac mini | dsh | `deepseek-official/deepseek-flash` | `restorer` | 2 | 便宜档页面（< 30KB） |
+| 还原-GLM@Mac | Mac mini | Opencode | `zhipuai-coding-plan/glm-5.3-flash` | `restorer` | 1，**停用** | 名册 `enabled: false`，`cheapTier.families` 只有 `deepseek` |
+| 复核-Claude@Mac | Mac mini | Claude Code | Sonnet 5.5 | `reviewer` | 2 | 抽检审计、规则变更复核，只读 |
+| 复核-DeepSeek@Mac | Mac mini | dsh | `deepseek-official/deepseek-v4-pro` | `reviewer` | 2 | 同上 |
+| 复核-GLM@Mac | Mac mini | Opencode | `zhipuai-coding-plan/glm-5.3` | `reviewer` | 2 | 同上 |
 
-并发合计：还原 16（Opus 3、Sonnet 5、DeepSeek 4、GLM 4；便宜档启用前 DeepSeek 和 GLM 闲置），门槛 3 起步，联调后提到 5–6。Mac mini 的 16GB 留给门槛和录制，所以 Mac mini 上的还原员各只开 1。Office-Server 的内存余量在联调时确认，够的话还原员提到 4–5。
+复核按家族互斥：审计选与生成、修正家族都不同的复核员；规则变更单选两个与裁定员（anthropic）不同家族的复核员，单机下就是复核-DeepSeek@Mac 和复核-GLM@Mac。三个家族的复核员都在 Mac 上，互斥规则不受单机影响。
 
-**家族与路由**：`route.mjs` 按家族路由，同家族的两台机器的智能体共享能力数据，各自计算空闲并发。
+**并发评估（16GB，先不调大，以实测为准）**：
+
+原方案让 Mac mini 上的还原员各只开 1，是因为内存要留给门槛和录制。现在 Office 上的还原、复核都搬了过来，同一台 16GB 机器上要同时容纳：
+
+| 负载 | 单个峰值（依据） | 名册当前上限 | 小计 |
+| --- | --- | --- | --- |
+| 门槛 | 门槛进程 0.2–0.33GB + Chromium 约 0.5GB ≈ 0.8GB（`docs/gate.md` 实测，page 模式）；集成模式进程 0.9GB | 3 | ≈ 2.5GB |
+| 录制 | 有界面 Chromium + Playwright ≈ 1GB（估计） | 2 | ≈ 2GB |
+| 还原、修正、裁定、复核会话 | 智能体 CLI 0.1–0.2GB（本机 `ps` 实测）+ `self-check` / Vite 编译 ≈ 0.3–0.5GB（估计） | 还原 6 + 修正 2 + 裁定 2 + 复核 6 + 调度 1 | 满载 ≈ 6–8GB，实际复核和裁定很少同时满 |
+| 系统、Multica 守护进程、浏览器、本机其他智能体（如 Mika@Mac） | 2026-10-15 测得空闲内存约 43%，已有换页记录 | — | ≈ 5–6GB |
+
+结论：
+
+- **还原员维持名册当前值，不调大**：Sonnet 2、DeepSeek 2、Opus（核心）2，合计 6，GLM 停用。这已经比原方案的「各 1」高，接手了 Office 的入口包和共享组件，再加会挤占门槛。
+- 门槛员保持 3，不按原计划提到 5–6：门槛是吞吐瓶颈，但 5–6 个门槛加 6 个还原在 16GB 上大概率触发换页，反而拖慢门槛。
+- 复核员各 2 先不动；审计是抽检，实际同时在跑的通常不超过 2 个。
+- 调大的条件（满足才逐个 +1，每次只改一个智能体，在名册和 Multica 里同时改）：门槛 3 个并发跑满时 `memory_pressure` 空闲比例持续高于 25%、无新增换页，单张门槛耗时中位数不比 `docs/gate.md` 的 13.5 s 慢 30% 以上。优先给 Sonnet（页面默认模型），其次门槛员。出现内存压力时先降复核员和 DeepSeek。
+
+**家族与路由**：`route.mjs` 按家族路由，同家族的智能体共享能力数据，各自计算空闲并发。Office 时期在 `claims` 分支留下的统计快照（如有）仍计入能力数据。
 
 **环境变量**（`--custom-env-file`，0600）：
 
@@ -100,7 +118,7 @@ flowchart LR
 | `RESTORE_STATE` | Mac mini 上的全部智能体 |
 | `RESTORE_ASSETS`、`SM2_PRIVATE_KEY`、`HMRSFW_NO_WHITELIST=1` | 只有门槛员、录制员 |
 | `VITE_HMRSFW_SM2_PUBLIC_KEY`、`VITE_HMRSFW_SM4_KEY`、`VITE_HMRSFW_SM4_STORAGE_KEY` | 门槛员（还原版回放时解密响应、加密请求体；门槛的 worktree 里没有 `.env.local`，缺了门槛报 error，见 `docs/gate.md`。HM-9 联调补） |
-| `RESTORE_DEPS_CACHE` | 所有还原员和审计员：本机依赖缓存目录 |
+| `RESTORE_DEPS_CACHE` | 所有还原员和复核员：本机依赖缓存目录 |
 
 ## 五、还原员统一指令
 
@@ -172,7 +190,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 - diff 里的测试数据不得写进代码、回执或评论。
 ```
 
-### 审计员（Office-Server）
+### 审计员（复核员，Mac mini）
 
 和 v2 相同，只改两处：拉代码用 `--ref integration` 再 checkout 分支；审计不阻塞，结论写进元数据 `audit.<attempt>` 后评论 `[AUDIT]`，由调度员下一轮处理。
 
@@ -202,7 +220,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 - 不要 @ 任何智能体，不要改为 done。
 ```
 
-录制会对测试环境真实写入。全部录完后，人工重置一次测试环境。门槛运行时不需要测试环境。
+录制时，`tools/record-write-denylist.json` 里的写接口（提交、新增、保存、发布、修改、删除、撤销、报名、投诉咨询反馈等）不发到测试环境，由 `tools/record-write-guard.mjs` 用固定的成功响应 `{"success":true,"code":200,"result":null,"message":"intercepted"}` 回答（明文、不带 `crypto_opt` 头，两个应用只在该头为 `true` 时才解密），HAR 条目带 `_intercepted`、`_interceptRule`，`writes.json` 和录制结果里单列 `intercepted`，与真实发出的 `writes` 分开（HM-992）。名单按接口路径的正则和末段驼峰分词（`staggingOrSubmit` 里的 submit、`companyPositionAdd` 里的 add）匹配，GET 的写接口（`scanPay`、`refresh`、`downPdf`）和登录类接口（硬规则 2）也拦；名单默认拦截，放行项逐条写理由（如招聘会浏览计数 `updateBrowseCount`、身份切换用到的三个接口）。`tools/test/record-write-guard.test.mjs` 会把 `legacy-dist` 里声明的全部接口过一遍：查询动词开头的一个都不拦，已知写接口全拦。没进名单、方法是 POST、末段又不像查询的请求照常发出，并列进录制结果的 `warnings`（`unlisted write? …`），请人补进名单。逐个核对某条路径：`node tools/record-write-guard.mjs POST <路径>`。名单外的写入仍会到测试环境，全部录完后人工重置一次测试环境。门槛运行时不需要测试环境。
 
 ## 七、门槛员指令与门槛要求
 
@@ -216,7 +234,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 ## 步骤
 1. 读元数据 workOrders、branch、attempt。
 2. multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkout <branch>，运行 node tools/setup-workdir.mjs。
-3. 运行 node tools/gate.mjs --task <任务id> --branch <branch> --mode page。
+3. 运行 node tools/gate.mjs --task <任务id> --branch <branch> --mode page；公共库升级单（kind=upgrade，元数据 gateMode=upgrade）用 --mode upgrade（gate.mjs 读到 kind=upgrade 也会自动切换）。
 4. 运行 node tools/tick.mjs advance <任务id>。gate.mjs 已经写好元数据和 [GATE] 评论，不需要你再写。
 
 ## 异常
@@ -236,6 +254,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 4. **写请求匹配**：先按「方法 + 路径 + 解密并归一化后的请求体」找 HAR 记录；找不到时退回按「方法 + 路径」取第一条；都找不到返回统一的「not in HAR」。
 5. **共享组件顶替（page 模式）**：本页依赖的共享组件或入口导出在 `integration` 上还没有还原版时，用原编译 chunk 的薄包装顶替。零引用检查只对本页自己的文件生效。输出里列出本次顶替了哪些模块。
 6. **集成模式（`--mode integration`）**：不顶替，零引用检查全开，可以一次跑多页。
+   **升级单模式（`--mode upgrade`）**：静态阶段按公共库改动的范围判（与调度器合并时同一个判定函数），再对改动文件做编译、零引用、个人信息扫描；整站构建；对依赖改动文件的已通过页面跑 integration 模式回归。要解挂的页面不在这里判（HM-990，见 `docs/gate.md`）。
 7. **输出**（stdout 一行 JSON，同时写入元数据 `gate.<attempt>`）：`{pass, failed:[...], stage:"static|build|browser", diff, shimmed:[...], durationMs}`。
 
 ## 八、路由规则与抽检率
@@ -293,7 +312,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 
 **已知风险**（v2 的 1–6 仍然成立，以下为新增或变化）：
 
-1. 风险 1（本机隔离）缩小到 Mac mini 上的少量还原员。
+1. 风险 1（本机隔离）：Office-Server 停用后，全部还原员和 HAR、登录态、私钥在同一台 Mac mini 上，物理隔离不再成立，只靠环境变量（还原员不拿 `RESTORE_ASSETS`、`SM2_PRIVATE_KEY`）和指令约束。
 2. **顶替带来的假通过**：page 模式下用原编译产物顶替共享组件，页面通过不代表接上还原版共享组件后也通过。集成门槛兜底。
 3. **双派浪费**：冷启动期便宜模型用量约翻倍。
 4. **录制写测试环境**：录制期间的写入会改变测试数据，影响后续页面的录制内容，但每页的 HAR 自洽，不影响比对。全部录完后人工重置一次。
@@ -304,7 +323,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 前置工程阶段 3（F 联调）完成后，Mika 再创建智能体和自动化，然后按下面的步骤自检：
 
 - [ ] 12 个智能体都在指定机器上在线，模型 ID 与第四节一致，还原员指令逐字相同。
-- [ ] 每台机器的每个还原员各做一张最小的页面工单：`self-check` 跑了、分支推了、回执合规、`handoff` 把任务交给了门槛员。
+- [ ] 每个还原员各做一张最小的页面工单：`self-check` 跑了、分支推了、回执合规、`handoff` 把任务交给了门槛员。
 - [ ] 门槛员同时跑 3 张，无冲突；记录单张耗时和 Mac mini 内存峰值，据此把门槛员并发提到 5–6。
 - [ ] 至少一张页面包含写操作，确认写请求命中了 HAR 里的真实响应，页面走了成功分支。
 - [ ] 故意制造一次门槛失败，确认先交给修正员在原分支修 1 轮。
@@ -319,12 +338,13 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 
 | 路径 | 内容 | 谁写 |
 | --- | --- | --- |
-| `queue/<工单id>.json` | 工单，字段见 `batch-plan.md` 第 3 节，另加 `type`（entry/shared/page/segment）、`kb`、`deps`（依赖的共享组件和入口导出）、`recordPath`、`site`；page/segment 另有 `role`（录制身份，取值同 `record-page.mjs` 的 `IDENTITIES`：`general` / `jobseeker` / `corp` / `mentor`；门户写 `general`；用户中心按路由和原 chunk 判定，判不出写 `null` 并在 `notes` 写原因，`record-page.mjs` 遇到 `null` 输出 `blocked: need-role-decision`，不猜；自动规则判不出的页面由裁定员按原 chunk 判定，写在 `tools/uc-role-decisions.json`（`decided` 写入 `role`，`pending` 仍为 `null`、`notes` 写建议和需要人确认的事）；判定依据见 `queue/roles.json`） | C |
+| `queue/<工单id>.json` | 工单，字段见 `batch-plan.md` 第 3 节，另加 `type`（entry/shared/page/segment）、`kb`、`deps`（依赖的共享组件和入口导出）、`recordPath`、`site`；page/segment 另有 `role`（录制身份，取值同 `record-page.mjs` 的 `IDENTITIES`：`general` / `jobseeker` / `corp` / `mentor`；门户写 `general`；用户中心按路由和原 chunk 判定，判不出写 `null` 并在 `notes` 写原因，`record-page.mjs` 遇到 `null` 输出 `blocked: need-role-decision`，不猜；自动规则判不出的页面由裁定员按原 chunk 判定，写在 `tools/uc-role-decisions.json`（`decided` 写入 `role`，其 `limit`（这个身份录不到的部分）和 `dataNeed`（造数需求，D7）写进 `notes`，`dataNeed` 另汇总到 `queue/data-needs.json`，全部页面录完后统一交人造数；`pending` 仍为 `null`、`notes` 写建议和需要人确认的事）；判定依据见 `queue/roles.json`） | C |
 | `registry/<app>.json` | 公共库清单，见第十三节 | C 生成，之后只由入口包、共享组件工单更新 |
 | `tests/interact/<工单id>.json` | 交互脚本：`[{"fill":[placeholder,value]} \| {"click":text} \| {"clickSel":css,"optional":bool} \| {"wait":ms}]`，与 POC 的 `interact-scripts.mjs` 同义 | 录制员 |
 | `receipts/<工单id>.json` | 回执 | 还原员、修正员 |
 | `$RESTORE_ASSETS/har/pages/<工单id>.har` | 页面 HAR | `record-page.mjs` |
 | `$RESTORE_STATE/baseline/<工单id>/` | 原版基线：`dom.html`、`text.txt`、`shot.png`、`seq.json`（请求序列，请求体只存 SHA-256） | `baseline.mjs`（A），由 `record-page.mjs`（D）调用 |
+| `$RESTORE_STATE/baseline/<工单id>/coverage.json` | 原版 JS 覆盖率（HM-21）：本页 chunk 和 `deps.shared` 共享组件 chunk 的函数覆盖率、块覆盖率（两次回放取并集）、`stable`，以及未覆盖项清单（chunk 内位置、弹窗/Tab/表单等上下文、事件名、静态文案、`needs`: interaction / data / unknown）。`baseline.json` 另有键 `coverage` 放摘要。只作用于原版一侧，不进入门槛的比对输入 | `baseline.mjs` |
 | `$RESTORE_STATE/gate/<工单id>-a<attempt>/` | 门槛产物和 diff | `gate.mjs` |
 | `$RESTORE_STATE/ledger/` | `capability.json`、`agents.json`、`runs.jsonl` | `ledger.mjs` |
 | `$RESTORE_STATE/locks/` | `wo-<工单id>`、`ledger`、`integration` | `tick.mjs`、`handoff.mjs` |
@@ -347,12 +367,13 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | 命令 | 输出 |
 | --- | --- |
 | `self-check.mjs <工单id>` | `{pass, failed:[{check, where, hint}]}`，不需要 `RESTORE_ASSETS` |
-| `gate.mjs --task <id> --branch <b> --mode page\|integration` | 见第七节 |
+| `gate.mjs --task <id> --branch <b> --mode page\|integration\|upgrade` | 见第七节、`docs/gate.md` |
 | `handoff.mjs <任务id> [--fix]` | 写元数据、评论、状态 `in_review`、负责人改为门槛员 |
 | `tick.mjs tick` / `tick.mjs advance <任务id>` | `{ok, summary, anomalies:[{issue, what, suggestedAction}]}`；拿不到锁输出 `{"locked":true}` |
 | `route.mjs <工单id>` | `{candidates:[{family, agents:[...], expectedCost, reason}], features, dual:bool}` |
 | `record-page.mjs <工单id>` | `{ok, steps, unstable:[...], blocked?}` |
-| `baseline.mjs <工单id> [--har <path>]` | 用 HAR 回放原版两次，写基线；两次不一致的步骤列入 `unstable` |
+| `baseline.mjs <工单id> [--har <path>] [--no-coverage]` | 用 HAR 回放原版两次，写基线；两次不一致的步骤列入 `unstable`；同时采集覆盖率，输出多一个 `coverage:{page:{function,block}, shared, stable}` |
+| `coverage.mjs report <工单id>` / `summary` / `datareq [--write]` | 单页未覆盖清单（录制员补交互脚本用）/ 覆盖率分布和低于阈值的页面 / 造数需求清单（D7）。阈值读 `restore.config.json` 的 `coverage.minFunction`、`minBlock` |
 | `setup-workdir.mjs --app <dir>` | 本仓库和 `hmrsfw-vue` 检出的依赖就绪；有 `RESTORE_DEPS_CACHE` 时软链到缓存（`hmrsfw-vue` 的缓存项按它自己的 `package-lock.json` 建），缓存项不存在时首次在缓存目录 `npm ci`（加锁）；没有该变量时原地 `npm ci` |
 
 **定位产物工程**：需要读写 `hmrsfw-vue` 的工具，一律通过参数 `--app <hmrsfw-vue 检出目录>` 或环境变量 `HMRSFW_APP_DIR` 定位产物工程，参数优先；两者都没有就报错退出，不猜默认路径。上表中用到产物工程的命令（`self-check`、`gate`、`baseline`、`record-page`、`setup-workdir` 等）都接受 `--app`。共用实现在 `tools/app-dir.mjs`（`appDir()`）。
@@ -366,6 +387,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | 第二、六节 | 新增录制员和 `record-page.mjs`，与还原并行 | 289 页里只有 20 页有回放 HAR 和交互脚本 |
 | 第七节 | 门槛只跑还原版一侧、先快后慢、单页构建、复用浏览器；并发 3 → 5–6 | 门槛是吞吐瓶颈 |
 | 第四节 | 主力还原员和审计员放到 Office-Server，智能体 7 → 11 | 还原并发 6 → 12，Mac mini 内存留给门槛；HAR 与还原员物理隔离 |
+| 第一、四节（2026-10-15，HM-212） | 停用 Office-Server，全部智能体只在 Mac mini 运行；`machines` 只剩 `mac`；Office 智能体在名册里停用 | Office 的 Claude 命令行路径失效，GitHub 凭据和仓库缓存反复出问题，维护成本高 |
 | 第九节 | 失败后先修正 1 轮，再 Sonnet 重做；修正上限 3 → 2 轮 | POC 6 次修正全部一轮通过，修正比重做快且便宜 |
 | 第八节 | 冷启动期 DeepSeek、GLM 双派，先通过者合并 | 更快，同时得到同页对照数据 |
 | 第三、五、九节 | 交付后 `handoff.mjs` 直接送门槛；调度 15 → 5 分钟；预排队；大页先派；小页打包 | 去掉轮询等待和空闲槽位 |
@@ -412,7 +434,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 
 1. **导入来源受限**：页面文件只能导入三类东西：本页目录内的相对路径、清单里的路径、清单里的 npm 包。
 2. **不准抄公共代码**：页面不得在本地重新定义清单里已有的组件、函数或常量，按名字和 AST 相似度判断。
-3. **全局组件和指令必须登记**：模板里用到的全局组件和指令必须在 `globals` 里。这一条与已有的「未解析组件检查」合并。
+3. **全局组件和指令必须登记**：模板里用到的全局组件和指令必须在 `globals` 里。这一条与已有的「未解析组件检查」合并。原包自己就没注册、运行时按未知元素渲染的组件（如用户中心 403/404 的 `el-button`）由 `registry.mjs` 从原 chunk 生成到 `globals.unregistered`，只对列出的 chunk 放行。
 4. **页面单不准改公共库**：页面工单的提交只能改本页目录和回执。改到 `legacy/`、`shared/`、`api/`、`utils/`、`package.json` 或锁文件，合并时直接拒绝。
 
 ### 3. 公共库只有一个修改入口

@@ -7,7 +7,7 @@
 | `_e` | robot.1783320636200.js | shared | @/shared/images `robotImg` | `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAA4CAYAAAC1+AWFAAAM9UlEQVR4nN2ca5AVxRXHf91zL3t3l8eiIGp4peKCz0iCCBiTUKKAFlopLUsjolGTfNAPJFrxEWN8lBq18vKDpiqJr0I0JdEyxjKLIhrjKwLxhfKMxcsHurgssC/unZ58m` |
 | `Te` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
 | `Le` | index.1783320636200.js | entry | swiper `default` | `class Do{constructor(){let t,n;for(var r=arguments.length,a=new Array(r),o=0;o<r;o++)a[o]=arguments[o];if(a.length===1&&a[0].constructor&&Object.prototype.toString.call(a[0]).slice(8,-1)==="Object"?n=` |
-| `Fe` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `Fe` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
 | `Ie` | index.1783320636200.js | entry | @/legacy `useStore` | `function(e){return e===void 0&&(e=null),Ft(e!==null?e:Ru)}` |
 | `Me` | index.1783320636200.js | entry | swiper/vue `Swiper` | `{name:"Swiper",props:{tag:{type:String,default:"div"},wrapperTag:{type:String,default:"div"},modules:{type:Array,default:void 0},init:{type:Boolean,default:void 0},direction:{type:String,default:void ` |
 | `Ve` | index.1783320636200.js | entry | swiper/vue `SwiperSlide` | `{name:"SwiperSlide",props:{tag:{type:String,default:"div"},swiperRef:{type:Object,required:!1},zoom:{type:Boolean,default:void 0},virtualIndex:{type:[String,Number],default:void 0}},setup(e,t){let{slo` |
@@ -17,4 +17,4 @@
 | `ze` | autoplay.1783320636200.js | shared | swiper `Autoplay` | `function(y){let{swiper:a,extendParams:u,on:l,emit:t}=y,o;a.autoplay={running:!1,paused:!1},u({autoplay:{enabled:!1,delay:3e3,waitForTransition:!0,disableOnInteraction:!0,stopOnLastSlide:!1,reverseDire` |
 | `qe` | grid.1783320636200.js | shared | swiper `Grid` | `function P(g){let{swiper:a,extendParams:S}=g;S({grid:{rows:1,fill:"column"}});let n,f,w;const z=t=>{const{slidesPerView:e}=a.params,{rows:i,fill:c}=a.params.grid;f=n/i,w=Math.floor(t/i),Math.floor(t/i` |
 | `He` | effect-coverflow.1783320636200.js | shared | swiper `EffectCoverflow` | `function(o){let{swiper:s,extendParams:t,on:l}=o;t({coverflowEffect:{rotate:50,stretch:0,depth:100,scale:1,modifier:1,slideShadows:!0,transformEl:null}}),p({effect:"coverflow",swiper:s,on:l,setTranslat` |
-| `Ye` | index.api.178332063620037.js | api | @/api/sysBusinessSetting `listForWebsite` | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:e})` |
+| `Ye` | index.api.178332063620037.js | api | @/api/sysBusinessSetting `listForWebsite`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:e})` |
