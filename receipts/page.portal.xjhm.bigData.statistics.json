@@ -1,0 +1,34 @@
+{
+  "ticket": "page.portal.xjhm.bigData.statistics",
+  "id": "page.portal.xjhm.bigData.statistics",
+  "group": "修正员",
+  "kind": "restore",
+  "task": "01a14083-321a-7068-9f8c-592ba151aac3",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "outputs": [],
+  "summary": "修正第 1 轮未改页面：gate.1 的 final.html / final.text / load.pixel 差异全部落在原版两次基线之间本身就在变的位置（右上角按秒走的时钟、@/shared/timeOut 每 1 秒切换的饼图高亮/提示框、scrollList 滚动位移），原版两次基线自身 unstable 含 load.html、load.text、final.html、final.text、load.pixel；页面代码与 sourceChunk 一致，无可改之处。",
+  "verification": [
+    "时钟：原 chunk `$=()=>{a.time=Te(new Date),setTimeout(()=>{$()},1e3)}`，还原 tickTime 同为 formatTime(new Date()) + setTimeout 1e3；只打印 HH:mm:ss，不满足 normNow 的「年月日 时分秒」格式，两侧秒数不同属正常，已被原版两次基线的 volatile mask 覆盖（load.html / load.text 在重试中通过）",
+    "final.html 未通过处：volatile mask 第 12 段内一个 echarts 提示框的 translate3d 位置——原版两次 final 恰好停在同一个轮播项，还原版停在另一项；同一位置值在原版 load 阶段出现过，说明是轮播时刻不同而不是渲染不同",
+    "final.text 未通过处：两个学历饼图的轮播当前项（原版两次 final 恰好相同，还原版为另一项），同属 @/shared/timeOut 的 setInterval 轮播（bigDataLoopTimer 默认 1000ms），取决于截图时刻",
+    "load.pixel 1.258%：diff 图里的差异只在时钟秒位、岗位类别轮播信息卡、官网用户动态滚动列表（scrollList transform 在原版两次分别为不同位移）；原版两次基线自身 load.pixel 就超阈值（unstable 含 load.pixel），像素比对只对 volatile canvas 打掩码，对 DOM 动画没有掩码",
+    "模拟数据轮询 startMockPolling（随机增量）与原 chunk It 一致，是原版两次数字不同的来源",
+    "self-check pass:true（fl-vue 私有克隆，restore/fast-lane e074ffe）"
+  ],
+  "todos": [
+    "疑似比对器问题：页面含按秒时钟 + 1 秒轮播 + 滚动列表，final 时刻落到哪一项取决于毫秒级时序，两次原版基线的 volatile mask 覆盖不全（两次恰好相同的轮播项被当成固定文本）；像素比对对 DOM 动画无掩码且原版自身超阈值。建议裁定员按 pipeline.md 第十五节处理：以 sourceChunk 的 setTimeout 时钟与 @/shared/timeOut 轮播为证据登记已知差异（final.html、final.text、load.pixel），或走规则变更单",
+    "同类问题会影响所有使用 @/shared/timeOut 轮播、scrollList 的大屏页（pieCommon 已登记 load.pixel 已知差异，HM-381）"
+  ],
+  "needsFromSkeleton": [],
+  "selfCheck": {
+    "pass": true,
+    "failed": []
+  },
+  "notes": [
+    "修正员第 1 轮：未改任何文件（apps/portal/src/views/xjhm/bigData/statistics.vue 与 statistics/ 不动）",
+    "疑似比对器问题：时钟 HH:mm:ss 按秒变化，与原 chunk 的 setTimeout 1e3 一致，原版两次基线自身不同",
+    "疑似比对器问题：final.html / final.text 差异为 @/shared/timeOut 饼图轮播当前项不同（截图时刻），原版两次恰好同项导致 mask 未覆盖",
+    "疑似比对器问题：load.pixel 差异在时钟、轮播信息卡、scrollList 滚动位移，原版两次基线自身 load.pixel 即 unstable"
+  ]
+}
