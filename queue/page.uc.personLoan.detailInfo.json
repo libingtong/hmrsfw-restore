@@ -27,7 +27,7 @@
    "name": "detailInfo"
   }
  ],
- "recordPath": "/personLoan/detailInfo",
+ "recordPath": "/personLoan/detailInfo?id=2101650488935157762&type=check",
  "role": "general",
  "maps": "out/maps/page.uc.personLoan.detailInfo.json",
  "hints": "out/hints/page.uc.personLoan.detailInfo.md",
@@ -58,5 +58,6 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "recordNotes": "type=check 是只读查看，不点提交或保存。"
 }

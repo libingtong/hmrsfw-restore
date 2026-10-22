@@ -53,5 +53,6 @@
   ]
  },
  "stylesProvidedByScript": true,
- "recordVia": "page.portal.sjz.fair.fairList"
+ "recordVia": "page.portal.sjz.fair.fairList",
+ "recordNotes": "/fairList 的 iz_scene_outdoor_add 已改为 1，页面走 fairsList 分支。"
 }

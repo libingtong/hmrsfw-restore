@@ -44,5 +44,6 @@
   "route": null,
   "in": "hmrsfw-vue @/shared/jobNews.vue（POC 放在共享层；registry-cleanup 方案里迁回 views/special/page1/jobNews.vue）"
  },
- "recordVia": "page.portal.sjz.archivesSearch.index"
+ "recordVia": "page.portal.sjz.archivesSearch.index",
+ "recordNotes": "/archivesSearch 第 8 个 tab（keywords=3）：交互脚本先点第 8 个 tab 再取根。"
 }

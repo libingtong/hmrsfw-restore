@@ -30,7 +30,7 @@
    "name": "zcyzJobFairRelease"
   }
  ],
- "recordPath": "/zcyzJobFairRelease",
+ "recordPath": "/zcyzJobFairRelease?jobfairid=2092158729399631874&jobFairBoothRelationId=2092158731777802242&classify=30",
  "role": "corp",
  "maps": "out/maps/page.uc.zcyzJobFairRelease.json",
  "hints": "out/hints/page.uc.zcyzJobFairRelease.md",
@@ -65,5 +65,6 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "recordNotes": "企业页（招聘单位身份）。只做查看类交互，不点发布、保存或提交。"
 }

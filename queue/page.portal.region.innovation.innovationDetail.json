@@ -28,7 +28,7 @@
    "title": "创业服务活动"
   }
  ],
- "recordPath": "/region/innovationDetail",
+ "recordPath": "/region/innovationDetail?id=1920065802416500738",
  "role": "general",
  "maps": "out/maps/page.portal.region.innovation.innovationDetail.json",
  "hints": "out/hints/page.portal.region.innovation.innovationDetail.md",

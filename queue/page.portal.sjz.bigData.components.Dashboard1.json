@@ -40,5 +40,6 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "recordVia": "page.portal.sjz.bigData.screen"
+ "recordVia": "page.portal.sjz.bigData.screen",
+ "recordNotes": "/sjzbigData 的 type=0 大屏配置已造好（4 个模块）。"
 }

@@ -34,7 +34,7 @@
    "name": "sceneFairSign"
   }
  ],
- "recordPath": "/sceneFairSign/:zphId",
+ "recordPath": "/sceneFairSign/2092885417695219713?identitytype=1&classify=30",
  "role": "corp",
  "maps": "out/maps/page.uc.sceneFairSign.json",
  "hints": "out/hints/page.uc.sceneFairSign.md",
@@ -68,5 +68,6 @@
    "page.uc.webFairWork"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "recordNotes": "企业页（招聘单位身份）。绝不能点报名、提交或选展位确认，交互脚本只做查看、展开、切换。"
 }
