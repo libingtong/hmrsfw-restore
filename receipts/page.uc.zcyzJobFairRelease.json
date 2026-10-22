@@ -1,0 +1,26 @@
+{
+  "id": "page.uc.zcyzJobFairRelease",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/uc/src/views/zcyzJobFairRelease.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "523022d"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：未改代码，restore/fast-lane 仍为 523022d，无需 fl.sh land",
+    "三处差异同一根因：load 两侧一致（同一个「温馨提示」确认框、同样 5 个请求）；差异只出在 step3 点「去提取」之后。原版：确认框关闭、historyUsePositionList 落在 step3、表格行有悬停态；还原版：确认框仍在、该请求落到 step4、表格行无悬停态（鼠标仍被确认框盖住）",
+    "代码核对：页面 openExtractModal/closeExtractModal、v-if 挂载 ExtractPositionModal、onMounted→initExtractConfig→confirmExtract 与原 chunk b/Q/ge/Le 等价；共享 confirmExtract 与原包 index 的 r9t（导出名 ab）逐字一致；shared/extractpositionmodal.vue 的 onMounted→loadList 与原 chunk 一致；两侧无 pageerror/console error",
+    "判定：疑似比对器问题（还原侧时序）——与 HM-406（page.uc.zcyzPositionRelease，同一交互脚本、同一 confirmExtract）裁定的根因相同，方向相反：那次是原版点击 timed out after the action was sent、被截在动画中途；这次是还原侧（ondemand 开发构建）点击后效果延迟到 step4、确认框离场未完成即截取。页面无可改的等价写法",
+    "建议裁定员：查本次 rest 侧 steps[3].note 是否为 timed out after the action was sent；可改交互脚本让第 4 步后等待更长或加一步等待确认框消失，或按 full 构建复跑；不在页面迁就",
+    "self-check pass（私有克隆 restore/fast-lane 523022d；eslint/prettier 未装仅 warn），未重跑门槛：本角色不读 RESTORE_ASSETS"
+  ]
+}
