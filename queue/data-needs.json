@@ -1,0 +1,47 @@
+{
+ "_source": "造数需求清单（D7）：按代替身份录制、录出来可能是空状态或没有权限的页面，录完全部页面后统一交人造数，造好后重录（uc-role-decisions.json 的 dataNeed）",
+ "pages": [
+  {
+   "id": "page.uc.experthome",
+   "recordPath": "/experthome",
+   "role": "general",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "need": "给测试账号开通「专家」身份（userroledata type 60）"
+  },
+  {
+   "id": "page.uc.marketCenter",
+   "recordPath": "/marketCenter",
+   "role": "general",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "need": "给测试账号开通「招聘超市」身份（userroledata type 50，带单位 corpInfo）"
+  },
+  {
+   "id": "page.uc.collage.studentInfo",
+   "recordPath": "/collage/studentInfo",
+   "role": "general",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "need": "给测试账号开通「在校生」身份（userroledata type 120）并带签约信息"
+  },
+  {
+   "id": "page.uc.collage.studentApply",
+   "recordPath": "/collage/studentApply",
+   "role": "general",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "need": "在校生身份（同 /collage/studentInfo）下有就业 / 非就业签约数据"
+  },
+  {
+   "id": "page.uc.collage.nojob",
+   "recordPath": "/collage/nojob",
+   "role": "general",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "need": "在校生身份（同 /collage/studentInfo）下有非就业签约数据"
+  },
+  {
+   "id": "page.uc.teachIn",
+   "recordPath": "/teachIn",
+   "role": "general",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "need": "在校生身份（同 /collage/studentInfo）下有宣讲会预约记录（可签到、可取消预约）"
+  }
+ ]
+}

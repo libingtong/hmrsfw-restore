@@ -5259,18 +5259,21 @@
   "jspdf": "2.5.1",
   "lodash-es": "4.17.21",
   "moment": "2.29.4",
+  "nprogress": "0.2.0",
   "pinia": "2.1.4",
   "pinyin-match": "1.2.4",
+  "print-js": "1.6.0",
   "qrcodejs2": "0.0.2",
   "qrcodejs2-fix": "0.0.1",
   "sm-crypto": "0.3.13",
   "swiper": "8.4.7",
+  "tinymce": "5.10.3",
   "vue": "3.3.4",
   "vue-baidu-map-3x": "1.0.40",
+  "vue-countup-v3": "1.4.2",
   "vue-router": "4.2.2",
   "vue3-seamless-scroll": "2.0.1",
-  "vuex": "4.1.0",
-  "print-js": "待 E7 按指纹核对"
+  "vuex": "4.1.0"
  },
  "npmSubpaths": [
   "swiper/vue",

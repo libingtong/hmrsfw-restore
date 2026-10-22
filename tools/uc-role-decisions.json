@@ -1,0 +1,537 @@
+{
+ "_source": "HM-227 裁定员按原 chunk 判定的用户中心页面身份（uc-roles.mjs 自动规则判不出的页面）。decided 写进工单 role；limit（录制覆盖不到的部分）写进工单 notes；dataNeed（造数需求，D7）另汇总进 queue/data-needs.json，录完后统一交人造数；pending 不写，record-page 仍报 need-role-decision，notes 里写建议和需要人确认的事。evidence 为 legacy-dist 中的 文件:行:列。HM-496：剩余 9 页按李炳通授权的建议写入 decided。",
+ "decided": {
+  "/JobFairRelease": {
+   "role": "corp",
+   "by": "招聘会发布职位，按 corpInfo.id（单位 id）取数；入口是招聘单位菜单页 PositionAdmin；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/JobFairRelease.1751615607545.js:1:3051",
+    "legacy-dist/usercenter/assets/PositionAdmin.1751615607545.js:1:14949",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/zcyzJobFairRelease": {
+   "role": "corp",
+   "by": "招聘会发布职位（zcyz），按 corpInfo.id 取数；入口是 PositionAdmin；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/zcyzJobFairRelease.1751615607545.js:1:2331",
+    "legacy-dist/usercenter/assets/PositionAdmin.1751615607545.js:1:15593",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/zcyzwebFairWork": {
+   "role": "corp",
+   "by": "网络招聘会发布职位，按 corpInfo.id 取数；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/zcyzwebFairWork.1751615607545.js:1:2615",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/liveApply": {
+   "role": "corp",
+   "by": "直播申请管理，按 corpInfo.id 查询；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754514.js:1:5856",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/liveApplyAdd": {
+   "role": "corp",
+   "by": "直播发布申请，按 corpInfo.id 提交；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/add.1751615607545.js:1:7270",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/sign/corpInfo": {
+   "role": "corp",
+   "by": "企业网签基本信息，按 corpInfo.id 查询；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/info.17516156075452.js:1:1131",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/BeOnProbationAdmin": {
+   "role": "corp",
+   "by": "见习基地管理，按 corpInfo.id 取数；原版取招聘单位菜单时按单位见习基地认证（type 110）增删这一项；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/BeOnProbationAdmin.1751615607545.js:1:2225",
+    "legacy-dist/usercenter/assets/index.1751615607545.js:123:374216",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/noviciateInvited": {
+   "role": "corp",
+   "by": "见习面试邀请，按 corpInfo.id 查询；原版取招聘单位菜单时和 BeOnProbationAdmin 一起增删；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/noviciateInvited.1751615607545.js:1:1281",
+    "legacy-dist/usercenter/assets/index.1751615607545.js:123:374216",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/recruitmentInformation": {
+   "role": "corp",
+   "by": "招聘公告管理，按 corpInfo.id 查询；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754518.js:1:2354",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/recruitmentStatis": {
+   "role": "corp",
+   "by": "招聘公告收到的简历，按 corpInfo.id 查询（个人侧 recruitmentSignMng 同一接口用 xfSysUserId、type 0）；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754519.js:1:1766",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/trash": {
+   "role": "corp",
+   "by": "简历回收站，按 corpInfo.id 查询；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/trash.1751615607545.js:1:967",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/CenterFairResume": {
+   "role": "corp",
+   "by": "主场活动简历，页面组件按 corpInfo.id 查询；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754528.js:1:2392",
+    "legacy-dist/usercenter/assets/index.175161560754511.js:1:102",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/ReceivedResumeLive": {
+   "role": "corp",
+   "by": "直播间投递简历：单位收到的简历列表，页面写明「设置的状态仅供单位查看」，设置状态弹窗按单位使用；与招聘单位菜单的 ReceivedResume 同类",
+   "evidence": [
+    "legacy-dist/usercenter/assets/ReceivedResumeLive.1751615607545.js:1:2421"
+   ]
+  },
+  "/oddjob/need/add": {
+   "role": "corp",
+   "by": "余工信息发布（共享用工），按 corpInfo.id 提交；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/need-job-add.1751615607545.js:1:2828",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/oddjob/lack/add": {
+   "role": "corp",
+   "by": "缺工信息发布（共享用工），按 corpInfo.id 提交；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/lack-job-add.1751615607545.js:1:3015",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/oddjob/need": {
+   "role": "corp",
+   "by": "余工管理列表，只和余工发布页 /oddjob/need/add（按 corpInfo.id 提交，招聘单位）互相链接",
+   "evidence": [
+    "legacy-dist/usercenter/assets/need-job.1751615607545.js:1:3805",
+    "legacy-dist/usercenter/assets/need-job-add.1751615607545.js:1:2828"
+   ]
+  },
+  "/oddjob/lack": {
+   "role": "corp",
+   "by": "缺工管理列表，只和缺工发布页 /oddjob/lack/add（按 corpInfo.id 提交，招聘单位）互相链接",
+   "evidence": [
+    "legacy-dist/usercenter/assets/lack-job.1751615607545.js:1:4007",
+    "legacy-dist/usercenter/assets/lack-job-add.1751615607545.js:1:3015"
+   ]
+  },
+  "/sign/corpApply": {
+   "role": "corp",
+   "by": "签约信息管理（单位侧），按 corpInfo.id 查询，未完善时跳 /sign/corpInfo；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/apply.17516156075452.js:201:3683",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/teachInManage": {
+   "role": "corp",
+   "by": "宣讲会管理（单位预定），按 corpInfo.id 查询；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754516.js:1:1415",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/teachInCancel": {
+   "role": "corp",
+   "by": "宣讲会退订管理（单位），按 corpInfo.id 查询；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/cancelList.1751615607545.js:1:1420",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/addNewsDetails": {
+   "role": "corp",
+   "by": "招聘公告维护，用 corpInfo 填单位；只从招聘公告管理 /recruitmentInformation（招聘单位）打开；corpInfo 只在原版切到招聘单位身份（userroledata type 10/100/110）时写入（ChangeRole 切换分支）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/addNewsDetails.1751615607545.js:1:2472",
+    "legacy-dist/usercenter/assets/index.175161560754518.js:1:3581",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/expert": {
+   "role": "general",
+   "by": "专家认证信息登记：提交成功后原版把 radiotype 设回 GeneraluserId 并回 /main，即在普通用户身份下办理",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.17516156075457.js:1:4911"
+   ]
+  },
+  "/Personalonlineservice": {
+   "role": "general",
+   "by": "个人网上服务大厅：和普通用户主页 /main（dashboard）同一套「认证成为…」逻辑，进入某身份时才把 radiotype 切过去，页面本身在普通用户身份下使用",
+   "evidence": [
+    "legacy-dist/usercenter/assets/Personalonlineservice.1751615607545.js:1:5413",
+    "legacy-dist/usercenter/assets/dashboard.1751615607545.js:1:10626"
+   ]
+  },
+  "/Enterpriseonlineservices": {
+   "role": "general",
+   "by": "企业网上服务大厅：和普通用户主页 /main（dashboard）同一套「认证成为…」逻辑，进入某身份时才把 radiotype 切过去，页面本身在普通用户身份下使用",
+   "evidence": [
+    "legacy-dist/usercenter/assets/Enterpriseonlineservices.1751615607545.js:1:5402",
+    "legacy-dist/usercenter/assets/dashboard.1751615607545.js:1:10626"
+   ]
+  },
+  "/zcyzCorpAttestationapprove": {
+   "role": "general",
+   "by": "单位认证信息登记（还没有招聘单位身份时填写）：corpInfo 有才用（Y!=null）、没有也能用，提交后回普通用户主页 /main；同类页 CorpAttestationapprove 原版对未认证（checkStatus 为空）的用户打开",
+   "evidence": [
+    "legacy-dist/usercenter/assets/zcyzCorpAttestationapprove.1751615607545.js:1:3938",
+    "legacy-dist/usercenter/assets/zcyzCorpAttestationapprove.1751615607545.js:1:30034",
+    "legacy-dist/usercenter/assets/dashboard.1751615607545.js:1:9307"
+   ]
+  },
+  "/audit": {
+   "role": "general",
+   "by": "审核办理进度（身份认证记录）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/audit.1751615607545.js:1:1102"
+   ]
+  },
+  "/consult": {
+   "role": "general",
+   "by": "职业指导咨询（我发起的咨询）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/consult.1751615607545.js:1:3491"
+   ]
+  },
+  "/collectmentor": {
+   "role": "general",
+   "by": "收藏的职业导师：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/collectmentor.1751615607545.js:1:3031"
+   ]
+  },
+  "/graduates": {
+   "role": "general",
+   "by": "高校毕业生认证信息登记（认证前填写）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.17516156075458.js:1:4697"
+   ]
+  },
+  "/myRegistration": {
+   "role": "general",
+   "by": "我的登记（创业需求）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/innovation.1751615607545.js:1:6651"
+   ]
+  },
+  "/personLoan": {
+   "role": "general",
+   "by": "我的创业贷款：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754513.js:1:2556"
+   ]
+  },
+  "/personLoan/detailInfo": {
+   "role": "general",
+   "by": "我的创业贷款详情：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/detailInfo.1751615607545.js:1:1801"
+   ]
+  },
+  "/projectApplyDetails": {
+   "role": "general",
+   "by": "创业项目申请：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/projectApplyDetails.1751615607545.js:1:260"
+   ]
+  },
+  "/trainCourseHis": {
+   "role": "general",
+   "by": "我的云课堂：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754512.js:1:8516"
+   ]
+  },
+  "/feedback": {
+   "role": "general",
+   "by": "意见反馈：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/feedback.1751615607545.js:1:1884"
+   ]
+  },
+  "/myaccuse": {
+   "role": "general",
+   "by": "我的投诉：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/myaccuse.1751615607545.js:1:2679"
+   ]
+  },
+  "/inSurvey": {
+   "role": "general",
+   "by": "我参与的问卷：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/inSurvey.1751615607545.js:1:1045"
+   ]
+  },
+  "/activitySign": {
+   "role": "general",
+   "by": "我的报名（活动）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/activitySign.1751615607545.js:1:4127"
+   ]
+  },
+  "/businessSingUp": {
+   "role": "general",
+   "by": "达成意向项目：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/businessSingUp.1751615607545.js:1:1152"
+   ]
+  },
+  "/courseSingUp": {
+   "role": "general",
+   "by": "我的培训课程报名：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/courseSingUp.1751615607545.js:1:1116"
+   ]
+  },
+  "/projectSingUp": {
+   "role": "general",
+   "by": "我的项目推介报名：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/projectSingUp.1751615607545.js:1:1117"
+   ]
+  },
+  "/overseasRecruitment": {
+   "role": "general",
+   "by": "我的境外招聘（报名）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/overseasRecruitment.1751615607545.js:1:1286"
+   ]
+  },
+  "/mysubscribe": {
+   "role": "general",
+   "by": "我的订阅：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/mysubscribe.1751615607545.js:1:2471"
+   ]
+  },
+  "/addmysubscribe": {
+   "role": "general",
+   "by": "新建订阅器：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/addmysubscribe.1751615607545.js:1:7400"
+   ]
+  },
+  "/Unitposition": {
+   "role": "general",
+   "by": "收藏的单位和职位：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/Unitposition.1751615607545.js:1:2407"
+   ]
+  },
+  "/allianceUnitposition": {
+   "role": "general",
+   "by": "跨域联盟收藏的单位和职位：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/AllianceUnitposition.1751615607545.js:1:2574"
+   ]
+  },
+  "/allianceSend": {
+   "role": "general",
+   "by": "跨域联盟简历投递记录：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/AllianceSend.1751615607545.js:1:3872"
+   ]
+  },
+  "/collectOdd": {
+   "role": "general",
+   "by": "收藏的招工和找活：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/collectOdd.1751615607545.js:1:2179"
+   ]
+  },
+  "/lookList": {
+   "role": "general",
+   "by": "零工浏览记录：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754522.js:1:1241"
+   ]
+  },
+  "/converList": {
+   "role": "general",
+   "by": "零工通话记录：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754521.js:1:1203"
+   ]
+  },
+  "/needList": {
+   "role": "general",
+   "by": "招工信息（我发布的零工招工）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.17516156075454.js:1:1071"
+   ]
+  },
+  "/findList": {
+   "role": "general",
+   "by": "找活信息（我发布的零工找活）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.17516156075455.js:1:1071"
+   ]
+  },
+  "/needDetail": {
+   "role": "general",
+   "by": "招工信息维护：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/detail.1751615607545.js:1:2584"
+   ]
+  },
+  "/findDetail": {
+   "role": "general",
+   "by": "找活信息维护：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/detail.17516156075452.js:1:1639"
+   ]
+  },
+  "/gongfuWorkshop/jobPosting": {
+   "role": "general",
+   "by": "共富工坊求职发布信息：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754524.js:1:5011"
+   ]
+  },
+  "/gongfuWorkshop/positionPosting": {
+   "role": "general",
+   "by": "共富工坊职位发布信息：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754523.js:1:4829"
+   ]
+  },
+  "/oddjob/sharepage": {
+   "role": "general",
+   "by": "共享员工：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/share-job.1751615607545.js:1:3303"
+   ]
+  },
+  "/changeavatar": {
+   "role": "general",
+   "by": "设置头像：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/changeavatar.1751615607545.js:1:606"
+   ]
+  },
+  "/userFairs": {
+   "role": "general",
+   "by": "已报名招聘会（个人报名的招聘会）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/userFairs.1751615607545.js:1:6576"
+   ]
+  },
+  "/recruitmentSignMng": {
+   "role": "general",
+   "by": "报名管理（我对招聘公告的报名）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754520.js:1:1324"
+   ]
+  },
+  "/previewresume": {
+   "role": "jobseeker",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：求职者从 myresume 打开（只带 id，预览自己的简历），不需要额外参数",
+   "limit": "招聘单位从 CorpCenter / TalentSearch 等打开（带 firm=firm、positionId、xfSysUserId，按 corpInfo.id 查看投递人简历）的路径不覆盖",
+   "evidence": [
+    "legacy-dist/usercenter/assets/myresume.1751615607545.js:1:2991",
+    "legacy-dist/usercenter/assets/CorpCenter.1751615607545.js:1:14856"
+   ]
+  },
+  "/changeRole": {
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：身份切换页，各身份都能进，页面显示「当前身份」，内容随当前身份变",
+   "limit": "录出来显示「当前身份：普通用户」，其他身份下的显示不覆盖",
+   "evidence": [
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:4011"
+   ]
+  },
+  "/marketCenter": {
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：「招聘超市」身份（userroledata type 50）的主页，按 corpInfo 单位取数；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到招聘超市，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "给测试账号开通「招聘超市」身份（userroledata type 50，带单位 corpInfo）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:2781",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/experthome": {
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：「专家」身份（userroledata type 60）的主页，页面只按 xfSysUserId 取数；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到专家，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "给测试账号开通「专家」身份（userroledata type 60）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:2851",
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:1752"
+   ]
+  },
+  "/collage/studentInfo": {
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：「在校生」身份（userroledata type 120）的主页（完善签约信息）；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到在校生，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "给测试账号开通「在校生」身份（userroledata type 120）并带签约信息",
+   "evidence": [
+    "legacy-dist/usercenter/assets/ChangeRole.1751615607545.js:1:2487"
+   ]
+  },
+  "/collage/nojob": {
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：在校生的非就业签约，页面链回在校生主页 /collage/studentInfo；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到在校生，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "在校生身份（同 /collage/studentInfo）下有非就业签约数据",
+   "evidence": [
+    "legacy-dist/usercenter/assets/nojob.1751615607545.js:1:10975"
+   ]
+  },
+  "/collage/studentApply": {
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：在校生的签约信息管理，页面链到 /collage/studentInfo 和 /collage/nojob；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到在校生，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "在校生身份（同 /collage/studentInfo）下有就业 / 非就业签约数据",
+   "evidence": [
+    "legacy-dist/usercenter/assets/apply.1751615607545.js:168:11650"
+   ]
+  },
+  "/teachIn": {
+   "role": "general",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：学生侧的宣讲会预约（xf-college careerTalkStudent 接口：签到、取消预约），属于在校生功能；测试账号只有求职者、招聘单位、职业导师三个身份，record-page 切不到在校生，按普通用户录",
+   "limit": "按普通用户录，录出来可能是空状态或没有权限的状态",
+   "dataNeed": "在校生身份（同 /collage/studentInfo）下有宣讲会预约记录（可签到、可取消预约）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754515.js:1:5010"
+   ]
+  },
+  "/corpNoJob": {
+   "role": "corp",
+   "by": "李炳通 2026-10-16 授权按建议处理（HM-496）：非就业签约（单位侧，名称带 corp），页面不读任何身份状态也没有自己的接口，展示学生的报到证、档案去向，按招聘单位录",
+   "limit": "原版里没有找到打开它的入口",
+   "evidence": [
+    "legacy-dist/usercenter/assets/nojob.17516156075452.js:1:1406"
+   ]
+  }
+ },
+ "pending": {}
+}

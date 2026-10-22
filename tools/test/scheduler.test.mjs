@@ -659,3 +659,27 @@ test("upgrade (HM-990): the merge refuses a page file (the gate's scope rule); a
   assert.equal(issue(fx, f1.id).status, "in_review");
   assert.equal(meta(fx, f1.id).branch, "restore/fast-lane");
 });
+
+test("fast lane (HM-990): a fast-lane page whose receipt names a library gap opens an upgrade; resumed on restore/fast-lane, its pass is a fast-lane pass", () => {
+  const fx = makeFixture({ orders: [page("F1", 12), { id: "S1", type: "shared", kb: 6, app: "portal", files: ["apps/portal/src/shared/Dict.vue"] }], config: { audit: { coldRate: 0 }, regressionEvery: 100 } });
+  recorded(fx, "F1");
+  writeFileSync(path.join(fx.state, "ledger", "tasks.json"), JSON.stringify({ wos: { S1: { state: "done", tasks: [] } }, tasks: {}, seq: 0 }));
+  git(fx.root, "--git-dir", fx.appOrigin, "branch", "restore/fast-lane", "integration");
+  node(fx, "tick.mjs", ["tick"]);
+  const [t] = restoreTasks(fx);
+  mc(fx, "issue", "metadata", "set", t.id, "--key", "fastLane", "--type", "bool", "--value", "true"); setMeta(fx, t.id, "branch", "restore/fast-lane");
+  deliver(fx, t.id, { "apps/portal/src/views/F1/index.vue": vue("f1") }, { receipt: { needsFromSkeleton: ["sjz/home/marketTop.jpg 缺"] } });
+  gate(fx, t.id, { pass: false, stage: "browser", failed: [{ check: "pixel", where: "load" }] });
+  const up = issuesOf(fx).find((i) => i.title.startsWith("[upgrade]"));
+  assert.ok(up, "upgrade opened for a fast-lane page");
+  assert.equal(issue(fx, t.id).status, "backlog");
+  deliver(fx, up.id, { "apps/portal/public/sjz/home/marketTop.jpg": "jpg" });
+  gate(fx, up.id, { pass: true, mode: "upgrade", failed: [], pages: [] });
+  assert.equal(showRemote(fx, "app", "restore/fast-lane", "apps/portal/public/sjz/home/marketTop.jpg"), "jpg");
+  assert.equal(meta(fx, t.id).branch, "restore/fast-lane");
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("gate"));
+  gate(fx, t.id, { pass: true, stage: "browser", failed: [], pages: [{ wo: "F1", pass: true }] });
+  assert.equal(issue(fx, t.id).status, "done");
+  assert.match(lastComment(fx, t.id), /快速通道/);
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/F1/index.vue"), null, "a fast-lane pass merges nothing into integration");
+});

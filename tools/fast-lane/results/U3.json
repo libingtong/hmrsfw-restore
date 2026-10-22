@@ -1,0 +1,65 @@
+{
+ "batch": "U3",
+ "issue": "HM-42",
+ "passed": [
+  "page.uc.myconsult",
+  "page.uc.mynews",
+  "page.uc.myresume",
+  "page.uc.mysubscribe",
+  "page.uc.needDetail",
+  "page.uc.needList",
+  "page.uc.nom",
+  "page.uc.noviciateInvited",
+  "page.uc.oddjob.lack",
+  "page.uc.oddjob.lack.add",
+  "page.uc.oddjob.need",
+  "page.uc.oddjob.need.add",
+  "page.uc.oddjob.sharepage",
+  "page.uc.overseasRecruitment",
+  "page.uc.personLoan",
+  "page.uc.personLoan.detailInfo",
+  "page.uc.personalstyle",
+  "page.uc.pool",
+  "page.uc.previewresume",
+  "page.uc.projectApplyDetails",
+  "page.uc.projectSingUp",
+  "page.uc.recruitmentInformation",
+  "page.uc.recruitmentSignMng",
+  "page.uc.recruitmentStatis",
+  "page.uc.send",
+  "page.uc.sign.corpInfo",
+  "page.uc.teachIn",
+  "page.uc.trainCourseHis",
+  "page.uc.trash",
+  "page.uc.userFairs",
+  "page.uc.userImg",
+  "page.uc.zcyzJobFairRelease",
+  "page.uc.zcyzPositionRelease",
+  "page.uc.zcyzwebFairWork"
+ ],
+ "blocked": [
+  {
+   "id": "page.uc.sceneFairSign",
+   "reason": "工单/映射缺项：原 chunk 静态 import ./webFairWork.*.js（page.uc.webFairWork，作步骤 2 组件），但 out/maps/page.uc.sceneFairSign.json 的 views 与工单 deps.views 为空，self-check imports 拦下 @/views/webFairWork.vue。需在 tools/work-orders.mjs 生成的 maps/deps 补 views 依赖（path @/views/webFairWork.vue，order page.uc.webFairWork）后重跑 self-check（与 U2 jobhunterhome 同类）。其余检查全过（components 2/2、text-nodes 30/30、branches 12/12），build:uc 通过；存于 hmrsfw-vue 分支 fast-lane-blocked/U3"
+  },
+  {
+   "id": "page.uc.teachInCancel",
+   "reason": "build:uc 失败：依赖的 @/shared/appointment/Appointment.vue 导入 @/shared/Editor.vue，后者导入 tinymce/tinymce，package.json 缺 tinymce@5.10.3（E7，收尾子单补依赖，与 U1 同类）。页面 self-check pass:true，存于 fast-lane-blocked/U3，补依赖后可直接 cherry-pick"
+  },
+  {
+   "id": "page.uc.teachInManage",
+   "reason": "同 page.uc.teachInCancel：经 @/shared/appointment/* → @/shared/Editor.vue 引入 tinymce，package.json 缺 tinymce@5.10.3（E7）。页面 self-check pass:true，存于 fast-lane-blocked/U3"
+  }
+ ],
+ "notes": [
+  "37 单：34 单静态通过（编排者逐单复核 self-check pass:true + 合入后 build:uc）并合入 hmrsfw-vue restore/fast-lane；3 单阻塞",
+  "批次结束：全量 npm run build 通过；离线回放 confirm 20/20、legacy10 10/10（portal 6/6、uc 4/4）；scan-secrets hits 0；ls-files 无 .env.local/.har/.auth/.pem；hmrsfw-vue restore/fast-lane 推至 d09bfe4",
+  "阻塞单的还原成果在 hmrsfw-vue 分支 fast-lane-blocked/U3（基于 fast-lane d09bfe4），解除阻塞后可 cherry-pick",
+  "前 18 单（myconsult…pool）由本单上一次 run 合入；本次 run 续做 19 单",
+  "构建核验方式：首轮 6 单由子智能体各自 build:uc（多批次并行，每次 15–19 分钟）；之后改为子智能体只跑 self-check、编排者合入后统一 build:uc，再全量 npm run build。teachIn* 两单正是在统一构建时暴露 tinymce 缺依赖后撤下",
+  "recruitmentInformation / recruitmentSignMng / recruitmentStatis：原包 CSS 本身含未编译的 LESS 嵌套（如 .dropdownList[data-v-7ddd53ee]{a[data-v-7ddd53ee]{…}}），css-by-scope 原样写出，构建时 esbuild 报 css-syntax-error 警告（不失败）；嵌套里写死的旧 scopeId 在还原后不会命中，渲染差异属原包缺陷 + 脚本行为，未手改，待回放判定时留意",
+  "previewresume、trainCourseHis 抽出的图片按已知坑用 new URL(...) 引用，HM-26 合并后改回 import",
+  "userFairs（queryList→queryMyFairs）、userImg（getSettingValueByCode→fetchSettingValue）、recruitmentStatis（downPdf→downloadResumePdf）把与公共库同名的本地函数改名以消除 self-check warn，行为不变",
+  "render-equiv 仅作报告：trainCourseHis index（2162→940）、previewresume、recruitmentInformation、sceneFairSign 的 DIFF 主要是原包把子组件内联进父 render；回放判定待录制后补跑"
+ ]
+}

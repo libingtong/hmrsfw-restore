@@ -29,7 +29,7 @@
   }
  ],
  "recordPath": "/experthome",
- "role": null,
+ "role": "general",
  "maps": "out/maps/page.uc.experthome.json",
  "hints": "out/hints/page.uc.experthome.md",
  "deps": {
@@ -55,5 +55,5 @@
   ]
  },
  "stylesProvidedByScript": true,
- "notes": "「专家」身份（userroledata type 60）的主页，record-page 能切的身份（general / jobseeker / corp / mentor）里没有它"
+ "notes": "裁定（uc-role-decisions.json）。局限：按普通用户录，录出来可能是空状态或没有权限的状态；需造数（D7）：给测试账号开通「专家」身份（userroledata type 60）"
 }

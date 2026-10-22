@@ -13,7 +13,7 @@
 // advance its tasks. Tasks without work orders (integration, rule review, incident, record) and the global steps belong
 // to the leader (a lease on the same branch). State another machine must see lives in issue metadata or git; the local
 // ledger is detail and cache.
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import os from "node:os";
 import { createHash } from "node:crypto";
@@ -30,6 +30,7 @@ import { route, pick, agentLoad, freeSlots } from "../route.mjs";
 import { Claims, claimPath, statsPath, fileKey } from "./claims.mjs";
 import { sampleBatch } from "../readability-sample.mjs";
 import { ALL, resolveMachine, canRun, hostOf, machineIds } from "./machine.mjs";
+import * as FL from "./fastlane.mjs";
 
 export const KINDS = ["restore", "record", "integration", "audit", "rule-review", "arbitrate", "incident", "upgrade"];
 const RESTORE_LIKE = new Set(["restore", "upgrade", "arbitrate"]);
@@ -329,6 +330,7 @@ export class Pipeline {
   // compare-and-swap push, then create tasks only for the units fully won. Units another machine won meanwhile are
   // skipped; the losing push re-fetches and retries the rest after a backoff (claims.mjs).
   dispatchNew() {
+    if (FL.fastLaneOn(this)) { this.act("fast lane: dispatchNew off (only the inventory's pages are handled)"); return 0; }
     let L = this.ledger.read();
     const paused = this.pausedReason(L);
     if (paused) { this.act(`dispatch paused: ${paused}`); return 0; }
@@ -373,7 +375,12 @@ export class Pipeline {
     if (!recs.length) return 0;
     const waiting = new Set(this.pipelineIssues().filter((i) => i.metadata.waitRecord === true && OPEN(i)).flatMap((i) => i.metadata.workOrders || []));
     const openRec = new Set(this.pipelineIssues().filter((i) => i.metadata.kind === "record" && OPEN(i)).flatMap((i) => i.metadata.workOrders || []));
-    const pages = this.orders().filter((w) => isPage(w) && !w.superseded && L.tasks.wos[w.id]?.state !== "superseded").sort((a, b) => (waiting.has(b.id) - waiting.has(a.id)) || (b.kb || 0) - (a.kb || 0));
+    let pages = this.orders().filter((w) => isPage(w) && !w.superseded && L.tasks.wos[w.id]?.state !== "superseded").sort((a, b) => (waiting.has(b.id) - waiting.has(a.id)) || (b.kb || 0) - (a.kb || 0));
+    if (FL.fastLaneOn(this)) { // only the fast lane's recordable pages, portal first, user center by role; none while a login is needed
+      if (FL.loginNeeded(this)) { this.act("fast lane: recording paused, waiting for a login"); return 0; }
+      const rank = new Map(FL.recordQueue(this).map((id, i) => [id, i]));
+      pages = pages.filter((w) => rank.has(w.id)).sort((a, b) => rank.get(a.id) - rank.get(b.id));
+    }
     let n = 0;
     for (const w of pages) {
       const s = L.tasks.wos[w.id] || {};
@@ -389,7 +396,7 @@ export class Pipeline {
   }
 
   openRecord(woId, agent = this.leastLoaded("recorder", [], [woId]), attempt = 1) {
-    const c = this.createTask({ key: `record:${woId}:a${attempt}`, title: `[record] ${woId}${attempt > 1 ? ` a${attempt}` : ""}`, description: `录制工单 \`${woId}\`：写交互脚本、录 HAR、算原版基线。按录制员指令执行。`, meta: { kind: "record", workOrders: [woId], attempt }, assigneeId: agent.id, wos: [woId] });
+    const c = this.createTask({ key: `record:${woId}:a${attempt}`, title: `[record] ${woId}${attempt > 1 ? ` a${attempt}` : ""}`, description: FL.fastLaneOn(this) ? FL.recordDescription(woId, FL.fastLaneBranch(this)) : `录制工单 \`${woId}\`：写交互脚本、录 HAR、算原版基线。按录制员指令执行。`, meta: { kind: "record", workOrders: [woId], attempt }, assigneeId: agent.id, wos: [woId] });
     if (c.id) this.ledger.tx((L) => { const s = (L.tasks.wos[woId] ??= { tasks: [] }); s.record = "pending"; s.recordTask = c.id; s.recordAttempts = Math.max(s.recordAttempts || 0, attempt); });
     return c;
   }
@@ -510,10 +517,13 @@ export class Pipeline {
   }
 
   // Per-page results of a (possibly packed) order; without per-page results one verdict for all.
+  // The verdict gate.mjs writes to metadata is slimmed: pages[] carry {wo, pass, stage, pixel} only, the checks sit in the
+  // top-level failed[] tagged with wo. Put them back on the page, else every failure is classed "<stage>:unknown" (HM-450).
   pageResults(gate, wos) {
     const pages = this.pagesOf(gate);
+    const withFailed = (p, w) => (p.pass || Array.isArray(p.failed) ? p : { ...p, failed: (gate.failed || []).filter((f) => f?.wo === w) });
     // passedOmitted (gate.mjs, HM-839): a verdict too large for metadata lists only its failing pages
-    if (pages) return Object.fromEntries(wos.map((w) => [w, pages[w] || (gate.passedOmitted ? { pass: true } : { pass: false, failed: ["no per-page result"] })]));
+    if (pages) return Object.fromEntries(wos.map((w) => [w, pages[w] ? withFailed(pages[w], w) : gate.passedOmitted ? { pass: true } : { pass: false, failed: ["no per-page result"] }]));
     return Object.fromEntries(wos.map((w) => [w, gate]));
   }
 
@@ -579,6 +589,7 @@ export class Pipeline {
   }
 
   onPass(taskId, meta, wos) {
+    if (FL.isFastLane(meta)) return FL.passFastLane(this, taskId, meta, wos);
     const tw = this.twinState(meta);
     if (tw?.merged) return this.closeTwin(taskId, meta, "对方已先通过并合并");
     // needsFromSkeleton on a passing page: no upgrade order (the page works with today's library), noted for the digest
@@ -731,6 +742,8 @@ export class Pipeline {
     const tw = this.twinState(meta);
     if (tw && (tw.merged || tw.twinAlive)) return this.closeTwin(taskId, meta, `本单失败（${reason}），另一张仍在进行或已通过`);
     const needs = Object.values(meta[`receipt.${meta.attempt || 1}`] || {}).flatMap((r) => r?.needsFromSkeleton || []);
+    // fast-lane pages too (HM-990): an upgrade merged into integration is picked onto `restore/fast-lane` (syncFastLane) and
+    // the page resumes there, so a library gap is no longer left to the fixer/arbiter or the blocked list
     if (needs.length && meta.kind !== "upgrade" && !meta.suspendedBy && !meta.upgradeTried) return this.openUpgrade(taskId, { reason: `回执 needsFromSkeleton：${needs.join("；").slice(0, 500)}`, meta, auto: true });
     if (forceRedo && wos.length) return this.redo(taskId, meta, reason, failed);
     const wo = this.orderOf(meta);
@@ -1521,6 +1534,7 @@ export class Pipeline {
       const L = this.ledger.read();
       if ((L.tasks.wos[wo]?.record || null) !== state && !(state === "pending" && L.tasks.wos[wo]?.record === "ok")) this.ledger.tx((L2) => { const s = (L2.tasks.wos[wo] ??= { tasks: [] }); s.record = state; s.recordTask = i.id; if (state === "ok") L2.newEvents.push({ type: "recorded", wo }); });
     }
+    FL.noteRecordBlocks(this);
     const L = this.ledger.read();
     for (const i of this.pipelineIssues().filter((x) => x.metadata.waitRecord === true && ["restore", "upgrade"].includes(x.metadata.kind) && this.ownsTask(x.metadata))) {
       const wos = i.metadata.workOrders || [];
@@ -1562,6 +1576,7 @@ export class Pipeline {
     this.issues(true);
     const rec = this.isLeader && this.confirmLeader() ? step("dispatch records", () => this.dispatchRecords()) : 0;
     const neu = step("dispatch", () => this.dispatchNew());
+    if (this.isLeader) step("fast-lane adopt", () => FL.adoptPages(this)); // after the records: recording is the time-critical part (login lifetime)
     if (this.isLeader && this.confirmLeader()) {
       if (this.appDir) { try { this.maybeIntegrationGate(); this.maybeRegression(); } catch (e) { this.anomaly(null, `integration step failed: ${e.message}`, "检查 hmrsfw-vue 检出"); } }
       step("stop conditions", () => this.checkStopConditions());
@@ -1718,6 +1733,21 @@ export class Pipeline {
       return { ok: res.status === 0, summary: `${woId} superseded; work-orders.mjs resplit → ${(res.stdout || res.stderr).trim().slice(0, 300)}`, anomalies: res.status === 0 ? [] : [{ issue: null, what: `work-orders.mjs resplit ${woId} failed`, suggestedAction: "裁定员检查分段" }] };
     }, 60_000);
     return r;
+  }
+
+  // tick.mjs fast-lane <status|adopt|login-ok> (tools/lib/fastlane.mjs)
+  fastLaneCmd(sub) {
+    if (!FL.fastLaneOn(this)) return { ok: false, summary: "fast lane mode is off: set fastLane.enabled in scheduler.config.json", anomalies: [] };
+    if (sub === "status") return { ok: true, summary: JSON.stringify(FL.status(this)), anomalies: [] };
+    if (sub === "adopt") { this.issues(true); const n = this.locks.with("tick", () => FL.adoptPages(this)); return { ok: true, summary: `fast lane: ${n} restore task(s) created`, anomalies: this.anomalies }; }
+    if (sub === "login-ok") { this.issues(true); return FL.loginOk(this); }
+    if (sub === "report") { // --write: tools/fast-lane/results/replay.json in the tool checkout (the caller commits it)
+      this.issues(true);
+      const r = FL.report(this);
+      if (this.argv.includes("--write") && !this.dryRun) writeFileSync(path.join(this.toolRoot, "tools/fast-lane/results/replay.json"), JSON.stringify(r, null, 1) + "\n");
+      return { ok: true, summary: JSON.stringify(r.counts), anomalies: [] };
+    }
+    throw new Error("usage: tick.mjs fast-lane status|adopt|login-ok|report [--write]");
   }
 
   rerecord(woId) {

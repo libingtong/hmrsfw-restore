@@ -1,0 +1,69 @@
+{
+ "batch": "P4",
+ "issue": "HM-38",
+ "app": "portal",
+ "passed": [
+  "page.portal.talents.index.homeList",
+  "page.portal.talents.index.infoRecommend",
+  "page.portal.talents.index.review",
+  "page.portal.talents.information.newsDetail",
+  "page.portal.talents.information.newsList",
+  "page.portal.talents.job.jobList",
+  "page.portal.talents.newPark.homeList",
+  "page.portal.talents.newPark.index",
+  "page.portal.talents.newPark.industry",
+  "page.portal.talents.newPark.servicePark",
+  "page.portal.talents.newPark.talentPark",
+  "page.portal.talents.newPark.titles",
+  "page.portal.talents.overseasRecruitment.antDetail",
+  "page.portal.talents.overseasRecruitment.index",
+  "page.portal.talents.setUp.setupDetail",
+  "page.portal.talents.setUp.setupList",
+  "page.portal.talents.talentnew.talentList",
+  "page.portal.train.trainDetail",
+  "page.portal.train.trainList",
+  "page.portal.train.trainOrganDetail",
+  "page.portal.train.trainOrganList",
+  "page.portal.video.zbdg",
+  "page.portal.xjhm.home.advertTop",
+  "page.portal.zcyz.bigData.components.pieCommon",
+  "page.portal.zcyz.bigData.components.pieRader",
+  "page.portal.zcyz.bigData.components.scrollList",
+  "page.portal.zzgj.trainCourse.index"
+ ],
+ "blocked": [
+  {
+   "id": "page.portal.talents.index.jobFair",
+   "reason": "build 失败：vue-countup-v3 未入 package.json（E7 待办，registry 标 npm 待核对）。self-check pass；合入会让整站构建失败，故暂留。需要：E7 把 vue-countup-v3 按指纹核对版本后加入 package.json 并安装。"
+  },
+  {
+   "id": "page.portal.talents.index.jobRecommend",
+   "reason": "同上，build 仅因 vue-countup-v3 缺失失败；self-check pass。"
+  },
+  {
+   "id": "page.portal.talents.index.talentRecommend",
+   "reason": "同上，build 仅因 vue-countup-v3 缺失失败；self-check pass。"
+  },
+  {
+   "id": "page.portal.talents.index.index",
+   "reason": "self-check pass；导入同目录 jobFair/jobRecommend/talentRecommend（均暂留于 vue-countup-v3），合入会使构建缺文件。依赖上面三单解除后一并合入。"
+  },
+  {
+   "id": "page.portal.xjhm.bigData.statistics",
+   "reason": "build 仅因 vue-countup-v3 缺失失败；self-check pass。"
+  },
+  {
+   "id": "page.portal.xjhm.bigData.newBigdata",
+   "reason": "两个问题：(1) build 因 vue-countup-v3 缺失失败；(2) self-check components 失败（期望 1，交付 2）：queue 工单 components 只登记了 manaLoginModal，漏登没有 __name 的主组件 big-screen-view-xygsBigdata，原 chunk 实际 2 个组件。需要：规则/工单变更补登主组件（页面单不得改工单），不应内联弹层。"
+  },
+  {
+   "id": "page.portal.xjhm.cityHome.index",
+   "reason": "self-check pass；build 失败在共享层 apps/portal/src/shared/homeRight2/HomeRight.vue（工单 shared.portal.homeRight2）：静态 src=/xjhm/helpIcon.png 在 public 与 legacy-dist 中都不存在。需要：该共享文件按已知坑改为 :src 绑定同一字符串常量并注释（或补文件），页面单不得改 shared/。"
+  },
+  {
+   "id": "page.portal.xjhm.home.index",
+   "reason": "同上，导入 HomeRight（helpIcon.png），build 失败在共享层；self-check pass。另 /xjhm/do.png、search.jpg 在 public 与 legacy-dist 中均缺失（a-image 的 src/fallback 原样保留，运行时会 404，不影响构建）。"
+  }
+ ],
+ "notes": "27 通过、8 阻塞。阻塞页面的还原文件（self-check 均 pass，newBigdata 除外）保存在 hmrsfw-vue 的 restore/fast-lane-p4-held 分支（8 个提交，基于 restore/fast-lane 的 63b3573），未并入 restore/fast-lane；解除 vue-countup-v3 / homeRight2 helpIcon / newBigdata 工单后 cherry-pick 合入。已在临时别名 vue-countup-v3 并临时补 helpIcon.png 的一次性构建（配置与临时文件不入库、已删）中验证：8 页合并后整站 portal 构建通过。构建验证方式：每单子智能体在 worktree 内各构建一次，编排者逐单复跑 self-check，约每 10 单在 fl-vue 同步构建。批次末：全量构建通过；回放 confirm 20/20、legacy10 10/10（portal 6/6、uc 4/4）；scan-secrets hits 0；ls-files 无 .env.local/.har/.auth/.pem。"
+}

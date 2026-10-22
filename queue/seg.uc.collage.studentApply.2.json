@@ -60,8 +60,8 @@
   }
  ],
  "recordPath": "/collage/studentApply",
- "role": null,
- "notes": "没有身份线索：/collage/studentApply 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）",
+ "role": "general",
+ "notes": "裁定（uc-role-decisions.json）。局限：按普通用户录，录出来可能是空状态或没有权限的状态；需造数（D7）：在校生身份（同 /collage/studentInfo）下有就业 / 非就业签约数据",
  "maps": "out/maps/page.uc.collage.studentApply.json",
  "hints": "out/hints/page.uc.collage.studentApply.md",
  "deps": {

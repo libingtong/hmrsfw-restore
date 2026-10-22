@@ -29,7 +29,7 @@
   }
  ],
  "recordPath": "/Enterpriseonlineservices",
- "role": null,
+ "role": "general",
  "maps": "out/maps/page.uc.Enterpriseonlineservices.json",
  "hints": "out/hints/page.uc.Enterpriseonlineservices.md",
  "deps": {
@@ -68,6 +68,5 @@
    "shared.uc.market"
   ]
  },
- "stylesProvidedByScript": true,
- "notes": "它链到不同身份的页面：page.uc.mentor（职业导师）、page.uc.CorpAttestation（招聘单位）、page.uc.CorpAttestationapprove（普通用户）、page.uc.Createaresume（求职者）"
+ "stylesProvidedByScript": true
 }
