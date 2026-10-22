@@ -1,0 +1,35 @@
+{
+  "id": "page.uc.teachIn",
+  "ticket": "page.uc.teachIn",
+  "branch": "restore/fast-lane",
+  "result": "ok",
+  "outputs": [
+    "apps/uc/src/views/teachIn.vue"
+  ],
+  "todos": [],
+  "needsFromSkeleton": [],
+  "selfCheck": {
+    "pass": true,
+    "components": 1,
+    "textNodes": {
+      "original": 6,
+      "restored": 6
+    },
+    "branches": {
+      "original": 3,
+      "restored": 3
+    },
+    "renderEquiv": "index EQUAL 829/829",
+    "warnings": [
+      "readability: eslint 未安装",
+      "readability: prettier 未安装"
+    ]
+  },
+  "notes": [
+    "修正第 1 轮：未改任何文件。apps/uc/src/views/teachIn.vue 与 sourceChunk index.175161560754515.js 逐项对照一致（字段、columns、slot、query/reset/loadList/handleTableChange、原包残留的 Page/index 引用），self-check pass，renderEquiv index EQUAL 829/829",
+    "html(final)：去掉「查 询」按钮上的 ant-click-animating-without-extra-node 属性后两侧 HTML 完全相同（6725/6725），唯一差异是还原侧第 1 步点击「查询」没有执行；pixel 差图无可见差异",
+    "requests(steps)：原侧 step1、step3 各一次 queryTalkStudentListInfo，还原侧只有 step4 一次，同样是第 1 步点击超时的连带结果，页面的查询/重置逻辑与原包一致",
+    "root/render/overlay(load)：还原侧 page.goto 等 load 事件 60s 超时（report.errors 第 1 条），load 快照在页面渲染、请求应答前截取，所以根节点为空、无提示；随后 step 1 locator.click 5s 超时（首轮还有 step 3 超时），本轮 browser 阶段 669s",
+    "疑似比对器问题：tools/gate/replay.mjs 的 go() 在 goto 超时后只记录错误、直接 waitStable + captureRoot，未等页面根节点出现；Vite 按需构建机器忙时还原侧来不及挂载。页面代码没有能阻塞 load 事件的写法，修正员在可改范围内无法消除，建议直接重跑门槛；若仍复现，请裁定员按 pipeline.md 第十五节走规则变更单或按不稳定页处理"
+  ]
+}
