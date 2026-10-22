@@ -10,7 +10,7 @@
     "apps/uc/public/tinymce/langs/zh_CN.js",
     "apps/uc/public/tinymce/README.md"
   ],
-  "summary": "裁定员（HM-1060）：apps/uc/public/tinymce/langs/zh_CN.js 换成原版部署（测试环境 /tinymce/langs/zh_CN.js，387 条，SHA-256 04ec6221…）的同一文件，替换原先的 tinymce-i18n 22.2.11 版本；皮肤与原版逐字节一致不动。分支 restore/upg-19-a1 d3db69f。",
+  "summary": "修正第 2 次尝试第 1 轮未改页面：gate.2 差异仍全部是 TinyMCE 界面语言（原版基线英文、还原版中文）。升级单 HM-1060 已把还原侧语言包换成原版部署那份并同步到 restore/fast-lane（523022d），但基线侧的规则变更 rule/hm-1060-legacy-tinymce（给 legacy-dist/usercenter 补 /tinymce/）尚未合并（复核 HM-1065、HM-1066 仍 todo），基线也未重录，所以原版仍回退英文；页面无可修。",
   "verification": [
     "原 Editor chunk 明确从站点根加载运行时资源：legacy-dist/usercenter/assets/Editor.1751615607545.js:924308 language_url:kr+\"tinymce/langs/zh_CN.js\"、language:\"zh_CN\"，同处 skin_url:kr+\"tinymce/skins/ui/oxide\"、content_css:kr+\"tinymce/skins/ui/oxide/content.min.css\"；原代码的意图就是中文界面加 oxide 皮肤",
     "legacy-dist/usercenter 下没有 tinymce/；tools/record-lib.mjs:39-43 和 tools/gate/serve.mjs 对缺失路径都回退 index.html，所以录制和基线回放时语言包与 6 个插件都拿到 HTML：baseline.json runs[].errors 是 7 条 Unexpected token '<'（1 个语言包 + lists/link/media/fullscreen/table/wordcount）；HAR 只有 xf-api 接口，没有静态资源",
@@ -18,7 +18,9 @@
     "门槛已经把 @/shared/Editor.vue 换成原 chunk（shimmed），两侧编辑器代码相同，差异只来自 /tinymce/ 静态资源有没有",
     "删除 apps/uc/public/tinymce/ 来迁就基线不可取：会把归档缺文件的问题复制到交付工程里（编辑器变成英文、皮肤 CSS 加载失败），而且要删掉整个目录才能和基线对齐，不只是 zh_CN.js"
   ],
-  "todos": [],
+  "todos": [
+    "等 rule/hm-1060-legacy-tinymce 合并后由裁定员运行 rerecord page.uc.addNewsDetails，再重跑门槛；注意 HM-1060 上裁定员的回访 wakeup 已于 03:58 停用，回访可能不会自动触发"
+  ],
   "needsFromSkeleton": [],
   "selfCheck": {
     "pass": true,
@@ -37,6 +39,7 @@
     "疑似基线/测试资产问题，修正员无法在 target 或公共库内修复，也不得为通过改门槛；请转裁定员按第十五节二选一（基线补 /tinymce/ 后重录，或登记已知差异）",
     "修正员第 2 轮：0 改动，原因同第 1 轮。gate.2 仍只报 static:scope；修正员范围内无可修内容，请转裁定员",
     "裁定员：测试环境实测原版部署有 /tinymce/langs/zh_CN.js 和 skins/ui/oxide/（皮肤与本仓库逐字节一致），没有 plugins/。原版线上是中文界面，基线英文是 legacy-dist 缺资源造成的",
-    "基线侧：规则变更单 rule/hm-1060-legacy-tinymce 给 legacy-dist/usercenter 补原版 /tinymce/ 资源（证据 docs/rule-changes/HM-1060.md），合并后重录 page.uc.addNewsDetails 基线；在此之前该页门槛仍会对旧基线报编辑器文案差异"
+    "基线侧：规则变更单 rule/hm-1060-legacy-tinymce 给 legacy-dist/usercenter 补原版 /tinymce/ 资源（证据 docs/rule-changes/HM-1060.md），合并后重录 page.uc.addNewsDetails 基线；在此之前该页门槛仍会对旧基线报编辑器文案差异",
+    "修正员第 2 次尝试第 1 轮（gate.2，commit 523022d）：未改任何文件。两次原版基线归一后相同，与还原版逐段比对只差 TinyMCE 的 label/title/aria-label 文字（Line height 已不再出现，说明升级包已生效）；剩余差异在基线侧，等规则变更单合并并重录"
   ]
 }
