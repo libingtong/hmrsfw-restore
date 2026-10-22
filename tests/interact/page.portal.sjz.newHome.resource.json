@@ -1,0 +1,9 @@
+[
+  {"wait":800},
+  {"clickSel":".specNext2","optional":true},
+  {"wait":600},
+  {"clickSel":".specPrev2","optional":true},
+  {"wait":600},
+  {"clickSel":".swiper1 .swiper-pagination-bullet:nth-child(2)","optional":true},
+  {"wait":600}
+]
