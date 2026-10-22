@@ -54,6 +54,7 @@ export const DEFAULT_CONFIG = {
   cooldownMin: 30,
   lockStaleMin: 10,
   regressionEvery: 20,          // integration merges between full regressions
+  recordPendingLimit: 2,        // same pending:record reason this many times in a row → arbiter, no more re-sends (HM-1131)
   // Manual readability sample after a passed integration regression (HM-19, tools/readability-sample.mjs): rate of the
   // batch's pages (at least `min`), posted to the 「调度日志」 task (logIssueId). `enabled: false` switches it off.
   readabilitySample: { enabled: true, rate: 0.05, min: 1 },
