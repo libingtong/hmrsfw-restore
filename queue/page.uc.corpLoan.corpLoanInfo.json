@@ -27,7 +27,7 @@
    "name": "corpLoanInfo"
   }
  ],
- "recordPath": "/corpLoan/corpLoanInfo",
+ "recordPath": "/corpLoan/corpLoanInfo?id=2110365316960813058&type=check",
  "role": "corp",
  "maps": "out/maps/page.uc.corpLoan.corpLoanInfo.json",
  "hints": "out/hints/page.uc.corpLoan.corpLoanInfo.md",
@@ -60,5 +60,6 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "recordNotes": "（HM-1069/HM-1070 10-22 造数，李炳通授权）"
 }

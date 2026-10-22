@@ -48,5 +48,6 @@
   ]
  },
  "stylesProvidedByScript": true,
- "recordVia": "page.portal.sjz.fair.fairList"
+ "recordVia": "page.portal.sjz.fair.fairList",
+ "recordNotes": "/fairList 已有一场直播中的直播，直播标签应出现。（HM-1069/HM-1070 10-22 造数，李炳通授权）"
 }

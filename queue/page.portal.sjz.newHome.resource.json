@@ -48,5 +48,6 @@
   "route": null,
   "in": "hmrsfw-vue @/shared/resource.vue（POC 放在共享层；registry-cleanup 方案里迁回 views/sjz/newHome/resource.vue）"
  },
- "recordVia": "page.portal.sjz.archivesSearch.index"
+ "recordVia": "page.portal.sjz.archivesSearch.index",
+ "recordNotes": "/archivesSearch 第 7 个 tab（keywords=2）：交互脚本先点第 7 个 tab 再取根。（HM-1069/HM-1070 10-22 造数，李炳通授权）"
 }

@@ -30,7 +30,7 @@
    "name": "zcyzJobFairRelease"
   }
  ],
- "recordPath": "/zcyzJobFairRelease",
+ "recordPath": "/zcyzJobFairRelease?jobfairid=2092158729399631874&jobFairBoothRelationId=2092158731777802242&classify=30",
  "role": "corp",
  "maps": "out/maps/page.uc.zcyzJobFairRelease.json",
  "hints": "out/hints/page.uc.zcyzJobFairRelease.md",
@@ -65,5 +65,6 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "recordNotes": "不要点发布/保存/提交，只做查看类交互。（HM-1069/HM-1070 10-22 造数，李炳通授权）"
 }

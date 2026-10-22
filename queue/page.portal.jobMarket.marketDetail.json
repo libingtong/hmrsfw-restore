@@ -28,7 +28,7 @@
    "title": "零工市场详情"
   }
  ],
- "recordPath": "/jobMarketDetail",
+ "recordPath": "/jobMarketDetail?id=1909238332610678786",
  "role": "general",
  "maps": "out/maps/page.portal.jobMarket.marketDetail.json",
  "hints": "out/hints/page.portal.jobMarket.marketDetail.md",
@@ -46,5 +46,6 @@
    "shared.portal.map2"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "recordNotes": "（HM-1069/HM-1070 10-22 造数，李炳通授权）"
 }

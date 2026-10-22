@@ -34,7 +34,7 @@
    "name": "sceneFairSign"
   }
  ],
- "recordPath": "/sceneFairSign/:zphId",
+ "recordPath": "/sceneFairSign/2092885417695219713?identitytype=1&classify=30",
  "role": "corp",
  "maps": "out/maps/page.uc.sceneFairSign.json",
  "hints": "out/hints/page.uc.sceneFairSign.md",
@@ -68,5 +68,6 @@
    "page.uc.webFairWork"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "recordNotes": "绝不能点提交/报名按钮：交互脚本只做查看、展开、切换，不触发任何写接口。（HM-1069/HM-1070 10-22 造数，李炳通授权）"
 }

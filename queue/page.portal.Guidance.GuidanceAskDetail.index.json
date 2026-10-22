@@ -28,7 +28,7 @@
    "title": "职业指导问答详情"
   }
  ],
- "recordPath": "/GuidanceAskDetail",
+ "recordPath": "/GuidanceAskDetail?id=1891408087354544130&izClassic=1",
  "role": "general",
  "maps": "out/maps/page.portal.Guidance.GuidanceAskDetail.index.json",
  "hints": "out/hints/page.portal.Guidance.GuidanceAskDetail.index.md",
@@ -54,5 +54,6 @@
    "shared.portal.modules"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "recordNotes": "（HM-1069/HM-1070 10-22 造数，李炳通授权）"
 }

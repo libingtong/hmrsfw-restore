@@ -34,7 +34,7 @@
    "title": "企业招聘列表详情"
   }
  ],
- "recordPath": "/unitMain",
+ "recordPath": "/unitMain?id=2111900000000000101",
  "role": "general",
  "maps": "out/maps/page.portal.sjz.unitMain.unitMain.json",
  "hints": "out/hints/page.portal.sjz.unitMain.unitMain.md",
@@ -65,5 +65,6 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "recordNotes": "地址里只能带 id 这一个参数。（HM-1069/HM-1070 10-22 造数，李炳通授权）"
 }
