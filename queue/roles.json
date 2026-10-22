@@ -1382,16 +1382,46 @@
   ]
  },
  "page.uc.unRegister": {
-  "role": null,
-  "notes": "没有身份线索：/unRegister 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+  "role": "general",
+  "by": "裁定（uc-role-decisions.json）：HM-1121：账号注销，页面只有一个 ZgIframe（labels \"unRegister\"，iframe 地址取字典 user_center_zzgj_path），另按字典 unresgister_api_open_zzgj 开轮询（licenseFree/verifyUserInfoByPhone，按 getXfSysUser().phone）或 WebSocket（payRecordQuery/licenseFree），都只用手机号，不读 radiotype、userroledata、corpInfo，任何身份下页面相同；属于账号级设置，与身份无关；原版用户中心和门户里都没有链到它的地方（除路由表外无引用），只能来自后端按身份下发的菜单（普通用户菜单没录过），不在已录到的求职者 / 招聘单位 / 职业导师菜单里；路由表里有、直接打开可达，按普通用户录",
+  "notes": "裁定（uc-role-decisions.json）。局限：页面内容全在 iframe 里（地址来自字典 user_center_zzgj_path，可能是外部站点），页面本身没有可交互元素；轮询接口返回 success=false 或 WebSocket 返回 msg==1 时原版会清空 localStorage 并跳回门户（相当于退出登录），录制时登录态可能被清掉",
+  "limit": "页面内容全在 iframe 里（地址来自字典 user_center_zzgj_path，可能是外部站点），页面本身没有可交互元素；轮询接口返回 success=false 或 WebSocket 返回 msg==1 时原版会清空 localStorage 并跳回门户（相当于退出登录），录制时登录态可能被清掉",
+  "evidence": [
+   "legacy-dist/usercenter/assets/unRegister.1751615607545.js:1:501",
+   "legacy-dist/usercenter/assets/unRegister.1751615607545.js:1:1234",
+   "legacy-dist/usercenter/assets/unRegister.1751615607545.js:1:1142",
+   "legacy-dist/usercenter/assets/unRegister.1751615607545.js:1:1594",
+   "legacy-dist/usercenter/assets/ZgIframe.1751615607545.js:1:468",
+   "legacy-dist/usercenter/assets/index.1751615607545.js:123:326586",
+   "legacy-dist/usercenter/assets/index.1751615607545.js:124:7117"
+  ]
  },
  "page.uc.zgAccount": {
-  "role": null,
-  "notes": "没有身份线索：/zgAccount 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+  "role": "general",
+  "by": "裁定（uc-role-decisions.json）：HM-1121：账号安全，和 /unRegister 同一套代码（account 组件），只是 ZgIframe 的 labels 为 \"zgAccount\"；iframe 地址取字典 user_center_zzgj_path，轮询 / WebSocket 只用 getXfSysUser().phone，不读 radiotype、userroledata、corpInfo，任何身份下页面相同；属于账号级设置，与身份无关；原版用户中心和门户里都没有链到它的地方（除路由表外无引用），只能来自后端按身份下发的菜单（普通用户菜单没录过），不在已录到的求职者 / 招聘单位 / 职业导师菜单里；路由表里有、直接打开可达，按普通用户录",
+  "notes": "裁定（uc-role-decisions.json）。局限：页面内容全在 iframe 里（地址来自字典 user_center_zzgj_path，可能是外部站点），页面本身没有表单或查询交互；轮询接口返回 success=false 或 WebSocket 返回 msg==1 时原版会清空 localStorage 并跳回门户（相当于退出登录），录制时登录态可能被清掉",
+  "limit": "页面内容全在 iframe 里（地址来自字典 user_center_zzgj_path，可能是外部站点），页面本身没有表单或查询交互；轮询接口返回 success=false 或 WebSocket 返回 msg==1 时原版会清空 localStorage 并跳回门户（相当于退出登录），录制时登录态可能被清掉",
+  "evidence": [
+   "legacy-dist/usercenter/assets/account.1751615607545.js:1:1498",
+   "legacy-dist/usercenter/assets/account.1751615607545.js:1:1138",
+   "legacy-dist/usercenter/assets/ZgIframe.1751615607545.js:1:468",
+   "legacy-dist/usercenter/assets/index.1751615607545.js:123:326586",
+   "legacy-dist/usercenter/assets/index.1751615607545.js:124:7462"
+  ]
  },
  "page.uc.accountBind": {
-  "role": null,
-  "notes": "没有身份线索：/accountBind 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+  "role": "general",
+  "by": "裁定（uc-role-decisions.json）：HM-1121：账号解绑（第三方支付宝 / 微信绑定），按 xfSysUserId 调 xfSysUserThirdAssociation/userBindInfo 取绑定列表，开关取字典 thirdParty，手机号取 userCenterInfo.telephone，不读 radiotype、userroledata、corpInfo，任何身份下页面相同；属于账号级设置，与身份无关；原版用户中心和门户里都没有链到它的地方（除路由表外无引用），只能来自后端按身份下发的菜单（普通用户菜单没录过），不在已录到的求职者 / 招聘单位 / 职业导师菜单里；路由表里有、直接打开可达，按普通用户录",
+  "notes": "裁定（uc-role-decisions.json）。局限：字典 thirdParty 的 zfb、wx 不为 1 时两个绑定块都不渲染；测试账号没有绑定第三方账号时只显示「未绑定」，没有「解绑」按钮和确认解绑面板；「确认解绑」调 xfSysUserThirdAssociation/delete，是写操作，录制不点",
+  "limit": "字典 thirdParty 的 zfb、wx 不为 1 时两个绑定块都不渲染；测试账号没有绑定第三方账号时只显示「未绑定」，没有「解绑」按钮和确认解绑面板；「确认解绑」调 xfSysUserThirdAssociation/delete，是写操作，录制不点",
+  "evidence": [
+   "legacy-dist/usercenter/assets/accountBind.1751615607545.js:1:859",
+   "legacy-dist/usercenter/assets/accountBind.1751615607545.js:1:1067",
+   "legacy-dist/usercenter/assets/accountBind.1751615607545.js:1:1285",
+   "legacy-dist/usercenter/assets/accountBind.1751615607545.js:1:1524",
+   "legacy-dist/usercenter/assets/index.api.17516156075453.js:1:1165",
+   "legacy-dist/usercenter/assets/index.1751615607545.js:124:17080"
+  ]
  },
  "page.uc.doneList": {
   "role": "general",
@@ -1437,7 +1467,14 @@
   ]
  },
  "page.uc.trainCertificate": {
-  "role": null,
-  "notes": "没有身份线索：/trainCertificate 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+  "role": "general",
+  "by": "裁定（uc-role-decisions.json）：HM-1121：云课堂证书（证书图片列表 + 分页），只调 xfCloudClassroomCertificate/list（参数只有 pageNo、pageSize，按 token 取数），不读 radiotype、userroledata、corpInfo，任何身份下页面相同；与已裁定为普通用户的「我的云课堂」/trainCourseHis 同属云课堂功能；原版用户中心和门户里都没有链到它的地方（除路由表外无引用），只能来自后端按身份下发的菜单（普通用户菜单没录过），不在已录到的求职者 / 招聘单位 / 职业导师菜单里；路由表里有、直接打开可达，按普通用户录",
+  "notes": "裁定（uc-role-decisions.json）。局限：测试账号没有云课堂证书时只显示「暂无数据~」，没有证书图和分页",
+  "limit": "测试账号没有云课堂证书时只显示「暂无数据~」，没有证书图和分页",
+  "evidence": [
+   "legacy-dist/usercenter/assets/index.175161560754525.js:1:484",
+   "legacy-dist/usercenter/assets/index.1751615607545.js:123:326487",
+   "legacy-dist/usercenter/assets/index.1751615607545.js:124:72809"
+  ]
  }
 }

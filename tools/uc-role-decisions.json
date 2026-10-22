@@ -1,5 +1,5 @@
 {
- "_source": "HM-227 裁定员按原 chunk 判定的用户中心页面身份（uc-roles.mjs 自动规则判不出的页面）。decided 写进工单 role；pending 不写，record-page 仍报 need-role-decision，notes 里写建议和需要人确认的事。evidence 为 legacy-dist 中的 文件:行:列。 HM-1113：industrySkillTree / signUp / formDone / doneList 由裁定员按原 chunk 判定（李炳通授权）。",
+ "_source": "HM-227 裁定员按原 chunk 判定的用户中心页面身份（uc-roles.mjs 自动规则判不出的页面）。decided 写进工单 role；pending 不写，record-page 仍报 need-role-decision，notes 里写建议和需要人确认的事。evidence 为 legacy-dist 中的 文件:行:列。 HM-1113：industrySkillTree / signUp / formDone / doneList 由裁定员按原 chunk 判定（李炳通授权）。 HM-1121：accountBind / unRegister / zgAccount / trainCertificate 由裁定员按原 chunk 判定为 general。",
  "decided": {
   "/JobFairRelease": {
    "role": "corp",
@@ -495,6 +495,55 @@
     "legacy-dist/usercenter/assets/formDone.1751615607545.js:1:76746",
     "legacy-dist/usercenter/assets/doneList.1751615607545.js:1:24445",
     "legacy-dist/usercenter/assets/doneList.1751615607545.js:1:2464"
+   ]
+  },
+  "/accountBind": {
+   "role": "general",
+   "by": "HM-1121：账号解绑（第三方支付宝 / 微信绑定），按 xfSysUserId 调 xfSysUserThirdAssociation/userBindInfo 取绑定列表，开关取字典 thirdParty，手机号取 userCenterInfo.telephone，不读 radiotype、userroledata、corpInfo，任何身份下页面相同；属于账号级设置，与身份无关；原版用户中心和门户里都没有链到它的地方（除路由表外无引用），只能来自后端按身份下发的菜单（普通用户菜单没录过），不在已录到的求职者 / 招聘单位 / 职业导师菜单里；路由表里有、直接打开可达，按普通用户录",
+   "limit": "字典 thirdParty 的 zfb、wx 不为 1 时两个绑定块都不渲染；测试账号没有绑定第三方账号时只显示「未绑定」，没有「解绑」按钮和确认解绑面板；「确认解绑」调 xfSysUserThirdAssociation/delete，是写操作，录制不点",
+   "evidence": [
+    "legacy-dist/usercenter/assets/accountBind.1751615607545.js:1:859",
+    "legacy-dist/usercenter/assets/accountBind.1751615607545.js:1:1067",
+    "legacy-dist/usercenter/assets/accountBind.1751615607545.js:1:1285",
+    "legacy-dist/usercenter/assets/accountBind.1751615607545.js:1:1524",
+    "legacy-dist/usercenter/assets/index.api.17516156075453.js:1:1165",
+    "legacy-dist/usercenter/assets/index.1751615607545.js:124:17080"
+   ]
+  },
+  "/unRegister": {
+   "role": "general",
+   "by": "HM-1121：账号注销，页面只有一个 ZgIframe（labels \"unRegister\"，iframe 地址取字典 user_center_zzgj_path），另按字典 unresgister_api_open_zzgj 开轮询（licenseFree/verifyUserInfoByPhone，按 getXfSysUser().phone）或 WebSocket（payRecordQuery/licenseFree），都只用手机号，不读 radiotype、userroledata、corpInfo，任何身份下页面相同；属于账号级设置，与身份无关；原版用户中心和门户里都没有链到它的地方（除路由表外无引用），只能来自后端按身份下发的菜单（普通用户菜单没录过），不在已录到的求职者 / 招聘单位 / 职业导师菜单里；路由表里有、直接打开可达，按普通用户录",
+   "limit": "页面内容全在 iframe 里（地址来自字典 user_center_zzgj_path，可能是外部站点），页面本身没有可交互元素；轮询接口返回 success=false 或 WebSocket 返回 msg==1 时原版会清空 localStorage 并跳回门户（相当于退出登录），录制时登录态可能被清掉",
+   "evidence": [
+    "legacy-dist/usercenter/assets/unRegister.1751615607545.js:1:501",
+    "legacy-dist/usercenter/assets/unRegister.1751615607545.js:1:1234",
+    "legacy-dist/usercenter/assets/unRegister.1751615607545.js:1:1142",
+    "legacy-dist/usercenter/assets/unRegister.1751615607545.js:1:1594",
+    "legacy-dist/usercenter/assets/ZgIframe.1751615607545.js:1:468",
+    "legacy-dist/usercenter/assets/index.1751615607545.js:123:326586",
+    "legacy-dist/usercenter/assets/index.1751615607545.js:124:7117"
+   ]
+  },
+  "/zgAccount": {
+   "role": "general",
+   "by": "HM-1121：账号安全，和 /unRegister 同一套代码（account 组件），只是 ZgIframe 的 labels 为 \"zgAccount\"；iframe 地址取字典 user_center_zzgj_path，轮询 / WebSocket 只用 getXfSysUser().phone，不读 radiotype、userroledata、corpInfo，任何身份下页面相同；属于账号级设置，与身份无关；原版用户中心和门户里都没有链到它的地方（除路由表外无引用），只能来自后端按身份下发的菜单（普通用户菜单没录过），不在已录到的求职者 / 招聘单位 / 职业导师菜单里；路由表里有、直接打开可达，按普通用户录",
+   "limit": "页面内容全在 iframe 里（地址来自字典 user_center_zzgj_path，可能是外部站点），页面本身没有表单或查询交互；轮询接口返回 success=false 或 WebSocket 返回 msg==1 时原版会清空 localStorage 并跳回门户（相当于退出登录），录制时登录态可能被清掉",
+   "evidence": [
+    "legacy-dist/usercenter/assets/account.1751615607545.js:1:1498",
+    "legacy-dist/usercenter/assets/account.1751615607545.js:1:1138",
+    "legacy-dist/usercenter/assets/ZgIframe.1751615607545.js:1:468",
+    "legacy-dist/usercenter/assets/index.1751615607545.js:123:326586",
+    "legacy-dist/usercenter/assets/index.1751615607545.js:124:7462"
+   ]
+  },
+  "/trainCertificate": {
+   "role": "general",
+   "by": "HM-1121：云课堂证书（证书图片列表 + 分页），只调 xfCloudClassroomCertificate/list（参数只有 pageNo、pageSize，按 token 取数），不读 radiotype、userroledata、corpInfo，任何身份下页面相同；与已裁定为普通用户的「我的云课堂」/trainCourseHis 同属云课堂功能；原版用户中心和门户里都没有链到它的地方（除路由表外无引用），只能来自后端按身份下发的菜单（普通用户菜单没录过），不在已录到的求职者 / 招聘单位 / 职业导师菜单里；路由表里有、直接打开可达，按普通用户录",
+   "limit": "测试账号没有云课堂证书时只显示「暂无数据~」，没有证书图和分页",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754525.js:1:484",
+    "legacy-dist/usercenter/assets/index.1751615607545.js:123:326487",
+    "legacy-dist/usercenter/assets/index.1751615607545.js:124:72809"
    ]
   }
  },
