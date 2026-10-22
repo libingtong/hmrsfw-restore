@@ -1,0 +1,10 @@
+[
+  {"fill":["请输入考试名称","测试"]},
+  {"click":"查询"},
+  {"click":"重置"},
+  {"clickSel":".ant-select-selector","optional":true},
+  {"click":"查询"},
+  {"clickSel":".ant-pagination-item-2","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"click":"查看详情","optional":true}
+]
