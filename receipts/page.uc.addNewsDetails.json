@@ -34,6 +34,7 @@
     "公共库文件 apps/uc/public/tinymce/** 不改；registry/uc.json 不涉及（public 资源不在清单条目里）",
     "只有 page.uc.addNewsDetails 依赖 shared.uc.Editor，不影响其他页",
     "修正员第 1 轮：0 改动。gate.1 只报 static:scope（升级分支对 integration 无改动），不是代码错误；复核确认 legacy-dist/usercenter 无 tinymce/，apps/uc/public/tinymce/ 无需改动",
-    "疑似基线/测试资产问题，修正员无法在 target 或公共库内修复，也不得为通过改门槛；请转裁定员按第十五节二选一（基线补 /tinymce/ 后重录，或登记已知差异）"
+    "疑似基线/测试资产问题，修正员无法在 target 或公共库内修复，也不得为通过改门槛；请转裁定员按第十五节二选一（基线补 /tinymce/ 后重录，或登记已知差异）",
+    "修正员第 2 轮：0 改动，原因同第 1 轮。gate.2 仍只报 static:scope；修正员范围内无可修内容，请转裁定员"
   ]
 }
