@@ -36,7 +36,7 @@
 | `ledger/tasks.json` | 工单与任务的对应关系、创建键（幂等）、工单状态（`active` / `suspended` / `merged` / `done` / `superseded` / `held`）、录制状态；`fast-lane retire` 写入的条目带 `retired`（来源、批次、原因），见「快速通道退场」 |
 | `ledger/tick-state.json` | 暂停标记、自上次回归以来的合并数、回归与二分状态、`integration` 上每个合并提交对应的任务、升级单、规则变更单 |
 | `ledger/events.jsonl` | 合并、回退、done、审计、升级、规则变更、已知差异等事件，每日摘要从这里汇总 |
-| `locks/` | `wo-<工单id>`、`ledger`、`integration`、`tool-main`、`tick`、`rule-<分支>`、`kd-<工单>` |
+| `locks/` | `wo-<工单id>`、`ledger`、`integration`、`tool-main`、`tool-integration`、`tick`、`rule-<分支>`、`kd-<工单>` |
 | `known-diffs/<工单>.json` | 已知差异登记，`gate.mjs` 读取 |
 
 账本只用 `ledger` 锁做读改写，锁内不调用 multica。工单锁、`integration` 锁包住 multica 和 git 调用。锁目录超过 10 分钟视为残留；清理残留锁本身由 `<锁>.reap` 串行化，并且只清掉判定为残留的那个持有者，两个等待者不会同时进入。`tick` 每一步开始时刷新自己持有的锁的时间戳（心跳）。`tick` 里每张任务的处理单独捕获异常：一张任务出问题只记 anomaly，不中断整轮。
@@ -101,7 +101,7 @@
 | `auditor`、`auditTier`、`auditProcessed` | advance / tick | 审计员、抽检档位、已处理的审计（`<attempt>:<合并 sha>`）。再次抽中审计时先删掉旧的 `audit.<attempt>` |
 | `waitRecord` | advance | 门槛返回 `{"pending":"record"}` 时置为 `true` |
 | `waitRecordFrom` | advance / rerecord | 等录制时每张缺基线工单的录制标记 `a<最高 ok 录制尝试>:<baseline.json 指纹>`。只有之后完成的录制（更高尝试号的录制单 ok，或基线换了）才算「录制已完成」；没有这个键的任务（快速通道新建的、旧任务）照旧只看有没有录制 |
-| `recordPending` | advance | `{why, n, key}`：连续第几次 `pending:record`、原因是什么、是哪一轮门槛（`advKey`，同一轮结果重复 `advance` 只算一次）。门槛给出真正的结论（通过或失败）后删除，`rerecord` 和手动 `--regate` 也会清掉 |
+| `recordPending` | advance | `{why, n, key}`：连续第几次 `pending:record`、原因是什么、是哪一轮门槛（`advKey`，同一轮结果重复 `advance` 只算一次）。门槛给出真正的结论（通过或失败；门槛自身出错不算）后删除，`rerecord` 和手动 `--regate` 也会清掉 |
 | `suspendedBy`、`upgradeTried` | open-upgrade | 挂起本页的升级单 |
 | `gateMode` | handoff / tick | 升级单送门槛时为 `upgrade`：门槛员用 `--mode upgrade` |
 | `fastLaneSync` | advance / tick | 升级单合并后同步到 `restore/fast-lane` 的结果：`{state: ok\|already\|no-branch\|conflict\|retry, sha, picked, conflicts, at}`，见上文「升级单与快速通道」 |
@@ -133,6 +133,8 @@
 **合并后被回退**（审计、集成回归、公共库回归）：原分支不能再合并（git 认为它已经合进去了）。脚本从当前 `integration` 拉新分支 `<原分支>-r<n>`，在上面 revert 那次回退，也就是把被回退的内容放回去，任务改用这条分支继续走失败规则（修正员在新分支上修）。这一步冲突时，改为默认模型开新的尝试。
 
 **合并**：`git merge --no-ff`，在 `origin/integration` 的临时 worktree 里做，持有 `locks/integration`。页面单改到 `src/legacy|shared|api|utils/`、`package.json`、锁文件时拒绝合并，按失败处理。入口包、共享组件单只能改清单里 `owner` 是自己（或没有 owner）的公共库文件；升级单只能改 owner 当前没有进行中任务的文件，不能改页面文件（`src/views/**`）。这条规则在 `tools/lib/upgrade-scope.mjs`，门槛 `--mode upgrade` 用同一个函数（HM-990）。冲突就放弃合并，元数据记 `mergeConflict.<attempt>`，按失败处理（`merge_conflict`）。
+
+**工具仓库 integration 跟上 main（HM-1135）**：工具和规则改动合进工具仓库 `main`；录制员从工具仓库 `integration` 检出，在那里跑 `record-page.mjs`、`baseline.mjs`（`integration` 是 `record-page` 提交交互脚本、`handoff` 提交回执的分支）。主控每轮 `tick` 在派录制单之前检查 `origin/main` 是否已在 `origin/integration` 里，不在就把 `main` 以 `--no-ff` 合入 `integration`（临时 worktree，持有 `locks/tool-integration`）。锁忙或推送被拒，下一轮重试；有冲突不合并，记 anomaly 交裁定员手工合并（`tools/`、`rules/` 以 `main` 为准）。产物仓库的「`integration` 回归通过后快进合入 `main`」与此无关：工具仓库的 `integration` 是数据分支，不合回 `main`。
 
 **审计**：抽检率按生成家族的档位：审计不满 20 次为冷启动 50%，漏检率 > 10% 为加严 100%，满 50 次且漏检率 < 3% 为放宽 10%，其余 20%。是否抽中由任务 id 和尝试次数的哈希决定，重复处理结果不变。复核员从「家族不属于本分支所有参与者」的复核员里选负载最低的。例如 DeepSeek 还原、Opus 修正的分支只能由 GLM 家族的复核员复核。没有可用的复核员时不卡住：页面照常 `done`，评论写明跳过审计和参与家族，`advance` / `tick` 输出一条 anomaly（检查名册的复核员），并计入每日摘要。
 
@@ -226,7 +228,7 @@ node tools/tick.mjs fast-lane retire --app "$HMRSFW_APP_DIR"
 
 - `advance` 在不拥有该工单的机器上调用（门槛员可能在任一台）：只写 `advanceRequested`，返回 `{"ok":true,"deferred":true}`；所属机器下一轮立即推进，不等 10 分钟的兜底。`--regate` 同理。
 - 主控回退了别的机器的合并：写 `reopenRequest`，由所属机器重开。
-- 等录制（HM-1131）：门槛返回 `pending:record` 时，`advance` 只等门槛点名的工单（`missing`；列表被截断时等全部），并记下 `waitRecordFrom`。工单还没有录制：照旧由主控开录制单。工单已有录制但门槛用不了（交互脚本或 HAR 在基线之后变了、基线刷新失败等）：像 `rerecord` 一样在本机开一次新的录制尝试，已有打开的录制单就不再开。为它开的录制尝试被取消（快速通道 `login-ok`、手动取消）时，等录制的任务在下一轮自己开下一次尝试（`dispatchRecords` 会跳过已有录制的页）；被挡住（`blocked`）或仍打开的不动。录制完成判据只认 `waitRecordFrom` 之后的录制，所以旧录制不会让任务每轮都被送回门槛。同一原因连续 `recordPendingLimit` 次（默认 2）：交裁定员（`kind=arbitrate`，`arbitrateReason: record-loop: <原因>`）并报异常；裁定员判断是录制问题（`rerecord`）还是原站不稳定（按 10-21 / 10-22 的决定登记已知差异）。
+- 等录制（HM-1131）：门槛返回 `pending:record` 时，`advance` 只等门槛点名的工单（`missing`；列表被截断时等全部），并记下 `waitRecordFrom`。工单还没有录制：照旧由主控开录制单。工单已有录制但门槛用不了（交互脚本或 HAR 在基线之后变了、基线刷新失败等）：像 `rerecord` 一样在本机开一次新的录制尝试，已有打开的录制单就不再开。为它开的录制尝试被取消（快速通道 `login-ok`、手动取消）时，等录制的任务在下一轮自己开下一次尝试（`dispatchRecords` 会跳过已有录制的页）；被挡住（`blocked`）或仍打开的不动。录制完成判据只认 `waitRecordFrom` 之后的录制，所以旧录制不会让任务每轮都被送回门槛。门槛点名的工单里有共享库或 npm 工单（`isRecordable` 为假，HM-1124）时，等不到录制：不开录制单、不进 `waitRecord`、不计入 `recordPending`，报 HM-1124 的异常并直接交裁定员；此前已经在等这类工单的任务，下一轮 tick 同样交裁定员。同一原因连续 `recordPendingLimit` 次（默认 2）：交裁定员（`kind=arbitrate`，`arbitrateReason: record-loop: <原因>`）并报异常；裁定员判断是录制问题（`rerecord`）还是原站不稳定（按 10-21 / 10-22 的决定登记已知差异）。
 - `resplit`、`rerecord`、`open-upgrade` 会改动工单的任务，所以只在工单所属机器上执行。在另一台机器上调用时（裁定员或被改派的还原员可能在另一台），只在 `claims` 分支写一条 `req/*.json`，返回 `deferred`；所属机器下一轮执行后删掉这条请求。
 - 主控每一步全局操作前都会重新确认租约，剩余时间不到四分之一（7.5 分钟）就跳过。所以 tick 跑得慢，或各台时钟偏差在这个范围内，都不会出现两个主控。多台机器要开 NTP 对时。
 - 暂停：停止条件建的排障单带 `paused=true`，各台都看到；`resume` 在任一台运行都把它标成 `resumed`，发起暂停那台账本里的暂停标记也随之失效。

@@ -22,7 +22,10 @@
 //      with the token removed (replay needs the identity keys, e.g. radiotype, routermenu);
 //   6. runs the original baseline: tools/baseline.mjs <id> --har <har> (A); until A is merged,
 //      tools/record-baseline-placeholder.mjs with the same command line;
-//   7. on success commits tests/interact/<id>.json to the integration branch (only the script, never the HAR).
+//   7. on success commits tests/interact/<id>.json to the integration branch (only the script, never the HAR);
+//   8. whatever the outcome, takes the script out of the working tree again (HM-1130, record-lib parkScript): a draft
+//      that did not get committed goes to $RESTORE_STATE/record/<id>/draft.json and the next run puts it back, so the
+//      task checkout is left clean and can be removed when the task ends.
 // Concurrency: each run has its own browser; HAR written via temp file + rename; one run per work order
 // ($RESTORE_STATE/locks/rec-<id>); user-center runs share the account by identity ($RESTORE_STATE/locks/account-usercenter.json:
 // same identity together, another identity waits up to --wait-identity; held for the recording only, not the baseline);
@@ -31,7 +34,7 @@
 //        [--baseline-only] [--no-commit] [--headed] [--wait-identity <minutes, default 30>]
 //        --offline <old.har> --out <new.har>: self-test without network. The test hosts are answered from legacy-dist and
 //        <old.har>; the HAR goes to <new.har>; no commit, no role pin, no notes in $RESTORE_STATE.
-// Output (one JSON line): {ok, id, steps, unstable:[...], blocked?, hint?, evidence?, error?, har, entries, writes:[{method,
+// Output (one JSON line): {ok, id, steps, unstable:[...], blocked?, hint?, evidence?, error?, scriptParked?, har, entries, writes:[{method,
 //        path, count, phases, statuses}] (sent), intercepted:[{… , rules}] (not sent), sm2:{bodies, decrypted, undecryptable}, baseline, committed, warnings, durationMs}
 // Exit: 0 ok · 1 error or unstable · 2 blocked (needs a human: login, identity). {"locked":true} when the order is
 //       already being recorded, {"locked":true, identityBusy} when another identity kept the account past --wait-identity.
@@ -41,10 +44,11 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { evaluate, thresholds } from "./coverage.mjs";
-import { apiTracker, describeStep, loadScript, runStepRetry, scriptPath, settle } from "./interact.mjs";
+import { NOT_REPEATED, apiTracker, describeStep, loadScript, runStepRetry, scriptPath, settle } from "./interact.mjs";
 import { entryKey, fulfillOptions, harResponder, requestBody } from "./har-body.mjs";
 import { splitWrites, writeGuard } from "./record-write-guard.mjs";
-import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, pin, pinKey, resolveOrder, switchIdentity, tokenInfo, validId } from "./record-lib.mjs";
+import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, parkScript, pin, pinKey, resolveOrder, restoreScript, switchIdentity, tokenInfo, validId } from "./record-lib.mjs";
+import { ensureLegacyDist } from "./lib/shared-deps.mjs";
 
 const t0 = Date.now();
 const argv = process.argv.slice(2);
@@ -60,10 +64,19 @@ const LOGIN_MSG = /(token|登录).{0,6}(失效|过期|无效)|请重新登录|�
 const SECRET_HEADER = /^(x-access-token|token|authorization|cookie)$/i;
 const SECRET_PARAM = /token/i; // e.g. portal getSysUserByToken?curToken=…
 const redactUrl = (raw) => { const u = new URL(raw); for (const k of [...u.searchParams.keys()]) if (SECRET_PARAM.test(k)) u.searchParams.set(k, "[redacted]"); return u.href; };
-const brief = (e) => String(e.message).split("\n").map((l) => l.trim()).filter((l) => l && !/^=+/.test(l)).slice(0, 6).join(" | ").slice(0, 400);
+// First lines of an error plus the lines of Playwright's call log that say why an action did not go through (a 6-line
+// cut showed only "waiting for element to be visible, enabled and stable" and hid "… intercepts pointer events").
+const WHY = /intercepts pointer events|element is not|not attached|performing \w+ action|\w+ action done|scheduled navigations/;
+const brief = (e) => { const ls = String(e.message).split("\n").map((l) => l.trim()).filter((l) => l && !/^=+/.test(l)); return [...new Set([...ls.slice(0, 4), ...ls.slice(4).filter((l) => WHY.test(l))])].join(" | ").slice(0, 600); };
 const loginHint = (site) => `登录态失效或缺失：请人工在有界面的浏览器里重新登录测试站（${ORIGIN[site]}），在 $RESTORE_ASSETS 下运行 node <本仓库>/tools/pw-login.mjs all 30，只登录门户一次（用户中心由门户的「用户中心」入口自动进入），两站都保存后窗口自动关闭，然后重跑 record-page。只需登录，不用切身份（身份由 record-page 切）。脚本不会自动登录。`;
 
+let park = null; // {state, id, committed}: set once this run holds the order lock
 function emit(o, code) {
+  if (park) {
+    try { const r = parkScript(park.state, park.id, { committed: park.committed }); if (r) { o = { ...o, scriptParked: r.draft }; warnings.push(r.note); } }
+    catch (e) { warnings.push(`could not move the interaction script out of the checkout: ${String(e.message).split("\n")[0]}`); }
+    park = null;
+  }
   console.log(JSON.stringify({ ...o, warnings, durationMs: Date.now() - t0 }));
   process.exitCode = code;
 }
@@ -182,7 +195,7 @@ async function record({ order, steps, assets, state, harFile }) {
     for (const [i, s] of steps.entries()) {
       phase = `step${i}`;
       let err = null, note = null;
-      try { const r = await runStepRetry(page, s, () => tracker.idle(page)); note = r.note; if (r.retried) warnings.push(`step ${i} retried once after an action timeout`); }
+      try { const r = await runStepRetry(page, s, () => tracker.idle(page)); note = r.note; if (r.retried) warnings.push(`step ${i} retried once after an action timeout`); if (r.note === NOT_REPEATED) warnings.push(`step ${i} timed out after its action was sent; not repeated`); }
       catch (e) { err = brief(e); }
       await tracker.idle(page);
       stepResults.push({ i, step: describeStep(s), err, note });
@@ -255,6 +268,9 @@ try {
     throw null;
   }
   const scriptFile = opt("--script") ? path.resolve(opt("--script")) : scriptPath(id);
+  const ownScript = scriptFile === scriptPath(id) && !OFFLINE;
+  if (ownScript) { const r = restoreScript(state, id); if (r) warnings.push(r); }
+  { const r = ensureLegacyDist(ROOT); if (r) warnings.push(r); }
   let steps = loadScript(scriptFile);
   if (!steps) {
     const cov = coverage(order);
@@ -264,6 +280,7 @@ try {
   }
   release = lockOrder(state, id);
   if (!release) { console.log(JSON.stringify({ locked: true, id })); process.exit(0); }
+  if (ownScript) park = { state, id, committed: null };
   if (order.site === "usercenter" && !OFFLINE && !baselineOnly) {
     const waitMin = Number(opt("--wait-identity") ?? 30);
     if (!Number.isFinite(waitMin) || waitMin < 0) throw fail("--wait-identity <minutes> must be a non-negative number");
@@ -297,6 +314,7 @@ try {
   const ok = !unstable.length;
   if (ok && steps.length && !OFFLINE && !flag("--no-commit") && scriptFile === scriptPath(id))
     committed = commitToIntegration(path.relative(ROOT, scriptFile), `test(interact): ${id} interaction script (record-page)`).committed;
+  if (park) park.committed = committed;
   // Coverage of the original (HM-21): only reported. A page below the thresholds still records; the recorder reads
   // `node tools/coverage.mjs report <id>` and adds interactions or hands the data gaps to the D7 request.
   const cov = base?.coverage ?? null;

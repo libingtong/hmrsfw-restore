@@ -277,6 +277,44 @@ test("pending record: a different reason starts the count again; a real verdict 
   assert.equal(meta(fx, t.id).waitRecord, false);
 });
 
+test("shared / npm orders never get a record task (HM-1124)", () => {
+  const npm = { id: "shared.portal.vue-countup-v3", type: "shared", status: "npm", kb: 7, app: "portal", site: "portal", npm: "vue-countup-v3", deps: [] };
+  const fx = makeFixture({ orders: [page("P9", 12), npm, page("P10", 11, { status: "npm" })], config: { audit: { coldRate: 0 } } });
+  node(fx, "tick.mjs", ["tick"]);
+  const recs = () => issuesOf(fx).filter((i) => i.title.startsWith("[record]"));
+  assert.deepEqual(recs().map((i) => meta(fx, i.id).workOrders).flat(), ["P9"], "only the page is recorded");
+  // a restore task on the npm order that the gate sends to "pending record": no record task, and no endless wait either —
+  // the arbiter gets it (HM-1131)
+  const t = restoreTasks(fx).find((i) => meta(fx, i.id).workOrders.includes(npm.id));
+  assert.ok(t, "restore task on the npm order");
+  setMeta(fx, t.id, `gate.${meta(fx, t.id).attempt}`, { pending: "record" });
+  const r = node(fx, "tick.mjs", ["advance", t.id]);
+  assert.equal(recs().length, 1, "no record task for the npm order");
+  assert.ok((r.anomalies || []).some((a) => a.what.includes(npm.id)), JSON.stringify(r.anomalies));
+  assert.notEqual(meta(fx, t.id).waitRecord, true, "not left waiting");
+  assert.equal(meta(fx, t.id).kind, "arbitrate");
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("arbiter"));
+  assert.match(lastComment(fx, t.id), /不录制的共享库\/npm 工单/);
+  const rr = node(fx, "tick.mjs", ["rerecord", npm.id]);
+  assert.equal(rr.ok, false);
+  assert.equal(recs().length, 1, "rerecord refuses the npm order");
+});
+
+test("a task left waiting for an npm order (before HM-1124) goes to the arbiter on the next tick (HM-1131)", () => {
+  const npm = { id: "shared.portal.vue3-seamless-scroll", type: "shared", status: "npm", kb: 7, app: "portal", site: "portal", npm: "vue3-seamless-scroll", deps: [] };
+  const fx = makeFixture({ orders: [npm], config: { audit: { coldRate: 0 } } });
+  node(fx, "tick.mjs", ["tick"]);
+  const [t] = restoreTasks(fx);
+  mc(fx, "issue", "metadata", "set", t.id, "--key", "waitRecord", "--type", "bool", "--value", "true"); // as tick writes it
+  mc(fx, "issue", "update", t.id, "--status", "in_review", "--assignee-id", fx.id("gate"), "--no-start");
+  const r = node(fx, "tick.mjs", ["tick"]);
+  assert.ok((r.actions || []).includes(`unrecordable wait → arbiter ${t.id}`), JSON.stringify(r.actions));
+  assert.ok((r.anomalies || []).some((a) => a.issue === t.id && a.what.includes(npm.id)), JSON.stringify(r.anomalies));
+  assert.equal(meta(fx, t.id).waitRecord, false);
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("arbiter"));
+  assert.equal(issuesOf(fx).filter((i) => i.title.startsWith("[record]")).length, 0);
+});
+
 test("packed small pages: per-page verdicts, passing pages merged, failing page split off", () => {
   const fx = makeFixture({ orders: [page("S-a", 2), page("S-b", 3), page("S-c", 4)], config: { audit: { coldRate: 0 }, regressionEvery: 100 } });
   recorded(fx, "S-a", "S-b", "S-c");

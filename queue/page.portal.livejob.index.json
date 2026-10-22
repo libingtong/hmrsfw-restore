@@ -22,7 +22,7 @@
  "target": "apps/portal/src/views/livejob/index.vue",
  "subComponentDir": "apps/portal/src/views/livejob/index/",
  "routes": [],
- "recordPath": "/fairList",
+ "recordPath": "/fairList?type=100",
  "role": "general",
  "maps": "out/maps/page.portal.livejob.index.json",
  "hints": "out/hints/page.portal.livejob.index.md",
