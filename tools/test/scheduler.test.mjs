@@ -164,6 +164,100 @@ test("pending record → wait, recording done → back to the gate", () => {
   assert.equal(issue(fx, t.id).runs.length, runsBefore + 1, "gate rerun");
 });
 
+// HM-1131: a recording is there but the gate can't use it (script changed, baseline refresh failed). Before, recorded()
+// stayed true, so every tick sent the task back to the gate and the gate said pending:record again.
+test("pending record on a stale recording: a new record attempt, no regate until it is done, same reason twice → arbiter", () => {
+  const fx = makeFixture({ orders: [page("P9", 12)], config: { audit: { coldRate: 0 } } });
+  recorded(fx, "P9");
+  node(fx, "tick.mjs", ["tick"]);
+  const [t] = restoreTasks(fx);
+  deliver(fx, t.id, { "apps/portal/src/views/P9/index.vue": vue("p9") });
+  const why = "interaction script changed since the baseline";
+  let r = gate(fx, t.id, { pending: "record", missingTotal: 1, byReason: { [why]: 1 }, missing: ["P9"], attempt: 1 });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(meta(fx, t.id).waitRecord, true);
+  assert.deepEqual(meta(fx, t.id).recordPending, { why, n: 1 });
+  const recs = () => issuesOf(fx).filter((i) => i.title.startsWith("[record] P9"));
+  assert.equal(recs().length, 1, "the stale recording gets a new record attempt");
+  const rec = recs()[0];
+  assert.equal(rec.assignee_id, fx.id("recorder"));
+  assert.match(lastComment(fx, t.id), /重新录制 P9/);
+
+  // the loop: the old baseline is still there, but no tick sends the task back to the gate before the new recording
+  const runs0 = issue(fx, t.id).runs.length;
+  for (let k = 0; k < 2; k++) {
+    r = node(fx, "tick.mjs", ["tick"]);
+    assert.ok(!(r.actions || []).some((a) => a.startsWith("record ready")), JSON.stringify(r.actions));
+  }
+  assert.equal(meta(fx, t.id).waitRecord, true);
+  assert.equal(issue(fx, t.id).runs.length, runs0, "no gate rerun on the old recording");
+  assert.equal(recs().length, 1, "no further record task while one is open");
+
+  // the new recording is done → back to the gate once
+  setMeta(fx, rec.id, "record", "ok");
+  mc(fx, "issue", "update", rec.id, "--status", "done", "--no-start");
+  r = node(fx, "tick.mjs", ["tick"]);
+  assert.ok((r.actions || []).includes(`record ready → regate ${t.id}`), JSON.stringify(r.actions));
+  assert.equal(meta(fx, t.id).waitRecord, false);
+  assert.equal(meta(fx, t.id).waitRecordFrom, undefined);
+  assert.equal(issue(fx, t.id).runs.length, runs0 + 1, "gate rerun");
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(issue(fx, t.id).runs.length, runs0 + 1, "once");
+
+  // same reason again: recording didn't fix it → arbiter, nothing re-sent
+  r = gate(fx, t.id, { pending: "record", missingTotal: 1, byReason: { [why]: 1 }, missing: ["P9"], attempt: 1 });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.ok(r.anomalies.some((a) => a.issue === t.id && /连续 2 次 PENDING record/.test(a.what)), JSON.stringify(r.anomalies));
+  assert.equal(meta(fx, t.id).kind, "arbitrate");
+  assert.equal(meta(fx, t.id).waitRecord, false);
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("arbiter"));
+  assert.match(lastComment(fx, t.id), /连续 2 次 PENDING record.*不再自动重送/);
+  assert.equal(recs().length, 1, "no third recording");
+  const runs1 = issue(fx, t.id).runs.length;
+  r = node(fx, "tick.mjs", ["tick"]);
+  assert.ok(!(r.actions || []).some((a) => a.includes(t.id) && /regate/.test(a)), JSON.stringify(r.actions));
+  assert.equal(issue(fx, t.id).assignee_id, fx.id("arbiter"));
+  assert.equal(issue(fx, t.id).runs.length, runs1);
+});
+
+test("pending record: a different reason starts the count again; a real verdict clears it; rerecord waits for its own recording", () => {
+  const fx = makeFixture({ orders: [page("PA", 12)], config: { audit: { coldRate: 0 } } });
+  recorded(fx, "PA");
+  node(fx, "tick.mjs", ["tick"]);
+  const [t] = restoreTasks(fx);
+  deliver(fx, t.id, { "apps/portal/src/views/PA/index.vue": vue("pa") });
+  const done = (rec) => { setMeta(fx, rec.id, "record", "ok"); mc(fx, "issue", "update", rec.id, "--status", "done", "--no-start"); };
+  const recs = () => issuesOf(fx).filter((i) => i.title.startsWith("[record] PA"));
+  // full gate output (missing[].why), page-specific detail after the colon ignored
+  gate(fx, t.id, { pending: "record", missing: [{ wo: "PA", why: "baseline refresh failed: timeout" }], attempt: 1 });
+  assert.deepEqual(meta(fx, t.id).recordPending, { why: "baseline refresh failed", n: 1 });
+  done(recs().at(-1));
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(meta(fx, t.id).waitRecord, false);
+  gate(fx, t.id, { pending: "record", missing: [{ wo: "PA", why: "HAR changed since the baseline" }], attempt: 1 });
+  assert.deepEqual(meta(fx, t.id).recordPending, { why: "HAR changed since the baseline", n: 1 }, "another reason: not a loop");
+  assert.equal(meta(fx, t.id).kind, "restore");
+  assert.equal(recs().length, 2, "a second record attempt");
+  assert.equal(meta(fx, recs().at(-1).id).attempt, 2);
+  done(recs().at(-1));
+  node(fx, "tick.mjs", ["tick"]);
+  gate(fx, t.id, { pass: false, stage: "browser", failed: [{ check: "dom", where: "x" }] });
+  assert.equal(meta(fx, t.id).recordPending, undefined, "a real verdict ends the run");
+
+  // arbiter's rerecord: the task waits for the new attempt, not for the ok of the older ones
+  setMeta(fx, t.id, "kind", "restore");
+  mc(fx, "issue", "update", t.id, "--status", "in_review", "--assignee-id", fx.id("gate"), "--no-start");
+  const r = node(fx, "tick.mjs", ["rerecord", "PA"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(recs().length, 3);
+  assert.equal(meta(fx, recs().at(-1).id).attempt, 3);
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(meta(fx, t.id).waitRecord, true, "older ok record tasks don't count");
+  done(recs().at(-1));
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(meta(fx, t.id).waitRecord, false);
+});
+
 test("packed small pages: per-page verdicts, passing pages merged, failing page split off", () => {
   const fx = makeFixture({ orders: [page("S-a", 2), page("S-b", 3), page("S-c", 4)], config: { audit: { coldRate: 0 }, regressionEvery: 100 } });
   recorded(fx, "S-a", "S-b", "S-c");
