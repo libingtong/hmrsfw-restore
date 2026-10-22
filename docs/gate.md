@@ -29,7 +29,7 @@ stdout 一行 JSON：
 
 另外两种输出：`{"pending":"record","missing":[{wo, why}]}`（没有基线，或 HAR、交互脚本在基线之后变了）；`{"error":"…"}`（门槛自身的问题）。
 `--task` 且不带 `--dry-run` 时，同一份结果写元数据 `gate.<attempt>`（截短的 hint），并评论一条 `[GATE] PASS|FAIL …`。
-平台的 8 KB 上限算的是**一张单全部元数据的总和**（HM-876 实测：Σ(键名 + 存储的值 + 8) + 8 ≤ 8192，转义不计，对象按 JSON 文本计），不是单个值。大集成单的 `workOrders` 一项就占 4–5 KB，所以 `gate.<attempt>` 的预算 = 8192 − 1 KB 余量（留给 tick 之后写的 `advanced`、`waitRecord`、`gateSeq`、`merge.<n>` 等）− 写入前读到的其他键，最多 7 KB（HM-839）；写入仍被拒（`metadata exceeds`）时预算减半重试，减到 256 字节后再用最小形态试一次，不报错。
+平台的 8 KB 上限算的是**一张单全部元数据的总和**（HM-876 实测：Σ(键名 + 存储的值 + 8) + 8 ≤ 8192，转义不计，对象按 JSON 文本计），不是单个值。大集成单的 `workOrders` 一项就占 4–5 KB（HM-1086 起超过 2 KB 的 JSON 值由 tick 压缩写入，254 页约 2.3 KB；之前建的单仍是原文），所以 `gate.<attempt>` 的预算 = 8192 − 1 KB 余量（留给 tick 之后写的 `advanced`、`waitRecord`、`gateSeq`、`merge.<n>` 等）− 写入前读到的其他键，最多 7 KB（HM-839）；写入仍被拒（`metadata exceeds`）时预算减半重试，减到 256 字节后再用最小形态试一次，不报错。
 完整结果写到 `$RESTORE_STATE/gate/<run>/result.json`（pending 写 `$RESTORE_STATE/gate/pending-<任务>-a<attempt>.json`），元数据用 `detail` 记路径。
 pending 记 `missingTotal`、按原因计数的 `byReason` 和缺失页 id 列表 `missing`；放不下时 `missing` 只留前 10 个（再不够继续减半）作样例并标 `missingTruncated`，完整清单只在明细文件里；`advance` 用 `missingTotal` 计数，不读 `missing` 的长度。预算极小时依次去掉 `durationMs`、次要原因（标 `byReasonTruncated`）、`detail`；
 pass/fail 超预算时逐级收紧：`failed` 30→10→3 条（`failedTotal` 记总数）、hint 200→120→80 字，通过的页只留 `{wo, pass}`；还放不下时 `pages` 只列未通过的页，通过的页记数 `passedOmitted`（`advance` 把未列出的页当通过）；未通过的页仍放不下时截断并标 `pagesTruncated`，不写 `passedOmitted`，未列出的页一律按失败处理（只会扩大回归范围，不会误判通过）。
