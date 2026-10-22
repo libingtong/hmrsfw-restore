@@ -62,7 +62,7 @@
    "name": "formDone"
   }
  ],
- "recordPath": "/formDone/:type",
+ "recordPath": "/formDone/bshbt",
  "role": "general",
  "maps": "out/maps/page.uc.formDone.json",
  "hints": "out/hints/page.uc.formDone.md",
@@ -113,5 +113,6 @@
   "seg.uc.formDone.2",
   "seg.uc.formDone.3",
   "seg.uc.formDone.4"
- ]
+ ],
+ "recordNotes": "只录 bshbt 子表单的空白申报表（不带 id）。绝不能点提交、保存或上传，交互脚本只做查看、展开、切换。"
 }
