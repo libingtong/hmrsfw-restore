@@ -61,5 +61,5 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "recordNotes": "（HM-1069/HM-1070 10-22 造数，李炳通授权）"
+ "recordNotes": "企业页（招聘单位身份）。type=check 是只读查看，不点提交或保存。"
 }

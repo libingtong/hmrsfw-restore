@@ -65,6 +65,5 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true,
- "recordNotes": "地址里只能带 id 这一个参数。（HM-1069/HM-1070 10-22 造数，李炳通授权）"
+ "stylesProvidedByScript": true
 }

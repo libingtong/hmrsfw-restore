@@ -113,13 +113,23 @@ function depsOf(maps, selfId) {
 // Another parent (`recordVia` in the entry, HM-953): when the nearest routed importer cannot render the component with
 // the test data, a different routed page that also imports the chunk (directly or through other chunks, checked with
 // importedBy when given) may record it; recordPath must then be that page's own path, optionally extended with ?/#.
+// A detail page whose route has a `:param` segment may fill it with a test-data value ("/sceneFairSign/:zphId" →
+// "/sceneFairSign/209…?classify=30", HM-48); the filled path must still match the derived route segment by segment.
+// `recordNotes` (optional, HM-48): recording constraints / data source for the recorder, copied into the order; an entry
+// may carry only notes (no recordPath), the path then stays as derived.
 export function applyRecordPathOverrides(orders, overrides = JSON.parse(readFileSync(path.join(ROOT, "tools/record-path-overrides.json"), "utf8")), importedBy = null) {
   const extendsPath = (p, base, exact) => !!base && p.startsWith(base) && (exact && p === base || /^[?#]/.test(p.slice(base.length)));
+  const fillsParams = (p, base) => !!base && /\/:\w/.test(base) && new RegExp(`^${base.split("/").map((seg) => (seg.startsWith(":") ? "[^/?#:]+" : seg.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))).join("/")}(?:[?#].*)?$`).test(p);
   for (const [id, ov] of Object.entries(overrides)) {
     if (id.startsWith("_")) continue;
     const o = orders.find((x) => x.id === id);
     if (!o) continue;
     if (!ov.evidence) throw new Error(`record-path-overrides.json: ${id} has no evidence`);
+    if (ov.recordNotes !== undefined) {
+      if (typeof ov.recordNotes !== "string" || !ov.recordNotes.trim()) throw new Error(`record-path-overrides.json: ${id} recordNotes must be a non-empty string`);
+      o.recordNotes = ov.recordNotes;
+    }
+    if (ov.recordPath === undefined && !ov.recordVia) { if (ov.recordNotes === undefined) throw new Error(`record-path-overrides.json: ${id} has neither recordPath nor recordNotes`); continue; }
     if (ov.recordVia) {
       const via = orders.find((x) => x.id === ov.recordVia);
       if (!via || via.type !== "page" || via.recordVia || !via.routes?.length) throw new Error(`record-path-overrides.json: ${id} recordVia ${ov.recordVia} is not a routed page order`);
@@ -134,7 +144,7 @@ export function applyRecordPathOverrides(orders, overrides = JSON.parse(readFile
       o.recordPath = ov.recordPath;
       continue;
     }
-    if (!extendsPath(ov.recordPath, o.recordPath, false)) throw new Error(`record-path-overrides.json: ${id} ${ov.recordPath} does not extend the derived ${o.recordPath}`);
+    if (!extendsPath(ov.recordPath, o.recordPath, false) && !fillsParams(ov.recordPath, o.recordPath)) throw new Error(`record-path-overrides.json: ${id} ${ov.recordPath} does not extend the derived ${o.recordPath}`);
     o.recordPath = ov.recordPath;
   }
   return orders;

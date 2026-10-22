@@ -68,6 +68,5 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "notes": "裁定（uc-role-decisions.json）。局限：招聘单位从 CorpCenter / TalentSearch 等打开（带 firm=firm、positionId、xfSysUserId，按 corpInfo.id 查看投递人简历）的路径不覆盖",
- "recordNotes": "（HM-1069/HM-1070 10-22 造数，李炳通授权）"
+ "notes": "裁定（uc-role-decisions.json）。局限：招聘单位从 CorpCenter / TalentSearch 等打开（带 firm=firm、positionId、xfSysUserId，按 corpInfo.id 查看投递人简历）的路径不覆盖"
 }

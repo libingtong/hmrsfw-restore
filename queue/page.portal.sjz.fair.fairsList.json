@@ -54,5 +54,5 @@
  },
  "stylesProvidedByScript": true,
  "recordVia": "page.portal.sjz.fair.fairList",
- "recordNotes": "/fairList 的 iz_scene_outdoor_add 已改为 1，页面走 fairsList 分支。（HM-1069/HM-1070 10-22 造数，李炳通授权）"
+ "recordNotes": "/fairList 的 iz_scene_outdoor_add 已改为 1，页面走 fairsList 分支。"
 }
