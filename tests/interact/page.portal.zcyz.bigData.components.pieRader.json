@@ -1,0 +1,7 @@
+[
+  {"wait":1500},
+  {"clickSel":".pieRader .tabBox .tab p:nth-child(2)","optional":true},
+  {"wait":800},
+  {"clickSel":".tabBox .tab p:nth-child(3)","optional":true},
+  {"wait":800}
+]
