@@ -1,26 +1,31 @@
 {
   "id": "page.portal.talents.index.advertTop",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 1,
-  "outputs": [
-    "apps/portal/src/views/talents/index/advertTop.vue"
+  "ticket": "upgrade:22",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-22-a1",
+  "result": "fail",
+  "outputs": [],
+  "todos": [
+    "升级单不适用：失败出在门槛（比对器）的时序，不是公共库问题，公共库没有改动（restore/upg-22-a1 与 integration 423c587 相同）。已核实：数据链 index.vue initDict → legacy/store.ts getDictCode/dictionaryResult/UPDATEDICT → codeList → advertTop findCode/loadList 与原 chunk（index.178332063620098.js 的 p()/watch、advertTop.17833206362005.js）逐处一致；a1 失败那次与本地通过那次的还原侧请求序列完全相同（25 条，顺序和 tier 都一样，getSysUserByToken 两次都是 not-in-har），所以它不是原因",
+    "本地复跑（gate.mjs --dry-run --mode page，交互脚本取 origin/integration）：integration 代码一次全过（pixel 0，load 浮层也一致）；restore/fast-lane 两次 render/html/pixel 都通过，只有 load 浮层（toast「未找到对应数据」）缺失；GATE_DEBUG_STABLE 显示同一次运行里 page.evaluate 轮询被阻塞最长约 71 s，settle 从 5.9 s 到 -1（超时）不等。原侧基线两次 settleMs 都是 -1（30 s 截图），还原侧可能 2 s 稳定后就截图",
+    "机制：page 模式还原侧由门槛进程内的 Vite 按需服务器提供（tools/gate/appserver.mjs startOnDemand → vite.createServer），原侧是静态文件（baseline.mjs serveStatic）。HAR 路由（tools/gate/har.mjs routeApi）在拦截时就写 lastRequestAt，之后才 SM2 解密请求体并 fulfill；Vite 转换、SM2 解密、fulfill 都在同一个 Node 事件循环里排队，机器忙时应答可能晚于 waitStable（tools/gate/replay.mjs，2 s 内 DOM 不变且无新请求）的判定，于是还原侧在广告数据或 toast 到达前就截了 load。只有还原侧受影响",
+    "需裁定员按 docs/pipeline.md 第十五节 2.2 条处理比对器：例如 waitStable 把已拦截但还没应答的请求算作未稳定（等价于「应答完再计时」，不放宽阈值），由审计员复核；在那之前本页可按 recordNotes（李炳通 10-21「不稳定页接受」）判为不稳定页。升级单和页面单都无权改门槛脚本",
+    "附带发现（不影响本页结论）：page 模式加 --build full 时整站构建失败，Rollup 无法解析 LoginModal.vue 的 /assets/loginleft.1783320636200.jpg（文件在 apps/portal/public/assets）。默认的 ondemand 模式不受影响"
   ],
+  "needsFromSkeleton": [],
   "selfCheck": {
     "pass": true,
-    "failed": [],
-    "gitBase": "523022d1b4aa7fd207b526a0d5ce7d43c47a9a24"
-  },
-  "build": "not-run",
-  "todos": [],
-  "unresolved": [],
-  "needsFromSkeleton": [
-    "疑似共享层或比对器时序问题：还原组件渲染函数与原 chunk 逐 token 相同（renderEquiv EQUAL 437/437），门槛 a1 的 final 阶段还原根 HTML 与原侧 load/final 完全一致；失败只在 load 阶段——还原根 [data-v-c01bce92] 在 waitStable 结束时还未出现（两次运行都一样，回退的整页截图里随即可见同一广告区），即广告数据比原侧晚到。数据链路 index.vue initDict → legacy store getDictCode → codeList → getArticleListByCode 中，本页文件之外的部分（父页 index、legacy/store.ts、外壳多出的 getSysUserByToken not-in-har 请求）不在本单可改范围。建议裁定员排查外壳/store 时序，或判为不稳定页"
-  ],
-  "notes": [
-    "fix 1：未改代码。逐处对照 advertTop.17833206362005.js：props 默认值、watch(codeList, deep)、onMounted→init→findCode→loadList、paraType 1/2 分支、list.length<=0 守卫、coverPicPath 过滤、goTo/beforeChange、模板 v-if 结构与 a-image 属性都与原 chunk 一致；maps 里 5 个导入路径和导出名都对得上",
-    "render（load 根为空）/ html（lengths 765/0）/ pixel（1920x528 vs 1920x1080）：同一原因。还原侧 load 时 page.$$ 没找到根，用了整页 1920x1080 回退截图，所以 html 为空、尺寸不一致；final 阶段根已出现且归一化 HTML 与原侧相同（包括两侧都有的 ant-image-error）。疑似共享层/比对器时序问题，非本页代码",
-    "参考：父页 page.portal.talents.index.index a1 已通过，但那份 HAR 里两侧都没渲染广告位（load/final HTML 均无 adverbg），不能证明时序；同形组件 page.portal.xjhm.home.advertTop a1 通过",
-    "self-check pass（只有 eslint/prettier 未装的 warn）；restore/fast-lane 无新提交（HEAD 523022d）；无法本地复跑门槛（需要 RESTORE_ASSETS，本角色不读）"
-  ]
+    "failed": [
+      {
+        "check": "readability",
+        "where": "(eslint)",
+        "severity": "warn"
+      },
+      {
+        "check": "readability",
+        "where": "(prettier)",
+        "severity": "warn"
+      }
+    ]
+  }
 }
