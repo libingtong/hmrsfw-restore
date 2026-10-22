@@ -4,10 +4,15 @@
   "branch": "restore/fast-lane",
   "result": "fail",
   "fixRound": 2,
-  "outputs": ["apps/portal/src/views/eMap/index.vue"],
+  "outputs": [
+    "apps/portal/src/views/eMap/index.vue"
+  ],
   "todos": [],
   "needsFromSkeleton": [],
-  "selfCheck": { "pass": true, "failed": [] },
+  "selfCheck": {
+    "pass": true,
+    "failed": []
+  },
   "build": "pass",
   "notes": [
     "第 2 轮未改代码：门槛（03:35，规则 HM-1021 合入后）只剩 steps.requests 一项；html/text/pixel 本轮已通过",
@@ -15,6 +20,9 @@
     "第 2 轮依据：还原侧 rest.png 与 rest.retry.png 两次采样都正常（地图定位到 FIXED_CITY，列表、控件齐全），首个列表请求在 step2 前后出现，仍是百度底图 tilesloaded 才触发 ready 的时序问题（见第 1 轮）",
     "第 2 轮建议（交裁定员）：原版基线（tests/interact 的 d592ee6，10-21 接受为 unstable）步骤阶段的点击未触发请求，建议重录基线，或由裁定员对百度底图 tilesloaded 走规则变更单；本单未改门槛脚本、规则、清单、HAR",
     "流程备注：第 1 轮回执写在 needsFromSkeleton 的「疑似比对器问题」被调度器开成公共库升级单 HM-1064（#21），升级员已确认无公共库改动可做；本轮把结论放在 notes，避免再开升级单",
-    "第 2 轮自检：fl-vue 在 restore/fast-lane e074ffe（与门槛 commit 相同，本页文件自 fa72725 后无变化），self-check pass:true"
+    "第 2 轮自检：fl-vue 在 restore/fast-lane e074ffe（与门槛 commit 相同，本页文件自 fa72725 后无变化），self-check pass:true",
+    "修正第 1 轮：未改任何文件。门槛 static:scope 失败只因升级分支相对 integration 无改动，而本升级单本就无公共库改动可做（见 todos）",
+    "疑似比对器问题：差异来自门槛回放中百度在线底图 tilesloaded 时序（vue-baidu-map-3x@1.0.40 Map.vue init() 只在 tilesloaded 后发 ready），不在 target/subComponentDir 或公共库内；修正员不得改门槛/规则/清单，也不得为凑改动制造空提交",
+    "建议：走第十五节 2.2，由裁定员开规则变更单对百度底图/版权控件做确定性处理（参照 HM-239-B/C），本升级单可作废，HM-234 解挂后按规则变更结果重跑"
   ]
 }
