@@ -1,0 +1,26 @@
+{
+  "id": "page.portal.talents.index.advertTop",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/talents/index/advertTop.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "523022d1b4aa7fd207b526a0d5ce7d43c47a9a24"
+  },
+  "build": "not-run",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [
+    "疑似共享层或比对器时序问题：还原组件渲染函数与原 chunk 逐 token 相同（renderEquiv EQUAL 437/437），门槛 a1 的 final 阶段还原根 HTML 与原侧 load/final 完全一致；失败只在 load 阶段——还原根 [data-v-c01bce92] 在 waitStable 结束时还未出现（两次运行都一样，回退的整页截图里随即可见同一广告区），即广告数据比原侧晚到。数据链路 index.vue initDict → legacy store getDictCode → codeList → getArticleListByCode 中，本页文件之外的部分（父页 index、legacy/store.ts、外壳多出的 getSysUserByToken not-in-har 请求）不在本单可改范围。建议裁定员排查外壳/store 时序，或判为不稳定页"
+  ],
+  "notes": [
+    "fix 1：未改代码。逐处对照 advertTop.17833206362005.js：props 默认值、watch(codeList, deep)、onMounted→init→findCode→loadList、paraType 1/2 分支、list.length<=0 守卫、coverPicPath 过滤、goTo/beforeChange、模板 v-if 结构与 a-image 属性都与原 chunk 一致；maps 里 5 个导入路径和导出名都对得上",
+    "render（load 根为空）/ html（lengths 765/0）/ pixel（1920x528 vs 1920x1080）：同一原因。还原侧 load 时 page.$$ 没找到根，用了整页 1920x1080 回退截图，所以 html 为空、尺寸不一致；final 阶段根已出现且归一化 HTML 与原侧相同（包括两侧都有的 ant-image-error）。疑似共享层/比对器时序问题，非本页代码",
+    "参考：父页 page.portal.talents.index.index a1 已通过，但那份 HAR 里两侧都没渲染广告位（load/final HTML 均无 adverbg），不能证明时序；同形组件 page.portal.xjhm.home.advertTop a1 通过",
+    "self-check pass（只有 eslint/prettier 未装的 warn）；restore/fast-lane 无新提交（HEAD 523022d）；无法本地复跑门槛（需要 RESTORE_ASSETS，本角色不读）"
+  ]
+}
