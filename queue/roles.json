@@ -1394,20 +1394,47 @@
   "notes": "没有身份线索：/accountBind 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
  },
  "page.uc.doneList": {
-  "role": null,
-  "notes": "没有身份线索：/doneList 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+  "role": "general",
+  "by": "裁定（uc-role-decisions.json）：HM-1113：人才补贴申报记录（事项 tab 来自字典 talent_subsidy_matters，列表按 xfSysUserId 取数），不读 radiotype、userroledata；门户人才服务的事项入口一律用 toUserCenter(\"doneList?type=<事项>&identitytype=0\") 打开（单位类事项先校验单位，打开时同样是 identitytype=0），用户中心 autoLogin 对 identitytype=0 把 radiotype 设为普通用户（GeneraluserId）",
+  "evidence": [
+   "legacy-dist/usercenter/assets/doneList.1751615607545.js:1:33520",
+   "legacy-dist/usercenter/assets/doneList.1751615607545.js:1:2464",
+   "legacy-dist/portal/assets/index.1783320636200.js:119:1915972",
+   "legacy-dist/portal/assets/index.1783320636200.js:119:1809847",
+   "legacy-dist/portal/assets/index.178332063620083.js:1:16028",
+   "legacy-dist/usercenter/assets/autoLogin.1751615607545.js:1:3202"
+  ]
  },
  "page.uc.formDone": {
-  "role": null,
-  "notes": "没有身份线索：/formDone/:type 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+  "role": "general",
+  "by": "裁定（uc-role-decisions.json）：HM-1113：人才补贴申报表单，只从 /doneList 的申报、查看、编辑按钮 router.push 进入（沿用 doneList 的普通用户身份），不读 radiotype、userroledata；按 route.params.type 只渲染一个子表单，:type 可用取值（括号里是 doneList 的 type）：lsajbt(0)、zsgxjl(10)、bmgjjl(20)、szftsjt(30)、bshbt(40)、zctsjl(50)、bshky(60)，可再带 ?id=<记录id>&type=check 查看已有记录",
+  "evidence": [
+   "legacy-dist/usercenter/assets/formDone.1751615607545.js:1:110146",
+   "legacy-dist/usercenter/assets/formDone.1751615607545.js:1:110223",
+   "legacy-dist/usercenter/assets/formDone.1751615607545.js:1:76746",
+   "legacy-dist/usercenter/assets/doneList.1751615607545.js:1:24445",
+   "legacy-dist/usercenter/assets/doneList.1751615607545.js:1:2464"
+  ]
  },
  "page.uc.signUp": {
-  "role": null,
-  "notes": "没有身份线索：/signUp 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+  "role": "general",
+  "by": "裁定（uc-role-decisions.json）：HM-1113：事业单位招考报名（xfJobGovRecruitRegistration/pxRegistList、准考证 ticketToHtml、支付宝缴费 scanPay），按 xfSysUserId 取数，不读 radiotype、userroledata；门户入口（招考页 enterpriserecruitment、单位主页 unitMain 的报名缴费）都用 toUserCenter(\"signUp?identitytype=0\") 打开，用户中心 autoLogin 从 toPath 解析出 identitytype=0 后把 radiotype 设为普通用户（GeneraluserId）",
+  "evidence": [
+   "legacy-dist/usercenter/assets/signUp.1751615607545.js:1:613",
+   "legacy-dist/portal/assets/enterpriserecruitment.1783320636200.js:1:5155",
+   "legacy-dist/portal/assets/unitMain.1783320636200.js:1:11892",
+   "legacy-dist/usercenter/assets/autoLogin.1751615607545.js:1:365",
+   "legacy-dist/usercenter/assets/autoLogin.1751615607545.js:1:3202"
+  ]
  },
  "page.uc.industrySkillTree": {
-  "role": null,
-  "notes": "没有身份线索：/industrySkillTree 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+  "role": "general",
+  "by": "裁定（uc-role-decisions.json）：HM-1113：我订阅的行业（行业技能树订阅列表），只调 xf-encyclopedia 的 industry/subscribelist 和 xfEncyclopediaSubscribe/unSubscribe，按 token 取数，不读 radiotype、userroledata（读了 corpInfo 但不用），任何身份下页面相同；订阅动作在门户行业技能树详情页（xfEncyclopediaSubscribe/subscribe）；原版用户中心和门户里都没有链到 /industrySkillTree 的地方，只能来自后端下发的菜单（普通用户菜单没录过），路由表里有、直接打开可达，按普通用户录",
+  "evidence": [
+   "legacy-dist/usercenter/assets/index.175161560754517.js:1:705",
+   "legacy-dist/usercenter/assets/index.175161560754517.js:1:1016",
+   "legacy-dist/portal/assets/index.api.178332063620027.js:1:695"
+  ]
  },
  "page.uc.trainCertificate": {
   "role": null,

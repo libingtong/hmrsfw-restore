@@ -1,5 +1,5 @@
 {
- "_source": "HM-227 裁定员按原 chunk 判定的用户中心页面身份（uc-roles.mjs 自动规则判不出的页面）。decided 写进工单 role；pending 不写，record-page 仍报 need-role-decision，notes 里写建议和需要人确认的事。evidence 为 legacy-dist 中的 文件:行:列。",
+ "_source": "HM-227 裁定员按原 chunk 判定的用户中心页面身份（uc-roles.mjs 自动规则判不出的页面）。decided 写进工单 role；pending 不写，record-page 仍报 need-role-decision，notes 里写建议和需要人确认的事。evidence 为 legacy-dist 中的 文件:行:列。 HM-1113：industrySkillTree / signUp / formDone / doneList 由裁定员按原 chunk 判定（李炳通授权）。",
  "decided": {
   "/JobFairRelease": {
    "role": "corp",
@@ -449,6 +449,52 @@
    "by": "报名管理（我对招聘公告的报名）：页面只按 xfSysUserId / token 取数，不读 radiotype、userroledata，也不用 corpInfo（读了不用或不读），请求拦截器不带身份，任何身份下页面相同；不在已录到的求职者 / 招聘单位 / 职业导师菜单里，按普通用户录",
    "evidence": [
     "legacy-dist/usercenter/assets/index.175161560754520.js:1:1324"
+   ]
+  },
+  "/industrySkillTree": {
+   "role": "general",
+   "by": "HM-1113：我订阅的行业（行业技能树订阅列表），只调 xf-encyclopedia 的 industry/subscribelist 和 xfEncyclopediaSubscribe/unSubscribe，按 token 取数，不读 radiotype、userroledata（读了 corpInfo 但不用），任何身份下页面相同；订阅动作在门户行业技能树详情页（xfEncyclopediaSubscribe/subscribe）；原版用户中心和门户里都没有链到 /industrySkillTree 的地方，只能来自后端下发的菜单（普通用户菜单没录过），路由表里有、直接打开可达，按普通用户录",
+   "limit": "原版里没有找到打开它的入口（路由表有，直接打开可达）；测试账号没有订阅行业时列表为空",
+   "evidence": [
+    "legacy-dist/usercenter/assets/index.175161560754517.js:1:705",
+    "legacy-dist/usercenter/assets/index.175161560754517.js:1:1016",
+    "legacy-dist/portal/assets/index.api.178332063620027.js:1:695"
+   ]
+  },
+  "/signUp": {
+   "role": "general",
+   "by": "HM-1113：事业单位招考报名（xfJobGovRecruitRegistration/pxRegistList、准考证 ticketToHtml、支付宝缴费 scanPay），按 xfSysUserId 取数，不读 radiotype、userroledata；门户入口（招考页 enterpriserecruitment、单位主页 unitMain 的报名缴费）都用 toUserCenter(\"signUp?identitytype=0\") 打开，用户中心 autoLogin 从 toPath 解析出 identitytype=0 后把 radiotype 设为普通用户（GeneraluserId）",
+   "evidence": [
+    "legacy-dist/usercenter/assets/signUp.1751615607545.js:1:613",
+    "legacy-dist/portal/assets/enterpriserecruitment.1783320636200.js:1:5155",
+    "legacy-dist/portal/assets/unitMain.1783320636200.js:1:11892",
+    "legacy-dist/usercenter/assets/autoLogin.1751615607545.js:1:365",
+    "legacy-dist/usercenter/assets/autoLogin.1751615607545.js:1:3202"
+   ]
+  },
+  "/doneList": {
+   "role": "general",
+   "by": "HM-1113：人才补贴申报记录（事项 tab 来自字典 talent_subsidy_matters，列表按 xfSysUserId 取数），不读 radiotype、userroledata；门户人才服务的事项入口一律用 toUserCenter(\"doneList?type=<事项>&identitytype=0\") 打开（单位类事项先校验单位，打开时同样是 identitytype=0），用户中心 autoLogin 对 identitytype=0 把 radiotype 设为普通用户（GeneraluserId）",
+   "limit": "单位类事项（bmgjjl、lsajbt、zctsjl、szftsjt）的申报按钮要求 corpInfo.checkStatus==10（单位已认证），否则只弹提示；测试账号没有申报记录时列表为空",
+   "evidence": [
+    "legacy-dist/usercenter/assets/doneList.1751615607545.js:1:33520",
+    "legacy-dist/usercenter/assets/doneList.1751615607545.js:1:2464",
+    "legacy-dist/portal/assets/index.1783320636200.js:119:1915972",
+    "legacy-dist/portal/assets/index.1783320636200.js:119:1809847",
+    "legacy-dist/portal/assets/index.178332063620083.js:1:16028",
+    "legacy-dist/usercenter/assets/autoLogin.1751615607545.js:1:3202"
+   ]
+  },
+  "/formDone": {
+   "role": "general",
+   "by": "HM-1113：人才补贴申报表单，只从 /doneList 的申报、查看、编辑按钮 router.push 进入（沿用 doneList 的普通用户身份），不读 radiotype、userroledata；按 route.params.type 只渲染一个子表单，:type 可用取值（括号里是 doneList 的 type）：lsajbt(0)、zsgxjl(10)、bmgjjl(20)、szftsjt(30)、bshbt(40)、zctsjl(50)、bshky(60)，可再带 ?id=<记录id>&type=check 查看已有记录",
+   "limit": "recordPath /formDone/:type 按字面打开时 params.type 为 \":type\"，7 个子表单都不渲染，只剩外层容器；要录到内容须用具体取值，建议 /formDone/bshbt（原版入口无单位认证前置条件，不读 corpInfo，不带 id 时是空白申报表）；lsajbt、zctsjl、szftsjt 读 corpInfo 预填单位，bmgjjl、lsajbt、zctsjl、szftsjt 的原版入口要求单位已认证，zsgxjl 要求高校信息审核通过",
+   "evidence": [
+    "legacy-dist/usercenter/assets/formDone.1751615607545.js:1:110146",
+    "legacy-dist/usercenter/assets/formDone.1751615607545.js:1:110223",
+    "legacy-dist/usercenter/assets/formDone.1751615607545.js:1:76746",
+    "legacy-dist/usercenter/assets/doneList.1751615607545.js:1:24445",
+    "legacy-dist/usercenter/assets/doneList.1751615607545.js:1:2464"
    ]
   }
  },
