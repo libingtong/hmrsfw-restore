@@ -1,110 +1,42 @@
 {
- "id": "page.uc.jobhunterhome",
- "ticket": "01a165a9-63e7-718d-b4b4-784453b30dcc",
- "group": "还原-DeepSeek@Mac",
- "branch": "restore/page.uc.jobhunterhome-a1",
- "result": "ok",
- "outputs": [
-  "apps/uc/src/views/jobhunterhome.vue",
-  "apps/uc/src/views/jobhunterhome/newUserCard.vue",
-  "apps/uc/src/views/jobhunterhome/recommendJob.vue",
-  "apps/uc/src/views/jobhunterhome/assets/399cb1b5-6d19d2ca03.png"
- ],
- "selfCheck": {
-  "pass": true,
-  "failed": [
-   {
-    "check": "imports",
-    "where": "apps/uc/src/views/jobhunterhome.vue",
-    "hint": "\"@/api/jobCurriculumVitae\" 是 hmrsfw-vue 里现有的文件，但不是清单的规范路径（POC 时期的包装或重复文件）：按 maps 的路径导入",
-    "severity": "warn"
-   },
-   {
-    "check": "readability",
-    "where": "(eslint)",
-    "hint": "eslint 没有跑起来：Cannot find module 'eslint'。hmrsfw-vue 需要 eslint、eslint-plugin-vue 等 devDependencies（node tools/setup-workdir.mjs --app …）；本次没有 eslint 结果",
-    "severity": "warn"
-   },
-   {
-    "check": "readability",
-    "where": "(prettier)",
-    "hint": "prettier 没有跑起来：Cannot find module 'prettier'。hmrsfw-vue 需要 prettier devDependency；本次没有格式检查结果",
-    "severity": "warn"
-   }
+  "ticket": "page.uc.jobhunterhome",
+  "id": "page.uc.jobhunterhome",
+  "group": "还原-Opus@Mac",
+  "kind": "upgrade",
+  "task": "01a16606-9eeb-7d2e-b759-de9b7f46ced1",
+  "branch": "restore/upg-24-a1",
+  "result": "ok",
+  "outputs": [
+    "package.json",
+    "package-lock.json",
+    "eslint.config.js",
+    ".prettierrc.json",
+    ".prettierignore"
   ],
-  "gitBase": "origin/integration",
-  "components": {
-   "expected": 3,
-   "delivered": 3
+  "summary": "升级单 #24（HM-1169）：给 integration 补上 HM-19 只落在 main 上的 readability lint 依赖与配置。devDependencies 加 eslint 9.39.1、eslint-plugin-vue 9.33.0、vue-eslint-parser 9.4.3、@typescript-eslint/parser 与 eslint-plugin 8.46.4、eslint-config-prettier 10.1.8、prettier 3.6.2（与 main 锁定版本相同）；eslint.config.js、.prettierrc.json、.prettierignore 从 origin/main 原样取。分支 restore/upg-24-a1 34b573b。",
+  "verification": [
+    "package-lock.json：从 main 的锁文件取这 7 个包的依赖闭包（139 条，其中 125 条新增、14 条两边版本相同，无版本冲突），已有条目一条未改，新增条目均为 dev；npm install --package-lock-only --offline 后锁文件逐字节不变",
+    "setup-workdir 按新锁文件安装成功，node_modules/.bin 下有 eslint、prettier",
+    "self-check page.uc.jobhunterhomeZzgj（integration 上已合入的页）：readability 的 eslint、prettier 都出了实际结果（eslint vue/v-on-event-hyphenation 1 条，prettier 格式差异 2 个文件，mode=report 均为 warn），不再是『没有跑起来』",
+    "tools/lib/upgrade-scope.mjs scopeViolations 对本单 5 个改动文件返回 []；未改 apps/**/src/views/** 与任何公共库源文件"
+  ],
+  "todos": [],
+  "needsFromSkeleton": [],
+  "selfCheck": {
+    "pass": true,
+    "gitBase": "origin/integration",
+    "failed": [],
+    "warn": [
+      "self-check 按页面单判据会把 package.json、锁文件和三个配置文件报为 imports（页面单不能改），这是升级单的预期改动；门槛用 --mode upgrade 判范围",
+      "page.uc.jobhunterhome 本身在挂起中、不在 integration 上，本单不对它跑页面自检；解挂后由页面门槛验证"
+    ],
+    "components": 0,
+    "textNodesChecked": false
   },
-  "scopedSlots": 0,
-  "directives": {
-   "original": 2,
-   "restored": 2,
-   "branches": [
-    9,
-    9
-   ]
-  },
-  "textNodesChecked": true,
-  "textNodes": {
-   "original": 32,
-   "restored": 32
-  },
-  "imports": {
-   "files": 3,
-   "imports": 27,
-   "gitBase": "origin/integration"
-  },
-  "readability": {
-   "files": 3,
-   "items": 2,
-   "mode": "report"
-  },
-  "renderEquiv": {
-   "allEqual": false,
-   "components": [
-    {
-     "component": "newUserCard",
-     "result": "EQUAL",
-     "tokens": [
-      358,
-      358
-     ]
-    },
-    {
-     "component": "recommendJob",
-     "result": "DIFF",
-     "tokens": [
-      994,
-      1009
-     ]
-    },
-    {
-     "component": "home",
-     "result": "DIFF",
-     "tokens": [
-      3266,
-      1582
-     ]
-    }
-   ]
-  },
-  "commit": "3737fdd21512232c3e39c16928e8bc33d7da807a"
- },
- "todos": [
-  "registry/uc.json 的 api 条目仍写 @/api/api-56（docs/registry-cleanup.md 已把 index.api.17516156075456.js 改名 jobCurriculumVitae.ts，hmrsfw-vue 里没有 api-56.ts）：本页按实际文件从 @/api/jobCurriculumVitae 导入，self-check imports 报 1 条 warn",
-  "renderEquiv report：newUserCard EQUAL；recommendJob DIFF 只差 a-col 属性顺序（原 {span,key} / 编译产物 key 在前）与后续 token 位移；home DIFF 因三组件同 chunk 被拆成三个 SFC（比对器把 Le/ts 的 defineComponent 内联进 home）"
- ],
- "needsFromSkeleton": [
-  "hmrsfw-vue 的 package.json 没有 eslint / eslint-plugin-vue / prettier devDependencies，self-check 的 readability lint 两项跑不起来（warn，readability 其余项通过）"
- ],
- "notes": [
-  "三组件拆分：home.vue（data-v-fcf1f81d）+ jobhunterhome/newUserCard.vue（data-v-399cb1b5）+ jobhunterhome/recommendJob.vue（data-v-4881fc5a）",
-  "样式由 node tools/css-by-scope.mjs page.uc.jobhunterhome --write 写入（11/23/24 条规则，roundtrip ok）；base64 背景图抽到 assets/399cb1b5-6d19d2ca03.png",
-  "tooltip 在原 chunk 里按名字解析但无注册（registry.globals.unregistered 已登记该 chunk），按未知元素 <tooltip> 还原；imgerr 为全局指令",
-  "邀请文案末尾的空格在原 render 里是 contactsPhone 后的字符串常量，模板行尾空白会被编译器裁掉，写成 (item.contactsPhone ?? \"\") + \" \" 以保持同一文本节点",
-  "appCode==005 的多租户分支按原样保留并加注释（onBeforeMount 里 closeTag → /jobhunterhomeZ）",
-  "分支基于 integration 423c587（已 rebase），commit 见 selfCheck.commit"
- ]
+  "notes": [
+    "registry/uc.json、registry/portal.json 没有对应 package.json / lint 配置的条目，不涉及 status 更新",
+    "依赖只是 devDependencies，不进构建产物；vite 配置未改",
+    "origin/main 与 origin/integration 本已分叉（main 另有 @playwright/test、e2e 脚本，并缺 integration 的若干依赖），本单只补 lint 这一部分；integration 合回 main 时 package.json / 锁文件可能需要按已有分叉处理，与本单无关",
+    "integration 上已有页面的 prettier / eslint 条目（如 jobhunterhomeZzgj）现在会作为 warn 出现，readability 仍是 report 模式，不阻断"
+  ]
 }
