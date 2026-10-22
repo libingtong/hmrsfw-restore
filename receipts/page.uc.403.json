@@ -1,0 +1,19 @@
+{
+  "id": "page.uc.403",
+  "ticket": "page.uc.403",
+  "group": "还原-DeepSeek@Mac",
+  "branch": "restore/page.uc.403-a1",
+  "result": "ok",
+  "outputs": ["apps/uc/src/views/403.vue"],
+  "todos": [],
+  "needsFromSkeleton": [
+    "hmrsfw-vue 的 package.json 没有 eslint / eslint-plugin-vue / prettier devDependencies，自检的可读性 eslint、prettier 两项只能给出 warn，没有实际格式与 lint 结果"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "components": 1,
+    "scopedSlots": 2,
+    "directives": 0,
+    "textNodesChecked": true
+  }
+}
