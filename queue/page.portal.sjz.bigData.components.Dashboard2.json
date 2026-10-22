@@ -40,5 +40,6 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "recordVia": "page.portal.sjz.bigData.screen"
+ "recordVia": "page.portal.sjz.bigData.screen",
+ "recordNotes": "/sjzbigData 的 type=0 大屏配置已造好（4 个模块）。原站加载期不稳定时按李炳通 10-21「不稳定页接受」交裁定员。"
 }
