@@ -1,0 +1,30 @@
+{
+  "id": "page.portal.Guidance.GuidanceAskDetail.index",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/Guidance/GuidanceAskDetail/index.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "29b9976b7e65bfd0550052195ace47e23630cff1"
+  },
+  "build": "pass",
+  "todos": [],
+  "unresolved": [
+    "final root：原页 step2（点「向TA提问」）后根节点是导师详情页（无 class），还原页门槛快照仍是本页根。本页 askMentor 与原包逐句一致（checkLogin→router.push），门槛记录的还原侧 step2 请求已含导师详情页 onMounted 的 queryOneFromWebsite，说明已跳转；本地 Vite + Playwright（接口全部在浏览器内假应答，不联网）按交互脚本点击后再跳转，#poc-main > * 正常换成导师详情页根 <div>。页面侧无可改之处，见 notes 疑似比对器问题",
+    "load render 空（retry 一次）：首次运行 load 正常渲染，只差 1 个字符；retry 时 #poc-main > * 为空，属门槛运行时机不稳定，非页面代码"
+  ],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：信息栏提问时间前多了一个空格（原包 createTextVNode(toDisplayString(createTime)) 无前导空格），改为 </a-space>{{ createTime }}，对应门槛首轮 load html/text 1 字符差异（lengths 10102/10103）",
+    "fix 1：回复数、回复时间按原包写成 </a-space> {{ … }}</div>（只有前导空格），消除换行压缩出的尾随空格",
+    "fix 1：router-link 改为从 vue-router 导入 RouterLink（原包 ag as B 直接引用组件，不走 resolveComponent），DOM 不变",
+    "fix 1：replyList 的 v-for div 与 PopularBox 链接的属性顺序对齐原包（class 在 key 前、to 在 class 前）",
+    "renderEquiv 仍为 DIFF：剩余差异是经典问答两处 img 在原包里被静态提升（src 为资源模块常量），还原按 registry 从 @/shared/images 导入 daImg_/daImgA 为动态绑定，DOM 等价",
+    "疑似比对器问题：final root 失败（见 unresolved）。门槛 page 模式下导师详情页由 Vite 按需编译，step2 后 waitQuiet 结束时 DOM 可能尚未切换；或 retry 那次 load 都没渲染出来的同一时序问题。建议门槛员重跑；若仍失败请裁定员查 replay.mjs step 后的等待条件",
+    "self-check pass、npm run build:portal 退出码 0（fl-vue restore/fast-lane 29b9976）"
+  ]
+}
