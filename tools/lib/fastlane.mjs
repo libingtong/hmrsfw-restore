@@ -105,7 +105,7 @@ export function flDescription(p, branch, retired = false) {
     retired
       ? `**检出（以本单为准）**：快速通道已退场（HM-1068），工具仓库用 main：\`multica repo checkout ${TOOL_URL}\`；产物仓库 \`multica repo checkout ${APP_URL} --ref ${branch}\`。`
       : `**检出（与智能体通用指令不同，以本单为准）**：工具仓库 \`multica repo checkout ${TOOL_URL} --ref ${branch}\`（不要用 main：main 的 \`advance\` 不认快速通道，通过时会把整条分支合进 integration）；产物仓库 \`multica repo checkout ${APP_URL} --ref ${branch}\`。`,
-    "- 门槛员：录制员把交互脚本提交在工具仓库 `integration` 分支，门槛要读到同一份：在工具仓库里先 `git fetch origin integration && git checkout origin/integration -- tests/interact`（只取脚本，不提交），再 `node tools/gate.mjs --task <任务id> --branch " + branch + " --mode page --app \"$HMRSFW_APP_DIR\"`，然后 `node tools/tick.mjs advance <任务id> --app \"$HMRSFW_APP_DIR\"`。",
+    "- 门槛员：录制员把交互脚本提交在工具仓库 `integration` 分支，门槛要读到同一份：`node tools/gate.mjs --task <任务id> --branch " + branch + " --mode page --interact-ref origin/integration --app \"$HMRSFW_APP_DIR\"`（`--interact-ref` 直接读最新 integration 上的脚本，不要 `git checkout origin/integration -- tests/interact`：那会把几百个脚本留成暂存改动，任务目录清理不掉，HM-1130），然后 `node tools/tick.mjs advance <任务id> --app \"$HMRSFW_APP_DIR\"`。",
     retired ? `- 通过：\`${branch}\` 上有 integration 没有的修正时，调度器把它合入 integration（照常抽审计）；没有就直接 \`done\`。` : "- 通过：不合入 integration、不抽审计，单直接 `done`；代码随 HM-34 的 PR 走合并员。",
     "- 失败：修正员在产物仓库私有克隆里改（`tools/fast-lane/README.md` 第 1–2 节），`fl.sh land` 合入 `" + branch + "` 并推送，再 `node tools/handoff.mjs <任务id> --fix`。不许改 `legacy/`、`shared/`、`api/`、`utils/`、`package.json`、门槛脚本、归一化规则、公共库清单、HAR。",
     "- 参数以任务元数据为准。"].join("\n");

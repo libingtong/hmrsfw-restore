@@ -118,7 +118,7 @@ flowchart LR
 | `RESTORE_STATE` | Mac mini 上的全部智能体 |
 | `RESTORE_ASSETS`、`SM2_PRIVATE_KEY`、`HMRSFW_NO_WHITELIST=1` | 只有门槛员、录制员 |
 | `VITE_HMRSFW_SM2_PUBLIC_KEY`、`VITE_HMRSFW_SM4_KEY`、`VITE_HMRSFW_SM4_STORAGE_KEY` | 门槛员（还原版回放时解密响应、加密请求体；门槛的 worktree 里没有 `.env.local`，缺了门槛报 error，见 `docs/gate.md`。HM-9 联调补） |
-| `RESTORE_DEPS_CACHE` | 所有还原员和复核员：本机依赖缓存目录 |
+| `RESTORE_DEPS_CACHE` | 所有还原员和复核员：本机依赖缓存目录。没设时 `setup-workdir.mjs` 用 `~/Projects/hmrsfw-restore-deps`（该目录存在时），所以 Mac mini 上门槛员、录制员等其他角色也走共享缓存（HM-1130） |
 
 ## 五、还原员统一指令
 
@@ -374,7 +374,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | `record-page.mjs <工单id>` | `{ok, steps, unstable:[...], blocked?}` |
 | `baseline.mjs <工单id> [--har <path>] [--no-coverage]` | 用 HAR 回放原版两次，写基线；两次不一致的步骤列入 `unstable`；同时采集覆盖率，输出多一个 `coverage:{page:{function,block}, shared, stable}` |
 | `coverage.mjs report <工单id>` / `summary` / `datareq [--write]` | 单页未覆盖清单（录制员补交互脚本用）/ 覆盖率分布和低于阈值的页面 / 造数需求清单（D7）。阈值读 `restore.config.json` 的 `coverage.minFunction`、`minBlock` |
-| `setup-workdir.mjs --app <dir>` | 本仓库和 `hmrsfw-vue` 检出的依赖就绪；有 `RESTORE_DEPS_CACHE` 时软链到缓存（`hmrsfw-vue` 的缓存项按它自己的 `package-lock.json` 建），缓存项不存在时首次在缓存目录 `npm ci`（加锁）；没有该变量时原地 `npm ci` |
+| `setup-workdir.mjs --app <dir> [--force] [--no-cache]` | 本仓库和 `hmrsfw-vue` 检出的依赖就绪；有共享缓存（`RESTORE_DEPS_CACHE`，没设时 `~/Projects/hmrsfw-restore-deps` 存在即用）时 `node_modules` 软链到缓存（`hmrsfw-vue` 的缓存项按它自己的 `package-lock.json` 建），缓存项不存在时首次在缓存目录 `npm ci`（加锁）；本仓库的 `legacy-dist/` 用本工作树的 sparse checkout 移出工作区，换成指向缓存里该 git tree 只读副本的软链（`tools/lib/shared-deps.mjs`，HM-1130），任务目录只剩几 MB。`git status` 保持干净，提交、切分支照常；切到 `legacy-dist` 不同的提交后，`gate`、`record-page`、`baseline` 启动时自动改指。没有缓存或 `--no-cache` 时原地 `npm ci`，并把软链还原成真实文件 |
 
 **定位产物工程**：需要读写 `hmrsfw-vue` 的工具，一律通过参数 `--app <hmrsfw-vue 检出目录>` 或环境变量 `HMRSFW_APP_DIR` 定位产物工程，参数优先；两者都没有就报错退出，不猜默认路径。上表中用到产物工程的命令（`self-check`、`gate`、`baseline`、`record-page`、`setup-workdir` 等）都接受 `--app`。共用实现在 `tools/app-dir.mjs`（`appDir()`）。
 

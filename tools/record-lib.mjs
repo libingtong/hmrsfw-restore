@@ -241,3 +241,52 @@ export function commitToIntegration(relPath, message, { remote = "origin", branc
   }
   throw fail(`could not push ${relPath} to ${remote}/${branch} after ${tries} tries`);
 }
+
+// Interaction-script drafts (HM-1130). The recorder writes tests/interact/<id>.json in its task checkout; record-page
+// commits it to integration itself, so the checkout never needs it as a change of its own. Left behind (untracked,
+// staged or modified), the file keeps the finished task's directory from being cleaned up. At the end of every run that
+// held the order lock, parkScript() takes it out of the working tree (back to HEAD's version, index included):
+//   - committed (or already on integration): only {blob, committed} goes to $RESTORE_STATE/record/<id>/script.json, the
+//     blob stays in the local object store;
+//   - otherwise (step failed, blocked, unstable, --no-commit): the content goes to $RESTORE_STATE/record/<id>/draft.json.
+// The next run in any checkout puts it back first (restoreScript(): draft.json, else the committed blob), when the
+// checkout has no version of its own (file missing or equal to HEAD's). Edit either the restored file or draft.json.
+const relScript = (id) => `tests/interact/${id}.json`;
+const headBlob = (rel) => { try { return git(["rev-parse", "-q", "--verify", `HEAD:${rel}`]); } catch { return null; } };
+
+export function restoreScript(state, id) {
+  const rel = relScript(id), file = path.join(ROOT, rel), dir = path.join(state, "record", id);
+  const own = existsSync(file) && git(["hash-object", file]) !== headBlob(rel);
+  if (own) return null;
+  const draft = path.join(dir, "draft.json");
+  let body = existsSync(draft) ? readFileSync(draft) : null, from = "$RESTORE_STATE/record/" + id + "/draft.json";
+  if (!body && existsSync(path.join(dir, "script.json"))) {
+    const { blob } = JSON.parse(readFileSync(path.join(dir, "script.json"), "utf8"));
+    try { body = execFileSync("git", ["cat-file", "blob", blob], { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] }); from = `committed blob ${blob.slice(0, 12)}`; } catch {}
+  }
+  if (!body) return null;
+  mkdirSync(path.dirname(file), { recursive: true });
+  writeFileSync(file, body);
+  return `${rel} restored from ${from}`;
+}
+
+export function parkScript(state, id, { committed = null } = {}) {
+  const rel = relScript(id), file = path.join(ROOT, rel), dir = path.join(state, "record", id);
+  if (!existsSync(file)) return null;
+  const blob = git(["hash-object", "-w", file]), head = headBlob(rel);
+  const staged = (() => { try { git(["diff", "--cached", "--quiet", "--", rel]); return false; } catch { return true; } })();
+  if (blob === head && !staged) return null;
+  mkdirSync(dir, { recursive: true });
+  let where;
+  if (committed && committed !== "skipped") {
+    writeFileSync(path.join(dir, "script.json"), JSON.stringify({ blob, committed, at: new Date().toISOString() }, null, 1));
+    rmSync(path.join(dir, "draft.json"), { force: true });
+    where = "$RESTORE_STATE/record/" + id + "/script.json (committed to integration)";
+  } else {
+    writeFileSync(path.join(dir, "draft.json"), readFileSync(file));
+    where = "$RESTORE_STATE/record/" + id + "/draft.json";
+  }
+  if (head) git(["checkout", "HEAD", "--", rel]);
+  else { git(["rm", "--cached", "-q", "--ignore-unmatch", "--", rel]); rmSync(file, { force: true }); }
+  return { draft: where, note: `${rel} moved to ${where}; the next record-page run puts it back` };
+}
