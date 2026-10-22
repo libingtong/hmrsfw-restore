@@ -1,0 +1,39 @@
+{
+  "id": "page.uc.jobhunterhomeZzgj",
+  "ticket": "page.uc.jobhunterhomeZzgj",
+  "group": "还原-DeepSeek@Mac",
+  "branch": "restore/page.uc.jobhunterhomeZzgj-a1",
+  "result": "ok",
+  "outputs": [
+    "apps/uc/src/views/jobhunterhomeZzgj.vue",
+    "apps/uc/src/views/jobhunterhomeZzgj/JobItem.vue"
+  ],
+  "todos": [
+    "maps 的接口路径 @/api/api-56 已被 registry 重命名为 @/api/jobCurriculumVitae，页面按现有文件导入，check-imports 给出一条 warn",
+    "hmrsfw-vue 未安装 eslint / prettier，self-check 的 readability lint 环节未运行（两条 warn）"
+  ],
+  "needsFromSkeleton": [
+    "hmrsfw-vue 的 devDependencies 缺少 eslint、eslint-plugin-vue、prettier，readability 的 lint 检查只能跳过",
+    "out/maps/page.uc.jobhunterhomeZzgj.json 的 api 路径未同步 registry 的 renameTo（@/api/api-56 → @/api/jobCurriculumVitae）"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "components": 2,
+    "scopedSlots": 1,
+    "directives": 4,
+    "textNodesChecked": true,
+    "textNodes": {
+      "original": 27,
+      "restored": 27
+    },
+    "branches": {
+      "original": 14,
+      "restored": 14
+    },
+    "warnings": [
+      "imports: @/api/jobCurriculumVitae 不是 maps 的规范路径",
+      "readability: eslint 未安装",
+      "readability: prettier 未安装"
+    ]
+  }
+}
