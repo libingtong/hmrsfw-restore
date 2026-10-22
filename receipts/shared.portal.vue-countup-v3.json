@@ -1,0 +1,28 @@
+{
+  "id": "shared.portal.vue-countup-v3",
+  "ticket": "shared.portal.vue-countup-v3",
+  "group": "还原-Opus@Mac",
+  "branch": "restore/shared.portal.vue-countup-v3-a1",
+  "result": "fail",
+  "outputs": [],
+  "todos": [
+    "本单 status=npm：工单 note 写明「用 npm 依赖代替，不出还原单」，没有 target/files，本单无 .vue/.ts 需要写；分支与 integration 相同、无提交",
+    "self-check 唯一失败项 compile「没有找到本单要交付的文件」是 npm 类工单本身没有交付文件所致，按 hint 无法修正；self-check/门槛未对 status=npm 的工单做特殊处理，而调度仍按普通还原单派发（fastlane.mjs retirePlan 注释：npm stand-ins 走 normal dispatch）——脚本与工单 note 不一致",
+    "工单 note 与 registry/portal.json 条目 note「依赖不在 hmrsfw-vue/package.json 里」已过时：hmrsfw-vue integration 的 package.json 已有 vue-countup-v3 1.4.2，并 override countup.js 2.6.2（E7，提交 b600c1c）",
+    "指纹核对：内嵌的 countup.js 与 2.6.2 一致（原 chunk version=\"2.6.2\"）；vue-countup-v3 组件部分 props/emits/expose/模板与 1.4.2 一致，但 1.4.2 在 finished 侦听里额外调用 options.onCompleteCallback（原 chunk 只 emit finished），说明原包用的是早于 1.4.2 的版本；传了 options.onCompleteCallback 的页面在 1.4.2 下回调可能多触发一次。离线无法确认确切版本（本地只有 1.4.2）"
+  ],
+  "needsFromSkeleton": [
+    "E7 按原 chunk 指纹核对 vue-countup-v3 版本：原 chunk 的 finished 侦听不调用 options.onCompleteCallback，与 1.4.2 不符，需改锁为与原包一致的更早版本（countup.js 2.6.2 已一致）",
+    "调度/门槛对 status=npm 的共享单：要么不派还原单，要么 self-check 与门槛按「依赖在 package.json 且版本一致」判定通过，而不是要求交付文件"
+  ],
+  "selfCheck": {
+    "pass": false,
+    "failed": [
+      { "check": "compile", "where": "shared.portal.vue-countup-v3", "hint": "没有找到本单要交付的文件（）：确认写到了工单指定的路径，并且在 --app 指向的 hmrsfw-vue 检出里" }
+    ],
+    "components": 0,
+    "scopedSlots": 0,
+    "directives": 0,
+    "textNodesChecked": true
+  }
+}
