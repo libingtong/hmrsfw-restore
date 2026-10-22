@@ -338,7 +338,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 
 | 路径 | 内容 | 谁写 |
 | --- | --- | --- |
-| `queue/<工单id>.json` | 工单，字段见 `batch-plan.md` 第 3 节，另加 `type`（entry/shared/page/segment）、`kb`、`deps`（依赖的共享组件和入口导出）、`recordPath`、`site`；page/segment 另有 `role`（录制身份，取值同 `record-page.mjs` 的 `IDENTITIES`：`general` / `jobseeker` / `corp` / `mentor`；门户写 `general`；用户中心按路由和原 chunk 判定，判不出写 `null` 并在 `notes` 写原因，`record-page.mjs` 遇到 `null` 输出 `blocked: need-role-decision`，不猜；判定依据见 `queue/roles.json`） | C |
+| `queue/<工单id>.json` | 工单，字段见 `batch-plan.md` 第 3 节，另加 `type`（entry/shared/page/segment）、`kb`、`deps`（依赖的共享组件和入口导出）、`recordPath`、`site`；page/segment 另有 `role`（录制身份，取值同 `record-page.mjs` 的 `IDENTITIES`：`general` / `jobseeker` / `corp` / `mentor`；门户写 `general`；用户中心按路由和原 chunk 判定，判不出写 `null` 并在 `notes` 写原因，`record-page.mjs` 遇到 `null` 输出 `blocked: need-role-decision`，不猜；自动规则判不出的页面由裁定员按原 chunk 判定，写在 `tools/uc-role-decisions.json`（`decided` 写入 `role`，其 `limit`（这个身份录不到的部分）和 `dataNeed`（造数需求，D7）写进 `notes`，`dataNeed` 另汇总到 `queue/data-needs.json`，全部页面录完后统一交人造数；`pending` 仍为 `null`、`notes` 写建议和需要人确认的事）；判定依据见 `queue/roles.json`） | C |
 | `registry/<app>.json` | 公共库清单，见第十三节 | C 生成，之后只由入口包、共享组件工单更新 |
 | `tests/interact/<工单id>.json` | 交互脚本：`[{"fill":[placeholder,value]} \| {"click":text} \| {"clickSel":css,"optional":bool} \| {"wait":ms}]`，与 POC 的 `interact-scripts.mjs` 同义 | 录制员 |
 | `receipts/<工单id>.json` | 回执 | 还原员、修正员 |

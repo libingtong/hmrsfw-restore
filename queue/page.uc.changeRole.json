@@ -28,7 +28,7 @@
   }
  ],
  "recordPath": "/changeRole",
- "role": null,
+ "role": "general",
  "maps": "out/maps/page.uc.changeRole.json",
  "hints": "out/hints/page.uc.changeRole.md",
  "deps": {
@@ -53,5 +53,5 @@
   ]
  },
  "stylesProvidedByScript": true,
- "notes": "没有身份线索：/changeRole 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ "notes": "裁定（uc-role-decisions.json）。局限：录出来显示「当前身份：普通用户」，其他身份下的显示不覆盖"
 }

@@ -1,0 +1,43 @@
+{
+ "batch": "P1",
+ "issue": "HM-41",
+ "app": "portal",
+ "passed": [
+  "page.portal.Guidance.GuidanceHome.index",
+  "page.portal.Guidance.GuidanceMentorList.index",
+  "page.portal.Guidance.GuidanceVideo.index",
+  "page.portal.LookForJob.CorpDetail",
+  "page.portal.LookForJob.PostDetail",
+  "page.portal.RecruitTalents.ResumePreview",
+  "page.portal.answer.details",
+  "page.portal.answer.index",
+  "page.portal.answer.passwordModal",
+  "page.portal.cityHome.titles",
+  "page.portal.customerService.index",
+  "page.portal.eMap.list",
+  "page.portal.fair.outFair.detail",
+  "page.portal.fair.sceneFair.list",
+  "page.portal.fair.webFair.NumVideo",
+  "page.portal.fair.webFair.detail",
+  "page.portal.jobMarket.index",
+  "page.portal.jobMarket.marketDetail",
+  "page.portal.live.index",
+  "page.portal.livejob.components.commentItem",
+  "page.portal.livejob.detail",
+  "page.portal.livejob.index",
+  "page.portal.login",
+  "page.portal.loginviews.passwordhintbig",
+  "page.portal.loginviews.siginbig"
+ ],
+ "blocked": [],
+ "notes": [
+  "判定：passed 各单 self-check pass:true（编排者复跑）且 build:portal 通过；blocked 4 单其余 self-check 项全部通过、在 fast-lane 最新基础上 build:portal 通过，代码停放在 hmrsfw-vue 的 fast-lane-parked/<id> 分支，未合入 restore/fast-lane。",
+  "同一缺陷也会影响其他批次里以默认导入引用兄弟页面的工单（例如引用 signModal、NumVideo、commentItem、passwordModal 的页面）。",
+  "render-equiv 各单均为报告项（DIFF 多为已知误报），未据此改代码。",
+  "page.portal.answer.details 的子智能体把 onMounted 里重复的两段开始答题逻辑合并成 startAnswer()，行为不变；回放补跑时留意。",
+  "page.portal.LookForJob.PostDetail 原包 loadGaodeKey 有 console.log 打印接口返回的高德密钥，按只还原原样保留（值来自运行时接口，未写入源码）。",
+  "批次结束回归（hmrsfw-vue restore/fast-lane @ 0f4ce0c）：npm run build 两站通过；离线回放首轮 confirm 18/20（c04 /CorpAttestationapprove、c07 /JobFairsHome，均为用户中心页，原站侧 request set 波动），同一构建 --ids c04,c07 重跑 2/2 通过，合计 confirm 20/20；legacy10 10/10；scan-secrets 0；ls-files 无 .env.local/.har/.auth/.pem。本批提交只改 apps/portal/src/views/。",
+  "HM-47 解除阻塞：4 单都是 buildMaps 漏默认导入的兄弟页（passwordModal / NumVideo / commentItem），工具修好后在 fast-lane-parked/<id> 的成果上重跑 self-check pass:true、build:portal 通过，已合入 restore/fast-lane（页面文件里提到原包路径/哈希文件名的来源注释按 no-legacy 改成不带路径的写法，代码不变）"
+ ],
+ "vueCommit": "0f4ce0c"
+}

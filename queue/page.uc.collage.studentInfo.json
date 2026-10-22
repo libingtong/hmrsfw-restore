@@ -28,7 +28,7 @@
   }
  ],
  "recordPath": "/collage/studentInfo",
- "role": null,
+ "role": "general",
  "maps": "out/maps/page.uc.collage.studentInfo.json",
  "hints": "out/hints/page.uc.collage.studentInfo.md",
  "deps": {
@@ -49,5 +49,5 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "notes": "「在校生」身份（userroledata type 120）的主页，record-page 能切的身份（general / jobseeker / corp / mentor）里没有它"
+ "notes": "裁定（uc-role-decisions.json）。局限：按普通用户录，录出来可能是空状态或没有权限的状态；需造数（D7）：给测试账号开通「在校生」身份（userroledata type 120）并带签约信息"
 }

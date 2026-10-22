@@ -9,9 +9,13 @@
 //      of one identity → that identity; a page nothing decided links to, whose own links go only to pages of one identity
 //      (homes and identity-free pages left out: "back to home" is no evidence) → that identity. Repeated until nothing
 //      changes; links from identity-switch pages (they link to two or more homes) do not count.
+//   5. arbiter decisions: tools/uc-role-decisions.json (HM-227), read from the original chunk with file:line:col evidence,
+//      for pages rules 1–4 leave without a role (never overrides a role they found): `decided` → that role, its `limit`
+//      (what recording with that identity does not cover) and `dataNeed` (test data to create later, D7) into notes;
+//      `pending` → still null, its notes carry the suggestion and what a person has to confirm.
 // Anything else, and a page linked from pages of different identities, gets null and a reason (notes): record-page then
 // stops with blocked need-role-decision instead of guessing.
-// Usage: import { ucRoles } from "./uc-roles.mjs"; ucRoles(pageOrders) → Map(order id → { role, by } | { role: null, notes })
+// Usage: import { ucRoles } from "./uc-roles.mjs"; ucRoles(pageOrders) → Map(order id → { role, by[, notes, limit, dataNeed] } | { role: null, notes })
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { ROOT, chunkSource } from "./scope.mjs";
@@ -25,6 +29,7 @@ const HOMES = { "/main": { type: "其他", label: "普通用户" }, "/jobhunterh
   "/schoolgraduatehome": { type: 40, label: "高校毕业生" }, "/marketCenter": { type: 50, label: "招聘超市" }, "/experthome": { type: 60, label: "专家" }, "/collage/studentInfo": { type: 120, label: "在校生" } };
 const identityOfHome = (p) => Object.keys(IDENTITIES).find((k) => IDENTITIES[k].home === p) ?? null;
 const MENUS = JSON.parse(readFileSync(path.join(ROOT, "tools/uc-identity-menus.json"), "utf8"));
+const DECISIONS = JSON.parse(readFileSync(path.join(ROOT, "tools/uc-role-decisions.json"), "utf8"));
 const staticPart = (p) => p.replace(/\/:.*$/, "") || "/";
 
 export function ucRoles(pages) {
@@ -73,6 +78,13 @@ export function ucRoles(pages) {
   };
   // inbound evidence first, until it settles; outbound only for what is still open, then inbound again
   do { while (pass(false)); } while (pass(true));
+  for (const o of pages) {
+    if (out.get(o.id)?.role) continue;
+    const p = staticPart(o.recordPath), d = DECISIONS.decided[p], q = DECISIONS.pending[p];
+    const limit = d && [d.limit && `局限：${d.limit}`, d.dataNeed && `需造数（D7）：${d.dataNeed}`].filter(Boolean).join("；");
+    if (d && IDENTITIES[d.role]) out.set(o.id, { role: d.role, by: `裁定（uc-role-decisions.json）：${d.by}`, ...(limit ? { notes: `裁定（uc-role-decisions.json）。${limit}` } : {}), ...(d.limit ? { limit: d.limit } : {}), ...(d.dataNeed ? { dataNeed: d.dataNeed } : {}), evidence: d.evidence });
+    else if (q) out.set(o.id, { role: null, notes: `待人确认（uc-role-decisions.json）：${q.notes}；建议 ${q.suggest}；需要确认：${q.ask}`, evidence: q.evidence });
+  }
   for (const o of pages) if (!out.has(o.id)) out.set(o.id, { role: null, notes: `没有身份线索：${o.recordPath} 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）` });
   return out;
 }
