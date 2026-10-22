@@ -1,0 +1,5 @@
+[
+  {"click":"下一步","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"click":"上一步","optional":true}
+]
