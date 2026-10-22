@@ -22,8 +22,8 @@
 //          --from build (with --dry-run only): diagnostic, keep going after static failures
 //          --registry <file> (default registry/<app>.json), --keep (keep the gate dir even when passing)
 //          --fast-lane (implied by task metadata fastLane: true): the branch is shared by many page orders (HM-526)
-//          --interact-ref <commit>|worktree: where tests/interact comes from (interactRef; integration and upgrade mode
-//            default: a fresh origin/integration of the tool repo, page mode default: this checkout's working tree) (HM-914)
+//          --interact-ref <commit>|worktree: where tests/interact comes from (interactRef; default in every mode: a fresh
+//            origin/integration of the tool repo, HM-914 / HM-1132; worktree: this checkout's working tree)
 // Output: one JSON line on stdout:
 //   {pass, failed:[{check, where, hint, wo?}], stage, diff, shimmed:[…], durationMs, stages:{static, build, browser},
 //    pages:[{wo, pass, stage, failed, pixel}], mode, attempt}
@@ -71,10 +71,12 @@ function taskMeta(task) {
 // and the baselines were recorded with those; main and restore/fast-lane, where the gate's tools come from, carry only
 // the 8 POC scripts, so an integration run that read its own checkout saw "interaction script changed" on almost every
 // page. Integration mode therefore takes tests/interact from a fresh origin/integration, pinned to one commit for the
-// whole run (the hash check, the steps replayed and a refreshed baseline read the same scripts). --interact-ref names
-// another commit, `worktree` keeps the checkout's files. Page mode reads the working tree as before. null = working tree.
-export function interactRef(argv, mode, { root = ROOT, remote = "origin" } = {}) {
-  const want = opt(argv, "--interact-ref", mode === "integration" ? `${remote}/${INTERACT_BRANCH}` : "worktree");
+// whole run (the hash check, the steps replayed and a refreshed baseline read the same scripts). Page mode does the same
+// since HM-1132: after the fast lane retired (HM-1068) page gates run from main too and every recorded page came back
+// "interaction script changed", so the recorder and the gate looped. --interact-ref names another commit, `worktree`
+// keeps the checkout's files. null = working tree.
+export function interactRef(argv, { root = ROOT, remote = "origin" } = {}) {
+  const want = opt(argv, "--interact-ref", `${remote}/${INTERACT_BRANCH}`);
   if (want === "worktree") return null;
   const git = (args) => execFileSync("git", ["-C", root, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], timeout: 120000 }).trim();
   if (want !== `${remote}/${INTERACT_BRANCH}`) { try { return git(["rev-parse", "--verify", "--quiet", `${want}^{commit}`]); } catch { throw new Error(`--interact-ref ${want}: no such commit in the tool repo`); } }
@@ -233,7 +235,7 @@ export async function gate(argv) {
   if (plan) ids = plan.pages;
   if (!ids.length && !upgrade) throw new Error("no work orders: pass --task (metadata workOrders) or --wo");
   const wos = ids.map(loadWorkOrder);
-  const interact = interactRef(argv, upgrade ? "integration" : mode); // upgrade: merged pages, recorded with integration's scripts
+  const interact = interactRef(argv);
 
   // Baselines first: without one there is nothing to compare against.
   const bases = {}, missing = [];
