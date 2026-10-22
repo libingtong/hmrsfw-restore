@@ -31,6 +31,7 @@
   "notes": [
     "修正第 1 轮：未改任何文件。门槛失败项 static/scope（升级分支相对 integration 无改动）与升级员结论一致：本单不需要公共库改动",
     "疑似比对器问题：tools/gate/replay.mjs waitStable 只看 lastRequestAt，而 tools/gate/har.mjs routeApi 在 fulfill 之前就调用 log 写 lastRequestAt，已拦截未应答的请求不算未稳定；Vite 按需服务和 SM2 解密在同一事件循环，机器忙时还原侧可能先于广告数据截 load。修正员无权改门槛脚本，需裁定员按 pipeline.md 第十五节 2.2 走规则变更单，或按不稳定页处理",
-    "页面本身：self-check pass，renderEquiv advertTop EQUAL 437/437，target apps/portal/src/views/talents/index/advertTop.vue 无需修改"
+    "页面本身：self-check pass，renderEquiv advertTop EQUAL 437/437，target apps/portal/src/views/talents/index/advertTop.vue 无需修改",
+    "修正第 2 轮：仍未改任何文件。本单失败项 static/scope 的根因是升级单本身不需要公共库改动（问题在比对器 waitStable 时序），修正员在可改范围内无法消除；再派修正轮次不会改变结果，请转裁定员按第十五节 2.2 处理"
   ]
 }
