@@ -1,0 +1,38 @@
+{
+  "ticket": "page.uc.addNewsDetails",
+  "id": "page.uc.addNewsDetails",
+  "group": "修正员",
+  "kind": "restore",
+  "task": "01a1410c-cde8-7686-8690-2417e15fdc66",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "outputs": [],
+  "summary": "修正第 1 轮未改页面：gate.1 的 html/text 差异全部在富文本编辑器 TinyMCE 的界面语言（原版英文、还原版中文），来源是共享层静态资源 apps/uc/public/tinymce/langs/zh_CN.js，legacy-dist/usercenter 归档里没有 tinymce/ 目录；页面本身无可改之处。",
+  "verification": [
+    "门槛已把 @/shared/Editor.vue 换成 legacy-dist Editor.1751615607545.js（shimmed），两侧编辑器代码相同；原 Editor 配置 language:\"zh_CN\"、language_url:\"/tinymce/langs/zh_CN.js\"、skin_url:\"/tinymce/skins/ui/oxide\"",
+    "原版侧由 legacy-dist/usercenter 提供静态文件，该目录下没有 tinymce/（find 无结果），serve.mjs 对缺失路径回退 index.html，语言包加载失败 → TinyMCE 用默认英文（Edit/View/Format、Bold…）",
+    "还原版侧 apps/uc/public/tinymce/langs/zh_CN.js 存在（入口单 E7 b600c1c 加入，README 写明取自 tinymce-i18n），语言包生效 → 中文（编辑/视图/格式、粗体…）",
+    "两侧 load/final HTML 把 date-time 归一后逐段比对：除 TinyMCE 菜单/工具栏的 label、title、aria-label 和隐藏提示文字外完全一致；innerText 多出的行同样是编辑器菜单栏文字",
+    "发布时间选择器 title 的时间戳差异是页面默认值 dayjs(new Date())，原版两次基线之间也不同，归 normNow / unstable 处理，不是页面问题",
+    "self-check pass:true（renderEquiv 报告 DIFF 2174/2160 tokens，不是失败项）"
+  ],
+  "todos": [
+    "疑似共享层问题 / 基线环境问题：原包部署时 /tinymce/ 下应有资源（Editor 按该路径加载），但归档未收录，基线里编辑器是英文；建议裁定员按 pipeline.md 第十五节 2 处理：要么基线侧补齐 /tinymce/ 静态资源（规则变更单，等价环境），要么以 legacy-dist Editor chunk 的 language_url 为证据登记已知差异",
+    "同一问题会影响所有使用 @/shared/Editor.vue 的页面"
+  ],
+  "needsFromSkeleton": [
+    "apps/uc/public/tinymce/langs/zh_CN.js 与原版基线不一致：legacy-dist/usercenter 无 tinymce/ 资源导致原版编辑器为英文界面；需裁定员决定基线补资源或登记已知差异，页面无法修"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "gitBase": "origin/integration",
+    "failed": [],
+    "components": 1,
+    "textNodesChecked": true
+  },
+  "notes": [
+    "修正员第 1 轮：未改任何文件（apps/uc/src/views/addNewsDetails.vue 不动）",
+    "疑似共享层问题：TinyMCE 语言差异来自 apps/uc/public/tinymce/langs/zh_CN.js 存在而 legacy-dist/usercenter 无 tinymce/，Editor 已被门槛换成原 chunk，页面无关",
+    "时间戳差异为 dayjs(new Date()) 默认值，原版自身不稳定，归比对器 normNow 处理"
+  ]
+}
