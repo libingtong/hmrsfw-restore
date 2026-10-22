@@ -63,7 +63,7 @@
   }
  ],
  "recordPath": "/formDone/:type",
- "role": null,
+ "role": "general",
  "maps": "out/maps/page.uc.formDone.json",
  "hints": "out/hints/page.uc.formDone.md",
  "deps": {
@@ -111,5 +111,5 @@
   "route": "/formDone/:type",
   "in": "hmrsfw-vue router.ts（已验收，只做回归）"
  },
- "notes": "没有身份线索：/formDone/:type 不是身份主页，不在已录到的求职者 / 招聘单位 / 职业导师菜单里，也没有和已定身份的页面互相链接（可能是普通用户身份的菜单，或哈密没有开放的功能）"
+ "notes": "裁定（uc-role-decisions.json）。局限：recordPath /formDone/:type 按字面打开时 params.type 为 \":type\"，7 个子表单都不渲染，只剩外层容器；要录到内容须用具体取值，建议 /formDone/bshbt（原版入口无单位认证前置条件，不读 corpInfo，不带 id 时是空白申报表）；lsajbt、zctsjl、szftsjt 读 corpInfo 预填单位，bmgjjl、lsajbt、zctsjl、szftsjt 的原版入口要求单位已认证，zsgxjl 要求高校信息审核通过"
 }
