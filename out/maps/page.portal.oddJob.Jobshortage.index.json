@@ -46,7 +46,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Fe": {
    "original": "u",
@@ -62,14 +63,14 @@
  "api": {
   "ta": {
    "original": "index.api.178332063620024.js#k",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "appletList",
    "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/appletList"
   },
   "oa": {
    "original": "index.api.178332063620024.js#m",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "getDictListByType",
    "status": "restored",
    "url": "/xf-job/communal/licenseFree/getDictListByType?dictTypeCode=ACA111_C"

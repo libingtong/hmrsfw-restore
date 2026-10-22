@@ -26,7 +26,8 @@
    "original": "V",
    "path": "@/legacy",
    "export": "VideoPlayer",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c05"
   },
   "O": {
    "original": "d",
@@ -57,14 +58,14 @@
    "original": "index.api.178332063620040.js#q",
    "path": "@/api/scan",
    "export": "queryById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/school/licenseFree/XfSysArticle/queryById"
   },
   "U": {
    "original": "index.api.178332063620040.js#u",
    "path": "@/api/scan",
    "export": "updateScanTimes",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/school/licenseFree/updateScanTimes"
   }
  },

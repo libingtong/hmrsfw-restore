@@ -37,7 +37,8 @@
    "original": "as",
    "path": "@/legacy/api",
    "export": "interviewTemplate",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "G": {
    "original": "k",
@@ -49,7 +50,8 @@
    "original": "at",
    "path": "@/legacy/api",
    "export": "getInterviewPosition",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "T": {
    "original": "p",
@@ -62,7 +64,8 @@
    "original": "av",
    "path": "@/legacy/api",
    "export": "interviewInvitation",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "B": {
    "original": "M",
@@ -78,13 +81,15 @@
    "original": "aM",
    "path": "@/legacy/api",
    "export": "getCareListForCompany",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "ae": {
    "original": "a7",
    "path": "@/legacy/api",
    "export": "isPublishingPosition",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   }
  },
  "api": {},

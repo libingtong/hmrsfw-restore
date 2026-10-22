@@ -67,7 +67,8 @@
    "original": "l",
    "path": "@/legacy/utils",
    "export": "setLocalStorage",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "be": {
    "original": "f",
@@ -91,7 +92,8 @@
    "original": "bw",
    "path": "@/legacy/utils",
    "export": "maskPhone",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   }
  },
  "api": {},

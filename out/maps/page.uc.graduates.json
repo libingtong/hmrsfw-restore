@@ -48,7 +48,8 @@
    "original": "n",
    "path": "@/legacy/api",
    "export": "listOneForWebSite",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "T": {
    "original": "f",
@@ -60,7 +61,8 @@
    "original": "l",
    "path": "@/legacy/utils",
    "export": "setLocalStorage",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "S": {
    "original": "p",

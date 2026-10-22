@@ -52,7 +52,8 @@
    "original": "bX",
    "path": "@/legacy/utils",
    "export": "toHonorific",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "he": {
    "original": "_",
@@ -62,14 +63,14 @@
  "api": {
   "Re": {
    "original": "index.api.178332063620024.js#s",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "querySearchPersonList",
    "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/querySearchPersonList"
   },
   "De": {
    "original": "index.api.178332063620024.js#m",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "getDictListByType",
    "status": "restored",
    "url": "/xf-job/communal/licenseFree/getDictListByType?dictTypeCode=ACA111_C"

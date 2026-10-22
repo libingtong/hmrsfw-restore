@@ -56,7 +56,8 @@
    "original": "aV",
    "path": "@/legacy/api",
    "export": "getAllLevelArticleListByTypeId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Z": {
    "original": "J",
@@ -74,7 +75,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "_t": {
    "original": "o",
@@ -139,49 +141,49 @@
  "api": {
   "jt": {
    "original": "index.api.178332063620017.js#b",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "updateBrowseCount",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/updateBrowseCount"
   },
   "Pt": {
    "original": "index.api.178332063620017.js#c",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/queryById"
   },
   "Rt": {
    "original": "index.api.178332063620017.js#d",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "queryJobFairStatistics",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/statistics/queryJobFairStatistics"
   },
   "Et": {
    "original": "index.api.178332063620017.js#e",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "scrollBarData",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/scrollBarData"
   },
   "Ut": {
    "original": "index.api.178332063620017.js#f",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "queryAttendeesCompany",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesCompany"
   },
   "qt": {
    "original": "index.api.178332063620017.js#h",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "queryAttendeesPosition",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesPosition"
   },
   "Gt": {
    "original": "index.1783320636200117.js#g",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "getQrcodeImgByObjectId",
    "status": "restored",
    "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"

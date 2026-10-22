@@ -19,7 +19,8 @@
  "target": "apps/uc/src/shared/idCard.vue",
  "exports": {
   "i": {
-   "export": "default"
+   "export": "default",
+   "original": "idCard.1751615607545.js#i"
   }
  },
  "registryKey": "idCard.1751615607545.js",

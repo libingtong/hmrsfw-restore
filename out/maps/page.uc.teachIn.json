@@ -46,28 +46,28 @@
    "original": "index.api.175161560754517.js#q",
    "path": "@/api/collegeCareerTalk",
    "export": "queryTalkStudentListInfo",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/queryTalkStudentListInfo"
   },
   "ae": {
    "original": "index.api.175161560754517.js#c",
    "path": "@/api/collegeCareerTalk",
    "export": "cancelStudent",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-college/careerTalkStudent/xfCollegeCareerTalkStudent/cancelStudent"
   },
   "ne": {
    "original": "index.api.175161560754517.js#a",
    "path": "@/api/collegeCareerTalk",
    "export": "attendanceAll",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/attendance/xfJobAttendance/attendanceAll"
   },
   "se": {
    "original": "index.api.175161560754517.js#u",
    "path": "@/api/collegeCareerTalk",
    "export": "updateSigninNum",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-college/careerTalk/xfCollegeCareerTalk/updateSigninNum"
   }
  },

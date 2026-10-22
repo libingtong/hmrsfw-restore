@@ -4,8 +4,8 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `ll` | index.1783320636200.js | entry | @/legacy/api `sysRandomImage` | `function(e){let t='/sys/randomImage/${e}';return ut.request({url:t,method:"get"})}` |
-| `sl` | index.1783320636200.js | api | @/legacy/api `login` | `e=>ut.request({url:"/xf-job/school/user/login",method:"post",data:e})` |
+| `ll` | index.1783320636200.js | entry | @/legacy/api `sysRandomImage`（reserved） | `function(e){let t='/sys/randomImage/${e}';return ut.request({url:t,method:"get"})}` |
+| `sl` | index.1783320636200.js | api | @/legacy/api `login`（reserved） | `e=>ut.request({url:"/xf-job/school/user/login",method:"post",data:e})` |
 | `Nt` | index.1783320636200.js | entry | ant-design-vue `message` | `D1` |
 | `il` | index.1783320636200.js | entry | ant-design-vue `notification` | `ss` |
 | `St` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |

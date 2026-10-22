@@ -1,7 +1,7 @@
 {
  "id": "page.portal.PDFPreview.PDFPreview",
  "type": "page",
- "status": "todo",
+ "status": "regression",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -45,5 +45,9 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/PDFPreview",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
 }

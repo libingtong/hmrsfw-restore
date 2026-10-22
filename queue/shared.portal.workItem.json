@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/workItem.vue",
  "exports": {
   "w": {
-   "export": "default"
+   "export": "default",
+   "original": "workItem.17833206362002.js#w"
   }
  },
  "registryKey": "workItem.17833206362002.js",
@@ -64,6 +65,9 @@
   "modules": [],
   "views": [],
   "orders": [
+   "entry.portal.E4",
+   "entry.portal.E6",
+   "entry.portal.c03",
    "shared.portal.addResume"
   ]
  },

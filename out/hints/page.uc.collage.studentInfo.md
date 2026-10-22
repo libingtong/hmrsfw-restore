@@ -4,8 +4,8 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `L` | index.api.175161560754513.js | api | @/api/collegeWqCancelDetail `getStudentInfoById` | `e=>t.request({url:"/xf-college/student/xfCollegeStudent/getStudentInfoById",method:"post",params:e})` |
-| `Q` | index.api.175161560754513.js | api | @/api/collegeWqCancelDetail `edit` | `e=>t.request({url:"/xf-college/student/xfCollegeStudent/edit",method:"post",data:e})` |
+| `L` | index.api.175161560754513.js | api | @/api/collegeWqCancelDetail `getStudentInfoById`（reserved） | `e=>t.request({url:"/xf-college/student/xfCollegeStudent/getStudentInfoById",method:"post",params:e})` |
+| `Q` | index.api.175161560754513.js | api | @/api/collegeWqCancelDetail `edit`（reserved） | `e=>t.request({url:"/xf-college/student/xfCollegeStudent/edit",method:"post",data:e})` |
 | `j` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `ee` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
 | `v` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |

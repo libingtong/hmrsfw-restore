@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/iframeModal.vue",
  "exports": {
   "i": {
-   "export": "default"
+   "export": "default",
+   "original": "iframeModal.1751615607545.js#i"
   }
  },
  "registryKey": "iframeModal.1751615607545.js",

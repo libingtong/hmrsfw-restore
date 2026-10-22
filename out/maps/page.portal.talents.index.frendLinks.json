@@ -32,13 +32,15 @@
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "W": {
    "original": "aj",
    "path": "@/legacy/utils",
    "export": "openLink",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "g": {
    "original": "_",

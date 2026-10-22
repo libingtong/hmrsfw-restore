@@ -43,7 +43,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "ka": {
    "original": "h",
@@ -79,7 +80,8 @@
    "original": "Q",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_CERTIFIED",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Ca": {
    "original": "r",
@@ -126,28 +128,28 @@
  "api": {
   "Oa": {
    "original": "index.api.178332063620033.js#d",
-   "path": "@/api/jobCompanyPosition",
+   "path": "@/api/api-178332063620033",
    "export": "viewVoByIdFromCompany",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromCompany"
   },
   "Va": {
    "original": "index.api.178332063620033.js#c",
-   "path": "@/api/jobCompanyPosition",
+   "path": "@/api/api-178332063620033",
    "export": "getMatchingDegree",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompanyPosition/getMatchingDegree"
   },
   "Ya": {
    "original": "index.api.178332063620033.js#e",
-   "path": "@/api/jobCompanyPosition",
+   "path": "@/api/api-178332063620033",
    "export": "addTalent",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
   },
   "qa": {
    "original": "index.api.178332063620033.js#i",
-   "path": "@/api/jobCompanyPosition",
+   "path": "@/api/api-178332063620033",
    "export": "isPublishingPosition",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompany/isPublishingPosition"
@@ -175,7 +177,10 @@
    "value": "/assets/noResumeR.1783320636200.png",
    "inline": false,
    "path": "@/shared/noResumeR",
-   "export": "_",
+   "export": "noResumeImg",
+   "aliases": [
+    "_"
+   ],
    "status": "restored"
   },
   "Q": {

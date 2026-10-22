@@ -45,7 +45,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "We": {
    "original": "_",
@@ -55,14 +56,14 @@
  "api": {
   "Ye": {
    "original": "index.api.178332063620024.js#o",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "appletShareSurplusJobList",
    "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/appletShareSurplusJobList"
   },
   "Ze": {
    "original": "index.api.178332063620024.js#m",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "getDictListByType",
    "status": "restored",
    "url": "/xf-job/communal/licenseFree/getDictListByType?dictTypeCode=ACA111_C"

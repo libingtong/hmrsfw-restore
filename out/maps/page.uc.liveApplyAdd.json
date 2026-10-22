@@ -74,7 +74,8 @@
    "original": "bu",
    "path": "@/legacy/utils",
    "export": "isMobilePhone",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   }
  },
  "api": {
@@ -82,28 +83,28 @@
    "original": "index.api.175161560754516.js#l",
    "path": "@/api/jobLiveTelecastApply",
    "export": "listForPickUp",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobLiveTelecastApplyPosition/listForPickUp"
   },
   "Fe": {
    "original": "index.api.175161560754516.js#b",
    "path": "@/api/jobLiveTelecastApply",
    "export": "queryById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobLiveTelecastApply/queryById"
   },
   "Ue": {
    "original": "index.api.175161560754516.js#a",
    "path": "@/api/jobLiveTelecastApply",
    "export": "list2",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobLiveTelecastApplyPosition/list"
   },
   "Ae": {
    "original": "index.api.175161560754516.js#s",
    "path": "@/api/jobLiveTelecastApply",
    "export": "save",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobLiveTelecastApply/save"
   }
  },

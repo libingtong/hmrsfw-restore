@@ -50,7 +50,8 @@
    "original": "au",
    "path": "@/legacy/utils",
    "export": "randomColor",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "k": {
    "original": "av",

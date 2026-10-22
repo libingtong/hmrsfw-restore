@@ -48,19 +48,22 @@
    "original": "bN",
    "path": "@/legacy/components/Foot.vue",
    "export": "default",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c06"
   },
   "Ne": {
    "original": "bO",
    "path": "@/legacy/components/HomeLoginBtm2.vue",
    "export": "default",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c06"
   },
   "Pe": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "qe": {
    "original": "a6",
@@ -78,7 +81,8 @@
    "original": "aB",
    "path": "@/legacy/api",
    "export": "getChildArticleTypeList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "le": {
    "original": "am",
@@ -90,7 +94,8 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "oe": {
    "original": "B",
@@ -110,7 +115,7 @@
    "original": "index.api.178332063620014.js#g",
    "path": "@/api/article",
    "export": "freeCompanyList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/freeCompanyList"
   }
  },

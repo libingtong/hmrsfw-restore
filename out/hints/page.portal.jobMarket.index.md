@@ -18,6 +18,6 @@
 | `Z` | index.1783320636200.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `j` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `Sa` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
-| `Pa` | index.api.178332063620020.js | api | @/api/service `queryById` | `e=>s.request({url:"/xf-job/school/licenseFree/XfSysArticle/queryById",method:"get",params:e})` |
-| `Da` | index.api.178332063620020.js | api | @/api/service `freeServiceUnitPageList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeServiceUnitPageList",method:"post",params:e})` |
-| `Ia` | index.api.178332063620026.js | api | @/api/sysConsult `findJobList` | `e=>s.request({url:"/xf-job/job/licenseFree/findJobList",method:"post",params:e})` |
+| `Pa` | index.api.178332063620020.js | api | @/api/service `queryById`（reserved） | `e=>s.request({url:"/xf-job/school/licenseFree/XfSysArticle/queryById",method:"get",params:e})` |
+| `Da` | index.api.178332063620020.js | api | @/api/service `freeServiceUnitPageList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/freeServiceUnitPageList",method:"post",params:e})` |
+| `Ia` | index.api.178332063620026.js | api | @/api/sysConsult `findJobList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/findJobList",method:"post",params:e})` |

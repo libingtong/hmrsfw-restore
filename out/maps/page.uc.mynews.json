@@ -32,25 +32,29 @@
    "original": "s",
    "path": "@/legacy/api",
    "export": "queryAnnouncementList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "L": {
    "original": "ai",
    "path": "@/legacy/api",
    "export": "queryNoReaded",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "W": {
    "original": "ba",
    "path": "@/legacy/api",
    "export": "setAllReaded",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "B": {
    "original": "bb",
    "path": "@/legacy/api",
    "export": "setReaded",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "U": {
    "original": "_",

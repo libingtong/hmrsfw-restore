@@ -53,13 +53,15 @@
    "original": "V",
    "path": "@/legacy",
    "export": "VideoPlayer",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c05"
   },
   "kl": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "_l": {
    "original": "o",
@@ -125,63 +127,63 @@
    "original": "index.api.17833206362003.js#q",
    "path": "@/api/sysThumbsUp",
    "export": "queryById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/school/licenseFree/XfSysArticle/queryById"
   },
   "re": {
    "original": "index.api.17833206362003.js#g",
    "path": "@/api/sysThumbsUp",
    "export": "getArticleList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/getArticleList"
   },
   "Dl": {
    "original": "index.api.17833206362003.js#a",
    "path": "@/api/sysThumbsUp",
    "export": "getChildArticleTypeList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
   },
   "El": {
    "original": "index.api.17833206362003.js#l",
    "path": "@/api/sysThumbsUp",
    "export": "listForWebsite",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobReceptionRoom/listForWebsite"
   },
   "Gl": {
    "original": "index.api.17833206362003.js#x",
    "path": "@/api/sysThumbsUp",
    "export": "listForWebsite2",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite"
   },
   "Ml": {
    "original": "index.api.17833206362003.js#b",
    "path": "@/api/sysThumbsUp",
    "export": "queryMoreClassicQandA",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/licenseFree/xfSysConsult/queryMoreClassicQandA"
   },
   "Ul": {
    "original": "index.api.17833206362003.js#t",
    "path": "@/api/sysThumbsUp",
    "export": "add",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysThumbsUp/add"
   },
   "Rl": {
    "original": "index.api.17833206362003.js#c",
    "path": "@/api/sysThumbsUp",
    "export": "add2",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/licenseFree/xfSysThumbsUp/add"
   },
   "ql": {
    "original": "index.api.17833206362004.js#g",
    "path": "@/api/jobUserTutorExpand",
    "export": "queryOrganizationByAreaId",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/queryOrganizationByAreaId"
   }
  },

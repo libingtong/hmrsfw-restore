@@ -39,14 +39,14 @@
    "original": "index.api.175161560754513.js#s",
    "path": "@/api/collegeWqCancelDetail",
    "export": "getStudentInfoById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-college/student/xfCollegeStudent/getStudentInfoById"
   },
   "Q": {
    "original": "index.api.175161560754513.js#e",
    "path": "@/api/collegeWqCancelDetail",
    "export": "edit",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-college/student/xfCollegeStudent/edit"
   }
  },

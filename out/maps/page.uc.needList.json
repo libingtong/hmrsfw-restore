@@ -44,14 +44,14 @@
    "original": "index.api.17516156075457.js#g",
    "path": "@/api/oddFindJobInfo",
    "export": "userRelease",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-oddjob/oddjob/xfOddUser/userRelease"
   },
   "H": {
    "original": "index.api.17516156075457.js#b",
    "path": "@/api/oddFindJobInfo",
    "export": "grounding",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-oddjob/oddjob/xfOddUser/grounding"
   }
  },

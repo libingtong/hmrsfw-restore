@@ -43,7 +43,8 @@
    "original": "ar",
    "path": "@/legacy/api",
    "export": "jobCurriculumVitaeDeliverSetStatus",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "T": {
    "original": "M",
@@ -61,7 +62,7 @@
    "original": "index.api.175161560754510.js#s",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "setStatus",
-   "status": "restored",
+   "status": "reserved",
    "url": "/job/licenseFree/xfJobLiveCurriculumVitaeDeliver/setStatus"
   }
  },

@@ -40,7 +40,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Ie": {
    "original": "u",
@@ -76,7 +77,8 @@
    "original": "be",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_AUTH_RESUME",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ze": {
    "original": "r",
@@ -94,7 +96,7 @@
    "original": "index.api.178332063620037.js#s",
    "path": "@/api/sysBusinessSetting",
    "export": "searchListForWebsite",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobCurriculumVitae/searchListForWebsite"
   }
  },

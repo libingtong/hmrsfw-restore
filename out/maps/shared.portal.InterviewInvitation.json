@@ -52,21 +52,21 @@
    "original": "index.api.17833206362007.js#b",
    "path": "@/api/jobInterviewInvitation",
    "export": "interviewTemplate",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobInterviewInvitation/interviewTemplate"
   },
   "Z": {
    "original": "index.api.17833206362007.js#c",
    "path": "@/api/jobInterviewInvitation",
    "export": "getInterviewPosition",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobInterviewInvitation/getInterviewPosition"
   },
   "$": {
    "original": "index.api.17833206362007.js#d",
    "path": "@/api/jobInterviewInvitation",
    "export": "interviewInvitation",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobInterviewInvitation/interviewInvitation"
   }
  },
@@ -74,7 +74,7 @@
   "J": {
    "original": "message.1783320636200.js#s",
    "path": "@/shared/message.ts",
-   "export": "s",
+   "export": "showSubmitSuccessMessage",
    "status": "reserved",
    "owner": "shared.portal.modules"
   }

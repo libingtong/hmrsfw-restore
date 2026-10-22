@@ -19,7 +19,8 @@
  "target": "apps/portal/src/shared/gaode2.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "gaode.vue_vue_type_style_index_0_lang.17833206362002.js#_"
   }
  },
  "registryKey": "gaode.vue_vue_type_style_index_0_lang.17833206362002.js",

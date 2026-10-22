@@ -55,21 +55,21 @@
    "original": "index.api.17516156075454.js#b",
    "path": "@/api/sysConsult",
    "export": "statics",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfSysConsult/statics"
   },
   "Q": {
    "original": "index.api.17516156075454.js#c",
    "path": "@/api/sysConsult",
    "export": "queryJoinedForUserCenter",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfSysConsult/queryJoinedForUserCenter"
   },
   "W": {
    "original": "index.api.17516156075454.js#d",
    "path": "@/api/sysConsult",
    "export": "queryListForUserCenter",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfSysConsult/queryListForUserCenter"
   }
  },

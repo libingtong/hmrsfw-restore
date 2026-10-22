@@ -34,7 +34,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Ca": {
    "original": "u",
@@ -64,7 +65,7 @@
    "original": "index.api.178332063620037.js#f",
    "path": "@/api/sysBusinessSetting",
    "export": "recommendJobList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"
   }
  },

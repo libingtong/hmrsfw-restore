@@ -27,6 +27,9 @@ export function loadWorkOrder(id, root = TOOL_ROOT) {
 
 export const isCore = (wo) => wo && (wo.type === "entry" || wo.type === "shared");
 export const isPage = (wo) => wo && !isCore(wo);
+// Recordable: a page there is something to open in the browser for. Entry/shared orders and npm replacements (`status: "npm"`,
+// no recordPath) never get a record task — record-page.mjs stops on them with "recordPath missing" (HM-1102/1103, HM-1124).
+export const isRecordable = (wo) => isPage(wo) && wo.status !== "npm";
 // Pages already accepted in hmrsfw-vue are regression-only (§1 范围). C writes `status: "regression"` and an `accepted`
 // object ({route, in}); a bare `accepted: true` is accepted too.
 export const isAccepted = (wo) => !!wo.accepted || wo.status === "accepted" || wo.status === "regression" || wo.regressionOnly === true;

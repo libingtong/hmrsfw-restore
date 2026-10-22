@@ -66,6 +66,7 @@
    "page.portal.talents.index.talentRecommend"
   ],
   "orders": [
+   "entry.portal.E6",
    "page.portal.talents.index.advertTop",
    "page.portal.talents.index.frendLinks",
    "page.portal.talents.index.homeList",

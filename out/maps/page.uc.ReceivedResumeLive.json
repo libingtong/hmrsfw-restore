@@ -38,7 +38,7 @@
    "original": "index.api.175161560754510.js#l",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "queryUserPageList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobLiveCurriculumVitaeDeliver/queryUserPageList"
   }
  },

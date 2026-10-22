@@ -53,7 +53,10 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.portal.c03",
+   "entry.portal.c05"
+  ]
  },
  "stylesProvidedByScript": true
 }

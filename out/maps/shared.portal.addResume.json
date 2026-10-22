@@ -40,13 +40,15 @@
    "original": "a0",
    "path": "@/legacy/api",
    "export": "queryByIdJM",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "X": {
    "original": "a1",
    "path": "@/utils/crypto-adapter",
    "export": "decryptSm4",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E5"
   },
   "Y": {
    "original": "a2",
@@ -68,21 +70,21 @@
  "api": {
   "Z": {
    "original": "index.1783320636200117.js#c",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "checkIdCard",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUser/checkIdCard"
   },
   "ae": {
    "original": "index.api.17833206362002.js#t",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "saveUserAndVitaeWithCare",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/saveUserAndVitaeWithCare"
   },
   "le": {
    "original": "index.api.17833206362002.js#u",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "saveUserAndVitae",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/saveUserAndVitae"

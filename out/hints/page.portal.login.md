@@ -13,24 +13,24 @@
 | `Se` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `Wa` | index.1783320636200.js | api | @/legacy `getDictValueByCodeAndItems` | `e=>ut.request({url:"/xf-job/job/licenseFree/getDictValueByCodeAndItems",method:"post",params:e})` |
 | `Y` | index.1783320636200.js | api | @/legacy `getSettingValueByCode` | `e=>ut.request({url:"/xf-job/job/licenseFree/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:e})` |
-| `Ga` | index.1783320636200.js | entry | @/legacy/utils `PAGE_LOAD_TIMESTAMP` | `Date.parse(new Date)` |
+| `Ga` | index.1783320636200.js | entry | @/legacy/utils `PAGE_LOAD_TIMESTAMP`（reserved） | `Date.parse(new Date)` |
 | `q` | index.1783320636200.js | entry | @/legacy `userStorage` | `{keys:!0,setUser(e){this.keys?localStorage.setItem(jn.USER_INFO,e):localStorage.setItem(jn.USER_INFO,JSON.stringify(e))},getUser(){const e=localStorage.getItem(jn.USER_INFO);if(e&&e!="undefined"&&e!="` |
-| `Qa` | index.1783320636200.js | entry | @/legacy/api `logout` | `e=>ut.request({url:LN.logout,method:"get",params:e})` |
-| `Fa` | index.1783320636200.js | entry | @/legacy/api `randomImage` | `e=>ut.request({url:hte.randomImage,method:"get",params:e})` |
+| `Qa` | index.1783320636200.js | entry | @/legacy/api `logout`（reserved） | `e=>ut.request({url:LN.logout,method:"get",params:e})` |
+| `Fa` | index.1783320636200.js | entry | @/legacy/api `randomImage`（reserved） | `e=>ut.request({url:hte.randomImage,method:"get",params:e})` |
 | `Va` | index.1783320636200.js | entry | @/legacy `getDictItemsByCode` | `e=>IN("/jeecg-system/sys/dict/getDictItemsByCode",e,"get")` |
-| `Xa` | index.1783320636200.js | entry | @/legacy/api `queryHomeSettingById` | `e=>IN("/xf-job/job/licenseFree/queryHomeSettingById",e,"post")` |
+| `Xa` | index.1783320636200.js | entry | @/legacy/api `queryHomeSettingById`（reserved） | `e=>IN("/xf-job/job/licenseFree/queryHomeSettingById",e,"post")` |
 | `_e` | index.1783320636200.js | entry | @/legacy `SettingCodes` | `(e=>(e.BTN_PERMISS="btn_permiss",e.UNIFYLOGINURL="unifyLoginUrl",e.UNITELOGINURL="uniteLoginUrl",e.GO_MINI_PROGRAM_PREFIX="go_mini_program_prefix",e.WX_URL="wx_url",e.QRCODE_TYPE="qrcode_type",e.FAIRS` |
-| `Ja` | index.1783320636200.js | entry | @/legacy/components/Phone.vue `default` | `mt(hEt,[["render",mEt]])` |
-| `Ya` | index.1783320636200.js | entry | @/legacy `SlideCaptcha` | `re({__name:"SlideCaptcha",props:{type:{type:String,default:"0"},phone:{type:String,default:""},smsmode:{type:String,default:"1"},fromType:{type:String,default:"1"}},emits:["timerCount"],setup(e,{expos` |
+| `Ja` | index.1783320636200.js | entry | @/legacy/components/Phone.vue `default`（reserved） | `mt(hEt,[["render",mEt]])` |
+| `Ya` | index.1783320636200.js | entry | @/legacy `SlideCaptcha`（reserved） | `re({__name:"SlideCaptcha",props:{type:{type:String,default:"0"},phone:{type:String,default:""},smsmode:{type:String,default:"1"},fromType:{type:String,default:"1"}},emits:["timerCount"],setup(e,{expos` |
 | `Ha` | index.1783320636200.js | entry | @/legacy `useStore` | `function(e){return e===void 0&&(e=null),Ft(e!==null?e:Ru)}` |
 | `H` | index.1783320636200.js | entry | ant-design-vue `message` | `D1` |
-| `Ka` | index.1783320636200.js | api | @/legacy/api `login` | `e=>ut.request({url:"/xf-job/school/user/login",method:"post",data:e})` |
-| `$a` | index.1783320636200.js | api | @/legacy/api `phoneLogin` | `e=>ut.request({url:"/xf-job/school/user/phoneLogin",method:"post",data:e})` |
-| `el` | index.1783320636200.js | entry | @/legacy/utils `handleLoginSuccess` | `e=>{let t=e.data,n=t.result.userInfo,r=t.result.token?t.result.token:"";Ze.setToken(r),Ze.setUser(n);let a;if(Ze.keys?a=JSON.parse(Ze.getKey(n)):a=n,a){let o=a.avatar;o&&Ze.setAvatar(o)}}` |
-| `al` | index.1783320636200.js | api | @/legacy/api `listOneForWebSite` | `(e,t)=>ut.request({url:"/xf-job/communal/xfSysUser/listOneForWebSite",method:"get",params:e})` |
-| `ll` | index.1783320636200.js | entry | @/legacy/utils `handleXfSysUserLoaded` | `e=>{let t=e.result.records;Ze.setXfSysUser(t[0]);let n=Ze.getUser(),r=Ze.getXfSysUser();if(n.sysUserId=n.id,n.id=r.id,n.realnameCopy=n.realname,n.realname=r.realName,n.realName=n.realname,n.sensitiveR` |
-| `tl` | index.1783320636200.js | api | @/legacy/api `getCompanyInfo` | `e=>ut.request({url:"/xf-job/job/xfJobCompany/getCompanyInfo",method:"get",params:e})` |
+| `Ka` | index.1783320636200.js | api | @/legacy/api `login`（reserved） | `e=>ut.request({url:"/xf-job/school/user/login",method:"post",data:e})` |
+| `$a` | index.1783320636200.js | api | @/legacy/api `phoneLogin`（reserved） | `e=>ut.request({url:"/xf-job/school/user/phoneLogin",method:"post",data:e})` |
+| `el` | index.1783320636200.js | entry | @/legacy/utils `handleLoginSuccess`（reserved） | `e=>{let t=e.data,n=t.result.userInfo,r=t.result.token?t.result.token:"";Ze.setToken(r),Ze.setUser(n);let a;if(Ze.keys?a=JSON.parse(Ze.getKey(n)):a=n,a){let o=a.avatar;o&&Ze.setAvatar(o)}}` |
+| `al` | index.1783320636200.js | api | @/legacy/api `listOneForWebSite`（reserved） | `(e,t)=>ut.request({url:"/xf-job/communal/xfSysUser/listOneForWebSite",method:"get",params:e})` |
+| `ll` | index.1783320636200.js | entry | @/legacy/utils `handleXfSysUserLoaded`（reserved） | `e=>{let t=e.result.records;Ze.setXfSysUser(t[0]);let n=Ze.getUser(),r=Ze.getXfSysUser();if(n.sysUserId=n.id,n.id=r.id,n.realnameCopy=n.realname,n.realname=r.realName,n.realName=n.realname,n.sensitiveR` |
+| `tl` | index.1783320636200.js | api | @/legacy/api `getCompanyInfo`（reserved） | `e=>ut.request({url:"/xf-job/job/xfJobCompany/getCompanyInfo",method:"get",params:e})` |
 | `nl` | thirdParty.1783320636200.js | shared | @/shared/thirdParty.vue `default`（reserved） | `S(C,[["__scopeId","data-v-3786db17"]])` |
-| `ul` | index.1783320636200117.js | api | @/api/jobCompany `getCompleteStatus` | `e=>o.request({url:"/xf-job/communal/xfSysGuideRecord/getCompleteStatus",method:"post",params:e})` |
-| `dl` | index.1783320636200117.js | api | @/api/jobCompany `list` | `e=>o.request({url:"/xf-job/communal/xfSysGuide/list",method:"get",params:e})` |
-| `pl` | index.1783320636200117.js | api | @/api/jobCompany `setCompleteStatus` | `e=>o.request({url:"/xf-job/communal/xfSysGuideRecord/setCompleteStatus",method:"post",params:e})` |
+| `ul` | index.1783320636200117.js | api | @/api/api-117 `getCompleteStatus` | `e=>o.request({url:"/xf-job/communal/xfSysGuideRecord/getCompleteStatus",method:"post",params:e})` |
+| `dl` | index.1783320636200117.js | api | @/api/api-117 `list` | `e=>o.request({url:"/xf-job/communal/xfSysGuide/list",method:"get",params:e})` |
+| `pl` | index.1783320636200117.js | api | @/api/api-117 `setCompleteStatus` | `e=>o.request({url:"/xf-job/communal/xfSysGuideRecord/setCompleteStatus",method:"post",params:e})` |

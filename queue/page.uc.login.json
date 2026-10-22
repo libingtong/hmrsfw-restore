@@ -46,7 +46,10 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.E4",
+   "entry.uc.E6"
+  ]
  },
  "stylesProvidedByScript": true
 }

@@ -21,7 +21,8 @@
  "target": "apps/uc/src/shared/XfLoaing.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "XfLoaing.1751615607545.js#_"
   }
  },
  "registryKey": "XfLoaing.1751615607545.js",

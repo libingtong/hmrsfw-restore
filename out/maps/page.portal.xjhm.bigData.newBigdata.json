@@ -39,13 +39,15 @@
    "original": "cA",
    "path": "@/legacy/api",
    "export": "sysRandomImage",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "sl": {
    "original": "cB",
    "path": "@/legacy/api",
    "export": "login",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Nt": {
    "original": "A",
@@ -108,7 +110,7 @@
   "gl": {
    "original": "init.17833206362002.js#q",
    "path": "@/shared/init.ts",
-   "export": "q",
+   "export": "getBigDataViewSettingsById",
    "status": "reserved",
    "owner": "shared.portal.init"
   },
@@ -122,77 +124,77 @@
   "hl": {
    "original": "init.17833206362002.js#r",
    "path": "@/shared/init.ts",
-   "export": "r",
+   "export": "refreshBigDataContent",
    "status": "reserved",
    "owner": "shared.portal.init"
   },
   "Cl": {
    "original": "init.17833206362002.js#i",
    "path": "@/shared/init.ts",
-   "export": "i",
+   "export": "getGenderBarOption",
    "status": "reserved",
    "owner": "shared.portal.init"
   },
   "yl": {
    "original": "init.17833206362002.js#a",
    "path": "@/shared/init.ts",
-   "export": "a",
+   "export": "getPieOption",
    "status": "reserved",
    "owner": "shared.portal.init"
   },
   "It": {
    "original": "init.17833206362002.js#b",
    "path": "@/shared/init.ts",
-   "export": "b",
+   "export": "getScrollLegendPieOption",
    "status": "reserved",
    "owner": "shared.portal.init"
   },
   "wl": {
    "original": "init.17833206362002.js#c",
    "path": "@/shared/init.ts",
-   "export": "c",
+   "export": "getSharePieOption",
    "status": "reserved",
    "owner": "shared.portal.init"
   },
   "kl": {
    "original": "init.17833206362002.js#d",
    "path": "@/shared/init.ts",
-   "export": "d",
+   "export": "getBigDataMapOption",
    "status": "reserved",
    "owner": "shared.portal.init"
   },
   "bl": {
    "original": "init.17833206362002.js#e",
    "path": "@/shared/init.ts",
-   "export": "e",
+   "export": "getDemandSupplyBarOption",
    "status": "reserved",
    "owner": "shared.portal.init"
   },
   "xl": {
    "original": "init.17833206362002.js#f",
    "path": "@/shared/init.ts",
-   "export": "f",
+   "export": "getFunnelOption",
    "status": "reserved",
    "owner": "shared.portal.init"
   },
   "_l": {
    "original": "dateUtil.1783320636200.js#f",
    "path": "@/shared/dateUtil.ts",
-   "export": "f",
+   "export": "formatDateByPattern",
    "status": "reserved",
    "owner": "shared.portal.modules"
   },
   "Tl": {
    "original": "dateUtil.1783320636200.js#a",
    "path": "@/shared/dateUtil.ts",
-   "export": "a",
+   "export": "formatDate",
    "status": "reserved",
    "owner": "shared.portal.modules"
   },
   "Gl": {
    "original": "dateUtil.1783320636200.js#b",
    "path": "@/shared/dateUtil.ts",
-   "export": "b",
+   "export": "formatTime",
    "status": "reserved",
    "owner": "shared.portal.modules"
   },

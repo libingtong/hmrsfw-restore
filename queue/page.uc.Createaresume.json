@@ -1,7 +1,7 @@
 {
  "id": "page.uc.Createaresume",
  "type": "page",
- "status": "segmented",
+ "status": "regression",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -84,7 +84,8 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "segments": [
-  "seg.uc.Createaresume.1"
- ]
+ "accepted": {
+  "route": "/Createaresume",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
 }

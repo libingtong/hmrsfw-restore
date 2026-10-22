@@ -77,13 +77,15 @@
    "original": "aP",
    "path": "@/legacy/api",
    "export": "getCompanyAttachmentMax",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "te": {
    "original": "aQ",
    "path": "@/legacy/api",
    "export": "getCompanyAttachmentList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Ae": {
    "original": "v",
@@ -95,7 +97,8 @@
    "original": "aR",
    "path": "@/legacy/api",
    "export": "addBatchCompanyAttachment",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "ae": {
    "original": "B",
@@ -113,7 +116,8 @@
    "original": "aS",
    "path": "@/legacy/api",
    "export": "deleteAttachment",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   }
  },
  "api": {},

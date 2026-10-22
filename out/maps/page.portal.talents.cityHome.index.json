@@ -46,31 +46,36 @@
    "original": "aA",
    "path": "@/legacy/api",
    "export": "listForWebsite",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "qe": {
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "De": {
    "original": "an",
    "path": "@/legacy/api",
    "export": "queryLatestQuestionsList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Ge": {
    "original": "ao",
    "path": "@/legacy/api",
    "export": "queryQuestionsList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Xe": {
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "je": {
    "original": "u",
@@ -100,7 +105,7 @@
    "original": "index.api.178332063620014.js#g",
    "path": "@/api/article",
    "export": "freeCompanyList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/freeCompanyList"
   }
  },

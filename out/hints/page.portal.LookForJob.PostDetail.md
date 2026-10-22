@@ -12,8 +12,8 @@
 | `Lt` | index.1783320636200.js | api | @/legacy `getDictValueByCodeAndItems` | `e=>ut.request({url:"/xf-job/job/licenseFree/getDictValueByCodeAndItems",method:"post",params:e})` |
 | `le` | index.1783320636200.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `ie` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
-| `Ot` | index.1783320636200.js | entry | @/legacy/utils `getCurrentLocation` | `()=>W(void 0,null,function*(){let e={longitude:0,latitude:0,accuracy:0};if(navigator.geolocation){const t={enableHighAccuracy:!0,timeout:5e3,maximumAge:0};try{const n=yield new Promise((r,a)=>{navigat` |
-| `qt` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `Ot` | index.1783320636200.js | entry | @/legacy/utils `getCurrentLocation`（reserved） | `()=>W(void 0,null,function*(){let e={longitude:0,latitude:0,accuracy:0};if(navigator.geolocation){const t={enableHighAccuracy:!0,timeout:5e3,maximumAge:0};try{const n=yield new Promise((r,a)=>{navigat` |
+| `qt` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
 | `$` | index.1783320636200.js | entry | @/legacy `openUserCenter` | `(e,t)=>{let n=rr.getters.userUrl;t=t\|\|"_blank",n&&n.charAt(n.length-1)==="/"&&(n=n.slice(0,-1)),window.open(n+"/autoLogin?toPath="+encodeURIComponent(e)+"&token="+Ze.getToken(),t)}` |
 | `A` | index.1783320636200.js | entry | @/legacy `checkLogin` | `function(e,t,n,r){const a=Ze.getUser(),o=Ze.getCorp();return console.log("\u5224\u65AD\u5F53\u524D\u8D26\u53F7\u662F\u5426\u767B\u5F55token",Ze.getToken(),a,o),new Promise((i,l)=>{if(!Ze.getToken()){i` |
 | `w` | index.1783320636200.js | entry | @/legacy `TEXT_GO_AUTH` | `"\u53BB\u8BA4\u8BC1"` |
@@ -30,17 +30,17 @@
 | `Et` | map.vue_vue_type_script_setup_true_lang.1783320636200.js | shared | @/shared/map2.vue `default`（reserved） | `d({__name:"map",props:{collapsed:Boolean,mentorrecord:Array,visible:Boolean,title:String,izEndReply:String,longitude:String,latitude:String,height:{type:String,default:"255px"}},setup(n){const o=n;h((` |
 | `$t` | gaode.vue_vue_type_style_index_0_lang.1783320636200.js | shared | @/shared/gaode.vue `default`（reserved） | `j({__name:"gaode",props:{markers:{type:Array,required:!1},latitudeGcj02:{type:String,required:!1},longitudeGcj02:{type:String,required:!1},queryParam:{type:Object,required:!1},gaodekey:{type:Array,req` |
 | `aa` | addResume.1783320636200.js | shared | @/shared/addResume.vue `default`（reserved） | `D(C,[["__scopeId","data-v-a6009624"]])` |
-| `sa` | index.api.17833206362002.js | api | @/api/jobCurriculumVitae `queryForCompetitiveAnalysis` | `e=>a.request({url:"/xf-job/job/xfJobCurriculumVitae/queryForCompetitiveAnalysis",method:"get",params:e})` |
-| `la` | index.api.17833206362002.js | api | @/api/jobCurriculumVitae `queryById` | `e=>a.request({url:"/xf-alliance/alliance/licenseFree/xfAllianceCompany/queryById",method:"get",params:e})` |
-| `ia` | index.api.17833206362002.js | api | @/api/jobCurriculumVitae `freeCompanyDetailById` | `e=>a.request({url:"/xf-job/job/licenseFree/freeCompanyDetailById",method:"post",params:e})` |
-| `na` | index.api.17833206362002.js | api | @/api/jobCurriculumVitae `queryById2` | `e=>a.request({url:"/xf-alliance/alliance/licenseFree/xfAlliancePosition/queryById",method:"get",params:e})` |
-| `ra` | index.api.17833206362002.js | api | @/api/jobCurriculumVitae `freeCompanyPositionDetail` | `e=>a.request({url:"/xf-job/job/licenseFree/freeCompanyPositionDetail",method:"post",params:e})` |
-| `ca` | index.api.17833206362002.js | api | @/api/jobCurriculumVitae `findLikeJobList` | `e=>a.request({url:"/xf-job/job/licenseFree/findLikeJobList",method:"post",params:e})` |
-| `_e` | index.api.17833206362002.js | api | @/api/jobCurriculumVitae `queryIzCanDeliver` | `e=>a.request({url:"/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver",method:"get",params:e})` |
-| `ge` | index.api.17833206362002.js | api | @/api/jobCurriculumVitae `queryIzCanDeliver2` | `e=>a.request({url:"/xf-alliance/alliance/curriculumVitaeDeliver/queryIzCanDeliver",method:"get",params:e})` |
-| `Ie` | index.api.17833206362002.js | api | @/api/jobCurriculumVitae `add` | `e=>a.request({url:"/xf-job/job/xfJobUserCare/add",method:"get",params:e})` |
-| `da` | index.api.17833206362002.js | api | @/api/jobCurriculumVitae `cancel` | `e=>a.request({url:"/xf-job/job/xfJobUserCare/cancel",method:"get",params:e})` |
-| `pa` | index.api.17833206362006.js | api | @/api/job `getDistance` | `e=>o.request({url:"/xf-job/job/licenseFree/getDistance",method:"post",data:e})` |
+| `sa` | index.api.17833206362002.js | api | @/api/api-17833206362002 `queryForCompetitiveAnalysis` | `e=>a.request({url:"/xf-job/job/xfJobCurriculumVitae/queryForCompetitiveAnalysis",method:"get",params:e})` |
+| `la` | index.api.17833206362002.js | api | @/api/api-17833206362002 `queryById` | `e=>a.request({url:"/xf-alliance/alliance/licenseFree/xfAllianceCompany/queryById",method:"get",params:e})` |
+| `ia` | index.api.17833206362002.js | api | @/api/api-17833206362002 `freeCompanyDetailById` | `e=>a.request({url:"/xf-job/job/licenseFree/freeCompanyDetailById",method:"post",params:e})` |
+| `na` | index.api.17833206362002.js | api | @/api/api-17833206362002 `queryById2` | `e=>a.request({url:"/xf-alliance/alliance/licenseFree/xfAlliancePosition/queryById",method:"get",params:e})` |
+| `ra` | index.api.17833206362002.js | api | @/api/api-17833206362002 `freeCompanyPositionDetail` | `e=>a.request({url:"/xf-job/job/licenseFree/freeCompanyPositionDetail",method:"post",params:e})` |
+| `ca` | index.api.17833206362002.js | api | @/api/api-17833206362002 `findLikeJobList` | `e=>a.request({url:"/xf-job/job/licenseFree/findLikeJobList",method:"post",params:e})` |
+| `_e` | index.api.17833206362002.js | api | @/api/api-17833206362002 `queryIzCanDeliver` | `e=>a.request({url:"/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver",method:"get",params:e})` |
+| `ge` | index.api.17833206362002.js | api | @/api/api-17833206362002 `queryIzCanDeliver2` | `e=>a.request({url:"/xf-alliance/alliance/curriculumVitaeDeliver/queryIzCanDeliver",method:"get",params:e})` |
+| `Ie` | index.api.17833206362002.js | api | @/api/api-17833206362002 `add` | `e=>a.request({url:"/xf-job/job/xfJobUserCare/add",method:"get",params:e})` |
+| `da` | index.api.17833206362002.js | api | @/api/api-17833206362002 `cancel` | `e=>a.request({url:"/xf-job/job/xfJobUserCare/cancel",method:"get",params:e})` |
+| `pa` | index.api.17833206362006.js | api | @/api/job `getDistance`（reserved） | `e=>o.request({url:"/xf-job/job/licenseFree/getDistance",method:"post",data:e})` |
 | `ya` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
 | `va` | resumemodal.1783320636200.js | shared | @/shared/resumemodal.vue `default` | `D(r,[["__scopeId","data-v-30d15804"]])` |
 | `_a` | complaint.1783320636200.js | shared | @/shared/complaint.vue `default`（reserved） | `$(_,[["__scopeId","data-v-78e7da48"]])` |

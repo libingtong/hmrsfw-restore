@@ -53,7 +53,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Tt": {
    "original": "a6",
@@ -99,7 +100,8 @@
    "original": "c1",
    "path": "@/legacy/utils",
    "export": "LOGIN_CHECK_TYPE_4",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Rt": {
    "original": "n",
@@ -125,28 +127,28 @@
    "original": "index.api.178332063620014.js#a",
    "path": "@/api/article",
    "export": "getChildArticleTypeList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
   },
   "Ut": {
    "original": "index.api.178332063620014.js#b",
    "path": "@/api/article",
    "export": "getArticleList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/getArticleList"
   },
   "he": {
    "original": "index.api.178332063620014.js#g",
    "path": "@/api/article",
    "export": "freeCompanyList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/freeCompanyList"
   },
   "_e": {
    "original": "index.api.178332063620014.js#c",
    "path": "@/api/article",
    "export": "findJobList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/findJobList"
   }
  },

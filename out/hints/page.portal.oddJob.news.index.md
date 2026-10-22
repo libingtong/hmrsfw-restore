@@ -4,9 +4,9 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `_e` | index.api.178332063620024.js | api | @/api/oddJob `getChildArticleTypeList` | `e=>o.request({url:"/xf-job/job/licenseFree/getChildArticleTypeList",method:"post",params:e})` |
-| `de` | index.api.178332063620024.js | api | @/api/oddJob `getArticleList` | `e=>o.request({url:"/xf-job/school/licenseFree/getArticleList",method:"get",params:e})` |
-| `be` | index.api.17833206362008.js | api | @/api/sysArticle `getHotArticleList` | `e=>t.request({url:"/xf-job/job/licenseFree/getHotArticleList",method:"get",params:e})` |
+| `_e` | index.api.178332063620024.js | api | @/api/api-24 `getChildArticleTypeList` | `e=>o.request({url:"/xf-job/job/licenseFree/getChildArticleTypeList",method:"post",params:e})` |
+| `de` | index.api.178332063620024.js | api | @/api/api-24 `getArticleList` | `e=>o.request({url:"/xf-job/school/licenseFree/getArticleList",method:"get",params:e})` |
+| `be` | index.api.17833206362008.js | api | @/api/api-08 `getHotArticleList` | `e=>t.request({url:"/xf-job/job/licenseFree/getHotArticleList",method:"get",params:e})` |
 | `q` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
 | `he` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `ye` | index.1783320636200.js | entry | @/legacy `BusinessDictLabels` | `(e=>(e.PROVINCE_NAME="provinceName",e.TEACHIN_STATUS="teachin_status",e.WEBSITE_CONFIG="website_config",e.PLATFORM="\u5E73\u53F0\u914D\u7F6E",e.INDEX_QRCODE="index_qrcode",e.TOPNAV="topNav",e.HIDE_COD` |

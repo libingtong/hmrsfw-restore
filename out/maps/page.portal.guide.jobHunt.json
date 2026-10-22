@@ -71,13 +71,15 @@
    "original": "bh",
    "path": "@/legacy/utils",
    "export": "parseIdCard",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "st": {
    "original": "aR",
    "path": "@/legacy/utils",
    "export": "isMobilePhone",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ge": {
    "original": "A",
@@ -93,7 +95,8 @@
    "original": "bi",
    "path": "@/legacy/api",
    "export": "getAllInfo",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Re": {
    "original": "L",
@@ -129,7 +132,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Ue": {
    "original": "o",
@@ -177,13 +181,15 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ut": {
    "original": "a5",
    "path": "@/legacy/api",
    "export": "listOneForWebSite",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "pt": {
    "original": "u",
@@ -195,76 +201,77 @@
    "original": "aU",
    "path": "@/legacy/api",
    "export": "recommendJobList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   }
  },
  "api": {
   "gt": {
    "original": "index.1783320636200117.js#c",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "checkIdCard",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUser/checkIdCard"
   },
   "fe": {
    "original": "index.1783320636200117.js#s",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "saveForUserCenter",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUser/saveForUserCenter"
   },
   "Qe": {
    "original": "index.1783320636200117.js#b",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "setCompleteStatus",
    "status": "restored",
    "url": "/xf-job/communal/xfSysGuideRecord/setCompleteStatus"
   },
   "ft": {
    "original": "index.1783320636200117.js#d",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "save",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/save"
   },
   "vt": {
    "original": "index.1783320636200117.js#v",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "list2",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/list"
   },
   "yt": {
    "original": "index.1783320636200117.js#e",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "beJobSeeker",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/beJobSeeker"
   },
   "xt": {
    "original": "index.1783320636200117.js#f",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "addBatch",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/addBatch"
   },
   "At": {
    "original": "index.api.17833206362002.js#e",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "add",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/add"
   },
   "St": {
    "original": "index.api.17833206362002.js#h",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "cancel",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/cancel"
   },
   "Ut": {
    "original": "index.api.17833206362002.js#q",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "queryIzCanDeliver",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver"
@@ -295,14 +302,14 @@
   "$a": {
    "original": "auth.1783320636200.js#_",
    "path": "@/shared/auth.ts",
-   "export": "_",
+   "export": "nextPageIconImg",
    "status": "reserved",
    "owner": "shared.portal.auth"
   },
   "Za": {
    "original": "auth.1783320636200.js#a",
    "path": "@/shared/auth.ts",
-   "export": "a",
+   "export": "realNameAuthImg",
    "status": "reserved",
    "owner": "shared.portal.auth"
   },

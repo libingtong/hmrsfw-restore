@@ -48,7 +48,8 @@
    "original": "aI",
    "path": "@/legacy/api",
    "export": "setStatus",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "j": {
    "original": "M",
@@ -64,7 +65,8 @@
    "original": "a7",
    "path": "@/legacy/api",
    "export": "isPublishingPosition",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   }
  },
  "api": {
@@ -72,14 +74,14 @@
    "original": "index.api.175161560754510.js#q",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "queryPageListByCompanyId2",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCurriculumVitaeSearch/queryPageListByCompanyId"
   },
   "Ie": {
    "original": "index.api.175161560754510.js#a",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "addTalent",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
   }
  },

@@ -19,7 +19,8 @@
  "target": "apps/uc/src/shared/dictCode.vue",
  "exports": {
   "d": {
-   "export": "default"
+   "export": "default",
+   "original": "dictCode.1751615607545.js#d"
   }
  },
  "registryKey": "dictCode.1751615607545.js",

@@ -13,11 +13,11 @@
 | `ue` | index.1751615607545.js | entry | @/legacy `useTagsStore` | `d0("tags",{state:()=>({list:[]}),getters:{show:t=>t.list.length>0,nameList:t=>t.list.map(e=>e.name)},actions:{delTagsItem(t){this.list.splice(t,1)},setTagsItem(t){this.list.push(t)},clearTags(){this.l` |
 | `pe` | index.1751615607545.js | api | @/legacy `getCompanyInfo` | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/getCompanyInfo",method:"get",params:t})` |
 | `fe` | index.1751615607545.js | entry | @/legacy `decryptText` | `t=>{if(t&&typeof t=="string")try{return Df.sm4.decrypt(t,yC)}catch(e){return console.error("解密失败:",e),null}else return null}` |
-| `ve` | index.api.175161560754512.js | api | @/api/jobFair `checkIzShowApplySameNetworkFair` | `t=>o.request({url:"/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair",method:"post",params:t})` |
-| `ye` | index.api.175161560754512.js | api | @/api/jobFair `queryFairRegions` | `t=>o.request({url:"/xf-job/job/licenseFree/queryFairRegions",method:"get",params:t})` |
-| `we` | index.api.175161560754512.js | api | @/api/jobFair `updateCompIntroduc` | `t=>o.request({url:"/xf-job/job/licenseFree/updateCompIntroduc",method:"post",data:t})` |
-| `Te` | index.api.175161560754512.js | api | @/api/jobFair `list` | `t=>o.request({url:"/xf-job/job/xfJobFair/list",method:"post",data:t})` |
-| `ke` | index.api.175161560754512.js | api | @/api/jobFair `checkIzDishonesty` | `t=>o.request({url:"/xf-job/job/xfJobFairApplyInfo/checkIzDishonesty",method:"post",data:t})` |
+| `ve` | index.api.175161560754512.js | api | @/api/api-175161560754512 `checkIzShowApplySameNetworkFair` | `t=>o.request({url:"/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair",method:"post",params:t})` |
+| `ye` | index.api.175161560754512.js | api | @/api/api-175161560754512 `queryFairRegions` | `t=>o.request({url:"/xf-job/job/licenseFree/queryFairRegions",method:"get",params:t})` |
+| `we` | index.api.175161560754512.js | api | @/api/api-175161560754512 `updateCompIntroduc` | `t=>o.request({url:"/xf-job/job/licenseFree/updateCompIntroduc",method:"post",data:t})` |
+| `Te` | index.api.175161560754512.js | api | @/api/api-175161560754512 `list` | `t=>o.request({url:"/xf-job/job/xfJobFair/list",method:"post",data:t})` |
+| `ke` | index.api.175161560754512.js | api | @/api/api-175161560754512 `checkIzDishonesty` | `t=>o.request({url:"/xf-job/job/xfJobFairApplyInfo/checkIzDishonesty",method:"post",data:t})` |
 | `O` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |
 | `Se` | positionmodal.1751615607545.js | shared | @/shared/positionmodal.vue `default` | `B(X,[["__scopeId","data-v-0ff88674"]])` |
 | `Ie` | beonmodal.1751615607545.js | shared | @/shared/beonmodal.vue `default` | `h(A,[["__scopeId","data-v-1e6b66f8"]])` |

@@ -43,19 +43,22 @@
    "original": "cu",
    "path": "@/legacy/api",
    "export": "getChildArticleTypeListByCode",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "re": {
    "original": "aj",
    "path": "@/legacy/utils",
    "export": "openLink",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ue": {
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "me": {
    "original": "_",
@@ -67,14 +70,14 @@
    "original": "index.api.178332063620040.js#c",
    "path": "@/api/scan",
    "export": "getArticleTypeByCode",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/getArticleTypeByCode"
   },
   "ie": {
    "original": "index.api.178332063620040.js#g",
    "path": "@/api/scan",
    "export": "getArticleList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/getArticleList"
   }
  },

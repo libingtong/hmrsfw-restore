@@ -38,7 +38,8 @@
    "original": "cu",
    "path": "@/legacy/api",
    "export": "getChildArticleTypeListByCode",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "et": {
    "original": "B",
@@ -68,7 +69,7 @@
    "original": "index.api.178332063620037.js#a",
    "path": "@/api/sysBusinessSetting",
    "export": "getTalentSettings",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfSysBusinessSetting/getTalentSettings"
   }
  },

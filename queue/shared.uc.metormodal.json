@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/metormodal.vue",
  "exports": {
   "m": {
-   "export": "default"
+   "export": "default",
+   "original": "metormodal.1751615607545.js#m"
   }
  },
  "registryKey": "metormodal.1751615607545.js",

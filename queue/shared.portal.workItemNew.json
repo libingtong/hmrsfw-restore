@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/workItemNew.vue",
  "exports": {
   "w": {
-   "export": "default"
+   "export": "default",
+   "original": "workItemNew.1783320636200.js#w"
   }
  },
  "registryKey": "workItemNew.1783320636200.js",
@@ -57,7 +58,9 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.portal.c03"
+  ]
  },
  "stylesProvidedByScript": true
 }

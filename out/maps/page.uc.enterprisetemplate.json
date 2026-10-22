@@ -64,21 +64,21 @@
  "api": {
   "ee": {
    "original": "index.api.17516156075456.js#R",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "vitaeTempListByType",
    "status": "restored",
    "url": "/job/xfJobVitaeTemplate/vitaeTempListByType"
   },
   "te": {
    "original": "index.api.17516156075456.js#S",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "listNewForPoster",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompanyPosition/listNewForPoster"
   },
   "ae": {
    "original": "index.api.17516156075456.js#T",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "generatePoster4PC",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompany/generatePoster4PC"

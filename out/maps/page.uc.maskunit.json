@@ -54,28 +54,28 @@
  "api": {
   "$": {
    "original": "index.api.17516156075456.js#Z",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "getCompany",
    "status": "restored",
    "url": "/xf-job/job/xfJobShieldList/getCompany"
   },
   "j": {
    "original": "index.api.17516156075456.js#_",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "cancel",
    "status": "restored",
    "url": "/xf-job/job/xfJobShieldList/cancel"
   },
   "E": {
    "original": "index.api.17516156075456.js#$",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "add4",
    "status": "restored",
    "url": "/xf-job/job/xfJobShieldList/add"
   },
   "F": {
    "original": "index.api.17516156075456.js#a0",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "companyList",
    "status": "restored",
    "url": "/xf-job/job/xfJobShieldList/companyList"

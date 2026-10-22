@@ -21,7 +21,8 @@
  "target": "apps/uc/src/shared/authCompany.vue",
  "exports": {
   "a": {
-   "export": "default"
+   "export": "default",
+   "original": "authCompany.1751615607545.js#a"
   }
  },
  "registryKey": "authCompany.1751615607545.js",
@@ -48,6 +49,7 @@
   "modules": [],
   "views": [],
   "orders": [
+   "entry.uc.E6",
    "shared.uc.addKeynote",
    "shared.uc.market"
   ]

@@ -92,14 +92,14 @@
    "original": "index.api.17833206362006.js#a",
    "path": "@/api/job",
    "export": "findJobListForWebRedis",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/findJobListForWebRedis"
   },
   "aa": {
    "original": "index.api.17833206362006.js#f",
    "path": "@/api/job",
    "export": "findJobListForDistance",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/findJobListForDistance"
   }
  },

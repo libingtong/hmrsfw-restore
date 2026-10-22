@@ -46,7 +46,8 @@
    "original": "aW",
    "path": "@/legacy/api",
    "export": "queryAllInfoById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Z": {
    "original": "B",
@@ -64,43 +65,50 @@
    "original": "b2",
    "path": "@/legacy/api",
    "export": "querylistForOneUser",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "sa": {
    "original": "ag",
    "path": "@/legacy/utils",
    "export": "formatDateTime",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ta": {
    "original": "b3",
    "path": "@/legacy/api",
    "export": "listByPageId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "aa": {
    "original": "ah",
    "path": "@/legacy/api",
    "export": "getXfSysUserInfo",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "la": {
    "original": "b4",
    "path": "@/legacy/api",
    "export": "queryQuickQuestionsList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "oa": {
    "original": "ao",
    "path": "@/legacy/api",
    "export": "queryQuestionsList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "me": {
    "original": "b5",
    "path": "@/legacy/api",
    "export": "askQuestion",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ia": {
    "original": "av",
@@ -112,13 +120,15 @@
    "original": "b6",
    "path": "@/legacy/api",
    "export": "queryQuestionsListByParams",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ra": {
    "original": "b7",
    "path": "@/legacy/api",
    "export": "updateHelpNums",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Ce": {
    "original": "A",
@@ -130,13 +140,15 @@
    "original": "b8",
    "path": "@/legacy/api",
    "export": "getInfoById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ga": {
    "original": "b9",
    "path": "@/legacy/api",
    "export": "getKnowledgeInfoById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ua": {
    "original": "_",

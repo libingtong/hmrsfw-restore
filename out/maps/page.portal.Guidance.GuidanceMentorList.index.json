@@ -82,7 +82,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "ee": {
    "original": "B",
@@ -126,28 +127,28 @@
    "original": "index.api.17833206362005.js#x",
    "path": "@/api/jobUserTutorExpand2",
    "export": "listForWebsite",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite"
   },
   "Ge": {
    "original": "index.api.17833206362005.js#h",
    "path": "@/api/jobUserTutorExpand2",
    "export": "hotlistForWebsite",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobUserTutorExpand/hotlistForWebsite"
   },
   "Re": {
    "original": "index.api.17833206362005.js#t",
    "path": "@/api/jobUserTutorExpand2",
    "export": "add",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysThumbsUp/add"
   },
   "He": {
    "original": "index.api.17833206362004.js#g",
    "path": "@/api/jobUserTutorExpand",
    "export": "queryOrganizationByAreaId",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/queryOrganizationByAreaId"
   }
  },

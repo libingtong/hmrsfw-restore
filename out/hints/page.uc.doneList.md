@@ -4,14 +4,14 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `ye` | index.api.17516156075455.js | api | @/api/talentStayUniversity `list3` | `t=>e.request({url:"/xf-talent/talent/xfTalentCraftsmanSubsidys/list",method:"post",data:t})` |
-| `se` | index.api.17516156075455.js | api | @/api/talentStayUniversity `list2` | `t=>e.request({url:"/xf-talent/talent/xfTalentCgraduateRltSubsidy/list",method:"post",data:t})` |
-| `ke` | index.api.17516156075455.js | api | @/api/talentStayUniversity `list4` | `t=>e.request({url:"/xf-talent/talent/xfTalentPfiPromotion/list",method:"post",data:t})` |
-| `be` | index.api.17516156075455.js | api | @/api/talentStayUniversity `addCollegeInfo` | `t=>e.request({url:"/xf-talent/talent/xfTalentStayUniversity/addCollegeInfo",method:"post",data:t})` |
-| `ve` | index.api.17516156075455.js | api | @/api/talentStayUniversity `list` | `t=>e.request({url:"/xf-talent/talent/xfTalentStayUniversity/list",method:"post",data:t})` |
-| `Se` | index.api.17516156075455.js | api | @/api/talentStayUniversity `getCollegeInfo` | `t=>e.request({url:"/xf-talent/talent/xfTalentStayUniversity/getCollegeInfo",method:"post",data:t})` |
-| `le` | index.api.17516156075455.js | api | @/api/talentStayUniversity `list5` | `t=>e.request({url:"/xf-talent/talent/xfTalentPostdocPerk/list",method:"post",data:t})` |
-| `xe` | index.api.17516156075455.js | api | @/api/talentStayUniversity `queryOpenStatus` | `t=>e.request({url:"/xf-job/job/licenseFree/xfJobMattermanage/queryOpenStatus",method:"get",params:t})` |
+| `ye` | index.api.17516156075455.js | api | @/api/api-17516156075455 `list3` | `t=>e.request({url:"/xf-talent/talent/xfTalentCraftsmanSubsidys/list",method:"post",data:t})` |
+| `se` | index.api.17516156075455.js | api | @/api/api-17516156075455 `list2` | `t=>e.request({url:"/xf-talent/talent/xfTalentCgraduateRltSubsidy/list",method:"post",data:t})` |
+| `ke` | index.api.17516156075455.js | api | @/api/api-17516156075455 `list4` | `t=>e.request({url:"/xf-talent/talent/xfTalentPfiPromotion/list",method:"post",data:t})` |
+| `be` | index.api.17516156075455.js | api | @/api/api-17516156075455 `addCollegeInfo` | `t=>e.request({url:"/xf-talent/talent/xfTalentStayUniversity/addCollegeInfo",method:"post",data:t})` |
+| `ve` | index.api.17516156075455.js | api | @/api/api-17516156075455 `list` | `t=>e.request({url:"/xf-talent/talent/xfTalentStayUniversity/list",method:"post",data:t})` |
+| `Se` | index.api.17516156075455.js | api | @/api/api-17516156075455 `getCollegeInfo` | `t=>e.request({url:"/xf-talent/talent/xfTalentStayUniversity/getCollegeInfo",method:"post",data:t})` |
+| `le` | index.api.17516156075455.js | api | @/api/api-17516156075455 `list5` | `t=>e.request({url:"/xf-talent/talent/xfTalentPostdocPerk/list",method:"post",data:t})` |
+| `xe` | index.api.17516156075455.js | api | @/api/api-17516156075455 `queryOpenStatus` | `t=>e.request({url:"/xf-job/job/licenseFree/xfJobMattermanage/queryOpenStatus",method:"get",params:t})` |
 | `L` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `G` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `X` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |

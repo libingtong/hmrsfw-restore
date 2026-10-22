@@ -61,13 +61,15 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "vt": {
    "original": "cv",
    "path": "@/legacy/components/Recommend.vue",
    "export": "default",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c05"
   },
   "ae": {
    "original": "v",
@@ -109,7 +111,8 @@
    "original": "Q",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_CERTIFIED",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "M": {
    "original": "r",
@@ -133,7 +136,8 @@
    "original": "be",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_AUTH_RESUME",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "_t": {
    "original": "_",

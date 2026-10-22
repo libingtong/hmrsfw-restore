@@ -110,5 +110,10 @@
   "evidence": "legacy-dist/usercenter/assets/formDone.1751615607545.js:1:110146 按 route.params.type 只渲染一个子表单（bmgjjl、lsajbt、zctsjl、zsgxjl、bshbt、szftsjt、bshky），字面 :type 时一个都不渲染；legacy-dist/usercenter/assets/doneList.1751615607545.js:1:24445 原版入口 router.push(\"/formDone/bshbt\") 打开空白申报表（无单位认证前置条件，不读 corpInfo）。取值由 HM-1113 裁定",
   "recordNotes": "只录 bshbt 子表单的空白申报表（不带 id）。绝不能点提交、保存或上传，交互脚本只做查看、展开、切换。",
   "by": "HM-1116"
+ },
+ "page.portal.livejob.index": {
+  "recordPath": "/fairList?type=100",
+  "evidence": "legacy-dist/portal/assets/fairList.1783320636200.js:1:1616 iz_scene_outdoor_add==1 时 /fairList 渲染 fairsList（测试环境即此分支：原版基线 page.portal.sjz.fair.fairsList 的 dom.html 有 data-v-32f8b57d 和「直播带岗」页签）；legacy-dist/portal/assets/fairsList.1783320636200.js:1:1830 query.type 不是 web/20/scene/10 时 jobFairType=\"100\"，:1:2952 jobFairType 为 100 时渲染 index.178332063620040.js（livejob 列表，data-v-6e6c85a0）；不带 type 时为 10（现场招聘会），livejob 不渲染",
+  "by": "HM-1124"
  }
 }

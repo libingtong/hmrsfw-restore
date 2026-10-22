@@ -73,7 +73,8 @@
    "original": "a7",
    "path": "@/legacy/api",
    "export": "isPublishingPosition",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "$": {
    "original": "m",
@@ -91,35 +92,35 @@
    "original": "index.api.175161560754510.js#c",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "queryPageListByCompanyIdForFair",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/queryPageListByCompanyIdForFair"
   },
   "Pe": {
    "original": "index.api.175161560754510.js#d",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "queryPageListByCompanyId",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/queryPageListByCompanyId"
   },
   "je": {
    "original": "index.api.175161560754510.js#e",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "getHouseSetting",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCurriculumVitaeDeliver/getHouseSetting"
   },
   "Ae": {
    "original": "index.api.175161560754510.js#a",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "addTalent",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCompanyTalents/addTalent"
   },
   "Fe": {
    "original": "index.api.175161560754510.js#f",
    "path": "@/api/jobCurriculumVitaeDeliver",
    "export": "downPdf",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCompanyCurriculumDownload/downPdf"
   }
  },

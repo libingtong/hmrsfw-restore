@@ -33,7 +33,8 @@
    "original": "bm",
    "path": "@/legacy/api",
    "export": "getMyAnswerRecord",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "z": {
    "original": "k",

@@ -36,7 +36,7 @@
    "original": "index.api.17516156075457.js#i",
    "path": "@/api/oddFindJobInfo",
    "export": "browseRecords",
-   "status": "restored",
+   "status": "reserved",
    "url": "/oddjob/xfOddUserBrowse/browseRecords"
   }
  },

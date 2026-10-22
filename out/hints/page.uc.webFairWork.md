@@ -4,12 +4,12 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `ra` | index.api.175161560754512.js | api | @/api/jobFair `queryById` | `t=>o.request({url:"/xf-job/job/xfJobFair/queryById",method:"get",params:t})` |
-| `sa` | index.api.175161560754512.js | api | @/api/jobFair `list2` | `t=>o.request({url:"/xf-job/job/xfJobFairPositionRelation/list",method:"post",data:t})` |
-| `Q` | index.api.175161560754512.js | api | @/api/jobFair `companyPositionAdd` | `t=>o.request({url:"/xf-job/job/xfJobFairApplyInfo/companyPositionAdd",method:"post",data:t})` |
-| `la` | index.api.175161560754512.js | api | @/api/jobFair `addPosition` | `t=>o.request({url:"/xf-job/job/xfJobFairPositionRelation/addPosition",method:"post",data:t})` |
-| `ia` | index.api.175161560754512.js | api | @/api/jobFair `editPosition` | `t=>o.request({url:"/xf-job/job/xfJobFairPositionRelation/editPosition",method:"post",data:t})` |
-| `oa` | index.api.175161560754512.js | api | @/api/jobFair `detailById` | `t=>o.request({url:"/xf-job/job/xfJobCompanyPosition/detailById",method:"get",params:t})` |
+| `ra` | index.api.175161560754512.js | api | @/api/api-175161560754512 `queryById` | `t=>o.request({url:"/xf-job/job/xfJobFair/queryById",method:"get",params:t})` |
+| `sa` | index.api.175161560754512.js | api | @/api/api-175161560754512 `list2` | `t=>o.request({url:"/xf-job/job/xfJobFairPositionRelation/list",method:"post",data:t})` |
+| `Q` | index.api.175161560754512.js | api | @/api/api-175161560754512 `companyPositionAdd` | `t=>o.request({url:"/xf-job/job/xfJobFairApplyInfo/companyPositionAdd",method:"post",data:t})` |
+| `la` | index.api.175161560754512.js | api | @/api/api-175161560754512 `addPosition` | `t=>o.request({url:"/xf-job/job/xfJobFairPositionRelation/addPosition",method:"post",data:t})` |
+| `ia` | index.api.175161560754512.js | api | @/api/api-175161560754512 `editPosition` | `t=>o.request({url:"/xf-job/job/xfJobFairPositionRelation/editPosition",method:"post",data:t})` |
+| `oa` | index.api.175161560754512.js | api | @/api/api-175161560754512 `detailById` | `t=>o.request({url:"/xf-job/job/xfJobCompanyPosition/detailById",method:"get",params:t})` |
 | `na` | index.1751615607545.js | entry | @/legacy `useTagsStore` | `d0("tags",{state:()=>({list:[]}),getters:{show:t=>t.list.length>0,nameList:t=>t.list.map(e=>e.name)},actions:{delTagsItem(t){this.list.splice(t,1)},setTagsItem(t){this.list.push(t)},clearTags(){this.l` |
 | `K` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `J` | index.1751615607545.js | api | @/legacy `getDictItemsByCode` | `t=>Ee.request({url:"/jeecg-system/sys/dict/getDictItemsByCode",method:"get",params:t})` |

@@ -7,6 +7,11 @@
    "app": "portal",
    "kb": 10.5,
    "deps": [
+    "entry.portal.E5",
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c04",
+    "entry.portal.c09",
     "page.portal.xjhm.home.advertTop",
     "shared.portal.FriendLinks",
     "shared.portal.homeNews3",
@@ -21,6 +26,9 @@
    "app": "portal",
    "kb": 32.8,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c04",
     "page.portal.cityHome.titles",
     "page.portal.fair.signModal",
     "shared.portal.modules"
@@ -33,6 +41,9 @@
    "app": "portal",
    "kb": 8.4,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c09",
     "shared.portal.homeNews3",
     "shared.portal.modules"
    ]
@@ -43,7 +54,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 2,
-   "deps": []
+   "deps": [
+    "entry.portal.c03",
+    "entry.portal.c05"
+   ]
   },
   {
    "id": "page.portal.region.colleges.index",
@@ -52,6 +66,8 @@
    "app": "portal",
    "kb": 16.6,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "page.portal.fair.signModal",
     "shared.portal.homeNews3"
    ]
@@ -78,10 +94,12 @@
   {
    "id": "page.portal.oddJob.index",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 13.9,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.oddJob.recruitworkers.index",
@@ -90,6 +108,8 @@
    "app": "portal",
    "kb": 12.1,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "page.portal.oddJob.rtInto.odd",
     "shared.portal.nowContact",
     "shared.portal.oddType"
@@ -102,6 +122,8 @@
    "app": "portal",
    "kb": 11.1,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.complaint",
     "shared.portal.map2",
     "shared.portal.nowContact"
@@ -114,6 +136,8 @@
    "app": "portal",
    "kb": 11.8,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "page.portal.oddJob.rtInto.odd",
     "shared.portal.modules",
     "shared.portal.nowContact",
@@ -127,6 +151,8 @@
    "app": "portal",
    "kb": 9.4,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.complaint",
     "shared.portal.modules",
     "shared.portal.nowContact"
@@ -139,6 +165,7 @@
    "app": "portal",
    "kb": 8.9,
    "deps": [
+    "entry.portal.c03",
     "page.portal.oddJob.rtInto.index"
    ]
   },
@@ -149,6 +176,8 @@
    "app": "portal",
    "kb": 6.4,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.complaint"
    ]
   },
@@ -159,6 +188,7 @@
    "app": "portal",
    "kb": 8.4,
    "deps": [
+    "entry.portal.c03",
     "page.portal.oddJob.rtInto.index"
    ]
   },
@@ -169,6 +199,8 @@
    "app": "portal",
    "kb": 6.2,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.complaint"
    ]
   },
@@ -179,6 +211,7 @@
    "app": "portal",
    "kb": 7.7,
    "deps": [
+    "entry.portal.E6",
     "page.portal.oddJob.rtInto.index"
    ]
   },
@@ -189,6 +222,8 @@
    "app": "portal",
    "kb": 5.8,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.complaint"
    ]
   },
@@ -217,6 +252,7 @@
    "app": "portal",
    "kb": 14.2,
    "deps": [
+    "entry.portal.E6",
     "page.portal.livejob.components.commentItem",
     "shared.portal.likeBtn",
     "shared.portal.workItem"
@@ -229,6 +265,8 @@
    "app": "portal",
    "kb": 9.8,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c05",
     "shared.portal.modules"
    ]
   },
@@ -239,6 +277,8 @@
    "app": "portal",
    "kb": 18.8,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.workItem"
    ]
   },
@@ -249,6 +289,7 @@
    "app": "portal",
    "kb": 21,
    "deps": [
+    "entry.portal.c03",
     "shared.portal.map2",
     "shared.portal.modules",
     "shared.portal.unfold"
@@ -290,6 +331,8 @@
    "app": "portal",
    "kb": 18.4,
    "deps": [
+    "entry.portal.c03",
+    "entry.portal.c05",
     "shared.portal.ellipsisText",
     "shared.portal.modules"
    ]
@@ -312,6 +355,7 @@
    "app": "portal",
    "kb": 5.4,
    "deps": [
+    "entry.portal.c03",
     "shared.portal.modules"
    ]
   },
@@ -322,6 +366,7 @@
    "app": "portal",
    "kb": 5.4,
    "deps": [
+    "entry.portal.c03",
     "shared.portal.modules"
    ]
   },
@@ -332,16 +377,19 @@
    "app": "portal",
    "kb": 10.6,
    "deps": [
+    "entry.portal.c03",
     "shared.portal.modules"
    ]
   },
   {
    "id": "page.portal.Guidance.GuidanceMentorDetail.index",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 8.1,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.Guidance.GuidanceMentorFrom.index",
@@ -357,7 +405,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 5.4,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.sjz.school.index",
@@ -366,6 +416,8 @@
    "app": "portal",
    "kb": 24,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "page.portal.fair.signModal",
     "shared.portal.modules",
     "shared.portal.tagcanvas"
@@ -374,10 +426,12 @@
   {
    "id": "page.portal.sjz.enterpriserecruitment.enterpriserecruitment",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 9.2,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.sjz.unitMain.unitMain",
@@ -385,7 +439,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 13.6,
-   "deps": []
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.sjz.news.newsList",
@@ -398,10 +455,13 @@
   {
    "id": "page.portal.News.newsDetail",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 8.7,
-   "deps": []
+   "deps": [
+    "entry.portal.c03",
+    "entry.portal.c05"
+   ]
   },
   {
    "id": "page.portal.sjz.job.jobList",
@@ -422,6 +482,8 @@
    "app": "portal",
    "kb": 14.3,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.InterviewInvitation"
    ]
   },
@@ -432,13 +494,14 @@
    "app": "portal",
    "kb": 12.3,
    "deps": [
+    "entry.portal.E6",
     "shared.portal.InterviewInvitation"
    ]
   },
   {
    "id": "page.portal.PDFPreview.PDFPreview",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 1.5,
    "deps": []
@@ -450,6 +513,8 @@
    "app": "portal",
    "kb": 24.6,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.addResume",
     "shared.portal.complaint",
     "shared.portal.evaluate",
@@ -464,16 +529,20 @@
    "app": "portal",
    "kb": 5.7,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.statusPlace"
    ]
   },
   {
    "id": "page.portal.resumeAnalysisReport.resumeAnalysisReport",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 13.9,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
@@ -482,6 +551,8 @@
    "app": "portal",
    "kb": 17.1,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.InterviewInvitation"
    ]
   },
@@ -513,6 +584,8 @@
    "app": "portal",
    "kb": 8.5,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.complaint",
     "shared.portal.modules",
     "shared.portal.signSetup"
@@ -535,6 +608,7 @@
    "app": "portal",
    "kb": 8.4,
    "deps": [
+    "entry.portal.c03",
     "shared.portal.complaint",
     "shared.portal.modules",
     "shared.portal.signSetup"
@@ -543,10 +617,12 @@
   {
    "id": "page.portal.BeOnProbation.ProbationHome",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 27.7,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.BeOnProbation.UserAdminJobPlacement",
@@ -570,7 +646,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 7.7,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.BeOnProbation.ProbationBaseList",
@@ -605,6 +683,7 @@
    "app": "portal",
    "kb": 30.8,
    "deps": [
+    "entry.portal.E6",
     "page.portal.eMap.list",
     "shared.portal.gaode2",
     "shared.portal.modules"
@@ -613,7 +692,7 @@
   {
    "id": "page.portal.outLink.index",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 1.4,
    "deps": []
@@ -632,10 +711,11 @@
   {
    "id": "page.portal.fair.webFair.list",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 10.4,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal"
    ]
   },
@@ -646,6 +726,7 @@
    "app": "portal",
    "kb": 29.7,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal",
     "page.portal.fair.webFair.NumVideo"
    ]
@@ -656,15 +737,18 @@
    "status": "todo",
    "app": "portal",
    "kb": 11.8,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.fair.sceneFair.detail",
    "type": "page",
-   "status": "segmented",
+   "status": "regression",
    "app": "portal",
    "kb": 35.1,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal",
     "page.portal.fair.webFair.NumVideo"
    ]
@@ -672,10 +756,11 @@
   {
    "id": "page.portal.fair.outFair.list",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 12,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal"
    ]
   },
@@ -686,6 +771,7 @@
    "app": "portal",
    "kb": 29.6,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal",
     "page.portal.fair.webFair.NumVideo",
     "shared.portal.modules"
@@ -714,6 +800,7 @@
    "app": "portal",
    "kb": 19,
    "deps": [
+    "entry.portal.c03",
     "shared.portal.GetLocationMap",
     "shared.portal.complaint",
     "shared.portal.unfold"
@@ -726,6 +813,9 @@
    "app": "portal",
    "kb": 21.1,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c02",
+    "entry.portal.c03",
     "shared.portal.thirdParty"
    ]
   },
@@ -736,6 +826,8 @@
    "app": "portal",
    "kb": 8,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c02",
     "shared.portal.thirdParty"
    ]
   },
@@ -745,7 +837,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 7.7,
-   "deps": []
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c02"
+   ]
   },
   {
    "id": "page.portal.answer.index",
@@ -754,6 +849,8 @@
    "app": "portal",
    "kb": 8.7,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "page.portal.answer.passwordModal",
     "shared.portal.modules"
    ]
@@ -765,6 +862,8 @@
    "app": "portal",
    "kb": 19.7,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.modules"
    ]
   },
@@ -791,10 +890,11 @@
   {
    "id": "page.portal.sjz.archivesSearch.index",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 15.5,
    "deps": [
+    "entry.portal.c02",
     "page.portal.sjz.newHome.resource",
     "page.portal.special.page1.jobNews",
     "shared.portal.modules"
@@ -806,7 +906,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 26.4,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "page.portal.sjz.bigData.screen",
@@ -844,6 +946,7 @@
    "app": "portal",
    "kb": 19.7,
    "deps": [
+    "entry.portal.E6",
     "shared.portal.bars",
     "shared.portal.init",
     "shared.portal.lines",
@@ -858,6 +961,8 @@
    "app": "portal",
    "kb": 13.3,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.modules"
    ]
   },
@@ -868,6 +973,9 @@
    "app": "portal",
    "kb": 8.8,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c06",
     "shared.portal.FriendLink",
     "shared.portal.homeRight2",
     "shared.portal.jobArea",
@@ -877,7 +985,7 @@
   {
    "id": "page.portal.personnelAssessment.index",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 3.5,
    "deps": []
@@ -905,6 +1013,8 @@
    "app": "portal",
    "kb": 41.2,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.auth"
    ]
   },
@@ -915,6 +1025,8 @@
    "app": "portal",
    "kb": 30.6,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.InterviewInvitation",
     "shared.portal.auth"
    ]
@@ -936,6 +1048,10 @@
    "app": "portal",
    "kb": 8.5,
    "deps": [
+    "entry.portal.E4",
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c07",
     "shared.portal.modules"
    ]
   },
@@ -946,6 +1062,7 @@
    "app": "portal",
    "kb": 5.5,
    "deps": [
+    "entry.portal.E6",
     "page.portal.talents.index.advertTop",
     "page.portal.talents.index.frendLinks",
     "page.portal.talents.index.homeList",
@@ -965,6 +1082,7 @@
    "app": "portal",
    "kb": 12.2,
    "deps": [
+    "entry.portal.E6",
     "page.portal.talents.cityHome.corp",
     "page.portal.talents.cityHome.helpCenter",
     "page.portal.talents.cityHome.job",
@@ -996,6 +1114,8 @@
    "app": "portal",
    "kb": 7.9,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.complaint",
     "shared.portal.hotProject",
     "shared.portal.modules",
@@ -1008,7 +1128,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 5,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "page.portal.talents.information.newsDetail",
@@ -1016,7 +1138,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 2.1,
-   "deps": []
+   "deps": [
+    "entry.portal.c05"
+   ]
   },
   {
    "id": "page.portal.talents.job.jobList",
@@ -1047,16 +1171,19 @@
    "app": "portal",
    "kb": 26.2,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "page.portal.fair.signModal"
    ]
   },
   {
    "id": "page.portal.talents.fair.outFair.detail",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "portal",
    "kb": 29.2,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal"
    ]
   },
@@ -1067,6 +1194,9 @@
    "app": "portal",
    "kb": 14.1,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c05",
     "shared.portal.InterviewInvitation"
    ]
   },
@@ -1077,6 +1207,7 @@
    "app": "portal",
    "kb": 8.1,
    "deps": [
+    "entry.portal.E6",
     "page.portal.talents.conference.abouts",
     "page.portal.talents.conference.cTitles",
     "page.portal.talents.conference.medias",
@@ -1092,7 +1223,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 3.5,
-   "deps": []
+   "deps": [
+    "entry.portal.c05"
+   ]
   },
   {
    "id": "page.portal.talents.eMap.index",
@@ -1112,6 +1245,7 @@
    "app": "portal",
    "kb": 4.9,
    "deps": [
+    "entry.portal.E6",
     "page.portal.talents.index.advertTop",
     "page.portal.talents.newPark.homeList",
     "page.portal.talents.newPark.industry",
@@ -1126,7 +1260,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 6.8,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.talents.overseasRecruitment.index",
@@ -1144,7 +1280,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 3.6,
-   "deps": []
+   "deps": [
+    "entry.portal.c03",
+    "entry.portal.c05"
+   ]
   },
   {
    "id": "page.portal.sjz.bigData.components.Dashboard1",
@@ -1192,7 +1331,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 2.9,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "page.portal.xjhm.home.advertTop",
@@ -1200,7 +1341,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 11.8,
-   "deps": []
+   "deps": [
+    "entry.portal.E4",
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "page.portal.talents.conference.cTitles",
@@ -1233,6 +1377,7 @@
    "app": "portal",
    "kb": 2.8,
    "deps": [
+    "entry.portal.c03",
     "page.portal.sjz.fair.outFair.list",
     "page.portal.sjz.fair.sceneFair.list",
     "page.portal.sjz.fair.webFair.list"
@@ -1245,6 +1390,7 @@
    "app": "portal",
    "kb": 3,
    "deps": [
+    "entry.portal.c03",
     "page.portal.livejob.index",
     "page.portal.sjz.fair.sceneFair.list",
     "page.portal.sjz.fair.webFair.list"
@@ -1256,7 +1402,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 3.9,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "page.portal.talents.cityHome.helpCenter",
@@ -1265,6 +1413,7 @@
    "app": "portal",
    "kb": 3.8,
    "deps": [
+    "entry.portal.c03",
     "shared.portal.modules"
    ]
   },
@@ -1274,7 +1423,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 6.7,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "page.portal.talents.newPark.homeList",
@@ -1300,7 +1451,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 3.8,
-   "deps": []
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.sjz.bigData.index",
@@ -1327,6 +1481,7 @@
    "app": "portal",
    "kb": 5.8,
    "deps": [
+    "entry.portal.c03",
     "shared.portal.modules"
    ]
   },
@@ -1361,6 +1516,7 @@
    "app": "portal",
    "kb": 5.8,
    "deps": [
+    "entry.portal.c03",
     "shared.portal.modules"
    ]
   },
@@ -1371,6 +1527,7 @@
    "app": "portal",
    "kb": 9.6,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal"
    ]
   },
@@ -1381,6 +1538,7 @@
    "app": "portal",
    "kb": 8.5,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal"
    ]
   },
@@ -1401,6 +1559,7 @@
    "app": "portal",
    "kb": 10.6,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal"
    ]
   },
@@ -1411,6 +1570,7 @@
    "app": "portal",
    "kb": 11,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal"
    ]
   },
@@ -1421,6 +1581,7 @@
    "app": "portal",
    "kb": 11,
    "deps": [
+    "entry.portal.c03",
     "page.portal.fair.signModal"
    ]
   },
@@ -1448,7 +1609,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 2.6,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "page.portal.answer.passwordModal",
@@ -1493,6 +1656,8 @@
    "app": "portal",
    "kb": 16.8,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.modules"
    ]
   },
@@ -1502,7 +1667,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 1.1,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "page.portal.zcyz.bigData.components.scrollList",
@@ -1543,6 +1710,8 @@
    "app": "portal",
    "kb": 6.7,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.InterviewInvitation"
    ]
   },
@@ -1561,6 +1730,8 @@
    "app": "portal",
    "kb": 5.9,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.modules"
    ]
   },
@@ -1602,7 +1773,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 13.2,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "shared.portal.GetLocationMap",
@@ -1610,7 +1783,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 1.8,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "shared.portal.Gigmarketgetjobpost",
@@ -1636,7 +1811,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 9,
-   "deps": []
+   "deps": [
+    "entry.portal.E5",
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "shared.portal.adsCenter",
@@ -1644,7 +1822,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 2.7,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "shared.portal.auth",
@@ -1678,7 +1858,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 4.2,
-   "deps": []
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "shared.portal.dictCode",
@@ -1742,7 +1925,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 6.9,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "shared.portal.homeRight",
@@ -1750,7 +1935,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 12.9,
-   "deps": []
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "shared.portal.homeRight2",
@@ -1758,7 +1946,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 4.4,
-   "deps": []
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "shared.portal.hotProject",
@@ -1793,6 +1984,7 @@
    "app": "portal",
    "kb": 10.4,
    "deps": [
+    "entry.portal.E6",
     "shared.portal.modules"
    ]
   },
@@ -1847,6 +2039,7 @@
    "app": "portal",
    "kb": 1.4,
    "deps": [
+    "entry.portal.E6",
     "shared.portal.modules"
    ]
   },
@@ -1898,7 +2091,10 @@
    "status": "todo",
    "app": "portal",
    "kb": 3.9,
-   "deps": []
+   "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "shared.portal.statusPlace",
@@ -1963,6 +2159,9 @@
    "app": "portal",
    "kb": 9.6,
    "deps": [
+    "entry.portal.E4",
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.addResume"
    ]
   },
@@ -1972,7 +2171,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 5.9,
-   "deps": []
+   "deps": [
+    "entry.portal.c03"
+   ]
   },
   {
    "id": "shared.portal.workType",
@@ -1988,7 +2189,9 @@
    "status": "todo",
    "app": "portal",
    "kb": 90.3,
-   "deps": []
+   "deps": [
+    "entry.portal.E6"
+   ]
   },
   {
    "id": "entry.portal.E1",
@@ -2125,6 +2328,9 @@
    "app": "portal",
    "kb": 15.8,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c04",
     "page.portal.cityHome.titles",
     "page.portal.fair.signModal",
     "shared.portal.modules"
@@ -2140,6 +2346,9 @@
     "seg.portal.cityHome.index.1"
    ],
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
+    "entry.portal.c04",
     "page.portal.cityHome.titles",
     "page.portal.fair.signModal",
     "shared.portal.modules"
@@ -2152,6 +2361,7 @@
    "app": "portal",
    "kb": 18.8,
    "deps": [
+    "entry.portal.E6",
     "page.portal.eMap.list",
     "shared.portal.gaode2",
     "shared.portal.modules"
@@ -2167,34 +2377,10 @@
     "seg.portal.eMap.index.1"
    ],
    "deps": [
+    "entry.portal.E6",
     "page.portal.eMap.list",
     "shared.portal.gaode2",
     "shared.portal.modules"
-   ]
-  },
-  {
-   "id": "seg.portal.fair.sceneFair.detail.1",
-   "type": "segment",
-   "status": "todo",
-   "app": "portal",
-   "kb": 14.9,
-   "deps": [
-    "page.portal.fair.signModal",
-    "page.portal.fair.webFair.NumVideo"
-   ]
-  },
-  {
-   "id": "seg.portal.fair.sceneFair.detail.2",
-   "type": "segment",
-   "status": "todo",
-   "app": "portal",
-   "kb": 20.2,
-   "after": [
-    "seg.portal.fair.sceneFair.detail.1"
-   ],
-   "deps": [
-    "page.portal.fair.signModal",
-    "page.portal.fair.webFair.NumVideo"
    ]
   },
   {
@@ -2202,8 +2388,10 @@
    "type": "segment",
    "status": "todo",
    "app": "portal",
-   "kb": 18.8,
+   "kb": 16.9,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.auth"
    ]
   },
@@ -2212,11 +2400,13 @@
    "type": "segment",
    "status": "todo",
    "app": "portal",
-   "kb": 22.5,
+   "kb": 24.2,
    "after": [
     "seg.portal.guide.jobHunt.1"
    ],
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.auth"
    ]
   },
@@ -2225,8 +2415,10 @@
    "type": "segment",
    "status": "todo",
    "app": "portal",
-   "kb": 17.1,
+   "kb": 16.9,
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.InterviewInvitation",
     "shared.portal.auth"
    ]
@@ -2236,11 +2428,13 @@
    "type": "segment",
    "status": "todo",
    "app": "portal",
-   "kb": 13.4,
+   "kb": 13.7,
    "after": [
     "seg.portal.guide.index.1"
    ],
    "deps": [
+    "entry.portal.E6",
+    "entry.portal.c03",
     "shared.portal.InterviewInvitation",
     "shared.portal.auth"
    ]
@@ -2298,6 +2492,7 @@
    "app": "uc",
    "kb": 12.3,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.modules",
     "shared.uc.recommendZp2"
    ]
@@ -2309,6 +2504,7 @@
    "app": "uc",
    "kb": 18.5,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.addKeynote",
     "shared.uc.modules",
     "shared.uc.recommendZp2",
@@ -2318,7 +2514,7 @@
   {
    "id": "page.uc.unRegister",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 1.7,
    "deps": []
@@ -2326,7 +2522,7 @@
   {
    "id": "page.uc.zgAccount",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 1.6,
    "deps": []
@@ -2337,7 +2533,10 @@
    "status": "todo",
    "app": "uc",
    "kb": 4.5,
-   "deps": []
+   "deps": [
+    "entry.uc.E4",
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.projectApplyDetails",
@@ -2354,6 +2553,8 @@
    "app": "uc",
    "kb": 19.9,
    "deps": [
+    "entry.uc.E4",
+    "entry.uc.E6",
     "shared.uc.addKeynote",
     "shared.uc.market",
     "shared.uc.mymsg",
@@ -2363,7 +2564,7 @@
   {
    "id": "page.uc.StorageChgPassword",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 7.9,
    "deps": []
@@ -2371,7 +2572,7 @@
   {
    "id": "page.uc.accountBind",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 2.5,
    "deps": []
@@ -2398,7 +2599,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 12.7,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.userImg",
@@ -2427,7 +2630,7 @@
   {
    "id": "page.uc.doneList",
    "type": "page",
-   "status": "segmented",
+   "status": "regression",
    "app": "uc",
    "kb": 35.8,
    "deps": []
@@ -2480,7 +2683,7 @@
   {
    "id": "page.uc.formDone",
    "type": "page",
-   "status": "segmented",
+   "status": "regression",
    "app": "uc",
    "kb": 113.6,
    "deps": []
@@ -2491,7 +2694,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 14.7,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.expert",
@@ -2499,7 +2704,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 14.1,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.graduates",
@@ -2507,7 +2714,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 4.9,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.mentorhome",
@@ -2539,7 +2748,9 @@
    "status": "segmented",
    "app": "uc",
    "kb": 63.1,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.zcyzCorpAttestation",
@@ -2547,7 +2758,9 @@
    "status": "segmented",
    "app": "uc",
    "kb": 46.8,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.corpLoan",
@@ -2555,7 +2768,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 3.3,
-   "deps": []
+   "deps": [
+    "entry.uc.c01"
+   ]
   },
   {
    "id": "page.uc.corpLoan.corpLoanInfo",
@@ -2563,12 +2778,14 @@
    "status": "todo",
    "app": "uc",
    "kb": 23.2,
-   "deps": []
+   "deps": [
+    "entry.uc.c01"
+   ]
   },
   {
    "id": "page.uc.CorpAttestationapprove",
    "type": "page",
-   "status": "segmented",
+   "status": "regression",
    "app": "uc",
    "kb": 71.7,
    "deps": []
@@ -2588,6 +2805,7 @@
    "app": "uc",
    "kb": 25.1,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.addKeynote",
     "shared.uc.authCompany",
     "shared.uc.modules",
@@ -2604,6 +2822,7 @@
    "app": "uc",
    "kb": 17.9,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.addKeynote",
     "shared.uc.authCompany",
     "shared.uc.right",
@@ -2617,6 +2836,7 @@
    "app": "uc",
    "kb": 23.4,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.modules"
    ]
   },
@@ -2627,6 +2847,7 @@
    "app": "uc",
    "kb": 22,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.modules"
    ]
   },
@@ -2636,7 +2857,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 7.1,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.BeOnProbation",
@@ -2644,7 +2867,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 9.4,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.RecIntResume",
@@ -2652,7 +2877,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 7.2,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.noviciateInvited",
@@ -2660,7 +2887,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 5.7,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.downnoviciate",
@@ -2668,7 +2897,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 6,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.PositionAdmin",
@@ -2676,7 +2907,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 29.9,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.TalentSearch",
@@ -2684,7 +2917,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 9.8,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.pool",
@@ -2692,7 +2927,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 5.2,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.trash",
@@ -2700,7 +2937,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 4.6,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.collectme",
@@ -2708,7 +2947,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 11.1,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.InterviewInvitation",
@@ -2733,6 +2974,7 @@
    "app": "uc",
    "kb": 13.7,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.iframeModal"
    ]
   },
@@ -2751,6 +2993,7 @@
    "app": "uc",
    "kb": 14.4,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.iframeModal"
    ]
   },
@@ -2769,6 +3012,7 @@
    "app": "uc",
    "kb": 14.6,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.workVideo"
    ]
   },
@@ -2779,6 +3023,7 @@
    "app": "uc",
    "kb": 13.4,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.corporganic",
     "shared.uc.workVideo"
    ]
@@ -2796,7 +3041,7 @@
   {
    "id": "page.uc.corpFairs",
    "type": "page",
-   "status": "segmented",
+   "status": "regression",
    "app": "uc",
    "kb": 70.6,
    "deps": [
@@ -2806,7 +3051,7 @@
   {
    "id": "page.uc.JobFairsHome",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 15.5,
    "deps": []
@@ -2830,7 +3075,7 @@
   {
    "id": "page.uc.webFairWork",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 26.4,
    "deps": []
@@ -2842,6 +3087,7 @@
    "app": "uc",
    "kb": 16.2,
    "deps": [
+    "entry.uc.E6",
     "page.uc.webFairWork"
    ]
   },
@@ -2851,7 +3097,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 23.6,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.myconsult",
@@ -2880,6 +3128,7 @@
    "app": "uc",
    "kb": 11.8,
    "deps": [
+    "entry.uc.E6",
     "page.uc.myresume",
     "shared.uc.modules",
     "shared.uc.mymsg",
@@ -2890,7 +3139,7 @@
   {
    "id": "page.uc.Createaresume",
    "type": "page",
-   "status": "segmented",
+   "status": "regression",
    "app": "uc",
    "kb": 58.9,
    "deps": []
@@ -2906,7 +3155,7 @@
   {
    "id": "page.uc.resumetemplate",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 2.1,
    "deps": []
@@ -2934,6 +3183,7 @@
    "app": "uc",
    "kb": 7.2,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.complaint"
    ]
   },
@@ -2944,6 +3194,7 @@
    "app": "uc",
    "kb": 6.2,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.complaint"
    ]
   },
@@ -2966,7 +3217,7 @@
   {
    "id": "page.uc.maskunit",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 7.1,
    "deps": []
@@ -2993,7 +3244,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 11.8,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.sign.corpInfo",
@@ -3001,7 +3254,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 14.8,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.sign.corpApply",
@@ -3051,7 +3306,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 4.8,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.myRegistration",
@@ -3067,7 +3324,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 3.2,
-   "deps": []
+   "deps": [
+    "entry.uc.c01"
+   ]
   },
   {
    "id": "page.uc.personLoan.detailInfo",
@@ -3075,7 +3334,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 23.9,
-   "deps": []
+   "deps": [
+    "entry.uc.c01"
+   ]
   },
   {
    "id": "page.uc.mynews",
@@ -3083,12 +3344,14 @@
    "status": "todo",
    "app": "uc",
    "kb": 3.6,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.signUp",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 15,
    "deps": []
@@ -3099,7 +3362,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 5.2,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.activitySign",
@@ -3107,7 +3372,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 6.1,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.businessSingUp",
@@ -3140,6 +3407,7 @@
    "app": "uc",
    "kb": 11.9,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.addKeynote",
     "shared.uc.market"
    ]
@@ -3151,6 +3419,7 @@
    "app": "uc",
    "kb": 11.9,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.addKeynote",
     "shared.uc.market"
    ]
@@ -3161,7 +3430,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 3.8,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.collectmentor",
@@ -3170,6 +3441,7 @@
    "app": "uc",
    "kb": 5.4,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.modules"
    ]
   },
@@ -3179,7 +3451,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 13.8,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.allianceUnitposition",
@@ -3187,7 +3461,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 11.5,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.collectOdd",
@@ -3195,7 +3471,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 6.9,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.consult",
@@ -3229,7 +3507,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 16.7,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.teachIn",
@@ -3262,7 +3542,7 @@
   {
    "id": "page.uc.industrySkillTree",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 4.2,
    "deps": []
@@ -3282,6 +3562,7 @@
    "app": "uc",
    "kb": 14.6,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.Editor"
    ]
   },
@@ -3308,6 +3589,7 @@
    "app": "uc",
    "kb": 17.6,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.modules"
    ]
   },
@@ -3317,7 +3599,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 17,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.zcyzwebFairWork",
@@ -3361,13 +3645,14 @@
    "app": "uc",
    "kb": 22.4,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.workshopNews"
    ]
   },
   {
    "id": "page.uc.trainCertificate",
    "type": "page",
-   "status": "todo",
+   "status": "regression",
    "app": "uc",
    "kb": 1.4,
    "deps": []
@@ -3386,7 +3671,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 25,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.login",
@@ -3394,7 +3681,10 @@
    "status": "todo",
    "app": "uc",
    "kb": 0.6,
-   "deps": []
+   "deps": [
+    "entry.uc.E4",
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "page.uc.403",
@@ -3410,7 +3700,10 @@
    "status": "todo",
    "app": "uc",
    "kb": 4.3,
-   "deps": []
+   "deps": [
+    "entry.uc.E4",
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.Content",
@@ -3434,7 +3727,9 @@
    "status": "regression",
    "app": "uc",
    "kb": 7.2,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.SlideCaptcha",
@@ -3467,6 +3762,7 @@
    "app": "uc",
    "kb": 9,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.corporganic"
    ]
   },
@@ -3477,6 +3773,7 @@
    "app": "uc",
    "kb": 22.3,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.Editor"
    ]
   },
@@ -3487,6 +3784,7 @@
    "app": "uc",
    "kb": 6.4,
    "deps": [
+    "entry.uc.E6",
     "shared.uc.addKeynote",
     "shared.uc.market"
    ]
@@ -3521,7 +3819,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 1.7,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.cropperjs",
@@ -3529,7 +3829,9 @@
    "status": "regression",
    "app": "uc",
    "kb": 5.5,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.dictCheckBoxAll",
@@ -3609,7 +3911,9 @@
    "status": "regression",
    "app": "uc",
    "kb": 14,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.CancelReasonModal",
@@ -3651,7 +3955,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 2.3,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.oddNews",
@@ -3693,7 +3999,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 39.6,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.resumemodal",
@@ -3709,7 +4017,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 1.5,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.setStatus",
@@ -3717,7 +4027,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 4.3,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.setStatusinterview",
@@ -3725,7 +4037,9 @@
    "status": "regression",
    "app": "uc",
    "kb": 2.6,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.unfold",
@@ -3741,7 +4055,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 2,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "shared.uc.workType",
@@ -3856,68 +4172,14 @@
    "deps": []
   },
   {
-   "id": "seg.uc.doneList.1",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 14.5,
-   "deps": []
-  },
-  {
-   "id": "seg.uc.doneList.2",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 19.7,
-   "after": [
-    "seg.uc.doneList.1"
-   ],
-   "deps": []
-  },
-  {
-   "id": "seg.uc.formDone.1",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 24.4,
-   "deps": []
-  },
-  {
-   "id": "seg.uc.formDone.2",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 26.3,
-   "deps": []
-  },
-  {
-   "id": "seg.uc.formDone.3",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 23.9,
-   "deps": []
-  },
-  {
-   "id": "seg.uc.formDone.4",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 33.4,
-   "after": [
-    "seg.uc.formDone.1",
-    "seg.uc.formDone.2",
-    "seg.uc.formDone.3"
-   ],
-   "deps": []
-  },
-  {
    "id": "seg.uc.CorpAttestation.1",
    "type": "segment",
    "status": "todo",
    "app": "uc",
    "kb": 31.2,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "seg.uc.CorpAttestation.2",
@@ -3928,7 +4190,9 @@
    "after": [
     "seg.uc.CorpAttestation.1"
    ],
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "seg.uc.zcyzCorpAttestation.1",
@@ -3936,7 +4200,9 @@
    "status": "todo",
    "app": "uc",
    "kb": 21.7,
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "seg.uc.zcyzCorpAttestation.2",
@@ -3947,42 +4213,16 @@
    "after": [
     "seg.uc.zcyzCorpAttestation.1"
    ],
-   "deps": []
-  },
-  {
-   "id": "seg.uc.CorpAttestationapprove.1",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 11.3,
-   "deps": []
-  },
-  {
-   "id": "seg.uc.CorpAttestationapprove.2",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 27.1,
-   "deps": []
-  },
-  {
-   "id": "seg.uc.CorpAttestationapprove.3",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 29.2,
-   "after": [
-    "seg.uc.CorpAttestationapprove.1",
-    "seg.uc.CorpAttestationapprove.2"
-   ],
-   "deps": []
+   "deps": [
+    "entry.uc.E6"
+   ]
   },
   {
    "id": "seg.uc.zcyzCorpAttestationapprove.1",
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 15.3,
+   "kb": 14.2,
    "deps": []
   },
   {
@@ -3990,7 +4230,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 20.6,
+   "kb": 21.7,
    "deps": []
   },
   {
@@ -4006,53 +4246,11 @@
    "deps": []
   },
   {
-   "id": "seg.uc.corpFairs.1",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 24.7,
-   "deps": [
-    "shared.uc.confPass"
-   ]
-  },
-  {
-   "id": "seg.uc.corpFairs.2",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 29.8,
-   "deps": [
-    "shared.uc.confPass"
-   ]
-  },
-  {
-   "id": "seg.uc.corpFairs.3",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 13.8,
-   "after": [
-    "seg.uc.corpFairs.1",
-    "seg.uc.corpFairs.2"
-   ],
-   "deps": [
-    "shared.uc.confPass"
-   ]
-  },
-  {
-   "id": "seg.uc.Createaresume.1",
-   "type": "segment",
-   "status": "todo",
-   "app": "uc",
-   "kb": 56,
-   "deps": []
-  },
-  {
    "id": "seg.uc.collage.studentApply.1",
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 17.7,
+   "kb": 12.4,
    "deps": []
   },
   {
@@ -4060,7 +4258,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 14.9,
+   "kb": 20.4,
    "after": [
     "seg.uc.collage.studentApply.1"
    ],
@@ -4071,7 +4269,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 19.1,
+   "kb": 13.5,
    "deps": []
   },
   {
@@ -4079,7 +4277,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 15.7,
+   "kb": 21.2,
    "after": [
     "seg.uc.sign.corpApply.1"
    ],
@@ -4090,7 +4288,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 12.8,
+   "kb": 12.5,
    "deps": [
     "shared.uc.mapInfo",
     "shared.uc.workshopNews"
@@ -4101,7 +4299,7 @@
    "type": "segment",
    "status": "todo",
    "app": "uc",
-   "kb": 17.2,
+   "kb": 17.4,
    "after": [
     "seg.uc.gongfuWorkshop.positionPosting.1"
    ],
@@ -4112,6 +4310,182 @@
   }
  ],
  "dependents": {
+  "entry.portal.E5": [
+   "page.portal.xjhm.home.index",
+   "shared.portal.addResume"
+  ],
+  "entry.portal.E6": [
+   "page.portal.xjhm.home.index",
+   "page.portal.cityHome.index",
+   "page.portal.region.innovation.index",
+   "page.portal.region.colleges.index",
+   "page.portal.oddJob.recruitworkers.index",
+   "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+   "page.portal.oddJob.Jobsearch.index",
+   "page.portal.oddJob.Jobsearch.JobsearchDetail",
+   "page.portal.oddJob.Jobshortage.JobshortageDetail",
+   "page.portal.oddJob.Sparework.SpareworkDetail",
+   "page.portal.oddJob.shareUser.index",
+   "page.portal.oddJob.shareUser.detail",
+   "page.portal.livejob.detail",
+   "page.portal.video.zbdg",
+   "page.portal.recruitMarket.marketHome.home",
+   "page.portal.sjz.school.index",
+   "page.portal.sjz.unitMain.unitMain",
+   "page.portal.sjz.talent.talentList",
+   "page.portal.RecruitTalents.ResumePreview",
+   "page.portal.LookForJob.PostDetail",
+   "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis",
+   "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
+   "page.portal.sjz.setUp.setupDetail",
+   "page.portal.eMap.index",
+   "page.portal.login",
+   "page.portal.loginviews.siginbig",
+   "page.portal.loginviews.passwordhintbig",
+   "page.portal.answer.index",
+   "page.portal.answer.details",
+   "page.portal.customerService.index",
+   "page.portal.xjhm.bigData.newBigdata",
+   "page.portal.zzgj.trainCourse.index",
+   "page.portal.xjhm.cityHome.index",
+   "page.portal.guide.jobHunt",
+   "page.portal.guide.index",
+   "page.portal.talents.homeView",
+   "page.portal.talents.index.index",
+   "page.portal.talents.cityHome.index",
+   "page.portal.talents.setUp.setupDetail",
+   "page.portal.talents.information.newsList",
+   "page.portal.talents.fair.webFair.detail",
+   "page.portal.talents.talentnew.talentList",
+   "page.portal.talents.conference.index",
+   "page.portal.talents.newPark.index",
+   "page.portal.talents.index.advertTop",
+   "page.portal.xjhm.home.advertTop",
+   "page.portal.talents.index.frendLinks",
+   "page.portal.talents.index.homeList",
+   "page.portal.oddJob.rtInto.index",
+   "page.portal.talents.index.review",
+   "page.portal.talents.conference.scrollList",
+   "page.portal.talents.cityHome.talentArea",
+   "page.portal.talents.index.talentRecommend",
+   "shared.portal.FriendLinks",
+   "shared.portal.GetLocationMap",
+   "shared.portal.addResume",
+   "shared.portal.adsCenter",
+   "shared.portal.complaint",
+   "shared.portal.homeNews3",
+   "shared.portal.homeRight",
+   "shared.portal.homeRight2",
+   "shared.portal.init",
+   "shared.portal.maps",
+   "shared.portal.signSetup",
+   "shared.portal.workItem",
+   "shared.portal.modules",
+   "seg.portal.cityHome.index.1",
+   "seg.portal.cityHome.index.2",
+   "seg.portal.eMap.index.1",
+   "seg.portal.eMap.index.2",
+   "seg.portal.guide.jobHunt.1",
+   "seg.portal.guide.jobHunt.2",
+   "seg.portal.guide.index.1",
+   "seg.portal.guide.index.2"
+  ],
+  "entry.portal.c03": [
+   "page.portal.xjhm.home.index",
+   "page.portal.cityHome.index",
+   "page.portal.region.innovation.index",
+   "page.portal.region.innovation.innovationDetail",
+   "page.portal.region.colleges.index",
+   "page.portal.oddJob.index",
+   "page.portal.oddJob.recruitworkers.index",
+   "page.portal.oddJob.recruitworkers.recruitworkersDetail",
+   "page.portal.oddJob.Jobsearch.index",
+   "page.portal.oddJob.Jobsearch.JobsearchDetail",
+   "page.portal.oddJob.Jobshortage.index",
+   "page.portal.oddJob.Jobshortage.JobshortageDetail",
+   "page.portal.oddJob.Sparework.index",
+   "page.portal.oddJob.Sparework.SpareworkDetail",
+   "page.portal.oddJob.shareUser.detail",
+   "page.portal.recruitMarket.marketHome.home",
+   "page.portal.recruitMarket.marketDetail.index",
+   "page.portal.Guidance.GuidanceHome.index",
+   "page.portal.Guidance.GuidanceAskList.index",
+   "page.portal.Guidance.GuidanceAskDetail.index",
+   "page.portal.Guidance.GuidanceMentorList.index",
+   "page.portal.Guidance.GuidanceMentorDetail.index",
+   "page.portal.Guidance.GuidanceConsult.index",
+   "page.portal.sjz.school.index",
+   "page.portal.sjz.enterpriserecruitment.enterpriserecruitment",
+   "page.portal.sjz.unitMain.unitMain",
+   "page.portal.News.newsDetail",
+   "page.portal.sjz.talent.talentList",
+   "page.portal.LookForJob.PostDetail",
+   "page.portal.resumeAnalysisReport.postCompetitivenessAnalysis",
+   "page.portal.resumeAnalysisReport.resumeAnalysisReport",
+   "page.portal.resumeAnalysisReport.resumeMatchAnalysisReport",
+   "page.portal.sjz.setUp.setupDetail",
+   "page.portal.train.trainDetail",
+   "page.portal.BeOnProbation.ProbationHome",
+   "page.portal.BeOnProbation.ProbationPostDetail",
+   "page.portal.fair.webFair.list",
+   "page.portal.fair.webFair.detail",
+   "page.portal.fair.sceneFair.list",
+   "page.portal.fair.sceneFair.detail",
+   "page.portal.fair.outFair.list",
+   "page.portal.fair.outFair.detail",
+   "page.portal.LookForJob.CorpDetail",
+   "page.portal.login",
+   "page.portal.answer.index",
+   "page.portal.answer.details",
+   "page.portal.zzgj.trainCourse.index",
+   "page.portal.xjhm.cityHome.index",
+   "page.portal.guide.jobHunt",
+   "page.portal.guide.index",
+   "page.portal.talents.homeView",
+   "page.portal.talents.setUp.setupDetail",
+   "page.portal.talents.fair.webFair.detail",
+   "page.portal.talents.fair.outFair.detail",
+   "page.portal.talents.talentnew.talentList",
+   "page.portal.talents.greenchannel.index",
+   "page.portal.talents.overseasRecruitment.antDetail",
+   "page.portal.sjz.fair.fairs",
+   "page.portal.sjz.fair.fairsList",
+   "page.portal.talents.cityHome.helpCenter",
+   "page.portal.oddJob.rtInto.index",
+   "page.portal.talents.index.infoRecommend",
+   "page.portal.talents.index.jobRecommend",
+   "page.portal.talents.fair.outFair.list",
+   "page.portal.talents.fair.webFair.list",
+   "page.portal.sjz.fair.outFair.list",
+   "page.portal.sjz.fair.sceneFair.list",
+   "page.portal.sjz.fair.webFair.list",
+   "page.portal.oddJob.rtInto.odd",
+   "page.portal.talents.index.review",
+   "page.portal.talents.cityHome.talentArea",
+   "page.portal.talents.index.talentRecommend",
+   "shared.portal.complaint",
+   "shared.portal.homeRight",
+   "shared.portal.homeRight2",
+   "shared.portal.signSetup",
+   "shared.portal.workItem",
+   "shared.portal.workItemNew",
+   "seg.portal.cityHome.index.1",
+   "seg.portal.cityHome.index.2",
+   "seg.portal.guide.jobHunt.1",
+   "seg.portal.guide.jobHunt.2",
+   "seg.portal.guide.index.1",
+   "seg.portal.guide.index.2"
+  ],
+  "entry.portal.c04": [
+   "page.portal.xjhm.home.index",
+   "page.portal.cityHome.index",
+   "seg.portal.cityHome.index.1",
+   "seg.portal.cityHome.index.2"
+  ],
+  "entry.portal.c09": [
+   "page.portal.xjhm.home.index",
+   "page.portal.region.innovation.index"
+  ],
   "page.portal.xjhm.home.advertTop": [
    "page.portal.xjhm.home.index"
   ],
@@ -4211,9 +4585,17 @@
    "page.portal.sjz.fair.sceneFair.list",
    "page.portal.sjz.fair.webFair.list",
    "seg.portal.cityHome.index.1",
-   "seg.portal.cityHome.index.2",
-   "seg.portal.fair.sceneFair.detail.1",
-   "seg.portal.fair.sceneFair.detail.2"
+   "seg.portal.cityHome.index.2"
+  ],
+  "entry.portal.c05": [
+   "page.portal.region.innovation.innovationDetail",
+   "page.portal.video.zbdg",
+   "page.portal.Guidance.GuidanceHome.index",
+   "page.portal.News.newsDetail",
+   "page.portal.talents.information.newsDetail",
+   "page.portal.talents.talentnew.talentList",
+   "page.portal.talents.conference.detail",
+   "page.portal.talents.overseasRecruitment.antDetail"
   ],
   "page.portal.oddJob.rtInto.odd": [
    "page.portal.oddJob.recruitworkers.index",
@@ -4339,9 +4721,13 @@
   "page.portal.fair.webFair.NumVideo": [
    "page.portal.fair.webFair.detail",
    "page.portal.fair.sceneFair.detail",
-   "page.portal.fair.outFair.detail",
-   "seg.portal.fair.sceneFair.detail.1",
-   "seg.portal.fair.sceneFair.detail.2"
+   "page.portal.fair.outFair.detail"
+  ],
+  "entry.portal.c02": [
+   "page.portal.login",
+   "page.portal.loginviews.siginbig",
+   "page.portal.loginviews.passwordhintbig",
+   "page.portal.sjz.archivesSearch.index"
   ],
   "shared.portal.thirdParty": [
    "page.portal.login",
@@ -4396,6 +4782,9 @@
    "page.portal.zcyz.bigData.components.pieCommon",
    "page.portal.zcyz.bigData.components.pieRader"
   ],
+  "entry.portal.c06": [
+   "page.portal.xjhm.cityHome.index"
+  ],
   "shared.portal.FriendLink": [
    "page.portal.xjhm.cityHome.index"
   ],
@@ -4409,6 +4798,14 @@
    "seg.portal.guide.jobHunt.2",
    "seg.portal.guide.index.1",
    "seg.portal.guide.index.2"
+  ],
+  "entry.portal.E4": [
+   "page.portal.talents.homeView",
+   "page.portal.xjhm.home.advertTop",
+   "shared.portal.workItem"
+  ],
+  "entry.portal.c07": [
+   "page.portal.talents.homeView"
   ],
   "page.portal.talents.index.advertTop": [
    "page.portal.talents.index.index",
@@ -4526,6 +4923,79 @@
    "page.uc.oddjob.lack.add",
    "page.uc.oddjob.sharepage"
   ],
+  "entry.uc.E6": [
+   "page.uc.jobhunterhomeZzgj",
+   "page.uc.CorpCenterZ",
+   "page.uc.changeRole",
+   "page.uc.main",
+   "page.uc.nom",
+   "page.uc.mentor",
+   "page.uc.expert",
+   "page.uc.graduates",
+   "page.uc.CorpAttestation",
+   "page.uc.zcyzCorpAttestation",
+   "page.uc.CorpCenter",
+   "page.uc.marketCenter",
+   "page.uc.PositionRelease",
+   "page.uc.PositionReleaseAbroad",
+   "page.uc.BeOnAdmin",
+   "page.uc.BeOnProbation",
+   "page.uc.RecIntResume",
+   "page.uc.noviciateInvited",
+   "page.uc.downnoviciate",
+   "page.uc.PositionAdmin",
+   "page.uc.TalentSearch",
+   "page.uc.pool",
+   "page.uc.trash",
+   "page.uc.collectme",
+   "page.uc.ReceivedResume",
+   "page.uc.WebWorkResume",
+   "page.uc.WorkStyleAdmin",
+   "page.uc.BeOnProbationAdmin",
+   "page.uc.sceneFairSign",
+   "page.uc.JobFairRelease",
+   "page.uc.jobhunterhome",
+   "page.uc.send",
+   "page.uc.allianceSend",
+   "page.uc.collage.nojob",
+   "page.uc.sign.corpInfo",
+   "page.uc.myaccuse",
+   "page.uc.mynews",
+   "page.uc.overseasRecruitment",
+   "page.uc.activitySign",
+   "page.uc.Personalonlineservice",
+   "page.uc.Enterpriseonlineservices",
+   "page.uc.inSurvey",
+   "page.uc.collectmentor",
+   "page.uc.Unitposition",
+   "page.uc.allianceUnitposition",
+   "page.uc.collectOdd",
+   "page.uc.liveApplyAdd",
+   "page.uc.addNewsDetails",
+   "page.uc.zcyzPositionRelease",
+   "page.uc.zcyzJobFairRelease",
+   "page.uc.gongfuWorkshop.jobPosting",
+   "page.uc.previewresume",
+   "page.uc.login",
+   "page.uc.autoLogin",
+   "shared.uc.InterviewInvitation",
+   "shared.uc.addKeynote",
+   "shared.uc.appointment",
+   "shared.uc.authCompany",
+   "shared.uc.corporganic",
+   "shared.uc.cropperjs",
+   "shared.uc.ReceivedResumeList",
+   "shared.uc.mymsg",
+   "shared.uc.recommendZp2",
+   "shared.uc.right",
+   "shared.uc.setStatus",
+   "shared.uc.setStatusinterview",
+   "shared.uc.usercard",
+   "seg.uc.CorpAttestation.1",
+   "seg.uc.CorpAttestation.2",
+   "seg.uc.zcyzCorpAttestation.1",
+   "seg.uc.zcyzCorpAttestation.2"
+  ],
   "shared.uc.modules": [
    "page.uc.jobhunterhomeZzgj",
    "page.uc.CorpCenterZ",
@@ -4555,6 +5025,12 @@
    "page.uc.CorpCenterZ",
    "page.uc.CorpCenter",
    "page.uc.marketCenter"
+  ],
+  "entry.uc.E4": [
+   "page.uc.changeRole",
+   "page.uc.main",
+   "page.uc.login",
+   "page.uc.autoLogin"
   ],
   "shared.uc.market": [
    "page.uc.main",
@@ -4596,6 +5072,12 @@
    "page.uc.mentorhome",
    "page.uc.experthome"
   ],
+  "entry.uc.c01": [
+   "page.uc.corpLoan",
+   "page.uc.corpLoan.corpLoanInfo",
+   "page.uc.personLoan",
+   "page.uc.personLoan.detailInfo"
+  ],
   "shared.uc.authCompany": [
    "page.uc.CorpCenter",
    "page.uc.marketCenter"
@@ -4619,10 +5101,7 @@
   ],
   "shared.uc.confPass": [
    "page.uc.userFairs",
-   "page.uc.corpFairs",
-   "seg.uc.corpFairs.1",
-   "seg.uc.corpFairs.2",
-   "seg.uc.corpFairs.3"
+   "page.uc.corpFairs"
   ],
   "page.uc.webFairWork": [
    "page.uc.sceneFairSign"

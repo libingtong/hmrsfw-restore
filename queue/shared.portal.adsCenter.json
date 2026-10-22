@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/adsCenter.vue",
  "exports": {
   "a": {
-   "export": "default"
+   "export": "default",
+   "original": "adsCenter.1783320636200.js#a"
   }
  },
  "registryKey": "adsCenter.1783320636200.js",
@@ -46,7 +47,9 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.portal.E6"
+  ]
  },
  "stylesProvidedByScript": true
 }

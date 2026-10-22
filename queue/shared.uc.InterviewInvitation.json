@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/InterviewInvitation.vue",
  "exports": {
   "I": {
-   "export": "default"
+   "export": "default",
+   "original": "InterviewInvitation.17516156075452.js#I"
   }
  },
  "registryKey": "InterviewInvitation.17516156075452.js",
@@ -59,7 +60,9 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.E6"
+  ]
  },
  "stylesProvidedByScript": true
 }

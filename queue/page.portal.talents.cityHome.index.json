@@ -67,6 +67,7 @@
    "page.portal.talents.index.homeList"
   ],
   "orders": [
+   "entry.portal.E6",
    "page.portal.talents.cityHome.corp",
    "page.portal.talents.cityHome.helpCenter",
    "page.portal.talents.cityHome.job",

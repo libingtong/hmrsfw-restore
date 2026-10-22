@@ -53,7 +53,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Ra": {
    "original": "u",
@@ -130,7 +131,7 @@
  "api": {
   "Va": {
    "original": "index.api.178332063620017.js#w",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "getFairList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/getFairList"

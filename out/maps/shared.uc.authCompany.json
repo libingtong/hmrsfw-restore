@@ -52,7 +52,8 @@
    "original": "q",
    "path": "@/legacy/api",
    "export": "queryByCompanyId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "T": {
    "original": "B",

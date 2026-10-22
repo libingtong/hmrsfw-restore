@@ -85,6 +85,7 @@
    "page.uc.myresume"
   ],
   "orders": [
+   "entry.uc.E6",
    "page.uc.myresume",
    "shared.uc.modules",
    "shared.uc.mymsg",
