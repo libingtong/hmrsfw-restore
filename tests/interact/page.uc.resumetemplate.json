@@ -1,0 +1,9 @@
+[
+  {"wait":1000},
+  {"clickSel":".resumetemplate-box .item:nth-child(2) .ant-radio-input","optional":true},
+  {"wait":500},
+  {"clickSel":".resumetemplate-box .item:nth-child(1) .ant-radio-input","optional":true},
+  {"wait":500},
+  {"click":"确认使用"},
+  {"wait":1500}
+]
