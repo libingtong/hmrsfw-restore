@@ -75,6 +75,7 @@ node tools/self-check.mjs <工单id> --app "$HMRSFW_APP_DIR"
 | `components` / `scopeIds` | chunk 内每个组件的 `__name` 和 scopeId（由 `_export_sfc` 包装上的 `__scopeId` 对应到组件变量） |
 | `cssCandidates` | 本页自己的 CSS（入口给的依赖 CSS 里，属于被导入 chunk 的已剔除） |
 | `routes` / `recordPath` / `recordVia` | 路由；只被别的页面当组件引用的页面（50 个）用引用它的页面的路由录制，`recordVia` 写明是哪张 |
+| `recordNotes` | 可选：录制说明（测试数据来源、不能点的按钮、先点哪个 tab 等），来自 `tools/record-path-overrides.json` 同名条目，录制员录制前要读（HM-48）。覆盖表的 `recordPath` 可以把路由里的 `:param` 段填成测试数据的值 |
 | `role` / `notes` | 录制身份，取值同 `record-page.mjs` 的 `IDENTITIES`：`general` / `jobseeker` / `corp` / `mentor`。门户一律 `general`；用户中心由 `tools/uc-roles.mjs` 按录制路由和原 chunk 判定（系统页和顶栏入口、身份主页、`tools/uc-identity-menus.json` 里各身份的菜单、页面之间的链接），判不出写 `null` 并在 `notes` 写原因，`record-page.mjs` 遇到 `null` 输出 `blocked: need-role-decision`，不猜；自动规则判不出的由裁定员写在 `tools/uc-role-decisions.json`，裁定带局限或造数需求时也写进 `notes`（造数需求汇总在 `queue/data-needs.json`，D7）。每张的判定依据在 `queue/roles.json` |
 | `maps` / `hints` | `out/maps/<id>.json`、`out/hints/<id>.md` |
 | `deps` | `entry`（入口导出名）、`shared`（共享 chunk）、`api`（`chunk#导出名`）、`modules`（小模块、图片常量）、`views`（被导入的其他页面工单）、`orders`（这些依赖里还是 `reserved` 的所属工单，门槛顶替和回归反向索引用） |

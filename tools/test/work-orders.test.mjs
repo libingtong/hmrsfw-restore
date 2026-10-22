@@ -65,6 +65,25 @@ test("recordPath overrides extend the derived path of a recordVia page and need 
   assert.equal(applyRecordPathOverrides(orders(), { "page.other": { recordPath: "/x?y", evidence: "e" } })[0].recordPath, "/fairList", "orders not in this run are skipped");
 });
 
+test("a recordPath override may fill a :param route segment; recordNotes are carried into the order (HM-48)", async () => {
+  const { applyRecordPathOverrides } = await import("../work-orders.mjs");
+  const orders = () => [{ id: "page.uc.sceneFairSign", recordPath: "/sceneFairSign/:zphId" }, { id: "page.portal.x", recordPath: "/x", recordVia: "page.portal.y" }];
+  const ov = (o) => ({ "page.uc.sceneFairSign": { evidence: "chunk:1", ...o } });
+  assert.equal(applyRecordPathOverrides(orders(), ov({ recordPath: "/sceneFairSign/209?classify=30" }))[0].recordPath, "/sceneFairSign/209?classify=30");
+  assert.equal(applyRecordPathOverrides(orders(), ov({ recordPath: "/sceneFairSign/209" }))[0].recordPath, "/sceneFairSign/209");
+  assert.throws(() => applyRecordPathOverrides(orders(), ov({ recordPath: "/sceneFairSign/209/extra" })), /does not extend/);
+  assert.throws(() => applyRecordPathOverrides(orders(), ov({ recordPath: "/sceneFairSignX/209" })), /does not extend/);
+  assert.throws(() => applyRecordPathOverrides(orders(), ov({ recordPath: "/other/209" })), /does not extend/);
+  assert.throws(() => applyRecordPathOverrides([{ id: "page.uc.sceneFairSign", recordPath: "/sceneFairSign" }], ov({ recordPath: "/sceneFairSign2" })), /does not extend/, "a path without :param only accepts ?/# extensions");
+  const noted = applyRecordPathOverrides(orders(), ov({ recordPath: "/sceneFairSign/209", recordNotes: "不点提交" }))[0];
+  assert.deepEqual([noted.recordPath, noted.recordNotes], ["/sceneFairSign/209", "不点提交"]);
+  const onlyNotes = applyRecordPathOverrides(orders(), { "page.portal.x": { evidence: "e", recordNotes: "先点第 7 个 tab" } })[1];
+  assert.deepEqual([onlyNotes.recordPath, onlyNotes.recordVia, onlyNotes.recordNotes], ["/x", "page.portal.y", "先点第 7 个 tab"], "notes only: path and recordVia stay as derived");
+  assert.throws(() => applyRecordPathOverrides(orders(), { "page.portal.x": { evidence: "e" } }), /neither recordPath nor recordNotes/);
+  assert.throws(() => applyRecordPathOverrides(orders(), { "page.portal.x": { evidence: "e", recordNotes: " " } }), /non-empty string/);
+  assert.throws(() => applyRecordPathOverrides(orders(), { "page.portal.x": { recordNotes: "n" } }), /no evidence/);
+});
+
 test("a recordPath override may move a recordVia page to another routed page that imports its chunk (HM-953)", async () => {
   const { applyRecordPathOverrides } = await import("../work-orders.mjs");
   const orders = () => [
@@ -92,7 +111,8 @@ test("the checked-in overrides are what queue/ holds", async () => {
   for (const [id, ov] of Object.entries(overrides)) {
     if (id.startsWith("_")) continue;
     const o = JSON.parse(readFileSync(new URL(`../../queue/${id}.json`, import.meta.url), "utf8"));
-    assert.equal(o.recordPath, ov.recordPath, id);
+    if (ov.recordPath !== undefined) assert.equal(o.recordPath, ov.recordPath, id);
     if (ov.recordVia) assert.equal(o.recordVia, ov.recordVia, id);
+    assert.equal(o.recordNotes, ov.recordNotes, id);
   }
 });

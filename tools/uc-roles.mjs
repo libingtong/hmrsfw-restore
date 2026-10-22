@@ -31,6 +31,9 @@ const identityOfHome = (p) => Object.keys(IDENTITIES).find((k) => IDENTITIES[k].
 const MENUS = JSON.parse(readFileSync(path.join(ROOT, "tools/uc-identity-menus.json"), "utf8"));
 const DECISIONS = JSON.parse(readFileSync(path.join(ROOT, "tools/uc-role-decisions.json"), "utf8"));
 const staticPart = (p) => p.replace(/\/:.*$/, "") || "/";
+// The path a page's identity is judged by: its own route, or (a recordVia page) the parent path it records under, without
+// ?/#. recordPath overrides only add test-data ids (?id=…, a filled :param, HM-48); they must not change the identity.
+const rolePath = (o) => staticPart((o.routes?.[0]?.path ?? o.recordPath).replace(/[?#].*$/, ""));
 
 export function ucRoles(pages) {
   const site = "usercenter";
@@ -44,7 +47,7 @@ export function ucRoles(pages) {
   const hub = (id) => [...links.get(id)].filter((x) => homeOrders.has(x)).length >= 2;
   const out = new Map();
   for (const o of pages) {
-    const p = staticPart(o.recordPath);
+    const p = rolePath(o);
     if (SYSTEM[p]) { out.set(o.id, { role: "general", by: `系统页（${SYSTEM[p]}），与身份无关` }); continue; }
     if (HEADER[p]) { out.set(o.id, { role: "general", by: `${HEADER[p]}，所有身份共用，与身份无关` }); continue; }
     if (HOMES[p]) {
@@ -57,7 +60,7 @@ export function ucRoles(pages) {
     else if (inMenu.length > 1) out.set(o.id, { role: null, notes: `${inMenu.map((k) => IDENTITIES[k].label).join("、")}的菜单里都有 ${p}` });
   }
   // a decided page with a role passes it on through its links; a foreign identity's home counts as its own identity
-  const generic = new Set(pages.filter((o) => homeOrders.has(o.id) || SYSTEM[staticPart(o.recordPath)] || HEADER[staticPart(o.recordPath)]).map((o) => o.id));
+  const generic = new Set(pages.filter((o) => homeOrders.has(o.id) || SYSTEM[rolePath(o)] || HEADER[rolePath(o)]).map((o) => o.id));
   const tag = (id) => { const d = out.get(id); if (!d) return null; if (d.role) return d.role; const h = Object.entries(HOMES).find(([p]) => byRoute.get(p) === id); return h ? `type:${h[1].type}` : null; };
   const label = (t) => IDENTITIES[t]?.label ?? `「${Object.values(HOMES).find((h) => `type:${h.type}` === t)?.label}」`;
   // one pass over the undecided pages: inbound links, or (outbound) where the page's own links point
@@ -80,7 +83,7 @@ export function ucRoles(pages) {
   do { while (pass(false)); } while (pass(true));
   for (const o of pages) {
     if (out.get(o.id)?.role) continue;
-    const p = staticPart(o.recordPath), d = DECISIONS.decided[p], q = DECISIONS.pending[p];
+    const p = rolePath(o), d = DECISIONS.decided[p], q = DECISIONS.pending[p];
     const limit = d && [d.limit && `局限：${d.limit}`, d.dataNeed && `需造数（D7）：${d.dataNeed}`].filter(Boolean).join("；");
     if (d && IDENTITIES[d.role]) out.set(o.id, { role: d.role, by: `裁定（uc-role-decisions.json）：${d.by}`, ...(limit ? { notes: `裁定（uc-role-decisions.json）。${limit}` } : {}), ...(d.limit ? { limit: d.limit } : {}), ...(d.dataNeed ? { dataNeed: d.dataNeed } : {}), evidence: d.evidence });
     else if (q) out.set(o.id, { role: null, notes: `待人确认（uc-role-decisions.json）：${q.notes}；建议 ${q.suggest}；需要确认：${q.ask}`, evidence: q.evidence });

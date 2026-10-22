@@ -27,7 +27,7 @@
    "name": "corpLoanInfo"
   }
  ],
- "recordPath": "/corpLoan/corpLoanInfo",
+ "recordPath": "/corpLoan/corpLoanInfo?id=2110365316960813058&type=check",
  "role": "corp",
  "maps": "out/maps/page.uc.corpLoan.corpLoanInfo.json",
  "hints": "out/hints/page.uc.corpLoan.corpLoanInfo.md",
@@ -62,5 +62,6 @@
    "entry.uc.c01"
   ]
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "recordNotes": "企业页（招聘单位身份）。type=check 是只读查看，不点提交或保存。"
 }
