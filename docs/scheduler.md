@@ -33,7 +33,7 @@
 | `ledger/runs.jsonl` | 每次运行一行：工单、智能体、家族、机器、运行时、CLI 版本、multica CLI 版本、模型 ID、指令版本、token（按任务用量的增量）、结果、错误类别 |
 | `ledger/capability.json` | `keys`：以「运行时\|CLI 版本\|模型 ID\|指令版本」为键，按 `simple`（< 5KB）、`medium`（5–30KB）、`large`（≥ 30KB）记首通、通过、token、修正轮数。路由按家族 + 模型聚合所有键，所以同家族的智能体（多台机器时跨机器）共享数据。`audits`：以「生成家族\|复核家族」为键的审计数和漏检数 |
 | `ledger/agents.json` | 每个智能体的冷却截止时间、运行时和 CLI 版本、环境类失败重试次数 |
-| `ledger/tasks.json` | 工单与任务的对应关系、创建键（幂等）、工单状态（`active` / `suspended` / `merged` / `done` / `superseded`）、录制状态 |
+| `ledger/tasks.json` | 工单与任务的对应关系、创建键（幂等）、工单状态（`active` / `suspended` / `merged` / `done` / `superseded` / `held`）、录制状态；`fast-lane retire` 写入的条目带 `retired`（来源、批次、原因），见「快速通道退场」 |
 | `ledger/tick-state.json` | 暂停标记、自上次回归以来的合并数、回归与二分状态、`integration` 上每个合并提交对应的任务、升级单、规则变更单 |
 | `ledger/events.jsonl` | 合并、回退、done、审计、升级、规则变更、已知差异等事件，每日摘要从这里汇总 |
 | `locks/` | `wo-<工单id>`、`ledger`、`integration`、`tool-main`、`tick`、`rule-<分支>`、`kd-<工单>` |
@@ -102,6 +102,7 @@
 | `gateMode` | handoff / tick | 升级单送门槛时为 `upgrade`：门槛员用 `--mode upgrade` |
 | `fastLaneSync` | advance / tick | 升级单合并后同步到 `restore/fast-lane` 的结果：`{state: ok\|already\|no-branch\|conflict\|retry, sha, picked, conflicts, at}`，见上文「升级单与快速通道」 |
 | `twinLost` | advance | 双派落选 |
+| `retiredNote` | fast-lane retire | 快速通道退场时已在这张进行中的快速通道任务上留过 `[RETIRE]` 评论（时间），重复运行不再评论 |
 | `purpose`、`sha`、`mainSha`、`bisect`、`libTask`、`libMergeSha`、`ruleChange`、`ruleSha` | tick | `kind=integration` 任务的用途和参数 |
 | `branch`、`round`、`reviewer` | open-rule-review | `kind=rule-review` 任务 |
 | `reason`、`details` | tick | `kind=incident` 任务 |
@@ -144,6 +145,24 @@
 **运行失败**（`tick` 第 2 步）：读每个进行中任务的最近一次运行。限流、额度 → 该智能体冷却 30 分钟，改派同家族同模型的另一个智能体（单机运行时通常没有），没有就按路由的下一个候选；环境类 → 同一智能体重跑一次，再失败就改派；无法归类 → 报 anomaly。同一次运行只处理一次。
 
 **失败类别映射表是猜测**。`tools/lib/error-classes.mjs` 里的文案是各家的常见写法，还没见过 Multica 对 Claude Code、dsh、Opencode 限流时实际返回什么。联调或上线后看到真实的失败，以 `multica issue runs <id>` 返回的 `error` / `result` 原文为准替换。
+
+**快速通道退场（HM-1068）**：快速通道只在账本里记了整页的还原任务，它还原过的入口包、共享组件、分段，以及留下的待定、阻塞、等数据的页面，在 `queue/` 和账本里仍是 `todo`。`fastLane.enabled` 改成 `false` 之前（或刚改完、下一轮 `tick` 之前）运行一次：
+
+```bash
+node tools/tick.mjs fast-lane retire --app "$HMRSFW_APP_DIR" --dry-run   # 先看会写什么
+node tools/tick.mjs fast-lane retire --app "$HMRSFW_APP_DIR"
+```
+
+- 前提：产物仓库 `restore/fast-lane` 已合进 `integration`（HM-1067），否则拒绝执行。
+- 快速通道批次 `passed` 的入口包、共享组件，且文件在 `integration` 上 → `merged`（`merged.via = "fast-lane"`，sha 为快速通道合入 `integration` 的提交）。npm 代替单不在批次里，照常派。
+- 所属页面由快速通道按整页处理的分段 → `superseded`（页面是处理单位，与 `resplit` 之后相同）。
+- 快速通道合入过或试过、但没有任务也没有 `done` 的页面（回放待定、阻塞、等数据、身份未定、批次阻塞），以及试过但没通过的入口包、共享组件 → `held`：不派还原、不派录制，也不算通过（不进回归页集）。
+- 有进行中快速通道任务的页面不动；每张这样的任务收到一条 `[RETIRE]` 评论（元数据 `retiredNote`）：工具仓库改用 `main`。
+- 账本里已有状态的工单跳过，可以重复运行。门槛判据、归一化规则、公共库清单、`queue/` 都不改。
+
+`fast-lane release <工单id> ...` 解除 `held`：代码已在快速通道上、身份已定的页面新建一张快速通道任务（等录制 → 门槛，不重新还原）；身份未定的页面保持 `held`；其他工单回到常规派单。
+
+退场后（`retire` 运行过，账本 `tick-state.json` 有 `fastLane.retired`，且 `fastLane.enabled: false`）快速通道任务的行为（只关 `enabled`、没运行 `retire` 时仍是 HM-990 的旧行为）：门槛通过时，如果 `restore/fast-lane` 上有 `integration` 还没有的改动（修正员 `fl.sh land` 的修正），按页面分支合入 `integration`（页面范围检查、抽审计照常）；没有就直接 `done`。失败仍是修正员 → 裁定员。升级单合并后不再 cherry-pick，而是把 `integration` 合进 `restore/fast-lane`，挂起的快速通道页照旧在同步成功后恢复。
 
 ## 机器与分片
 
@@ -221,6 +240,7 @@
 ```bash
 node --test tools/test/scheduler.test.mjs     # 场景：完整链路、双派、单家族冷启动单派、打包、等录制、升级单、回归二分、规则复核、限流、dry-run、路由、无异家族复核员、已知差异
 node --test tools/test/concurrency.test.mjs   # 3 个 tick 并发 × 20 轮，两种锁模式
+node --test tools/test/fast-lane.test.mjs     # 快速通道模式（HM-48）与退场（HM-1068）：retire 前提、写入、幂等、退场后的 tick 只派快速通道没做过的、release、退场后快速通道任务通过时合入修正
 node --test tools/test/machines.test.mjs      # 单机：停用机器不算机器、--machine mac 只派给 Mac 智能体；多机（假设的第二台）：并发领取、先到先得与退避、两个 --machine 的 tick 并发、advance 只在所属机器、暂停/接管、资产判断、C 的工单格式
 ```
 

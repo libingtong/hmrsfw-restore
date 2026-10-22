@@ -281,7 +281,7 @@ export class Pipeline {
     const res = this.withWo(wos, () => {
       const L2 = this.ledger.read();
       if (this.claims && wos.some((w) => !this.claimedHere(w))) return { skipped: true, notOwner: true };
-      if (wos.some((w) => (L2.tasks.wos[w]?.active || []).length || ["merged", "done", "suspended", "superseded"].includes(L2.tasks.wos[w]?.state))) return { skipped: true };
+      if (wos.some((w) => (L2.tasks.wos[w]?.active || []).length || ["merged", "done", "suspended", "superseded", "held"].includes(L2.tasks.wos[w]?.state))) return { skipped: true };
       if (wos.some((w) => this.activeTasks(L2, w).length || this.isMergedWo(L2, w))) return { skipped: true, seenElsewhere: true };
       const attempt = Math.max(0, ...wos.map((w) => Math.max(L2.tasks.wos[w]?.attempts || 0, this.woView().get(w)?.attempts || 0))) + 1;
       const ids = [];
@@ -310,7 +310,7 @@ export class Pipeline {
   dispatchQueue(L) {
     const busyFiles = new Set(Object.values(L.tick.upgrades || {}).filter((u) => u.state === "active").flatMap((u) => u.files || []));
     const theirs = (w) => { const rec = this.claims ? this.claims.get(claimPath(w.id)) : null; return !!rec && !this.mine(rec); };
-    const eligible = this.orders().filter((w) => !isAccepted(w) && isDispatchable(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
+    const eligible = this.orders().filter((w) => !isAccepted(w) && isDispatchable(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded", "held"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
     const core = eligible.filter(isCore).filter((w) => !(w.files || []).some((f) => busyFiles.has(f))).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const pages = eligible.filter(isPage).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const units = core.map((w) => [w.id]);
@@ -375,7 +375,7 @@ export class Pipeline {
     if (!recs.length) return 0;
     const waiting = new Set(this.pipelineIssues().filter((i) => i.metadata.waitRecord === true && OPEN(i)).flatMap((i) => i.metadata.workOrders || []));
     const openRec = new Set(this.pipelineIssues().filter((i) => i.metadata.kind === "record" && OPEN(i)).flatMap((i) => i.metadata.workOrders || []));
-    let pages = this.orders().filter((w) => isPage(w) && !w.superseded && L.tasks.wos[w.id]?.state !== "superseded").sort((a, b) => (waiting.has(b.id) - waiting.has(a.id)) || (b.kb || 0) - (a.kb || 0));
+    let pages = this.orders().filter((w) => isPage(w) && !w.superseded && !["superseded", "held"].includes(L.tasks.wos[w.id]?.state)).sort((a, b) => (waiting.has(b.id) - waiting.has(a.id)) || (b.kb || 0) - (a.kb || 0));
     if (FL.fastLaneOn(this)) { // only the fast lane's recordable pages, portal first, user center by role; none while a login is needed
       if (FL.loginNeeded(this)) { this.act("fast lane: recording paused, waiting for a login"); return 0; }
       const rank = new Map(FL.recordQueue(this).map((id, i) => [id, i]));
@@ -589,7 +589,14 @@ export class Pipeline {
   }
 
   onPass(taskId, meta, wos) {
-    if (FL.isFastLane(meta)) return FL.passFastLane(this, taskId, meta, wos);
+    if (FL.isFastLane(meta)) {
+      const done = FL.passFastLane(this, taskId, meta, wos);
+      if (done) return done;
+      // fast lane retired and the branch carries fixes integration doesn't have yet: merged as a page branch
+      const merge = this.mergeTask(taskId, meta, wos, []);
+      if (!merge.merged) return merge.fail ? this.onFail(taskId, meta, merge.fail) : merge;
+      return this.afterMerge(taskId, meta, wos, merge, false);
+    }
     const tw = this.twinState(meta);
     if (tw?.merged) return this.closeTwin(taskId, meta, "对方已先通过并合并");
     // needsFromSkeleton on a passing page: no upgrade order (the page works with today's library), noted for the digest
@@ -910,8 +917,13 @@ export class Pipeline {
   syncFastLane(upgradeId, sha) {
     const into = this.fastLaneBranchName();
     if (!sha) { const st = { state: "conflict", why: "no merge commit to pick", at: this.iso() }; this.mc.setMeta(upgradeId, "fastLaneSync", st); this.anomaly(upgradeId, `upgrade merged without a known merge commit: not brought to ${into}`, `裁定员把升级内容 cherry-pick 到 ${into} 并推送，再把元数据 fastLaneSync 设为 {"state":"ok"}`); return st; }
-    const r = this.locks.with("fast-lane", () => this.appGit.cherryPick({ sha, into, message: `Pick upgrade ${upgradeId} into ${into} (integration ${short(sha)}; HM-990)` }), 5 * 60_000);
-    const st = r.locked || r.pushRejected ? { state: "retry", sha } : r.missingBranch ? { state: "no-branch" } : r.conflict ? { state: "conflict", sha, conflicts: (r.conflicts || []).slice(0, 20) } : { state: r.already ? "already" : "ok", sha, picked: r.sha || null };
+    // After the retirement (HM-1068) the fast lane is a branch off integration: integration is merged into it instead,
+    // so the branch never carries a library change of its own and passFastLane can merge its page fixes back.
+    const retired = FL.fastLaneRetired(this);
+    const r = this.locks.with("fast-lane", () => retired
+      ? !this.appGit.fetchOptional(into) ? { missingBranch: true } : this.appGit.merge({ branch: "integration", into, message: `Merge integration into ${into} (upgrade ${upgradeId}, integration ${short(sha)}; HM-1068)` })
+      : this.appGit.cherryPick({ sha, into, message: `Pick upgrade ${upgradeId} into ${into} (integration ${short(sha)}; HM-990)` }), 5 * 60_000);
+    const st = r.locked || r.pushRejected ? { state: "retry", sha } : r.missingBranch ? { state: "no-branch" } : r.conflict ? { state: "conflict", sha, conflicts: (r.conflicts || []).slice(0, 20) } : { state: r.already || r.alreadyMerged ? "already" : "ok", sha, picked: r.alreadyMerged ? null : r.sha || null };
     st.at = this.iso();
     this.mc.setMeta(upgradeId, "fastLaneSync", st);
     this.ledger.tx((L) => L.newEvents.push({ type: "fast-lane-sync", task: upgradeId, sha, state: st.state, picked: st.picked }));
@@ -1670,7 +1682,7 @@ export class Pipeline {
       s.attempts = Math.max(s.attempts || 0, v?.attempts || 0);
       s.active = v?.active || [];
       s.merged = v?.merged ? { task: v.merged.task, sha: v.merged.sha } : null;
-      s.state = v?.merged ? "merged" : s.active.length ? "active" : s.state === "superseded" ? "superseded" : null;
+      s.state = v?.merged ? "merged" : s.active.length ? "active" : s.state === "superseded" || s.retired ? s.state : null; // retired: written by fast-lane retire (HM-1068)
       if (rec.some((i) => i.metadata.record === "ok")) s.record = "ok";
       for (const i of this.pipelineIssues().filter((x) => tasks.includes(x.id))) { if (i.metadata.createKey) (L.tasks.keys ??= {})[i.metadata.createKey] = i.id; L.tasks.tasks[i.id] ??= { id: i.id, kind: i.metadata.kind, title: i.title, workOrders: i.metadata.workOrders || [], assigned: true, adopted: true }; }
     });
@@ -1737,7 +1749,9 @@ export class Pipeline {
 
   // tick.mjs fast-lane <status|adopt|login-ok> (tools/lib/fastlane.mjs)
   fastLaneCmd(sub) {
-    if (!FL.fastLaneOn(this)) return { ok: false, summary: "fast lane mode is off: set fastLane.enabled in scheduler.config.json", anomalies: [] };
+    if (sub === "retire") { this.issues(true); return this.locks.with("tick", () => FL.retire(this), 120_000); }
+    if (sub === "release") { const ids = this.argv.filter((a, i) => !a.startsWith("--") && i > this.argv.indexOf("release") && !["--app", "--machine"].includes(this.argv[i - 1])); if (!ids.length) throw new Error("usage: tick.mjs fast-lane release <工单id> ..."); this.issues(true); return this.locks.with("tick", () => FL.release(this, ids), 120_000); }
+    if (!FL.fastLaneOn(this) && !["status", "report"].includes(sub)) return { ok: false, summary: "fast lane mode is off: set fastLane.enabled in scheduler.config.json", anomalies: [] };
     if (sub === "status") return { ok: true, summary: JSON.stringify(FL.status(this)), anomalies: [] };
     if (sub === "adopt") { this.issues(true); const n = this.locks.with("tick", () => FL.adoptPages(this)); return { ok: true, summary: `fast lane: ${n} restore task(s) created`, anomalies: this.anomalies }; }
     if (sub === "login-ok") { this.issues(true); return FL.loginOk(this); }
@@ -1747,7 +1761,7 @@ export class Pipeline {
       if (this.argv.includes("--write") && !this.dryRun) writeFileSync(path.join(this.toolRoot, "tools/fast-lane/results/replay.json"), JSON.stringify(r, null, 1) + "\n");
       return { ok: true, summary: JSON.stringify(r.counts), anomalies: [] };
     }
-    throw new Error("usage: tick.mjs fast-lane status|adopt|login-ok|report [--write]");
+    throw new Error("usage: tick.mjs fast-lane status|adopt|login-ok|report [--write]|retire|release <工单id> ...");
   }
 
   rerecord(woId) {
