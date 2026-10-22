@@ -164,6 +164,24 @@ test("pending record → wait, recording done → back to the gate", () => {
   assert.equal(issue(fx, t.id).runs.length, runsBefore + 1, "gate rerun");
 });
 
+test("shared / npm orders never get a record task (HM-1124)", () => {
+  const npm = { id: "shared.portal.vue-countup-v3", type: "shared", status: "npm", kb: 7, app: "portal", site: "portal", npm: "vue-countup-v3", deps: [] };
+  const fx = makeFixture({ orders: [page("P9", 12), npm, page("P10", 11, { status: "npm" })], config: { audit: { coldRate: 0 } } });
+  node(fx, "tick.mjs", ["tick"]);
+  const recs = () => issuesOf(fx).filter((i) => i.title.startsWith("[record]"));
+  assert.deepEqual(recs().map((i) => meta(fx, i.id).workOrders).flat(), ["P9"], "only the page is recorded");
+  // a restore task on the npm order that the gate sends to "pending record" waits without opening a record
+  const t = restoreTasks(fx).find((i) => meta(fx, i.id).workOrders.includes(npm.id));
+  assert.ok(t, "restore task on the npm order");
+  setMeta(fx, t.id, `gate.${meta(fx, t.id).attempt}`, { pending: "record" });
+  const r = node(fx, "tick.mjs", ["advance", t.id]);
+  assert.equal(recs().length, 1, "no record task for the npm order");
+  assert.ok((r.anomalies || []).some((a) => a.what.includes(npm.id)), JSON.stringify(r.anomalies));
+  const rr = node(fx, "tick.mjs", ["rerecord", npm.id]);
+  assert.equal(rr.ok, false);
+  assert.equal(recs().length, 1, "rerecord refuses the npm order");
+});
+
 test("packed small pages: per-page verdicts, passing pages merged, failing page split off", () => {
   const fx = makeFixture({ orders: [page("S-a", 2), page("S-b", 3), page("S-c", 4)], config: { audit: { coldRate: 0 }, regressionEvery: 100 } });
   recorded(fx, "S-a", "S-b", "S-c");
