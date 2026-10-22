@@ -43,6 +43,13 @@ const short = (sha) => (sha || "").slice(0, 7);
 const baseKind = (meta) => (meta.kind === "audit" || meta.kind === "arbitrate" ? meta.restoreKind || "restore" : meta.kind);
 const hashUnit = (s) => parseInt(createHash("sha256").update(s).digest("hex").slice(0, 8), 16) / 0x100000000;
 const OPEN = (i) => !["done", "cancelled"].includes(i.status);
+// The reasons of a {pending:"record"} verdict (gate.mjs: byReason in metadata, missing[].why in the full result), without
+// the page-specific detail after the first colon ("baseline refresh failed: <error>"), sorted: two verdicts with the same
+// key asked for a recording for the same reasons.
+export const pendingWhy = (gate) => {
+  const raw = gate?.byReason && typeof gate.byReason === "object" ? Object.keys(gate.byReason) : (gate?.missing || []).map((m) => m?.why).filter(Boolean);
+  return [...new Set(raw.map((r) => String(r).split(":")[0].trim()))].sort().join("; ") || "?";
+};
 // Stage of the work a role does, for the asset check (machine.mjs canRun).
 const STAGE = { gate: "gate", recorder: "record", fixer: "fix", reviewer: "review", arbiter: "arbitrate", restorer: "restore", "restorer-core": "restore" };
 // Event types other machines need (stop conditions, digest); published in stats/<machine>.json.
@@ -208,6 +215,38 @@ export class Pipeline {
   recorded(L, wo) {
     return L.tasks.wos[wo]?.record === "ok" || existsSync(path.join(this.paths.baseline, slug(wo))) || existsSync(path.join(this.paths.baseline, wo))
       || this.pipelineIssues().some((i) => i.metadata.kind === "record" && i.metadata.record === "ok" && (i.metadata.workOrders || []).includes(wo));
+  }
+  // What a recording of `wo` looks like now: the highest record attempt that says ok and the baseline's fingerprint.
+  // waitForRecord keeps it per page (waitRecordFrom) so that only a recording made after the gate asked for one counts
+  // (HM-1131): a stale baseline keeps recorded() true for ever. A record attempt still open is not part of the mark, its
+  // ok comes later and counts.
+  recordMark(wo) {
+    const attempts = this.recordTasks(wo).filter((i) => i.metadata.record === "ok").map((i) => Number(i.metadata.attempt) || 1);
+    const dir = [path.join(this.paths.baseline, slug(wo)), path.join(this.paths.baseline, wo)].find((d) => existsSync(d));
+    const file = dir && path.join(dir, "baseline.json");
+    const sig = !dir ? "-" : existsSync(file) ? createHash("sha256").update(readFileSync(file)).digest("hex").slice(0, 12) : "dir";
+    return `a${Math.max(0, ...attempts)}:${sig}`;
+  }
+  recordTasks(wo) { return this.pipelineIssues().filter((i) => i.metadata.kind === "record" && (i.metadata.workOrders || []).includes(wo)); }
+  nextRecordAttempt(L, wo) { return Math.max(L.tasks.wos[wo]?.recordAttempts || 0, ...this.recordTasks(wo).map((i) => Number(i.metadata.attempt) || 1)) + 1; }
+  // A new record attempt for a page whose recording the gate can't use, on this machine like rerecord. Not when one is
+  // open already: the issue list is cached for the tick, so also the ledger's record task and the ones opened this run.
+  reopenRecord(wo, why) {
+    const L = this.ledger.read(), s = L.tasks.wos[wo];
+    this._reopened ??= new Set();
+    if (this._reopened.has(wo) || this.recordTasks(wo).some(OPEN)) return null;
+    if (s?.record === "pending" && s.recordTask) { let cur = null; try { cur = this.mc.getIssue(s.recordTask); } catch { cur = null; } if (cur && OPEN(cur)) return null; }
+    const c = this.openRecord(wo, this.leastLoaded("recorder", [], [wo]), this.nextRecordAttempt(L, wo));
+    if (!c?.id) return null;
+    this._reopened.add(wo);
+    this.ledger.tx((L2) => L2.newEvents.push({ type: "rerecord", wo, task: c.id, why }));
+    return c;
+  }
+  // Recorded after `mark`: a record task of a later attempt says ok, or a (different) baseline is here now.
+  recordedSince(wo, mark) {
+    const [, a, sig] = String(mark).match(/^a(\d+):(.*)$/) || [, "0", "-"];
+    const now = this.recordMark(wo);
+    return Number(now.match(/^a(\d+)/)[1]) > Number(a) || (!now.endsWith(":-") && now.split(":")[1] !== sig);
   }
 
   // ---- idempotent task creation ---------------------------------------------------------------------------------------
@@ -482,7 +521,7 @@ export class Pipeline {
   }
 
   regate(taskId, meta) {
-    this.mc.setMetaMany(taskId, { kind: baseKind(meta), waitRecord: false, regateAt: this.iso() });
+    this.mc.setMetaMany(taskId, { kind: baseKind(meta), waitRecord: false, waitRecordFrom: meta.waitRecordFrom ? null : undefined, recordPending: meta.recordPending ? null : undefined, regateAt: this.iso() }); // a manual regate starts the pending:record count again
     this.comment(taskId, `[REDO] 重跑门槛（--regate）`);
     this.sendToGate(taskId, meta);
     return { ok: true, summary: `regate ${taskId}`, anomalies: [] };
@@ -540,8 +579,9 @@ export class Pipeline {
     if (meta.advanced === advKey) return { ok: true, summary: `already advanced ${taskId} (${advKey})`, anomalies: [] };
     const gate = this.gateResult(meta);
     if (!gate) return { ok: false, summary: `no gate.${attempt} on ${taskId}`, anomalies: [{ issue: taskId, what: `advance without gate.${attempt}`, suggestedAction: "门槛员重跑 gate.mjs 后再 advance" }] };
-    if (gate.pending === "record") return this.waitForRecord(taskId, meta);
+    if (gate.pending === "record") return this.waitForRecord(taskId, meta, gate);
     if (gate.error) return { ok: false, summary: `gate error on ${taskId}`, anomalies: [{ issue: taskId, what: `gate error: ${String(gate.error).slice(0, 200)}`, suggestedAction: "建排障单交给裁定员" }] };
+    if (meta.recordPending) this.mc.deleteMeta(taskId, "recordPending"); // a real verdict ends a run of pending:record
     const wos = meta.workOrders || [];
     // An upgrade's verdict is one verdict for the branch (gate.mjs --mode upgrade): its pages[] are the regression pages,
     // not the pages it unblocks (workOrders), which are judged by their own gates once resumed (HM-990).
@@ -569,16 +609,49 @@ export class Pipeline {
 
   tierOf(wos) { const kb = Math.max(...wos.map((w) => Number(this.wo(w).kb || 0))); return kb < 5 ? "simple" : kb < 30 ? "medium" : "large"; }
 
-  waitForRecord(taskId, meta) {
-    this.mc.setMeta(taskId, "waitRecord", true);
+  // gate {pending:"record"}. The pages it names wait for a recording made from now on (waitRecordFrom, see recordMark):
+  // a page that has no recording gets one as before; a page whose recording is there but no longer usable (interaction
+  // script or HAR changed since the baseline, baseline refresh failed …) gets a new record attempt, as `rerecord` does —
+  // the old recording would otherwise send the task straight back to the gate on every tick (HM-1131). The same reason
+  // `recordPendingLimit` times in a row means recording does not fix it: no more automatic re-sends, the arbiter decides.
+  waitForRecord(taskId, meta, gate = {}) {
+    const wos = meta.workOrders || [];
+    const names = (gate.missing || []).map((x) => (typeof x === "string" ? x : x?.wo)).filter((w) => wos.includes(w));
+    const missing = names.length && !gate.missingTruncated ? [...new Set(names)] : wos;
+    const why = pendingWhy(gate);
+    // shared / npm orders are never recorded (HM-1124): waiting for them would never end, so the task goes to the arbiter
+    // at once — no record task, no waitRecord, no pending:record count
+    const unrecordable = missing.filter((w) => !isRecordable(this.wo(w)));
+    if (unrecordable.length) return this.unrecordableToArbiter(taskId, meta, unrecordable);
+    const prev = meta.recordPending && typeof meta.recordPending === "object" ? meta.recordPending : null;
+    const key = this.advKey(meta); // one verdict counts once, however often it is advanced
+    if (prev?.key === key && meta.waitRecord === true) return { ok: true, summary: `${taskId} already waiting for recording (${key})`, anomalies: [] };
+    const n = prev?.why === why ? (Number(prev.n) || 1) + 1 : 1;
+    const limit = this.cfg.recordPendingLimit ?? 2;
+    if (n >= limit) {
+      this.mc.setMetaMany(taskId, { waitRecord: false, waitRecordFrom: meta.waitRecordFrom ? null : undefined, recordPending: { why, n, key } });
+      this.ledger.tx((L2) => L2.newEvents.push({ type: "record-loop", task: taskId, wos: missing, why, n }));
+      this.anomaly(taskId, `连续 ${n} 次 PENDING record（${why}）：${missing.join("、")}`, "裁定员判断：录制问题退回录制员（rerecord）；原站不稳定的页按 10-21 / 10-22 的决定登记已知差异（known-diff.mjs）");
+      return this.toArbiter(taskId, meta, `record-loop: ${why}`, `[GATE] 连续 ${n} 次 PENDING record（${why}），不再自动重送 → 裁定员。录制问题用 \`tick.mjs rerecord <工单id>\` 退回录制员；原站不稳定的页按 10-21 / 10-22 的决定登记已知差异`);
+    }
     const L = this.ledger.read();
-    // record tasks belong to the leader; elsewhere the leader's next dispatchRecords picks the waiting pages first
-    const unrecordable = (meta.workOrders || []).filter((w) => !isRecordable(this.wo(w)));
-    if (unrecordable.length) this.anomaly(taskId, `gate pending record on order(s) that are never recorded: ${unrecordable.join(", ")}`, "共享库/npm 工单不录制，交裁定员处理该任务");
-    if (this.isLeader) for (const w of meta.workOrders || []) if (!unrecordable.includes(w) && !L.tasks.wos[w]?.record && !this.recorded(L, w)) this.openRecord(w);
+    const from = {}, reopened = [];
+    for (const w of missing) {
+      from[w] = this.recordMark(w);
+      if (this.recordTasks(w).some(OPEN)) continue; // already being recorded
+      if (this.recorded(L, w)) { if (this.reopenRecord(w, why)) reopened.push(w); } // there is a recording, the gate can't use it
+      else if (this.isLeader && !L.tasks.wos[w]?.record) this.openRecord(w); // record tasks belong to the leader; elsewhere the leader's next dispatchRecords picks the waiting pages first
+    }
+    this.mc.setMetaMany(taskId, { waitRecord: true, waitRecordFrom: from, recordPending: { why, n, key } });
     this.ledger.tx((L2) => L2.newEvents.push({ type: "wait-record", task: taskId, wos: meta.workOrders }));
-    this.comment(taskId, `[GATE] 等录制：${(meta.workOrders || []).join("、")}`);
+    this.comment(taskId, `[GATE] 等录制：${missing.join("、")}${reopened.length ? `（已有录制不可用：${why}，重新录制 ${reopened.join("、")}）` : ""}`);
     return { ok: true, summary: `${taskId} waiting for recording`, anomalies: [] };
+  }
+
+  unrecordableToArbiter(taskId, meta, unrecordable) {
+    this.anomaly(taskId, `gate pending record on order(s) that are never recorded: ${unrecordable.join(", ")}`, "共享库/npm 工单不录制，交裁定员处理该任务");
+    this.mc.setMetaMany(taskId, { waitRecord: false, waitRecordFrom: meta.waitRecordFrom ? null : undefined, recordPending: meta.recordPending ? null : undefined });
+    return this.toArbiter(taskId, meta, `pending record on unrecordable order(s): ${unrecordable.join(", ")}`, `[GATE] PENDING record 涉及不录制的共享库/npm 工单（${unrecordable.join("、")}），等不到录制 → 裁定员`);
   }
 
   // Twin bookkeeping: the loser of a dual dispatch is only recorded, then cancelled.
@@ -792,12 +865,12 @@ export class Pipeline {
     return { ok: true, summary: `${taskId} → redo a${attempt} by ${agent.name}`, anomalies: [] };
   }
 
-  toArbiter(taskId, meta, reason) {
+  toArbiter(taskId, meta, reason, line = `[REDO] 升级路径已走完（${reason}）→ 裁定员`) {
     const arb = this.leastLoaded("arbiter");
     this.mc.setMetaMany(taskId, { kind: "arbitrate", restoreKind: baseKind(meta), arbitrateReason: reason, arbiter: arb.id });
     this.mc.update(taskId, { status: "todo", assigneeId: arb.id });
     this.bump(arb.id);
-    this.comment(taskId, `[REDO] 升级路径已走完（${reason}）→ 裁定员`);
+    this.comment(taskId, line);
     this.ledger.tx((L) => L.newEvents.push({ type: "arbitrate", task: taskId, wos: meta.workOrders, reason }));
     return { ok: true, summary: `${taskId} → arbiter`, anomalies: [] };
   }
@@ -1556,23 +1629,37 @@ export class Pipeline {
 
   // Step 4: record tasks finished → ledger; tasks waiting for a recording that is now there → back to the gate.
   syncRecords() {
-    for (const i of this.pipelineIssues().filter((x) => x.metadata.kind === "record" && this.isLeader)) {
+    const recs = this.pipelineIssues().filter((x) => x.metadata.kind === "record" && this.isLeader);
+    const latest = new Map(); // a newer record attempt of the same order speaks for it, not an older ok (HM-1131)
+    for (const i of recs) { const w = (i.metadata.workOrders || [])[0]; if (w) latest.set(w, Math.max(latest.get(w) || 0, Number(i.metadata.attempt) || 1)); }
+    for (const i of recs) {
       const rec = i.metadata.record;
       const wo = (i.metadata.workOrders || [])[0];
-      if (!wo) continue;
+      if (!wo || (Number(i.metadata.attempt) || 1) < latest.get(wo)) continue;
       const state = rec === "ok" ? "ok" : typeof rec === "string" && rec.startsWith("blocked") ? "blocked" : i.status === "cancelled" ? null : "pending";
       const L = this.ledger.read();
       if ((L.tasks.wos[wo]?.record || null) !== state && !(state === "pending" && L.tasks.wos[wo]?.record === "ok")) this.ledger.tx((L2) => { const s = (L2.tasks.wos[wo] ??= { tasks: [] }); s.record = state; s.recordTask = i.id; if (state === "ok") L2.newEvents.push({ type: "recorded", wo }); });
     }
     FL.noteRecordBlocks(this);
     const L = this.ledger.read();
+    // waitRecordFrom (waitForRecord, rerecord): only a recording made after the gate asked counts (HM-1131); tasks
+    // without it (fast-lane tasks created waiting, older tasks) take any recording
+    const ready = (from, w) => (from && typeof from === "object" && from[w] !== undefined ? this.recordedSince(w, from[w]) : this.recorded(L, w));
     for (const i of this.pipelineIssues().filter((x) => x.metadata.waitRecord === true && ["restore", "upgrade"].includes(x.metadata.kind) && this.ownsTask(x.metadata))) {
       const wos = i.metadata.workOrders || [];
-      if (!wos.every((w) => this.recorded(L, w))) continue;
+      const notReady = wos.filter((w) => !ready(i.metadata.waitRecordFrom, w));
+      const never = notReady.filter((w) => !isRecordable(this.wo(w))); // left waiting before HM-1124/HM-1131: it never ends
+      if (never.length) { this.safe(i.id, () => this.withWo(wos, () => { const m = this.meta(i.id); if (m.waitRecord === true) { this.unrecordableToArbiter(i.id, m, never); this.act(`unrecordable wait → arbiter ${i.id}`); } })); continue; }
+      // the attempt opened for it was cancelled (fast-lane login-ok, by hand): dispatchRecords skips a page that has a
+      // recording, so the waiting task opens the next attempt itself; a blocked or still open attempt is left alone
+      const lost = notReady.filter((w) => i.metadata.waitRecordFrom?.[w] !== undefined && this.recorded(L, w) && this.recordTasks(w).length && !this.recordTasks(w).some(OPEN)
+        && this.recordTasks(w).sort((a, b) => (Number(b.metadata.attempt) || 1) - (Number(a.metadata.attempt) || 1))[0].status === "cancelled");
+      if (lost.length && !FL.loginNeeded(this)) this.safe(i.id, () => this.withWo(lost, () => lost.forEach((w) => this.reopenRecord(w, "record attempt cancelled"))));
+      if (notReady.length) continue;
       this.safe(i.id, () => this.withWo(wos, () => {
         const m = this.meta(i.id);
         if (m.waitRecord !== true) return;
-        this.mc.setMeta(i.id, "waitRecord", false);
+        this.mc.setMetaMany(i.id, { waitRecord: false, waitRecordFrom: m.waitRecordFrom ? null : undefined });
         this.comment(i.id, `[GATE] 录制已完成，重新送门槛`);
         this.sendToGate(i.id, m);
         this.act(`record ready → regate ${i.id}`);
@@ -1787,13 +1874,14 @@ export class Pipeline {
     if (!isRecordable(this.wo(woId))) return { ok: false, summary: `${woId} is a shared/npm order: nothing to record`, anomalies: [] };
     return this.withWo([woId], () => {
       const L = this.ledger.read();
-      const n = (L.tasks.wos[woId]?.recordAttempts || 1) + 1;
+      const mark = this.recordMark(woId);
+      const n = Math.max(L.tasks.wos[woId]?.recordAttempts || 1, this.nextRecordAttempt(L, woId) - 1) + 1;
       const c = this.openRecord(woId, this.leastLoaded("recorder", [], [woId]), n);
       this.ledger.tx((L2) => { const s = (L2.tasks.wos[woId] ??= { tasks: [] }); s.recordAttempts = n; s.record = "pending"; L2.newEvents.push({ type: "rerecord", wo: woId, task: c.id }); });
       const gate = this.leastLoaded("gate", [], [woId]);
       for (const t of this.activeTasks(L, woId)) {
         const meta = this.meta(t);
-        this.mc.setMetaMany(t, { kind: baseKind(meta), waitRecord: true });
+        this.mc.setMetaMany(t, { kind: baseKind(meta), waitRecord: true, waitRecordFrom: { ...(meta.waitRecordFrom && typeof meta.waitRecordFrom === "object" ? meta.waitRecordFrom : {}), [woId]: mark }, recordPending: meta.recordPending ? null : undefined });
         this.mc.update(t, { status: "in_review", assigneeId: gate.id, noStart: true });
         this.comment(t, `[RECORD] 退回录制（${c.id}），录完自动重跑门槛`);
       }
