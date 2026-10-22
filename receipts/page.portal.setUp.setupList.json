@@ -1,0 +1,27 @@
+{
+  "id": "page.portal.setUp.setupList",
+  "kind": "fix",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [],
+  "todos": [],
+  "unresolved": [
+    "load/final html：差异只在 div.world-cloud-3d > #weightTags 的 <a> 的 class（small/medium）和 style color，来自共享层 TagCanvas 的 Math.random，页面侧无可改之处（见 needsFromSkeleton）"
+  ],
+  "needsFromSkeleton": [
+    "疑似比对器问题（html，标签云随机属性）：原 chunk tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js 中每个标签 f.style.color=K()（12 色调色板取 Math.random）、className=Math.random()>.5?\"medium\":\"small\"。原版两次基线本身不同（load 长度 11016/11018），但 compare.mjs 的 volatile mask 按 LCS 取两次基线共有的 token：两次原版恰好在第 2 个标签上随机出同一 class+color，这个 <a> 标签被当成字面量必须出现，还原版随机到别的颜色就判失败（gate 也标了 unstable: load.html/final.html，重试仍不过）。还原版的颜色都在原调色板内、class 只出现 small/medium、标签数一致，行为等价。需要裁定员提规则变更（例如 #weightTags 下 <a> 的 class/color 归一化，或 unstable 的 html 键按属性级 mask），页面与共享层都不需要改"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "note": "fl-vue restore/fast-lane e074ffe（即 gate.1 的 commit），fl.sh base 后运行"
+  },
+  "notes": [
+    "fix 1：未改代码。gate.1 两处失败（load/final html）偏移 9135/9229 都落在 #weightTags 内同一位置，长度相同，只差随机 class/color",
+    "页面 setupList.vue 向 @/shared/tagcanvas.vue 传 wordArr=state.dataList、@changeName，外层 a-card height 230px，与原 chunk setupList.1783320636200.js 的 {wordArr:e.dataList,onChangeName:ge} 一致；随机逻辑在共享层，原包即如此",
+    "同类：page.portal.talents.setUp.setupList 回执（pixel，TagCanvas 画布易变），rules/compare/50-volatile-canvas.json 只处理画布像素，不覆盖 #weightTags 的 DOM 属性",
+    "pixel 为 0，其余检查（text、requests、overlay）均通过",
+    "修正轮次用完后应转裁定员走规则变更单；本单未改门槛脚本、归一化规则或公共库清单"
+  ]
+}
