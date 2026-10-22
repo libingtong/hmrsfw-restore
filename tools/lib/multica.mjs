@@ -8,6 +8,8 @@
 // Metadata objects and arrays are stored as JSON strings (--type string) and decoded on read, so we don't depend on
 // how the server stores nested values; decodeMeta also accepts values that were stored natively.
 import { spawnSync } from "node:child_process";
+import { createHash, randomBytes } from "node:crypto";
+import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -21,6 +23,28 @@ export function decodeMeta(v) {
   return v;
 }
 export const decodeAll = (m) => Object.fromEntries(Object.entries(m || {}).map(([k, v]) => [k, decodeMeta(v)]));
+
+// The server caps an issue's metadata at 8 KB for all keys together (HM-876). A full-set integration order lists every
+// passed page (254 ids ≈ 9 KB at HM-1086), so a workOrders list longer than WO_INLINE_MAX is written to
+// $RESTORE_STATE/meta/<issue>/workOrders.json and metadata keeps only workOrdersRef {file, count, sha} (and no
+// workOrders key). Readers go through resolveMeta, which puts the list back as workOrders; an inline workOrders wins
+// over a ref. A ref whose file is missing or does not match leaves workOrders unset and sets workOrdersError.
+export const WO_INLINE_MAX = 2048;
+const woSha = (wos) => createHash("sha256").update(JSON.stringify(wos)).digest("hex").slice(0, 16);
+const woFile = (id) => path.join("meta", String(id).replace(/[^\w.-]/g, "_"), "workOrders.json");
+export function resolveMeta(m, env = process.env) {
+  const ref = m?.workOrdersRef;
+  if (!ref || m.workOrders !== undefined) return m;
+  const out = { ...m };
+  try {
+    if (!env.RESTORE_STATE) throw new Error("RESTORE_STATE is not set");
+    const f = path.join(path.resolve(env.RESTORE_STATE), ref.file);
+    const wos = JSON.parse(readFileSync(f, "utf8")).workOrders;
+    if (!Array.isArray(wos) || wos.length !== ref.count || woSha(wos) !== ref.sha) throw new Error(`${ref.file} does not match workOrdersRef (count ${ref.count}, sha ${ref.sha})`);
+    out.workOrders = wos;
+  } catch (e) { out.workOrdersError = `workOrdersRef unreadable: ${String(e.message).split("\n")[0]}`; }
+  return out;
+}
 
 export class MulticaError extends Error {
   constructor(args, res) {
@@ -73,26 +97,45 @@ export class Multica {
       for (const [k, v] of Object.entries(metadata)) args.push("--metadata", `${k}=${typeof v === "string" && /^(true|false|-?\d+(\.\d+)?)$/.test(v) ? JSON.stringify(v) : v}`);
       const res = this.exec(args);
       const page = Array.isArray(res) ? res : res?.issues ?? res?.data ?? [];
-      all.push(...page.map((i) => ({ ...i, metadata: decodeAll(i.metadata) })));
+      all.push(...page.map((i) => ({ ...i, metadata: resolveMeta(decodeAll(i.metadata), this.env) })));
       if (page.length < pageSize) break;
     }
     return all;
   }
 
-  getIssue(id) { const i = this.exec(["issue", "get", id, "--output", "json"]); return i ? { ...i, metadata: decodeAll(i.metadata) } : i; }
-  metadata(id) { return decodeAll(this.exec(["issue", "metadata", "list", id, "--output", "json"]) || {}); }
+  getIssue(id) { const i = this.exec(["issue", "get", id, "--output", "json"]); return i ? { ...i, metadata: resolveMeta(decodeAll(i.metadata), this.env) } : i; }
+  metadata(id) { return resolveMeta(decodeAll(this.exec(["issue", "metadata", "list", id, "--output", "json"]) || {}), this.env); }
   runs(id) { const r = this.exec(["issue", "runs", id, "--output", "json"]); return Array.isArray(r) ? r : r?.runs ?? []; }
   usage(id) { return this.exec(["issue", "usage", id, "--output", "json"]) || {}; }
   runtimes() { const r = this.exec(["runtime", "list", "--output", "json"]); return Array.isArray(r) ? r : r?.runtimes ?? []; }
 
   // ---- writes ------------------------------------------------------------------------------------------------------
   setMeta(id, key, value) {
+    if (key === "workOrders" && Array.isArray(value) && Buffer.byteLength(JSON.stringify(value)) > WO_INLINE_MAX) return this.setWorkOrdersRef(id, value);
     const args = ["issue", "metadata", "set", id, "--key", key, "--output", "json"];
     if (value !== null && typeof value === "object") args.push("--type", "string", "--value", JSON.stringify(value));
     else if (typeof value === "number") args.push("--type", "number", "--value", String(value));
     else if (typeof value === "boolean") args.push("--type", "bool", "--value", String(value));
     else args.push("--type", "string", "--value", String(value));
     return this.exec(args, { write: true });
+  }
+
+  // A long workOrders list: the file first (written atomically; the same list always gives the same content), then the
+  // inline key goes — before the ref, because an inline list that did fit can leave too little room for one more key
+  // (HM-1072: 8188 of 8192 bytes) — then the ref. Repeating it after a crash is safe; in between, workOrders reads unset.
+  setWorkOrdersRef(id, wos) {
+    if (!this.env.RESTORE_STATE) throw new Error(`workOrders of ${id} (${wos.length} ids) is too long for metadata and RESTORE_STATE is not set`);
+    const ref = { file: woFile(id), count: wos.length, sha: woSha(wos) };
+    const f = path.join(path.resolve(this.env.RESTORE_STATE), ref.file);
+    if (this.dryRun) this.log(`[dry-run] write ${f} (${wos.length} work orders)`);
+    else {
+      mkdirSync(path.dirname(f), { recursive: true });
+      const tmp = `${f}.${process.pid}.${randomBytes(4).toString("hex")}.tmp`;
+      writeFileSync(tmp, JSON.stringify({ issue: id, ...ref, workOrders: wos }) + "\n");
+      renameSync(tmp, f);
+    }
+    this.deleteMeta(id, "workOrders");
+    return this.setMeta(id, "workOrdersRef", ref);
   }
 
   // undefined = leave alone, null = delete the key

@@ -1059,6 +1059,8 @@ export class Pipeline {
       const why = Object.entries(gate.byReason || {}).map(([w, k]) => `${w} ×${k}`).join("; ");
       return { ok: false, summary: "integration gate pending record", anomalies: [{ issue: taskId, what: `integration gate pending record: ${n} pages without a usable baseline${why ? ` (${why})` : ""}`, suggestedAction: "补录基线后 --regate，或由人决定回归范围" }] };
     }
+    // a long list lives in $RESTORE_STATE (HM-1086): without it the failing pages cannot be told apart, so no verdict
+    if (meta.workOrdersError) return { ok: false, summary: "integration work orders unreadable", anomalies: [{ issue: taskId, what: `integration advance: ${meta.workOrdersError}`, suggestedAction: "按 createKey 在账本 tasks.json 里找回 workOrders，重写 $RESTORE_STATE/meta/<任务>/workOrders.json" }] };
     const wos = meta.workOrders || [];
     const failed = gate.pass ? [] : this.failedWos(gate, wos);
     this.gateGlobal = gate.global ?? null; // app-wide failures by layer / owner (integration mode), for the reports below

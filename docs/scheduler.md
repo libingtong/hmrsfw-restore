@@ -38,8 +38,11 @@
 | `ledger/events.jsonl` | 合并、回退、done、审计、升级、规则变更、已知差异等事件，每日摘要从这里汇总 |
 | `locks/` | `wo-<工单id>`、`ledger`、`integration`、`tool-main`、`tick`、`rule-<分支>`、`kd-<工单>` |
 | `known-diffs/<工单>.json` | 已知差异登记，`gate.mjs` 读取 |
+| `meta/<任务id>/workOrders.json` | 任务的长工单列表（HM-1086）。见下文「长工单列表」 |
 
 账本只用 `ledger` 锁做读改写，锁内不调用 multica。工单锁、`integration` 锁包住 multica 和 git 调用。锁目录超过 10 分钟视为残留；清理残留锁本身由 `<锁>.reap` 串行化，并且只清掉判定为残留的那个持有者，两个等待者不会同时进入。`tick` 每一步开始时刷新自己持有的锁的时间戳（心跳）。`tick` 里每张任务的处理单独捕获异常：一张任务出问题只记 anomaly，不中断整轮。
+
+**长工单列表**（HM-1086）：服务器限制一张任务的元数据总量不超过 8KB（所有键合计，HM-876）。全量回归、集成门槛这类单子要列出全部通过页，254 页时光 `workOrders` 就有 8109 字节。所以 `workOrders` 的 JSON 超过 2048 字节（`WO_INLINE_MAX`）时，`tools/lib/multica.mjs` 把列表写进 `meta/<任务id>/workOrders.json`，元数据里删掉 `workOrders`，只留 `workOrdersRef`（`{file, count, sha}`）。删在写之前，因为一个刚好塞得下的列表可能连一个键都放不下了（HM-1072 当时是 8188/8192）。`Multica` 读元数据（`listIssues`、`getIssue`、`metadata`）和 `gate.mjs --task` 读取时都会把列表还原成 `workOrders`，所以调用方不用改。如果同时有内联的 `workOrders`，以内联为准。文件丢失，或者条数、哈希对不上时，结果里不带 `workOrders`，而是带 `workOrdersError`：`gate.mjs` 会直接报错，`advance` 只记 anomaly，不下结论、不回退。这时用账本 `tasks.json` 里这张任务的 `meta.workOrders` 重写这个文件就行。文件只在本机的 `$RESTORE_STATE`。以后再加机器时，如果门槛员不在开单的那台机器上，需要把 `meta/` 和基线一起同步过去。
 
 能力表的初始值：`tick` 第一次运行时，如果能力表为空且 `$RESTORE_ASSETS/out/confirm-stats.json` 存在，自动用其中 Sonnet 的 20 行播种（键的运行时记为 `poc-confirm`）。也可以手动 `node tools/ledger.mjs seed --from <confirm-stats.json>`。播种结果：simple 7 页首通 100%，medium 9 页 88.9%，large 4 页 50%，与 POC 的分层数据一致。
 

@@ -50,7 +50,7 @@ import { buildApp, realpathOr, scopeIdPlugin, startOnDemand } from "./gate/appse
 import { serveStatic } from "./gate/serve.mjs";
 import { createShimmer, loadRegistry, reservedShared, shimPlugin, ShimError } from "./gate/shim.mjs";
 import { readBaseline } from "./baseline.mjs";
-import { decodeAll } from "./lib/multica.mjs";
+import { decodeAll, resolveMeta } from "./lib/multica.mjs";
 import { scopeViolations, registryOwnerOf } from "./lib/upgrade-scope.mjs";
 import { isPage, loadWorkOrders, reverseDeps } from "./lib/workorders.mjs";
 import { changedFiles } from "./check-imports.mjs";
@@ -61,9 +61,12 @@ const rel = (p) => path.relative(ROOT, p);
 
 function multica(args) { return execFileSync(MULTICA, args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }); }
 
-function taskMeta(task) {
+export function taskMeta(task) {
   const issue = JSON.parse(multica(["issue", "get", task, "--output", "json"]));
-  return decodeAll(issue.metadata); // the server keeps arrays/objects as JSON strings (workOrders, history, …)
+  // the server keeps arrays/objects as JSON strings (workOrders, history, …); a long workOrders lives in $RESTORE_STATE
+  const meta = resolveMeta(decodeAll(issue.metadata));
+  if (meta.workOrdersError) throw new Error(`task ${task}: ${meta.workOrdersError}`);
+  return meta;
 }
 
 // Where the interaction scripts come from (HM-914). record-page.mjs commits them to the tool repo's `integration` branch
