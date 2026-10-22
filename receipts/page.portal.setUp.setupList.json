@@ -1,27 +1,35 @@
 {
+  "ticket": "page.portal.setUp.setupList",
   "id": "page.portal.setUp.setupList",
-  "kind": "fix",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 1,
+  "group": "还原-Opus@Mac",
+  "kind": "upgrade",
+  "task": "01a16190-9621-76cf-858c-3b065284d9f1",
+  "branch": "restore/upg-20-a1",
+  "result": "fail",
   "outputs": [],
-  "todos": [],
-  "unresolved": [
-    "load/final html：差异只在 div.world-cloud-3d > #weightTags 的 <a> 的 class（small/medium）和 style color，来自共享层 TagCanvas 的 Math.random，页面侧无可改之处（见 needsFromSkeleton）"
+  "summary": "升级单不适用：公共库 @/shared/tagcanvas.vue 没有错，差异来自原版自身的 Math.random 标签属性被比对器 volatile mask 当成字面量。分支 restore/upg-20-a1 与 origin/integration 同为 afed44f，0 改动。",
+  "verification": [
+    "原 chunk legacy-dist/portal/assets/tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js：每个标签 f.style.color=K()（K 从 12 色调色板取 Math.floor(Math.random()*x.length)）；light 标签 className=Math.random()>.5?\"huge\":\"large\"，其余 className=Math.random()>.5?\"medium\":\"small\"",
+    "还原 apps/portal/src/shared/tagcanvas.vue:98-105、137-152：link.style.color=randomColor()，同样的 huge/large、medium/small 两路随机，调色板含相同取值，取色方式 colors[Math.floor(Math.random()*colors.length)]，与原 chunk 一致",
+    "页面回执（修正第 1 轮，869fb54）已说明：原版两次基线 load 长度 11016/11018 本身不同，gate 标 unstable: load.html/final.html；两次原版碰巧在第 2 个 <a> 上随机出同一 class+color，LCS mask 把它当字面量，还原版随机到别的值即失败",
+    "改共享层来迁就基线（如固定颜色/class）会改变原行为，不可取；页面与共享层都无可改之处"
   ],
-  "needsFromSkeleton": [
-    "疑似比对器问题（html，标签云随机属性）：原 chunk tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js 中每个标签 f.style.color=K()（12 色调色板取 Math.random）、className=Math.random()>.5?\"medium\":\"small\"。原版两次基线本身不同（load 长度 11016/11018），但 compare.mjs 的 volatile mask 按 LCS 取两次基线共有的 token：两次原版恰好在第 2 个标签上随机出同一 class+color，这个 <a> 标签被当成字面量必须出现，还原版随机到别的颜色就判失败（gate 也标了 unstable: load.html/final.html，重试仍不过）。还原版的颜色都在原调色板内、class 只出现 small/medium、标签数一致，行为等价。需要裁定员提规则变更（例如 #weightTags 下 <a> 的 class/color 归一化，或 unstable 的 html 键按属性级 mask），页面与共享层都不需要改"
+  "todos": [
+    "需裁定员按 pipeline.md 第十五节 2（问题在比对器）提规则变更单：例如对 div.world-cloud-3d #weightTags 下 <a> 的 class（small/medium/large/huge）与 style color（原调色板内取值）做等价归一化，或对 unstable 的 html 键改为属性级 mask；证据见原 chunk 中 K() 与 className 的 Math.random",
+    "同类：page.portal.talents.setUp.setupList 也用 @/shared/tagcanvas.vue（rules/compare/50-volatile-canvas.json 只处理画布像素，不覆盖 #weightTags 的 DOM 属性）",
+    "升级单 0 改动，升级门槛会报 static:scope（the upgrade branch changes nothing against integration），这是预期结果，同 upg-19（HM-1020 / HM-1011 先例）"
   ],
+  "needsFromSkeleton": [],
   "selfCheck": {
     "pass": true,
+    "gitBase": "origin/integration",
     "failed": [],
-    "note": "fl-vue restore/fast-lane e074ffe（即 gate.1 的 commit），fl.sh base 后运行"
+    "warn": ["readability: eslint/prettier 未安装，无结果"],
+    "components": 1,
+    "textNodesChecked": true
   },
   "notes": [
-    "fix 1：未改代码。gate.1 两处失败（load/final html）偏移 9135/9229 都落在 #weightTags 内同一位置，长度相同，只差随机 class/color",
-    "页面 setupList.vue 向 @/shared/tagcanvas.vue 传 wordArr=state.dataList、@changeName，外层 a-card height 230px，与原 chunk setupList.1783320636200.js 的 {wordArr:e.dataList,onChangeName:ge} 一致；随机逻辑在共享层，原包即如此",
-    "同类：page.portal.talents.setUp.setupList 回执（pixel，TagCanvas 画布易变），rules/compare/50-volatile-canvas.json 只处理画布像素，不覆盖 #weightTags 的 DOM 属性",
-    "pixel 为 0，其余检查（text、requests、overlay）均通过",
-    "修正轮次用完后应转裁定员走规则变更单；本单未改门槛脚本、归一化规则或公共库清单"
+    "self-check page.portal.setUp.setupList 在 restore/upg-20-a1（= integration afed44f）上 pass:true；components 1/1，textNodes 10/10，directives 0/0；renderEquiv 报告 DIFF 1567/1617 tokens（只作报告，不是失败项）",
+    "本单未改门槛脚本、归一化规则、公共库清单或任何公共库文件"
   ]
 }
