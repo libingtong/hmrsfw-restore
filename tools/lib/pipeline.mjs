@@ -1308,6 +1308,21 @@ export class Pipeline {
     this.openIntegration({ purpose: "rule-regression", workOrders: this.passedPages(L), sha: null, key: `integration:rule-regression:${r.sha}`, extra: { ruleChange: branch, ruleSha: r.sha } });
   }
 
+  // Leader: bring the tool repo's main into its integration branch (HM-1135). Tool and rule changes land on main; the
+  // recorder runs record-page and baseline from an integration checkout (record-page commits tests/interact there,
+  // handoff the receipts), and nothing else brings main over: from 10-16 to 10-23 it recorded baselines with tools and
+  // rules 243 commits old. Conflicts are not resolved here, they are reported for the arbiter (main's side wins).
+  syncToolIntegration() {
+    const g = this.toolGit;
+    g.fetch("main", "integration");
+    if (g.isAncestor(g.remoteRef("main"), g.remoteRef("integration"))) return 0;
+    const r = this.locks.with("tool-integration", () => g.merge({ branch: "main", into: "integration", message: "Merge main into integration: tools and rules for the recorder (tick, HM-1135)" }), 5 * 60_000);
+    if (r.merged) { if (!r.alreadyMerged) this.act(`tool integration ← main${r.sha ? ` ${r.sha.slice(0, 7)}` : ""}`); return 0; }
+    if (r.locked || r.pushRejected) return 0; // next tick
+    this.anomaly(null, `tool repo integration is behind main and main does not merge into it${r.conflict ? `: conflicts in ${r.conflicts.join(", ")}` : `: ${JSON.stringify(r).slice(0, 200)}`}`, "裁定员把工具仓库 main 合入 integration（tools/、rules/ 以 main 为准）；在此之前录制员用的是旧工具");
+    return 0;
+  }
+
   rejectRule(branch, rc, verdicts) {
     const why = Object.entries(verdicts).filter(([, v]) => v.verdict !== "approve").map(([a, v]) => `${this.roster.get(a)?.name}: ${v.why || "reject"}`).join("；");
     if (rc.round >= 2) {
@@ -1588,6 +1603,7 @@ export class Pipeline {
     step("records", () => this.syncRecords());
     step("audits", () => this.processAudits());
     if (this.isLeader && this.confirmLeader()) step("rule reviews", () => this.processRuleReviews());
+    if (this.isLeader && this.confirmLeader()) step("tool integration", () => this.syncToolIntegration()); // before the record dispatch
     this.issues(true);
     const rec = this.isLeader && this.confirmLeader() ? step("dispatch records", () => this.dispatchRecords()) : 0;
     const neu = step("dispatch", () => this.dispatchNew());
