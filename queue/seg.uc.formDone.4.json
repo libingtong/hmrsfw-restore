@@ -66,7 +66,7 @@
    "name": "formDone"
   }
  ],
- "recordPath": "/formDone/:type",
+ "recordPath": "/formDone/bshbt",
  "role": "general",
  "maps": "out/maps/page.uc.formDone.json",
  "hints": "out/hints/page.uc.formDone.md",
