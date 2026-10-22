@@ -9,13 +9,14 @@
  "outputs": [
   "apps/portal/src/views/zcyz/bigData/components/pieRader.vue"
  ],
- "summary": "修正第 1 轮未改页面：load 像素差来自共享轮播（@/shared/timeOut startChartLoop，每 1s 切一项并回调 changeTimeData）在截图时刻所处的项不同，属疑似比对器问题；页面模板、状态、事件与原 chunk 逐项一致，没有可改的页面代码，restore/fast-lane 无新提交（e074ffe）。",
+ "summary": "修正第 2 轮仍未改页面：门槛第 2 次失败（1.885%）原因与第 1 轮相同——共享轮播在截图时刻停在不同项。原版两次基线自身就停在两个不同轮播项，还原停在第三项；页面代码与原 chunk 一致，restore/fast-lane 无新提交（e074ffe）。两轮修正未过，按 pipeline 应交裁定员。",
  "verification": [
   "pieRader.vue 与 pieRader.1783320636200.js 对照：模板结构/类名/文本节点（5/5）、props.data 默认值、reactive 字段 info/active/activeName/title/data/option、watch deep + onMounted 调 f()、onBeforeUnmount 清两个定时器、tab 点击、onChangeTimeData 赋 info 全部一致；scoped CSS 与 pieRader.css 逐条一致（三张 base64 图外置为同内容 png）",
   "render-equiv 唯一差异是外部组件引用名（ext:shared.pie.vue_vue_type_style_index_0_lang vs ext:shared.pie），同一共享组件，属报告误报；tokens 371/371",
   "门槛报告：原包两次基线自身已把 load.html、load.text、load.pixel 列入 unstable；差异像素集中在 infoBox 文字（zhuanhua、需求人数、占比）与提示框——随轮播项变化，但只有 canvas 盒子被 volatileCanvases 遮罩，infoBox 是 DOM，不在遮罩内。首跑 2.045%、重试 1.437%，同一份代码数值随时序漂移",
   "还原与原版截图只差在当前轮播项，不是布局/样式/尺寸：shot 均 590x255，canvas 均 295x214",
-  "self-check.mjs 在私有克隆（restore/fast-lane e074ffe，fl.sh base 后）pass:true，failed 为空"
+  "self-check.mjs 在私有克隆（restore/fast-lane e074ffe，fl.sh base 后）pass:true，failed 为空",
+  "第 2 轮门槛报告：原版两次基线的 infoBox 当前项不同（两个不同岗位类别），还原为第三个；三者 canvas 盒子均 295x215 同位置，首跑另报 load html/text 差异也位于 tooltip/infoBox 当前项内容，且这两项本就在 unstable 列表"
  ],
  "todos": [
   "疑似比对器问题，建议裁定员按 pipeline.md 第十五节「问题在比对器」处理：原版自身 load.pixel unstable 时，随定时轮播变化的 DOM 区域（非 canvas）仍参与像素比较；可考虑让门槛截图前对齐轮播时钟，走规则变更单，只认等价",
@@ -23,7 +24,8 @@
  ],
  "needsFromSkeleton": [],
  "notes": [
-  "未改代码：差异来自共享轮播时序（疑似比对器问题），依据见 verification"
+  "未改代码：差异来自共享轮播时序（疑似比对器问题），依据见 verification",
+  "第 2 轮：未改代码，原版基线两次轮播项也不同，进一步确认是时序问题（疑似比对器问题）"
  ],
  "selfCheck": {
   "pass": true,
