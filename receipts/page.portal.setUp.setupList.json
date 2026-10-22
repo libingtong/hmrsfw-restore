@@ -23,6 +23,9 @@
     "核对原 chunk：搜索按钮 onClick:R，R(){b()}，b() 先按 areaId 设 provincialLevel 再调 We(e.user)；还原版 handleSearch/loadSetupList 写法一致，输入框只有 v-model 没有 change/pressEnter 监听，原版也没有",
     "同一 commit 上一次门槛 steps.requests 通过、这次失败，且 browser 阶段耗时 3.5 倍，判断为回放时序问题，不是页面代码问题",
     "fix 1（标签云随机属性）已由 known diff 处理",
-    "本单未改门槛脚本、归一化规则或公共库清单"
+    "本单未改门槛脚本、归一化规则或公共库清单",
+    "修正第 1 轮：门槛 static:scope（升级分支对 integration 0 改动）是预期结果，未做任何代码修改；restore/upg-20-a1 仍 = integration afed44f",
+    "疑似比对器问题：差异来自原 chunk tagcanvas 中 K()（调色板 Math.random）与 className 的 Math.random，公共库 @/shared/tagcanvas.vue 与原行为一致，无可改之处；需裁定员按 pipeline.md 第十五节 2 走规则变更单",
+    "修正第 1 轮 self-check pass:true（readability 仅 warn：eslint/prettier 未安装）；未改门槛脚本、归一化规则、公共库清单或公共库文件"
   ]
 }
