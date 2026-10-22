@@ -1,22 +1,20 @@
 {
   "id": "page.portal.eMap.index",
   "ticket": "page.portal.eMap.index",
-  "group": "还原-Opus@Mac",
-  "branch": "restore/upg-21-a1",
+  "branch": "restore/fast-lane",
   "result": "fail",
-  "outputs": [],
-  "todos": [
-    "升级单 #21（HM-1064）无公共库改动可做：本页 ready 只在百度底图 tilesloaded 后触发，出自 npm 包 vue-baidu-map-3x@1.0.40 的 components/map/Map.vue init()（按原包指纹锁定版本，不可改）；公共库 apps/portal/src/main.ts 的 app.use(BaiduMap, { ak }) 与原包一致，且还原侧首轮采样地图、列表、控件均正常，说明注册无误",
-    "根因属门槛侧不确定性（百度在线底图瓦片 apimaponline*.bdimg.com 未拦截、加载时机受网络影响，原版两次采样自身 unstable），按 docs/pipeline.md 第十五节 2.2 应由裁定员开规则变更单，对门槛回放中的百度底图/tilesloaded 与版权控件做确定性处理（参照 HM-239-B 固定 IP 定位、HM-239-C 瓦片排序）；本单未改门槛脚本、规则或清单",
-    "分支 restore/upg-21-a1 与 origin/integration afed44f 相同，无提交"
-  ],
+  "fixRound": 2,
+  "outputs": ["apps/portal/src/views/eMap/index.vue"],
+  "todos": [],
   "needsFromSkeleton": [],
-  "selfCheck": {
-    "pass": true,
-    "components": 1,
-    "scopedSlots": 0,
-    "directives": 3,
-    "textNodesChecked": true,
-    "note": "self-check page.portal.eMap.index（integration 上的页面文件）pass=true；仅 eslint/prettier 未安装两条 warn"
-  }
+  "selfCheck": { "pass": true, "failed": [] },
+  "build": "pass",
+  "notes": [
+    "第 2 轮未改代码：门槛（03:35，规则 HM-1021 合入后）只剩 steps.requests 一项；html/text/pixel 本轮已通过",
+    "第 2 轮依据（疑似比对器问题，原版基线）：原版两次运行的 steps.requests 分别是 [step0 地图首个列表请求] 与 []（run1 首个列表请求落在 load），即两次运行里点「查询」「重置」都没有产生请求；而原 chunk 中「查询」onClick:St → St(){w(1)}、「重置」onClick:se → se(){…;w(\"1\")}，w 必发 freeCompanyPositionPageListForMap。正确还原的页面点这两个按钮必然各发一个请求，与任一原版序列都对不上，页面侧无法也不应去掉这两个请求",
+    "第 2 轮依据：还原侧 rest.png 与 rest.retry.png 两次采样都正常（地图定位到 FIXED_CITY，列表、控件齐全），首个列表请求在 step2 前后出现，仍是百度底图 tilesloaded 才触发 ready 的时序问题（见第 1 轮）",
+    "第 2 轮建议（交裁定员）：原版基线（tests/interact 的 d592ee6，10-21 接受为 unstable）步骤阶段的点击未触发请求，建议重录基线，或由裁定员对百度底图 tilesloaded 走规则变更单；本单未改门槛脚本、规则、清单、HAR",
+    "流程备注：第 1 轮回执写在 needsFromSkeleton 的「疑似比对器问题」被调度器开成公共库升级单 HM-1064（#21），升级员已确认无公共库改动可做；本轮把结论放在 notes，避免再开升级单",
+    "第 2 轮自检：fl-vue 在 restore/fast-lane e074ffe（与门槛 commit 相同，本页文件自 fa72725 后无变化），self-check pass:true"
+  ]
 }
