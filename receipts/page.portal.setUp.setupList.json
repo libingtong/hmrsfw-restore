@@ -26,6 +26,9 @@
     "本单未改门槛脚本、归一化规则或公共库清单",
     "修正第 1 轮：门槛 static:scope（升级分支对 integration 0 改动）是预期结果，未做任何代码修改；restore/upg-20-a1 仍 = integration afed44f",
     "疑似比对器问题：差异来自原 chunk tagcanvas 中 K()（调色板 Math.random）与 className 的 Math.random，公共库 @/shared/tagcanvas.vue 与原行为一致，无可改之处；需裁定员按 pipeline.md 第十五节 2 走规则变更单",
-    "修正第 1 轮 self-check pass:true（readability 仅 warn：eslint/prettier 未安装）；未改门槛脚本、归一化规则、公共库清单或公共库文件"
+    "修正第 1 轮 self-check pass:true（readability 仅 warn：eslint/prettier 未安装）；未改门槛脚本、归一化规则、公共库清单或公共库文件",
+    "修正第 2 轮：门槛仍为 static:scope（0 改动），属预期；restore/upg-20-a1 仍 = integration afed44f，未做代码修改",
+    "疑似比对器问题（同第 1 轮依据）：tagcanvas 的颜色/class 来自原版 Math.random，公共库与原行为一致；本单应转裁定员作废或提规则变更单",
+    "修正第 2 轮 self-check pass:true（readability 仅 warn）"
   ]
 }
