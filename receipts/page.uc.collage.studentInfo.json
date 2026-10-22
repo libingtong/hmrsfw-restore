@@ -1,0 +1,27 @@
+{
+  "id": "page.uc.collage.studentInfo",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/uc/src/views/collage/studentInfo.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "gitBase": "29b9976b7e65bfd0550052195ace47e23630cff1"
+  },
+  "build": "not-run",
+  "todos": [],
+  "unresolved": [
+    "load overlay：原页 load 有一条 404 错误提示（getStudentInfoById 走 HAR 应答 404 → 请求层 handleError → message.error），还原侧投影后 overlay 为空。页面侧无可改之处，见 notes 疑似比对器问题",
+    "load render 空（retry 一次）：首次运行 #poc-main > * 为空，retry 正常渲染，属门槛运行时机不稳定，非页面代码"
+  ],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：未改代码。setup 与原包逐句一致（decryptStorage(xfSysUserId) → getStudentInfoById({ xfSysUserId: id }) → form = result || {}），self-check renderEquiv EQUAL（5323/5323 tokens）",
+    "fix 1：共享层核对：apps/uc/src/utils/request.ts 的 handleError 与原包入口 chunk 逐分支一致（404 → `请求地址出错: ${config.url}` → message.error）；门槛记录的还原侧该请求 tier=path（与原页同一 HAR 条目），错误里也有 404 与 AxiosError",
+    "fix 1：本地验证：Vite + Playwright，接口全部在浏览器内假应答（不联网、不读 HAR），在还原 uc 应用里调用 @/api/collegeWqCancelDetail 的 getStudentInfoById 并让其 404，按门槛同样的 MutationObserver 采到 1 条 .ant-message-notice，文本与原页 overlay 相同",
+    "疑似比对器问题：还原侧应当已弹出该提示，但 report 里 rest load.overlay 为空。可能是 compareRuns 在 restShell 为真时按 baseline.shell.toasts 把这条提示从还原侧扣掉了，或 toastRecorder 50 ms 后取 innerText 时该节点已被替换；report.json 只存投影后的 overlay，看不到原始 toasts。建议门槛员重跑；若仍失败请裁定员对比 rest 原始 __gateToasts 与 baseline.shell.toasts"
+  ]
+}
