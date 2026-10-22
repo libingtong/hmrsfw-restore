@@ -1,0 +1,20 @@
+{
+  "id": "page.portal.eMap.index",
+  "ticket": "page.portal.eMap.index",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "fixRound": 1,
+  "outputs": ["apps/portal/src/views/eMap/index.vue"],
+  "todos": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题（门槛不确定性，百度在线地图）：本页首个列表请求、地图控件和地图中心都挂在 vue-baidu-map-3x 的 ready 上，而 Map.vue 只在百度底图 tilesloaded 后才发 ready（node_modules/vue-baidu-map-3x/components/map/Map.vue init()）；瓦片来自 apimaponline*.bdimg.com 在线服务，门槛不拦截。原版两次采样本身就不稳定（run0 列表请求落在 step0、run1 落在 load，report.unstable 含 load/steps.requests、final.html）。本次 a1 还原侧首轮截图 rest.png 地图已定位到 FIXED_CITY、列表和定位/缩放控件齐全，firstFailed 只剩 BMap_cpyCtrl 版权 span 多一个 style=\"display: inline;\"（百度脚本自身 DOM）；重试轮 rest.retry.png 地图停在 0,0、无控件、无列表，即 ready 在采样窗口内未触发，由此产生 requests/html/text/pixel 四项失败。页面侧无可改之处，建议门槛对百度底图/版权控件做确定性处理（同 HM-239 思路）"
+  ],
+  "selfCheck": { "pass": true, "failed": [] },
+  "build": "pass",
+  "notes": [
+    "第 1 轮未改代码：逐段对照原 chunk index.178332063620031.js——bt（地图 ready：getCurrentLocation → LocalCity → Geolocation）、ne（zoomend 轮询中心）、ue（记初始范围并按页签查询）、de（moveend 防抖）、w（职位地图列表）、se（重置）、onMounted 四个加载函数，与 index.vue 的 onBaiduMapReady/onBaiduZoomend/handleMapChange/onMapMoveend/getJobList/resetJobForm 逐句一致",
+    "第 1 轮依据：入口导出 N 即 X1e（定位失败回落 emap_center），与 @/legacy/utils getCurrentLocation 一致；vue-baidu-map-3x 的 center/zoom watcher、setCenterZoom、getMapScript 与原包内联版本一致；load 阶段两侧 HTML 只差瓦片顺序",
+    "第 1 轮依据：差异的根源是 ready 依赖在线瓦片 tilesloaded（见 needsFromSkeleton），不是页面代码；重送门槛观察是否复现",
+    "第 1 轮自检：fl-vue 在 restore/fast-lane e074ffe（与门槛 commit 相同），self-check pass:true；本页文件自 fa72725 后无变化"
+  ]
+}
