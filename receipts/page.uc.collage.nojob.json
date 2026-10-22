@@ -1,0 +1,29 @@
+{
+  "id": "page.uc.collage.nojob",
+  "ticket": "HM-1139",
+  "branch": "restore/fast-lane",
+  "result": "fail",
+  "outputs": [
+    "apps/uc/src/views/collage/nojob.vue",
+    "apps/uc/src/views/collage/nojob/vascader.vue"
+  ],
+  "todos": [
+    "a1 唯一失败项 load.overlay：原侧 load 有一条接口 404 错误提示 toast（来自共享请求层 utils/request.ts handleError 的 404 分支），还原侧 load 浮层为空；load.html / load.text / load.requests 与原侧两次运行完全一致，pixel 0",
+    "已核实页面与原 chunk（nojob.1751615607545.js）一致：加载时同样调用 index.api#s（api/collegeWqCancelDetail.ts getStudentInfoById，同 url/method/params），同样不 catch，错误提示由共享层弹出，页面层没有能吞掉 toast 的代码；同一次运行 errors 里有 404 与 AxiosError，说明还原侧拿到了同一个 404 应答",
+    "同一次门槛两次运行 goto 都超时 60 s（首次根节点为空），settleMs -1；运行时本机负载约 38–46。与 page.portal.talents.index.advertTop（receipts 第 1–2 轮）已记录的机制同型：tools/gate/har.mjs routeApi 拦截即写 lastRequestAt、fulfill 在 Vite 按需服务同一事件循环里排队，机器忙时应答晚于 load 截取，toast 落在 load 阶段之外",
+    "需裁定员按 docs/pipeline.md 第十五节 2.2 处理比对器时序（或按不稳定页处理），或在机器空闲时直接重跑门槛；修正员无权改门槛脚本"
+  ],
+  "needsFromSkeleton": [],
+  "selfCheck": {
+    "pass": true,
+    "failed": [
+      { "check": "readability", "where": "(eslint)", "severity": "warn" },
+      { "check": "readability", "where": "(prettier)", "severity": "warn" }
+    ]
+  },
+  "notes": [
+    "修正第 1 轮：未改任何文件（target、subComponentDir 均无需修改），restore/fast-lane 无新提交",
+    "疑似比对器问题：还原侧 404 toast 未在 load 阶段采到，页面与共享层代码均与原包一致；依据见 todos 第 2–3 条（goto 双超时、settle -1、高负载，与 advertTop 同型）",
+    "无法本地复现：gate.mjs --dry-run 需要 RESTORE_ASSETS，修正员按规则不访问"
+  ]
+}
