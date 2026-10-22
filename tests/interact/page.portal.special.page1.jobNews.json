@@ -1,0 +1,7 @@
+[
+  {"wait":1000},
+  {"click":"查询","optional":true},
+  {"wait":800},
+  {"clickSel":".newsItem","optional":true},
+  {"wait":800}
+]
