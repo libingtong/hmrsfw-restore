@@ -1,0 +1,63 @@
+{
+  "$schema": "../../../schema/restore.config.schema.json",
+  "schemaVersion": 1,
+  "project": {
+    "id": "myproj",
+    "name": "<项目显示名>",
+    "owner": { "memberId": "00000000-0000-0000-0000-000000000000", "label": "<负责人>" },
+    "adapter": "vue3-vite",
+    "multicaProjectId": "00000000-0000-0000-0000-000000000000"
+  },
+  "repos": {
+    "engine": { "url": "https://github.com/libingtong/hmrsfw-restore", "defaultBranch": "main", "ref": "<上游 main 提交指纹>" },
+    "data": { "url": "https://github.com/<owner>/<proj>-restore", "defaultBranch": "main", "integrationBranch": "integration" },
+    "app": {
+      "url": "https://github.com/<owner>/<proj>-vue",
+      "defaultBranch": "main",
+      "integrationBranch": "integration",
+      "packageName": "<产物工程 package.json 的 name>",
+      "attemptBranchPrefix": "restore/"
+    }
+  },
+  "apps": [
+    {
+      "name": "web",
+      "site": "web",
+      "title": "<子应用名>",
+      "legacyDist": "legacy-dist/web",
+      "entryChunk": "<入口 chunk 文件名>.js",
+      "vueChunk": "<Vue 运行时 chunk 文件名>.js",
+      "versions": { "vue": "3.0.0" },
+      "target": "apps/{app}/src/views/{view}",
+      "viteConfig": "vite.web.config.ts",
+      "testOrigin": "https://test.example.com",
+      "apiPrefix": "/api/"
+    }
+  ],
+  "env": {
+    "appDir": "VR_APP_DIR",
+    "secrets": ["EXAMPLE_PRIVATE_KEY"]
+  },
+  "recording": {
+    "allowedHosts": ["test.example.com"]
+  },
+  "escalation": {
+    "assignee": "owner",
+    "categories": [
+      { "id": "human-presence", "title": "需要人在场", "examples": ["登录态过期要重新登录", "需要其他身份的测试账号", "测试环境重置", "造数"] },
+      { "id": "money", "title": "钱", "examples": ["累计用量超出预算上限", "要新增付费模型或运行时"] },
+      { "id": "compliance-security", "title": "合规与安全", "examples": ["反编译的著作权与合同问题", "密钥或个人数据进了仓库或评论", "需要访问生产环境"] },
+      { "id": "agent-disagreement", "title": "智能体无法达成一致", "examples": ["规则变更单两轮复核不同意", "需要业务知识的取舍"] }
+    ],
+    "defaults": [
+      { "id": "D2", "decision": "比对器规范化空注释节点，源码不留 v-if=\"false\"" },
+      { "id": "D3", "decision": "路由表、配置数据登记豁免，代码不豁免" },
+      { "id": "D4", "decision": "表单页和操作页必须写交互脚本，其余页面抽 20%" }
+    ]
+  },
+  "coverage": { "minFunction": 50, "minBlock": 40, "requireStable": true },
+  "projectNotes": "docs/project-notes.md",
+  "machines": [
+    { "name": "main", "host": "<机器主机名>", "holdsSecrets": true, "roles": ["dispatcher", "gate", "recorder", "fixer", "arbiter", "restorer", "restorer-core", "reviewer"] }
+  ]
+}
