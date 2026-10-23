@@ -35,7 +35,7 @@ export function selfCheckVerdict({ code, stdout, crash }, id) {
   return items.length ? items : fail("self-check.mjs reported pass:false without failure items");
 }
 
-async function selfCheck(wo, appDir, script = path.join(ROOT, "tools/self-check.mjs")) {
+export async function selfCheck(wo, appDir, script = path.join(ROOT, "tools/self-check.mjs")) {
   let res;
   // POC pages (c01…, p1…) are checked under their queue/ id; the result stays keyed by the gate's id.
   try { res = { code: 0, stdout: (await run(process.execPath, [script, wo.queueId ?? wo.id, "--app", appDir, "--no-render-equiv"], { cwd: ROOT, maxBuffer: 64 << 20, timeout: 300000 })).stdout }; }
