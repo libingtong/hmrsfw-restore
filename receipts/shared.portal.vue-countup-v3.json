@@ -2,25 +2,27 @@
   "id": "shared.portal.vue-countup-v3",
   "ticket": "shared.portal.vue-countup-v3",
   "group": "还原-Opus@Mac",
-  "branch": "restore/upg-23-a1",
+  "branch": "restore/shared.portal.vue-countup-v3-a2",
   "result": "ok",
-  "outputs": [
-    "hmrsfw-vue@restore/upg-23-a1: package.json vue-countup-v3 1.4.2 -> 1.4.0",
-    "hmrsfw-vue@restore/upg-23-a1: package-lock.json vue-countup-v3 1.4.0（npmmirror tarball，countup.js 仍由 overrides 锁 2.6.2）",
-    "hmrsfw-restore@restore/upg-23-a1-registry (PR #58 -> main): registry/portal.json、registry/uc.json npm 段 vue-countup-v3 1.4.0，门户条目备注更新"
-  ],
+  "outputs": [],
   "todos": [
-    "self-check.mjs 按工单模式跑不适用于 npm 型升级单：compile 报找不到交付文件（工单无 target），imports 报本单不能改 package.json / package-lock.json，与本升级单要求冲突，未按 hint 撤销；按 docs/gate.md 升级单模式改跑 upgrade-scope.scopeViolations + selfCheckFiles，结果均为空（通过）",
-    "清单改动在工具仓库分支 restore/upg-23-a1-registry（PR #58，base main），需合入 main；此前 upg-9 的 -registry 分支未见合入 main"
+    "本单 status=npm，无 target/files；npm 依赖已由升级单 HM-1166 锁为 vue-countup-v3 1.4.0（countup.js override 2.6.2），本单无文件可交付，a2 分支与 hmrsfw-vue integration（df89db5）相同、无提交",
+    "指纹核对通过：node_modules/vue-countup-v3 1.4.0 的 dist 用 __spreadValues/__spreadProps 降级展开、内联 countup.js version=\"2.6.2\"，finished 侦听只 emit(\"finished\")，onCompleteCallback 只出现在 countup.js 内部，与原 chunk 一致",
+    "self-check 唯一失败项 compile「没有找到本单要交付的文件」是 npm 类工单没有交付文件所致，按 hint 无法修正；门槛 page 模式要求基线（裁定员已指出 tools/gate.mjs:242、tools/lib/fastlane.mjs:261），预计仍会 PENDING record，需工具侧处理 npm 单的判定",
+    "registry/portal.json 的 npm.vue-countup-v3 在工具仓库 main 与 integration 上仍是 1.4.2，未随 HM-1166 同步为 1.4.0；工单与清单条目 note「依赖不在 package.json 里」也已过时"
   ],
-  "needsFromSkeleton": [],
+  "needsFromSkeleton": [
+    "registry/portal.json npm 段 vue-countup-v3 同步为 1.4.0（与 hmrsfw-vue package.json 一致），并刷新本单 note",
+    "self-check/门槛对 status=npm 的共享单按「依赖在 package.json 且版本与原包指纹一致」判定，或调度不再派此类还原单"
+  ],
   "selfCheck": {
+    "pass": false,
+    "failed": [
+      { "check": "compile", "where": "shared.portal.vue-countup-v3", "hint": "没有找到本单要交付的文件（）：确认写到了工单指定的路径，并且在 --app 指向的 hmrsfw-vue 检出里" }
+    ],
     "components": 0,
     "scopedSlots": 0,
     "directives": 0,
-    "textNodesChecked": false,
-    "orderMode": { "pass": false, "failed": ["compile: 无交付文件（npm 工单无 target）", "imports: package-lock.json 不能改", "imports: package.json 不能改"] },
-    "upgradeMode": { "scopeViolations": [], "selfCheckFiles": [] },
-    "buildPortal": "vite build -c vite.portal.config.ts 通过；产物 vue-countup-v3 chunk 的 finished 侦听为 w(r,l=>{l&&n(\"finished\")})，与原 chunk 一致"
+    "textNodesChecked": true
   }
 }
