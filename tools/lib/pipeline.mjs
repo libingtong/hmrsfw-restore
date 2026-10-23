@@ -53,7 +53,7 @@ export const pendingWhy = (gate) => {
 // Stage of the work a role does, for the asset check (machine.mjs canRun).
 const STAGE = { gate: "gate", recorder: "record", fixer: "fix", reviewer: "review", arbiter: "arbitrate", restorer: "restore", "restorer-core": "restore" };
 // Event types other machines need (stop conditions, digest); published in stats/<machine>.json.
-const SHARED_EVENTS = new Set(["gate", "run-error", "done", "merge", "revert", "main-ff", "fail", "twin-lost", "arbitrate", "upgrade-open", "audit", "audit-skipped", "incident", "rule-merged", "rule-reverted", "rule-rejected", "needs-on-pass", "known-diff", "double-dispatch"]);
+const SHARED_EVENTS = new Set(["gate", "run-error", "done", "merge", "revert", "main-ff", "fail", "twin-lost", "arbitrate", "upgrade-open", "audit", "audit-skipped", "incident", "rule-merged", "rule-reverted", "rule-revert-failed", "rule-rejected", "needs-on-pass", "known-diff", "double-dispatch"]);
 
 export class Pipeline {
   constructor({ argv = process.argv.slice(2), env = process.env, appDir = null, toolRoot = TOOL_ROOT, now = () => Date.now() } = {}) {
@@ -1501,9 +1501,19 @@ export class Pipeline {
       return { ok: true, summary: `rule regression passed${covered.length ? `; covers ${covered.length} more` : ""}`, anomalies: [] };
     }
     const r = this.locks.with("tool-main", () => this.toolGit.revert({ sha: meta.ruleSha, into: "main", message: `Revert rule change ${meta.ruleChange}: full regression failed on ${failed.length} pages` }), 5 * 60_000);
-    this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "reverted"; L.newEvents.push({ type: "rule-reverted", branch: meta.ruleChange, pages: failed.length, ok: !!r.reverted }); });
-    this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（${failed.length} 页），已回退`);
-    return { ok: true, summary: `rule ${meta.ruleChange} reverted`, anomalies: [] };
+    if (r.reverted) {
+      this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "reverted"; L.newEvents.push({ type: "rule-reverted", branch: meta.ruleChange, pages: failed.length, ok: true }); });
+      this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（${failed.length} 页），已回退`);
+      return { ok: true, summary: `rule ${meta.ruleChange} reverted`, anomalies: [] };
+    }
+    // The revert did not happen (a later commit touches the same lines, the rule is not on main, the lock or the push
+    // failed): the rule is still in effect. Before HM-1276 this still recorded the rule as reverted and commented
+    // 「已回退」 (hm-1225/uc-bare-route-root, 10-23: the git revert conflicted with hm-1162 and the rule stayed on main).
+    const why = r.locked ? "lock busy" : r.conflict ? "conflict" : r.notOnBranch ? "not on main" : r.pushRejected ? "push rejected" : "failed";
+    this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "revert-failed"; L.newEvents.push({ type: "rule-revert-failed", branch: meta.ruleChange, pages: failed.length, why }); });
+    this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（${failed.length} 页），自动回退未执行（${why}），规则仍在 main → 裁定员`);
+    const inc = this.openIncident(`规则变更 ${meta.ruleChange} 全量回归失败 ${failed.length} 页，自动回退未执行（${why}），规则仍在 main`, { task: taskId, ruleChange: meta.ruleChange, ruleSha: meta.ruleSha, why, failed: failed.slice(0, 50) }, false);
+    return { ok: true, summary: `rule ${meta.ruleChange} not reverted (${why})`, anomalies: inc.anomalies };
   }
 
   // Every rule regression replays the passed pages with the gate's current tools, not with the tools at its own rule
@@ -2024,7 +2034,7 @@ export class Pipeline {
       `| main 快进 | ${by("main-ff").filter((e) => e.ok).length} |`, `| 门槛失败 | ${by("fail").length} |`, `| 双派落选 | ${by("twin-lost").length} |`,
       `| 交给裁定员 | ${by("arbitrate").length} |`, `| 公共库升级单 | ${by("upgrade-open").length} |`, `| 审计（ok/issue） | ${by("audit").filter((e) => e.verdict === "ok").length}/${by("audit").filter((e) => e.verdict !== "ok").length} |`,
       `| 跳过审计（无异家族复核员） | ${by("audit-skipped").length} |`, `| 排障单 | ${by("incident").length} |`, `| 重复派单告警 | ${by("double-dispatch").length} |`, "",
-      `**规则变更**：${[...by("rule-merged").map((e) => `${e.branch} 合并`), ...by("rule-reverted").map((e) => `${e.branch} 回退`), ...by("rule-rejected").map((e) => `${e.branch} 第 ${e.round} 轮否决`)].join("；") || "无"}`,
+      `**规则变更**：${[...by("rule-merged").map((e) => `${e.branch} 合并`), ...by("rule-reverted").map((e) => `${e.branch} 回退`), ...by("rule-revert-failed").map((e) => `${e.branch} 回退未执行（${e.why}）`), ...by("rule-rejected").map((e) => `${e.branch} 第 ${e.round} 轮否决`)].join("；") || "无"}`,
       `**通过但回执提了公共库需求（未建升级单）**：${by("needs-on-pass").map((e) => `${e.wos.join("、")}：${e.needs.join("；")}`).join("\n") || "无"}`,
       `**已知差异登记**：${by("known-diff").map((e) => `${e.wo}（${e.why}）`).join("；") || "无"}`,
       `**low 级审计发现**：${lows.length ? "\n" + lows.slice(0, 20).map((l) => `- ${l}`).join("\n") : "无"}`,
