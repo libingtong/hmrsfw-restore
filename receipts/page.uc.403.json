@@ -2,12 +2,18 @@
   "id": "page.uc.403",
   "ticket": "page.uc.403",
   "group": "还原-DeepSeek@Mac",
-  "branch": "restore/page.uc.403-a1",
-  "result": "ok",
+  "branch": "restore/page.uc.403-a2",
+  "result": "fail",
   "outputs": ["apps/uc/src/views/403.vue"],
-  "todos": [],
+  "todos": [
+    "页面本身已通过：self-check pass（components 1/1、textNodes 6/6、directives 0、readability 0 项、renderEquiv EQUAL），基线截图 shot.png 与门槛还原版 rest.png 字节完全相同（sha256 32c6f67a…），渲染结果与原版一致。",
+    "门槛 page 模式固定用 `#poc-main > *` 取还原侧根节点，但 /403 在两侧都是布局外路由：原入口路由表里 /403 与带布局的 `/` 路由平级（children 之外），基线记录的根选择器也是 `#app > *`，还原版 DOM 为 `#app > .error-page`。`#poc-main` 钩子只在布局组件 Home.vue 内，布局外页面没有也造不出来（给页面套 main 会破坏 height:100% 版式并引入原包没有的元素）。",
+    "两处 root 失败是同一原因：load 阶段还原侧取不到 #poc-main；final 阶段点“返回首页”进布局后，原版按 `#app > *` 取到 ant-layout，还原侧按 `#poc-main > *` 取到布局内容 contentmain。",
+    "建议由裁定员判断走哪条路：(a) 规则变更单——门槛在 `#poc-main` 无匹配时回退 `#app > *`（或按工单给布局外页面单独的选择器）；(b) 公共库升级单——在 uc 的 App.vue 为不带布局的顶层路由补 `#poc-main` 钩子。注意 (b) 不能无条件加：布局内页面的 `#poc-main > *` 会先命中 App 层的 a-layout，已通过的布局页会一起失败。",
+    "尚未面世的同类页面：/login、/previewresume、/autoLogin 同样是布局外顶层路由，会撞上同一处。"
+  ],
   "needsFromSkeleton": [
-    "hmrsfw-vue 的 package.json 没有 eslint / eslint-plugin-vue / prettier devDependencies，自检的可读性 eslint、prettier 两项只能给出 warn，没有实际格式与 lint 结果"
+    "uc 公共库缺少“布局外顶层路由”的还原侧根节点钩子：apps/uc/src/legacy/components/App.vue 只有 `<a-config-provider><RouterView/></a-config-provider>`，`#poc-main` 钩子放在 apps/uc/src/legacy/components/Home.vue（只覆盖布局内页面）；/403 这类不带布局的路由在还原侧没有可被门槛定位的根节点（原始侧基线用 `#app > *` 记录）"
   ],
   "selfCheck": {
     "pass": true,
