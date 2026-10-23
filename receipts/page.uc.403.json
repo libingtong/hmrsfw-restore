@@ -1,1 +1,27 @@
-{ "ticket": "page.uc.403", "id": "page.uc.403", "group": "还原-Sonnet@Mac", "branch": "restore/page.uc.403-a3", "result": "ok", "outputs": ["apps/uc/src/views/403.vue"], "todos": [], "needsFromSkeleton": ["uc 公共库缺少“布局外顶层路由”的还原侧根节点钩子：/403 不走 Home.vue，还原侧没有 #poc-main，门槛 root/render 检查会失败（与第 2 次回执相同）；页面本身已与原 chunk 一致（self-check 通过），未改公共库"], "selfCheck": { "pass": true, "components": 1, "scopedSlots": 0, "directives": 0, "textNodesChecked": true } }
+{
+  "ticket": "page.uc.403",
+  "id": "page.uc.403",
+  "group": "还原-Sonnet@Mac",
+  "branch": "restore/page.uc.403-a3",
+  "result": "ok",
+  "outputs": [
+    "apps/uc/src/views/403.vue"
+  ],
+  "todos": [],
+  "needsFromSkeleton": [
+    "uc 公共库缺少“布局外顶层路由”的还原侧根节点钩子：/403 不走 Home.vue，还原侧没有 #poc-main，门槛 root/render 检查会失败（与第 2 次回执相同）；页面本身已与原 chunk 一致（self-check 通过），未改公共库"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "components": 1,
+    "scopedSlots": 0,
+    "directives": 0,
+    "textNodesChecked": true
+  },
+  "fixRound": 1,
+  "notes": [
+    "修正第 1 轮（a3）：403.vue 缺 <style scoped>，用 css-by-scope.mjs --write 补回（6 条规则，回编译一致），提交 569a046；模板与脚本对照 sourceChunk 一致，未改。self-check pass（renderEquiv EQUAL）。",
+    "疑似比对器问题（未修，与 a2 修正轮相同）：gate.3 三项失败（load root、final root、load render empty）与页面无关。依据：apps/uc/src/router.ts:258 已声明顶层 /403，appserver.mjs gateRouteCode 不加 #poc-main 兜底路由，页面挂在 App 下；compare.mjs compareRuns 的 restSel 固定 \"#poc-main > *\"，common.mjs 的 bareRoutes/bareSel(\"#app > *\") 只用于原版侧。final 失败同因：点“返回首页”进布局后原版按 #app > * 取到 ant-layout，还原侧按 #poc-main > * 取到 contentmain。",
+    "建议裁定员走规则变更单（还原侧对 bareRoutes 同样用 bareSel）或公共库升级单（uc App.vue 为布局外路由补钩子，且不能让布局页先命中）；/login、/previewresume、/autoLogin 同类。"
+  ]
+}
