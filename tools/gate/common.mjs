@@ -11,9 +11,13 @@ export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "
 // site = the original site (legacy-dist/<site>), app = the hmrsfw-vue application (apps/<app>).
 // origSel / restSel: where the page component's root element sits in the original and in the restored app (the
 // restored apps have no shell yet: App.vue renders <main id="poc-main"><router-view/></main>).
+// bareRoutes / bareSel: routes the original router declares next to the layout route instead of as its children; those
+// pages are mounted straight under App (a-config-provider renders no element of its own), so there is no layout and
+// their root is the first child of #app (legacy-dist/usercenter/assets/index.1751615607545.js, routes Fht: top-level
+// /, /previewresume, /login, /403, /autoLogin; App smt renders a-config-provider > RouterView; HM-1225).
 export const SITES = {
   portal: { app: "portal", host: "https://hamiwebportaltest.rencaidanao.com", origSel: "main > *" },
-  usercenter: { app: "uc", host: "https://hamiusercentertest.rencaidanao.com", origSel: "main.ant-layout-content .overscoll > div > *" },
+  usercenter: { app: "uc", host: "https://hamiusercentertest.rencaidanao.com", origSel: "main.ant-layout-content .overscoll > div > *", bareRoutes: ["/previewresume", "/login", "/403", "/autoLogin"], bareSel: "#app > *" },
 };
 export const REST_SEL = "#poc-main > *";
 export const siteOfApp = (app) => Object.keys(SITES).find((s) => SITES[s].app === app);
@@ -31,7 +35,8 @@ export function pageScopeId(wo) {
   return (comps.length === 1 ? comps[0] : comps.find((c) => c.name === base))?.scopeId ?? null;
 }
 export function origSelOf(wo) {
-  if (!wo.recordVia) return SITES[wo.site].origSel;
+  const site = SITES[wo.site];
+  if (!wo.recordVia) return site.bareRoutes?.includes(new URL(wo.recordPath ?? "/", "http://x").pathname) ? site.bareSel : site.origSel;
   const sid = pageScopeId(wo);
   if (!sid) throw new Error(`work order ${wo.id} is recorded via ${wo.recordVia} but its component has no scope id: its root cannot be told apart inside the parent page`);
   return scopeRootSel(sid);
