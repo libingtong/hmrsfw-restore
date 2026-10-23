@@ -5,7 +5,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { makeFixture, node, issuesOf, fakeState, mc, setMeta, meta, pushBranch, writeReceipt, showRemote } from "./fixture.mjs";
 
@@ -172,10 +172,70 @@ test("rule regression: every page passes, only app-wide zero-reference hits fail
 test("rule regression: a failing page still reverts the rule", () => {
   const ids = ["P1", "P2"];
   const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
+  const g = (...a) => execFileSync("git", ["-C", fx.tool, ...a], { encoding: "utf8" }).trim();
+  writeFileSync(path.join(fx.tool, "rule-x.json"), "{}"); g("add", "-A"); g("-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "rule x"); g("push", "-q", "origin", "main");
   const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (2 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
-  for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: "abc1234" })) setMeta(fx, t.id, k, v);
+  for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: g("rev-parse", "HEAD") })) setMeta(fx, t.id, k, v);
   gate(fx, t.id, { pass: false, stage: "browser", mode: "integration", attempt: 1, failed: [{ wo: "P2", check: "html", where: "load", hint: "x" }], global: { total: 3, byLayer: { shell: 3 }, byOwner: {} }, pages: [{ wo: "P1", pass: true }, { wo: "P2", pass: false, stage: "browser" }] });
   assert.match(issue(fx, t.id).comments.at(-1).content, /回归失败（1 页），已回退/);
+  g("fetch", "-q", "origin");
+  assert.equal(showRemote(fx, "tool", "main", "rule-x.json"), null, "the rule's commit is reverted on main");
+});
+
+test("rule regression: a revert that does not happen is not reported as one — the arbiter gets an incident (HM-1276)", () => {
+  const ids = ["P1", "P2"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
+  const g = (...a) => execFileSync("git", ["-C", fx.tool, ...a], { encoding: "utf8" }).trim();
+  const commit = (content, m) => { writeFileSync(path.join(fx.tool, "rule-y.json"), content); g("add", "-A"); g("-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", m); return g("rev-parse", "HEAD"); };
+  const rule = commit('{"a":1}\n', "rule y");
+  commit('{"a":2}\n', "later rule on the same lines"); // reverting `rule` now conflicts
+  g("push", "-q", "origin", "main");
+  const task = (sha) => {
+    const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (2 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
+    for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/y", ruleSha: sha })) setMeta(fx, t.id, k, v);
+    return t.id;
+  };
+  const fail = { pass: false, stage: "browser", mode: "integration", attempt: 1, failed: [{ wo: "P2", check: "html", where: "load", hint: "x" }], pages: [{ wo: "P1", pass: true }, { wo: "P2", pass: false, stage: "browser" }] };
+  for (const [sha, why] of [[rule, "conflict"], ["abc1234", "not on main"]]) {
+    const t = task(sha);
+    const r = gate(fx, t, fail);
+    assert.equal(r.ok, true, JSON.stringify(r));
+    const last = issue(fx, t).comments.at(-1).content;
+    assert.match(last, new RegExp(`回归失败（1 页），自动回退未执行（${why}），规则仍在 main`));
+    assert.doesNotMatch(last, /已回退/);
+    assert.equal(issue(fx, t).status, "done", "the verdict is handled");
+    assert.ok(issuesOf(fx).some((i) => i.title.startsWith("[incident]") && i.title.includes(why)), `incident for ${why}`);
+  }
+  g("fetch", "-q", "origin");
+  assert.equal(showRemote(fx, "tool", "main", "rule-y.json"), '{"a":2}\n', "main untouched");
+});
+
+test("accepted pages (queue status regression) are done by their own integration verdict, not by the whole run passing (HM-1276)", () => {
+  const ids = ["A1", "A2", "A3", "N1"];
+  const fx = makeFixture({ orders: [...["A1", "A2", "A3"].map((id) => page(id, 5, { status: "regression" })), page("N1", 5)] });
+  const ledgerWo = (id) => JSON.parse(readFileSync(path.join(fx.state, "ledger/tasks.json"), "utf8")).wos[id] || {};
+  const task = (purpose) => {
+    const t = mc(fx, "issue", "create", "--title", `[integration] ${purpose} (4 页)`, "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
+    for (const [k, v] of Object.entries({ kind: "integration", purpose, workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/z", ruleSha: "abc1234", ...(purpose === "bisect" ? { sha: "abc1234", bisect: { candidates: ["abc1234"], lo: 0, hi: 0, mid: 0, step: 1 } } : {}) })) setMeta(fx, t.id, k, v);
+    return t.id;
+  };
+  // a bisect step tests an older commit: it closes nothing
+  gate(fx, task("bisect"), { pass: true, stage: "browser", mode: "integration", attempt: 1, failed: [], pages: ids.map((wo) => ({ wo, pass: true })) });
+  assert.equal(ledgerWo("A1").state, undefined, "bisect closes nothing");
+  // slimmed verdict: failing pages listed, the passing ones counted; A2 fails
+  gate(fx, task("rule-regression"), { pass: false, stage: "browser", mode: "integration", attempt: 1, run: "r1", failed: [{ wo: "A2", check: "html", where: "load", hint: "x" }], pages: [{ wo: "A2", pass: false, stage: "browser" }], passedOmitted: 3 });
+  assert.equal(ledgerWo("A1").state, "done");
+  assert.equal(ledgerWo("A1").verified.run, "r1");
+  assert.equal(ledgerWo("A3").state, "done");
+  assert.equal(ledgerWo("A2").state, undefined, "a failing page stays open");
+  assert.equal(ledgerWo("N1").state, undefined, "only accepted pages: a restored page is done by its own task");
+  // a truncated page list decides nothing
+  gate(fx, task("rule-regression"), { pass: false, stage: "browser", mode: "integration", attempt: 1, failed: [], pages: [], pagesTruncated: true, passedOmitted: 4 });
+  assert.equal(ledgerWo("A2").state, undefined);
+  // A2 passes later on its own
+  gate(fx, task("rule-regression"), { pass: false, stage: "browser", mode: "integration", attempt: 1, run: "r2", failed: [{ wo: "N1", check: "html", where: "load", hint: "x" }], pages: ids.map((wo) => ({ wo, pass: wo !== "N1" })) });
+  assert.equal(ledgerWo("A2").state, "done");
+  assert.equal(ledgerWo("A1").verified.run, "r1", "an already done page keeps its first verdict");
 });
 
 test("rule regression: a passing one closes the open rule regressions it covers — rule in the tested tools, pages judged (HM-1270)", () => {
