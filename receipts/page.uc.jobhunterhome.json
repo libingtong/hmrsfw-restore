@@ -70,6 +70,7 @@
  "notes": [
   "修正第 1 轮（a3）：未改代码。门槛 a3 唯一失败仍是 final root（还原 jeecg-basic-table-form-container / 原基线 contentmain），与 a1、a2 完全相同，属疑似比对器问题（录制侧基线）",
   "依据：原 chunk 中 .edit 为 router.push({path:\"/nom\"})，a3 的 newUserCard.vue:19 一致；原 /nom 页根即 jeecg-basic-table-form-container；两侧 steps.requests 一致（均已发出 /nom 页请求）；原基线该步记为 timed out after the action was sent，final 抓取时 DOM 未切换",
-  "load 阶段全部通过，self-check 复跑通过；三次尝试、两个模型家族结果相同，再重做不会改变结果。建议裁定：重录该页基线或交互脚本不以跳转收尾（工具侧）"
+  "load 阶段全部通过，self-check 复跑通过；三次尝试、两个模型家族结果相同，再重做不会改变结果。建议裁定：重录该页基线或交互脚本不以跳转收尾（工具侧）",
+  "修正第 2 轮（a3）：未改代码。门槛结果与 a1/a2/a3 第 1 轮完全相同（final root：还原 jeecg-basic-table-form-container / 原基线 contentmain），分支提交未变，依据同上一轮：疑似比对器问题（录制侧基线在 .edit → /nom 跳转完成前抓取 final）。页面侧无等价写法可改，需裁定员/工具侧重录基线或调整交互脚本"
  ]
 }
