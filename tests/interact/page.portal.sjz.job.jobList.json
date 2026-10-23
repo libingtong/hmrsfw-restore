@@ -3,6 +3,5 @@
   {"click":"搜索"},
   {"wait":1500},
   {"click":"重置"},
-  {"wait":1500},
-  {"clickSel":".ant-pagination-item-2","optional":true}
+  {"wait":1500}
 ]
