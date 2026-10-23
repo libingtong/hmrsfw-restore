@@ -28,6 +28,16 @@ function toastRecorder(sel) {
   window.__gatePhase = "load";
   const nativeTimeout = window.setTimeout.bind(window);
   const realTimeout = (f, ms) => (window.__pwClock?.builtins?.setTimeout ?? nativeTimeout)(f, ms);
+  // Replay clock lag (waitStable): how long a page setTimeout(0) waits before it runs, in real time, at most `capMs`. The
+  // clock runs due timers in the order they fell due, so the probe runs after the backlog; with none it runs at the
+  // clock's next tick (≤ 100 ms). The probe is window.setTimeout as the page has it (the clock's, installed after this
+  // script); the time is the native performance.now captured here.
+  const realNow = performance.now.bind(performance);
+  window.__gateLag = (capMs) => new Promise((done) => {
+    const t = realNow(); let over = false;
+    window.setTimeout(() => { if (!over) { over = true; done(realNow() - t); } }, 0);
+    realTimeout(() => { if (!over) { over = true; done(capMs); } }, capMs);
+  });
   const seen = new WeakSet();
   const grab = (el) => { if (seen.has(el)) return; seen.add(el); const phase = window.__gatePhase; realTimeout(() => { const t = el.innerText.trim(); if (t) window.__gateToasts.push({ phase, t }); }, 50); };
   new MutationObserver((muts) => { for (const m of muts) for (const n of m.addedNodes) if (n.nodeType === 1) { if (n.matches(sel)) grab(n); n.querySelectorAll?.(sel).forEach(grab); } }).observe(document, { childList: true, subtree: true });
@@ -122,14 +132,20 @@ export function paintedBoxInPage(root) {
 // Stability: the page counts as settled when body text length and element count stay the same for `stableMs`, no UI
 // animation or transition (50 ms – 2 s: antd collapse/fade, a carousel sliding) is running and no /xf-api/ request was
 // made in that window (HAR answers are immediate). POC: 3 × 1 s on body text length only.
+// Nor while the replay clock lags behind (HM-1278): Playwright's clock (setSystemTime) runs the page's due timers and
+// animation frames one per real macrotask, and a page with dozens of due timers that each re-render keeps the page's
+// time standing for seconds. The DOM does not change in that time, so it looked settled and was captured half-way:
+// rc-motion items still in "appear-prepare" with their inline height (antd upload list), a toast not yet shown. The
+// page's own clock having caught up (a page setTimeout(0) runs within LAG_MS) is part of being settled.
 export const STABLE = { pollMs: 500, stableMs: 2000, minMs: 2000, maxMs: 30000 };
+const LAG_MS = 500;
 
 export async function waitStable(page, lastRequestAt, s = STABLE) {
   const t0 = Date.now();
   let last = "", since = Date.now();
   while (Date.now() - t0 < s.maxMs) {
     await page.waitForTimeout(s.pollMs);
-    const sig = await page.evaluate(() => document.body.innerText.length + ":" + document.getElementsByTagName("*").length + (window.__gateBusy?.() ? ":busy" + Math.random() : "")).catch(() => "x" + Math.random());
+    const sig = await page.evaluate(async (lagMs) => document.body.innerText.length + ":" + document.getElementsByTagName("*").length + (window.__gateBusy?.() ? ":busy" + Math.random() : "") + (((await window.__gateLag?.(lagMs)) ?? 0) >= lagMs ? ":lag" + Math.random() : ""), LAG_MS).catch(() => "x" + Math.random());
     if (sig !== last || lastRequestAt() > since) {
       if (process.env.GATE_DEBUG_STABLE) process.stderr.write(`[stable] +${Date.now() - t0}ms ${sig !== last ? "dom " + last + " -> " + sig : "request"}\n`);
       last = sig; since = Date.now(); continue;
