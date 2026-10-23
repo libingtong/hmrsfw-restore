@@ -66,7 +66,13 @@ const hiddenPopupOffset = (tree) => mapTree(tree, (n) => {
   if (!cls.split(/\s+/).some((t) => PLACED.test(t)) || !decls(st).some((d) => prop(d) === "display" && /^none$/i.test(d.slice(d.indexOf(":") + 1).trim()))) return n;
   return { ...n, a: n.a.map(([k, v]) => (k === "style" ? [k, decls(v).filter((d) => prop(d) !== "left" && prop(d) !== "top").map((d) => d + ";").join(" ")] : [k, v])) };
 });
-const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle, "baidu-tile-order": baiduTileOrder, "hidden-popup-offset": hiddenPopupOffset };
+// The gate's own locating hook (HM-1162): id="poc-main" on the restored uc layout's page container (Home.vue) and the
+// portal shell's <main> (App.vue) is not in the original (legacy-dist/usercenter/assets/index.1751615607545.js 123:379706,
+// the layout's `st("div",null,[…KeepAlive…])`, no props). It is inside a compared root only when the root is the whole
+// layout: a usercenter bare-route page (#app > *) whose interaction lands on a layout page. Only that one attribute with
+// that one value goes; any other id, and every other attribute of that element, is compared as before.
+const pocMainHook = (tree) => mapTree(tree, (n) => (n.a.some(([k, v]) => k === "id" && v === "poc-main") ? { ...n, a: n.a.filter(([k, v]) => !(k === "id" && v === "poc-main")) } : n));
+const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle, "baidu-tile-order": baiduTileOrder, "hidden-popup-offset": hiddenPopupOffset, "poc-main-hook": pocMainHook };
 const dropAttrs = (names) => (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k]) => !names.has(k)) }));
 
 export function loadRules(dir = path.join(ROOT, "rules/compare")) {
