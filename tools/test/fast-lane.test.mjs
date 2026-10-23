@@ -190,7 +190,7 @@ test("retire: a normal tick then dispatches only what the fast lane never did", 
   r = node(fx, "tick.mjs", ["tick"]);
   assert.equal(r.ok, true, JSON.stringify(r));
   const restored = tasks(fx, "[restore]").filter((i) => i.id !== flt.id && i.status !== "cancelled").flatMap((i) => woOf(fx, i)).sort();
-  assert.deepEqual(restored, [NPM, PNEW].sort(), "only the npm unit and the page the fast lane never touched");
+  assert.deepEqual(restored, [PNEW], "only the page the fast lane never touched: the npm unit gets no restore task (HM-1170)");
   const recorded = tasks(fx, "[record]").filter((i) => i.status !== "cancelled").flatMap((i) => woOf(fx, i));
   assert.ok(!recorded.some((w) => [SEG1, SEG2, SEGP, PEND, PBLK, PLAN].includes(w)), `no recording of retired orders: ${recorded}`);
   assert.ok(recorded.includes(FLT), "the open fast-lane task still gets its recording");

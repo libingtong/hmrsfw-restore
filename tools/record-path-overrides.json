@@ -101,8 +101,8 @@
   "by": "HM-48"
  },
  "page.portal.answer.passwordModal": {
-  "evidence": "/answer 下名为 test 的问卷设了密码；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
-  "recordNotes": "/answer：点名为 test 的问卷会弹出密码框；只录弹窗本身，不输入密码、不提交、不点「立即进入」。",
+  "evidence": "/answer 下名为 test 的问卷设了密码；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）。legacy-dist/portal/assets/index.178332063620016.js:1:3807 izEnter 为真且 izNeedPassword==1 时 ispassword=!0，:1:8714 v-if 渲染密码框（passwordModal，data-v-98de9e0d），:1:6382 关闭即 ispassword=!1（HM-1170）",
+  "recordNotes": "/answer：点名为 test 的问卷（click \"test\"，不设 optional）会弹出密码框；只录弹窗本身，弹窗开着时取根。不点「关闭」（v-if，关了组件卸载、根节点就没了），不输入密码、不提交、不点「立即进入」。",
   "by": "HM-48"
  },
  "page.uc.formDone": {
