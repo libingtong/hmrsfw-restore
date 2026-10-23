@@ -21,6 +21,7 @@
 | `out/maps/`、`out/hints/` | 每张工单的导入映射与提示表（由清单生成，还原员直接读）；`c01`–`c20`、`p*` 是 POC 与 20 页确认时期的旧文件 |
 | `tools/` | 分析、检查、门槛脚本；`prompt-template-confirm.md` 是还原员指令主体；交付前自检 `self-check.mjs` |
 | `docs/` | `pipeline.md`（编排方案）、`work-orders.md`（工单、清单、自检）、`registry-cleanup.md`（`hmrsfw-vue` 现状清理方案）、`crypto-adapter-spec.md`（加解密适配） |
+| `skills/vue-restore/` | 可复用的还原方法 skill（主文件 `SKILL.md` + `references/` + `templates/`），新还原项目从这里起步；项目专属内容不写进去 |
 | `batch-plan.md` | 批量还原计划 v2，工单字段见第 3 节（新增字段见 `docs/work-orders.md`） |
 
 `receipts/`、`tests/interact/` 由阶段 2 的其他子任务按第十二节建立。
