@@ -28,6 +28,18 @@ export const DEFAULT_BUDGET_MIN = 7; // the gate agent's foreground limit is 10 
 export const SHARE_HOURS = 6;
 export const KEEP_HOURS = 24;
 export const CLAIM_STALE_MS = 30 * 60000;
+// One page's self-check, replay and comparison (HM-1275). The slowest page seen in the runs so far took 6.5 min on a
+// loaded machine (talents/index/advertTop, with its retry); a page past this limit is the gate's own error, not a verdict.
+export const DEFAULT_PAGE_TIMEOUT_MIN = 10;
+
+// fn() → {value}, or {timedOut: true} once `ms` have passed (HM-1275); fn's own error is thrown as before. Work cut off
+// by the limit is not awaited: the caller closes what it runs in (the browser), and what fn then throws is dropped.
+export async function withinTime(fn, ms) {
+  let timer;
+  const work = Promise.resolve().then(fn);
+  work.catch(() => {});
+  try { return await Promise.race([work.then((value) => ({ value })), new Promise((r) => { timer = setTimeout(() => r({ timedOut: true }), ms); })]); } finally { clearTimeout(timer); }
+}
 
 export const hash = (v) => createHash("sha256").update(typeof v === "string" ? v : JSON.stringify(v)).digest("hex");
 export const readJson = (f) => { try { return JSON.parse(readFileSync(f, "utf8")); } catch { return null; } };

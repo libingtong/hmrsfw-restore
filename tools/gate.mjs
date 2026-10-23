@@ -31,7 +31,9 @@
 //   {partial:true, done, total, run, next} integration mode with a task (or --resume), exit 3: the --budget minutes
 //                                         (default 7) are used up; run the same command again to go on (HM-1270,
 //                                         tools/gate/runs.mjs; --no-resume runs all pages in one process as before)
-//   {error:"…"}                           the gate itself could not run (environment, port, browser …)
+//   {error:"…"}                           the gate itself could not run (environment, port, browser …), or a page was
+//                                         not judged within --page-timeout minutes (default 10; HM-1275): that page is
+//                                         neither passed nor failed (`errorPages`), the other pages are still judged
 // With --task and without --dry-run the result is also written to task metadata gate.<attempt> and posted as one
 // "[GATE] …" comment. Everything the run produces lives in $RESTORE_STATE/gate/<work order>-a<attempt>/; HAR files and
 // baselines are only read; nothing is appended to shared files.
@@ -59,7 +61,7 @@ import { isPage, loadWorkOrders, reverseDeps } from "./lib/workorders.mjs";
 import { changedFiles } from "./check-imports.mjs";
 import { selfCheckFiles } from "./self-check.mjs";
 import { ensureLegacyDist } from "./lib/shared-deps.mjs";
-import { DEFAULT_BUDGET_MIN, createRun, hash, pageFp, pageResult, pickRun, pinRun, readJson, release, runsDir, savePageResult, setKey, staleRuns, tryClaim, claimHolder, withLock, writeJson } from "./gate/runs.mjs";
+import { DEFAULT_BUDGET_MIN, DEFAULT_PAGE_TIMEOUT_MIN, withinTime, createRun, hash, pageFp, pageResult, pickRun, pinRun, readJson, release, runsDir, savePageResult, setKey, staleRuns, tryClaim, claimHolder, withLock, writeJson } from "./gate/runs.mjs";
 
 const MULTICA = process.env.MULTICA_BIN || "multica";
 const rel = (p) => path.relative(ROOT, p);
@@ -205,6 +207,18 @@ function upgradeStatic({ appDir, plan, unblocks }) {
   return { global: selfCheckFiles(present, appDir), ms: Date.now() - t0 };
 }
 
+// A page the gate did not finish judging within the page limit (HM-1275: a page whose script never yields keeps the
+// renderer busy, and Playwright's evaluate and screenshot calls have no time limit of their own): not a pass, not a
+// failure. The browser it ran in is closed (that ends the stuck renderer) and the next page gets a new one.
+const timedOutPage = (wo, ms) => ({ wo: wo.id, pass: false, stage: "error", error: `not judged within ${ms / 60000} min (--page-timeout): the gate's own error, not a verdict`, failed: [] });
+const gateErrorText = (ids, ms) => `${ids.length} page(s) not judged within ${ms / 60000} min (--page-timeout; the gate's own error, not a verdict): ${idList(ids)}`;
+const closeBrowser = (b) => (b ? Promise.race([b.close().catch(() => {}), new Promise((r) => setTimeout(r, 30000).unref())]) : null);
+function pageTimeoutMs(argv) {
+  const min = Number(opt(argv, "--page-timeout", DEFAULT_PAGE_TIMEOUT_MIN));
+  if (!(min > 0)) throw new Error("--page-timeout must be a number of minutes > 0");
+  return min * 60000;
+}
+
 function restStorage(wo, assets, patch, har) {
   const st = authStorage(wo, assets, har);
   for (const k of patch.remove ?? []) delete st.localStorage[k];
@@ -241,6 +255,7 @@ export async function gate(argv) {
   if (!ids.length && !upgrade) throw new Error("no work orders: pass --task (metadata workOrders) or --wo");
   const wos = ids.map(loadWorkOrder);
   const interact = interactRef(argv);
+  const pageMs = pageTimeoutMs(argv);
 
   // Baselines first: without one there is nothing to compare against.
   const bases = {}, baseDirs = {}, missing = [];
@@ -253,7 +268,7 @@ export async function gate(argv) {
   const sliced = mode === "integration" && !regress && !dry && !skipStatic && !!branch && !flag(argv, "--no-checkout") && !flag(argv, "--no-resume") && (!!task || flag(argv, "--resume"));
   if (sliced) {
     const budgetMs = Number(opt(argv, "--budget", DEFAULT_BUDGET_MIN)) * 60000;
-    return slicedRun({ argv, task, meta, createdAt: info.createdAt, attempt, branch, wos, judged, bases, baseDirs, interact, state, assets, t0, budgetMs });
+    return slicedRun({ argv, task, meta, createdAt: info.createdAt, attempt, branch, wos, judged, bases, baseDirs, interact, state, assets, t0, budgetMs, pageMs });
   }
 
   const runId = regress ? `regress-${new Date().toISOString().replace(/[:.]/g, "-")}-${process.pid}` : upgrade ? `upgrade-${String(branch || task || "head").replace(/[^\w.-]+/g, "_")}-a${attempt}` : mode === "integration" ? `integration-${task ?? ids[0]}-a${attempt}` : `${ids[0]}-a${attempt}`;
@@ -353,12 +368,15 @@ export async function gate(argv) {
 
     // ── browser ──
     const tw = Date.now();
-    const browser = await chromium.launch();
-    closers.push(() => browser.close());
+    let browser = await chromium.launch();
+    closers.push(() => closeBrowser(browser));
     stages.browserLaunch = Date.now() - tw;
     for (const wo of judged) {
       if (pageFail[wo.id].length && !(skipStatic && !buildFail[wo.id])) { out.pages.push({ wo: wo.id, pass: false, stage: buildFail[wo.id] ? "build" : "static", failed: pageFail[wo.id] }); continue; }
-      const page = await judgePage({ browser, wo, base: bases[wo.id], dir: path.join(gateDir, wo.id), interact, state, assets, appDir, scopeIds, origin: servers[wo.app].origin, rules });
+      const b = browser;
+      const r = await withinTime(() => judgePage({ browser: b, wo, base: bases[wo.id], dir: path.join(gateDir, wo.id), interact, state, assets, appDir, scopeIds, origin: servers[wo.app].origin, rules }), pageMs);
+      if (r.timedOut) { out.pages.push(timedOutPage(wo, pageMs)); await closeBrowser(b); browser = await chromium.launch(); continue; }
+      const page = r.value;
       out.pages.push({ ...page, ...(skipStatic && pageFail[wo.id].length ? { staticFailed: pageFail[wo.id].map((f) => `${f.check} ${f.hint}`) } : {}) });
     }
     stages.browser = Date.now() - tw;
@@ -368,6 +386,8 @@ export async function gate(argv) {
     if (st.global.length) out.global = summarizeGlobal(st.global);
     // upgrade mode: pages without a baseline are listed in `pending` and not judged; they do not hold the upgrade back
     out.pass = out.failed.length === 0 && out.pages.length === (upgrade ? judged.length : wos.length);
+    const errored = out.pages.filter((p) => p.stage === "error").map((p) => p.wo);
+    if (errored.length) Object.assign(out, { pass: false, error: gateErrorText(errored, pageMs), errorPages: errored });
     if (missing.length) out.pending = missing;
     return out;
   } finally {
@@ -403,7 +423,7 @@ function ensureRunApp(baseApp, run, appDir) {
 // build first, then each page's self-check and replay, and every page verdict is kept as soon as it is known. Stops
 // starting pages once budgetMs is used up and returns {partial:true}; the verdict, when every page has one, is shaped
 // like gate()'s.
-async function slicedRun({ argv, task, meta, createdAt, attempt, branch, wos, judged, bases, baseDirs, interact, state, assets, t0, budgetMs }) {
+async function slicedRun({ argv, task, meta, createdAt, attempt, branch, wos, judged, bases, baseDirs, interact, state, assets, t0, budgetMs, pageMs }) {
   const deadline = budgetMs > 0 ? t0 + budgetMs : Infinity;
   const baseApp = resolveAppDir(argv);
   const tools = toolVersion();
@@ -497,16 +517,21 @@ async function slicedRun({ argv, task, meta, createdAt, attempt, branch, wos, ju
     try {
       const again = pageResult(runDir, wo.id, ctx[wo.id].fp); // finished by another process meanwhile
       if (again) { results[wo.id] = again; return true; }
-      const ts = Date.now();
-      const sf = (await selfCheck(wo, appDir)).map((f) => ({ ...f, check: f.check ?? "self-check" }));
-      const staticMs = Date.now() - ts;
-      let page;
-      if (sf.length) page = { wo: wo.id, pass: false, stage: "static", failed: sf };
-      else {
-        browser ??= await chromium.launch();
+      const cut = { off: false }; // set once the page limit has passed: the cut-off work must not start a browser stage
+      const r = await withinTime(async () => {
+        const ts = Date.now();
+        const sf = (await selfCheck(wo, appDir)).map((f) => ({ ...f, check: f.check ?? "self-check" }));
+        const staticMs = Date.now() - ts;
+        if (sf.length) return { page: { wo: wo.id, pass: false, stage: "static", failed: sf }, staticMs };
+        if (!browser) { const b = await chromium.launch(); if (cut.off) { await closeBrowser(b); return null; } browser = b; }
+        const b = browser;
         servers[wo.app] ??= await serveStatic([dist[wo.app]]);
-        page = await judgePage({ browser, wo, base: bases[wo.id], dir: path.join(runDir, "pages", wo.id), interact, state, assets, appDir, scopeIds, origin: servers[wo.app].origin, rules, ...ctx[wo.id] });
-      }
+        if (cut.off) return null;
+        return { page: await judgePage({ browser: b, wo, base: bases[wo.id], dir: path.join(runDir, "pages", wo.id), interact, state, assets, appDir, scopeIds, origin: servers[wo.app].origin, rules, ...ctx[wo.id] }), staticMs };
+      }, pageMs);
+      let page, staticMs = 0;
+      if (r.timedOut) { cut.off = true; page = timedOutPage(wo, pageMs); const b = browser; browser = null; await closeBrowser(b); }
+      else ({ page, staticMs } = r.value);
       savePageResult(runDir, wo.id, ctx[wo.id].fp, page, { staticMs });
       results[wo.id] = { page, staticMs };
       return true;
@@ -527,6 +552,9 @@ async function slicedRun({ argv, task, meta, createdAt, attempt, branch, wos, ju
   }
   const left = judged.filter((w) => !results[w.id]);
   if (left.length) return partial({ done: judged.length - left.length, total: judged.length, claimedElsewhere: left.filter((w) => claimHolder(path.join(runDir, "pages", w.id, ".claim"))).length });
+  // pages past the page limit (kept in the run like a verdict, so no slice claims them again): no verdict for the task
+  const errored = judged.filter((w) => results[w.id].page.stage === "error").map((w) => w.id);
+  if (errored.length) return { error: gateErrorText(errored, pageMs), errorPages: errored, ...head, done: judged.length, total: judged.length, durationMs: Date.now() - t0 };
 
   for (const w of judged) { stages.static += results[w.id].staticMs ?? 0; stages.browser += results[w.id].page.ms ?? 0; }
   out.pages = judged.map((w) => results[w.id].page);
@@ -575,7 +603,7 @@ function summarizeGlobal(items) {
 function regressDiff(out, state, dry) {
   const f = path.join(state, "gate", "regress-last.json");
   const prev = existsSync(f) ? JSON.parse(readFileSync(f, "utf8")).pages ?? {} : {};
-  const now = Object.fromEntries(out.pages.map((p) => [p.wo, p.pass]));
+  const now = Object.fromEntries(out.pages.filter((p) => p.stage !== "error").map((p) => [p.wo, p.pass])); // no verdict, nothing to compare
   const newPass = Object.keys(now).filter((k) => now[k] && prev[k] !== true).sort();
   const newFail = Object.keys(now).filter((k) => !now[k] && prev[k] !== false).sort();
   if (!dry) { const tmp = `${f}.tmp-${process.pid}`; writeFileSync(tmp, JSON.stringify({ at: new Date().toISOString(), pages: now })); renameSync(tmp, f); }
@@ -721,6 +749,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     const task = opt(argv, "--task");
     // {partial:true}: a slice of an integration run (HM-1270), no verdict yet; exit 3, nothing written to the task
     if (r.partial) { process.exitCode = 3; return; }
+    // {error} with the pages past the page limit (HM-1275): only printed, as a thrown error is
+    if (r.error) { process.exitCode = 2; return; }
     if (task && !flag(argv, "--dry-run")) report(task, r.attempt ?? Number(opt(argv, "--attempt", 1)), r, r.mode === "upgrade" ? [`upgrade ${r.branch ?? task}`] : r.pages?.map((p) => p.wo) ?? r.missing?.map((m) => m.wo) ?? []);
     process.exitCode = r.pending ? 0 : r.pass ? 0 : 1;
   }, (e) => {
