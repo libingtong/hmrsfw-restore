@@ -29,9 +29,11 @@
 // Concurrency: each run has its own browser; HAR written via temp file + rename; one run per work order
 // ($RESTORE_STATE/locks/rec-<id>); user-center runs share the account by identity ($RESTORE_STATE/locks/account-usercenter.json:
 // same identity together, another identity waits up to --wait-identity; held for the recording only, not the baseline);
-// per-order notes in $RESTORE_STATE/record/<id>/.
+// per-order notes in $RESTORE_STATE/record/<id>/. At most HMRSFW_RECORD_SLOTS (default 3) runs of the machine record at
+// once ($RESTORE_STATE/locks/record-slot-<k>, held for the recording only, not the baseline; HM-1221); a run waits up to
+// --wait-slot minutes (default 9) for a slot, then fails with "recording slots … busy" (rerun later, not a page problem).
 // Usage: node tools/record-page.mjs <工单id> [--app <hmrsfw-vue>] [--order <file>] [--script <file>] [--no-baseline]
-//        [--baseline-only] [--no-commit] [--headed] [--wait-identity <minutes, default 30>]
+//        [--baseline-only] [--no-commit] [--headed] [--wait-identity <minutes, default 30>] [--wait-slot <minutes, default 9>]
 //        --offline <old.har> --out <new.har>: self-test without network. The test hosts are answered from legacy-dist and
 //        <old.har>; the HAR goes to <new.har>; no commit, no role pin, no notes in $RESTORE_STATE.
 // Output (one JSON line): {ok, id, steps, unstable:[...], blocked?, hint?, evidence?, error?, scriptParked?, har, entries, writes:[{method,
@@ -47,12 +49,12 @@ import { evaluate, thresholds } from "./coverage.mjs";
 import { NOT_REPEATED, apiTracker, describeStep, loadScript, runStepRetry, scriptPath, settle } from "./interact.mjs";
 import { entryKey, fulfillOptions, harResponder, requestBody } from "./har-body.mjs";
 import { splitWrites, writeGuard } from "./record-write-guard.mjs";
-import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, parkScript, pin, pinKey, resolveOrder, restoreScript, switchIdentity, tokenInfo, validId } from "./record-lib.mjs";
+import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, lockRecordSlot, parkScript, pin, pinKey, resolveOrder, restoreScript, switchIdentity, tokenInfo, validId } from "./record-lib.mjs";
 import { ensureLegacyDist } from "./lib/shared-deps.mjs";
 
 const t0 = Date.now();
 const argv = process.argv.slice(2);
-const VALUED = new Set(["--app", "--order", "--script", "--offline", "--out", "--wait-identity"]);
+const VALUED = new Set(["--app", "--order", "--script", "--offline", "--out", "--wait-identity", "--wait-slot"]);
 const opt = (n) => { const i = argv.findIndex((a) => a === n || a.startsWith(n + "=")); return i < 0 ? undefined : argv[i].includes("=") ? argv[i].slice(n.length + 1) : argv[i + 1]; };
 const flag = (n) => argv.includes(n);
 const OFFLINE = opt("--offline");
@@ -255,7 +257,7 @@ function baseline({ id, harFile }) {
   return { tool, placeholder: !own, unstable: j.unstable ?? [], coverage: j.coverage ?? null, result: j };
 }
 
-let release = null, releaseIdentity = null;
+let release = null, releaseIdentity = null, releaseSlot = null;
 try {
   if (!validId(id)) throw fail("usage: node tools/record-page.mjs <工单id> [--order <file>] [--script <file>] [--no-baseline] [--baseline-only] [--no-commit] [--headed]");
   const { assets, state } = envDirs();
@@ -281,11 +283,18 @@ try {
   release = lockOrder(state, id);
   if (!release) { console.log(JSON.stringify({ locked: true, id })); process.exit(0); }
   if (ownScript) park = { state, id, committed: null };
+  if (!OFFLINE && !baselineOnly) {
+    const slots = Number(process.env.HMRSFW_RECORD_SLOTS ?? 3), waitMin = Number(opt("--wait-slot") ?? 9);
+    if (!Number.isInteger(slots) || slots < 1) throw fail("HMRSFW_RECORD_SLOTS must be a positive integer");
+    if (!Number.isFinite(waitMin) || waitMin < 0) throw fail("--wait-slot <minutes> must be a non-negative number");
+    releaseSlot = await lockRecordSlot(state, { slots, waitMs: waitMin * 60e3 });
+    if (!releaseSlot) throw fail(`all ${slots} recording slots of this machine stayed busy for ${waitMin} min (other recordings running): not a page problem, rerun record-page later`);
+  }
   if (order.site === "usercenter" && !OFFLINE && !baselineOnly) {
     const waitMin = Number(opt("--wait-identity") ?? 30);
     if (!Number.isFinite(waitMin) || waitMin < 0) throw fail("--wait-identity <minutes> must be a non-negative number");
     releaseIdentity = await lockIdentity(state, "usercenter", order.role, { waitMs: waitMin * 60e3 });
-    if (!releaseIdentity) { release(); release = null; console.log(JSON.stringify({ locked: true, id, identityBusy: "the test account is recording another identity; retry later" })); process.exit(0); }
+    if (!releaseIdentity) { release(); release = null; releaseSlot?.(); releaseSlot = null; console.log(JSON.stringify({ locked: true, id, identityBusy: "the test account is recording another identity; retry later" })); process.exit(0); }
   }
   const harFile = OFFLINE ? path.resolve(opt("--out")) : path.join(assets, "har", "pages", `${id}.har`);
   const noteDir = path.join(state, "record", id);
@@ -294,7 +303,7 @@ try {
   if (baselineOnly) { if (!existsSync(harFile)) throw fail(`--baseline-only: no HAR for ${id} yet`); }
   else {
     try { rec = await record({ order, steps, assets, state, harFile }); }
-    finally { await releaseIdentity?.(); releaseIdentity = null; } // the baseline and the commit do not touch the account
+    finally { await releaseIdentity?.(); releaseIdentity = null; releaseSlot?.(); releaseSlot = null; } // the baseline and the commit do not touch the account or the test site
     if (rec.blocked) { emit({ ok: false, id, steps: steps.length, unstable: [], blocked: rec.blocked, hint: rec.hint, ...(rec.evidence ? { evidence: rec.evidence } : {}) }, 2); throw null; }
     if (rec.error) throw fail(rec.error);
     if (OFFLINE) warnings.push("offline self-test: test hosts answered from legacy-dist and the given HAR, nothing sent; no commit, role pin or notes");
@@ -327,4 +336,5 @@ try {
 } finally {
   release?.();
   await releaseIdentity?.();
+  releaseSlot?.();
 }

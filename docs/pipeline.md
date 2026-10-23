@@ -211,6 +211,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
    - 在测试环境真实执行一遍，录 HAR 到 $RESTORE_ASSETS/har/pages/<工单id>.har；
    - 用 HAR 回放原版并缓存原版基线到 $RESTORE_STATE/baseline/<工单id>/；
    - 把交互脚本提交到仓库 integration 分支（只提交脚本，不提交 HAR）。
+   - 本机同时录制的不超过 HMRSFW_RECORD_SLOTS（默认 3）个，其余排队最多 --wait-slot 分钟（默认 9）。等不到时报 `recording slots … busy`，不是页面问题，过一会重跑（HM-1221）。
 4. 脚本报告某一步在原版上就无法稳定复现（两次回放结果不同）：删掉这一步，重跑。
 5. 需要其他角色账号才能访问的页面：元数据写 record=blocked:<原因>，评论 [RECORD] blocked，结束。
 6. 成功：元数据写 record=ok，评论 [RECORD] ok <步数>。
