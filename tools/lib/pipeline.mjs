@@ -1334,9 +1334,15 @@ export class Pipeline {
   culprit(sha, b) {
     const L = this.ledger.read();
     const m = L.tick.merges?.[sha] || this.mergeInfo(sha);
+    // A merge no task owns (a PR merge such as the fast-lane bulk merges #8 / #10, a manual one) is not reverted: it may
+    // carry hundreds of pages, and nothing would reopen them. Before HM-1276 it was reverted first and the incident
+    // opened after. The arbiter decides; the regression stays failed.
+    if (!m) {
+      this.ledger.tx((L2) => { L2.tick.regression = { ...b, state: "failed", culprit: sha, notReverted: "no task" }; L2.tick.regressionEpoch = (L2.tick.regressionEpoch || 0) + 1; });
+      return this.openIncident(`集成回归二分定位到 ${short(sha)}，但账本和提交说明里都没有这次合并的任务：不自动回退`, { sha, failed: (b.failed || []).slice(0, 50) });
+    }
     const rv = this.revertMerge(sha, `Revert ${short(sha)}: integration regression bisected to this merge`);
-    this.ledger.tx((L2) => { L2.tick.regression = { ...b, state: "reverted", culprit: sha }; L2.tick.regressionEpoch = (L2.tick.regressionEpoch || 0) + 1; L2.tick.regressionDue = true; L2.newEvents.push({ type: "revert", sha, task: m?.task, why: "regression" }); });
-    if (!m) return this.openIncident(`集成回归二分定位到 ${short(sha)}，但账本里没有这次合并的任务`, { sha });
+    this.ledger.tx((L2) => { L2.tick.regression = { ...b, state: "reverted", culprit: sha }; L2.tick.regressionEpoch = (L2.tick.regressionEpoch || 0) + 1; L2.tick.regressionDue = true; L2.newEvents.push({ type: "revert", sha, task: m.task, why: "regression" }); });
     this.requestReopen(m.task, m.wos, `regression:${short(sha)}`, rv?.sha);
     return { ok: true, summary: `regression culprit ${short(sha)} (task ${m.task}) reverted`, anomalies: [] };
   }

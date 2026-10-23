@@ -2,6 +2,7 @@
 // Run: node --test tools/test/scheduler.test.mjs
 import test from "node:test";
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync, readFileSync, utimesSync } from "node:fs";
 import path from "node:path";
 import { makeFixture, node, issuesOf, fakeState, mc, setMeta, meta, pushBranch, writeReceipt, lsRemote, showRemote, readJson, git, ROSTER, REPO } from "./fixture.mjs";
@@ -538,6 +539,25 @@ test("integration regression every N merges: failure bisects to the culprit, rev
   setMeta(fx, reg2.id, "gate.1", { pass: true });
   node(fx, "tick.mjs", ["advance", reg2.id]);
   assert.equal(lsRemote(fx, "app", "main"), lsRemote(fx, "app", "integration"), "main fast-forwarded");
+});
+
+test("integration regression: a culprit merge no task owns (a PR merge) is not reverted — incident instead (HM-1276)", () => {
+  const fx = makeFixture({ orders: [page("P7", 10, { accepted: true })], config: { audit: { coldRate: 0 }, regressionEvery: 1 } });
+  recorded(fx, "P7");
+  pushBranch(fx, { branch: "bulk", files: { "apps/portal/src/views/P7/index.vue": vue("bulk") } });
+  const wt = path.join(fx.root, "wt-bulk");
+  execFileSync("git", ["clone", "-q", fx.appOrigin, wt]);
+  const g = (...a) => execFileSync("git", ["-C", wt, "-c", "user.name=t", "-c", "user.email=t@t", ...a], { encoding: "utf8" }).trim();
+  g("checkout", "-q", "integration"); g("merge", "-q", "--no-ff", "-m", "Merge pull request #8 from x/restore/fast-lane", "origin/bulk"); g("push", "-q", "origin", "integration");
+  const integ = lsRemote(fx, "app", "integration");
+  node(fx, "tick.mjs", ["tick"]);
+  const reg = issuesOf(fx).find((i) => i.title.startsWith("[integration] regression"));
+  assert.ok(reg, "regression opened");
+  setMeta(fx, reg.id, "gate.1", { pass: false, failed: [{ wo: "P7", check: "html" }], pages: [{ wo: "P7", pass: false }] });
+  node(fx, "tick.mjs", ["advance", reg.id]);
+  assert.equal(lsRemote(fx, "app", "integration"), integ, "integration untouched");
+  assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/P7/index.vue"), vue("bulk"));
+  assert.ok(issuesOf(fx).some((i) => i.title.startsWith("[incident]") && i.title.includes("不自动回退")), "incident for the arbiter");
 });
 
 test("readability sample: a passed integration regression posts 5 % of the batch (at least one page) to the log task; the switch turns it off", () => {
