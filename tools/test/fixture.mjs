@@ -6,6 +6,7 @@ import { spawnSync } from "node:child_process";
 import path from "node:path";
 import os from "node:os";
 import { fileURLToPath } from "node:url";
+import { decodeAll } from "../lib/multica.mjs";
 
 export const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const git = (cwd, ...args) => { const r = spawnSync("git", ["-c", "user.name=t", "-c", "user.email=t@t", ...args], { cwd, encoding: "utf8" }); if (r.status !== 0) throw new Error(`git ${args.join(" ")}: ${r.stderr}`); return r.stdout.trim(); };
@@ -101,7 +102,8 @@ export function mc(fx, ...args) {
   return r.stdout ? JSON.parse(r.stdout) : null;
 }
 export const setMeta = (fx, id, key, value) => mc(fx, "issue", "metadata", "set", id, "--key", key, "--type", "string", "--value", typeof value === "string" ? value : JSON.stringify(value));
-export const meta = (fx, id) => { const m = mc(fx, "issue", "metadata", "list", id); return Object.fromEntries(Object.entries(m).map(([k, v]) => { try { return [k, typeof v === "string" && /^[[{]/.test(v) ? JSON.parse(v) : v]; } catch { return [k, v]; } })); };
+// decoded the way the scheduler reads it (JSON strings, packed values: HM-1086)
+export const meta = (fx, id) => decodeAll(mc(fx, "issue", "metadata", "list", id));
 
 // Simulated restorer / fixer: commit page files on the task's branch in a clone of the product repo and push.
 export function pushBranch(fx, { branch, from = "integration", files }) {

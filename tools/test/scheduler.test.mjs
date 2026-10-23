@@ -870,3 +870,40 @@ test("fast lane (HM-990): a fast-lane page whose receipt names a library gap ope
   assert.match(lastComment(fx, t.id), /快速通道/);
   assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/F1/index.vue"), null, "a fast-lane pass merges nothing into integration");
 });
+
+test("HM-1086: a rule regression whose page list alone is over the 8 KB metadata cap still fits (workOrders packed); a refused creation does not hold up the others", () => {
+  // 130 ids ≈ 9.2 KB as JSON: over the cap on its own, like HM-1072's 254 live pages (8.1 KB) plus its other keys
+  const ids = Array.from({ length: 130 }, (_, n) => `page.portal.region.BeOnProbation.ProbationElegantListWithLongName${String(n).padStart(3, "0")}`);
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 10, { accepted: true })), config: {} });
+  git(fx.tool, "checkout", "-q", "-b", "rules/big");
+  writeFileSync(path.join(fx.tool, "rules.json"), JSON.stringify({ rules: ["base", "attr-order"] }));
+  git(fx.tool, "commit", "-q", "-am", "rule big"); git(fx.tool, "push", "-q", "origin", "rules/big");
+  node(fx, "tick.mjs", ["open-rule-review", "rules/big"]);
+  for (const i of issuesOf(fx).filter((x) => x.title.includes("rules/big"))) setMeta(fx, i.id, `review.${i.assignee_id}`, { verdict: "approve", why: "equivalent" });
+  let r = node(fx, "tick.mjs", ["tick"]);
+  assert.ok(r.anomalies && !r.anomalies.some((a) => /metadata exceeds/.test(a.what)), JSON.stringify(r).slice(0, 2000));
+  const reg = issuesOf(fx).find((i) => i.title.startsWith("[integration] rule-regression"));
+  assert.ok(reg, "rule regression created");
+  assert.equal(issue(fx, reg.id).status, "todo", "assigned, not left in backlog");
+  const raw = issue(fx, reg.id).metadata;
+  assert.match(raw.workOrders, /^z1:/, "stored packed");
+  assert.deepEqual(meta(fx, reg.id).workOrders, ids, "read back intact");
+  assert.equal(meta(fx, reg.id).ruleChange, "rules/big");
+  const stored = Object.entries(raw).reduce((n, [k, v]) => n + Buffer.byteLength(k) + Buffer.byteLength(typeof v === "string" ? v : JSON.stringify(v)) + 8, 8);
+  assert.ok(stored < 4096, `room left for gate.<attempt>: ${stored} bytes`);
+
+  // HM-1072: a creation the server refused stays unassigned; the next tick finishes it, and one that keeps failing
+  // names its task without stopping the next
+  const ledgerFile = path.join(fx.state, "ledger", "tasks.json");
+  const L = readJson(ledgerFile);
+  const stuck = mc(fx, "issue", "create", "--title", "[integration] stuck", "--status", "backlog", "--output", "json");
+  const bad = mc(fx, "issue", "create", "--title", "[integration] bad", "--status", "backlog", "--output", "json");
+  L.tasks[stuck.id] = { id: stuck.id, key: "k:stuck", kind: "integration", title: "[integration] stuck", workOrders: [], assigneeId: fx.id("gate"), status: "todo", meta: { kind: "integration", purpose: "rule-regression", workOrders: ids, sha: "" }, assigned: false };
+  L.tasks[bad.id] = { id: bad.id, key: "k:bad", kind: "integration", title: "[integration] bad", workOrders: [], assigneeId: fx.id("gate"), status: "todo", meta: { kind: "integration", note: "x".repeat(9000) }, assigned: false };
+  writeFileSync(ledgerFile, JSON.stringify(L));
+  r = node(fx, "tick.mjs", ["tick"]);
+  assert.deepEqual(meta(fx, stuck.id).workOrders, ids);
+  assert.equal(issue(fx, stuck.id).status, "todo");
+  const a = r.anomalies.find((x) => /metadata exceeds/.test(x.what));
+  assert.ok(a && a.issue === bad.id, JSON.stringify(r.anomalies));
+});

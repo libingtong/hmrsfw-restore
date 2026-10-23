@@ -7,16 +7,28 @@
 // Everything is synchronous (spawnSync) so callers can hold mkdir locks around a read-modify-write.
 // Metadata objects and arrays are stored as JSON strings (--type string) and decoded on read, so we don't depend on
 // how the server stores nested values; decodeMeta also accepts values that were stored natively.
+// The server caps an issue's metadata as a whole at 8 KB (HM-876). A full regression's workOrders (254 pages ≈ 8.1 KB as
+// JSON) no longer fits on its own, so a value whose JSON exceeds PACK_MIN is stored as PACK_PREFIX + base64(deflate-raw)
+// (≈ 30 %: 254 pages → 2.3 KB) and decodeMeta unpacks it; every reader goes through decodeMeta / decodeAll (HM-1086).
 import { spawnSync } from "node:child_process";
+import { deflateRawSync, inflateRawSync } from "node:zlib";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const FAKE_BIN = path.join(HERE, "fake-multica.mjs");
 
+export const PACK_PREFIX = "z1:";
+export const PACK_MIN = 2048;
+export function encodeMeta(v) {
+  const s = JSON.stringify(v);
+  return Buffer.byteLength(s) > PACK_MIN ? PACK_PREFIX + deflateRawSync(s, { level: 9 }).toString("base64") : s;
+}
+
 export function decodeMeta(v) {
   if (typeof v !== "string") return v;
   const t = v.trim();
+  if (t.startsWith(PACK_PREFIX)) { try { return JSON.parse(inflateRawSync(Buffer.from(t.slice(PACK_PREFIX.length), "base64")).toString("utf8")); } catch { return v; } }
   if ((t.startsWith("{") && t.endsWith("}")) || (t.startsWith("[") && t.endsWith("]"))) { try { return JSON.parse(t); } catch { return v; } }
   return v;
 }
@@ -88,7 +100,7 @@ export class Multica {
   // ---- writes ------------------------------------------------------------------------------------------------------
   setMeta(id, key, value) {
     const args = ["issue", "metadata", "set", id, "--key", key, "--output", "json"];
-    if (value !== null && typeof value === "object") args.push("--type", "string", "--value", JSON.stringify(value));
+    if (value !== null && typeof value === "object") args.push("--type", "string", "--value", encodeMeta(value));
     else if (typeof value === "number") args.push("--type", "number", "--value", String(value));
     else if (typeof value === "boolean") args.push("--type", "bool", "--value", String(value));
     else args.push("--type", "string", "--value", String(value));
