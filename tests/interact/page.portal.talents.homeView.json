@@ -1,7 +1,5 @@
 [
-  {"wait":1500},
-  {"clickSel":".nav-item:nth-child(2)","optional":true,"wait":1000},
-  {"clickSel":".t-login.w60","optional":true,"wait":1200},
-  {"press":"Escape","wait":800},
-  {"clickSel":".t-register span","optional":true,"wait":1200}
+  {"click":"登录","optional":true,"wait":1500},
+  {"press":"Escape","optional":true,"wait":800},
+  {"click":"注册","optional":true,"wait":1500}
 ]
