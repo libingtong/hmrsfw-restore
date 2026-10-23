@@ -1,42 +1,96 @@
 {
-  "id": "page.portal.guide.index",
-  "ticket": "page.portal.guide.index",
-  "group": "还原-Opus@Mac",
-  "kind": "upgrade",
-  "task": "HM-555",
-  "branch": "restore/upg-4-a1",
-  "result": "ok",
-  "outputs": [
-    "apps/portal/src/api/jobCompany.ts"
+ "id": "page.portal.guide.index",
+ "ticket": "page.portal.guide.index",
+ "group": "还原-Opus@Mac",
+ "branch": "restore/upg-26-a1",
+ "result": "ok",
+ "outputs": [
+  "apps/portal/src/shared/auth.ts",
+  "apps/portal/src/shared/hotProject.ts",
+  "apps/portal/src/shared/init.ts",
+  "apps/portal/src/shared/initData.ts",
+  "apps/portal/src/shared/commonInit.ts",
+  "apps/portal/src/shared/dateUtil.ts",
+  "apps/portal/src/shared/index120.ts",
+  "apps/portal/src/shared/message.ts",
+  "apps/portal/src/shared/timeOut.ts",
+  "apps/uc/src/shared/Content.ts",
+  "apps/uc/src/shared/mymsg.ts",
+  "hmrsfw-restore@restore/upg-26-a1-registry: registry/portal.json, registry/uc.json, out/maps(70), out/hints(24)"
+ ],
+ "todos": [
+  "升级单 #26：上述共享文件的导出按 registry 改为可读名（只改名，不改逻辑和接口 url）；原压缩名以 export { 可读名 as 原名 } 保留为别名，9 页（guide.index、guide.jobHunt、sjz.bigData.index、sjz.bigData.mobile.index、talents.setUp.setupDetail/setupList、xjhm.bigData.statistics、uc.CorpCenter、uc.oddjob.sharepage）的 check-imports 失败全部降为 warn；门户和用户中心整站 vite build 均通过",
+  "清单状态更新在工具仓库分支 restore/upg-26-a1-registry（6b66314，基于 main）：12 条共享记录和 shared.*.modules 名下 57 个图片常量 reserved → restored，只改 status/owner/stats；需合入 main（与升级单 #23 的 registry 分支同样处理）",
+  "自检 11 项失败均为 check-imports 规则 4「页面单不得改公共库」：本单是升级单，必须改这些共享文件；门槛 --mode upgrade 改用 upgrade-scope 判定，按 hint 撤销即违背本单，故未改",
+  "未改 queue/*.json 的 deps（图片常量变 restored 后 work-orders 重新生成会去掉 shared.*.modules 依赖；保留更多依赖只会扩大回归，不会漏）",
+  "页面随后按 maps 改导入后，共享文件末尾的原名别名可在 registry 清理时删除；共享组件 bars/lines/maps/pie/MapCommon/InterviewInvitation 内部仍用 timeOut/message 的原名，属各自 owner"
+ ],
+ "needsFromSkeleton": [
+  "registry 分支 restore/upg-26-a1-registry 合入工具仓库 main",
+  "uc confPass 的 m/o（queryMySubscribeFair、fairSubscribe）同类问题仍是 reserved（owner shared.uc.confPass，不在本单范围）"
+ ],
+ "selfCheck": {
+  "pass": false,
+  "failed": [
+   {
+    "check": "imports",
+    "where": "apps/portal/src/shared/auth.ts",
+    "hint": "本单不能修改 apps/portal/src/shared/auth.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   },
+   {
+    "check": "imports",
+    "where": "apps/portal/src/shared/commonInit.ts",
+    "hint": "本单不能修改 apps/portal/src/shared/commonInit.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   },
+   {
+    "check": "imports",
+    "where": "apps/portal/src/shared/dateUtil.ts",
+    "hint": "本单不能修改 apps/portal/src/shared/dateUtil.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   },
+   {
+    "check": "imports",
+    "where": "apps/portal/src/shared/hotProject.ts",
+    "hint": "本单不能修改 apps/portal/src/shared/hotProject.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   },
+   {
+    "check": "imports",
+    "where": "apps/portal/src/shared/index120.ts",
+    "hint": "本单不能修改 apps/portal/src/shared/index120.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   },
+   {
+    "check": "imports",
+    "where": "apps/portal/src/shared/init.ts",
+    "hint": "本单不能修改 apps/portal/src/shared/init.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   },
+   {
+    "check": "imports",
+    "where": "apps/portal/src/shared/initData.ts",
+    "hint": "本单不能修改 apps/portal/src/shared/initData.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   },
+   {
+    "check": "imports",
+    "where": "apps/portal/src/shared/message.ts",
+    "hint": "本单不能修改 apps/portal/src/shared/message.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   },
+   {
+    "check": "imports",
+    "where": "apps/portal/src/shared/timeOut.ts",
+    "hint": "本单不能修改 apps/portal/src/shared/timeOut.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   },
+   {
+    "check": "imports",
+    "where": "apps/uc/src/shared/Content.ts",
+    "hint": "本单不能修改 apps/uc/src/shared/Content.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   },
+   {
+    "check": "imports",
+    "where": "apps/uc/src/shared/mymsg.ts",
+    "hint": "本单不能修改 apps/uc/src/shared/mymsg.ts（公共库文件只由入口包、共享组件工单修改）：撤销这处改动；公共库缺东西写进回执 needsFromSkeleton"
+   }
   ],
-  "registry": {
-    "pr": "https://github.com/libingtong/hmrsfw-restore/pull/28",
-    "branch": "restore/upg-4-a1-registry",
-    "change": "registry/portal.json index.1783320636200117.js#o（jobCompanyApi）：status reserved → restored；stats.api 99/96 → 100/95。由 registry.mjs 生成（基准 hmrsfw-vue origin/main 临时工作树，改动前结果与 main 提交的 portal.json 相同，uc.json 不变）"
-  },
-  "todos": [
-    "integration 已执行 registry-cleanup，接口文件是 apps/portal/src/api/jobCompany.ts（清单 path @/api/api-117，renameTo @/api/jobCompany），所以改的是 jobCompany.ts：手写的 export const o 两行换成 restore-api.mjs 输出的 3 行 export const jobCompanyApi，其余 47 行与生成器输出一致（文件头沿用 HM-37 去哈希的写法），.map.json 没有提交",
-    "保留了旧导出名 o（export { jobCompanyApi as o }）：integration 和 restore/fast-lane 上的 guide/index.vue、guide/index/StepForm5.vue 仍按 o 从 @/api/jobCompany 导入，去掉 o 会让构建失败；页面单改成 jobCompanyApi 之后可以删",
-    "清单改动在工具仓库 PR #28，按 §13.4 需要审批；合入 main 之前门槛读到的 #o 仍是 reserved",
-    "HM-50-C2 里说页面有两处 TODO:restore，但 integration 和 restore/fast-lane 上 guide 页没有 TODO:restore（ae5f29b/79414a6 已经接上 o），页面单要做的是把 o 改成 jobCompanyApi",
-    "完整的 npm run build:portal 超过 10 分钟被超时中断（日志里只有既有的资源告警，没有报错）；改为用 esbuild 单独打包 jobCompany.ts 核对：24 个导出，o === jobCompanyApi，6 个键与原包顺序一致，原型是 Object.prototype，没有冻结，值与同名函数是同一个引用"
-  ],
-  "needsFromSkeleton": [
-    "tools/registry.mjs 不给 api 条目传播 names 文件里的 aliases，所以清单里没有登记旧名 o。integration 的 guide 页从非规范路径 @/api/jobCompany 导入，check-imports 只给 warn，不受影响",
-    "tools/registry.mjs 对 integration 重新生成会把 195 个 api 条目全部判成 reserved：integration 的接口文件头去掉了带哈希的 chunk 名（HM-37 c2bb9ad），existingApiFile 匹配不到文件。所以本单以 hmrsfw-vue main 为基准生成",
-    "integration 上的 guide/index.vue 仍从 @/shared/auth 导入 _、a，main 的清单里没有这两个导出（aliases 在未合并的 PR #23 里），page.portal.guide.index 自检因此失败，与本单无关"
-  ],
-  "selfCheck": {
-    "page.portal.guide.index": {
-      "pass": false,
-      "failed": [
-        "imports: apps/portal/src/api/jobCompany.ts 本单不能修改（升级单分支改公共库，预期内）",
-        "imports: guide/index.vue 从 @/shared/auth 导入 _、a，清单里没有（已有问题，等 PR #23 / HM-429）"
-      ]
-    }
-  },
-  "verification": [
-    "node tools/restore-api.mjs portal index.1783320636200117.js：22 functions, 1 namespace copies；与 hmrsfw-vue main 的 api-117.ts 相比只多 3 行 export const jobCompanyApi",
-    "registry.mjs 在 hmrsfw-vue origin/main 工作树上前后各生成一次：只有 #o 的 status 和 stats.api 变化"
-  ]
+  "components": 6,
+  "scopedSlots": 0,
+  "directives": 11,
+  "textNodesChecked": true
+ }
 }
