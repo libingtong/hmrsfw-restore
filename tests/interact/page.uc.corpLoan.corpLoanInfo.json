@@ -1,0 +1,7 @@
+[
+  {"wait":500},
+  {"clickSel":".agree-btn","optional":true},
+  {"wait":800},
+  {"clickSel":".ant-modal-close","optional":true},
+  {"wait":300}
+]
