@@ -6,7 +6,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir, hostname } from "node:os";
 import path from "node:path";
-import { claimHolder, createRun, pageFp, pageResult, pickRun, pinFile, pinRun, readJson, release, runsDir, savePageResult, setKey, staleRuns, tryClaim, withLock } from "../gate/runs.mjs";
+import { claimHolder, withinTime, createRun, pageFp, pageResult, pickRun, pinFile, pinRun, readJson, release, runsDir, savePageResult, setKey, staleRuns, tryClaim, withLock } from "../gate/runs.mjs";
 
 const tmp = () => mkdtempSync(path.join(tmpdir(), "gate-runs-"));
 const H = 3600e3;
@@ -102,4 +102,16 @@ test("old runs go unless a page is being judged in them", () => {
     assert.deepEqual(gone, [old.key]);
     assert.ok(!gone.includes(fresh.key));
   } finally { rmSync(state, { recursive: true, force: true }); }
+});
+
+test("HM-1275: withinTime gives the value, throws fn's own error, and gives {timedOut} once the page limit has passed", async () => {
+  assert.deepEqual(await withinTime(async () => 7, 1000), { value: 7 });
+  await assert.rejects(withinTime(async () => { throw new Error("boom"); }, 1000), /boom/);
+  let late = null;
+  const t0 = Date.now();
+  // a page whose script never yields: the judging never settles; the cut-off work failing later is dropped
+  assert.deepEqual(await withinTime(() => new Promise((_, rej) => { late = rej; }), 50), { timedOut: true });
+  assert.ok(Date.now() - t0 < 1000);
+  late(new Error("browser closed")); // no unhandled rejection
+  await new Promise((r) => setTimeout(r, 20));
 });

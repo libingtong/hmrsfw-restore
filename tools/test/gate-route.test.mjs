@@ -85,3 +85,59 @@ test("first navigation spread from the fallback (next({ ...to, replace: true }))
   assert.deepEqual(router.currentRoute.value.meta, { hideHeader: true, hideFooter: true });
   assert.equal(router.currentRoute.value.matched.length, 1);
 });
+
+// HM-1275: the code before, one addRoute wrapper per page (2^n route adds per app addRoute). Kept as the reference
+// for the route table the shared wrapper must give.
+const chainedRouteCode = (routes) => routes.map((r) => {
+  const P = JSON.stringify(r.recordPath), rec = (meta) => `{ path: ${JSON.stringify(r.route)}, strict: true, meta: ${meta}, component: () => import(${JSON.stringify(r.file)}) }`;
+  return `{ const unmatched = () => { const m = router.resolve(${P}).matched; return !m.length || /pathMatch/.test(m[m.length - 1].path); };
+  if (unmatched()) { const add = router.addRoute; let drop = add(${rec("{}")});
+    router.addRoute = (...a) => { const out = add(...a); drop(); const meta = unmatched() ? {} : { ...router.resolve(${P}).meta }; drop = add(${rec("meta")}); return out; }; } }`;
+}).join("\n");
+
+test("HM-1275: the shared wrapper leaves the same route table as the per-page chain did, after every app addRoute", { skip }, async () => {
+  const { createRouter, createMemoryHistory } = await import(pathToFileURL(path.join(APP, "node_modules/vue-router/dist/vue-router.node.mjs")).href);
+  const mod = (p) => `data:text/javascript,export default { name: ${JSON.stringify(p)} }`;
+  const pages = [
+    { recordPath: "/a", route: "/a" }, { recordPath: "/b", route: "/b" }, { recordPath: "/listed", route: "/listed" },
+    { recordPath: "/a", route: "/a" }, // same path twice: only the first gets a fallback
+    { recordPath: "/talents/talentScreen", route: "/talents/talentScreen" }, { recordPath: "/d/7", route: "/d/:id" }, { recordPath: "/", route: "/" },
+  ].map((p, i) => ({ ...p, file: mod(`${p.route}#${i}`) }));
+  const appAdds = [
+    [{ path: "/other", component: C }],
+    [{ path: "/a", component: C, meta: { hideHeader: true } }],
+    [{ path: "/talents", name: "talents", component: C, meta: { layout: 1 }, children: [{ path: "talentScreen", component: C, meta: { hideFooter: true } }] }],
+    ["talents", { path: "more", component: C, meta: { x: 2 } }],
+    [{ path: "/d/:id", component: C, meta: { d: 1 } }],
+    [{ path: "/", component: C, meta: { home: 1 } }],
+    [{ path: "/b", component: C, meta: { b: 1 }, alias: "/b2" }],
+  ];
+  const routers = [chainedRouteCode, gateRouteCode].map((code) => {
+    const router = createRouter({ history: createMemoryHistory(), routes: [{ path: "/listed", component: C, meta: { own: 1 } }, { path: "/:pathMatch(.*)*", component: C }] });
+    new Function("router", code(pages))(router);
+    return router;
+  });
+  const table = (router) => router.getRoutes().map((r) => [r.path, r.meta, r.strict ?? null, r.aliasOf?.path ?? null]);
+  const resolved = (router) => [...new Set([...pages.map((p) => p.recordPath), "/b2", "/talents/more"])].map((p) => { const r = router.resolve(p); return [p, r.matched.map((m) => m.path), r.meta]; });
+  assert.deepEqual(table(routers[1]), table(routers[0]));
+  for (const a of appAdds) {
+    for (const router of routers) router.addRoute(...a);
+    assert.deepEqual(table(routers[1]), table(routers[0]), `after addRoute ${JSON.stringify(a.at(-1).path)}`);
+    assert.deepEqual(resolved(routers[1]), resolved(routers[0]));
+  }
+});
+
+test("HM-1275: 161 fallbacks (the portal's page count) and 95 app addRoute calls finish in seconds, not 2^161 adds", { skip }, async () => {
+  const { createRouter, createMemoryHistory } = await import(pathToFileURL(path.join(APP, "node_modules/vue-router/dist/vue-router.node.mjs")).href);
+  const pages = Array.from({ length: 161 }, (_, i) => ({ recordPath: `/p${i}`, route: `/p${i}`, file: "/src/views/x.vue" }));
+  const router = createRouter({ history: createMemoryHistory(), routes: [{ path: "/:pathMatch(.*)*", component: C }] });
+  const t0 = Date.now();
+  new Function("router", gateRouteCode(pages))(router);
+  for (let i = 0; i < 95; i++) router.addRoute({ path: `/p${i * 2}`, component: C, meta: { n: i } });
+  const ms = Date.now() - t0;
+  assert.ok(ms < 20000, `took ${ms} ms`);
+  const fallback = (r) => String(r.components.default).includes("import(");
+  assert.equal(router.getRoutes().filter(fallback).length, 161);
+  assert.deepEqual(router.resolve("/p10").meta, { n: 5 });
+  assert.equal(fallback(router.resolve("/p10").matched[0]), true);
+});
