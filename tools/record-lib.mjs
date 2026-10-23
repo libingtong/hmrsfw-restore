@@ -164,8 +164,24 @@ export function coverage(order) {
 }
 
 // One recording per work order at a time: mkdir lock $RESTORE_STATE/locks/rec-<id>, taken over when its owner is gone.
-export function lockOrder(state, id) {
-  const dir = path.join(state, "locks", `rec-${id}`);
+export function lockOrder(state, id) { return lockDir(path.join(state, "locks", `rec-${id}`)); }
+
+// Machine-wide cap on recordings that drive a browser against the test site at the same time (HM-1221): a run holds one
+// of `slots` mkdir locks $RESTORE_STATE/locks/record-slot-<k> while it records. On 10-23 about 15 portal recordings were
+// dispatched at once on the Mac mini (load ~50 on 10 cores, swap nearly full) and page.goto missed its 60 s `load` on
+// every portal page; an offline replay of the same pages showed nothing holding `load` (it fires 0.1 s after
+// DOMContentLoaded), the time went to running the scripts. Waiting runs poll; a dead owner's slot is taken over.
+// → release function, or null when no slot came free within waitMs.
+export async function lockRecordSlot(state, { slots = 3, waitMs = 9 * 60e3, pollMs = 3000 } = {}) {
+  const t0 = Date.now();
+  for (;;) {
+    for (let k = 0; k < slots; k++) { const r = lockDir(path.join(state, "locks", `record-slot-${k}`)); if (r) return r; }
+    if (Date.now() - t0 >= waitMs) return null;
+    await new Promise((r) => setTimeout(r, pollMs + Math.random() * 1000));
+  }
+}
+
+function lockDir(dir) {
   mkdirSync(path.dirname(dir), { recursive: true });
   for (let i = 0; i < 2; i++) {
     try { mkdirSync(dir); writeFileSync(path.join(dir, "owner"), String(process.pid)); return () => rmSync(dir, { recursive: true, force: true }); }
