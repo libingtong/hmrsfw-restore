@@ -1,0 +1,40 @@
+{
+ "_source": "HM-1181：集成回归（regression / rule-regression / lib-regression / integration-gate）不测的页。只登记现在拿不到可用基线的页：要人到场（造数、有界面浏览器复查）或现有工具录不了；不是放宽判据，也不算通过（不进回归页集，不计完成）。由裁定员按原 chunk 证据登记、走 PR；拿到基线后删掉该条，下次回归自动纳入。读取方：tools/lib/pipeline.mjs regressionExceptions()（passedPages、waitIntegrationRecord、syncRecords）。",
+ "pages": {
+  "page.portal.sjz.newHome.resource": {
+   "kind": "tool-gap",
+   "why": "组件只在 /archivesSearch 点到 keywords=2 的 tab 后才挂载；baseline.mjs 和门槛都在加载完成时取根（replay.mjs runPage → captureRoot 在交互步骤之前），交互脚本做不到「先点 tab 再取根」，录了也是「original page root not found」。10-22 的 a3 基线是 recordVia 加上之前录的整页 /archivesSearch 根（baseline.json 无 sel），不是本组件。",
+   "evidence": "legacy-dist/portal/assets/index.178332063620071.js:1:1188 import Wt（resource.17833206362004.js）；:1:5778 默认选中 z(e.newsType[0])；:1:13267 activeObj.type==\"2\" 时才渲染 c(Wt)",
+   "unblock": "工具支持在取根前执行交互步骤（两侧同样执行）后，删掉本条并 rerecord",
+   "by": "HM-1181"
+  },
+  "page.portal.special.page1.jobNews": {
+   "kind": "tool-gap",
+   "why": "同 page.portal.sjz.newHome.resource：组件只在 /archivesSearch 点到 keywords=3 的 tab 后才挂载，现有工具取不到根；a3 基线是整页 /archivesSearch 的根。",
+   "evidence": "legacy-dist/portal/assets/index.178332063620071.js:1:1132 import Ft（jobNews.1783320636200.js）；:1:5778 默认选中 z(e.newsType[0])；:1:13547 activeObj.type==\"3\" 时才渲染 c(Ft)",
+   "unblock": "同上",
+   "by": "HM-1181"
+  },
+  "page.portal.fair.signModal": {
+   "kind": "needs-data",
+   "why": "测试站没有可报名的网络招聘会，「报名参会」按钮不出现，弹窗不挂载；门户和用户中心都没有新建招聘会的接口，只能在管理后台造数（HM-954 / HM-1115）。",
+   "evidence": "legacy-dist/portal/assets/list.17833206362008.js:1:8083 izEnrollStatus===\"1\"&&signStatus!==\"1\" 才出「报名参会」；:1:10813 signShow 时渲染 signModal（data-v-484c8df1）",
+   "unblock": "人造一场报名期覆盖录制当天、本单位未报名的网络招聘会（jobFairType=20）后，删掉本条并 rerecord",
+   "by": "HM-1181"
+  },
+  "page.uc.Createaresume": {
+   "kind": "needs-human",
+   "why": "录制员报 page-elements-not-clickable：「+添加教育经历」「保存并更新」等元素可解析但始终不可见，4 种脚本写法都超时；需要人在有界面浏览器里确认求职者身份下的页面状态（HM-1076）。",
+   "evidence": "HM-1076 [RECORD] blocked page-elements-not-clickable（2026-10-22）；原 chunk legacy-dist/usercenter/assets/Createaresume.1751615607545.js",
+   "unblock": "HM-1076 有结论后删掉本条并 rerecord",
+   "by": "HM-1181"
+  },
+  "page.uc.corpFairs": {
+   "kind": "needs-human",
+   "why": "录制员报 page-form-not-rendered：查询表单在 a-tabs 的 tab-pane 里，测试账号（招聘单位）下 tab 数据为空，表单不出现；需要人确认账号能否看到招聘会 tab、是否要造数（HM-1075）。",
+   "evidence": "legacy-dist/usercenter/assets/corpFairs.1751615607545.js:1:17827 a-tabs / a-tab-pane；:1:64535「请输入招聘会名称」输入框在 tab-pane 内",
+   "unblock": "HM-1075 有结论后删掉本条并 rerecord",
+   "by": "HM-1181"
+  }
+ }
+}
