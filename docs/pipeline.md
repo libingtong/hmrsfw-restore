@@ -373,7 +373,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | `tick.mjs tick` / `tick.mjs advance <任务id>` | `{ok, summary, anomalies:[{issue, what, suggestedAction}]}`；拿不到锁输出 `{"locked":true}` |
 | `route.mjs <工单id>` | `{candidates:[{family, agents:[...], expectedCost, reason}], features, dual:bool}` |
 | `record-page.mjs <工单id>` | `{ok, steps, unstable:[...], blocked?}` |
-| `baseline.mjs <工单id> [--har <path>] [--no-coverage]` | 用 HAR 回放原版两次，写基线；两次不一致的步骤列入 `unstable`；同时采集覆盖率，输出多一个 `coverage:{page:{function,block}, shared, stable}` |
+| `baseline.mjs <工单id> [--har <path>] [--publish-har <path>] [--no-coverage]` | 用 HAR 回放原版两次，写基线；两次不一致的步骤列入 `unstable`；同时采集覆盖率，输出多一个 `coverage:{page:{function,block}, shared, stable}`。`--publish-har`：`--har` 是暂存的新 HAR，基线写成功时才把它改名到 `--publish-har` 路径，和基线目录一起替换（`record-page.mjs` 这样调用，HM-1246）；失败时页面 HAR 和旧基线都不动 |
 | `coverage.mjs report <工单id>` / `summary` / `datareq [--write]` | 单页未覆盖清单（录制员补交互脚本用）/ 覆盖率分布和低于阈值的页面 / 造数需求清单（D7）。阈值读 `restore.config.json` 的 `coverage.minFunction`、`minBlock` |
 | `setup-workdir.mjs --app <dir> [--force] [--no-cache]` | 本仓库和 `hmrsfw-vue` 检出的依赖就绪；有共享缓存（`RESTORE_DEPS_CACHE`，没设时 `~/Projects/hmrsfw-restore-deps` 存在即用）时 `node_modules` 软链到缓存（`hmrsfw-vue` 的缓存项按它自己的 `package-lock.json` 建），缓存项不存在时首次在缓存目录 `npm ci`（加锁）；本仓库的 `legacy-dist/` 用本工作树的 sparse checkout 移出工作区，换成指向缓存里该 git tree 只读副本的软链（`tools/lib/shared-deps.mjs`，HM-1130），任务目录只剩几 MB。`git status` 保持干净，提交、切分支照常；切到 `legacy-dist` 不同的提交后，`gate`、`record-page`、`baseline` 启动时自动改指。没有缓存或 `--no-cache` 时原地 `npm ci`，并把软链还原成真实文件 |
 

@@ -20,13 +20,16 @@
 //      parameters redacted. Extra per-entry fields: _seq (request order), _phase
 //      ("load" | "step<i>" | "after"), _crypto, _intercepted + _interceptRule (answered by the write guard); log._record carries the identity and the page's localStorage after the switch
 //      with the token removed (replay needs the identity keys, e.g. radiotype, routermenu);
-//   6. runs the original baseline: tools/baseline.mjs <id> --har <har> (A); until A is merged,
-//      tools/record-baseline-placeholder.mjs with the same command line;
+//   6. runs the original baseline: tools/baseline.mjs <id> --har <staged har> --publish-har <har> (A); until A is merged,
+//      tools/record-baseline-placeholder.mjs with the same command line. The new HAR is staged next to the page HAR and
+//      only replaces it together with the baseline (HM-1246): a recording whose baseline fails, or that is killed before
+//      the baseline is written, leaves the old HAR and baseline as a matching pair, so gates running meanwhile never see
+//      "HAR changed since the baseline"; the staged file is removed on failure;
 //   7. on success commits tests/interact/<id>.json to the integration branch (only the script, never the HAR);
 //   8. whatever the outcome, takes the script out of the working tree again (HM-1130, record-lib parkScript): a draft
 //      that did not get committed goes to $RESTORE_STATE/record/<id>/draft.json and the next run puts it back, so the
 //      task checkout is left clean and can be removed when the task ends.
-// Concurrency: each run has its own browser; HAR written via temp file + rename; one run per work order
+// Concurrency: each run has its own browser; HAR staged in a temp file, renamed in by baseline.mjs; one run per work order
 // ($RESTORE_STATE/locks/rec-<id>); user-center runs share the account by identity ($RESTORE_STATE/locks/account-usercenter.json:
 // same identity together, another identity waits up to --wait-identity; held for the recording only, not the baseline);
 // per-order notes in $RESTORE_STATE/record/<id>/. At most HMRSFW_RECORD_SLOTS (default 3) runs of the machine record at
@@ -83,7 +86,7 @@ function emit(o, code) {
   process.exitCode = code;
 }
 
-async function record({ order, steps, assets, state, harFile }) {
+async function record({ order, steps, assets, state, harFile, staged }) {
   const auth = authState(assets, order.site);
   if (auth.missing) return { blocked: `need-login:${order.site}`, hint: loginHint(order.site) };
   if (!auth.hasToken) return { blocked: "login-expired", hint: loginHint(order.site) };
@@ -222,9 +225,7 @@ async function record({ order, steps, assets, state, harFile }) {
     const har = { log: { version: "1.2", creator: { name: "record-page", version: "1" }, pages: [], entries, _record: { id: order.id, site: order.site, role: order.role, ...(uc ? { identity: IDENTITIES[order.role].label, localStorage: Object.fromEntries(Object.entries(live).filter(([k]) => !/token/i.test(k))) } : {}), recordPath: order.recordPath, finalPath, textLength, steps: stepResults, recordedAt: new Date().toISOString() } } };
     if (!offline && pin(state, pinKey(order.site, order.role), identityFingerprint(order.site, uc ? switched : auth.localStorage))) warnings.push(`${pinKey(order.site, order.role)} pinned by this recording`);
     mkdirSync(path.dirname(harFile), { recursive: true });
-    const tmp = `${harFile}.${process.pid}.tmp`;
-    writeFileSync(tmp, JSON.stringify(har));
-    renameSync(tmp, harFile);
+    writeFileSync(staged, JSON.stringify(har)); // published with the baseline (HM-1246), not here
 
     const decrypt = !!process.env.SM2_PRIVATE_KEY;
     const sm2 = { bodies: 0, decrypted: 0, undecryptable: 0 };
@@ -242,22 +243,27 @@ async function record({ order, steps, assets, state, harFile }) {
   } finally { await browser.close().catch(() => {}); }
 }
 
-function baseline({ id, harFile }) {
+// Puts a staged HAR in place when no baseline does it (--no-baseline, the placeholder).
+function publishHar(staged, harFile) { if (staged && existsSync(staged)) renameSync(staged, harFile); }
+
+function baseline({ id, harFile, staged = null }) {
   const own = existsSync(path.join(ROOT, "tools/baseline.mjs"));
   const tool = own ? "tools/baseline.mjs" : "tools/record-baseline-placeholder.mjs";
-  const args = [path.join(ROOT, tool), id, "--har", harFile];
+  const args = [path.join(ROOT, tool), id, "--har", staged ?? harFile, ...(own && staged ? ["--publish-har", harFile] : [])];
   if (opt("--app")) args.push("--app", path.resolve(opt("--app")));
   if (own && (opt("--order") || opt("--script"))) warnings.push("--order/--script are not passed to tools/baseline.mjs; it reads queue/ and tests/interact/");
   if (!own) for (const n of ["--order", "--script"]) if (opt(n)) args.push(n, path.resolve(opt(n)));
   const r = spawnSync(process.execPath, args, { cwd: ROOT, env: process.env, encoding: "utf8", maxBuffer: 256e6, timeout: 20 * 60e3 });
   const line = (r.stdout ?? "").trim().split("\n").filter(Boolean).pop();
   let j = null; try { j = JSON.parse(line); } catch {}
-  if (!j) throw fail(`${tool} gave no JSON (exit ${r.status}): ${(r.stderr ?? "").trim().split("\n").pop()?.slice(0, 200) ?? ""}`);
-  if (j.error) throw fail(`${tool}: ${j.error}`);
+  const kept = staged ? " (new HAR discarded; the previous HAR and baseline are kept)" : "";
+  if (!j) throw fail(`${tool} gave no JSON (exit ${r.status}): ${(r.stderr ?? "").trim().split("\n").pop()?.slice(0, 200) ?? ""}${kept}`);
+  if (j.error) throw fail(`${tool}: ${j.error}${kept}`);
+  if (!own) publishHar(staged, harFile);
   return { tool, placeholder: !own, unstable: j.unstable ?? [], coverage: j.coverage ?? null, result: j };
 }
 
-let release = null, releaseIdentity = null, releaseSlot = null;
+let release = null, releaseIdentity = null, releaseSlot = null, staged = null;
 try {
   if (!validId(id)) throw fail("usage: node tools/record-page.mjs <工单id> [--order <file>] [--script <file>] [--no-baseline] [--baseline-only] [--no-commit] [--headed]");
   const { assets, state } = envDirs();
@@ -302,7 +308,8 @@ try {
   let rec = { entries: null, writes: [], intercepted: [], sm2: null };
   if (baselineOnly) { if (!existsSync(harFile)) throw fail(`--baseline-only: no HAR for ${id} yet`); }
   else {
-    try { rec = await record({ order, steps, assets, state, harFile }); }
+    staged = `${harFile}.${process.pid}.tmp`;
+    try { rec = await record({ order, steps, assets, state, harFile, staged }); }
     finally { await releaseIdentity?.(); releaseIdentity = null; releaseSlot?.(); releaseSlot = null; } // the baseline and the commit do not touch the account or the test site
     if (rec.blocked) { emit({ ok: false, id, steps: steps.length, unstable: [], blocked: rec.blocked, hint: rec.hint, ...(rec.evidence ? { evidence: rec.evidence } : {}) }, 2); throw null; }
     if (rec.error) throw fail(rec.error);
@@ -315,7 +322,8 @@ try {
     const prev = existsSync(wf) ? JSON.parse(readFileSync(wf, "utf8")) : [];
     writeFileSync(wf, JSON.stringify([...prev, { recordedAt: new Date().toISOString(), role: order.role, writes: rec.writes, intercepted: rec.intercepted }], null, 1));
   }
-  const base = flag("--no-baseline") ? null : baseline({ id, harFile });
+  if (flag("--no-baseline")) publishHar(staged, harFile);
+  const base = flag("--no-baseline") ? null : baseline({ id, harFile, staged });
   if (!base) warnings.push("baseline skipped (--no-baseline)");
   else if (base.placeholder) warnings.push("baseline.mjs (A) not merged yet: placeholder checked replay stability only, no baseline written; rerun with --baseline-only after A is merged");
   const unstable = base?.unstable ?? [];
@@ -334,6 +342,7 @@ try {
 } catch (e) {
   if (e !== null) emit({ ok: false, id, steps: null, unstable: [], error: e?.userFacing ? e.message : String(e?.stack ?? e).split("\n").slice(0, 3).join(" | ") }, 1);
 } finally {
+  if (staged) rmSync(staged, { force: true }); // published (renamed away) on success; on failure the old HAR stays
   release?.();
   await releaseIdentity?.();
   releaseSlot?.();
