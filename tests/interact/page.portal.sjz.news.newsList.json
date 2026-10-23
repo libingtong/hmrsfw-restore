@@ -1,6 +1,9 @@
 [
+  {"wait":3000},
+  {"click":"公示公告","optional":true},
+  {"wait":2000},
   {"clickSel":".sjz-news-left li:nth-child(2)","optional":true},
-  {"clickSel":".sjz-news-left li:first-child","optional":true},
+  {"wait":2000},
   {"clickSel":".ant-pagination-next","optional":true},
-  {"clickSel":".ant-pagination-item-2","optional":true}
+  {"wait":2000}
 ]
