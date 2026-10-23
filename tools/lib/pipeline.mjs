@@ -13,7 +13,7 @@
 // advance its tasks. Tasks without work orders (integration, rule review, incident, record) and the global steps belong
 // to the leader (a lease on the same branch). State another machine must see lives in issue metadata or git; the local
 // ledger is detail and cache.
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import os from "node:os";
 import { createHash } from "node:crypto";
@@ -248,6 +248,21 @@ export class Pipeline {
     const now = this.recordMark(wo);
     return Number(now.match(/^a(\d+)/)[1]) > Number(a) || (!now.endsWith(":-") && now.split(":")[1] !== sig);
   }
+  baselineMtime(wo) {
+    for (const d of [slug(wo), wo]) { const f = path.join(this.paths.baseline, d, "baseline.json"); if (existsSync(f)) return statSync(f).mtimeMs; }
+    return null;
+  }
+
+  // Pages the arbiter took out of the integration page set (tools/regression-exceptions.json, HM-1181): pages that can't
+  // get a usable baseline now (needs a human: test data, a headed-browser check; or a recording the tools can't make yet).
+  // They are not judged and not counted as passed; regressions don't wait for them. Entry: {why, evidence, by}.
+  regressionExceptions() {
+    if (this._rx) return this._rx;
+    let x = {};
+    try { x = JSON.parse(readFileSync(path.join(this.toolRoot, "tools", "regression-exceptions.json"), "utf8")).pages || {}; } catch { x = {}; }
+    return (this._rx = x);
+  }
+  isRegressionException(wo) { return Object.hasOwn(this.regressionExceptions(), wo); }
 
   // ---- idempotent task creation ---------------------------------------------------------------------------------------
   // key identifies the creation (e.g. "restore:<wo>:a1-d"); a second call with the same key returns the existing task.
@@ -1083,7 +1098,7 @@ export class Pipeline {
   }
 
   passedPages(L) {
-    return this.orders().filter((w) => isPage(w) && (this.isMergedWo(L, w.id) || isAccepted(w))).map((w) => w.id).sort();
+    return this.orders().filter((w) => isPage(w) && (this.isMergedWo(L, w.id) || isAccepted(w)) && !this.isRegressionException(w.id)).map((w) => w.id).sort();
   }
 
   // Both machines merge into integration, so the counts come from git (merges in main..integration) and the state from
@@ -1133,12 +1148,8 @@ export class Pipeline {
     if (!gate) return { ok: false, summary: `no gate result on ${taskId}`, anomalies: [{ issue: taskId, what: "integration advance without gate result", suggestedAction: "门槛员重跑" }] };
     if (gate.error) return { ok: false, summary: "gate error", anomalies: [{ issue: taskId, what: `integration gate error: ${String(gate.error).slice(0, 200)}`, suggestedAction: "建排障单交给裁定员" }] };
     // No verdict: pages without a usable baseline. Not a failure — a rule/lib regression must not be reverted on it.
-    // missingTotal: gate.mjs keeps only a sample of the ids when the list does not fit the metadata (HM-876)
-    if (gate.pending === "record") {
-      const n = gate.missingTotal ?? (gate.missing || []).length;
-      const why = Object.entries(gate.byReason || {}).map(([w, k]) => `${w} ×${k}`).join("; ");
-      return { ok: false, summary: "integration gate pending record", anomalies: [{ issue: taskId, what: `integration gate pending record: ${n} pages without a usable baseline${why ? ` (${why})` : ""}`, suggestedAction: "补录基线后 --regate，或由人决定回归范围" }] };
-    }
+    if (gate.pending === "record") return this.waitIntegrationRecord(taskId, meta, gate);
+    if (meta.recordPending) this.mc.deleteMeta(taskId, "recordPending"); // a real verdict ends a run of pending:record
     const wos = meta.workOrders || [];
     const failed = gate.pass ? [] : this.failedWos(gate, wos);
     this.gateGlobal = gate.global ?? null; // app-wide failures by layer / owner (integration mode), for the reports below
@@ -1156,6 +1167,71 @@ export class Pipeline {
   }
 
   closeIntegration(taskId, line) { this.comment(taskId, line); this.mc.update(taskId, { status: "done", noStart: true }); }
+
+  // Integration gate {pending:"record"} (HM-1181). Before, advance only reported an anomaly: no record task was opened
+  // (dispatchRecords skips a page whose ledger `record` is set, whatever became of that recording), so every tick
+  // re-advanced the same verdict and the regression never ran. Now, as waitForRecord does for a restore task (HM-1131):
+  //   - pages in tools/regression-exceptions.json leave the task's page set;
+  //   - a page whose baseline was written after the verdict needs nothing more;
+  //   - every other page gets a record attempt (reopenRecord: not while one is open, a blocked one included), and the
+  //     task waits for recordings made from now on (waitRecordFrom); syncRecords sends it back to the gate.
+  // The full list and the verdict's time come from the gate's detail file (metadata keeps only a sample of the ids when
+  // the list does not fit, HM-876). Without it (older gate runs) the pages that have a recording are not re-recorded on
+  // that verdict's word: the task is re-gated once for a fresh one. Shared / npm orders (never recorded) and the same
+  // reason `recordPendingLimit` times in a row go to an incident for the arbiter; nothing is re-sent.
+  waitIntegrationRecord(taskId, meta, gate) {
+    const wos = meta.workOrders || [];
+    const key = this.advKey(meta);
+    const prev = meta.recordPending && typeof meta.recordPending === "object" ? meta.recordPending : null;
+    if (prev?.key === key && meta.waitRecord === true) return { ok: true, summary: `${taskId} already waiting for recording (${key})`, anomalies: [] };
+    let detail = null, verdictAt = null;
+    try { if (gate.detail && existsSync(gate.detail)) { detail = JSON.parse(readFileSync(gate.detail, "utf8")); verdictAt = statSync(gate.detail).mtimeMs; } } catch { detail = null; verdictAt = null; }
+    const ids = (list) => (list || []).map((x) => (typeof x === "string" ? x : x?.wo)).filter(Boolean);
+    const truncated = gate.missingTruncated || (gate.missingTotal ?? ids(gate.missing).length) > ids(gate.missing).length;
+    const full = detail?.pending === "record" && Array.isArray(detail.missing) ? ids(detail.missing) : truncated ? null : ids(gate.missing);
+    const why = full ? pendingWhy(gate) : "pending list incomplete";
+    const n = prev?.why === why ? (Number(prev.n) || 1) + 1 : 1;
+    const limit = this.cfg.recordPendingLimit ?? 2;
+    const toIncident = (reason, pages, note = "") => {
+      this.mc.setMetaMany(taskId, { waitRecord: false, waitRecordFrom: meta.waitRecordFrom ? null : undefined, recordPending: { why, n, key }, advanced: key });
+      this.ledger.tx((L2) => L2.newEvents.push({ type: "record-loop", task: taskId, wos: pages, why, n }));
+      this.comment(taskId, `[GATE] ${reason}，不再自动等录制、不再自动重跑 → 裁定员（排障单）${note}`);
+      const inc = this.openIncident(reason, { task: taskId, purpose: meta.purpose, pages: pages.slice(0, 50), why }, false, `:${key}`);
+      return { ok: true, summary: `${taskId} → incident`, anomalies: inc.anomalies };
+    };
+    const regate = (line, extra = {}) => {
+      this.mc.setMetaMany(taskId, { waitRecord: false, waitRecordFrom: meta.waitRecordFrom ? null : undefined, advanced: key, ...extra });
+      this.comment(taskId, line);
+      this.sendToGate(taskId, this.meta(taskId));
+      return { ok: true, summary: `${taskId} re-gated`, anomalies: [] };
+    };
+    if (!full) {
+      if (n >= limit) return toIncident(`集成回归 ${taskId} 连续 ${n} 次拿不到 PENDING record 的完整清单（门槛详情文件不在本机）`, []);
+      return regate(`[GATE] 集成门槛 PENDING record 的完整清单不在本机（${gate.missingTotal ?? "?"} 页，元数据只留了样本），重跑门槛取新结论`, { recordPending: { why, n, key } });
+    }
+    const missing = [...new Set(full)].filter((w) => wos.includes(w));
+    const except = missing.filter((w) => this.isRegressionException(w));
+    const keep = wos.filter((w) => !except.includes(w));
+    const L = this.ledger.read();
+    const fresh = (w) => this.recorded(L, w) && (verdictAt === null || (this.baselineMtime(w) ?? 0) > verdictAt);
+    const rest = missing.filter((w) => !except.includes(w) && !fresh(w));
+    if (except.length) this.mc.setMeta(taskId, "workOrders", keep);
+    const exceptNote = except.length ? `；回归例外不再测：${except.join("、")}（tools/regression-exceptions.json）` : "";
+    // nothing to record: not a recording loop, so not counted
+    if (!rest.length) return regate(`[GATE] 等录制的页都已有新基线或是回归例外${exceptNote}，重跑门槛（${keep.length} 页）`);
+    const unrecordable = rest.filter((w) => !isRecordable(this.wo(w)));
+    if (unrecordable.length) return toIncident(`集成回归 ${taskId} 缺基线的页里有不录制的共享库/npm 工单：${unrecordable.join("、")}`, unrecordable, exceptNote);
+    if (n >= limit) return toIncident(`集成回归 ${taskId} 连续 ${n} 次 PENDING record（${why}）`, rest, exceptNote);
+    const from = {}, reopened = [];
+    for (const w of rest) {
+      from[w] = this.recordMark(w);
+      if (this.reopenRecord(w, `integration ${why}`)) reopened.push(w);
+    }
+    this.mc.setMetaMany(taskId, { waitRecord: true, waitRecordFrom: from, recordPending: { why, n, key }, advanced: key });
+    this.ledger.tx((L2) => L2.newEvents.push({ type: "wait-record", task: taskId, wos: rest }));
+    this.comment(taskId, `[GATE] 集成回归等录制：${rest.join("、")}${reopened.length ? `（新开录制 ${reopened.join("、")}）` : ""}${exceptNote}`);
+    return { ok: true, summary: `${taskId} waiting for recording (${rest.length} pages)`, anomalies: [] };
+  }
 
   onRegression(taskId, meta, pass, failed = []) {
     if (pass) {
@@ -1650,21 +1726,25 @@ export class Pipeline {
     // waitRecordFrom (waitForRecord, rerecord): only a recording made after the gate asked counts (HM-1131); tasks
     // without it (fast-lane tasks created waiting, older tasks) take any recording
     const ready = (from, w) => (from && typeof from === "object" && from[w] !== undefined ? this.recordedSince(w, from[w]) : this.recorded(L, w));
-    for (const i of this.pipelineIssues().filter((x) => x.metadata.waitRecord === true && ["restore", "upgrade"].includes(x.metadata.kind) && this.ownsTask(x.metadata))) {
-      const wos = i.metadata.workOrders || [];
-      const notReady = wos.filter((w) => !ready(i.metadata.waitRecordFrom, w));
+    for (const i of this.pipelineIssues().filter((x) => x.metadata.waitRecord === true && ["restore", "upgrade", "integration"].includes(x.metadata.kind) && this.ownsTask(x.metadata))) {
+      const integ = i.metadata.kind === "integration";
+      // an integration task waits for the pages it named (waitIntegrationRecord), not its whole page set; a page the
+      // arbiter made a regression exception meanwhile is no longer waited for and leaves the page set at the regate
+      const wos = integ ? Object.keys(i.metadata.waitRecordFrom || {}) : i.metadata.workOrders || [];
+      const notReady = wos.filter((w) => !(integ && this.isRegressionException(w)) && !ready(i.metadata.waitRecordFrom, w));
       const never = notReady.filter((w) => !isRecordable(this.wo(w))); // left waiting before HM-1124/HM-1131: it never ends
-      if (never.length) { this.safe(i.id, () => this.withWo(wos, () => { const m = this.meta(i.id); if (m.waitRecord === true) { this.unrecordableToArbiter(i.id, m, never); this.act(`unrecordable wait → arbiter ${i.id}`); } })); continue; }
+      if (never.length && !integ) { this.safe(i.id, () => this.withWo(wos, () => { const m = this.meta(i.id); if (m.waitRecord === true) { this.unrecordableToArbiter(i.id, m, never); this.act(`unrecordable wait → arbiter ${i.id}`); } })); continue; }
       // the attempt opened for it was cancelled (fast-lane login-ok, by hand): dispatchRecords skips a page that has a
       // recording, so the waiting task opens the next attempt itself; a blocked or still open attempt is left alone
       const lost = notReady.filter((w) => i.metadata.waitRecordFrom?.[w] !== undefined && this.recorded(L, w) && this.recordTasks(w).length && !this.recordTasks(w).some(OPEN)
         && this.recordTasks(w).sort((a, b) => (Number(b.metadata.attempt) || 1) - (Number(a.metadata.attempt) || 1))[0].status === "cancelled");
       if (lost.length && !FL.loginNeeded(this)) this.safe(i.id, () => this.withWo(lost, () => lost.forEach((w) => this.reopenRecord(w, "record attempt cancelled"))));
       if (notReady.length) continue;
-      this.safe(i.id, () => this.withWo(wos, () => {
+      this.safe(i.id, () => this.withWo(integ ? (i.metadata.workOrders?.length ? i.metadata.workOrders : [`task-${i.id}`]) : wos, () => { // advance()'s locks
         const m = this.meta(i.id);
         if (m.waitRecord !== true) return;
-        this.mc.setMetaMany(i.id, { waitRecord: false, waitRecordFrom: m.waitRecordFrom ? null : undefined });
+        const drop = integ ? (m.workOrders || []).filter((w) => this.isRegressionException(w)) : [];
+        this.mc.setMetaMany(i.id, { waitRecord: false, waitRecordFrom: m.waitRecordFrom ? null : undefined, ...(drop.length ? { workOrders: m.workOrders.filter((w) => !drop.includes(w)) } : {}) });
         this.comment(i.id, `[GATE] 录制已完成，重新送门槛`);
         this.sendToGate(i.id, m);
         this.act(`record ready → regate ${i.id}`);
