@@ -1487,11 +1487,45 @@ export class Pipeline {
   }
 
   onRuleRegression(taskId, meta, pass, failed) {
-    if (pass) { this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 全量回归通过`); this.ledger.tx((L) => L.newEvents.push({ type: "rule-regression", branch: meta.ruleChange, pass: true })); return { ok: true, summary: "rule regression passed", anomalies: [] }; }
+    // Every page passed and the verdict fails on app-wide hits only (zero-reference in shell, entry or shared files,
+    // gate.global): those belong to their owners (docs/gate.md, failure attribution), a compare-rule change does not
+    // make them. Before HM-1270 this reverted the rule as "failed on 0 pages".
+    const gate = this.gateResult(meta);
+    const pages = Array.isArray(gate?.pages) ? gate.pages : [];
+    const judged = pages.length + (gate?.passedOmitted ?? 0); // a large verdict lists only its failing pages (slimResult)
+    const onlyGlobal = !pass && !failed.length && !gate?.pagesTruncated && judged > 0 && judged >= (meta.workOrders || []).length && pages.every((p) => p.pass) && (gate?.global?.total ?? 0) > 0;
+    if (pass || onlyGlobal) {
+      this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 全量回归通过${onlyGlobal ? `（页面全部通过；整站零引用 ${gate.global.total} 条与规则无关，不回退）` : ""}`);
+      this.ledger.tx((L) => L.newEvents.push({ type: "rule-regression", branch: meta.ruleChange, pass: true, ...(onlyGlobal ? { globalOnly: gate.global.total } : {}) }));
+      const covered = this.coverRuleRegressions(taskId, meta, gate);
+      return { ok: true, summary: `rule regression passed${covered.length ? `; covers ${covered.length} more` : ""}`, anomalies: [] };
+    }
     const r = this.locks.with("tool-main", () => this.toolGit.revert({ sha: meta.ruleSha, into: "main", message: `Revert rule change ${meta.ruleChange}: full regression failed on ${failed.length} pages` }), 5 * 60_000);
     this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "reverted"; L.newEvents.push({ type: "rule-reverted", branch: meta.ruleChange, pages: failed.length, ok: !!r.reverted }); });
     this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（${failed.length} 页），已回退`);
     return { ok: true, summary: `rule ${meta.ruleChange} reverted`, anomalies: [] };
+  }
+
+  // Every rule regression replays the passed pages with the gate's current tools, not with the tools at its own rule
+  // (HM-1270: 21 of them were open at once, each a 1.5–2 h run of the same pages). A passing one therefore answers for
+  // every open rule regression whose rule the tested tool commit (gate.tools) already contains and whose pages it
+  // judged; those are closed as passed. A failing one closes nothing else.
+  coverRuleRegressions(taskId, meta, gate) {
+    const head = typeof gate?.tools === "string" && /^[0-9a-f]{40}$/.test(gate.tools) ? gate.tools : null; // "<sha>+<diff>": local edits answer for nobody else
+    if (!head) return [];
+    const judged = new Set(meta.workOrders || []);
+    this.toolGit.fetch("main");
+    const out = [];
+    for (const i of this.pipelineIssues()) {
+      const m = i.metadata;
+      if (i.id === taskId || m.kind !== "integration" || m.purpose !== "rule-regression" || !OPEN(i) || !m.ruleSha) continue;
+      if (!(m.workOrders || []).every((w) => judged.has(w)) || !this.toolGit.isAncestor(m.ruleSha, head)) continue;
+      this.mc.setMetaMany(i.id, { advanced: this.advKey(m), coveredBy: taskId }); // a verdict of its own arriving later is not advanced again
+      this.closeIntegration(i.id, `[GATE] 规则变更 ${m.ruleChange} 全量回归通过：由 ${taskId} 的回归覆盖（工具 ${short(head)} 已含本规则 ${short(m.ruleSha)}，本单 ${(m.workOrders || []).length} 页都在其中且全部通过）`);
+      this.ledger.tx((L) => L.newEvents.push({ type: "rule-regression", branch: m.ruleChange, pass: true, coveredBy: taskId }));
+      out.push(i.id);
+    }
+    return out;
   }
 
   // ---- incidents, stop conditions, escalation -------------------------------------------------------------------------

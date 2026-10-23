@@ -15,6 +15,7 @@ node tools/baseline.mjs <工单id> [--har <path>]                       # 录制
 node tools/gate.mjs --task <任务id> --branch <b> --mode page            # 门槛员
 node tools/gate.mjs --wo c01,c02 --dry-run                              # 测试：不写元数据、不评论
 node tools/gate.mjs --mode integration --wo … [--dry-run]               # 集成模式：不顶替、零引用全开、整站构建
+node tools/gate.mjs --task <集成任务id> --mode integration [--budget 7]  # 集成任务：分段跑，输出 partial 就再跑同一条命令（见「集成模式分段续跑」）
 node tools/gate.mjs --task <升级单id> --branch <b> --mode upgrade       # 升级单模式（kind=upgrade 的任务即使传 --mode page 也自动用它）
 node tools/gate.mjs --regress [--dry-run]                               # 全量回归：所有有基线的页面，输出新通过 / 新失败
 ```
@@ -133,6 +134,24 @@ DOM 存成 JSON 树而不是只存字符串，所以规范化规则以后变了�
 
 HM-9 实测（`hmrsfw-vue` `main` 6e95728，20 张确认页）：整站 516 处，外壳 334（`public/` 下带构建哈希的资源名 320）、共享组件 95、页面 66、接口 15、入口 6，涉及 53 张工单；页面 12 张通过、6 张本页静态失败（HM-26 的资源导入、POC 页面头注释里的原包路径）、2 张浏览器失败（c09、c12 的 toast，属 `utils/request.ts`）。
 
+## 集成模式分段续跑（HM-1270）
+
+266 页的全量回归在 Mac mini 上要 1.5–2 小时（10-23 实测：负载 10–20 时 static 约 9 s/页、两个应用整站构建 4–8 分钟、browser 约 13 s/页），几张回归单同时跑更久。门槛员的 shell 前台 10 分钟后把命令转后台、后台再 30 分钟就杀掉（HM-1176、HM-1072 都在约 40 分钟时被杀，无输出），所以以前一张也跑不出结论。
+
+带 `--task` 的集成模式（或无任务时加 `--resume`）现在分段跑：
+
+- 每次调用最多用 `--budget` 分钟（默认 7）开始新的页，到点不再开新页，输出 `{"partial":true,"done":N,"total":M,"run":"<key>","next":"…"}`，退出码 **3**，不写元数据、不评论。**再运行同一条命令**就从已判的页接着跑；全部页都有结论时输出与原来相同形状的结论（多了 `run`、`tools`、`slices`），照常写 `gate.<attempt>` 和 `[GATE]` 评论，然后 `advance`。被杀掉也不丢：已判的页都已落盘，下次接着跑。
+- 每页的判法不变：同一个 self-check、同一次整站 `vite build`（只含被判页的路由，与原来一样）、同一套回放和比对（`judgePage` 就是原来循环体）。只是不再在一个进程里跑完。顺序改为先构建、再逐页 self-check + 回放。构建失败时结论与原来相同（stage `build`）。4 页样本（含一张 recordVia 页，两个应用）对照：分 4 段跑出的结论与 `--no-resume` 一次跑完的逐页、逐条失败项完全相同。
+- 产物在 `$RESTORE_STATE/gate/runs/<key>/`：`run.json`、`app/`（hmrsfw-vue 在该提交的 worktree）、`global.json`（整站零引用）、`build/<app>.json` + `dist/<app>/`（构建结果和 scope id）、`pages/<工单>/result.json`（`{fp, page, staticMs}`）及截图、`report.json`。`key` 由工具提交（工作区对 `tools/`、`rules/` 有改动时再加改动的哈希）、规则版本、hmrsfw-vue 提交和页集合（每页的 app、route、recordPath、target、recordVia）决定。
+- 页结论复用的条件：同一个 run，且该页的基线文件、交互脚本、已知差异与判它时相同（`fp`）；任一变了就重判。
+- 一次门槛轮次（任务 + attempt + `gateSeq`）固定在一个 run 上（`runs/pins/`），工具、规则或页集合变了就换新 run。re-gate 会换 `gateSeq`，所以 re-gate 一定拿到新结论。
+- **几张任务共享一个 run**：工具、规则、页集合都相同，且该 run 是在本任务创建（或最近一次 re-gate）之后才取的提交（其提交已含本任务的全部页、结论都比请求新），6 小时内的，直接用它。页逐个认领（`pages/<工单>/.claim`，记 pid 和主机；进程死了或超过 30 分钟算失效），并发的调用分着判，不重复。
+- 两个应用的构建各在一次调用里做完；一次调用里已经构建过一个应用、剩余时间不够再构建一个时，先返回 `partial`。
+- 超过 24 小时且没人在判的 run 在下次分段调用时删掉（含 worktree）。
+- `--no-resume` 保留原来一次跑完的方式；`--dry-run`、`--regress`、`--from build` 不分段。
+
+**门槛员**：`kind=integration` 的任务，前台运行 `node tools/gate.mjs --task <任务id> --mode integration --app "$HMRSFW_APP_DIR"`（Bash 超时 600000 ms），输出 `partial` 就再运行同一条命令，直到输出结论、`pending` 或 `error`，再按原来的流程 `advance`。不要转后台、不要 nohup。
+
 ## 共享组件顶替（--mode page）
 
 `registry/<app>.json` 里 `status: "reserved"` 的共享组件，本次运行临时用原编译 chunk 的薄包装顶替（`tools/gate/shim.mjs`）：去掉 Vite 顶层 await 包装（复用 `tools/unwrap-tla.mjs`），`./vue.<哈希>.js` 的导入映射到 `vue`，入口 chunk 的导入按清单 `entry`、接口 chunk 按 `api`、npm 库 / geojson / 图片常量 chunk 按 `modules`、其他 chunk 按 `shared`（已还原用其路径，未还原就再包一层）；具名、默认、命名空间三种导入都支持；带上原 chunk 的样式，补 `export default`（清单 `exports` 里导出为 `default` 的那个）。包装文件只写在 `$RESTORE_STATE/gate/<run>/shims/`，输出 `shimmed`。顶替出错报 `check: "shim"`（build 阶段）。Vite 的依赖扫描阶段不做顶替。
@@ -143,7 +162,7 @@ HM-9 实测（`hmrsfw-vue` `main` 6e95728，20 张确认页）：整站 516 处�
 
 ## 并发安全
 
-端口一律 0；本次运行的所有产物（含 vite cacheDir、顶替文件、截图、报告）在 `$RESTORE_STATE/gate/<工单>-a<attempt>/`（`--dry-run` 另加 `-dry<pid>`）；`--branch` 时在该目录里建 `hmrsfw-vue` 的独立 worktree；不写任何共用的追加文件；HAR、基线、`legacy-dist` 只读。唯一的共享写入是依赖预打包缓存（临时目录 + 原子改名，从不覆盖）和 `--regress` 的上次结果（原子替换）。
+集成任务的分段运行见上文（`runs/<key>/` 共享，按页认领，锁文件带 pid）。其余：端口一律 0；本次运行的所有产物（含 vite cacheDir、顶替文件、截图、报告）在 `$RESTORE_STATE/gate/<工单>-a<attempt>/`（`--dry-run` 另加 `-dry<pid>`）；`--branch` 时在该目录里建 `hmrsfw-vue` 的独立 worktree；不写任何共用的追加文件；HAR、基线、`legacy-dist` 只读。唯一的共享写入是依赖预打包缓存（临时目录 + 原子改名，从不覆盖）和 `--regress` 的上次结果（原子替换）。
 
 ## 验证（2026-10-10，Mac mini，同时有其他智能体在跑，负载 4–10）
 
