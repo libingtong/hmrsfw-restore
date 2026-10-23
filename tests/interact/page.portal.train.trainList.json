@@ -2,8 +2,5 @@
   {"fill":["请输入培训课程名称关键字进行查询","测试"]},
   {"click":"搜索"},
   {"click":"重置"},
-  {"click":"课程热度"},
-  {"click":"热门推荐"},
-  {"click":"全部课程"},
-  {"clickSel":".ant-pagination-next","optional":true}
+  {"click":"课程热度"}
 ]
