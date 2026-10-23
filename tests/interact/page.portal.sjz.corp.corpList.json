@@ -1,6 +1,7 @@
 [
   {"fill":["可输入单位名称或关键字进行查询","测试"]},
-  {"click":"重置","wait":2000},
+  {"clickSel":".searchBtn","wait":2000},
+  {"clickSel":".resetBtn","wait":2000},
   {"clickSel":".ant-pagination-item-2","optional":true,"wait":2000},
   {"clickSel":".ant-pagination-next","optional":true,"wait":2000}
 ]
