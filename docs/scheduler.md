@@ -140,6 +140,8 @@
 
 **集成回归**：`integration` 新合入满 20 单，或没有还原、审计、裁定中的任务时，建 `purpose=regression` 的集成任务（固定在当时的 `integration` 提交上）。通过就把 `main` 快进到该提交；失败就对 `main..该提交` 之间、还没被回退过的合并提交二分。每一步是一张 `purpose=bisect` 的集成任务，只测回归里失败的页（门槛没给出失败页时测全部已通过页），并且只测在被测提交里已经存在的页；没有这样的页时这一步直接算通过、不建任务。找到后回退该合并，相应任务重新走失败规则，再跑一次回归。回归、二分任务的创建键带「回归轮次」，新一轮不会撞上上一轮已结束的任务。
 
+**已验收页的结单**（queue `status: regression`，HM-1276）：这些页不派还原单，以前没有任何一步把它们记成 done，只能等整包集成回归全过。现在每张集成任务（`regression`、`lib-regression`、`rule-regression`、`integration-gate`；不含测旧提交的 `bisect`）拿到真正的结论后，其中通过的已验收页各自记 done（账本 `verified` 记任务、run、工具提交），事件 `done`（`via: integration`）。大结论只列失败页时，判过且不在失败列表里的算通过；页列表被截断时不记。失败的页保持未结，下一次通过时再记。
+
 **公共库变更**：入口包、共享组件、升级单合并后，用工单 `deps` 的反向索引找出依赖改动文件的已通过页面，建 `purpose=lib-regression` 的集成任务；失败就回退这次公共库合并，公共库单重新走失败规则。升级单合并后，挂起的页面自动重派（新的尝试，按正常路由）。
 
 **升级单与快速通道（HM-990）**：升级单送门槛时写 `gateMode: "upgrade"`，门槛给整条分支一个结论（`docs/gate.md`「升级单模式」）。合并进 `integration` 后，调度器把这次合并提交（`-m 1`，即升级的全部改动）cherry-pick 到产物仓库的 `restore/fast-lane`（配置 `fastLane.branch`）并推送，持有 `locks/fast-lane`；结果写进升级单元数据 `fastLaneSync`：`ok` / `already`（分支上已有）/ `no-branch`（没有快速通道，不用做）/ `conflict`（记 anomaly 并在升级单评论，什么都不推，快速通道页保持挂起；人工合入后把 `fastLaneSync` 设为 `{"state":"ok"}`，下一轮 tick 恢复）/ `retry`（锁忙或推送两次被拒，下一轮重试）。被挂起的快速通道页（`fastLane: true`）等到同步成功才恢复：分支保持 `restore/fast-lane`，快速通道元数据原样保留，尝试次数加一，直接送门槛（代码已在快速通道上，缺的只是公共库）；失败后照快速通道的修正员 → 裁定员流程走。普通页不变（`restore/<工单>-a<n>`，交还原员）。

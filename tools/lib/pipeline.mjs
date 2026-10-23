@@ -1153,6 +1153,7 @@ export class Pipeline {
     const wos = meta.workOrders || [];
     const failed = gate.pass ? [] : this.failedWos(gate, wos);
     this.gateGlobal = gate.global ?? null; // app-wide failures by layer / owner (integration mode), for the reports below
+    if (meta.purpose !== "bisect") this.closeVerifiedAccepted(taskId, gate, wos, failed);
     let out;
     switch (meta.purpose) {
       case "regression": out = this.onRegression(taskId, meta, gate.pass, failed); break;
@@ -1167,6 +1168,25 @@ export class Pipeline {
   }
 
   closeIntegration(taskId, line) { this.comment(taskId, line); this.mc.update(taskId, { status: "done", noStart: true }); }
+
+  // Pages already accepted in hmrsfw-vue (queue status `regression`) never get a restore task, so nothing ever set them
+  // done: they stayed open until a whole integration regression passed, i.e. one failing page of 264 held all 33 (HM-1276).
+  // Now each is done by its own verdict: the page passed in a real integration verdict on the integration head (not a
+  // bisect step on an older commit). Passing pages of a large verdict are the judged ones not listed as failing
+  // (slimResult keeps failing pages only, passedOmitted counts the rest); a truncated page list decides nothing.
+  closeVerifiedAccepted(taskId, gate, wos, failed) {
+    const pages = this.pagesOf(gate);
+    if (gate.pagesTruncated || (!gate.pass && !pages)) return [];
+    const passed = wos.filter((w) => isAccepted(this.wo(w)) && !failed.includes(w) && (gate.pass || pages[w]?.pass === true || (!pages[w] && !!gate.passedOmitted)));
+    const L = this.ledger.read();
+    const fresh = passed.filter((w) => L.tasks.wos[w]?.state !== "done");
+    if (!fresh.length) return [];
+    this.ledger.tx((L2) => {
+      for (const w of fresh) { const s = (L2.tasks.wos[w] ??= { tasks: [] }); s.state = "done"; s.verified = { task: taskId, run: gate.run ?? null, tools: gate.tools ?? null, at: this.iso() }; }
+      L2.newEvents.push({ type: "done", task: taskId, wos: fresh, via: "integration" });
+    });
+    return fresh;
+  }
 
   // Integration gate {pending:"record"} (HM-1181). Before, advance only reported an anomaly: no record task was opened
   // (dispatchRecords skips a page whose ledger `record` is set, whatever became of that recording), so every tick
