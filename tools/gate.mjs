@@ -243,7 +243,9 @@ export async function gate(argv) {
   if (missing.length && !regress && !upgrade) return { pending: "record", missing, attempt, durationMs: Date.now() - t0, ...(interact ? { interactRef: interact } : {}) };
   const judged = wos.filter((w) => bases[w.id]);
 
-  const runId = regress ? `regress-${new Date().toISOString().replace(/[:.]/g, "-")}-${process.pid}` : upgrade ? `upgrade-${String(branch || task || "head").replace(/[^\w.-]+/g, "_")}-a${attempt}` : mode === "integration" ? `integration-${ids[0]}-a${attempt}` : `${ids[0]}-a${attempt}`;
+  const runId = regress ? `regress-${new Date().toISOString().replace(/[:.]/g, "-")}-${process.pid}` : upgrade ? `upgrade-${String(branch || task || "head").replace(/[^\w.-]+/g, "_")}-a${attempt}` : mode === "integration" ? `integration-${task ?? ids[0]}-a${attempt}` : `${ids[0]}-a${attempt}`;
+  // Integration orders of different rule changes all list the same sorted pages, so the dir is keyed by the task: keyed by
+  // the first page, concurrent regressions wiped each other's app worktree (ENOTEMPTY / not a git repository, HM-1235).
   const gateDir = path.join(state, "gate", runId + (dry && !regress ? `-dry${process.pid}` : ""));
   rmSync(gateDir, { recursive: true, force: true });
   mkdirSync(gateDir, { recursive: true });
