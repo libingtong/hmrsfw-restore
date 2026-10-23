@@ -1,0 +1,9 @@
+[
+  {"wait":1500},
+  {"clickSel":".ant-select:not(.ant-select-disabled) .ant-select-selector","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-picker:not(.ant-picker-disabled)","optional":true},
+  {"wait":500},
+  {"clickSel":".agree-btn","optional":true},
+  {"wait":500}
+]
