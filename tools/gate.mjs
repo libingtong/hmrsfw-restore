@@ -28,6 +28,9 @@
 //   {pass, failed:[{check, where, hint, wo?}], stage, diff, shimmed:[…], durationMs, stages:{static, build, browser},
 //    pages:[{wo, pass, stage, failed, pixel}], mode, attempt}
 //   {pending:"record", missing:[…]}      no (or a stale) baseline: the page must be recorded first
+//   {partial:true, done, total, run, next} integration mode with a task (or --resume), exit 3: the --budget minutes
+//                                         (default 7) are used up; run the same command again to go on (HM-1270,
+//                                         tools/gate/runs.mjs; --no-resume runs all pages in one process as before)
 //   {error:"…"}                           the gate itself could not run (environment, port, browser …)
 // With --task and without --dry-run the result is also written to task metadata gate.<attempt> and posted as one
 // "[GATE] …" comment. Everything the run produces lives in $RESTORE_STATE/gate/<work order>-a<attempt>/; HAR files and
