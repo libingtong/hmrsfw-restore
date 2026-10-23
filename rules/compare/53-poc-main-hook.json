@@ -1,0 +1,7 @@
+{
+ "id": "poc-main-hook",
+ "kind": "tree",
+ "enabled": true,
+ "since": "HM-1162",
+ "why": "id=\"poc-main\" 是门槛自己的定位钩子，不是原包内容：还原版用户中心布局 Home.vue 里装路由页面的那层 div、门户外壳 App.vue 的 <main> 上才有（两处注释都写明是回放比对钩子）；原包布局 xht（__name:\"home\"）同一位置是不带属性的 div（legacy-dist/usercenter/assets/index.1751615607545.js 123:379706 st(\"div\",null,[…KeepAlive…])），legacy-dist 里没有 poc-main。它只有在比对的根是整个布局时才会被比到：用户中心布局外的顶级路由页面（#app > *，HM-1225/HM-1162）交互后进入布局页。只去掉值恰为 poc-main 的 id 属性，其他 id、这个元素的其他属性和子树照常比较。见 docs/rule-changes/HM-1162.md"
+}
