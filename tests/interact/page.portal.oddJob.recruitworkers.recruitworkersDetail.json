@@ -1,11 +1,13 @@
 [
+  {"wait":1000},
+  {"click":"立即联系","optional":true},
+  {"wait":3000},
+  {"clickSel":".ant-modal-close","optional":true},
   {"wait":1500},
-  {"click":"收藏"},
-  {"wait":800},
+  {"click":"投诉","optional":true},
+  {"wait":4000},
   {"clickSel":".ant-modal-close","optional":true},
-  {"click":"投诉"},
-  {"wait":800},
-  {"clickSel":".ant-modal-close","optional":true},
-  {"click":"立即联系"},
-  {"wait":800}
+  {"wait":1500},
+  {"click":"收藏","optional":true},
+  {"wait":4000}
 ]
