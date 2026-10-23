@@ -231,7 +231,13 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, 
   const R = project(rest, { rules, shell, exclude, known, side: "rest", used, shellToasts: restShell ? shellToasts : [], clock });
   const O = baseline.runs.map((run) => project(run, { rules, shell, exclude, cls: restCls, known, side: "orig", used, shellToasts, clock }));
   const failed = [];
-  const noRoot = (ph) => ph in R.root && O.every((o) => o.root[ph] === false);
+  // After the interaction neither side may have a page root any more (HM-1278: resumeAnalysisReport, where closing the
+  // "generating report" modal leaves no candidate under `main > *` nor under `#poc-main > *`). The restored side's root
+  // is its first candidate, so with none it used to count as found (class null) and the original's missing one failed
+  // final.root. No final candidate at all in the restored run and in every original run is the same state: no root
+  // failure, final html / text not compared. Any candidate on either side keeps the comparison as before.
+  const bothRootless = (ph) => ph === "final" && !rest.final?.candidates?.length && baseline.runs.every((r) => !r.final?.candidates?.length);
+  const noRoot = (ph) => ph in R.root && O.every((o) => o.root[ph] === false) && !bothRootless(ph);
   // original candidates by class only (element paths, no page text)
   const rootHint = (ph) => `no original root candidate with class ${JSON.stringify(restCls[ph])} (restored ${ph} root); original candidates: ${[...new Set(baseline.runs.flatMap((r) => (r[ph]?.candidates ?? []).map((c) => JSON.stringify(c.cls))))].join(", ")}`;
   for (const ph of ["load", "final"]) if (noRoot(ph)) failed.push({ check: "root", where: ph, hint: rootHint(ph) });
