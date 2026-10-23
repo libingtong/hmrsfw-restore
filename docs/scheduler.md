@@ -116,7 +116,7 @@
 | `reopenRequest`、`reopenHandled` | tick | 主控回退了别的机器的合并（回归二分、公共库回归）时写给该任务，由所属机器重开 |
 | `paused`、`resumed`、`resumedAt`、`resumedOn` | tick / resume | `kind=incident`：`paused=true` 且未 `resumed` 时，各台机器都停止派新单 |
 
-对象和数组一律按 JSON 字符串写入（`--type string`），读的时候解码；也接受服务端原生存的对象。清空一个键用 `metadata delete`，不写空字符串。
+对象和数组一律按 JSON 字符串写入（`--type string`），读的时候解码；也接受服务端原生存的对象。JSON 超过 2 KB 的对象和数组压缩后写成 `z1:<base64(deflate-raw)>`（`tools/lib/multica.mjs` 的 `encodeMeta`），`decodeMeta` / `decodeAll` 读的时候自动解压。原因是平台 8 KB 上限算的是一张单全部键的总和，全量回归 254 页的 `workOrders` 光 JSON 就有 8.1 KB（HM-1086），压缩后约 2.3 KB。直接用 `multica issue metadata list` 看元数据时，`z1:` 开头的值要用 `decodeMeta` 解开。清空一个键用 `metadata delete`，不写空字符串。
 
 `kind=audit`：抽中审计时把还原任务的 `kind` 改成 `audit` 再指派复核员，因为复核员指令按 `kind` 分支。审计处理完，`kind` 改回 `restoreKind`。裁定（`arbitrate`）同理。
 

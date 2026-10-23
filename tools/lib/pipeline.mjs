@@ -1516,7 +1516,8 @@ export class Pipeline {
   // Step 1b: finish creations interrupted between `issue create` and assignment.
   resumeCreations() {
     const L = this.ledger.read();
-    for (const [id, t] of Object.entries(L.tasks.tasks)) if (!t.assigned && t.meta) { this.finishCreate(id, L); this.act(`finished interrupted creation ${id}`); }
+    // one per task: a task the server refuses (HM-1086: metadata over 8 KB) must not hold up the others, and names itself
+    for (const [id, t] of Object.entries(L.tasks.tasks)) if (!t.assigned && t.meta) this.safe(id, () => { this.finishCreate(id, L); this.act(`finished interrupted creation ${id}`); });
   }
 
   // Step 2: failed runs → cooldown + reassign (rate limit / quota), one retry (env), else anomaly.

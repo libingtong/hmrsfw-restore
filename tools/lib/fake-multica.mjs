@@ -45,6 +45,7 @@ const sniff = (v, type) => {
   try { return JSON.parse(v); } catch { return v; }
 };
 const out = (x) => process.stdout.write(JSON.stringify(x, null, 1) + "\n");
+const metaBytes = (m) => Object.entries(m).reduce((n, [k, v]) => n + Buffer.byteLength(k) + Buffer.byteLength(typeof v === "string" ? v : JSON.stringify(v)) + 8, 8);
 const fail = (msg) => { process.stderr.write(`Error: ${msg}\n`); process.exitCode = 1; };
 
 const { pos, flags } = parse(process.argv.slice(2));
@@ -102,6 +103,8 @@ try {
     else if (sub === "get") out(i.metadata[flags.key] ?? null);
     // the server's key rule (MUL metadata): names with "@" or Chinese are refused
     else if (sub === "set" && !/^[a-zA-Z_][a-zA-Z0-9_.-]{0,63}$/.test(flags.key ?? "")) { console.error(`invalid metadata key ${JSON.stringify(flags.key)}: must match ^[a-zA-Z_][a-zA-Z0-9_.-]{0,63}$`); process.exit(1); }
+    // the server's size rule (HM-876): all keys of an issue together, Σ(key + value as stored + 8) + 8 ≤ 8192
+    else if (sub === "set" && metaBytes({ ...i.metadata, [flags.key]: sniff(flags.value, flags.type) }) > 8192) fail("Invalid request: metadata exceeds the 8KB size limit");
     else if (sub === "set") { i.metadata[flags.key] = sniff(flags.value, flags.type); W("meta.set", { issue: i.id, key: flags.key }); dirty = true; out({ [flags.key]: i.metadata[flags.key] }); }
     else if (sub === "delete") { delete i.metadata[flags.key]; W("meta.delete", { issue: i.id, key: flags.key }); dirty = true; out({ ok: true }); }
   } else if (group === "issue" && cmd === "comment") {
