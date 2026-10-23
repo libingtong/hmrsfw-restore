@@ -1,7 +1,9 @@
 [
+  {"wait":800},
   {"clickSel":".ant-pagination-item-2","optional":true},
+  {"wait":800},
   {"clickSel":".ant-pagination-next","optional":true},
+  {"wait":800},
   {"clickSel":".ant-pagination-prev","optional":true},
-  {"clickSel":".ant-pagination-item-1","optional":true},
-  {"click":"立即进入","optional":true}
+  {"wait":800}
 ]
