@@ -24,7 +24,7 @@ import { Multica } from "./multica.mjs";
 import { Git, pageForbidden } from "./gitops.mjs";
 import { scopeViolations, registryOwnerOf } from "./upgrade-scope.mjs";
 import { classifyRunError, FAILED_RUN_STATUSES } from "./error-classes.mjs";
-import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isRecordable, isAccepted, isDispatchable, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
+import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isRecordable, isRestorable, isAccepted, isDispatchable, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
 import { Ledger, runRow, recordCapability, recordAudit, auditTier, seedFromConfirm, mergeCapability } from "../ledger.mjs";
 import { route, pick, agentLoad, freeSlots } from "../route.mjs";
 import { Claims, claimPath, statsPath, fileKey } from "./claims.mjs";
@@ -313,6 +313,7 @@ export class Pipeline {
   }
 
   dispatchUnit(wos, L) {
+    if (!wos.every((w) => isRestorable(this.wo(w)))) return { skipped: true, notRestorable: true }; // npm replacement (HM-1170)
     const wo = this.wo(wos[0]);
     const r = route(wo, this.routeCtx(L), { exclude: this.restoreExclude(wos) });
     const picks = pick(r);
@@ -345,11 +346,12 @@ export class Pipeline {
   }
 
   // Ordered dispatch queue: upgrades are created directly; entry/shared before pages, each by kb descending; pages
-  // under pack.maxKb are packed 3–5 per order (same app). Orders with a non-empty `missing` are not dispatched (isDispatchable).
+  // under pack.maxKb are packed 3–5 per order (same app). Orders with a non-empty `missing` are not dispatched (isDispatchable),
+  // nor npm replacements (isRestorable, HM-1170).
   dispatchQueue(L) {
     const busyFiles = new Set(Object.values(L.tick.upgrades || {}).filter((u) => u.state === "active").flatMap((u) => u.files || []));
     const theirs = (w) => { const rec = this.claims ? this.claims.get(claimPath(w.id)) : null; return !!rec && !this.mine(rec); };
-    const eligible = this.orders().filter((w) => !isAccepted(w) && isDispatchable(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded", "held"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
+    const eligible = this.orders().filter((w) => !isAccepted(w) && isDispatchable(w) && isRestorable(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded", "held"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
     const core = eligible.filter(isCore).filter((w) => !(w.files || []).some((f) => busyFiles.has(f))).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const pages = eligible.filter(isPage).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const units = core.map((w) => [w.id]);
@@ -504,6 +506,8 @@ export class Pipeline {
   advance(taskId, { regate = false } = {}) {
     const meta0 = this.meta(taskId);
     const wos = meta0.workOrders || [];
+    // a closed task on npm replacements only stays closed: advance / --regate would hand it to the gate again (HM-1170)
+    if (wos.length && !wos.some((w) => isRestorable(this.wo(w))) && !OPEN(this.mc.getIssue(taskId))) return { ok: false, summary: `${taskId} is closed and only covers npm replacement(s) ${wos.join(", ")}: never restored, not reopened`, anomalies: [] };
     if (!this.ownsTask(meta0)) {
       const want = regate ? `regate:${meta0.attempt || 1}.g${meta0.gateSeq || 0}` : this.advKey(meta0);
       if (meta0.advanceRequested !== want) this.mc.setMeta(taskId, "advanceRequested", want);

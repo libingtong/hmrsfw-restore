@@ -258,7 +258,7 @@ export function retirePlan(pl, { onIntegration }) {
     const s = L.tasks.wos[w.id] || {};
     if (HELD.includes(s.state) || open.has(w.id) || pl.isMergedWo(L, w.id)) continue;
     if (w.type === "entry" || w.type === "shared") {
-      if (w.status === "npm") continue; // the npm stand-ins were never in a batch: normal dispatch
+      if (w.status === "npm") continue; // the npm stand-ins were never in a batch, and normal dispatch skips them too (isRestorable, HM-1170)
       if (passed.has(w.id)) {
         const paths = [w.target, ...(w.files || [])].filter(Boolean);
         const on = paths.filter(onIntegration);

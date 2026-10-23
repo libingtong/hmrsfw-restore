@@ -277,16 +277,28 @@ test("pending record: a different reason starts the count again; a real verdict 
   assert.equal(meta(fx, t.id).waitRecord, false);
 });
 
+// A restore task opened on an npm order before HM-1170 (dispatch skips them now): dispatched while the order was not
+// marked npm, then the order is put back as it is in queue/.
+const legacyNpmTask = (fx, wo) => {
+  const f = path.join(fx.tool, "queue", `${wo.id}.json`);
+  writeFileSync(f, JSON.stringify({ ...wo, status: "todo" }));
+  node(fx, "tick.mjs", ["tick"]);
+  writeFileSync(f, JSON.stringify(wo));
+  const t = restoreTasks(fx).find((i) => meta(fx, i.id).workOrders.includes(wo.id));
+  assert.ok(t, `legacy restore task on ${wo.id}`);
+  return t;
+};
+
 test("shared / npm orders never get a record task (HM-1124)", () => {
   const npm = { id: "shared.portal.vue-countup-v3", type: "shared", status: "npm", kb: 7, app: "portal", site: "portal", npm: "vue-countup-v3", deps: [] };
   const fx = makeFixture({ orders: [page("P9", 12), npm, page("P10", 11, { status: "npm" })], config: { audit: { coldRate: 0 } } });
   node(fx, "tick.mjs", ["tick"]);
   const recs = () => issuesOf(fx).filter((i) => i.title.startsWith("[record]"));
   assert.deepEqual(recs().map((i) => meta(fx, i.id).workOrders).flat(), ["P9"], "only the page is recorded");
-  // a restore task on the npm order that the gate sends to "pending record": no record task, and no endless wait either —
-  // the arbiter gets it (HM-1131)
-  const t = restoreTasks(fx).find((i) => meta(fx, i.id).workOrders.includes(npm.id));
-  assert.ok(t, "restore task on the npm order");
+  assert.deepEqual(restoreTasks(fx).flatMap((i) => meta(fx, i.id).workOrders), ["P9"], "no restore task on npm orders (HM-1170)");
+  // a restore task on the npm order (from before HM-1170) that the gate sends to "pending record": no record task, and
+  // no endless wait either — the arbiter gets it (HM-1131)
+  const t = legacyNpmTask(fx, npm);
   setMeta(fx, t.id, `gate.${meta(fx, t.id).attempt}`, { pending: "record" });
   const r = node(fx, "tick.mjs", ["advance", t.id]);
   assert.equal(recs().length, 1, "no record task for the npm order");
@@ -303,8 +315,7 @@ test("shared / npm orders never get a record task (HM-1124)", () => {
 test("a task left waiting for an npm order (before HM-1124) goes to the arbiter on the next tick (HM-1131)", () => {
   const npm = { id: "shared.portal.vue3-seamless-scroll", type: "shared", status: "npm", kb: 7, app: "portal", site: "portal", npm: "vue3-seamless-scroll", deps: [] };
   const fx = makeFixture({ orders: [npm], config: { audit: { coldRate: 0 } } });
-  node(fx, "tick.mjs", ["tick"]);
-  const [t] = restoreTasks(fx);
+  const t = legacyNpmTask(fx, npm);
   mc(fx, "issue", "metadata", "set", t.id, "--key", "waitRecord", "--type", "bool", "--value", "true"); // as tick writes it
   mc(fx, "issue", "update", t.id, "--status", "in_review", "--assignee-id", fx.id("gate"), "--no-start");
   const r = node(fx, "tick.mjs", ["tick"]);
@@ -313,6 +324,31 @@ test("a task left waiting for an npm order (before HM-1124) goes to the arbiter 
   assert.equal(meta(fx, t.id).waitRecord, false);
   assert.equal(issue(fx, t.id).assignee_id, fx.id("arbiter"));
   assert.equal(issuesOf(fx).filter((i) => i.title.startsWith("[record]")).length, 0);
+});
+
+test("npm replacements never get a restore task, and their cancelled restore tasks stay cancelled (HM-1170)", () => {
+  const countup = { id: "shared.portal.vue-countup-v3", type: "shared", status: "npm", kb: 7.4, app: "portal", site: "portal", npm: "vue-countup-v3", deps: {} };
+  const scroll = { id: "shared.portal.vue3-seamless-scroll", type: "shared", status: "npm", kb: 5.2, app: "portal", site: "portal", npm: "vue3-seamless-scroll", deps: {} };
+  const fx = makeFixture({ orders: [countup, scroll, page("P11", 12)], config: { audit: { coldRate: 0 } } });
+  let r = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.deepEqual(restoreTasks(fx).flatMap((i) => meta(fx, i.id).workOrders), ["P11"], "only the page is dispatched");
+
+  // the two tasks opened before the fix (HM-1084 / HM-1085), cancelled by the sprint supervisor
+  const old = [legacyNpmTask(fx, countup), legacyNpmTask(fx, scroll)];
+  for (const t of old) mc(fx, "issue", "update", t.id, "--status", "cancelled", "--no-start");
+  const before = restoreTasks(fx).length;
+  for (let k = 0; k < 3; k++) { r = node(fx, "tick.mjs", ["tick"]); assert.equal(r.ok, true, JSON.stringify(r)); }
+  assert.equal(restoreTasks(fx).length, before, "no new attempt on the npm orders");
+  for (const t of old) {
+    for (const args of [["advance", t.id], ["advance", t.id, "--regate"]]) {
+      const a = node(fx, "tick.mjs", args);
+      assert.equal(a.ok, false, JSON.stringify(a));
+      assert.match(a.summary, /npm replacement/);
+    }
+    assert.equal(issue(fx, t.id).status, "cancelled", `${t.id} stays cancelled`);
+  }
+  assert.equal(issuesOf(fx).filter((i) => i.title.startsWith("[record]") && meta(fx, i.id).workOrders.some((w) => w.startsWith("shared."))).length, 0, "and no record task");
 });
 
 test("packed small pages: per-page verdicts, passing pages merged, failing page split off", () => {

@@ -30,6 +30,9 @@ export const isPage = (wo) => wo && !isCore(wo);
 // Recordable: a page there is something to open in the browser for. Entry/shared orders and npm replacements (`status: "npm"`,
 // no recordPath) never get a record task — record-page.mjs stops on them with "recordPath missing" (HM-1102/1103, HM-1124).
 export const isRecordable = (wo) => isPage(wo) && wo.status !== "npm";
+// Restorable: an npm replacement (`status: "npm"`, "不出还原单") is a locked dependency in hmrsfw-vue/package.json, not code
+// to restore, and the page-mode gate has no baseline for it, so it never gets a restore task, on any path (HM-1170).
+export const isRestorable = (wo) => !!wo && wo.status !== "npm";
 // Pages already accepted in hmrsfw-vue are regression-only (§1 范围). C writes `status: "regression"` and an `accepted`
 // object ({route, in}); a bare `accepted: true` is accepted too.
 export const isAccepted = (wo) => !!wo.accepted || wo.status === "accepted" || wo.status === "regression" || wo.regressionOnly === true;
