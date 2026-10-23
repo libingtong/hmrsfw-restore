@@ -5,6 +5,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import path from "node:path";
+import { readFileSync } from "node:fs";
 import { chromium } from "playwright";
 import { ROOT, SITES, origSelOf, pageScopeId, scopeRootSel } from "../gate/common.mjs";
 import { scopeIdPlugin } from "../gate/appserver.mjs";
@@ -22,6 +23,31 @@ test("root selector: origSel for ordinary pages, the component's scope root for 
   const two = { ...child, target: "apps/portal/src/views/x/advertTop.vue", components: [{ name: "areaCont", scopeId: "data-v-9dcb5036" }, { name: "advertTop", scopeId: "data-v-4f3c37cc" }] };
   assert.equal(pageScopeId(two), "data-v-4f3c37cc");
   assert.throws(() => origSelOf({ ...child, components: [{ name: "review" }] }), /no scope id/);
+});
+
+test("root selector: usercenter routes outside the layout take #app's first child (HM-1225)", () => {
+  const uc = (id, recordPath) => ({ id, site: "usercenter", recordPath, target: `apps/uc/src/views/${id}.vue`, components: [{ name: id, scopeId: "data-v-9c460855" }] });
+  assert.equal(origSelOf(uc("403", "/403")), "#app > *");
+  assert.equal(origSelOf(uc("previewresume", "/previewresume?id=1")), "#app > *");
+  assert.equal(origSelOf(uc("404", "/404")), SITES.usercenter.origSel);
+  assert.equal(origSelOf(uc("myresume", "/myresume")), SITES.usercenter.origSel);
+  // a recordVia component still takes its scope root, even on a bare route
+  assert.equal(origSelOf({ ...uc("x", "/previewresume?id=1"), recordVia: "page.uc.previewresume" }), scopeRootSel("data-v-9c460855"));
+});
+
+test("usercenter bareRoutes are exactly the original router's top-level routes other than the layout route", () => {
+  const src = readFileSync(path.join(ROOT, "legacy-dist/usercenter/assets/index.1751615607545.js"), "utf8");
+  const from = src.indexOf("Fht=["), to = src.indexOf("CC=fQ(", from);
+  assert.ok(from > 0 && to > from, "router table not found");
+  const table = src.slice(from + 4, to);
+  const top = [];
+  for (let i = 0, depth = 0; i < table.length; i++) {
+    const c = table[i];
+    if (c === "[" || c === "{") depth++;
+    else if (c === "]" || c === "}") depth--;
+    else if (depth === 2 && table.startsWith('path:"', i)) top.push(table.slice(i + 6, table.indexOf('"', i + 6)));
+  }
+  assert.deepEqual(top.filter((p) => p !== "/").sort(), [...SITES.usercenter.bareRoutes].sort());
 });
 
 test("scope root selector finds the component's outermost elements only, inside the parent page", async () => {
