@@ -1,10 +1,10 @@
 [
   {"fill":["请输入求职意向关键字进行查询","测试"]},
   {"click":"搜索"},
-  {"wait":800},
   {"click":"重置"},
-  {"wait":800},
-  {"clickSel":".ant-pagination-item-2","optional":true},
-  {"wait":800},
-  {"clickSel":".ant-pagination-next","optional":true}
+  {"clickSel":".ant-radio-group .ant-radio-button-wrapper:nth-child(2)","optional":true},
+  {"clickSel":".ant-radio-group:nth-of-type(1) .ant-radio-button-wrapper:nth-child(3)","optional":true},
+  {"click":"清空筛选条件"},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"clickSel":".ant-pagination-item-2","optional":true}
 ]
