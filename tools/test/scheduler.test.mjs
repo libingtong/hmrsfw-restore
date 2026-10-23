@@ -2,7 +2,7 @@
 // Run: node --test tools/test/scheduler.test.mjs
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, utimesSync } from "node:fs";
 import path from "node:path";
 import { makeFixture, node, issuesOf, fakeState, mc, setMeta, meta, pushBranch, writeReceipt, lsRemote, showRemote, readJson, git, ROSTER, REPO } from "./fixture.mjs";
 
@@ -275,6 +275,112 @@ test("pending record: a different reason starts the count again; a real verdict 
   done(recs().at(-1));
   node(fx, "tick.mjs", ["tick"]);
   assert.equal(meta(fx, t.id).waitRecord, false);
+});
+
+// HM-1181: an integration task's pending:record only raised an anomaly; no record task was opened (dispatchRecords skips
+// a page whose ledger `record` is set) and every tick re-advanced the same verdict, so the rule regressions never ran.
+test("integration pending record: regression exceptions leave the page set, the rest are recorded, then back to the gate; same reason twice → incident", () => {
+  const ids = ["IA", "IB", "IC", "ID", "IE", "IX"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 10, { accepted: true })), config: {} });
+  recorded(fx, "IA", "IB", "ID", "IE", "IX");
+  mkdirSync(path.join(fx.tool, "tools"), { recursive: true });
+  const exceptions = (pages) => writeFileSync(path.join(fx.tool, "tools", "regression-exceptions.json"), JSON.stringify({ pages: Object.fromEntries(pages.map((w) => [w, { why: "test", evidence: "x.js:1:1", by: "test" }])) }));
+  exceptions(["IX"]);
+  git(fx.tool, "checkout", "-q", "-b", "rules/ri");
+  writeFileSync(path.join(fx.tool, "rules.json"), JSON.stringify({ rules: ["base", "attr-order"] }));
+  git(fx.tool, "add", "rules.json"); git(fx.tool, "commit", "-q", "-m", "rule ri"); git(fx.tool, "push", "-q", "origin", "rules/ri");
+  node(fx, "tick.mjs", ["open-rule-review", "rules/ri"]);
+  for (const i of issuesOf(fx).filter((x) => x.title.includes("rules/ri"))) setMeta(fx, i.id, `review.${i.assignee_id}`, { verdict: "approve", why: "equivalent" });
+  node(fx, "tick.mjs", ["tick"]);
+  const reg = issuesOf(fx).find((i) => i.title.startsWith("[integration] rule-regression"));
+  assert.ok(reg, "rule regression created");
+  assert.deepEqual(meta(fx, reg.id).workOrders, ["IA", "IB", "IC", "ID", "IE"], "a regression exception is not in the page set");
+  const recs = (w) => issuesOf(fx).filter((i) => i.title.startsWith(`[record] ${w}`));
+  const done = (rec) => { setMeta(fx, rec.id, "record", "ok"); mc(fx, "issue", "update", rec.id, "--status", "done", "--no-start"); };
+  assert.equal(recs("IC").length, 1, "IC has no recording: dispatchRecords opened one");
+
+  // verdict: IC no baseline, ID stale, IE now a regression exception; the full list is in the gate's detail file
+  exceptions(["IX", "IE"]);
+  const why = { IC: "no baseline", ID: "interaction script changed since the baseline", IE: "no baseline" };
+  const detail = path.join(fx.state, "gate", `pending-${reg.id}-a1.json`);
+  writeFileSync(detail, JSON.stringify({ pending: "record", missing: Object.entries(why).map(([wo, w]) => ({ wo, why: w })), attempt: 1 }));
+  const verdict = { pending: "record", missingTotal: 3, byReason: { "no baseline": 2, [why.ID]: 1 }, missing: ["IC"], missingTruncated: true, attempt: 1, detail };
+  const runs0 = issue(fx, reg.id).runs.length;
+  let r = gate(fx, reg.id, verdict);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  let m = meta(fx, reg.id);
+  assert.deepEqual(m.workOrders, ["IA", "IB", "IC", "ID"], "the exception leaves the task's page set");
+  assert.equal(m.waitRecord, true);
+  assert.deepEqual(Object.keys(m.waitRecordFrom).sort(), ["IC", "ID"], "waits for the named pages only (full list from the detail file)");
+  assert.equal(m.advanced, "1.g0", "the verdict is handled: the fallback does not re-advance it every tick");
+  assert.equal(recs("IC").length, 1, "IC's open record task is reused");
+  assert.equal(recs("ID").length, 1, "ID's stale recording gets a new record attempt");
+  assert.equal(recs("IE").length, 0, "no recording for an exception");
+  assert.match(lastComment(fx, reg.id), /等录制：IC、ID.*回归例外不再测：IE/);
+
+  // nothing re-sent before the recordings are done; no duplicate record tasks
+  r = node(fx, "tick.mjs", ["tick"]);
+  assert.ok(!(r.actions || []).some((a) => a.includes(reg.id)), JSON.stringify(r.actions));
+  assert.equal(issue(fx, reg.id).runs.length, runs0);
+  assert.equal(recs("IC").length + recs("ID").length, 2);
+  done(recs("IC")[0]);
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(meta(fx, reg.id).waitRecord, true, "ID still recording");
+  done(recs("ID")[0]);
+  r = node(fx, "tick.mjs", ["tick"]);
+  assert.ok((r.actions || []).includes(`record ready → regate ${reg.id}`), JSON.stringify(r.actions));
+  m = meta(fx, reg.id);
+  assert.equal(m.waitRecord, false);
+  assert.equal(m[`gate.1`], undefined, "old verdict dropped");
+  assert.equal(issue(fx, reg.id).runs.length, runs0 + 1, "gate rerun");
+
+  // ID once more (another reason: counted from 1, recorded again), then the same reason again: recording didn't fix
+  // it → incident for the arbiter, nothing re-sent, no further recording
+  writeFileSync(detail, JSON.stringify({ pending: "record", missing: [{ wo: "ID", why: why.ID }], attempt: 1 }));
+  r = gate(fx, reg.id, { pending: "record", missingTotal: 1, byReason: { [why.ID]: 1 }, missing: ["ID"], attempt: 1, detail });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(meta(fx, reg.id).recordPending.n, 1);
+  assert.equal(recs("ID").length, 2);
+  done(recs("ID").find((i) => i.status !== "done"));
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(meta(fx, reg.id).waitRecord, false);
+  writeFileSync(detail, JSON.stringify({ pending: "record", missing: [{ wo: "ID", why: why.ID }], attempt: 1 }));
+  r = gate(fx, reg.id, { pending: "record", missingTotal: 1, byReason: { [why.ID]: 1 }, missing: ["ID"], attempt: 1, detail });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.ok(issuesOf(fx).some((i) => i.title.startsWith("[incident]") && i.assignee_id === fx.id("arbiter") && i.title.includes(reg.id)), "incident opened");
+  m = meta(fx, reg.id);
+  assert.equal(m.waitRecord, false);
+  assert.equal(m.recordPending.n, 2);
+  assert.match(lastComment(fx, reg.id), /连续 2 次 PENDING record.*裁定员/);
+  assert.equal(meta(fx, reg.id).kind, "integration", "stays an integration task");
+  assert.equal(recs("ID").length, 2, "no further recording");
+  const runs1 = issue(fx, reg.id).runs.length;
+  r = node(fx, "tick.mjs", ["tick"]);
+  assert.ok(!(r.actions || []).some((a) => a.includes(reg.id)), JSON.stringify(r.actions));
+  assert.equal(issue(fx, reg.id).runs.length, runs1);
+});
+
+test("integration pending record: a verdict whose full list is gone is re-gated once; a baseline newer than the verdict needs no recording", () => {
+  const fx = makeFixture({ orders: ["JA", "JB"].map((id) => page(id, 10, { accepted: true })), config: {} });
+  recorded(fx, "JA", "JB");
+  const c = mc(fx, "issue", "create", "--title", "[integration] regression (2 页)", "--status", "todo", "--assignee-id", fx.id("gate"), "--output", "json");
+  for (const [k, v] of Object.entries({ kind: "integration", purpose: "lib-regression", workOrders: ["JA", "JB"], sha: "", attempt: 1 })) setMeta(fx, c.id, k, v);
+  const runs0 = issue(fx, c.id).runs.length;
+  // sample only, detail file on another machine
+  let r = gate(fx, c.id, { pending: "record", missingTotal: 2, byReason: { "no baseline": 2 }, missing: ["JA"], missingTruncated: true, attempt: 1, detail: "/nowhere/pending.json" });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(issue(fx, c.id).runs.length, runs0 + 1, "re-gated for a fresh verdict");
+  assert.equal(issuesOf(fx).filter((i) => i.title.startsWith("[record]")).length, 0, "nothing recorded on a sample");
+  // full list, but JB's baseline was rewritten after the verdict: only JA is recorded
+  const detail = path.join(fx.state, "gate", `pending-${c.id}-a1.json`);
+  writeFileSync(detail, JSON.stringify({ pending: "record", missing: [{ wo: "JA", why: "no baseline" }, { wo: "JB", why: "no baseline" }], attempt: 1 }));
+  const later = new Date(Date.now() + 60_000);
+  writeFileSync(path.join(fx.state, "baseline", "JB", "baseline.json"), "{}");
+  utimesSync(path.join(fx.state, "baseline", "JB", "baseline.json"), later, later);
+  r = gate(fx, c.id, { pending: "record", missingTotal: 2, byReason: { "no baseline": 2 }, missing: ["JA", "JB"], attempt: 1, detail });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.deepEqual(Object.keys(meta(fx, c.id).waitRecordFrom), ["JA"]);
+  assert.deepEqual(issuesOf(fx).filter((i) => i.title.startsWith("[record]")).map((i) => i.title), ["[record] JA"]);
 });
 
 // A restore task opened on an npm order before HM-1170 (dispatch skips them now): dispatched while the order was not
