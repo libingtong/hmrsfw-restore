@@ -1,10 +1,8 @@
 [
   {"fill":["请输入零工名称或关键字进行查询","测试"]},
   {"click":"搜索"},
-  {"wait":500},
-  {"click":"重置"},
-  {"wait":500},
-  {"clickSel":".ant-radio-button-wrapper:nth-child(2)","optional":true},
-  {"wait":500},
-  {"clickSel":".ant-pagination-next","optional":true}
+  {"click":"不限","optional":true},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"clickSel":".ant-pagination-prev","optional":true},
+  {"click":"重置"}
 ]
