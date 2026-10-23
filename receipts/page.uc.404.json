@@ -1,1 +1,4 @@
-{ "ticket": "page.uc.404", "id": "page.uc.404", "group": "还原-Sonnet@Mac", "branch": "restore/page.uc.404-a1", "result": "ok", "outputs": ["apps/uc/src/views/404.vue"], "todos": ["renderEquiv 报告 DIFF（token 205 vs 203），未判定为失败项；eslint/prettier 未安装，readability 仅 warn"], "needsFromSkeleton": [], "selfCheck": { "pass": true, "components": 1, "scopedSlots": 2, "directives": 0, "textNodesChecked": true } }
+{ "ticket": "page.uc.404", "id": "page.uc.404", "group": "还原-Sonnet@Mac", "branch": "restore/page.uc.404-a1", "result": "ok", "outputs": ["apps/uc/src/views/404.vue"], "todos": [], "needsFromSkeleton": [], "selfCheck": { "pass": true, "components": 1, "scopedSlots": 2, "directives": 0, "textNodesChecked": true, "renderEquiv": "EQUAL" }, "fixRound": 1, "notes": [
+  "html/pixel：404.vue 缺 <style scoped>，子元素无 scope 属性、样式全丢；用 css-by-scope.mjs page.uc.404 --write 按 scopeId data-v-4c10c976 写回 6 条规则（roundtrip ok），未手改规则。",
+  "requests(steps)：差异只是点「返回首页」后落地页并发请求的先后（queryByIdJM 与 getCompanyInfo 互换，8/8 数量一致；首轮还原版 0 条、重试 8 条），不属于 404 页代码，疑似比对器对并发请求顺序敏感/时序不稳定，未改。"
+] }
