@@ -1,7 +1,11 @@
 [
+  {"wait":800},
   {"clickSel":".swiper-button-next","optional":true},
   {"clickSel":".swiper-button-prev","optional":true},
-  {"clickSel":".ant-pagination-next","optional":true},
   {"clickSel":".ant-pagination-item-2","optional":true},
-  {"clickSel":".ant-pagination-prev","optional":true}
+  {"wait":500},
+  {"clickSel":".ant-pagination-next","optional":true},
+  {"wait":500},
+  {"clickSel":".ant-pagination-prev","optional":true},
+  {"wait":500}
 ]
