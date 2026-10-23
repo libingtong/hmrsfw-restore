@@ -28,6 +28,9 @@
 //   {pass, failed:[{check, where, hint, wo?}], stage, diff, shimmed:[…], durationMs, stages:{static, build, browser},
 //    pages:[{wo, pass, stage, failed, pixel}], mode, attempt}
 //   {pending:"record", missing:[…]}      no (or a stale) baseline: the page must be recorded first
+//   {partial:true, done, total, run, next} integration mode with a task (or --resume), exit 3: the --budget minutes
+//                                         (default 7) are used up; run the same command again to go on (HM-1270,
+//                                         tools/gate/runs.mjs; --no-resume runs all pages in one process as before)
 //   {error:"…"}                           the gate itself could not run (environment, port, browser …)
 // With --task and without --dry-run the result is also written to task metadata gate.<attempt> and posted as one
 // "[GATE] …" comment. Everything the run produces lives in $RESTORE_STATE/gate/<work order>-a<attempt>/; HAR files and
@@ -45,7 +48,7 @@ import { loadHar, sha256 } from "./gate/har.mjs";
 import { VIEWPORT, runPage } from "./gate/replay.mjs";
 import { compareRuns } from "./gate/compare.mjs";
 import { loadKnownDiffs, loadRules } from "./gate/rules.mjs";
-import { staticStage, pageFiles } from "./gate/static.mjs";
+import { pageFiles, selfCheck, staticStage } from "./gate/static.mjs";
 import { buildApp, realpathOr, scopeIdPlugin, startOnDemand } from "./gate/appserver.mjs";
 import { serveStatic } from "./gate/serve.mjs";
 import { createShimmer, loadRegistry, reservedShared, shimPlugin, ShimError } from "./gate/shim.mjs";
@@ -56,15 +59,16 @@ import { isPage, loadWorkOrders, reverseDeps } from "./lib/workorders.mjs";
 import { changedFiles } from "./check-imports.mjs";
 import { selfCheckFiles } from "./self-check.mjs";
 import { ensureLegacyDist } from "./lib/shared-deps.mjs";
+import { DEFAULT_BUDGET_MIN, createRun, hash, pageFp, pageResult, pickRun, pinRun, readJson, release, runsDir, savePageResult, setKey, staleRuns, tryClaim, claimHolder, withLock, writeJson } from "./gate/runs.mjs";
 
 const MULTICA = process.env.MULTICA_BIN || "multica";
 const rel = (p) => path.relative(ROOT, p);
 
 function multica(args) { return execFileSync(MULTICA, args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }); }
 
-function taskMeta(task) {
+function taskInfo(task) {
   const issue = JSON.parse(multica(["issue", "get", task, "--output", "json"]));
-  return decodeAll(issue.metadata); // the server keeps arrays/objects as JSON strings (workOrders, history, …)
+  return { meta: decodeAll(issue.metadata), createdAt: issue.created_at }; // the server keeps arrays/objects as JSON strings (workOrders, history, …)
 }
 
 // Where the interaction scripts come from (HM-914). record-page.mjs commits them to the tool repo's `integration` branch
@@ -216,7 +220,8 @@ export async function gate(argv) {
   const skipStatic = opt(argv, "--from") === "build";
   if (skipStatic && !dry) throw new Error("--from build is a diagnostic option and needs --dry-run");
   const task = opt(argv, "--task");
-  const meta = task ? taskMeta(task) : {};
+  const info = task ? taskInfo(task) : { meta: {} };
+  const meta = info.meta;
   // An upgrade task is always judged as an upgrade: in page mode it would be judged by the pages it unblocks (HM-858).
   const upgradeTask = [meta.kind, meta.restoreKind].includes("upgrade");
   let mode = regress ? "integration" : opt(argv, "--mode", upgradeTask ? "upgrade" : "page");
@@ -238,10 +243,18 @@ export async function gate(argv) {
   const interact = interactRef(argv);
 
   // Baselines first: without one there is nothing to compare against.
-  const bases = {}, missing = [];
-  for (const wo of wos) { let b = await baselineFor(wo, state, { interact }); if (b.refresh) b = refreshBaseline(wo, b.refresh, state, dry, interact); if (b.missing) missing.push({ wo: wo.id, why: b.missing }); else bases[wo.id] = b.baseline; }
+  const bases = {}, baseDirs = {}, missing = [];
+  for (const wo of wos) { let b = await baselineFor(wo, state, { interact }); if (b.refresh) b = refreshBaseline(wo, b.refresh, state, dry, interact); if (b.missing) missing.push({ wo: wo.id, why: b.missing }); else { bases[wo.id] = b.baseline; baseDirs[wo.id] = b.dir; } }
   if (missing.length && !regress && !upgrade) return { pending: "record", missing, attempt, durationMs: Date.now() - t0, ...(interact ? { interactRef: interact } : {}) };
   const judged = wos.filter((w) => bases[w.id]);
+
+  // Integration mode with a task runs in slices that tasks with the same pages share (HM-1270, tools/gate/runs.mjs);
+  // --no-resume keeps the one-process run below, --resume gives slices to a run without a task.
+  const sliced = mode === "integration" && !regress && !dry && !skipStatic && !!branch && !flag(argv, "--no-checkout") && !flag(argv, "--no-resume") && (!!task || flag(argv, "--resume"));
+  if (sliced) {
+    const budgetMs = Number(opt(argv, "--budget", DEFAULT_BUDGET_MIN)) * 60000;
+    return slicedRun({ argv, task, meta, createdAt: info.createdAt, attempt, branch, wos, judged, bases, baseDirs, interact, state, assets, t0, budgetMs });
+  }
 
   const runId = regress ? `regress-${new Date().toISOString().replace(/[:.]/g, "-")}-${process.pid}` : upgrade ? `upgrade-${String(branch || task || "head").replace(/[^\w.-]+/g, "_")}-a${attempt}` : mode === "integration" ? `integration-${task ?? ids[0]}-a${attempt}` : `${ids[0]}-a${attempt}`;
   // Integration orders of different rule changes all list the same sorted pages, so the dir is keyed by the task: keyed by
@@ -345,28 +358,8 @@ export async function gate(argv) {
     stages.browserLaunch = Date.now() - tw;
     for (const wo of judged) {
       if (pageFail[wo.id].length && !(skipStatic && !buildFail[wo.id])) { out.pages.push({ wo: wo.id, pass: false, stage: buildFail[wo.id] ? "build" : "static", failed: pageFail[wo.id] }); continue; }
-      const base = bases[wo.id];
-      const dir = path.join(gateDir, wo.id);
-      mkdirSync(dir, { recursive: true });
-      const steps = await interactScript(wo.id, { ref: interact });
-      const known = loadKnownDiffs(wo.id, { state, site: wo.site });
-      const har = loadHar(base.har.path);
-      const restSid = wo.recordVia ? scopeIds.get(realpathOr(path.join(appDir, wo.target))) : null;
-      if (wo.recordVia && !restSid) { out.pages.push({ wo: wo.id, pass: false, stage: "browser", failed: [{ check: "root", where: "load", hint: `restored ${wo.target} has no scope id (no <style scoped>): it cannot be found inside the parent page ${wo.recordVia}` }] }); continue; }
-      const restSel = restSid ? scopeRootSel(restSid) : restSelOf(wo);
-      const once = async (tag) => {
-        const rest = await runPage(browser, { origin: servers[wo.app].origin, url: wo.recordPath, storage: restStorage(wo, assets, base.storagePatch, har), har, sel: restSel, steps, shotDir: dir, tag, componentScope: restSid });
-        return { rest, cmp: compareRuns(base, rest, { rules, site: wo.site, known: known.list, shotOut: path.join(dir, `${tag}.diff.png`), restSel, inParent: !!restSid }) };
-      };
-      // A failing restored run is repeated once (busy machine: animations, toasts and timers land differently); the
-      // first run's failures stay in the local report.
-      let { rest, cmp } = await once("rest");
-      let firstFailed = null;
-      if (cmp.failed.length) { firstFailed = cmp.failed; ({ rest, cmp } = await once("rest.retry")); }
-      const pass = cmp.failed.length === 0;
-      // Local report with the full projections (page text included): stays in $RESTORE_STATE, never in metadata.
-      writeFileSync(path.join(dir, "report.json"), JSON.stringify({ wo: wo.id, pass, failed: cmp.failed, firstFailed, pixel: cmp.pixel, ...(cmp.volatileCanvases?.length ? { volatileCanvases: cmp.volatileCanvases } : {}), knownUsed: cmp.knownUsed, waived: cmp.waived, knownUnusable: known.unusable, unstable: base.unstable, settleMs: rest.settleMs, errors: rest.errors, restRequests: [...(rest.load?.requests ?? []), ...(rest.stepLog ?? [])].map((x) => `${x.phase} ${x.method} ${x.path} ${x.tier}`), restOpened: [...(rest.load?.opened ?? []), ...(rest.opened ?? [])].map((x) => `${x.phase} ${x.target.split("?")[0]}`), restOtherRequests: (rest.otherRequests ?? []).map((x) => `${x.phase} ${x.method} ${x.path}`), orig: cmp.projections.orig.map(strip), rest: strip(cmp.projections.rest) }, null, 1));
-      out.pages.push({ wo: wo.id, pass, stage: pass ? null : "browser", failed: cmp.failed, pixel: cmp.pixel, ...(firstFailed ? { retried: true } : {}), ...(cmp.knownUsed.length ? { knownDiffs: cmp.knownUsed } : {}), ...(known.unusable.length ? { knownUnusable: known.unusable } : {}), ...(base.unstable?.length ? { unstable: base.unstable } : {}), ms: rest.totalMs, ...(skipStatic && pageFail[wo.id].length ? { staticFailed: pageFail[wo.id].map((f) => `${f.check} ${f.hint}`) } : {}) });
+      const page = await judgePage({ browser, wo, base: bases[wo.id], dir: path.join(gateDir, wo.id), interact, state, assets, appDir, scopeIds, origin: servers[wo.app].origin, rules });
+      out.pages.push({ ...page, ...(skipStatic && pageFail[wo.id].length ? { staticFailed: pageFail[wo.id].map((f) => `${f.check} ${f.hint}`) } : {}) });
     }
     stages.browser = Date.now() - tw;
     for (const a of apps) if (servers[a]?.publishDeps && out.pages.every((p) => p.stage !== "build")) out.depsCachePublished = servers[a].publishDeps() || undefined;
@@ -384,6 +377,191 @@ export async function gate(argv) {
     if (out.pass && !flag(argv, "--keep") && !dry) rmSync(path.join(gateDir, "vite"), { recursive: true, force: true });
   }
 }
+
+// The tool commit the gate runs with; local edits under tools/ or rules/ make it a different version.
+function toolVersion(root = ROOT) {
+  const git = (args) => execFileSync("git", ["-C", root, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], maxBuffer: 64 << 20 }).trim();
+  const head = git(["rev-parse", "HEAD"]);
+  const diff = git(["diff", "HEAD", "--", "tools", "rules"]);
+  return diff ? `${head}+${hash(diff).slice(0, 12)}` : head;
+}
+
+// The run's hmrsfw-vue worktree at its commit, (re)made when missing or broken (the checkout it came from may be gone).
+function ensureRunApp(baseApp, run, appDir) {
+  try { if (execFileSync("git", ["-C", appDir, "rev-parse", "HEAD"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim() === run.commit && existsSync(path.join(appDir, "node_modules"))) return; } catch {}
+  try { execFileSync("git", ["-C", baseApp, "worktree", "remove", "--force", appDir], { stdio: "ignore" }); } catch {}
+  rmSync(appDir, { recursive: true, force: true });
+  try { execFileSync("git", ["-C", baseApp, "worktree", "prune"], { stdio: "ignore" }); } catch {}
+  try { execFileSync("git", ["-C", baseApp, "cat-file", "-e", `${run.commit}^{commit}`], { stdio: "ignore" }); } catch { fetchBranches(baseApp, [run.branch]); }
+  execFileSync("git", ["-C", baseApp, "worktree", "add", "-q", "--detach", appDir, run.commit], { stdio: "ignore" });
+  symlinkSync(realpathSync(path.join(baseApp, "node_modules")), path.join(appDir, "node_modules"));
+  gitExclude(appDir, "node_modules", "tools/gate.mjs: the --branch worktree links node_modules");
+}
+
+// Integration mode in slices (HM-1270, tools/gate/runs.mjs). Per page the same as the one-process run in gate(): the
+// self-check, the full build with the judged pages' routes, the replay and the comparison (judgePage); the order is
+// build first, then each page's self-check and replay, and every page verdict is kept as soon as it is known. Stops
+// starting pages once budgetMs is used up and returns {partial:true}; the verdict, when every page has one, is shaped
+// like gate()'s.
+async function slicedRun({ argv, task, meta, createdAt, attempt, branch, wos, judged, bases, baseDirs, interact, state, assets, t0, budgetMs }) {
+  const deadline = budgetMs > 0 ? t0 + budgetMs : Infinity;
+  const baseApp = resolveAppDir(argv);
+  const tools = toolVersion();
+  const rules = loadRules();
+  const set = setKey(judged);
+  const pin = task ? `${task}-a${attempt}-g${meta.gateSeq ?? 0}` : `wo-${hash(judged.map((w) => w.id)).slice(0, 12)}`;
+  // a run shared with other tasks must have fetched its commit after this task's page list was fixed (created) and after
+  // the last re-gate (a re-gate asks for new verdicts)
+  const notBefore = Math.max(Date.parse(createdAt ?? "") || 0, Date.parse(meta.regateAt ?? "") || 0);
+  const root = runsDir(state);
+  mkdirSync(root, { recursive: true });
+  for (const d of staleRuns(state)) { try { execFileSync("git", ["-C", baseApp, "worktree", "remove", "--force", path.join(d, "app")], { stdio: "ignore" }); } catch {} rmSync(d, { recursive: true, force: true }); }
+  const picked = await withLock(path.join(root, ".pick.lock"), () => {
+    const r = pickRun({ state, tools, rules: rules.version, set, pin, notBefore });
+    if (r) return r;
+    fetchBranches(baseApp, [branch]);
+    const commit = execFileSync("git", ["-C", baseApp, "rev-parse", `origin/${branch}^{commit}`], { encoding: "utf8" }).trim();
+    return createRun({ state, tools, rules: rules.version, set, commit, branch });
+  }, { deadline: Date.now() + 10 * 60000 });
+  if (!picked) throw new Error(`${path.join(root, ".pick.lock")} held for 10 minutes`);
+  const run = picked.value;
+  const runDir = path.join(root, run.key);
+  const slices = pinRun(state, pin, run);
+  const appDir = path.join(runDir, "app");
+  const head = { mode: "integration", attempt, build: "full", ...(interact ? { interactRef: interact } : {}), run: run.key, diff: runDir, commit: run.commit, tools, slices };
+  const partial = (extra) => ({ partial: true, ...head, ...extra, durationMs: Date.now() - t0, next: "未完：再运行同一条命令，从已判的页接着跑（HM-1270）" });
+  const app = await withLock(path.join(runDir, ".app.lock"), () => ensureRunApp(baseApp, run, appDir), { deadline: Date.now() + 10 * 60000 });
+  if (!app) throw new Error(`${runDir}/.app.lock held for 10 minutes`);
+  const noKeys = missingCryptoEnv(appDir);
+  if (noKeys.length) throw new Error(`crypto keys missing for the restored app: ${noKeys.join(", ")} (set them in the gate's environment; docs/gate.md)`);
+
+  // ── app-wide zero-reference hits, once per run ──
+  const gf = path.join(runDir, "global.json");
+  let global = readJson(gf);
+  if (!global) { global = (await staticStage({ wos: [], appDir, mode: "integration" })).global; writeJson(gf, global); }
+
+  // ── build, once per run and app ──
+  const stages = { static: 0, build: 0, browser: 0 };
+  const apps = [...new Set(judged.map((w) => w.app))];
+  const mountOf = {}, buildFail = {}, scopeIds = new Map(), dist = {};
+  for (const w of judged.filter((x) => x.target)) {
+    const p = w.recordVia ? loadWorkOrder(w.recordVia) : null;
+    mountOf[w.id] = path.join(appDir, p ? p.target ?? "" : w.target);
+    if (p && !(p.target && existsSync(mountOf[w.id]))) buildFail[w.id] = [{ check: "build", where: w.recordVia, hint: `parent page ${w.recordVia} (recordVia) has no restored file on this branch (${p.target})` }];
+  }
+  const routesOf = (a) => judged.filter((w) => w.app === a && w.target && !buildFail[w.id]).map((w) => ({ route: w.route, recordPath: w.recordPath, file: mountOf[w.id] }));
+  let builtMs = 0; // a build cannot be cut short: after one in this call, the next waits for a call with time for it
+  for (const a of apps) {
+    const bf = path.join(runDir, "build", `${a}.json`);
+    if (!readJson(bf) && builtMs && Date.now() + builtMs > deadline) return partial({ done: 0, total: judged.length, waiting: `build of ${a}` });
+    const got = readJson(bf) ? { value: readJson(bf) } : await withLock(path.join(runDir, `.build-${a}.lock`), async () => {
+      const done = readJson(bf);
+      if (done) return done;
+      const tb = Date.now(), found = new Map();
+      let res;
+      try { const b = await buildApp({ appDir, app: a, gateDir: runDir, routes: routesOf(a), singlePage: false, plugins: [scopeIdPlugin(found)] }); res = { ok: true, outDir: b.outDir, scopeIds: [...found], ms: Date.now() - tb }; } catch (e) { res = { ok: false, check: e instanceof ShimError ? "shim" : "build", hint: String(e.message).split("\n")[0].slice(0, 240), ms: Date.now() - tb }; }
+      writeJson(bf, res);
+      builtMs = res.ms;
+      return res;
+    }, { deadline });
+    if (!got) return partial({ done: 0, total: judged.length, waiting: `build of ${a} in another process` });
+    const b = got.value;
+    stages.build += b.ms;
+    if (!b.ok) for (const w of judged.filter((x) => x.app === a)) buildFail[w.id] = [{ check: b.check, where: a, hint: b.hint }];
+    else { for (const [f, sid] of b.scopeIds) scopeIds.set(f, sid); dist[a] = b.outDir; }
+  }
+  const out = { pass: false, failed: [...global], stage: null, diff: runDir, shimmed: [], durationMs: 0, stages, pages: [], ...head, rules: rules.version };
+  if (Object.keys(buildFail).length) { // as gate(): a failing build is the verdict
+    out.stage = "build";
+    out.pages = judged.map((w) => ({ wo: w.id, pass: false, stage: buildFail[w.id] ? "build" : null, failed: buildFail[w.id] ?? [] }));
+    out.failed.push(...Object.entries(buildFail).flatMap(([id, f]) => f.map((x) => ({ ...x, wo: id }))));
+    out.durationMs = Date.now() - t0;
+    return out;
+  }
+
+  // ── pages: self-check, then replay and comparison; each verdict kept as soon as it is known ──
+  const results = {}, ctx = {};
+  for (const wo of judged) {
+    const steps = await interactScript(wo.id, { ref: interact });
+    const known = loadKnownDiffs(wo.id, { state, site: wo.site });
+    const fp = pageFp({ baselineSha: sha256(readFileSync(path.join(baseDirs[wo.id], "baseline.json"))), script: steps ? sha256(JSON.stringify(steps)) : null, known });
+    ctx[wo.id] = { steps, known, fp };
+    const r = pageResult(runDir, wo.id, fp);
+    if (r) results[wo.id] = r;
+  }
+  let browser = null;
+  const servers = {};
+  const judgeOne = async (wo) => {
+    const claim = path.join(runDir, "pages", wo.id, ".claim");
+    if (!tryClaim(claim)) return false;
+    try {
+      const again = pageResult(runDir, wo.id, ctx[wo.id].fp); // finished by another process meanwhile
+      if (again) { results[wo.id] = again; return true; }
+      const ts = Date.now();
+      const sf = (await selfCheck(wo, appDir)).map((f) => ({ ...f, check: f.check ?? "self-check" }));
+      const staticMs = Date.now() - ts;
+      let page;
+      if (sf.length) page = { wo: wo.id, pass: false, stage: "static", failed: sf };
+      else {
+        browser ??= await chromium.launch();
+        servers[wo.app] ??= await serveStatic([dist[wo.app]]);
+        page = await judgePage({ browser, wo, base: bases[wo.id], dir: path.join(runDir, "pages", wo.id), interact, state, assets, appDir, scopeIds, origin: servers[wo.app].origin, rules, ...ctx[wo.id] });
+      }
+      savePageResult(runDir, wo.id, ctx[wo.id].fp, page, { staticMs });
+      results[wo.id] = { page, staticMs };
+      return true;
+    } finally { release(claim); }
+  };
+  try {
+    let todo = judged.filter((w) => !results[w.id]);
+    while (todo.length && Date.now() < deadline) {
+      let progressed = false;
+      for (const wo of todo) { if (Date.now() >= deadline) break; if (await judgeOne(wo)) progressed = true; }
+      for (const w of todo) if (!results[w.id]) { const r = pageResult(runDir, w.id, ctx[w.id].fp); if (r) results[w.id] = r; }
+      todo = todo.filter((w) => !results[w.id]);
+      if (todo.length && !progressed) await new Promise((r) => setTimeout(r, 10000)); // the rest are being judged elsewhere
+    }
+  } finally {
+    if (browser) await browser.close().catch(() => {});
+    for (const s of Object.values(servers)) await s.close();
+  }
+  const left = judged.filter((w) => !results[w.id]);
+  if (left.length) return partial({ done: judged.length - left.length, total: judged.length, claimedElsewhere: left.filter((w) => claimHolder(path.join(runDir, "pages", w.id, ".claim"))).length });
+
+  for (const w of judged) { stages.static += results[w.id].staticMs ?? 0; stages.browser += results[w.id].page.ms ?? 0; }
+  out.pages = judged.map((w) => results[w.id].page);
+  out.failed.push(...out.pages.filter((p) => !p.pass).flatMap((p) => p.failed.map((f) => ({ ...f, wo: p.wo }))));
+  out.stage = out.pages.some((p) => p.stage === "static") || (global.length && out.pages.every((p) => p.pass)) ? "static" : out.pages.some((p) => p.stage === "build") ? "build" : "browser";
+  if (global.length) out.global = summarizeGlobal(global);
+  out.pass = out.failed.length === 0 && out.pages.length === wos.length;
+  out.durationMs = Date.now() - t0;
+  return out;
+}
+
+// Browser stage of one page: replay the restored page under the baseline's HAR and compare with the baseline. A failing
+// restored run is repeated once (busy machine: animations, toasts and timers land differently); the first run's failures
+// stay in the local report. Returns the page entry of the verdict; report.json and the shots go to dir.
+async function judgePage({ browser, wo, base, dir, interact, state, assets, appDir, scopeIds, origin, rules, steps, known }) {
+  mkdirSync(dir, { recursive: true });
+  steps ??= await interactScript(wo.id, { ref: interact });
+  known ??= loadKnownDiffs(wo.id, { state, site: wo.site });
+  const har = loadHar(base.har.path);
+  const restSid = wo.recordVia ? scopeIds.get(realpathOr(path.join(appDir, wo.target))) : null;
+  if (wo.recordVia && !restSid) return { wo: wo.id, pass: false, stage: "browser", failed: [{ check: "root", where: "load", hint: `restored ${wo.target} has no scope id (no <style scoped>): it cannot be found inside the parent page ${wo.recordVia}` }] };
+  const restSel = restSid ? scopeRootSel(restSid) : restSelOf(wo);
+  const once = async (tag) => {
+    const rest = await runPage(browser, { origin, url: wo.recordPath, storage: restStorage(wo, assets, base.storagePatch, har), har, sel: restSel, steps, shotDir: dir, tag, componentScope: restSid });
+    return { rest, cmp: compareRuns(base, rest, { rules, site: wo.site, known: known.list, shotOut: path.join(dir, `${tag}.diff.png`), restSel, inParent: !!restSid }) };
+  };
+  let { rest, cmp } = await once("rest");
+  let firstFailed = null;
+  if (cmp.failed.length) { firstFailed = cmp.failed; ({ rest, cmp } = await once("rest.retry")); }
+  const pass = cmp.failed.length === 0;
+  // Local report with the full projections (page text included): stays in $RESTORE_STATE, never in metadata.
+  writeFileSync(path.join(dir, "report.json"), JSON.stringify({ wo: wo.id, pass, failed: cmp.failed, firstFailed, pixel: cmp.pixel, ...(cmp.volatileCanvases?.length ? { volatileCanvases: cmp.volatileCanvases } : {}), knownUsed: cmp.knownUsed, waived: cmp.waived, knownUnusable: known.unusable, unstable: base.unstable, settleMs: rest.settleMs, errors: rest.errors, restRequests: [...(rest.load?.requests ?? []), ...(rest.stepLog ?? [])].map((x) => `${x.phase} ${x.method} ${x.path} ${x.tier}`), restOpened: [...(rest.load?.opened ?? []), ...(rest.opened ?? [])].map((x) => `${x.phase} ${x.target.split("?")[0]}`), restOtherRequests: (rest.otherRequests ?? []).map((x) => `${x.phase} ${x.method} ${x.path}`), orig: cmp.projections.orig.map(strip), rest: strip(cmp.projections.rest) }, null, 1));
+  return { wo: wo.id, pass, stage: pass ? null : "browser", failed: cmp.failed, pixel: cmp.pixel, ...(firstFailed ? { retried: true } : {}), ...(cmp.knownUsed.length ? { knownDiffs: cmp.knownUsed } : {}), ...(known.unusable.length ? { knownUnusable: known.unusable } : {}), ...(base.unstable?.length ? { unstable: base.unstable } : {}), ms: rest.totalMs };
+}
+
 const strip = (p) => Object.fromEntries(Object.entries(p).filter(([k]) => k !== "shot"));
 
 // App-wide failures (integration mode) by layer and owning order: {total, byLayer:{layer: n}, byOwner:{order: n}}.
@@ -541,6 +719,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     printed = true;
     console.log(JSON.stringify(r));
     const task = opt(argv, "--task");
+    // {partial:true}: a slice of an integration run (HM-1270), no verdict yet; exit 3, nothing written to the task
+    if (r.partial) { process.exitCode = 3; return; }
     if (task && !flag(argv, "--dry-run")) report(task, r.attempt ?? Number(opt(argv, "--attempt", 1)), r, r.mode === "upgrade" ? [`upgrade ${r.branch ?? task}`] : r.pages?.map((p) => p.wo) ?? r.missing?.map((m) => m.wo) ?? []);
     process.exitCode = r.pending ? 0 : r.pass ? 0 : 1;
   }, (e) => {
