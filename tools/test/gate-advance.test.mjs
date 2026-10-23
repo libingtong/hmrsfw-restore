@@ -125,11 +125,14 @@ test("integration gate: pending record is no verdict — a rule regression is ne
   const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (2 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
   for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: "abc1234" })) setMeta(fx, t.id, k, v);
   const r = gate(fx, t.id, { pending: "record", missing: [{ wo: "P1", why: "no baseline" }, { wo: "P2", why: "interaction script changed since the baseline" }], attempt: 1, durationMs: 4 });
-  assert.equal(r.ok, false);
-  assert.match(r.anomalies[0].what, /pending record: 2 pages/);
+  assert.equal(r.ok, true, JSON.stringify(r));
   assert.equal(issue(fx, t.id).status, "in_review", "not closed");
-  assert.equal(meta(fx, t.id).advanced, undefined, "not marked advanced: a later --regate can still be advanced");
   assert.ok(!issue(fx, t.id).comments.some((c) => /已回退|reverted/.test(c.content)), "no revert");
+  // HM-1181: it waits for recordings of the pages it named (no detail file: the full list is the metadata's)
+  assert.equal(meta(fx, t.id).waitRecord, true);
+  assert.deepEqual(Object.keys(meta(fx, t.id).waitRecordFrom).sort(), ids);
+  assert.equal(meta(fx, t.id).advanced, "1.g0", "the verdict is handled once");
+  assert.deepEqual(issuesOf(fx).filter((i) => i.title.startsWith("[record]")).map((i) => i.title).sort(), ["[record] P1", "[record] P2"]);
 });
 
 test("integration gate: pending record summary (HM-876) — the count comes from missingTotal, not the id sample", () => {
@@ -137,10 +140,16 @@ test("integration gate: pending record summary (HM-876) — the count comes from
   const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
   const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (12 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
   for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: "abc1234" })) setMeta(fx, t.id, k, v);
-  // what gate.mjs slimResult writes when the list does not fit: counts, a sample, the detail file
-  const r = gate(fx, t.id, { pending: "record", missingTotal: 12, byReason: { "interaction script changed since the baseline": 9, "no baseline": 3 }, missing: ids.slice(0, 2), missingTruncated: true, attempt: 1, detail: "/state/gate/pending-x-a1.json" });
-  assert.equal(r.ok, false);
-  assert.match(r.anomalies[0].what, /pending record: 12 pages without a usable baseline \(interaction script changed since the baseline ×9; no baseline ×3\)/);
+  // what gate.mjs slimResult writes when the list does not fit: counts, a sample, the detail file (not on this machine)
+  const v = { pending: "record", missingTotal: 12, byReason: { "interaction script changed since the baseline": 9, "no baseline": 3 }, missing: ids.slice(0, 2), missingTruncated: true, attempt: 1, detail: "/state/gate/pending-x-a1.json" };
+  let r = gate(fx, t.id, v);
+  assert.equal(r.ok, true, JSON.stringify(r));
   assert.equal(issue(fx, t.id).status, "in_review", "not closed");
-  assert.equal(meta(fx, t.id).advanced, undefined);
+  assert.equal(issuesOf(fx).filter((i) => i.title.startsWith("[record]")).length, 0, "nothing recorded on the word of a sample (HM-1181)");
+  assert.match(issue(fx, t.id).comments.at(-1).content, /12 页.*重跑门槛/);
+  assert.equal(meta(fx, t.id)["gate.1"], undefined, "re-gated for a fresh verdict");
+  // the same again: an incident for the arbiter, no further re-gate
+  r = gate(fx, t.id, v);
+  assert.ok(issuesOf(fx).some((i) => i.title.startsWith("[incident]")), JSON.stringify(r));
+  assert.equal(meta(fx, t.id)["gate.1"]?.pending, "record", "not re-gated again");
 });
