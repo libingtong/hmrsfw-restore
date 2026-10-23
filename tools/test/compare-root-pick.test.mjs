@@ -60,3 +60,16 @@ test("unstableKeys: two equal original runs are stable; a run whose final root d
   assert.deepEqual(unstableKeys(p, q, opts).sort(), ["final.html", "final.text"]);
   assert.deepEqual(unstableKeys(p, run([top], [top]), opts).sort(), ["final.html", "final.text"]);
 });
+
+test("no final root on either side (HM-1278): the same state, not a root failure; one side only still fails", () => {
+  const page = cand("resumeAnalysisReport", "report");
+  const o = () => run([header, page, footer], []);
+  assert.deepEqual(fails(cmp([o(), o()], run([page], []))), []);
+  // the original lost its root, the restored page kept one: still an explicit root failure
+  assert.deepEqual(fails(cmp([o(), o()], run([page], [page]))), ["final.root"]);
+  // the original kept its root (and its layout), the restored page lost it: still a root failure
+  const kept = () => run([header, page, footer], [header, page, footer]);
+  assert.deepEqual(fails(cmp([kept(), kept()], run([page], []))), ["final.root"]);
+  // only one original run without any final candidate: compared as before
+  assert.deepEqual(fails(cmp([o(), kept()], run([page], []))), ["final.root"]);
+});
