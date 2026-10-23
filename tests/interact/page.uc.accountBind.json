@@ -1,0 +1,5 @@
+[
+  {"wait":800},
+  {"clickSel":".accountBind .pointer.u-blue","optional":true},
+  {"wait":500}
+]
