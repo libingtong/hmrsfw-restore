@@ -2,6 +2,5 @@
   {"wait":1500},
   {"clickSel":".recommendjob .next","optional":true},
   {"wait":500},
-  {"clickSel":".recommendjob .next","optional":true},
-  {"clickSel":".edit","optional":true}
+  {"clickSel":".recommendjob .next","optional":true}
 ]
