@@ -1,7 +1,10 @@
 // Original-side baseline for the gate (docs/pipeline.md §7.2, §12). Replays the ORIGINAL build (legacy-dist/<site>)
 // under the page's HAR twice and stores what the gate compares against, so the gate only runs the restored side.
 // Called by record-page.mjs (D) after recording; can be re-run any time (the HAR and login state are only read).
-//   node tools/baseline.mjs <work order id> [--har <path>] [--out <dir>] [--no-coverage] [--interact-ref <commit>]
+//   node tools/baseline.mjs <work order id> [--har <path>] [--publish-har <path>] [--out <dir>] [--no-coverage] [--interact-ref <commit>]
+// --publish-har: --har is a staged copy (record-page.mjs, HM-1246); baseline.json names the --publish-har path, and the
+// staged HAR is renamed onto it right before the baseline directory is replaced, so the page HAR and its baseline change
+// together. On failure the staged file is left to the caller and the published HAR and baseline stay as they were.
 // --interact-ref: take tests/interact/<id>.json from that tool-repo commit, not the working tree (gate.mjs passes the
 // one its integration run reads when it refreshes a baseline; HM-914).
 // Writes $RESTORE_STATE/baseline/<id>/ (or --out), replacing it atomically:
@@ -84,13 +87,14 @@ async function main() {
   const argv = process.argv.slice(2);
   const relinked = ensureLegacyDist(ROOT); // HM-1130: legacy-dist may be a link into the shared cache
   if (relinked) process.stderr.write(relinked + "\n");
-  const [id] = positionals(argv, ["--har", "--out", "--app", "--interact-ref"]);
+  const [id] = positionals(argv, ["--har", "--publish-har", "--out", "--app", "--interact-ref"]);
   if (!id) throw new Error("usage: node tools/baseline.mjs <work order id> [--har <path>] [--out <dir>]");
   const t0 = Date.now();
   const wo = loadWorkOrder(id);
   const assets = assetsDir();
   const harFile = findHar(id, assets, opt(argv, "--har"), wo);
   if (!harFile) return { pending: "har", wo: id };
+  const publish = opt(argv, "--publish-har") ? path.resolve(opt(argv, "--publish-har")) : null;
   const dest = path.resolve(opt(argv, "--out") ?? path.join(stateDir(), "baseline", id));
   const tmp = `${dest}.tmp-${process.pid}`;
   rmSync(tmp, { recursive: true, force: true });
@@ -107,15 +111,17 @@ async function main() {
     writeFileSync(path.join(tmp, "seq.json"), JSON.stringify({ load: runs[0].load.requests, shell: rec.shell.requests, steps: runs[0].stepLog ?? [], opened: runs[0].opened ?? [] }, null, 1));
     writeFileSync(path.join(tmp, "baseline.json"), JSON.stringify({
       version: BASELINE_VERSION, wo: id, site: wo.site, app: wo.app, recordPath: wo.recordPath, role: wo.role, sourceChunk: wo.sourceChunk,
-      har: { path: harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version, sel: rec.sel, ...(wo.recordVia ? { offscopeFixed: true, offscopeAll: true } : {}), paintedBox: true, carouselPaused: true, canvasBoxes: true,
+      har: { path: publish ?? harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version, sel: rec.sel, ...(wo.recordVia ? { offscopeFixed: true, offscopeAll: true } : {}), paintedBox: true, carouselPaused: true, canvasBoxes: true,
       ...(rec.coverage ? { coverage: summaryOf(rec.coverage) } : {}),
       shell: rec.shell, steps: rec.steps, script: rec.script, unstable: rec.unstable, runs,
     }));
     if (rec.coverage) writeFileSync(path.join(tmp, "coverage.json"), JSON.stringify({ wo: id, site: wo.site, recordPath: wo.recordPath, role: wo.role, script: rec.script, steps: rec.steps, ...rec.coverage }, null, 1));
     writeFileSync(path.join(tmp, "storage.json"), JSON.stringify(rec.storagePatch), { mode: 0o600 });
     chmodSync(path.join(tmp, "storage.json"), 0o600);
-    // Replace atomically: readers see either the old or the new baseline, never a half-written one.
+    // Replace atomically: readers see either the old or the new baseline, never a half-written one. A staged HAR goes in
+    // place just before it (HM-1246): the gate never sees a new HAR next to the old baseline for longer than two renames.
     const old = `${dest}.old-${process.pid}`;
+    if (publish && publish !== harFile) { mkdirSync(path.dirname(publish), { recursive: true }); renameSync(harFile, publish); }
     if (existsSync(dest)) renameSync(dest, old);
     renameSync(tmp, dest);
     rmSync(old, { recursive: true, force: true });
