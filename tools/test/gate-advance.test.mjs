@@ -153,3 +153,26 @@ test("integration gate: pending record summary (HM-876) — the count comes from
   assert.ok(issuesOf(fx).some((i) => i.title.startsWith("[incident]")), JSON.stringify(r));
   assert.equal(meta(fx, t.id)["gate.1"]?.pending, "record", "not re-gated again");
 });
+
+test("rule regression: every page passes, only app-wide zero-reference hits fail the verdict — the rule is not reverted (HM-1270)", () => {
+  const ids = ["P1", "P2", "P3"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
+  const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (3 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
+  for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: "abc1234" })) setMeta(fx, t.id, k, v);
+  // what slimResult writes for a large verdict: failing pages only, the passing ones counted
+  const global = { total: 336, byLayer: { shell: 332, entry: 2, shared: 2 }, byOwner: {} };
+  const r = gate(fx, t.id, { pass: false, stage: "static", mode: "integration", attempt: 1, failed: [{ check: "no-legacy", where: "apps/portal/src/main.ts", hint: "x ×1", layer: "shell" }], failedTotal: 336, global, pages: [], passedOmitted: 3 });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(issue(fx, t.id).status, "done");
+  assert.match(issue(fx, t.id).comments.at(-1).content, /全量回归通过.*整站零引用 336 条与规则无关/);
+  assert.ok(!issue(fx, t.id).comments.some((c) => /已回退/.test(c.content)), "no revert");
+});
+
+test("rule regression: a failing page still reverts the rule", () => {
+  const ids = ["P1", "P2"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
+  const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (2 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
+  for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: "abc1234" })) setMeta(fx, t.id, k, v);
+  gate(fx, t.id, { pass: false, stage: "browser", mode: "integration", attempt: 1, failed: [{ wo: "P2", check: "html", where: "load", hint: "x" }], global: { total: 3, byLayer: { shell: 3 }, byOwner: {} }, pages: [{ wo: "P1", pass: true }, { wo: "P2", pass: false, stage: "browser" }] });
+  assert.match(issue(fx, t.id).comments.at(-1).content, /回归失败（1 页），已回退/);
+});

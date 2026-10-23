@@ -1487,7 +1487,18 @@ export class Pipeline {
   }
 
   onRuleRegression(taskId, meta, pass, failed) {
-    if (pass) { this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 全量回归通过`); this.ledger.tx((L) => L.newEvents.push({ type: "rule-regression", branch: meta.ruleChange, pass: true })); return { ok: true, summary: "rule regression passed", anomalies: [] }; }
+    // Every page passed and the verdict fails on app-wide hits only (zero-reference in shell, entry or shared files,
+    // gate.global): those belong to their owners (docs/gate.md, failure attribution), a compare-rule change does not
+    // make them. Before HM-1270 this reverted the rule as "failed on 0 pages".
+    const gate = this.gateResult(meta);
+    const pages = Array.isArray(gate?.pages) ? gate.pages : [];
+    const judged = pages.length + (gate?.passedOmitted ?? 0); // a large verdict lists only its failing pages (slimResult)
+    const onlyGlobal = !pass && !failed.length && !gate?.pagesTruncated && judged > 0 && judged >= (meta.workOrders || []).length && pages.every((p) => p.pass) && (gate?.global?.total ?? 0) > 0;
+    if (pass || onlyGlobal) {
+      this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 全量回归通过${onlyGlobal ? `（页面全部通过；整站零引用 ${gate.global.total} 条与规则无关，不回退）` : ""}`);
+      this.ledger.tx((L) => L.newEvents.push({ type: "rule-regression", branch: meta.ruleChange, pass: true, ...(onlyGlobal ? { globalOnly: gate.global.total } : {}) }));
+      return { ok: true, summary: "rule regression passed", anomalies: [] };
+    }
     const r = this.locks.with("tool-main", () => this.toolGit.revert({ sha: meta.ruleSha, into: "main", message: `Revert rule change ${meta.ruleChange}: full regression failed on ${failed.length} pages` }), 5 * 60_000);
     this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "reverted"; L.newEvents.push({ type: "rule-reverted", branch: meta.ruleChange, pages: failed.length, ok: !!r.reverted }); });
     this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（${failed.length} 页），已回退`);
