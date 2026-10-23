@@ -73,12 +73,23 @@ function cloneDir(src, dst) {
 // fallback is `strict` (+0.7 path score in vue-router 4, root path included), so it still wins over a same-path record
 // added later, as it did by insertion order before. It has no name, so a navigation spread from a route it matched
 // (`next({ ...to, replace: true })`) still resolves by path.
-export const gateRouteCode = (routes) => routes.map((r) => {
-  const P = JSON.stringify(r.recordPath), rec = (meta) => `{ path: ${JSON.stringify(r.route)}, strict: true, meta: ${meta}, component: () => import(${JSON.stringify(r.file)}) }`;
-  return `{ const unmatched = () => { const m = router.resolve(${P}).matched; return !m.length || /pathMatch/.test(m[m.length - 1].path); };
-  if (unmatched()) { const add = router.addRoute; let drop = add(${rec("{}")});
-    router.addRoute = (...a) => { const out = add(...a); drop(); const meta = unmatched() ? {} : { ...router.resolve(${P}).meta }; drop = add(${rec("meta")}); return out; }; } }`;
-}).join("\n");
+// One wrapper for all fallbacks (HM-1275). Each page used to wrap router.addRoute on its own, and its re-add went
+// through the previous page's wrapper, which re-added its fallback and called the one before it again: one app
+// addRoute cost 2^n route adds for n judged pages. With 4 pages nobody noticed; the 264-page integration runs (161
+// portal pages) never got through the portal's first beforeEach, the renderer spun at 100 % and the gate waited on
+// it for ever. Now the original addRoute is called once for the app's record and once per fallback. The route table
+// is the same as before: fallbacks added in page order where the page is not matched yet, then after every app
+// addRoute re-added newest page first (the order the chain left them in), each with the merged meta of the app's
+// records for its path computed while the others are in place.
+export const gateRouteCode = (routes) => {
+  if (!routes.length) return "";
+  const list = routes.map((r) => `{ P: ${JSON.stringify(r.recordPath)}, rec: (meta) => ({ path: ${JSON.stringify(r.route)}, strict: true, meta, component: () => import(${JSON.stringify(r.file)}) }) }`);
+  return `{ const add = router.addRoute, fallbacks = [];
+  const unmatched = (P) => { const m = router.resolve(P).matched; return !m.length || /pathMatch/.test(m[m.length - 1].path); };
+  for (const f of [${list.join(",\n    ")}]) if (unmatched(f.P)) { f.drop = add(f.rec({})); fallbacks.push(f); }
+  const readd = () => { for (let i = fallbacks.length - 1; i >= 0; i--) { const f = fallbacks[i]; f.drop(); f.drop = add(f.rec(unmatched(f.P) ? {} : { ...router.resolve(f.P).meta })); } };
+  if (fallbacks.length) { readd(); router.addRoute = (...a) => { const out = add(...a); readd(); return out; }; } }`;
+};
 function routePlugin({ appDir, app, routes }) {
   const routerFile = path.join(appDir, "apps", app, "src/router.ts");
   return {
