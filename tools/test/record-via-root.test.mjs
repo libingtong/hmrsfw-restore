@@ -7,7 +7,7 @@ import assert from "node:assert/strict";
 import path from "node:path";
 import { readFileSync } from "node:fs";
 import { chromium } from "playwright";
-import { ROOT, SITES, origSelOf, pageScopeId, scopeRootSel } from "../gate/common.mjs";
+import { REST_SEL, ROOT, SITES, origSelOf, pageScopeId, restSelOf, scopeRootSel } from "../gate/common.mjs";
 import { scopeIdPlugin } from "../gate/appserver.mjs";
 import { loadRules } from "../gate/rules.mjs";
 import { compareRuns } from "../gate/compare.mjs";
@@ -33,6 +33,27 @@ test("root selector: usercenter routes outside the layout take #app's first chil
   assert.equal(origSelOf(uc("myresume", "/myresume")), SITES.usercenter.origSel);
   // a recordVia component still takes its scope root, even on a bare route
   assert.equal(origSelOf({ ...uc("x", "/previewresume?id=1"), recordVia: "page.uc.previewresume" }), scopeRootSel("data-v-9c460855"));
+});
+
+test("restored root selector: usercenter routes outside the layout take #app's first child too (HM-1162)", () => {
+  const uc = (id, recordPath) => ({ id, site: "usercenter", recordPath, target: `apps/uc/src/views/${id}.vue` });
+  assert.equal(restSelOf(uc("403", "/403")), "#app > *");
+  assert.equal(restSelOf(uc("previewresume", "/previewresume?id=1")), "#app > *");
+  assert.equal(restSelOf(uc("404", "/404")), REST_SEL);
+  assert.equal(restSelOf(uc("myresume", "/myresume")), REST_SEL);
+  assert.equal(restSelOf({ id: "p", site: "portal", recordPath: "/403" }), REST_SEL);
+  // both sides take the same place for every bare route
+  for (const r of SITES.usercenter.bareRoutes) assert.equal(restSelOf(uc("x", r)), origSelOf(uc("x", r)));
+});
+
+test("restored uc router lists the bare routes next to the layout route, not as its children (HM-1162)", { skip: !process.env.HMRSFW_APP_DIR && "HMRSFW_APP_DIR not set" }, () => {
+  const src = readFileSync(path.join(process.env.HMRSFW_APP_DIR, "apps/uc/src/router.ts"), "utf8");
+  for (const r of SITES.usercenter.bareRoutes) {
+    const m = new RegExp(`^  \\{ path: "${r}",`, "m").exec(src);
+    assert.ok(m, `${r}: no top-level record in apps/uc/src/router.ts`);
+  }
+  const app = readFileSync(path.join(process.env.HMRSFW_APP_DIR, "apps/uc/src/legacy/components/App.vue"), "utf8");
+  assert.doesNotMatch(app, /poc-main/, "uc App.vue has no #poc-main: bare-route pages sit straight under #app");
 });
 
 test("usercenter bareRoutes are exactly the original router's top-level routes other than the layout route", () => {
