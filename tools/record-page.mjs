@@ -38,7 +38,8 @@
 // Usage: node tools/record-page.mjs <工单id> [--app <hmrsfw-vue>] [--order <file>] [--script <file>] [--no-baseline]
 //        [--baseline-only] [--no-commit] [--headed] [--wait-identity <minutes, default 30>] [--wait-slot <minutes, default 9>]
 //        --offline <old.har> --out <new.har>: self-test without network. The test hosts are answered from legacy-dist and
-//        <old.har>; the HAR goes to <new.har>; no commit, no role pin, no notes in $RESTORE_STATE.
+//        <old.har>; the HAR goes to <new.har>, its baseline to <new.har>.baseline/ (never $RESTORE_STATE/baseline/<id>/,
+//        which the gates read; HM-1265); no commit, no role pin, no notes in $RESTORE_STATE.
 // Output (one JSON line): {ok, id, steps, unstable:[...], blocked?, hint?, evidence?, error?, scriptParked?, har, entries, writes:[{method,
 //        path, count, phases, statuses}] (sent), intercepted:[{… , rules}] (not sent), sm2:{bodies, decrypted, undecryptable}, baseline, committed, warnings, durationMs}
 // Exit: 0 ok · 1 error or unstable · 2 blocked (needs a human: login, identity). {"locked":true} when the order is
@@ -251,6 +252,8 @@ function baseline({ id, harFile, staged = null }) {
   const tool = own ? "tools/baseline.mjs" : "tools/record-baseline-placeholder.mjs";
   const args = [path.join(ROOT, tool), id, "--har", staged ?? harFile, ...(own && staged ? ["--publish-har", harFile] : [])];
   if (opt("--app")) args.push("--app", path.resolve(opt("--app")));
+  // a self-test must not replace the page's real baseline with one naming its scratch HAR (HM-1265)
+  if (own && OFFLINE) args.push("--out", `${harFile}.baseline`);
   if (own && (opt("--order") || opt("--script"))) warnings.push("--order/--script are not passed to tools/baseline.mjs; it reads queue/ and tests/interact/");
   if (!own) for (const n of ["--order", "--script"]) if (opt(n)) args.push(n, path.resolve(opt(n)));
   const r = spawnSync(process.execPath, args, { cwd: ROOT, env: process.env, encoding: "utf8", maxBuffer: 256e6, timeout: 20 * 60e3 });
