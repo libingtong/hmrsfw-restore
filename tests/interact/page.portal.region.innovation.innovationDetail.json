@@ -1,5 +1,5 @@
 [
   {"wait":800},
-  {"clickSel":".vjs-big-play-button, .play-btn","optional":true},
+  {"clickSel":"video","optional":true},
   {"wait":500}
 ]
