@@ -1,0 +1,4 @@
+[
+  {"wait":500},
+  {"click":"返回首页","optional":true}
+]
