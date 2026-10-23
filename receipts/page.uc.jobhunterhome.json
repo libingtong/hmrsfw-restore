@@ -89,6 +89,11 @@
   "a2 相对 a1 无逻辑改动：只按新增的 eslint/prettier 配置格式化三个 SFC，并修 eslint 提示（style 放 @click 前、v-for 的 key 放到 a-col、@cancelClick 改 @cancel-click——子组件 emits(\"cancelClick\") 在 Vue 3 里同样命中 onCancelClick）",
   "self-check 现为 readability 0 项（eslint + prettier 通过），text-nodes 32/32、directives 2/2、branches 9/9",
   "样式仍由 node tools/css-by-scope.mjs page.uc.jobhunterhome --write 生成（11/23/24 条规则，roundtrip ok）",
-  "分支基于 integration 6bae6c7（含升级 #24 的 eslint/prettier devDependencies）"
- ]
+  "分支基于 integration 6bae6c7（含升级 #24 的 eslint/prettier devDependencies）",
+  "修正第 1 轮：未改代码。门槛 a2 唯一失败为 final root（还原 final 根 jeecg-basic-table-form-container，原基线 final 候选只有 contentmain），属疑似比对器问题（录制侧基线），依据见下三条",
+  "依据 1：原 chunk home.17516156075453.js 中 newUserCard 的 .edit 点击为 router.push({path:\"/nom\"})，还原 newUserCard.vue:19 写法一致；交互脚本最后一步正是 clickSel .edit",
+  "依据 2：原 /nom 页（nom.1751615607545.js，已合入的 page.uc.nom）根节点本身就是 jeecg-basic-table-form-container；两侧 steps.requests 完全一致（都发出了 /nom 页的地区请求），说明两侧都已跳到 /nom，只是原基线 final 抓取时 DOM 仍停在 contentmain（录制时该步 note 为 timed out after the action was sent）",
+  "依据 3：load 阶段 html/text/requests/pixel 全部通过；self-check 复跑通过（仅 imports 1 条 warn，同 todos 第 1 条）。删掉或改写跳转只为过门槛属于改行为，未做；建议重录该页基线或交互脚本不以跳转收尾（工具侧，非本页可改）"
+ ],
+ "fixRound": 1
 }
