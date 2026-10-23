@@ -54,13 +54,15 @@
    "original": "aB",
    "path": "@/legacy/api",
    "export": "getChildArticleTypeList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "$e": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "H": {
    "original": "o",

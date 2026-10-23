@@ -40,7 +40,8 @@
    "original": "u",
    "path": "@/legacy/store",
    "export": "useCommonStore",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E4"
   },
   "pe": {
    "original": "a",
@@ -82,7 +83,8 @@
    "original": "l",
    "path": "@/legacy/utils",
    "export": "setLocalStorage",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Z": {
    "original": "f",
@@ -94,13 +96,15 @@
    "original": "q",
    "path": "@/legacy/api",
    "export": "queryByCompanyId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Re": {
    "original": "i",
    "path": "@/legacy/api",
    "export": "izCompanyComplete",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "le": {
    "original": "m",
@@ -130,7 +134,8 @@
    "original": "j",
    "path": "@/legacy/api",
    "export": "sysUserAuthenticateIdentityList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "X": {
    "original": "_",
@@ -146,7 +151,8 @@
    "original": "n",
    "path": "@/legacy/api",
    "export": "listOneForWebSite",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Me": {
    "original": "o",
@@ -165,13 +171,15 @@
    "original": "r",
    "path": "@/legacy/utils",
    "export": "maskPhone3",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "He": {
    "original": "s",
    "path": "@/legacy/api",
    "export": "queryAnnouncementList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   }
  },
  "api": {
@@ -179,56 +187,56 @@
    "original": "index.api.1751615607545.js#g",
    "path": "@/api/jobSupermarketMerchants",
    "export": "queryByUserId",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId"
   },
   "Ze": {
    "original": "index.api.1751615607545.js#a",
    "path": "@/api/jobSupermarketMerchants",
    "export": "getAppealFlagByXfSysUserId",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobAppealRecord/getAppealFlagByXfSysUserId"
   },
   "Ve": {
    "original": "index.api.1751615607545.js#b",
    "path": "@/api/jobSupermarketMerchants",
    "export": "addForClosDown",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobAppealRecord/merchants/addForClosDown"
   },
   "Ge": {
    "original": "index.api.1751615607545.js#c",
    "path": "@/api/jobSupermarketMerchants",
    "export": "checkIzPerfect",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysUser/checkIzPerfect"
   },
   "We": {
    "original": "index.api.1751615607545.js#p",
    "path": "@/api/jobSupermarketMerchants",
    "export": "beJobSeeker",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentity/beJobSeeker"
   },
   "Xe": {
    "original": "index.api.1751615607545.js#d",
    "path": "@/api/jobSupermarketMerchants",
    "export": "apply",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobSupermarketMerchants/apply"
   },
   "Qe": {
    "original": "index.api.1751615607545.js#l",
    "path": "@/api/jobSupermarketMerchants",
    "export": "logout",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobSupermarketMerchants/logout"
   },
   "lt": {
    "original": "index.api.17516156075452.js#g",
    "path": "@/api/sysUser",
    "export": "queryByIdJM",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysUser/queryByIdJM"
   }
  },

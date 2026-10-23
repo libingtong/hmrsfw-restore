@@ -65,7 +65,9 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.E6"
+  ]
  },
  "stylesProvidedByScript": true,
  "notes": "裁定（uc-role-decisions.json）。局限：招聘单位从 CorpCenter / TalentSearch 等打开（带 firm=firm、positionId、xfSysUserId，按 corpInfo.id 查看投递人简历）的路径不覆盖"

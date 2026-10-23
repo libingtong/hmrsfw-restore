@@ -23,7 +23,8 @@
  "target": "apps/portal/src/shared/resumemodal.vue",
  "exports": {
   "r": {
-   "export": "default"
+   "export": "default",
+   "original": "resumemodal.1783320636200.js#r"
   }
  },
  "registryKey": "resumemodal.1783320636200.js",

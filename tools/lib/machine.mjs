@@ -1,5 +1,7 @@
 // Which machine this process runs on, and what each machine can do. Everything comes from data, never from agent names:
-//   - machine ids are the `machine` values of the roster (e.g. "mac-mini", "office-server");
+//   - machine ids are the `machine` values of the roster's enabled agents plus the keys of roster `machines` (e.g.
+//     "mac-mini"). A machine whose agents are all `enabled: false` (a retired machine kept in the roster for its
+//     history) is not one of them, so a roster with one live machine resolves to it without --machine;
 //   - this process's machine: --machine <id|unique prefix> > HMRSFW_MACHINE > roster `machines.<id>.hosts` matching the
 //     hostname > the only machine in the roster > unknown (id null). "*" (unsharded: one tick drives every work order,
 //     as before sharding) only when asked for explicitly, so two machines can't both fall back to it by accident.
@@ -13,8 +15,10 @@ import os from "node:os";
 
 export const ALL = "*";
 
-export function machineIds(roster) {
-  return [...new Set([...Object.keys(roster.data.machines || {}), ...roster.data.agents.map((a) => a.machine).filter(Boolean)])].sort();
+// { all: true } also counts retired machines (only disabled agents left), e.g. to keep reading their stats snapshots.
+export function machineIds(roster, { all = false } = {}) {
+  const agents = all ? roster.data.agents || [] : roster.agents;
+  return [...new Set([...Object.keys(roster.data.machines || {}), ...agents.map((a) => a.machine).filter(Boolean)])].sort();
 }
 
 export function resolveMachine(roster, { argv = [], env = process.env, hostname = os.hostname() } = {}) {

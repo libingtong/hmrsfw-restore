@@ -4,9 +4,9 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `K` | index.api.17516156075454.js | api | @/api/sysConsult `statics` | `e=>t.request({url:"/xf-job/job/xfSysConsult/statics",method:"get",params:e})` |
-| `Q` | index.api.17516156075454.js | api | @/api/sysConsult `queryJoinedForUserCenter` | `e=>t.request({url:"/xf-job/job/xfSysConsult/queryJoinedForUserCenter",method:"get",params:e})` |
-| `W` | index.api.17516156075454.js | api | @/api/sysConsult `queryListForUserCenter` | `e=>t.request({url:"/xf-job/job/xfSysConsult/queryListForUserCenter",method:"get",params:e})` |
+| `K` | index.api.17516156075454.js | api | @/api/sysConsult `statics`（reserved） | `e=>t.request({url:"/xf-job/job/xfSysConsult/statics",method:"get",params:e})` |
+| `Q` | index.api.17516156075454.js | api | @/api/sysConsult `queryJoinedForUserCenter`（reserved） | `e=>t.request({url:"/xf-job/job/xfSysConsult/queryJoinedForUserCenter",method:"get",params:e})` |
+| `W` | index.api.17516156075454.js | api | @/api/sysConsult `queryListForUserCenter`（reserved） | `e=>t.request({url:"/xf-job/job/xfSysConsult/queryListForUserCenter",method:"get",params:e})` |
 | `ee` | usercard.1751615607545.js | shared | @/shared/usercard.vue `default`（reserved） | `g(z,[["__scopeId","data-v-aa2d78e0"]])` |
 | `C` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `te` | index.1751615607545.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |

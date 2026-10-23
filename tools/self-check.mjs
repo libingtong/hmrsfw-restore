@@ -1,6 +1,6 @@
 // Pre-delivery self-check of one work order (docs/pipeline.md §5, §12): the static checks a restorer runs before handing
 // over, and the static stage of gate.mjs. Needs only this repo and the hmrsfw-vue checkout — no RESTORE_ASSETS, no HAR,
-// no browser — so it runs on Office-Server too.
+// no browser — so it runs on any machine, including one that holds no secrets.
 //
 //   compile        @vue/compiler-sfc (hmrsfw-vue's own) parses and compiles every delivered SFC
 //   components     as many .vue files as the chunk defines components (check-components.mjs)
@@ -12,9 +12,12 @@
 //   no-legacy      zero references to the original build in the order's own files, comments included
 //                  (check-no-legacy.mjs; the same scan the gate's static stage runs in page mode)
 //   segments       a segment delivered its fragments; the assembling segment left no _seg/ behind
+//   readability    names, structure, layout of the delivered sources (check-readability.mjs, rules/readability.json); independent
+//                  of equivalence. Rules mode "report": items carry severity "warn"; mode "block": they fail the check
 //   render-equiv   report only (reports.renderEquiv), never fails the check
 //
-// Usage: node tools/self-check.mjs <order id> [--app <hmrsfw-vue>] [--no-render-equiv]
+// Usage: node tools/self-check.mjs <order id> [--app <hmrsfw-vue>] [--no-render-equiv] [--no-lint] [--no-readability]
+//   --no-lint skips the ESLint / Prettier part of readability (the AST part is cheap, those two take seconds).
 // Output (stdout, one JSON document): {pass, failed:[{check, where, hint, severity?}], id, type, stats, reports}
 //   pass is false when any item without severity "warn" is present; "warn" items should still be fixed (see hint).
 // Exit code: 0 pass, 1 fail, 2 the check itself could not run (bad order id, missing checkout).
@@ -33,6 +36,7 @@ import { scanSecretFiles } from "./scan-secrets.mjs";
 import { scanNoLegacy } from "./check-no-legacy.mjs";
 import { renderEquiv } from "./render-equiv-confirm.mjs";
 import { appDir } from "./app-dir.mjs";
+import { checkReadability, lintFiles, loadRules } from "./check-readability.mjs";
 
 const walk = (d) => existsSync(d) ? readdirSync(d).flatMap((n) => { const p = path.join(d, n); return statSync(p).isDirectory() ? walk(p) : [p]; }) : [];
 
@@ -50,7 +54,7 @@ function archiveOf(order) {
   return [...out].filter((f) => existsSync(f));
 }
 
-export function selfCheck(order, APP, { renderEquivReport = true } = {}) {
+export function selfCheck(order, APP, { renderEquivReport = true, readability = true } = {}) {
   APP = path.resolve(APP);
   const failed = []; const stats = {}; const reports = {};
   const rel = (f) => path.relative(APP, f).split(path.sep).join("/");
@@ -109,11 +113,31 @@ export function selfCheck(order, APP, { renderEquivReport = true } = {}) {
   for (const h of scanNoLegacy({ root: APP, files: own }).hits) failed.push({ check: "no-legacy", where: h.file, hint: `${h.rule} ×${h.count}：源码、注释和资源文件名里不能出现原包路径（legacy-dist）、带构建哈希的文件名或编译产物；还原来源写进回执，不写进注释` });
   for (const h of scanSecretFiles(files, rel)) failed.push({ check: "secrets", where: `${h.file}:${h.line}`, hint: `命中规则 ${h.rule}：代码、注释、回执里不能出现密钥、token、手机号、证件号、邮箱等；密钥只从环境变量读取（import.meta.env），测试数据换成明显的假值` });
 
+  // ---- readability (names, structure; ESLint / Prettier are added by selfCheckFull) ----
+  if (readability) {
+    const rules = loadRules(); const rf = readableFiles(files);
+    const r = checkReadability(rf, APP, { rules }); failed.push(...r.failed); stats.readability = { ...r.stats, mode: rules.mode };
+  }
+
   // ---- report only ----
   if (renderEquivReport && structural && !partial && order.type !== "entry") reports.renderEquiv = renderEquiv(subject, APP, { files: files.filter((f) => f.endsWith(".vue")) });
 
   const errors = failed.filter((x) => x.severity !== "warn");
   return { pass: errors.length === 0, failed, id: order.id, type: order.type, stats, reports };
+}
+
+// files readability looks at: finished sources, not segment fragments
+const readableFiles = (files) => files.filter((f) => /\.(vue|ts)$/.test(f) && !f.includes(`${path.sep}_seg${path.sep}`));
+
+// selfCheck plus the async part of readability (ESLint, Prettier of hmrsfw-vue); this is what the command line runs
+export async function selfCheckFull(order, APP, { lint = true, ...opts } = {}) {
+  const res = selfCheck(order, APP, opts);
+  if (opts.readability === false || !lint || !res.stats.readability) return res;
+  const rules = loadRules(); const files = readableFiles((res.stats.files ?? []).map((f) => path.join(path.resolve(APP), f)));
+  const extra = await lintFiles(files, { APP: path.resolve(APP), rules });
+  res.failed.push(...extra); res.stats.readability.items += extra.length;
+  res.pass = res.failed.every((x) => x.severity === "warn");
+  return res;
 }
 
 // The order-independent part of the self-check, on a list of changed files (gate.mjs --mode upgrade, HM-990): an upgrade
@@ -141,7 +165,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   let res;
   try {
     if (!id) throw new Error("usage: node tools/self-check.mjs <order id> [--app <hmrsfw-vue>] [--no-render-equiv]");
-    res = selfCheck(loadOrder(id), appDir(), { renderEquivReport: !args.includes("--no-render-equiv") });
+    res = await selfCheckFull(loadOrder(id), appDir(), { renderEquivReport: !args.includes("--no-render-equiv"), lint: !args.includes("--no-lint"), readability: !args.includes("--no-readability") });
   } catch (e) { console.log(JSON.stringify({ pass: false, error: String(e.message ?? e), failed: [] })); process.exit(2); }
   console.log(JSON.stringify(res, null, 1));
   process.exitCode = res.pass ? 0 : 1;

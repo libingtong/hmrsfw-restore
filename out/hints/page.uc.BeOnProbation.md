@@ -9,9 +9,9 @@
 | `ae` | index.1751615607545.js | api | @/legacy `detailById` | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/detailById",method:"get",params:t})` |
 | `te` | index.1751615607545.js | entry | @/legacy `joinAreaNames` | `(t,e)=>{let n="";return e=="workProviceName"?(t.workProviceName&&t.workProviceId&&(n=t.workProviceName),t.workCityName&&t.workCityId&&(n=n+"/"+t.workCityName),t.workAreaName&&t.workAreaId&&(n=n+"/"+t.` |
 | `T` | index.1751615607545.js | entry | dayjs `default` | `Oa(Trt)` |
-| `re` | index.1751615607545.js | api | @/legacy/api `checkPositionName` | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/checkPositionName",method:"post",params:t})` |
-| `se` | index.1751615607545.js | api | @/legacy/api `getrefreshTime` | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/getrefreshTime",method:"post",data:t})` |
-| `le` | index.1751615607545.js | api | @/legacy/api `addOrEdit` | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/addOrEdit",method:"post",data:t})` |
+| `re` | index.1751615607545.js | api | @/legacy/api `checkPositionName`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/checkPositionName",method:"post",params:t})` |
+| `se` | index.1751615607545.js | api | @/legacy/api `getrefreshTime`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/getrefreshTime",method:"post",data:t})` |
+| `le` | index.1751615607545.js | api | @/legacy/api `addOrEdit`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/addOrEdit",method:"post",data:t})` |
 | `ue` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `ne` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
 | `P` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |

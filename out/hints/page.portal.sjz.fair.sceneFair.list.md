@@ -7,7 +7,7 @@
 | `La` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `A` | index.1783320636200.js | entry | @/legacy `userStorage` | `{keys:!0,setUser(e){this.keys?localStorage.setItem(jn.USER_INFO,e):localStorage.setItem(jn.USER_INFO,JSON.stringify(e))},getUser(){const e=localStorage.getItem(jn.USER_INFO);if(e&&e!="undefined"&&e!="` |
 | `Da` | index.1783320636200.js | entry | @/legacy `checkBtnPermission` | `e=>new Promise((t,n)=>W(void 0,null,function*(){let r={btn1:!0},a=yield On({code:Ea.BTN_PERMISS});if(a&&a.result){let o=g_();e.type==1?o=="0"&&fo()&&(r.btn1=!1):e.type==10&&o=="10"&&fo()&&(r.btn1=!1)}` |
-| `Oa` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `Oa` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
 | `Ra` | index.1783320636200.js | entry | @/legacy `useStore` | `function(e){return e===void 0&&(e=null),Ft(e!==null?e:Ru)}` |
 | `q` | index.1783320636200.js | entry | @/legacy `getWeekDay` | `function(e,t){if(e){let n=["\u661F\u671F\u65E5","\u661F\u671F\u4E00","\u661F\u671F\u4E8C","\u661F\u671F\u4E09","\u661F\u671F\u56DB","\u661F\u671F\u4E94","\u661F\u671F\u516D"];return t==0&&(n=["\u5468\` |
 | `C` | index.1783320636200.js | entry | dayjs `default` | `Rk(Owe)` |
@@ -21,5 +21,5 @@
 | `qa` | index.1783320636200.js | entry | ant-design-vue `message` | `D1` |
 | `Pa` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
 | `Ja` | dictCode.1783320636200.js | shared | @/shared/dictCode.vue `default` | `S(i,[["render",p]])` |
-| `Va` | index.api.178332063620017.js | api | @/api/jobFair `getFairList` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/getFairList",method:"post",data:e})` |
+| `Va` | index.api.178332063620017.js | api | @/api/api-17 `getFairList` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobFair/getFairList",method:"post",data:e})` |
 | `Ka` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |

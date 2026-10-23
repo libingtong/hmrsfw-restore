@@ -125,7 +125,8 @@
    "original": "L",
    "path": "@/legacy/api",
    "export": "sumbitImportantCompanyInfo",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "R": {
    "original": "I",

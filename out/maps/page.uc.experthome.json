@@ -34,21 +34,21 @@
    "original": "index.api.17516156075458.js#a",
    "path": "@/api/jobUserSchoolExpert",
    "export": "statics",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfSysConsult/statics"
   },
   "C": {
    "original": "index.api.17516156075458.js#b",
    "path": "@/api/jobUserSchoolExpert",
    "export": "queryJoinedForUserCenter",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfSysConsult/queryJoinedForUserCenter"
   },
   "S": {
    "original": "index.api.17516156075458.js#c",
    "path": "@/api/jobUserSchoolExpert",
    "export": "queryListForUserCenter",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfSysConsult/queryListForUserCenter"
   }
  },

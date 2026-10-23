@@ -67,14 +67,14 @@
  "api": {
   "Fe": {
    "original": "index.api.17516156075456.js#a7",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "queryById4",
    "status": "restored",
    "url": "/xf-job/job/xfJobSubscribeRecord/queryById"
   },
   "Me": {
    "original": "index.api.17516156075456.js#a8",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "add5",
    "status": "restored",
    "url": "/xf-job/job/xfJobSubscribeRecord/add"

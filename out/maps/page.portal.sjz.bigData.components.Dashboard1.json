@@ -46,7 +46,7 @@
    "original": "index.api.178332063620034.js#g",
    "path": "@/api/jobBigDataViewSettings",
    "export": "queryAllInfoById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobBigDataViewSettings/queryAllInfoById"
   }
  },

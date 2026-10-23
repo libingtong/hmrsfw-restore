@@ -122,16 +122,20 @@ node --test tools/test/validate-config.test.mjs        # 设置 AJV_DIR=<装了 
 
 项目专属规则文档的路径，相对 data 仓库根目录。通用版 `pipeline.md` 不写任何项目的特例，项目特例（哈密的 `appCode` 多租户、路由范围、站点版本差异、D 系列决定的项目含义等）写在这里，智能体开工时和通用规则一起读。哈密是 `docs/project-notes.md`，由 G2 从现在的 `pipeline.md` 拆出，拆分表见 `split-plan.md`。
 
+### `coverage`（可选）
+
+原版覆盖率阈值（HM-21）。`minFunction`、`minBlock` 是百分数（0～100），`requireStable`（默认 true）表示基线两次回放的覆盖率不一致时也算不达标。不写表示不检查，`record-page.mjs` 只输出覆盖率数字。低于阈值时：能靠交互补的由录制员补交互脚本重录（`coverage.mjs report <工单id>` 列出弹窗、Tab、分支等未覆盖项），因为没有数据而不渲染的分支进造数需求清单（`coverage.mjs datareq`，D7）。
+
 ### `machines[]`（可选）
 
 | 字段 | 必填 | 含义 |
 | --- | --- | --- |
-| `name` | 是 | 分片名，如 `mac`、`office` |
+| `name` | 是 | 分片名，如 `mac` |
 | `host` | 否 | Multica 运行时所在主机名，只用于核对 |
 | `holdsSecrets` | 否 | 是否持有 HAR、登录态、密钥。为 `false` 的分片不得承担门槛、录制、修正、裁定（`validate-config.mjs` 检查 `roles`） |
 | `roles` | 否 | 该分片承担的名册角色（`dispatcher`、`gate`、`recorder`、`fixer`、`arbiter`、`restorer`、`restorer-core`、`reviewer`） |
 
-不写表示单机部署。
+不写表示单机部署。哈密项目自 2026-10-15 起只在 Mac mini 上运行（Office-Server 已停用，HM-212），`machines` 只有一项 `mac`，承担全部角色；多分片的写法仍然支持。
 
 ## 版本与兼容
 

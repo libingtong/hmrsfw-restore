@@ -19,7 +19,8 @@
  "target": "apps/uc/src/shared/email.vue",
  "exports": {
   "e": {
-   "export": "default"
+   "export": "default",
+   "original": "email.1751615607545.js#e"
   }
  },
  "registryKey": "email.1751615607545.js",

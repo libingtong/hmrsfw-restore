@@ -11,10 +11,15 @@
   {
    "name": "manaLoginModal",
    "scopeId": "data-v-31156f5e"
+  },
+  {
+   "name": "big-screen-view-xygsBigdata",
+   "scopeId": "data-v-866f9cbf"
   }
  ],
  "scopeIds": [
-  "data-v-31156f5e"
+  "data-v-31156f5e",
+  "data-v-866f9cbf"
  ],
  "cssCandidates": [
   "legacy-dist/portal/assets/bars.1783320636200.css",
@@ -55,6 +60,7 @@
   "modules": [],
   "views": [],
   "orders": [
+   "entry.portal.E6",
    "shared.portal.bars",
    "shared.portal.init",
    "shared.portal.lines",

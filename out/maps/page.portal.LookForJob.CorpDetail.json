@@ -96,7 +96,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "q": {
    "original": "o",
@@ -166,77 +167,77 @@
  "api": {
   "Jt": {
    "original": "index.api.17833206362002.js#a",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "updateApplyInfoBrowseCount",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/updateApplyInfoBrowseCount"
   },
   "Dt": {
    "original": "index.api.17833206362002.js#g",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "queryCompanyCount",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/queryCompanyCount"
   },
   "Vt": {
    "original": "index.api.17833206362002.js#j",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-alliance/alliance/licenseFree/xfAllianceCompany/queryById"
   },
   "Ht": {
    "original": "index.api.17833206362002.js#f",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "freeCompanyDetailById",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/freeCompanyDetailById"
   },
   "Gt": {
    "original": "index.api.17833206362002.js#b",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "findJobFwlzphList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/findJobFwlzphList"
   },
   "Wt": {
    "original": "index.api.17833206362002.js#c",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "list",
    "status": "restored",
    "url": "/xf-alliance/alliance/licenseFree/xfAlliancePosition/mh/list"
   },
   "Mt": {
    "original": "index.api.17833206362002.js#d",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "findJobList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/findJobList"
   },
   "de": {
    "original": "index.api.17833206362002.js#e",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "add",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/add"
   },
   "ue": {
    "original": "index.api.17833206362002.js#h",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "cancel",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/cancel"
   },
   "Xt": {
    "original": "index.api.17833206362002.js#q",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "queryIzCanDeliver",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver"
   },
   "sa": {
    "original": "index.1783320636200117.js#g",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "getQrcodeImgByObjectId",
    "status": "restored",
    "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"
@@ -245,7 +246,7 @@
    "original": "index.api.17833206362006.js#g",
    "path": "@/api/job",
    "export": "getDistance",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/getDistance"
   }
  },

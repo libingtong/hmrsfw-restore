@@ -19,7 +19,7 @@
 | `v` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `ce` | index.1751615607545.js | entry | ant-design-vue `Upload` | `Ft(xs,{Dragger:Ts,LIST_IGNORE:Bl,install:function(e){return e.component(xs.name,xs),e.component(Ts.name,Ts),e}})` |
 | `La` | index.1751615607545.js | api | @/legacy `getDictValueByCodes` | `t=>Ee.request({url:"/xf-job/school/user/getDictValueByCodes",method:"post",params:t})` |
-| `Ua` | index.1751615607545.js | api | @/legacy/api `sumbitImportantCompanyInfo` | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/sumbitImportantCompanyInfo",method:"post",data:t})` |
+| `Ua` | index.1751615607545.js | api | @/legacy/api `sumbitImportantCompanyInfo`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/sumbitImportantCompanyInfo",method:"post",data:t})` |
 | `R` | index.1751615607545.js | entry | @/legacy `formatDateSlash` | `t=>{var e=t.getFullYear(),n=t.getMonth()+1,r=t.getDate();return t.getHours(),t.getMinutes(),t.getSeconds(),e+"/"+n+"/"+r}` |
 | `V` | index.1751615607545.js | entry | @ant-design/icons-vue `PlusOutlined` | `Pg` |
 | `O` | index.1751615607545.js | entry | ant-design-vue `Modal` | `re({compatConfig:{MODE:3},name:"AModal",inheritAttrs:!1,props:xt(Cdt(),{width:520,transitionName:"zoom",maskTransitionName:"fade",confirmLoading:!1,visible:!1,okType:"primary"}),setup:function(e,n){va` |

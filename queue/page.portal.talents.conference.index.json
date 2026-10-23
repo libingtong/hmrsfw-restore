@@ -58,6 +58,7 @@
    "page.portal.talents.index.advertTop"
   ],
   "orders": [
+   "entry.portal.E6",
    "page.portal.talents.conference.abouts",
    "page.portal.talents.conference.cTitles",
    "page.portal.talents.conference.medias",

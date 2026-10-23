@@ -33,7 +33,8 @@
    "original": "aC",
    "path": "@/legacy/api",
    "export": "queryPageInterviewListByCompanyId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "G": {
    "original": "M",
@@ -45,7 +46,8 @@
    "original": "a8",
    "path": "@/legacy/api",
    "export": "addTalent",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "K": {
    "original": "m",

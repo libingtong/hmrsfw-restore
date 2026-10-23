@@ -13,7 +13,7 @@ import { appDir } from "./app-dir.mjs";
 const key = (d) => `v-${d.name}${d.arg ? ":" + d.arg : ""}${d.modifiers ? "." + d.modifiers : ""}`;
 export function checkDirectives(order, APP, { files = orderFiles(order, APP), maps = loadJson(order.maps) } = {}) {
   const chunk = order.sourceChunk.split("/").pop();
-  const origFacts = renderFacts(chunkSource(order.site, chunk), originalNameOf(maps.vue), { range: order.type === "segment" ? order.range : null });
+  const origFacts = renderFacts(chunkSource(order.site, chunk), originalNameOf(maps.vue), { range: order.type === "segment" ? order.factRanges ?? order.range : null });
   const orig = origFacts.directives.map(key);
   const sfc = compilerSfc(APP); const restored = []; const where = new Map(); let branches = 0;
   for (const f of files) { const c = compileSfc(sfc, f); if (!c.code) continue; const facts = renderFacts(c.code, compiledNameOf); branches += facts.branches; for (const d of facts.directives) { restored.push(key(d)); where.set(key(d), path.relative(APP, f)); } }

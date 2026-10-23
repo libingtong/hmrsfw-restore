@@ -13,5 +13,5 @@
 | `We` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
 | `De` | phone.1751615607545.js | shared | @/shared/phone.vue `default` | `u(d,[["render",m]])` |
 | `T` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |
-| `Fe` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `queryById4` | `e=>t.request({url:"/xf-job/job/xfJobSubscribeRecord/queryById",method:"get",params:e})` |
-| `Me` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `add5` | `e=>t.request({url:"/xf-job/job/xfJobSubscribeRecord/add",method:"post",data:e})` |
+| `Fe` | index.api.17516156075456.js | api | @/api/api-56 `queryById4` | `e=>t.request({url:"/xf-job/job/xfJobSubscribeRecord/queryById",method:"get",params:e})` |
+| `Me` | index.api.17516156075456.js | api | @/api/api-56 `add5` | `e=>t.request({url:"/xf-job/job/xfJobSubscribeRecord/add",method:"post",data:e})` |

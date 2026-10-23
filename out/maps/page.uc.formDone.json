@@ -112,105 +112,105 @@
  "api": {
   "Ca": {
    "original": "index.api.17516156075455.js#h",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "checkIdCard3",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/checkIdCard"
   },
   "xa": {
    "original": "index.api.17516156075455.js#i",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "queryById3",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/queryById"
   },
   "wa": {
    "original": "index.api.17516156075455.js#j",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "saveOrUpdate3",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentCraftsmanSubsidys/saveOrUpdate"
   },
   "ua": {
    "original": "index.api.17516156075455.js#k",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "checkIdCard",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/checkIdCard"
   },
   "ra": {
    "original": "index.api.17516156075455.js#l",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "queryById4",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/queryById"
   },
   "ka": {
    "original": "index.api.17516156075455.js#m",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "saveOrupdate",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentCgraduateRltSubsidy/saveOrupdate"
   },
   "Ia": {
    "original": "index.api.17516156075455.js#n",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "checkIdCard2",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentPfiPromotion/checkIdCard"
   },
   "La": {
    "original": "index.api.17516156075455.js#o",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "queryById2",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentPfiPromotion/queryById"
   },
   "Pa": {
    "original": "index.api.17516156075455.js#p",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "saveOrUpdate2",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentPfiPromotion/saveOrUpdate"
   },
   "Na": {
    "original": "index.api.17516156075455.js#q",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentStayUniversity/queryById"
   },
   "Ta": {
    "original": "index.api.17516156075455.js#d",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "getCollegeInfo",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentStayUniversity/getCollegeInfo"
   },
   "Ua": {
    "original": "index.api.17516156075455.js#r",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "saveOrUpdate",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentStayUniversity/saveOrUpdate"
   },
   "na": {
    "original": "index.api.17516156075455.js#t",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "checkIdCard4",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentPostdocPerk/checkIdCard"
   },
   "ia": {
    "original": "index.api.17516156075455.js#u",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "queryById5",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentPostdocPerk/queryById"
   },
   "oa": {
    "original": "index.api.17516156075455.js#v",
-   "path": "@/api/talentStayUniversity",
+   "path": "@/api/api-17516156075455",
    "export": "saveOrUpdate4",
    "status": "restored",
    "url": "/xf-talent/talent/xfTalentPostdocPerk/saveOrUpdate"

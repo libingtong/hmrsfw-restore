@@ -38,7 +38,8 @@
    "original": "b5",
    "path": "@/legacy/api",
    "export": "cancel",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "F": {
    "original": "_",
@@ -48,14 +49,14 @@
  "api": {
   "M": {
    "original": "index.api.17516156075456.js#Y",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "listForUserContent2",
    "status": "restored",
    "url": "/xf-alliance/alliance/curriculumVitaeDeliver/listForUserContent"
   },
   "A": {
    "original": "index.api.17516156075456.js#V",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "add6",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/add"

@@ -1,7 +1,7 @@
 {
  "id": "page.portal.fair.sceneFair.detail",
  "type": "page",
- "status": "segmented",
+ "status": "regression",
  "site": "portal",
  "app": "portal",
  "vueVersion": "3.2.47",
@@ -83,13 +83,14 @@
    "page.portal.fair.webFair.NumVideo"
   ],
   "orders": [
+   "entry.portal.c03",
    "page.portal.fair.signModal",
    "page.portal.fair.webFair.NumVideo"
   ]
  },
  "stylesProvidedByScript": true,
- "segments": [
-  "seg.portal.fair.sceneFair.detail.1",
-  "seg.portal.fair.sceneFair.detail.2"
- ]
+ "accepted": {
+  "route": "/sceneFairDetail/:zphId",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
 }

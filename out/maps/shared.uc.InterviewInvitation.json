@@ -33,7 +33,8 @@
    "original": "as",
    "path": "@/legacy/api",
    "export": "interviewTemplate",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "N": {
    "original": "k",
@@ -45,7 +46,8 @@
    "original": "at",
    "path": "@/legacy/api",
    "export": "getInterviewPosition",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "u": {
    "original": "p",
@@ -58,13 +60,15 @@
    "original": "au",
    "path": "@/legacy/api",
    "export": "interviewInvitationByFair",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "P": {
    "original": "av",
    "path": "@/legacy/api",
    "export": "interviewInvitation",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "O": {
    "original": "M",

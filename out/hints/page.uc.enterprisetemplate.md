@@ -11,6 +11,6 @@
 | `H` | index.1751615607545.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `Q` | index.1751615607545.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `W` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `ee` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `vitaeTempListByType` | `e=>t.request({url:"/job/xfJobVitaeTemplate/vitaeTempListByType",method:"post",data:e,headers:{"Content-Type":"application/x-www-form-urlencoded"}})` |
-| `te` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `listNewForPoster` | `e=>t.request({url:"/xf-job/job/xfJobCompanyPosition/listNewForPoster",method:"post",data:e,headers:{"Content-Type":"application/x-www-form-urlencoded"}})` |
-| `ae` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `generatePoster4PC` | `e=>t.request({url:"/xf-job/job/xfJobCompany/generatePoster4PC",method:"post",responseType:"blob",data:e})` |
+| `ee` | index.api.17516156075456.js | api | @/api/api-56 `vitaeTempListByType` | `e=>t.request({url:"/job/xfJobVitaeTemplate/vitaeTempListByType",method:"post",data:e,headers:{"Content-Type":"application/x-www-form-urlencoded"}})` |
+| `te` | index.api.17516156075456.js | api | @/api/api-56 `listNewForPoster` | `e=>t.request({url:"/xf-job/job/xfJobCompanyPosition/listNewForPoster",method:"post",data:e,headers:{"Content-Type":"application/x-www-form-urlencoded"}})` |
+| `ae` | index.api.17516156075456.js | api | @/api/api-56 `generatePoster4PC` | `e=>t.request({url:"/xf-job/job/xfJobCompany/generatePoster4PC",method:"post",responseType:"blob",data:e})` |

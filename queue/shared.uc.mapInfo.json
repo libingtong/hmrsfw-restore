@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/mapInfo.vue",
  "exports": {
   "M": {
-   "export": "default"
+   "export": "default",
+   "original": "mapInfo.1751615607545.js#M"
   }
  },
  "registryKey": "mapInfo.1751615607545.js",

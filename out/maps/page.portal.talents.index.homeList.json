@@ -31,7 +31,8 @@
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "S": {
    "original": "av",
@@ -43,7 +44,8 @@
    "original": "aj",
    "path": "@/legacy/utils",
    "export": "openLink",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ze": {
    "original": "_",

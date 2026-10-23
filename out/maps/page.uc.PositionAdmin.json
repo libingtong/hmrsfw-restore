@@ -84,19 +84,22 @@
    "original": "aD",
    "path": "@/legacy/api",
    "export": "queryByCompanyId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Ke": {
    "original": "az",
    "path": "@/legacy/api",
    "export": "listNew",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Me": {
    "original": "aE",
    "path": "@/legacy/api",
    "export": "listForAdmin",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "De": {
    "original": "e",
@@ -114,7 +117,8 @@
    "original": "aF",
    "path": "@/legacy/api",
    "export": "izAbroadCompany",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "J": {
    "original": "m",
@@ -126,19 +130,22 @@
    "original": "aG",
    "path": "@/legacy/api",
    "export": "setUpUrgentBatch",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "He": {
    "original": "aH",
    "path": "@/legacy/api",
    "export": "refreshBatch",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "xe": {
    "original": "aA",
    "path": "@/legacy/api",
    "export": "enableAuseBatch",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   }
  },
  "api": {
@@ -146,19 +153,19 @@
    "original": "index.api.1751615607545.js#g",
    "path": "@/api/jobSupermarketMerchants",
    "export": "queryByUserId",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysUserAuthenticateIdentityItem/queryByUserId"
   },
   "Ze": {
    "original": "index.api.175161560754511.js#m",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-175161560754511",
    "export": "myJobFairList",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/myJobFairList"
   },
   "Qe": {
    "original": "index.api.175161560754511.js#a",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-175161560754511",
    "export": "myBoothList",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/myBoothList"

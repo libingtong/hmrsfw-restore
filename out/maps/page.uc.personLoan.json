@@ -25,7 +25,8 @@
    "original": "N",
    "path": "@/legacy/components/Notice.vue",
    "export": "default",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.c01"
   },
   "$": {
    "original": "_",
@@ -37,7 +38,7 @@
    "original": "index.api.175161560754515.js#g",
    "path": "@/api/jobLoanApplyPerson",
    "export": "listForUserCenter",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobLoanApplyPerson/listForUserCenter"
   }
  },

@@ -8,17 +8,17 @@
 | `qe` | index.1783320636200.js | entry | swiper `default` | `class Do{constructor(){let t,n;for(var r=arguments.length,a=new Array(r),o=0;o<r;o++)a[o]=arguments[o];if(a.length===1&&a[0].constructor&&Object.prototype.toString.call(a[0]).slice(8,-1)==="Object"?n=` |
 | `Ae` | index.1783320636200.js | entry | @/legacy `getDictItemsByCode` | `e=>IN("/jeecg-system/sys/dict/getDictItemsByCode",e,"get")` |
 | `ze` | index.1783320636200.js | api | @/legacy `getArticleList` | `e=>ut.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
-| `Be` | index.1783320636200.js | entry | @/legacy/components/Notice.vue `default` | `re({__name:"notice",props:{visible:{type:Boolean,default:!1},newsType:{type:String,default:""}},emits:["okClick","cancelClick"],setup(e,{emit:t}){const n=e,r=st(),a=je({info:"",title:""}),o=()=>{t("ok` |
-| `De` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `Be` | index.1783320636200.js | entry | @/legacy/components/Notice.vue `default`（reserved） | `re({__name:"notice",props:{visible:{type:Boolean,default:!1},newsType:{type:String,default:""}},emits:["okClick","cancelClick"],setup(e,{emit:t}){const n=e,r=st(),a=je({info:"",title:""}),o=()=>{t("ok` |
+| `De` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
 | `Fe` | index.1783320636200.js | entry | @/legacy `checkIdentity` | `function(e){let t=e.type,n=e.content,r=e.content2,a=e.textbtn,o=e.textbtn2,i=e.alert==!1?e.alert:!0;const l=Ze.getUser(),c=Ze.getCorp();return console.log("\u5224\u65AD\u5F53\u524D\u8D26\u53F7\u662F\u` |
-| `Ge` | index.1783320636200.js | api | @/legacy/api `checkIsCanAdd` | `e=>ut.request({url:"/xf-job/job/xfJobLoanApplyCompany/checkIsCanAdd",method:"post",data:e})` |
+| `Ge` | index.1783320636200.js | api | @/legacy/api `checkIsCanAdd`（reserved） | `e=>ut.request({url:"/xf-job/job/xfJobLoanApplyCompany/checkIsCanAdd",method:"post",data:e})` |
 | `E` | index.1783320636200.js | entry | @/legacy `openUserCenter` | `(e,t)=>{let n=rr.getters.userUrl;t=t\|\|"_blank",n&&n.charAt(n.length-1)==="/"&&(n=n.slice(0,-1)),window.open(n+"/autoLogin?toPath="+encodeURIComponent(e)+"&token="+Ze.getToken(),t)}` |
-| `Oe` | index.1783320636200.js | entry | @/legacy/utils `getUserInfo` | `()=>{let e=Pr({userInfo:n=>n.userInfo});return(Ze.getUser()?Ze.getUser():null)\|\|(e.value?e.value:null)}` |
-| `Ve` | index.1783320636200.js | api | @/legacy/api `jobLoanApplyPersonCheckIsCanAdd` | `e=>ut.request({url:"/xf-job/job/xfJobLoanApplyPerson/checkIsCanAdd",method:"post",data:e})` |
+| `Oe` | index.1783320636200.js | entry | @/legacy/utils `getUserInfo`（reserved） | `()=>{let e=Pr({userInfo:n=>n.userInfo});return(Ze.getUser()?Ze.getUser():null)\|\|(e.value?e.value:null)}` |
+| `Ve` | index.1783320636200.js | api | @/legacy/api `jobLoanApplyPersonCheckIsCanAdd`（reserved） | `e=>ut.request({url:"/xf-job/job/xfJobLoanApplyPerson/checkIsCanAdd",method:"post",data:e})` |
 | `Ye` | index.1783320636200.js | entry | @/legacy `IDENTITY_CORP` | `1` |
-| `He` | index.1783320636200.js | entry | @/legacy/utils `MSG_CORP_NOT_CERTIFIED` | `"\u5F53\u524D\u8D26\u6237\u672A\u8BA4\u8BC1\u5355\u4F4D\u4FE1\u606F\uFF0C\u8BF7\u5148\u8BA4\u8BC1\u5355\u4F4D\u4FE1\u606F"` |
+| `He` | index.1783320636200.js | entry | @/legacy/utils `MSG_CORP_NOT_CERTIFIED`（reserved） | `"\u5F53\u524D\u8D26\u6237\u672A\u8BA4\u8BC1\u5355\u4F4D\u4FE1\u606F\uFF0C\u8BF7\u5148\u8BA4\u8BC1\u5355\u4F4D\u4FE1\u606F"` |
 | `Qe` | index.1783320636200.js | entry | @/legacy `TEXT_GO_AUTH` | `"\u53BB\u8BA4\u8BC1"` |
-| `Ze` | index.1783320636200.js | entry | @/legacy/utils `MSG_CORP_PENDING_2` | `"\u5F53\u524D\u8D26\u6237\u7684\u8D44\u6599\u5C1A\u672A\u5B8C\u5584\u6216\u6B63\u5728\u5BA1\u6838\u4E2D\uFF0C\u8BF7\u5728\u5BA1\u6838\u901A\u8FC7\u540E\u518D\u8FDB\u884C\u64CD\u4F5C"` |
+| `Ze` | index.1783320636200.js | entry | @/legacy/utils `MSG_CORP_PENDING_2`（reserved） | `"\u5F53\u524D\u8D26\u6237\u7684\u8D44\u6599\u5C1A\u672A\u5B8C\u5584\u6216\u6B63\u5728\u5BA1\u6838\u4E2D\uFF0C\u8BF7\u5728\u5BA1\u6838\u901A\u8FC7\u540E\u518D\u8FDB\u884C\u64CD\u4F5C"` |
 | `j` | index.1783320636200.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `M` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `$e` | index.1783320636200.js | entry | swiper/vue `SwiperSlide` | `{name:"SwiperSlide",props:{tag:{type:String,default:"div"},swiperRef:{type:Object,required:!1},zoom:{type:Boolean,default:void 0},virtualIndex:{type:[String,Number],default:void 0}},setup(e,t){let{slo` |
@@ -32,6 +32,6 @@
 | `ot` | effect-coverflow.1783320636200.js | shared | swiper `EffectCoverflow` | `function(o){let{swiper:s,extendParams:t,on:l}=o;t({coverflowEffect:{rotate:50,stretch:0,depth:100,scale:1,modifier:1,slideShadows:!0,transformEl:null}}),p({effect:"coverflow",swiper:s,on:l,setTranslat` |
 | `rt` | homeNews.17833206362003.js | shared | @/shared/homeNews3.vue `default`（reserved） | `be(te,[["__scopeId","data-v-f48bcb6a"]])` |
 | `O` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
-| `vt` | index.api.178332063620031.js | api | @/api/jobPxCourse2 `listForWebsite` | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:e})` |
-| `_t` | index.api.178332063620032.js | api | @/api/jobEventReleaseNew `listCyfwMh` | `t=>m.request({url:"/xf-job/communal/licenseFree/xfJobEventReleaseNew/listCyfwMh",method:"post",data:t})` |
-| `ht` | index.api.17833206362005.js | api | @/api/jobUserTutorExpand2 `listForWebsite` | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite",method:"get",params:e})` |
+| `vt` | index.api.178332063620031.js | api | @/api/jobPxCourse2 `listForWebsite`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:e})` |
+| `_t` | index.api.178332063620032.js | api | @/api/jobEventReleaseNew `listCyfwMh`（reserved） | `t=>m.request({url:"/xf-job/communal/licenseFree/xfJobEventReleaseNew/listCyfwMh",method:"post",data:t})` |
+| `ht` | index.api.17833206362005.js | api | @/api/jobUserTutorExpand2 `listForWebsite`（reserved） | `e=>o.request({url:"/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite",method:"get",params:e})` |

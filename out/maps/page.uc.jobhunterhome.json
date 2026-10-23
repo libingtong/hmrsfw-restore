@@ -90,13 +90,15 @@
    "original": "Y",
    "path": "@/legacy/utils",
    "export": "closeTag",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "pe": {
    "original": "s",
    "path": "@/legacy/api",
    "export": "queryAnnouncementList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "H": {
    "original": "m",
@@ -108,28 +110,28 @@
  "api": {
   "me": {
    "original": "index.api.17516156075456.js#c",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "statics",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/statics"
   },
   "fe": {
    "original": "index.api.17516156075456.js#d",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "listNew",
    "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/listNew"
   },
   "he": {
    "original": "index.api.17516156075456.js#e",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "listWithSort",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort"
   },
   "J": {
    "original": "index.api.17516156075456.js#p",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "acceptOrRefuse",
    "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse"
@@ -138,14 +140,14 @@
    "original": "index.api.1751615607545.js#e",
    "path": "@/api/jobSupermarketMerchants",
    "export": "getRecommendTalentList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCompany/getRecommendTalentList"
   },
   "xe": {
    "original": "index.api.1751615607545.js#f",
    "path": "@/api/jobSupermarketMerchants",
    "export": "recommendJobList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"
   }
  },

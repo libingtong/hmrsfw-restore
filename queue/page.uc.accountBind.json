@@ -1,7 +1,7 @@
 {
  "id": "page.uc.accountBind",
  "type": "page",
- "status": "todo",
+ "status": "regression",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -47,5 +47,9 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/accountBind",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ },
  "notes": "裁定（uc-role-decisions.json）。局限：字典 thirdParty 的 zfb、wx 不为 1 时两个绑定块都不渲染；测试账号没有绑定第三方账号时只显示「未绑定」，没有「解绑」按钮和确认解绑面板；「确认解绑」调 xfSysUserThirdAssociation/delete，是写操作，录制不点"
 }

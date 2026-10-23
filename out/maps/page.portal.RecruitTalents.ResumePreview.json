@@ -68,7 +68,8 @@
    "original": "Q",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_CERTIFIED",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ze": {
    "original": "r",
@@ -116,21 +117,21 @@
    "original": "index.api.17833206362007.js#v",
    "path": "@/api/jobInterviewInvitation",
    "export": "viewVoByIdFromCompany",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromCompany"
   },
   "Fe": {
    "original": "index.api.17833206362007.js#a",
    "path": "@/api/jobInterviewInvitation",
    "export": "downPdf",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCompanyCurriculumDownload/downPdf"
   },
   "Oe": {
    "original": "index.api.17833206362007.js#i",
    "path": "@/api/jobInterviewInvitation",
    "export": "isPublishingPosition",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCompany/isPublishingPosition"
   }
  },

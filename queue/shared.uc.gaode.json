@@ -32,13 +32,16 @@
  "target": "apps/uc/src/shared/gaode.ts",
  "exports": {
   "M": {
-   "export": "BaiduMapModal"
+   "export": "BaiduMapModal",
+   "original": "gaode.1751615607545.js#M"
   },
   "g": {
-   "export": "GaodeMapModal"
+   "export": "GaodeMapModal",
+   "original": "gaode.1751615607545.js#g"
   },
   "i": {
-   "export": "MultiDictNationSelect"
+   "export": "MultiDictNationSelect",
+   "original": "gaode.1751615607545.js#i"
   }
  },
  "registryKey": "gaode.1751615607545.js",

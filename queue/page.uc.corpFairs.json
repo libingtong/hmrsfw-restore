@@ -1,7 +1,7 @@
 {
  "id": "page.uc.corpFairs",
  "type": "page",
- "status": "segmented",
+ "status": "regression",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -101,9 +101,8 @@
   ]
  },
  "stylesProvidedByScript": true,
- "segments": [
-  "seg.uc.corpFairs.1",
-  "seg.uc.corpFairs.2",
-  "seg.uc.corpFairs.3"
- ]
+ "accepted": {
+  "route": "/corpFairs/:key?",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
 }

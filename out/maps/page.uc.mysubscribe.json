@@ -37,28 +37,28 @@
  "api": {
   "R": {
    "original": "index.api.17516156075456.js#b",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "getSettingValueByCode",
    "status": "restored",
    "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"
   },
   "B": {
    "original": "index.api.17516156075456.js#a4",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "isCanAdd",
    "status": "restored",
    "url": "/xf-job/job/xfJobSubscribeRecord/isCanAdd"
   },
   "F": {
    "original": "index.api.17516156075456.js#a5",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "list5",
    "status": "restored",
    "url": "/xf-job/job/xfJobSubscribeRecord/list"
   },
   "D": {
    "original": "index.api.17516156075456.js#a6",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "deleteItem6",
    "status": "restored",
    "url": "/xf-job/job/xfJobSubscribeRecord/delete"

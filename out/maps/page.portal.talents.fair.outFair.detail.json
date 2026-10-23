@@ -74,7 +74,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Vt": {
    "original": "o",
@@ -139,7 +140,7 @@
  "api": {
   "yo": {
    "original": "index.1783320636200117.js#g",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "getQrcodeImgByObjectId",
    "status": "restored",
    "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"

@@ -39,7 +39,9 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.portal.c03"
+  ]
  },
  "stylesProvidedByScript": true,
  "recordVia": "page.portal.oddJob.recruitworkers.index"

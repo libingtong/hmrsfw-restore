@@ -98,21 +98,21 @@
    "original": "index.api.17516156075457.js#a",
    "path": "@/api/oddFindJobInfo",
    "export": "getDetailById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-oddjob/oddJob/xfOddNeedJobInfo/getDetailById"
   },
   "Ue": {
    "original": "index.api.17516156075457.js#e",
    "path": "@/api/oddFindJobInfo",
    "export": "edit",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-oddjob/oddJob/xfOddNeedJobInfo/edit"
   },
   "Re": {
    "original": "index.api.17516156075457.js#s",
    "path": "@/api/oddFindJobInfo",
    "export": "add",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-oddjob/oddJob/xfOddNeedJobInfo/add"
   }
  },

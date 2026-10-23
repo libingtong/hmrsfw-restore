@@ -5,9 +5,9 @@
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
 | `Z` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
-| `He` | index.1751615607545.js | api | @/legacy/api `queryById` | `t=>Ee.request({url:"/xf-job/job/xfJobFair/queryById",method:"get",params:t})` |
+| `He` | index.1751615607545.js | api | @/legacy/api `queryById`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobFair/queryById",method:"get",params:t})` |
 | `$` | index.1751615607545.js | api | @/legacy `getDictItemsByCode` | `t=>Ee.request({url:"/jeecg-system/sys/dict/getDictItemsByCode",method:"get",params:t})` |
-| `Ze` | index.1751615607545.js | api | @/legacy/api `list` | `t=>Ee.request({url:"/xf-job/job/xfJobFairPositionRelation/list",method:"post",data:t})` |
+| `Ze` | index.1751615607545.js | api | @/legacy/api `list`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobFairPositionRelation/list",method:"post",data:t})` |
 | `$e` | index.1751615607545.js | api | @/legacy `detailById` | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyPosition/detailById",method:"get",params:t})` |
 | `J` | index.1751615607545.js | entry | @/legacy `joinAreaNames` | `(t,e)=>{let n="";return e=="workProviceName"?(t.workProviceName&&t.workProviceId&&(n=t.workProviceName),t.workCityName&&t.workCityId&&(n=n+"/"+t.workCityName),t.workAreaName&&t.workAreaId&&(n=n+"/"+t.` |
 | `Je` | index.1751615607545.js | entry | @/legacy `getExtractPositionConfig` | `t=>new Promise((e,n)=>Wn(void 0,null,function*(){let r=yield rht(null),a={name:"提取网络职位",alert:!1},i=r[0],o=r[1];i.success&&i.result&&(a.name=i.result),o.success&&(a.alert=!0),e(a)}))` |
@@ -17,9 +17,9 @@
 | `Ke` | index.1751615607545.js | entry | @/legacy `SettingCodes` | `(t=>(t.WEBPORTAL_DOMAIN="webportal_domain",t.USER_CENTE_RDEFAULT_NAME="userCenterDefaultName",t.IS_SHOW_CHANGEPWD="is_show_changepwd",t.JOB_FAIR_PASSED_IZ_EDIT_POSITION="job_fair_passed_iz_edit_positi` |
 | `D` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `ea` | index.1751615607545.js | entry | @/legacy `checkSensitive` | `e=>Wn(void 0,[e],function*({value:t}){const n=yield ipt({words:t,findModule:100});if(n.success)if(n.result.izSensitiveWords==!0){let r='您输入的内容涉及敏感信息：${n.result.sensitiveWords}，请修改后再操作。';return aht(r),` |
-| `aa` | index.1751615607545.js | api | @/legacy/api `addPosition` | `t=>Ee.request({url:"/xf-job/job/xfJobFairPositionRelation/addPosition",method:"post",data:t})` |
+| `aa` | index.1751615607545.js | api | @/legacy/api `addPosition`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobFairPositionRelation/addPosition",method:"post",data:t})` |
 | `G` | index.1751615607545.js | entry | ant-design-vue `Modal` | `re({compatConfig:{MODE:3},name:"AModal",inheritAttrs:!1,props:xt(Cdt(),{width:520,transitionName:"zoom",maskTransitionName:"fade",confirmLoading:!1,visible:!1,okType:"primary"}),setup:function(e,n){va` |
-| `ta` | index.1751615607545.js | api | @/legacy/api `editPosition` | `t=>Ee.request({url:"/xf-job/job/xfJobFairPositionRelation/editPosition",method:"post",data:t})` |
+| `ta` | index.1751615607545.js | api | @/legacy/api `editPosition`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobFairPositionRelation/editPosition",method:"post",data:t})` |
 | `ra` | index.1751615607545.js | entry | @ant-design/icons-vue `InfoCircleOutlined` | `sm` |
 | `la` | index.1751615607545.js | entry | @ant-design/icons-vue `QuestionCircleOutlined` | `e9` |
 | `sa` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |

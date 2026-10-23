@@ -48,7 +48,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "q": {
    "original": "o",
@@ -102,26 +103,26 @@
    "original": "index.api.178332063620021.js#a",
    "path": "@/api/jobPxCourse",
    "export": "queryByIdNew",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/queryByIdNew"
   },
   "We": {
    "original": "index.api.178332063620021.js#g",
    "path": "@/api/jobPxCourse",
    "export": "listForWebsite",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite"
   },
   "$e": {
    "original": "index.api.178332063620021.js#b",
    "path": "@/api/jobPxCourse",
    "export": "getArticleList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/getArticleList"
   },
   "et": {
    "original": "index.api.17833206362008.js#b",
-   "path": "@/api/sysArticle",
+   "path": "@/api/api-08",
    "export": "getChildArticleTypeList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList"

@@ -6,4 +6,4 @@
 |---|---|---|---|---|
 | `Q` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
 | `ee` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |
-| `te` | index.api.175161560754519.js | api | @/api/oddShareSurplusJobInfo `list` | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/list",method:"get",params:o})` |
+| `te` | index.api.175161560754519.js | api | @/api/oddShareSurplusJobInfo `list`（reserved） | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareSurplusJobInfo/list",method:"get",params:o})` |

@@ -14,7 +14,8 @@
  "target": "apps/portal/src/shared/qrcode.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js#_"
   }
  },
  "registryKey": "qrcode.vue_vue_type_script_setup_true_name_demoView_lang.1783320636200.js",

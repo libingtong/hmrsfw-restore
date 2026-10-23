@@ -6,7 +6,7 @@
 |---|---|---|---|---|
 | `D` | dictCode.1783320636200.js | shared | @/shared/dictCode.vue `default` | `S(i,[["render",p]])` |
 | `de` | industryCode.1783320636200.js | shared | @/shared/industryCode.vue `default` | `S(i,[["render",d]])` |
-| `pe` | index.api.178332063620014.js | api | @/api/article `freeCompanyList` | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyList",method:"post",params:e})` |
+| `pe` | index.api.178332063620014.js | api | @/api/article `freeCompanyList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/freeCompanyList",method:"post",params:e})` |
 | `me` | index.1783320636200.js | api | @/legacy `getSettingValueByCode` | `e=>ut.request({url:"/xf-job/job/licenseFree/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:e})` |
 | `ye` | index.1783320636200.js | api | @/legacy `getDictListByType` | `e=>ut.request({url:"/xf-job/communal/licenseFree/getDictListByType",method:"post",params:e})` |
 | `_e` | index.1783320636200.js | entry | @/legacy `listToTree` | `function(e){const t=[],n={};return e.forEach(r=>{r.children=[],n[r.id]=r}),e.forEach(r=>{const a=n[r.parentId];a?a.children.push(r):t.push(r)}),t}` |

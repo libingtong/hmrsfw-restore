@@ -1,7 +1,7 @@
 {
  "id": "page.uc.zgAccount",
  "type": "page",
- "status": "todo",
+ "status": "regression",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -47,5 +47,9 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/zgAccount",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ },
  "notes": "裁定（uc-role-decisions.json）。局限：页面内容全在 iframe 里（地址来自字典 user_center_zzgj_path，可能是外部站点），页面本身没有表单或查询交互；轮询接口返回 success=false 或 WebSocket 返回 msg==1 时原版会清空 localStorage 并跳回门户（相当于退出登录），录制时登录态可能被清掉"
 }

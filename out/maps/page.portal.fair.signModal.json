@@ -66,21 +66,21 @@
  "api": {
   "fe": {
    "original": "index.api.178332063620017.js#g",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "checkIzShowApplySameNetworkFair",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair"
   },
   "be": {
    "original": "index.api.178332063620017.js#a",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "queryFairRegions",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/queryFairRegions"
   },
   "ve": {
    "original": "index.api.178332063620017.js#s",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "updateCompIntroduc",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/updateCompIntroduc"

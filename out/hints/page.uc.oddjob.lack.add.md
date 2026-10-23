@@ -4,9 +4,9 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `Ie` | index.api.175161560754520.js | api | @/api/oddShareLackJobInfo `queryById` | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareLackJobInfo/queryById",method:"get",params:o})` |
-| `Ce` | index.api.175161560754520.js | api | @/api/oddShareLackJobInfo `edit` | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareLackJobInfo/edit",method:"post",data:o})` |
-| `we` | index.api.175161560754520.js | api | @/api/oddShareLackJobInfo `add` | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareLackJobInfo/add",method:"post",data:o})` |
+| `Ie` | index.api.175161560754520.js | api | @/api/oddShareLackJobInfo `queryById`（reserved） | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareLackJobInfo/queryById",method:"get",params:o})` |
+| `Ce` | index.api.175161560754520.js | api | @/api/oddShareLackJobInfo `edit`（reserved） | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareLackJobInfo/edit",method:"post",data:o})` |
+| `we` | index.api.175161560754520.js | api | @/api/oddShareLackJobInfo `add`（reserved） | `o=>d.request({url:"/xf-oddjob/oddjob/xfOddShareLackJobInfo/add",method:"post",data:o})` |
 | `Ae` | index.1751615607545.js | entry | @/legacy `useTagsStore` | `d0("tags",{state:()=>({list:[]}),getters:{show:t=>t.list.length>0,nameList:t=>t.list.map(e=>e.name)},actions:{delTagsItem(t){this.list.splice(t,1)},setTagsItem(t){this.list.push(t)},clearTags(){this.l` |
 | `M` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `F` | index.1751615607545.js | api | @/legacy `getSettingValueByCode` | `t=>Ee.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:t})` |

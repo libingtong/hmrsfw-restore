@@ -55,14 +55,14 @@
  "api": {
   "R": {
    "original": "index.api.17516156075456.js#P",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "vitaeTempListForUserContent",
    "status": "restored",
    "url": "/xf-job/job/xfJobVitaeTemplate/vitaeTempListForUserContent"
   },
   "U": {
    "original": "index.api.17516156075456.js#Q",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "saveVitaeTemplateId",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/saveVitaeTemplateId"

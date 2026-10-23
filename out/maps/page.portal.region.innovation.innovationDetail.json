@@ -35,13 +35,15 @@
    "original": "V",
    "path": "@/legacy",
    "export": "VideoPlayer",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c05"
   },
   "V": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "W": {
    "original": "B",
@@ -65,7 +67,7 @@
    "original": "index.api.178332063620032.js#a",
    "path": "@/api/jobEventReleaseNew",
    "export": "queryByIdMh",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/licenseFree/xfJobEventReleaseNew/queryByIdMh"
   }
  },

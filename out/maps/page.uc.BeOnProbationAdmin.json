@@ -42,25 +42,29 @@
    "original": "aT",
    "path": "@/legacy/api",
    "export": "adminDetailId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Me": {
    "original": "aP",
    "path": "@/legacy/api",
    "export": "getCompanyAttachmentMax",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Ee": {
    "original": "aU",
    "path": "@/legacy/api",
    "export": "getInternShipCompanyAttachmentMax",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "H": {
    "original": "aR",
    "path": "@/legacy/api",
    "export": "addBatchCompanyAttachment",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "b": {
    "original": "m",
@@ -78,7 +82,8 @@
    "original": "aQ",
    "path": "@/legacy/api",
    "export": "getCompanyAttachmentList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "ee": {
    "original": "v",
@@ -102,13 +107,15 @@
    "original": "aV",
    "path": "@/legacy/api",
    "export": "setCover",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "$e": {
    "original": "aW",
    "path": "@/legacy/api",
    "export": "editAdmin",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "ae": {
    "original": "M",
@@ -120,7 +127,8 @@
    "original": "aS",
    "path": "@/legacy/api",
    "export": "deleteAttachment",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "qe": {
    "original": "_",

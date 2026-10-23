@@ -88,7 +88,8 @@
    "original": "bm",
    "path": "@/legacy/utils",
    "export": "PAGE_LOAD_TIMESTAMP",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "q": {
    "original": "S",
@@ -100,13 +101,15 @@
    "original": "af",
    "path": "@/legacy/api",
    "export": "logout",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Fa": {
    "original": "bo",
    "path": "@/legacy/api",
    "export": "randomImage",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Va": {
    "original": "h",
@@ -118,7 +121,8 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "_e": {
    "original": "J",
@@ -130,13 +134,15 @@
    "original": "Y",
    "path": "@/legacy/components/Phone.vue",
    "export": "default",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Ya": {
    "original": "aE",
    "path": "@/legacy",
    "export": "SlideCaptcha",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c02"
   },
   "Ha": {
    "original": "u",
@@ -154,57 +160,63 @@
    "original": "bD",
    "path": "@/legacy/api",
    "export": "login",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "$a": {
    "original": "bE",
    "path": "@/legacy/api",
    "export": "phoneLogin",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "el": {
    "original": "bF",
    "path": "@/legacy/utils",
    "export": "handleLoginSuccess",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "al": {
    "original": "a5",
    "path": "@/legacy/api",
    "export": "listOneForWebSite",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "ll": {
    "original": "bG",
    "path": "@/legacy/utils",
    "export": "handleXfSysUserLoaded",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "tl": {
    "original": "a3",
    "path": "@/legacy/api",
    "export": "getCompanyInfo",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   }
  },
  "api": {
   "ul": {
    "original": "index.1783320636200117.js#h",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "getCompleteStatus",
    "status": "restored",
    "url": "/xf-job/communal/xfSysGuideRecord/getCompleteStatus"
   },
   "dl": {
    "original": "index.1783320636200117.js#x",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "list",
    "status": "restored",
    "url": "/xf-job/communal/xfSysGuide/list"
   },
   "pl": {
    "original": "index.1783320636200117.js#b",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "setCompleteStatus",
    "status": "restored",
    "url": "/xf-job/communal/xfSysGuideRecord/setCompleteStatus"

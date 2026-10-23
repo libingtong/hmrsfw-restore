@@ -4,6 +4,6 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `q` | index.api.17516156075457.js | api | @/api/oddFindJobInfo `browseRecords` | `d=>e.request({url:"/oddjob/xfOddUserBrowse/browseRecords",method:"post",params:d})` |
+| `q` | index.api.17516156075457.js | api | @/api/oddFindJobInfo `browseRecords`（reserved） | `d=>e.request({url:"/oddjob/xfOddUserBrowse/browseRecords",method:"post",params:d})` |
 | `D` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `L` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |

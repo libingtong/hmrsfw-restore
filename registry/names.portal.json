@@ -1,5 +1,5 @@
 {
- "_doc": "入口导出的可读名（人工核定）。来源：shim-map = POC 对照表（20 页确认后的版本）；curated = 按入口定义核定。接口函数、组件、图标不在此表，由 tools/registry.mjs 按 URL、组件名、图标定义推导。改名会改变所有页面工单的导入，只能在入口单还原之前改。",
+ "_doc": "入口导出的可读名（人工核定）。来源：shim-map = POC 对照表（20 页确认后的版本）；curated = 按入口定义核定。接口函数、组件、图标不在此表，由 tools/registry.mjs 按 URL、组件名、图标定义推导。改名会改变所有页面工单的导入，只能在入口单还原之前改。 chunks：入口以外的 chunk 的导出业务名（HM-19）。键是原 chunk 文件名，下一层的键是原导出名（压缩名），值是 {export, path?}。registry.mjs 把它写进 registry 的 shared / modules，并在每条记录上留 original（原符号）。",
  "entry": {
   "_": {
    "ignore": "_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`",
@@ -176,11 +176,11 @@
    "note": "params)`（`/xf-job/job/licenseFree/getDictListByType`；与 `L` 同名但不是同一接口"
   },
   "bc": {
-   "export": "DownOutlined",
+   "export": "CaretDownOutlined",
    "path": "@ant-design/icons-vue",
    "npm": true,
-   "source": "shim-map",
-   "note": "a-select 的后缀图标"
+   "source": "curated",
+   "note": "a-select 的后缀图标。入口定义 Fv.displayName=\"CaretDownOutlined\"…Au=Fv，导出 Au as bc；shim-map 原写 DownOutlined 有误（HM-815）"
   },
   "bC": {
    "export": "toInteger",
@@ -583,5 +583,156 @@
    "note": "axios 实例，`request({url,method,params|data})`"
   }
  },
- "chunks": {}
+ "chunks": {
+  "auth.1783320636200.js": {
+   "_": {
+    "export": "nextPageIconImg"
+   },
+   "a": {
+    "export": "realNameAuthImg"
+   }
+  },
+  "hotProject.1783320636200.js": {
+   "a": {
+    "export": "getPxCourseListForWebsite"
+   },
+   "g": {
+    "export": "getPxCourseDetailById"
+   }
+  },
+  "init.17833206362002.js": {
+   "a": {
+    "export": "getPieOption"
+   },
+   "b": {
+    "export": "getScrollLegendPieOption"
+   },
+   "c": {
+    "export": "getSharePieOption"
+   },
+   "d": {
+    "export": "getBigDataMapOption"
+   },
+   "e": {
+    "export": "getDemandSupplyBarOption"
+   },
+   "f": {
+    "export": "getFunnelOption"
+   },
+   "g": {
+    "export": "getCompanyListForMapShow"
+   },
+   "h": {
+    "export": "getHamiMapScatterOption"
+   },
+   "i": {
+    "export": "getGenderBarOption"
+   },
+   "j": {
+    "export": "getCompanyListByTagsTypeForMapShow"
+   },
+   "q": {
+    "export": "getBigDataViewSettingsById"
+   },
+   "r": {
+    "export": "refreshBigDataContent"
+   }
+  },
+  "commonInit.1783320636200.js": {
+   "a": {
+    "export": "getHorizontalBarOption"
+   },
+   "b": {
+    "export": "getMirrorBarOption"
+   },
+   "c": {
+    "export": "getScrollPieUnitOption"
+   },
+   "d": {
+    "export": "getScrollPieOption"
+   },
+   "e": {
+    "export": "getUnitCountLineOption"
+   },
+   "f": {
+    "export": "getHorizontalBarReversedOption"
+   },
+   "i": {
+    "export": "getDualRangeLineOption"
+   }
+  },
+  "dateUtil.1783320636200.js": {
+   "a": {
+    "export": "formatDate"
+   },
+   "b": {
+    "export": "formatTime"
+   },
+   "f": {
+    "export": "formatDateByPattern"
+   }
+  },
+  "index.1783320636200120.js": {
+   "g": {
+    "export": "getElementStyle"
+   }
+  },
+  "initData.1783320636200.js": {
+   "a": {
+    "export": "getMapChartOption"
+   },
+   "b": {
+    "export": "getMapTooltipOption"
+   },
+   "c": {
+    "export": "getRankingBarOption"
+   },
+   "i": {
+    "export": "defaultApiResult"
+   }
+  },
+  "message.1783320636200.js": {
+   "s": {
+    "export": "showSubmitSuccessMessage"
+   }
+  },
+  "timeOut.1783320636200.js": {
+   "a": {
+    "export": "bindChartHoverPause"
+   },
+   "l": {
+    "export": "startChartHighlightLoop"
+   }
+  },
+  "down.1783320636200.js": {
+   "_": {
+    "path": "@/shared/down",
+    "export": "arrowUpImg",
+    "aliases": [
+     "_"
+    ]
+   },
+   "a": {
+    "path": "@/shared/down",
+    "export": "arrowDownImg",
+    "aliases": [
+     "a"
+    ]
+   }
+  },
+  "noResumeR.1783320636200.js": {
+   "_": {
+    "path": "@/shared/noResumeR",
+    "export": "noResumeImg",
+    "aliases": [
+     "_"
+    ]
+   }
+  },
+  "index.1783320636200117.js": {
+   "o": {
+    "export": "jobCompanyApi"
+   }
+  }
+ }
 }

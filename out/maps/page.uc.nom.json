@@ -67,13 +67,15 @@
    "original": "l",
    "path": "@/legacy/utils",
    "export": "setLocalStorage",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Ne": {
    "original": "n",
    "path": "@/legacy/api",
    "export": "listOneForWebSite",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "D": {
    "original": "f",
@@ -103,42 +105,42 @@
    "original": "index.api.17516156075452.js#a",
    "path": "@/api/sysUser",
    "export": "checkIdCard",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysUser/checkIdCard"
   },
   "we": {
    "original": "index.api.17516156075452.js#b",
    "path": "@/api/sysUser",
    "export": "queryIzExistByIdPhone",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobUserTutorExpand/queryIzExistByIdPhone"
   },
   "Ue": {
    "original": "index.api.17516156075452.js#c",
    "path": "@/api/sysUser",
    "export": "checkEmail",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysUser/checkEmail"
   },
   "M": {
    "original": "index.api.17516156075452.js#d",
    "path": "@/api/sysUser",
    "export": "getSettingValueByCode",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"
   },
   "Fe": {
    "original": "index.api.17516156075452.js#p",
    "path": "@/api/sysUser",
    "export": "saveForUserCenter",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysUser/saveForUserCenter"
   },
   "Ae": {
    "original": "index.api.17516156075452.js#g",
    "path": "@/api/sysUser",
    "export": "queryByIdJM",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysUser/queryByIdJM"
   }
  },

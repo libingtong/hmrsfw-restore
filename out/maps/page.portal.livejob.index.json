@@ -52,7 +52,7 @@
    "original": "index.api.178332063620013.js#g",
    "path": "@/api/jobLiveTelecast",
    "export": "list",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/list?izFromWebSite=1"
   }
  },

@@ -53,21 +53,21 @@
  "api": {
   "E": {
    "original": "index.api.17516156075453.js#a",
-   "path": "@/api/user",
+   "path": "@/api/api-17516156075453",
    "export": "check",
    "status": "restored",
    "url": "/jeecg-system/sys/duplicate/check"
   },
   "G": {
    "original": "index.api.17516156075453.js#b",
-   "path": "@/api/user",
+   "path": "@/api/api-17516156075453",
    "export": "phoneVerification",
    "status": "restored",
    "url": "/jeecg-system/sys/user/phoneVerification"
   },
   "H": {
    "original": "index.api.17516156075453.js#d",
-   "path": "@/api/user",
+   "path": "@/api/api-17516156075453",
    "export": "changePhone",
    "status": "restored",
    "url": "/xf-job/communal/xfSysUser/changePhone"

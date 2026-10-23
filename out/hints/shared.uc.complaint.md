@@ -4,8 +4,8 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `B` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `add7` | `e=>t.request({url:"/xf-job/job/xfJobComplaintRecord/add",method:"post",data:e})` |
-| `U` | index.api.17516156075452.js | api | @/api/sysUser `queryByIdJM` | `e=>t.request({url:"/xf-job/communal/xfSysUser/queryByIdJM",method:"get",params:e})` |
+| `B` | index.api.17516156075456.js | api | @/api/api-56 `add7` | `e=>t.request({url:"/xf-job/job/xfJobComplaintRecord/add",method:"post",data:e})` |
+| `U` | index.api.17516156075452.js | api | @/api/sysUser `queryByIdJM`（reserved） | `e=>t.request({url:"/xf-job/communal/xfSysUser/queryByIdJM",method:"get",params:e})` |
 | `q` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `O` | index.1751615607545.js | entry | @/legacy `decryptText` | `t=>{if(t&&typeof t=="string")try{return Df.sm4.decrypt(t,yC)}catch(e){return console.error("解密失败:",e),null}else return null}` |
 | `j` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |

@@ -50,13 +50,15 @@
    "original": "as",
    "path": "@/legacy/utils",
    "export": "getUserInfo",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Re": {
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "O": {
    "original": "o",
@@ -104,7 +106,8 @@
    "original": "bT",
    "path": "@/legacy/utils",
    "export": "maskPhone",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Ye": {
    "original": "_",
@@ -114,42 +117,42 @@
  "api": {
   "os": {
    "original": "index.api.178332063620024.js#c",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "populaFindJob",
    "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/populaFindJob"
   },
   "ns": {
    "original": "index.api.178332063620024.js#d",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "getFindDetailById",
    "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/getFindDetailById"
   },
   "ds": {
    "original": "index.api.178332063620024.js#e",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "add3",
    "status": "restored",
    "url": "/xf-oddjob/oddjob/xfOddPositionApply/add"
   },
   "cs": {
    "original": "index.api.178332063620024.js#h",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "add4",
    "status": "restored",
    "url": "/xf-oddjob/oddJob/licenseFree/callRecord/add"
   },
   "rs": {
    "original": "index.api.178332063620024.js#i",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "add",
    "status": "restored",
    "url": "/xf-oddjob/oddjob/xfOddUserCollect/add"
   },
   "us": {
    "original": "index.api.178332063620024.js#j",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "deleteItem",
    "status": "restored",
    "url": "/xf-oddjob/oddjob/xfOddUserCollect/delete"

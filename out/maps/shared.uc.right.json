@@ -29,7 +29,8 @@
    "original": "al",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "g": {
    "original": "B",

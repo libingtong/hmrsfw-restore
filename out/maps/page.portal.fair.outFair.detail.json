@@ -90,7 +90,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "Yt": {
    "original": "O",
@@ -167,49 +168,49 @@
  "api": {
   "oo": {
    "original": "index.api.178332063620017.js#b",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "updateBrowseCount",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/updateBrowseCount"
   },
   "lo": {
    "original": "index.api.178332063620017.js#c",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFair/queryById"
   },
   "so": {
    "original": "index.api.178332063620017.js#d",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "queryJobFairStatistics",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/statistics/queryJobFairStatistics"
   },
   "io": {
    "original": "index.api.178332063620017.js#e",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "scrollBarData",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/scrollBarData"
   },
   "ro": {
    "original": "index.api.178332063620017.js#f",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "queryAttendeesCompany",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesCompany"
   },
   "no": {
    "original": "index.api.178332063620017.js#h",
-   "path": "@/api/jobFair",
+   "path": "@/api/api-17",
    "export": "queryAttendeesPosition",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/xfJobFairApplyInfo/queryAttendeesPosition"
   },
   "wo": {
    "original": "index.1783320636200117.js#g",
-   "path": "@/api/jobCompany",
+   "path": "@/api/api-117",
    "export": "getQrcodeImgByObjectId",
    "status": "restored",
    "url": "xf-job/job/licenseFree/getQrcodeImgByObjectId"
@@ -288,7 +289,10 @@
    "value": "data:image/png;base64,iVBORw0K…（内联 0.2KB）",
    "inline": true,
    "path": "@/shared/down",
-   "export": "_",
+   "export": "arrowUpImg",
+   "aliases": [
+    "_"
+   ],
    "status": "restored"
   },
   "Ut": {
@@ -296,7 +300,10 @@
    "value": "data:image/png;base64,iVBORw0K…（内联 1.3KB）",
    "inline": true,
    "path": "@/shared/down",
-   "export": "a",
+   "export": "arrowDownImg",
+   "aliases": [
+    "a"
+   ],
    "status": "restored"
   }
  },

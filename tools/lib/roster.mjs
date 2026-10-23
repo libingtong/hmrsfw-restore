@@ -54,6 +54,10 @@ export const DEFAULT_CONFIG = {
   cooldownMin: 30,
   lockStaleMin: 10,
   regressionEvery: 20,          // integration merges between full regressions
+  recordPendingLimit: 2,        // same pending:record reason this many times in a row → arbiter, no more re-sends (HM-1131)
+  // Manual readability sample after a passed integration regression (HM-19, tools/readability-sample.mjs): rate of the
+  // batch's pages (at least `min`), posted to the 「调度日志」 task (logIssueId). `enabled: false` switches it off.
+  readabilitySample: { enabled: true, rate: 0.05, min: 1 },
   receiptsBranch: "integration", // tool-repo branch handoff.mjs commits receipts to
   // Relative price per 1M tokens (cache-read口径), only used to order candidates; replace with real prices.
   priceFactor: { "claude-opus-5-5": 5, "claude-sonnet-5-5": 1, "deepseek-official/deepseek-flash": 0.1, "zhipuai-coding-plan/glm-5.3-flash": 0.1 },

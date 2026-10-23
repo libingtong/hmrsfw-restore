@@ -33,7 +33,8 @@
    "original": "az",
    "path": "@/legacy/api",
    "export": "listNew",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "pe": {
    "original": "k",
@@ -51,7 +52,8 @@
    "original": "aA",
    "path": "@/legacy/api",
    "export": "enableAuseBatch",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "me": {
    "original": "_",

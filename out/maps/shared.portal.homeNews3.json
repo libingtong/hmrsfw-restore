@@ -54,7 +54,8 @@
    "original": "a$",
    "path": "@/legacy/api",
    "export": "getArticleListByTypeCodes",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Ae": {
    "original": "ap",
@@ -66,7 +67,8 @@
    "original": "aj",
    "path": "@/legacy/utils",
    "export": "openLink",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "xe": {
    "original": "B",

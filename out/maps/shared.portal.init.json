@@ -26,7 +26,8 @@
    "original": "c7",
    "path": "@/legacy/api",
    "export": "getAreaInfoById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "I": {
    "original": "B",
@@ -64,14 +65,14 @@
   "_": {
    "original": "timeOut.1783320636200.js#a",
    "path": "@/shared/timeOut.ts",
-   "export": "a",
+   "export": "bindChartHoverPause",
    "status": "reserved",
    "owner": "shared.portal.modules"
   },
   "N": {
    "original": "timeOut.1783320636200.js#l",
    "path": "@/shared/timeOut.ts",
-   "export": "l",
+   "export": "startChartHighlightLoop",
    "status": "reserved",
    "owner": "shared.portal.modules"
   }

@@ -7,6 +7,7 @@ import path from "node:path";
 import { routeApi } from "./har.mjs";
 import { FIXED_CITY, fixedLocalCity } from "./thirdparty.mjs";
 import { domTreeInPage } from "./dom.mjs";
+import { pickScripts } from "./coverage.mjs";
 
 export const VIEWPORT = { width: 1920, height: 1080 };
 // Overlay text = open modals at capture time + every message / notification shown during the phase (recorded by a
@@ -242,7 +243,9 @@ export function openedTarget(url, origin) {
   return u.pathname + (q.size ? "?" + q : "") + u.hash;
 }
 
-// opts: { origin, url, storage: {localStorage, sessionStorage}, har, sel, steps, shotDir, tag, stubChunk }
+// opts: { origin, url, storage: {localStorage, sessionStorage}, har, sel, steps, shotDir, tag, stubChunk, coverage }
+// coverage = names of the scripts to measure (basenames under /assets/): V8 precise coverage over the whole run, load and
+// steps, returned as res.coverage = [{url, source, functions}] for those scripts only (tools/gate/coverage.mjs).
 // stubChunk = basename of the page chunk: replaced by an empty component that snapshots localStorage at mount (shell
 // probe: what the app shell alone requests, and the storage the page component sees when it mounts).
 // Measurement scope (HM-797): the requests compared are the ones the page under test makes (its main frame and its
@@ -274,6 +277,7 @@ export async function runPage(browser, opts) {
     const nav = i >= 0 ? pendingNav.splice(i, 1)[0] : p.url().startsWith("chrome-error:") ? pendingNav.shift() : null;
     opened.push({ phase: nav?.phase ?? phase, target: openedTarget(nav?.url ?? p.url(), opts.origin) });
   });
+  if (opts.coverage?.length) await page.coverage.startJSCoverage({ resetOnNavigation: false, reportAnonymousScripts: false });
   // The page's clock starts at the beginning of the HAR's recording minute and runs normally (no fake timers), so pages
   // that print "now" show the same minute in the baseline and in later gate runs. The start and the page's time-zone
   // offset go into the run (res.clock): rules.mjs normNow (HM-1021) recognises "now" printed to the second by them.
@@ -318,6 +322,7 @@ export async function runPage(browser, opts) {
   }
   res.otherRequests = otherRequests.map((x) => ({ phase: x.phase, method: x.method, path: x.path }));
   res.totalMs = Date.now() - t0;
+  if (opts.coverage?.length) res.coverage = pickScripts(await page.coverage.stopJSCoverage(), opts.coverage);
   await ctx.close();
   return res;
 }

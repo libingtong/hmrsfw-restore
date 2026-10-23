@@ -24,13 +24,16 @@
  "exports": {
   "c": {
    "path": "@/shared/confPass.vue",
-   "export": "default"
+   "export": "default",
+   "original": "confPass.1751615607545.js#c"
   },
   "m": {
-   "export": "m"
+   "export": "queryMySubscribeFair",
+   "original": "confPass.1751615607545.js#m"
   },
   "o": {
-   "export": "o"
+   "export": "fairSubscribe",
+   "original": "confPass.1751615607545.js#o"
   }
  },
  "registryKey": "confPass.1751615607545.js",

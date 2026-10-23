@@ -53,7 +53,7 @@
    "original": "index.apinew.1783320636200.js#q",
    "path": "@/api/deviceBasic",
    "export": "queryAllInfoById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobBigDataViewSettings/queryAllInfoById"
   }
  },
@@ -61,14 +61,14 @@
   "q": {
    "original": "timeOut.1783320636200.js#a",
    "path": "@/shared/timeOut.ts",
-   "export": "a",
+   "export": "bindChartHoverPause",
    "status": "reserved",
    "owner": "shared.portal.modules"
   },
   "U": {
    "original": "timeOut.1783320636200.js#l",
    "path": "@/shared/timeOut.ts",
-   "export": "l",
+   "export": "startChartHighlightLoop",
    "status": "reserved",
    "owner": "shared.portal.modules"
   }

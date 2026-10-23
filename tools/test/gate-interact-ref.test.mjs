@@ -1,8 +1,8 @@
 // node --test tools/test/gate-interact-ref.test.mjs
 // Where the gate reads interaction scripts from (HM-914): record-page.mjs commits tests/interact/<id>.json to the tool
 // repo's `integration` branch and the baselines are recorded with them, while main and restore/fast-lane, where the
-// gate's tools come from, carry only the 8 POC scripts. Integration mode reads a fresh origin/integration pinned to one
-// commit (interactRef); page mode keeps reading the working tree. The scripts here live in a commit object written to
+// gate's tools come from, carry only the 8 POC scripts. Every mode reads a fresh origin/integration pinned to one commit
+// (interactRef); page mode too since HM-1132, `--interact-ref worktree` still reads the working tree. The scripts here live in a commit object written to
 // the tool repo's object store only (no ref, no working-tree file), the remote in a throwaway bare repo.
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -31,20 +31,20 @@ test("a ref reads the script from that commit; without one the working tree is r
   assert.equal(existsSync(path.join(ROOT, "tests/interact", `${ID}.json`)), false);
   const sha = scriptCommit(ROOT, SCRIPT);
   assert.deepEqual(await interactScript(ID, { ref: sha }), SCRIPT);
-  assert.equal(await interactScript(ID), null); // page mode: no file in the working tree, no POC script
+  assert.equal(await interactScript(ID), null); // no ref (--interact-ref worktree): no file in the working tree, no POC script
   // a page without a script in the commit falls back to the POC scripts like the working tree does
   assert.equal(await interactScript("page.test.hm914.none", { ref: sha }), null);
   assert.deepEqual(await interactScript("c02", { ref: sha }), await interactScript("c02"));
 });
 
-test("interactRef: page mode keeps the working tree, an explicit commit is verified, integration mode fetches", () => {
-  assert.equal(interactRef([], "page"), null);
-  assert.equal(interactRef(["--interact-ref", "worktree"], "integration"), null);
+test("interactRef: worktree keeps the working tree, an explicit commit is verified, the default fetches", () => {
+  assert.equal(interactRef(["--interact-ref", "worktree"]), null);
   const sha = scriptCommit(ROOT, SCRIPT);
-  assert.equal(interactRef(["--interact-ref", sha], "page"), sha);
-  assert.throws(() => interactRef(["--interact-ref", "refs/heads/hm-914-no-such-branch"], "integration"), /no such commit/);
+  assert.equal(interactRef(["--interact-ref", sha]), sha);
+  assert.throws(() => interactRef(["--interact-ref", "refs/heads/hm-914-no-such-branch"]), /no such commit/);
 
-  // integration mode default: <remote>/integration fetched fresh, pinned to its commit, the private ref removed again
+  // default (page and integration mode alike, HM-1132): <remote>/integration fetched fresh, pinned to its commit, the
+  // private ref removed again
   const dir = mkdtempSync(path.join(tmpdir(), "hm914-"));
   try {
     const remote = path.join(dir, "remote.git"), root = path.join(dir, "tools");
@@ -55,14 +55,14 @@ test("interactRef: page mode keeps the working tree, an explicit commit is verif
     const work = path.join(dir, "gate-tools");
     git(["init", "-q", work]);
     git(["-C", work, "remote", "add", "origin", remote]);
-    assert.equal(interactRef([], "integration", { root: work }), pushed);
+    assert.equal(interactRef([], { root: work }), pushed);
     assert.equal(git(["-C", work, "for-each-ref", "refs/gate-interact"]), "");
     // the remote moved on: the next run sees the new commit
     const next = scriptCommit(root, [...SCRIPT, { wait: 100 }]);
     git(["-C", root, "push", "-q", remote, `+${next}:refs/heads/integration`]); // not a descendant: forced
-    assert.equal(interactRef([], "integration", { root: work }), next);
+    assert.equal(interactRef([], { root: work }), next);
     rmSync(remote, { recursive: true, force: true });
-    assert.throws(() => interactRef([], "integration", { root: work }), /failed 3 times/);
+    assert.throws(() => interactRef([], { root: work }), /failed 3 times/);
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 

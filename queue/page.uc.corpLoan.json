@@ -41,7 +41,9 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.c01"
+  ]
  },
  "stylesProvidedByScript": true
 }

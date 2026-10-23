@@ -16,12 +16,6 @@
  ],
  "owns": [
   {
-   "alias": "a1",
-   "path": "@/utils/crypto-adapter",
-   "export": "decryptSm4",
-   "status": "restored"
-  },
-  {
    "alias": "B",
    "path": "@/utils/request",
    "export": "API_BASE",
@@ -38,6 +32,12 @@
    "path": "@/utils/request",
    "export": "request",
    "status": "restored"
+  },
+  {
+   "alias": "a1",
+   "path": "@/utils/crypto-adapter",
+   "export": "decryptSm4",
+   "status": "reserved"
   }
  ],
  "note": "SM2 请求体、SM4 响应与存储；密钥只从 import.meta.env 读取，不从旧包提取",

@@ -40,7 +40,9 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.portal.E6"
+  ]
  },
  "stylesProvidedByScript": true,
  "recordVia": "page.portal.talents.index.index"

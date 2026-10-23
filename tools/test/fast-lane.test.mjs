@@ -3,9 +3,10 @@
 // Run: node --test tools/test/fast-lane.test.mjs
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { makeFixture, node, issuesOf, fakeState, mc, setMeta, meta, lsRemote, git } from "./fixture.mjs";
+import { spawnSync } from "node:child_process";
+import { makeFixture, node, issuesOf, fakeState, mc, setMeta, meta, lsRemote, git, pushBranch, showRemote, REPO } from "./fixture.mjs";
 import { fastLaneInventory } from "../lib/fastlane.mjs";
 
 const page = (id, extra = {}) => ({ id, type: "page", kb: 10, app: "portal", site: "portal", role: "general", target: `apps/portal/src/views/${id}.vue`, subComponentDir: `apps/portal/src/views/${id}/`, recordPath: `/${id}`, deps: {}, ...extra });
@@ -112,4 +113,143 @@ test("gate failure of a fast-lane task: fixer twice, then the arbiter; never a r
     assert.equal(meta(fx, t.id).branch, "restore/fast-lane", "no new branch");
     mc(fx, "issue", "update", t.id, "--status", "in_review", "--assignee-id", fx.id("gate"), "--no-start");
   }
+});
+
+// ---- retirement (HM-1068) ---------------------------------------------------------------------------------------------
+// After `restore/fast-lane` is merged into integration and fastLane.enabled is false, a normal tick must not restore or
+// record again what the fast lane did: core orders it passed, segments of pages it handled whole, pages it left pending,
+// blocked or waiting for data. Open fast-lane tasks keep going; a pass merges fixes landed on the branch since.
+const core = (id, type, target, extra = {}) => ({ id, type, kb: 3, app: "portal", site: "portal", target, files: [target], deps: {}, ...extra });
+const seg = (id, pageId, extra = {}) => page(id, { type: "segment", page: pageId, ...extra });
+const [E1, S2, SB, NPM, SEGP, SEG1, SEG2, PEND, PBLK, PNEW, PLAN, ACC, FLT] = ["entry.portal.E1", "shared.portal.s2", "shared.portal.sb", "shared.portal.npm1", "page.portal.segp", "seg.portal.segp.1", "seg.portal.segp.2", "page.portal.pend", "page.portal.blk", "page.portal.fresh", "page.uc.land", "page.portal.acc", "page.portal.flt"];
+
+function mergeFastLane(fx, files) {
+  pushBranch(fx, { branch: "restore/fast-lane", files });
+  const wt = mkdtempSync(path.join(fx.root, "wt-"));
+  git(fx.root, "clone", "-q", fx.appOrigin, wt);
+  git(wt, "checkout", "-q", "-B", "integration", "origin/integration");
+  git(wt, "merge", "-q", "--no-ff", "-m", "Merge restore/fast-lane into integration (HM-1067)", "origin/restore/fast-lane");
+  git(wt, "push", "-q", "origin", "integration");
+}
+
+function retiredSetup({ merge = true } = {}) {
+  const fx = makeFixture({
+    orders: [core(E1, "entry", "apps/portal/src/legacy/index.ts"), core(S2, "shared", "apps/portal/src/shared/s2.vue"), core(SB, "shared", "apps/portal/src/shared/sb.vue"), core(NPM, "shared", undefined, { status: "npm", files: [] }),
+      page(SEGP, { status: "segmented", kb: 40 }), seg(SEG1, SEGP), seg(SEG2, SEGP), page(PEND), page(PBLK), page(PNEW), uc(PLAN, null), page(ACC, { status: "regression", accepted: { route: "/acc" } }), page(FLT)],
+    config: { fastLane: { enabled: true, branch: "restore/fast-lane" }, cheapTier: { enabled: false } },
+  });
+  const dir = path.join(fx.tool, "tools/fast-lane/results");
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(path.join(dir, "HM-34.json"), JSON.stringify({ batch: "HM-34", passed: [E1, S2], blocked: [{ id: SB, reason: "清单缺 geo 路径" }] }));
+  writeFileSync(path.join(dir, "S1.json"), JSON.stringify({ batch: "S1", passed: [SEG1, SEG2], passedPages: [SEGP] }));
+  writeFileSync(path.join(dir, "P1.json"), JSON.stringify({ batch: "P1", passed: [PEND, PLAN, FLT, ACC], blocked: [{ id: PBLK, reason: "globals 缺 el-button" }] }));
+  writeFileSync(path.join(dir, "replay.json"), JSON.stringify({ pages: { [SEGP]: { pass: true, status: "pass" }, [PEND]: { pass: null, status: "pending" }, [PLAN]: { pass: false, status: "blocked", reason: "need-role-decision" }, [FLT]: { pass: null, status: "pending" } } }));
+  const files = Object.fromEntries([E1, S2, SB, SEGP, PEND, PLAN, FLT].map((id) => [id === E1 ? "apps/portal/src/legacy/index.ts" : id.startsWith("shared") ? `apps/portal/src/shared/${id.split(".").pop()}.vue` : `apps/portal/src/views/${id}.vue`, `<template><i>${id}</i></template>\n`]));
+  if (merge) mergeFastLane(fx, files); else pushBranch(fx, { branch: "restore/fast-lane", files });
+  // the fast lane's own task for FLT, open and waiting for its recording (left alone by the retirement)
+  node(fx, "tick.mjs", ["fast-lane", "adopt"]);
+  for (const i of tasks(fx, "[restore]").filter((t) => meta(fx, t.id).workOrders[0] !== FLT)) mc(fx, "issue", "update", i.id, "--status", "cancelled", "--no-start");
+  const L = JSON.parse(readFileSync(path.join(fx.state, "ledger/tasks.json"), "utf8"));
+  for (const id of [SEGP, PEND, PLAN]) delete L.wos[id]; // as on the live ledger: the fast lane never had (or no longer has) a task for them
+  writeFileSync(path.join(fx.state, "ledger/tasks.json"), JSON.stringify(L));
+  writeFileSync(path.join(fx.state, "scheduler.config.json"), JSON.stringify({ projectId: "proj-1", fastLane: { enabled: false, branch: "restore/fast-lane" }, cheapTier: { enabled: false } }));
+  return fx;
+}
+const ledgerWo = (fx, id) => JSON.parse(readFileSync(path.join(fx.state, "ledger/tasks.json"), "utf8")).wos[id] || {};
+const woOf = (fx, i) => meta(fx, i.id).workOrders;
+
+test("retire refuses while restore/fast-lane is not merged into integration", () => {
+  const fx = retiredSetup({ merge: false });
+  const r = node(fx, "tick.mjs", ["fast-lane", "retire"]);
+  assert.equal(r.ok, false);
+  assert.match(r.summary, /not merged into integration/);
+  assert.equal(ledgerWo(fx, E1).state, undefined, "nothing written");
+});
+
+test("retire: a normal tick then dispatches only what the fast lane never did", () => {
+  const fx = retiredSetup();
+  const flt = tasks(fx, "[restore]").find((i) => woOf(fx, i)[0] === FLT);
+  let r = node(fx, "tick.mjs", ["fast-lane", "retire", "--dry-run"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.match(r.summary, /merged 2 core orders.*superseded 2 segments, held 5, noted 1 open/);
+  assert.equal(ledgerWo(fx, E1).state, undefined, "dry run writes nothing");
+  r = node(fx, "tick.mjs", ["fast-lane", "retire"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(ledgerWo(fx, E1).state, "merged");
+  assert.equal(ledgerWo(fx, E1).merged.via, "fast-lane");
+  assert.equal(ledgerWo(fx, E1).retired.batch, "HM-34");
+  assert.equal(ledgerWo(fx, SEG1).state, "superseded");
+  assert.equal(ledgerWo(fx, SEG1).retired.page, SEGP);
+  for (const id of [SB, SEGP, PEND, PBLK]) assert.equal(ledgerWo(fx, id).state, "held", id);
+  assert.match(ledgerWo(fx, PBLK).retired.reason, /globals 缺 el-button/);
+  assert.equal(ledgerWo(fx, PLAN).state, "held", "landed page with an undecided role");
+  assert.equal(ledgerWo(fx, FLT).state, "active", "open fast-lane task untouched");
+  assert.ok(meta(fx, flt.id).retiredNote, "open fast-lane task told about the switch (comment + retiredNote)");
+  assert.match(node(fx, "tick.mjs", ["fast-lane", "retire"]).summary, /merged 0 core orders .*superseded 0 segments, held 0, noted 0/, "idempotent");
+
+  r = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  const restored = tasks(fx, "[restore]").filter((i) => i.id !== flt.id && i.status !== "cancelled").flatMap((i) => woOf(fx, i)).sort();
+  assert.deepEqual(restored, [NPM, PNEW].sort(), "only the npm unit and the page the fast lane never touched");
+  const recorded = tasks(fx, "[record]").filter((i) => i.status !== "cancelled").flatMap((i) => woOf(fx, i));
+  assert.ok(!recorded.some((w) => [SEG1, SEG2, SEGP, PEND, PBLK, PLAN].includes(w)), `no recording of retired orders: ${recorded}`);
+  assert.ok(recorded.includes(FLT), "the open fast-lane task still gets its recording");
+});
+
+test("release: a landed page gets a fast-lane task, anything else goes back to normal dispatch, undecided roles stay held", () => {
+  const fx = retiredSetup();
+  node(fx, "tick.mjs", ["fast-lane", "retire"]);
+  const r = node(fx, "tick.mjs", ["fast-lane", "release", PEND, PBLK, PLAN, NPM]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.match(r.summary, new RegExp(`${PEND}: fast-lane task`));
+  assert.match(r.summary, new RegExp(`${PBLK}: back to normal dispatch`));
+  assert.match(r.summary, new RegExp(`${PLAN}: still held`));
+  assert.match(r.summary, new RegExp(`${NPM}: not held`));
+  const t = tasks(fx, "[restore]").find((i) => woOf(fx, i)[0] === PEND && i.status !== "cancelled");
+  assert.equal(meta(fx, t.id).branch, "restore/fast-lane");
+  assert.match(fakeState(fx).issues[t.id].description, /快速通道已退场/);
+  node(fx, "tick.mjs", ["tick"]);
+  assert.ok(tasks(fx, "[restore]").some((i) => woOf(fx, i)[0] === PBLK && !meta(fx, i.id).fastLane), "PBLK dispatched normally");
+  assert.equal(ledgerWo(fx, PLAN).state, "held");
+});
+
+test("fast-lane task after the retirement: pass with nothing new → done; a fix landed on the branch → merged into integration", () => {
+  const fx = retiredSetup();
+  node(fx, "tick.mjs", ["fast-lane", "retire"]);
+  const flt = tasks(fx, "[restore]").find((i) => woOf(fx, i)[0] === FLT);
+  const pass = { pass: true, stage: "browser", failed: [], pages: [{ wo: FLT, pass: true, stage: "browser" }] };
+  setMeta(fx, flt.id, "waitRecord", false);
+  mc(fx, "issue", "update", flt.id, "--status", "in_review", "--assignee-id", fx.id("gate"), "--no-start");
+  const before = lsRemote(fx, "app", "integration");
+  setMeta(fx, flt.id, "gate.1", pass);
+  let r = node(fx, "tick.mjs", ["advance", flt.id]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(issue(fx, flt.id).status, "done");
+  assert.equal(lsRemote(fx, "app", "integration"), before, "nothing new on the branch: no merge");
+
+  // second fast-lane page, failing first: the fixer lands on the branch, the pass brings the fix into integration
+  node(fx, "tick.mjs", ["fast-lane", "release", PEND]);
+  const t = tasks(fx, "[restore]").find((i) => woOf(fx, i)[0] === PEND && i.status !== "cancelled");
+  setMeta(fx, t.id, "waitRecord", false);
+  pushBranch(fx, { branch: "restore/fast-lane", files: { [`apps/portal/src/views/${PEND}.vue`]: "<template><i>fixed</i></template>\n" } });
+  setMeta(fx, t.id, "gate.1", { ...pass, pages: [{ wo: PEND, pass: true, stage: "browser" }] });
+  r = node(fx, "tick.mjs", ["advance", t.id]);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.notEqual(lsRemote(fx, "app", "integration"), before, "fix merged into integration");
+  assert.match(showRemote(fx, "app", "integration", `apps/portal/src/views/${PEND}.vue`), /fixed/);
+  assert.ok(meta(fx, t.id)["merge.1"], "merged like a page branch");
+  assert.equal(ledgerWo(fx, PEND).state === "merged" || ledgerWo(fx, PEND).state === "done", true);
+});
+
+test("upgrade sync after the retirement: integration is merged into restore/fast-lane (no cherry-pick), so the branch carries no library change of its own", () => {
+  const fx = retiredSetup();
+  node(fx, "tick.mjs", ["fast-lane", "retire"]);
+  pushBranch(fx, { branch: "integration", files: { "apps/portal/src/shared/Dict.vue": "<template><span>dict v2</span></template>\n" } }); // the upgrade's merge
+  const up = mc(fx, "issue", "create", "--title", "[upgrade] dict", "--status", "backlog").id;
+  const script = `const { Pipeline } = await import(${JSON.stringify(path.join(REPO, "tools/lib/pipeline.mjs"))}); const pl = new Pipeline({ argv: [], appDir: process.env.HMRSFW_APP_DIR }); console.log(JSON.stringify(pl.syncFastLane(${JSON.stringify(up)}, "integration")));`;
+  const r = spawnSync(process.execPath, ["--input-type=module", "-e", script], { cwd: fx.tool, env: fx.env, encoding: "utf8" });
+  const st = JSON.parse(r.stdout.trim().split("\n").pop() || "{}");
+  assert.equal(st.state, "ok", r.stderr);
+  assert.match(showRemote(fx, "app", "restore/fast-lane", "apps/portal/src/shared/Dict.vue"), /dict v2/);
+  assert.equal(git(fx.root, "--git-dir", fx.appOrigin, "diff", "--name-only", "integration...restore/fast-lane"), "", "nothing on the branch that integration doesn't have");
 });

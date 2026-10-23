@@ -17,5 +17,5 @@
 | `N` | dictCode.1783320636200.js | shared | @/shared/dictCode.vue `default` | `S(i,[["render",p]])` |
 | `eo` | workType.1783320636200.js | shared | @/shared/workType.vue `default` | `ye(pe,[["__scopeId","data-v-c9091e07"]])` |
 | `oo` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
-| `ue` | index.api.178332063620020.js | api | @/api/service `freeServiceUnitPageListForMap` | `e=>s.request({url:"/xf-job/job/licenseFree/freeServiceUnitPageListForMap",method:"post",data:e})` |
+| `ue` | index.api.178332063620020.js | api | @/api/service `freeServiceUnitPageListForMap`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/freeServiceUnitPageListForMap",method:"post",data:e})` |
 | `ee` | city.1783320636200.js | shared | @/shared/city.vue `default` | `oe(J,[["__scopeId","data-v-911d64a4"]])` |

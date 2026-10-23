@@ -19,7 +19,8 @@
  "target": "apps/portal/src/shared/jobArea.vue",
  "exports": {
   "_": {
-   "export": "default"
+   "export": "default",
+   "original": "jobArea.vue_vue_type_script_setup_true_lang.17833206362003.js#_"
   }
  },
  "registryKey": "jobArea.vue_vue_type_script_setup_true_lang.17833206362003.js",

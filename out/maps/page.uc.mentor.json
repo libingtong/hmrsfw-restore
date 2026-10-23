@@ -39,7 +39,8 @@
    "original": "C",
    "path": "@/legacy/api",
    "export": "queryChildrenTreeListById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "R": {
    "original": "_",
@@ -73,7 +74,8 @@
    "original": "D",
    "path": "@/legacy/api",
    "export": "getTreeData",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "ve": {
    "original": "m",
@@ -93,14 +95,14 @@
    "original": "index.api.17516156075454.js#a",
    "path": "@/api/sysConsult",
    "export": "queryOneForUserCenter",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobUserTutorExpand/queryOneForUserCenter"
   },
   "we": {
    "original": "index.api.17516156075454.js#p",
    "path": "@/api/sysConsult",
    "export": "saveOneForUserCenter",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobUserTutorExpand/saveOneForUserCenter"
   }
  },

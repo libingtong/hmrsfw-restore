@@ -24,11 +24,13 @@
  "subComponentDir": "apps/uc/src/shared/mymsg/",
  "exports": {
   "_": {
-   "export": "_"
+   "export": "emptyListImg",
+   "original": "mymsg.1751615607545.js#_"
   },
   "m": {
    "path": "@/shared/mymsg/Mymsg.vue",
-   "export": "default"
+   "export": "default",
+   "original": "mymsg.1751615607545.js#m"
   }
  },
  "registryKey": "mymsg.1751615607545.js",
@@ -50,7 +52,9 @@
   "api": [],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.E6"
+  ]
  },
  "stylesProvidedByScript": true
 }

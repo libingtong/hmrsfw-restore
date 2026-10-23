@@ -7,8 +7,8 @@
 | `w` | corporganic.1751615607545.js | shared | @/shared/corporganic.vue `default`（reserved） | `f(V,[["render",z]])` |
 | `z` | phone.1751615607545.js | shared | @/shared/phone.vue `default` | `u(d,[["render",m]])` |
 | `P` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
-| `S` | index.1751615607545.js | api | @/legacy/api `certificationBeforeDetailId` | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyExpand/certificationBeforeDetailId",method:"get",params:t})` |
-| `T` | index.1751615607545.js | api | @/legacy/api `certificationUser` | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyExpand/certificationUser",method:"post",data:t})` |
+| `S` | index.1751615607545.js | api | @/legacy/api `certificationBeforeDetailId`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyExpand/certificationBeforeDetailId",method:"get",params:t})` |
+| `T` | index.1751615607545.js | api | @/legacy/api `certificationUser`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompanyExpand/certificationUser",method:"post",data:t})` |
 | `q` | index.1751615607545.js | api | @/legacy `getSettingValueByCode` | `t=>Ee.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:t})` |
 | `F` | index.1751615607545.js | entry | @/legacy `SettingCodes` | `(t=>(t.WEBPORTAL_DOMAIN="webportal_domain",t.USER_CENTE_RDEFAULT_NAME="userCenterDefaultName",t.IS_SHOW_CHANGEPWD="is_show_changepwd",t.JOB_FAIR_PASSED_IZ_EDIT_POSITION="job_fair_passed_iz_edit_positi` |
 | `U` | index.1751615607545.js | entry | ant-design-vue `Modal` | `re({compatConfig:{MODE:3},name:"AModal",inheritAttrs:!1,props:xt(Cdt(),{width:520,transitionName:"zoom",maskTransitionName:"fade",confirmLoading:!1,visible:!1,okType:"primary"}),setup:function(e,n){va` |

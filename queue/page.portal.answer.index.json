@@ -62,6 +62,8 @@
    "page.portal.answer.passwordModal"
   ],
   "orders": [
+   "entry.portal.E6",
+   "entry.portal.c03",
    "page.portal.answer.passwordModal",
    "shared.portal.modules"
   ]

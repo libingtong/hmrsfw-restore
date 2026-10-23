@@ -46,21 +46,21 @@
    "original": "index.api.175161560754518.js#g",
    "path": "@/api/sysArticle",
    "export": "getArticleListForRecruitment",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysArticle/getArticleListForRecruitment"
   },
   "le": {
    "original": "index.api.175161560754518.js#a",
    "path": "@/api/sysArticle",
    "export": "queryById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysArticle/queryById"
   },
   "ce": {
    "original": "index.api.175161560754518.js#s",
    "path": "@/api/sysArticle",
    "export": "setPublish",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/communal/xfSysArticle/setPublish"
   }
  },

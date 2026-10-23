@@ -12,7 +12,7 @@
 | `Es` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `Ps` | index.1783320636200.js | entry | @/legacy `getDictItemsByCode` | `e=>IN("/jeecg-system/sys/dict/getDictItemsByCode",e,"get")` |
 | `As` | index.1783320636200.js | api | @/legacy `getSettingValueByCode` | `e=>ut.request({url:"/xf-job/job/licenseFree/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:e})` |
-| `Is` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `Is` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
 | `js` | index.1783320636200.js | entry | @/legacy `checkLogin` | `function(e,t,n,r){const a=Ze.getUser(),o=Ze.getCorp();return console.log("\u5224\u65AD\u5F53\u524D\u8D26\u53F7\u662F\u5426\u767B\u5F55token",Ze.getToken(),a,o),new Promise((i,l)=>{if(!Ze.getToken()){i` |
 | `zs` | index.1783320636200.js | entry | @/legacy `TEXT_GO_PERFECT` | `"\u53BB\u5B8C\u5584"` |
 | `Os` | index.1783320636200.js | entry | @/legacy `MSG_PERFECT_PERSONAL` | `"\u5F53\u524D\u8D26\u6237\u672A\u5B8C\u5584\u4E2A\u4EBA\u4FE1\u606F\uFF0C\u8BF7\u5148\u5B8C\u5584\u4E2A\u4EBA\u4FE1\u606F"` |
@@ -26,10 +26,10 @@
 | `Zs` | autoplay.1783320636200.js | shared | swiper `Autoplay` | `function(y){let{swiper:a,extendParams:u,on:l,emit:t}=y,o;a.autoplay={running:!1,paused:!1},u({autoplay:{enabled:!1,delay:3e3,waitForTransition:!0,disableOnInteraction:!0,stopOnLastSlide:!1,reverseDire` |
 | `Gs` | effect-coverflow.1783320636200.js | shared | swiper `EffectCoverflow` | `function(o){let{swiper:s,extendParams:t,on:l}=o;t({coverflowEffect:{rotate:50,stretch:0,depth:100,scale:1,modifier:1,slideShadows:!0,transformEl:null}}),p({effect:"coverflow",swiper:s,on:l,setTranslat` |
 | `ea` | homeNews.17833206362002.js | shared | @/shared/homeNews.vue `default` | `os(Qe,[["__scopeId","data-v-51b3470e"]])` |
-| `aa` | index.api.178332063620024.js | api | @/api/oddJob `recommendation` | `e=>o.request({url:"/xf-oddjob/oddJob/xfOddRecommendRecord/recommendation",method:"post",data:e})` |
-| `la` | index.api.178332063620024.js | api | @/api/oddJob `loadTreeRoot` | `e=>o.request({url:"/xf-oddjob/oddJob/licenseFree/loadTreeRoot",method:"get",params:e})` |
-| `ta` | index.api.178332063620024.js | api | @/api/oddJob `getArticleList` | `e=>o.request({url:"/xf-job/school/licenseFree/getArticleList",method:"get",params:e})` |
-| `ia` | index.api.178332063620024.js | api | @/api/oddJob `needJoblist` | `e=>o.request({url:"/xf-oddjob/oddJob/licenseFree/needJoblist",method:"post",data:e})` |
-| `na` | index.api.178332063620024.js | api | @/api/oddJob `findJoblist` | `e=>o.request({url:"/xf-oddjob/oddJob/licenseFree/findJoblist",method:"post",data:e})` |
-| `ra` | index.api.178332063620024.js | api | @/api/oddJob `add2` | `e=>o.request({url:"/xf-oddjob/oddjob/xfOddUserBrowse/add",method:"post",data:e})` |
+| `aa` | index.api.178332063620024.js | api | @/api/api-24 `recommendation` | `e=>o.request({url:"/xf-oddjob/oddJob/xfOddRecommendRecord/recommendation",method:"post",data:e})` |
+| `la` | index.api.178332063620024.js | api | @/api/api-24 `loadTreeRoot` | `e=>o.request({url:"/xf-oddjob/oddJob/licenseFree/loadTreeRoot",method:"get",params:e})` |
+| `ta` | index.api.178332063620024.js | api | @/api/api-24 `getArticleList` | `e=>o.request({url:"/xf-job/school/licenseFree/getArticleList",method:"get",params:e})` |
+| `ia` | index.api.178332063620024.js | api | @/api/api-24 `needJoblist` | `e=>o.request({url:"/xf-oddjob/oddJob/licenseFree/needJoblist",method:"post",data:e})` |
+| `na` | index.api.178332063620024.js | api | @/api/api-24 `findJoblist` | `e=>o.request({url:"/xf-oddjob/oddJob/licenseFree/findJoblist",method:"post",data:e})` |
+| `ra` | index.api.178332063620024.js | api | @/api/api-24 `add2` | `e=>o.request({url:"/xf-oddjob/oddjob/xfOddUserBrowse/add",method:"post",data:e})` |
 | `re` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |

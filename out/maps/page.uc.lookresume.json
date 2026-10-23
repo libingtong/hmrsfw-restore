@@ -40,14 +40,14 @@
  "api": {
   "L": {
    "original": "index.api.17516156075456.js#e",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "listWithSort",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort"
   },
   "T": {
    "original": "index.api.17516156075456.js#f",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "listNoPage",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/listNoPage"

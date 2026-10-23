@@ -34,14 +34,14 @@
    "original": "index.api.178332063620013.js#a",
    "path": "@/api/jobLiveTelecast",
    "export": "queryVoById",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/queryVoById"
   },
   "z": {
    "original": "index.api.178332063620013.js#h",
    "path": "@/api/jobLiveTelecast",
    "export": "updateLikeNum",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobLiveTelecast/updateLikeNum"
   }
  },

@@ -37,13 +37,15 @@
    "original": "ae",
    "path": "@/legacy/api",
    "export": "queryHomeSettingById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "L": {
    "original": "cn",
    "path": "@/legacy/api",
    "export": "getArticleListByCode",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "be": {
    "original": "u",
@@ -55,7 +57,8 @@
    "original": "bs",
    "path": "@/legacy/utils",
    "export": "openLinkAddress",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "Ce": {
    "original": "_",
@@ -67,7 +70,7 @@
    "original": "index.api.178332063620039.js#g",
    "path": "@/api/sysMeeting",
    "export": "getMeetingInfo",
-   "status": "restored",
+   "status": "reserved",
    "url": "xf-job/communal/licenseFree/xfSysMeeting/getMeetingInfo"
   }
  },

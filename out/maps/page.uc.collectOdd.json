@@ -33,7 +33,8 @@
    "original": "bs",
    "path": "@/legacy/api",
    "export": "Collect",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "k": {
    "original": "B",
@@ -57,7 +58,8 @@
    "original": "bt",
    "path": "@/legacy/api",
    "export": "deleteItem",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "E": {
    "original": "m",

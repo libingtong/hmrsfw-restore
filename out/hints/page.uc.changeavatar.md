@@ -11,5 +11,5 @@
 | `B` | index.1751615607545.js | entry | @/utils/request `API_BASE` | `"/xf-api"` |
 | `z` | index.1751615607545.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `N` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `D` | index.api.17516156075453.js | api | @/api/user `setXfSysUserPhoto` | `e=>s.request({url:"/xf-job/communal/xfSysUser/setXfSysUserPhoto",method:"get",params:e})` |
+| `D` | index.api.17516156075453.js | api | @/api/api-17516156075453 `setXfSysUserPhoto` | `e=>s.request({url:"/xf-job/communal/xfSysUser/setXfSysUserPhoto",method:"get",params:e})` |
 | `J` | cropperjs.1751615607545.js | shared | @/shared/cropperjs.vue `default` | `He($i,[["__scopeId","data-v-e652d67f"]])` |

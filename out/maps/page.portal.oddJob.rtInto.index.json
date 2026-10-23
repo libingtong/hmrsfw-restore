@@ -22,7 +22,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "k": {
    "original": "o",
@@ -40,7 +41,8 @@
    "original": "Q",
    "path": "@/legacy/utils",
    "export": "MSG_CORP_NOT_CERTIFIED",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "F": {
    "original": "r",

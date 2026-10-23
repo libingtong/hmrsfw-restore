@@ -7,7 +7,8 @@
 // is checked for the creation key first (then the issues' `createKey` metadata), the intent is written before
 // `issue create`, the id right after it.
 //
-// Two machines (docs/scheduler.md 「两台机器」): each work order is claimed by one machine on the tool repo's `claims`
+// Machines (docs/scheduler.md 「机器与分片」; since 2026-10-15 only the Mac mini runs agents, but more machines still
+// shard the same way): each work order is claimed by one machine on the tool repo's `claims`
 // branch (tools/lib/claims.mjs, a git compare-and-swap) before any task is created for it; only the owner's processes
 // advance its tasks. Tasks without work orders (integration, rule review, incident, record) and the global steps belong
 // to the leader (a lease on the same branch). State another machine must see lives in issue metadata or git; the local
@@ -23,10 +24,11 @@ import { Multica } from "./multica.mjs";
 import { Git, pageForbidden } from "./gitops.mjs";
 import { scopeViolations, registryOwnerOf } from "./upgrade-scope.mjs";
 import { classifyRunError, FAILED_RUN_STATUSES } from "./error-classes.mjs";
-import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isAccepted, isDispatchable, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
+import { TOOL_ROOT, loadWorkOrders, loadWorkOrder, isCore, isPage, isRecordable, isAccepted, isDispatchable, ownedPaths, reverseDeps, appOf } from "./workorders.mjs";
 import { Ledger, runRow, recordCapability, recordAudit, auditTier, seedFromConfirm, mergeCapability } from "../ledger.mjs";
 import { route, pick, agentLoad, freeSlots } from "../route.mjs";
 import { Claims, claimPath, statsPath, fileKey } from "./claims.mjs";
+import { sampleBatch } from "../readability-sample.mjs";
 import { ALL, resolveMachine, canRun, hostOf, machineIds } from "./machine.mjs";
 import * as FL from "./fastlane.mjs";
 
@@ -41,6 +43,13 @@ const short = (sha) => (sha || "").slice(0, 7);
 const baseKind = (meta) => (meta.kind === "audit" || meta.kind === "arbitrate" ? meta.restoreKind || "restore" : meta.kind);
 const hashUnit = (s) => parseInt(createHash("sha256").update(s).digest("hex").slice(0, 8), 16) / 0x100000000;
 const OPEN = (i) => !["done", "cancelled"].includes(i.status);
+// The reasons of a {pending:"record"} verdict (gate.mjs: byReason in metadata, missing[].why in the full result), without
+// the page-specific detail after the first colon ("baseline refresh failed: <error>"), sorted: two verdicts with the same
+// key asked for a recording for the same reasons.
+export const pendingWhy = (gate) => {
+  const raw = gate?.byReason && typeof gate.byReason === "object" ? Object.keys(gate.byReason) : (gate?.missing || []).map((m) => m?.why).filter(Boolean);
+  return [...new Set(raw.map((r) => String(r).split(":")[0].trim()))].sort().join("; ") || "?";
+};
 // Stage of the work a role does, for the asset check (machine.mjs canRun).
 const STAGE = { gate: "gate", recorder: "record", fixer: "fix", reviewer: "review", arbiter: "arbitrate", restorer: "restore", "restorer-core": "restore" };
 // Event types other machines need (stop conditions, digest); published in stats/<machine>.json.
@@ -171,9 +180,10 @@ export class Pipeline {
 
   // Other machines' stats snapshots (claims branch stats/<machine>.json); this machine's own numbers are the live ledger.
   // Only roster machines count: a leftover "*" snapshot from before sharding is this same ledger and would double it.
+  // A retired machine (all its agents disabled) still counts, so its capability history keeps feeding routing.
   otherStats() {
     if (!this.claims) return [];
-    const ids = machineIds(this.roster);
+    const ids = machineIds(this.roster, { all: true });
     try { return this.claims.statsAll().filter((s) => s.machine !== this.machine && ids.includes(s.machine)); } catch { return []; }
   }
   capability(L) { const others = this.otherStats(); return others.length ? mergeCapability(L.capability, ...others.map((s) => s.capability || {})) : L.capability; }
@@ -205,6 +215,38 @@ export class Pipeline {
   recorded(L, wo) {
     return L.tasks.wos[wo]?.record === "ok" || existsSync(path.join(this.paths.baseline, slug(wo))) || existsSync(path.join(this.paths.baseline, wo))
       || this.pipelineIssues().some((i) => i.metadata.kind === "record" && i.metadata.record === "ok" && (i.metadata.workOrders || []).includes(wo));
+  }
+  // What a recording of `wo` looks like now: the highest record attempt that says ok and the baseline's fingerprint.
+  // waitForRecord keeps it per page (waitRecordFrom) so that only a recording made after the gate asked for one counts
+  // (HM-1131): a stale baseline keeps recorded() true for ever. A record attempt still open is not part of the mark, its
+  // ok comes later and counts.
+  recordMark(wo) {
+    const attempts = this.recordTasks(wo).filter((i) => i.metadata.record === "ok").map((i) => Number(i.metadata.attempt) || 1);
+    const dir = [path.join(this.paths.baseline, slug(wo)), path.join(this.paths.baseline, wo)].find((d) => existsSync(d));
+    const file = dir && path.join(dir, "baseline.json");
+    const sig = !dir ? "-" : existsSync(file) ? createHash("sha256").update(readFileSync(file)).digest("hex").slice(0, 12) : "dir";
+    return `a${Math.max(0, ...attempts)}:${sig}`;
+  }
+  recordTasks(wo) { return this.pipelineIssues().filter((i) => i.metadata.kind === "record" && (i.metadata.workOrders || []).includes(wo)); }
+  nextRecordAttempt(L, wo) { return Math.max(L.tasks.wos[wo]?.recordAttempts || 0, ...this.recordTasks(wo).map((i) => Number(i.metadata.attempt) || 1)) + 1; }
+  // A new record attempt for a page whose recording the gate can't use, on this machine like rerecord. Not when one is
+  // open already: the issue list is cached for the tick, so also the ledger's record task and the ones opened this run.
+  reopenRecord(wo, why) {
+    const L = this.ledger.read(), s = L.tasks.wos[wo];
+    this._reopened ??= new Set();
+    if (this._reopened.has(wo) || this.recordTasks(wo).some(OPEN)) return null;
+    if (s?.record === "pending" && s.recordTask) { let cur = null; try { cur = this.mc.getIssue(s.recordTask); } catch { cur = null; } if (cur && OPEN(cur)) return null; }
+    const c = this.openRecord(wo, this.leastLoaded("recorder", [], [wo]), this.nextRecordAttempt(L, wo));
+    if (!c?.id) return null;
+    this._reopened.add(wo);
+    this.ledger.tx((L2) => L2.newEvents.push({ type: "rerecord", wo, task: c.id, why }));
+    return c;
+  }
+  // Recorded after `mark`: a record task of a later attempt says ok, or a (different) baseline is here now.
+  recordedSince(wo, mark) {
+    const [, a, sig] = String(mark).match(/^a(\d+):(.*)$/) || [, "0", "-"];
+    const now = this.recordMark(wo);
+    return Number(now.match(/^a(\d+)/)[1]) > Number(a) || (!now.endsWith(":-") && now.split(":")[1] !== sig);
   }
 
   // ---- idempotent task creation ---------------------------------------------------------------------------------------
@@ -278,7 +320,7 @@ export class Pipeline {
     const res = this.withWo(wos, () => {
       const L2 = this.ledger.read();
       if (this.claims && wos.some((w) => !this.claimedHere(w))) return { skipped: true, notOwner: true };
-      if (wos.some((w) => (L2.tasks.wos[w]?.active || []).length || ["merged", "done", "suspended", "superseded"].includes(L2.tasks.wos[w]?.state))) return { skipped: true };
+      if (wos.some((w) => (L2.tasks.wos[w]?.active || []).length || ["merged", "done", "suspended", "superseded", "held"].includes(L2.tasks.wos[w]?.state))) return { skipped: true };
       if (wos.some((w) => this.activeTasks(L2, w).length || this.isMergedWo(L2, w))) return { skipped: true, seenElsewhere: true };
       const attempt = Math.max(0, ...wos.map((w) => Math.max(L2.tasks.wos[w]?.attempts || 0, this.woView().get(w)?.attempts || 0))) + 1;
       const ids = [];
@@ -307,7 +349,7 @@ export class Pipeline {
   dispatchQueue(L) {
     const busyFiles = new Set(Object.values(L.tick.upgrades || {}).filter((u) => u.state === "active").flatMap((u) => u.files || []));
     const theirs = (w) => { const rec = this.claims ? this.claims.get(claimPath(w.id)) : null; return !!rec && !this.mine(rec); };
-    const eligible = this.orders().filter((w) => !isAccepted(w) && isDispatchable(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
+    const eligible = this.orders().filter((w) => !isAccepted(w) && isDispatchable(w) && !w.superseded && !theirs(w) && !["active", "merged", "done", "suspended", "superseded", "held"].includes(L.tasks.wos[w.id]?.state) && !this.activeTasks(L, w.id).length && !this.isMergedWo(L, w.id));
     const core = eligible.filter(isCore).filter((w) => !(w.files || []).some((f) => busyFiles.has(f))).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const pages = eligible.filter(isPage).sort((a, b) => (b.kb || 0) - (a.kb || 0));
     const units = core.map((w) => [w.id]);
@@ -372,7 +414,7 @@ export class Pipeline {
     if (!recs.length) return 0;
     const waiting = new Set(this.pipelineIssues().filter((i) => i.metadata.waitRecord === true && OPEN(i)).flatMap((i) => i.metadata.workOrders || []));
     const openRec = new Set(this.pipelineIssues().filter((i) => i.metadata.kind === "record" && OPEN(i)).flatMap((i) => i.metadata.workOrders || []));
-    let pages = this.orders().filter((w) => isPage(w) && !w.superseded && L.tasks.wos[w.id]?.state !== "superseded").sort((a, b) => (waiting.has(b.id) - waiting.has(a.id)) || (b.kb || 0) - (a.kb || 0));
+    let pages = this.orders().filter((w) => isRecordable(w) && !w.superseded && !["superseded", "held"].includes(L.tasks.wos[w.id]?.state)).sort((a, b) => (waiting.has(b.id) - waiting.has(a.id)) || (b.kb || 0) - (a.kb || 0));
     if (FL.fastLaneOn(this)) { // only the fast lane's recordable pages, portal first, user center by role; none while a login is needed
       if (FL.loginNeeded(this)) { this.act("fast lane: recording paused, waiting for a login"); return 0; }
       const rank = new Map(FL.recordQueue(this).map((id, i) => [id, i]));
@@ -393,6 +435,7 @@ export class Pipeline {
   }
 
   openRecord(woId, agent = this.leastLoaded("recorder", [], [woId]), attempt = 1) {
+    if (!isRecordable(this.wo(woId))) return { skipped: true, notRecordable: true }; // shared / npm order: nothing to record
     const c = this.createTask({ key: `record:${woId}:a${attempt}`, title: `[record] ${woId}${attempt > 1 ? ` a${attempt}` : ""}`, description: FL.fastLaneOn(this) ? FL.recordDescription(woId, FL.fastLaneBranch(this)) : `录制工单 \`${woId}\`：写交互脚本、录 HAR、算原版基线。按录制员指令执行。`, meta: { kind: "record", workOrders: [woId], attempt }, assigneeId: agent.id, wos: [woId] });
     if (c.id) this.ledger.tx((L) => { const s = (L.tasks.wos[woId] ??= { tasks: [] }); s.record = "pending"; s.recordTask = c.id; s.recordAttempts = Math.max(s.recordAttempts || 0, attempt); });
     return c;
@@ -478,7 +521,7 @@ export class Pipeline {
   }
 
   regate(taskId, meta) {
-    this.mc.setMetaMany(taskId, { kind: baseKind(meta), waitRecord: false, regateAt: this.iso() });
+    this.mc.setMetaMany(taskId, { kind: baseKind(meta), waitRecord: false, waitRecordFrom: meta.waitRecordFrom ? null : undefined, recordPending: meta.recordPending ? null : undefined, regateAt: this.iso() }); // a manual regate starts the pending:record count again
     this.comment(taskId, `[REDO] 重跑门槛（--regate）`);
     this.sendToGate(taskId, meta);
     return { ok: true, summary: `regate ${taskId}`, anomalies: [] };
@@ -536,8 +579,9 @@ export class Pipeline {
     if (meta.advanced === advKey) return { ok: true, summary: `already advanced ${taskId} (${advKey})`, anomalies: [] };
     const gate = this.gateResult(meta);
     if (!gate) return { ok: false, summary: `no gate.${attempt} on ${taskId}`, anomalies: [{ issue: taskId, what: `advance without gate.${attempt}`, suggestedAction: "门槛员重跑 gate.mjs 后再 advance" }] };
-    if (gate.pending === "record") return this.waitForRecord(taskId, meta);
+    if (gate.pending === "record") return this.waitForRecord(taskId, meta, gate);
     if (gate.error) return { ok: false, summary: `gate error on ${taskId}`, anomalies: [{ issue: taskId, what: `gate error: ${String(gate.error).slice(0, 200)}`, suggestedAction: "建排障单交给裁定员" }] };
+    if (meta.recordPending) this.mc.deleteMeta(taskId, "recordPending"); // a real verdict ends a run of pending:record
     const wos = meta.workOrders || [];
     // An upgrade's verdict is one verdict for the branch (gate.mjs --mode upgrade): its pages[] are the regression pages,
     // not the pages it unblocks (workOrders), which are judged by their own gates once resumed (HM-990).
@@ -565,14 +609,49 @@ export class Pipeline {
 
   tierOf(wos) { const kb = Math.max(...wos.map((w) => Number(this.wo(w).kb || 0))); return kb < 5 ? "simple" : kb < 30 ? "medium" : "large"; }
 
-  waitForRecord(taskId, meta) {
-    this.mc.setMeta(taskId, "waitRecord", true);
+  // gate {pending:"record"}. The pages it names wait for a recording made from now on (waitRecordFrom, see recordMark):
+  // a page that has no recording gets one as before; a page whose recording is there but no longer usable (interaction
+  // script or HAR changed since the baseline, baseline refresh failed …) gets a new record attempt, as `rerecord` does —
+  // the old recording would otherwise send the task straight back to the gate on every tick (HM-1131). The same reason
+  // `recordPendingLimit` times in a row means recording does not fix it: no more automatic re-sends, the arbiter decides.
+  waitForRecord(taskId, meta, gate = {}) {
+    const wos = meta.workOrders || [];
+    const names = (gate.missing || []).map((x) => (typeof x === "string" ? x : x?.wo)).filter((w) => wos.includes(w));
+    const missing = names.length && !gate.missingTruncated ? [...new Set(names)] : wos;
+    const why = pendingWhy(gate);
+    // shared / npm orders are never recorded (HM-1124): waiting for them would never end, so the task goes to the arbiter
+    // at once — no record task, no waitRecord, no pending:record count
+    const unrecordable = missing.filter((w) => !isRecordable(this.wo(w)));
+    if (unrecordable.length) return this.unrecordableToArbiter(taskId, meta, unrecordable);
+    const prev = meta.recordPending && typeof meta.recordPending === "object" ? meta.recordPending : null;
+    const key = this.advKey(meta); // one verdict counts once, however often it is advanced
+    if (prev?.key === key && meta.waitRecord === true) return { ok: true, summary: `${taskId} already waiting for recording (${key})`, anomalies: [] };
+    const n = prev?.why === why ? (Number(prev.n) || 1) + 1 : 1;
+    const limit = this.cfg.recordPendingLimit ?? 2;
+    if (n >= limit) {
+      this.mc.setMetaMany(taskId, { waitRecord: false, waitRecordFrom: meta.waitRecordFrom ? null : undefined, recordPending: { why, n, key } });
+      this.ledger.tx((L2) => L2.newEvents.push({ type: "record-loop", task: taskId, wos: missing, why, n }));
+      this.anomaly(taskId, `连续 ${n} 次 PENDING record（${why}）：${missing.join("、")}`, "裁定员判断：录制问题退回录制员（rerecord）；原站不稳定的页按 10-21 / 10-22 的决定登记已知差异（known-diff.mjs）");
+      return this.toArbiter(taskId, meta, `record-loop: ${why}`, `[GATE] 连续 ${n} 次 PENDING record（${why}），不再自动重送 → 裁定员。录制问题用 \`tick.mjs rerecord <工单id>\` 退回录制员；原站不稳定的页按 10-21 / 10-22 的决定登记已知差异`);
+    }
     const L = this.ledger.read();
-    // record tasks belong to the leader; elsewhere the leader's next dispatchRecords picks the waiting pages first
-    if (this.isLeader) for (const w of meta.workOrders || []) if (!L.tasks.wos[w]?.record && !this.recorded(L, w)) this.openRecord(w);
+    const from = {}, reopened = [];
+    for (const w of missing) {
+      from[w] = this.recordMark(w);
+      if (this.recordTasks(w).some(OPEN)) continue; // already being recorded
+      if (this.recorded(L, w)) { if (this.reopenRecord(w, why)) reopened.push(w); } // there is a recording, the gate can't use it
+      else if (this.isLeader && !L.tasks.wos[w]?.record) this.openRecord(w); // record tasks belong to the leader; elsewhere the leader's next dispatchRecords picks the waiting pages first
+    }
+    this.mc.setMetaMany(taskId, { waitRecord: true, waitRecordFrom: from, recordPending: { why, n, key } });
     this.ledger.tx((L2) => L2.newEvents.push({ type: "wait-record", task: taskId, wos: meta.workOrders }));
-    this.comment(taskId, `[GATE] 等录制：${(meta.workOrders || []).join("、")}`);
+    this.comment(taskId, `[GATE] 等录制：${missing.join("、")}${reopened.length ? `（已有录制不可用：${why}，重新录制 ${reopened.join("、")}）` : ""}`);
     return { ok: true, summary: `${taskId} waiting for recording`, anomalies: [] };
+  }
+
+  unrecordableToArbiter(taskId, meta, unrecordable) {
+    this.anomaly(taskId, `gate pending record on order(s) that are never recorded: ${unrecordable.join(", ")}`, "共享库/npm 工单不录制，交裁定员处理该任务");
+    this.mc.setMetaMany(taskId, { waitRecord: false, waitRecordFrom: meta.waitRecordFrom ? null : undefined, recordPending: meta.recordPending ? null : undefined });
+    return this.toArbiter(taskId, meta, `pending record on unrecordable order(s): ${unrecordable.join(", ")}`, `[GATE] PENDING record 涉及不录制的共享库/npm 工单（${unrecordable.join("、")}），等不到录制 → 裁定员`);
   }
 
   // Twin bookkeeping: the loser of a dual dispatch is only recorded, then cancelled.
@@ -586,7 +665,14 @@ export class Pipeline {
   }
 
   onPass(taskId, meta, wos) {
-    if (FL.isFastLane(meta)) return FL.passFastLane(this, taskId, meta, wos);
+    if (FL.isFastLane(meta)) {
+      const done = FL.passFastLane(this, taskId, meta, wos);
+      if (done) return done;
+      // fast lane retired and the branch carries fixes integration doesn't have yet: merged as a page branch
+      const merge = this.mergeTask(taskId, meta, wos, []);
+      if (!merge.merged) return merge.fail ? this.onFail(taskId, meta, merge.fail) : merge;
+      return this.afterMerge(taskId, meta, wos, merge, false);
+    }
     const tw = this.twinState(meta);
     if (tw?.merged) return this.closeTwin(taskId, meta, "对方已先通过并合并");
     // needsFromSkeleton on a passing page: no upgrade order (the page works with today's library), noted for the digest
@@ -779,12 +865,12 @@ export class Pipeline {
     return { ok: true, summary: `${taskId} → redo a${attempt} by ${agent.name}`, anomalies: [] };
   }
 
-  toArbiter(taskId, meta, reason) {
+  toArbiter(taskId, meta, reason, line = `[REDO] 升级路径已走完（${reason}）→ 裁定员`) {
     const arb = this.leastLoaded("arbiter");
     this.mc.setMetaMany(taskId, { kind: "arbitrate", restoreKind: baseKind(meta), arbitrateReason: reason, arbiter: arb.id });
     this.mc.update(taskId, { status: "todo", assigneeId: arb.id });
     this.bump(arb.id);
-    this.comment(taskId, `[REDO] 升级路径已走完（${reason}）→ 裁定员`);
+    this.comment(taskId, line);
     this.ledger.tx((L) => L.newEvents.push({ type: "arbitrate", task: taskId, wos: meta.workOrders, reason }));
     return { ok: true, summary: `${taskId} → arbiter`, anomalies: [] };
   }
@@ -907,8 +993,13 @@ export class Pipeline {
   syncFastLane(upgradeId, sha) {
     const into = this.fastLaneBranchName();
     if (!sha) { const st = { state: "conflict", why: "no merge commit to pick", at: this.iso() }; this.mc.setMeta(upgradeId, "fastLaneSync", st); this.anomaly(upgradeId, `upgrade merged without a known merge commit: not brought to ${into}`, `裁定员把升级内容 cherry-pick 到 ${into} 并推送，再把元数据 fastLaneSync 设为 {"state":"ok"}`); return st; }
-    const r = this.locks.with("fast-lane", () => this.appGit.cherryPick({ sha, into, message: `Pick upgrade ${upgradeId} into ${into} (integration ${short(sha)}; HM-990)` }), 5 * 60_000);
-    const st = r.locked || r.pushRejected ? { state: "retry", sha } : r.missingBranch ? { state: "no-branch" } : r.conflict ? { state: "conflict", sha, conflicts: (r.conflicts || []).slice(0, 20) } : { state: r.already ? "already" : "ok", sha, picked: r.sha || null };
+    // After the retirement (HM-1068) the fast lane is a branch off integration: integration is merged into it instead,
+    // so the branch never carries a library change of its own and passFastLane can merge its page fixes back.
+    const retired = FL.fastLaneRetired(this);
+    const r = this.locks.with("fast-lane", () => retired
+      ? !this.appGit.fetchOptional(into) ? { missingBranch: true } : this.appGit.merge({ branch: "integration", into, message: `Merge integration into ${into} (upgrade ${upgradeId}, integration ${short(sha)}; HM-1068)` })
+      : this.appGit.cherryPick({ sha, into, message: `Pick upgrade ${upgradeId} into ${into} (integration ${short(sha)}; HM-990)` }), 5 * 60_000);
+    const st = r.locked || r.pushRejected ? { state: "retry", sha } : r.missingBranch ? { state: "no-branch" } : r.conflict ? { state: "conflict", sha, conflicts: (r.conflicts || []).slice(0, 20) } : { state: r.already || r.alreadyMerged ? "already" : "ok", sha, picked: r.alreadyMerged ? null : r.sha || null };
     st.at = this.iso();
     this.mc.setMeta(upgradeId, "fastLaneSync", st);
     this.ledger.tx((L) => L.newEvents.push({ type: "fast-lane-sync", task: upgradeId, sha, state: st.state, picked: st.picked }));
@@ -1068,6 +1159,7 @@ export class Pipeline {
       this.ledger.tx((L) => { L.tick.regression = { ...(L.tick.regression || {}), state: "passed" }; L.tick.regressionEpoch = (L.tick.regressionEpoch || 0) + 1; L.tick.lastGoodSha = meta.sha; L.newEvents.push({ type: "main-ff", sha: meta.sha, ok: !!r.ok }); });
       if (!r.ok) this.anomaly(taskId, `fast-forward main → ${short(meta.sha)} failed: ${JSON.stringify(r).slice(0, 200)}`, "裁定员检查 main 是否被手动改动");
       this.closeIntegration(taskId, `[GATE] 集成回归通过，main 快进到 ${short(meta.sha)}`);
+      try { this.readabilitySample(taskId, meta); } catch (e) { this.anomaly(taskId, `readability sample failed: ${String(e.message).slice(0, 200)}`, "不影响回归结果；检查 tools/readability-sample.mjs 或把 readabilitySample.enabled 设为 false"); }
       return { ok: true, summary: `regression @${short(meta.sha)} passed → main`, anomalies: [] };
     }
     const L = this.ledger.read();
@@ -1080,6 +1172,27 @@ export class Pipeline {
       return this.openIncident(`集成回归在 ${short(meta.sha)} 失败，但 main..integration 之间没有可回退的合并提交`, { sha: meta.sha, failed });
     }
     return this.bisectStep({ candidates: cands, lo: 0, hi: cands.length - 1, sha: meta.sha, mainSha: meta.mainSha, failed, step: 1 });
+  }
+
+  // Manual readability sample (HM-19): after a passed integration regression, 5 % of the pages that went in with this batch
+  // (at least one; stratified by size band × generating model family) go to the 「调度日志」 task with a scoring table.
+  // Switch: scheduler.config.json readabilitySample.enabled (default on). Never affects the regression result.
+  readabilitySample(taskId, meta) {
+    const cfg = this.cfg.readabilitySample; if (!cfg?.enabled || meta.purpose !== "regression" || !meta.mainSha) return null;
+    const L = this.ledger.read(); const pages = []; const seen = new Set();
+    for (const sha of this.appGit.mergesBetween(meta.mainSha, meta.sha)) {
+      const info = L.tick.merges?.[sha] || this.mergeInfo(sha); if (!info || L.tick.merges?.[sha]?.reverted) continue;
+      let family = "unknown"; try { const tm = this.meta(info.task); family = this.roster.get(tm.agent)?.family || tm.family || "unknown"; } catch { /* the task is gone: unknown family */ }
+      for (const wo of info.wos || []) if (!seen.has(wo) && isPage(this.wo(wo) || {})) { seen.add(wo); pages.push({ wo, family, sha }); }
+    }
+    if (!pages.length) return null;
+    const key = `reg-${short(meta.sha)}`;
+    const res = sampleBatch({ pages, key, batch: `${pages.length} 页，${short(meta.mainSha)}..${short(meta.sha)}`, APP: this.appDir, rate: cfg.rate, min: cfg.min, ref: meta.sha, orders: this.orders(), dryRun: this.dryRun, root: this.paths.root });
+    if (!res.n) return null;
+    if (this.cfg.logIssueId) this.comment(this.cfg.logIssueId, res.text);
+    else this.anomaly(taskId, `readability sample ${key} (${res.n}/${res.N} pages) not posted: scheduler.config.json has no logIssueId`, "在 scheduler.config.json 填 logIssueId；抽样已写入 $RESTORE_STATE/readability/");
+    this.ledger.tx((L2) => L2.newEvents.push({ type: "readability-sample", key, n: res.n, pages: res.N }));
+    return res;
   }
 
   // Pages to test at a commit: the pages that failed the regression (all passed pages when the gate didn't say which),
@@ -1266,6 +1379,21 @@ export class Pipeline {
     const L = this.ledger.read();
     this.ledger.tx((L2) => { L2.tick.ruleChanges[branch] = { ...rc, state: "merged", sha: r.sha }; L2.newEvents.push({ type: "rule-merged", branch, sha: r.sha }); });
     this.openIntegration({ purpose: "rule-regression", workOrders: this.passedPages(L), sha: null, key: `integration:rule-regression:${r.sha}`, extra: { ruleChange: branch, ruleSha: r.sha } });
+  }
+
+  // Leader: bring the tool repo's main into its integration branch (HM-1135). Tool and rule changes land on main; the
+  // recorder runs record-page and baseline from an integration checkout (record-page commits tests/interact there,
+  // handoff the receipts), and nothing else brings main over: from 10-16 to 10-23 it recorded baselines with tools and
+  // rules 243 commits old. Conflicts are not resolved here, they are reported for the arbiter (main's side wins).
+  syncToolIntegration() {
+    const g = this.toolGit;
+    g.fetch("main", "integration");
+    if (g.isAncestor(g.remoteRef("main"), g.remoteRef("integration"))) return 0;
+    const r = this.locks.with("tool-integration", () => g.merge({ branch: "main", into: "integration", message: "Merge main into integration: tools and rules for the recorder (tick, HM-1135)" }), 5 * 60_000);
+    if (r.merged) { if (!r.alreadyMerged) this.act(`tool integration ← main${r.sha ? ` ${r.sha.slice(0, 7)}` : ""}`); return 0; }
+    if (r.locked || r.pushRejected) return 0; // next tick
+    this.anomaly(null, `tool repo integration is behind main and main does not merge into it${r.conflict ? `: conflicts in ${r.conflicts.join(", ")}` : `: ${JSON.stringify(r).slice(0, 200)}`}`, "裁定员把工具仓库 main 合入 integration（tools/、rules/ 以 main 为准）；在此之前录制员用的是旧工具");
+    return 0;
   }
 
   rejectRule(branch, rc, verdicts) {
@@ -1501,23 +1629,37 @@ export class Pipeline {
 
   // Step 4: record tasks finished → ledger; tasks waiting for a recording that is now there → back to the gate.
   syncRecords() {
-    for (const i of this.pipelineIssues().filter((x) => x.metadata.kind === "record" && this.isLeader)) {
+    const recs = this.pipelineIssues().filter((x) => x.metadata.kind === "record" && this.isLeader);
+    const latest = new Map(); // a newer record attempt of the same order speaks for it, not an older ok (HM-1131)
+    for (const i of recs) { const w = (i.metadata.workOrders || [])[0]; if (w) latest.set(w, Math.max(latest.get(w) || 0, Number(i.metadata.attempt) || 1)); }
+    for (const i of recs) {
       const rec = i.metadata.record;
       const wo = (i.metadata.workOrders || [])[0];
-      if (!wo) continue;
+      if (!wo || (Number(i.metadata.attempt) || 1) < latest.get(wo)) continue;
       const state = rec === "ok" ? "ok" : typeof rec === "string" && rec.startsWith("blocked") ? "blocked" : i.status === "cancelled" ? null : "pending";
       const L = this.ledger.read();
       if ((L.tasks.wos[wo]?.record || null) !== state && !(state === "pending" && L.tasks.wos[wo]?.record === "ok")) this.ledger.tx((L2) => { const s = (L2.tasks.wos[wo] ??= { tasks: [] }); s.record = state; s.recordTask = i.id; if (state === "ok") L2.newEvents.push({ type: "recorded", wo }); });
     }
     FL.noteRecordBlocks(this);
     const L = this.ledger.read();
+    // waitRecordFrom (waitForRecord, rerecord): only a recording made after the gate asked counts (HM-1131); tasks
+    // without it (fast-lane tasks created waiting, older tasks) take any recording
+    const ready = (from, w) => (from && typeof from === "object" && from[w] !== undefined ? this.recordedSince(w, from[w]) : this.recorded(L, w));
     for (const i of this.pipelineIssues().filter((x) => x.metadata.waitRecord === true && ["restore", "upgrade"].includes(x.metadata.kind) && this.ownsTask(x.metadata))) {
       const wos = i.metadata.workOrders || [];
-      if (!wos.every((w) => this.recorded(L, w))) continue;
+      const notReady = wos.filter((w) => !ready(i.metadata.waitRecordFrom, w));
+      const never = notReady.filter((w) => !isRecordable(this.wo(w))); // left waiting before HM-1124/HM-1131: it never ends
+      if (never.length) { this.safe(i.id, () => this.withWo(wos, () => { const m = this.meta(i.id); if (m.waitRecord === true) { this.unrecordableToArbiter(i.id, m, never); this.act(`unrecordable wait → arbiter ${i.id}`); } })); continue; }
+      // the attempt opened for it was cancelled (fast-lane login-ok, by hand): dispatchRecords skips a page that has a
+      // recording, so the waiting task opens the next attempt itself; a blocked or still open attempt is left alone
+      const lost = notReady.filter((w) => i.metadata.waitRecordFrom?.[w] !== undefined && this.recorded(L, w) && this.recordTasks(w).length && !this.recordTasks(w).some(OPEN)
+        && this.recordTasks(w).sort((a, b) => (Number(b.metadata.attempt) || 1) - (Number(a.metadata.attempt) || 1))[0].status === "cancelled");
+      if (lost.length && !FL.loginNeeded(this)) this.safe(i.id, () => this.withWo(lost, () => lost.forEach((w) => this.reopenRecord(w, "record attempt cancelled"))));
+      if (notReady.length) continue;
       this.safe(i.id, () => this.withWo(wos, () => {
         const m = this.meta(i.id);
         if (m.waitRecord !== true) return;
-        this.mc.setMeta(i.id, "waitRecord", false);
+        this.mc.setMetaMany(i.id, { waitRecord: false, waitRecordFrom: m.waitRecordFrom ? null : undefined });
         this.comment(i.id, `[GATE] 录制已完成，重新送门槛`);
         this.sendToGate(i.id, m);
         this.act(`record ready → regate ${i.id}`);
@@ -1548,6 +1690,7 @@ export class Pipeline {
     step("records", () => this.syncRecords());
     step("audits", () => this.processAudits());
     if (this.isLeader && this.confirmLeader()) step("rule reviews", () => this.processRuleReviews());
+    if (this.isLeader && this.confirmLeader()) step("tool integration", () => this.syncToolIntegration()); // before the record dispatch
     this.issues(true);
     const rec = this.isLeader && this.confirmLeader() ? step("dispatch records", () => this.dispatchRecords()) : 0;
     const neu = step("dispatch", () => this.dispatchNew());
@@ -1645,7 +1788,7 @@ export class Pipeline {
       s.attempts = Math.max(s.attempts || 0, v?.attempts || 0);
       s.active = v?.active || [];
       s.merged = v?.merged ? { task: v.merged.task, sha: v.merged.sha } : null;
-      s.state = v?.merged ? "merged" : s.active.length ? "active" : s.state === "superseded" ? "superseded" : null;
+      s.state = v?.merged ? "merged" : s.active.length ? "active" : s.state === "superseded" || s.retired ? s.state : null; // retired: written by fast-lane retire (HM-1068)
       if (rec.some((i) => i.metadata.record === "ok")) s.record = "ok";
       for (const i of this.pipelineIssues().filter((x) => tasks.includes(x.id))) { if (i.metadata.createKey) (L.tasks.keys ??= {})[i.metadata.createKey] = i.id; L.tasks.tasks[i.id] ??= { id: i.id, kind: i.metadata.kind, title: i.title, workOrders: i.metadata.workOrders || [], assigned: true, adopted: true }; }
     });
@@ -1712,7 +1855,9 @@ export class Pipeline {
 
   // tick.mjs fast-lane <status|adopt|login-ok> (tools/lib/fastlane.mjs)
   fastLaneCmd(sub) {
-    if (!FL.fastLaneOn(this)) return { ok: false, summary: "fast lane mode is off: set fastLane.enabled in scheduler.config.json", anomalies: [] };
+    if (sub === "retire") { this.issues(true); return this.locks.with("tick", () => FL.retire(this), 120_000); }
+    if (sub === "release") { const ids = this.argv.filter((a, i) => !a.startsWith("--") && i > this.argv.indexOf("release") && !["--app", "--machine"].includes(this.argv[i - 1])); if (!ids.length) throw new Error("usage: tick.mjs fast-lane release <工单id> ..."); this.issues(true); return this.locks.with("tick", () => FL.release(this, ids), 120_000); }
+    if (!FL.fastLaneOn(this) && !["status", "report"].includes(sub)) return { ok: false, summary: "fast lane mode is off: set fastLane.enabled in scheduler.config.json", anomalies: [] };
     if (sub === "status") return { ok: true, summary: JSON.stringify(FL.status(this)), anomalies: [] };
     if (sub === "adopt") { this.issues(true); const n = this.locks.with("tick", () => FL.adoptPages(this)); return { ok: true, summary: `fast lane: ${n} restore task(s) created`, anomalies: this.anomalies }; }
     if (sub === "login-ok") { this.issues(true); return FL.loginOk(this); }
@@ -1722,19 +1867,21 @@ export class Pipeline {
       if (this.argv.includes("--write") && !this.dryRun) writeFileSync(path.join(this.toolRoot, "tools/fast-lane/results/replay.json"), JSON.stringify(r, null, 1) + "\n");
       return { ok: true, summary: JSON.stringify(r.counts), anomalies: [] };
     }
-    throw new Error("usage: tick.mjs fast-lane status|adopt|login-ok|report [--write]");
+    throw new Error("usage: tick.mjs fast-lane status|adopt|login-ok|report [--write]|retire|release <工单id> ...");
   }
 
   rerecord(woId) {
+    if (!isRecordable(this.wo(woId))) return { ok: false, summary: `${woId} is a shared/npm order: nothing to record`, anomalies: [] };
     return this.withWo([woId], () => {
       const L = this.ledger.read();
-      const n = (L.tasks.wos[woId]?.recordAttempts || 1) + 1;
+      const mark = this.recordMark(woId);
+      const n = Math.max(L.tasks.wos[woId]?.recordAttempts || 1, this.nextRecordAttempt(L, woId) - 1) + 1;
       const c = this.openRecord(woId, this.leastLoaded("recorder", [], [woId]), n);
       this.ledger.tx((L2) => { const s = (L2.tasks.wos[woId] ??= { tasks: [] }); s.recordAttempts = n; s.record = "pending"; L2.newEvents.push({ type: "rerecord", wo: woId, task: c.id }); });
       const gate = this.leastLoaded("gate", [], [woId]);
       for (const t of this.activeTasks(L, woId)) {
         const meta = this.meta(t);
-        this.mc.setMetaMany(t, { kind: baseKind(meta), waitRecord: true });
+        this.mc.setMetaMany(t, { kind: baseKind(meta), waitRecord: true, waitRecordFrom: { ...(meta.waitRecordFrom && typeof meta.waitRecordFrom === "object" ? meta.waitRecordFrom : {}), [woId]: mark }, recordPending: meta.recordPending ? null : undefined });
         this.mc.update(t, { status: "in_review", assigneeId: gate.id, noStart: true });
         this.comment(t, `[RECORD] 退回录制（${c.id}），录完自动重跑门槛`);
       }

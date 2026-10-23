@@ -12,8 +12,8 @@
 | `ml` | index.1783320636200.js | entry | @/legacy `getAppConfig` | `()=>{let e=sessionStorage.getItem("appConfig")?sessionStorage.getItem("appConfig"):document.getElementsByTagName("head")[0].getAttribute("data-config");return JSON.parse(e)}` |
 | `yl` | index.1783320636200.js | entry | @/legacy `userStorage` | `{keys:!0,setUser(e){this.keys?localStorage.setItem(jn.USER_INFO,e):localStorage.setItem(jn.USER_INFO,JSON.stringify(e))},getUser(){const e=localStorage.getItem(jn.USER_INFO);if(e&&e!="undefined"&&e!="` |
 | `wl` | index.1783320636200.js | entry | @/legacy `getDictItemsByCode` | `e=>IN("/jeecg-system/sys/dict/getDictItemsByCode",e,"get")` |
-| `gl` | index.1783320636200.js | entry | @/legacy `VideoPlayer` | `mt(nTt,[["__scopeId","data-v-0e6750cb"]])` |
-| `kl` | index.1783320636200.js | entry | @/legacy `LoginModal` | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
+| `gl` | index.1783320636200.js | entry | @/legacy `VideoPlayer`（reserved） | `mt(nTt,[["__scopeId","data-v-0e6750cb"]])` |
+| `kl` | index.1783320636200.js | entry | @/legacy `LoginModal`（reserved） | `mt(nne,[["__scopeId","data-v-6ac82971"]])` |
 | `_l` | index.1783320636200.js | entry | @/legacy `checkLogin` | `function(e,t,n,r){const a=Ze.getUser(),o=Ze.getCorp();return console.log("\u5224\u65AD\u5F53\u524D\u8D26\u53F7\u662F\u5426\u767B\u5F55token",Ze.getToken(),a,o),new Promise((i,l)=>{if(!Ze.getToken()){i` |
 | `xl` | index.1783320636200.js | entry | @/legacy `TEXT_GO_AUTH` | `"\u53BB\u8BA4\u8BC1"` |
 | `bl` | index.1783320636200.js | entry | @/legacy `MSG_PERFECT_PERSONAL` | `"\u5F53\u524D\u8D26\u6237\u672A\u5B8C\u5584\u4E2A\u4EBA\u4FE1\u606F\uFF0C\u8BF7\u5148\u5B8C\u5584\u4E2A\u4EBA\u4FE1\u606F"` |
@@ -28,15 +28,15 @@
 | `Tl` | pagination.1783320636200.js | shared | swiper `Pagination` | `function(f){let{swiper:a,extendParams:P,on:p,emit:x}=f;const o="swiper-pagination";P({pagination:{el:null,bulletElement:"span",clickable:!1,hideOnClick:!1,renderBullet:null,renderProgressbar:null,rend` |
 | `Vl` | scrollbar.1783320636200.js | shared | swiper `Scrollbar` | `function(y){let{swiper:a,extendParams:b,on:d,emit:g}=y;const v=I();let f=!1,h=null,p=null,m,n,u,E;b({scrollbar:{el:null,dragSize:"auto",hide:!1,draggable:!1,snapOnRelease:!0,lockClass:"swiper-scrollba` |
 | `Bl` | autoplay.1783320636200.js | shared | swiper `Autoplay` | `function(y){let{swiper:a,extendParams:u,on:l,emit:t}=y,o;a.autoplay={running:!1,paused:!1},u({autoplay:{enabled:!1,delay:3e3,waitForTransition:!0,disableOnInteraction:!0,stopOnLastSlide:!1,reverseDire` |
-| `jl` | index.api.17833206362003.js | api | @/api/sysThumbsUp `queryById` | `e=>s.request({url:"/xf-job/school/licenseFree/XfSysArticle/queryById",method:"get",params:e})` |
-| `re` | index.api.17833206362003.js | api | @/api/sysThumbsUp `getArticleList` | `e=>s.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
-| `Dl` | index.api.17833206362003.js | api | @/api/sysThumbsUp `getChildArticleTypeList` | `e=>s.request({url:"/xf-job/job/licenseFree/getChildArticleTypeList",method:"post",params:e})` |
-| `El` | index.api.17833206362003.js | api | @/api/sysThumbsUp `listForWebsite` | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobReceptionRoom/listForWebsite",method:"get",params:e})` |
-| `Gl` | index.api.17833206362003.js | api | @/api/sysThumbsUp `listForWebsite2` | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite",method:"get",params:e})` |
-| `Ml` | index.api.17833206362003.js | api | @/api/sysThumbsUp `queryMoreClassicQandA` | `e=>s.request({url:"/xf-job/communal/licenseFree/xfSysConsult/queryMoreClassicQandA",method:"get",params:e})` |
-| `Ul` | index.api.17833206362003.js | api | @/api/sysThumbsUp `add` | `e=>s.request({url:"/xf-job/communal/xfSysThumbsUp/add",method:"get",params:e})` |
-| `Rl` | index.api.17833206362003.js | api | @/api/sysThumbsUp `add2` | `e=>s.request({url:"/xf-job/communal/licenseFree/xfSysThumbsUp/add",method:"get",params:e})` |
+| `jl` | index.api.17833206362003.js | api | @/api/sysThumbsUp `queryById`（reserved） | `e=>s.request({url:"/xf-job/school/licenseFree/XfSysArticle/queryById",method:"get",params:e})` |
+| `re` | index.api.17833206362003.js | api | @/api/sysThumbsUp `getArticleList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/getArticleList",method:"get",params:e})` |
+| `Dl` | index.api.17833206362003.js | api | @/api/sysThumbsUp `getChildArticleTypeList`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/getChildArticleTypeList",method:"post",params:e})` |
+| `El` | index.api.17833206362003.js | api | @/api/sysThumbsUp `listForWebsite`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobReceptionRoom/listForWebsite",method:"get",params:e})` |
+| `Gl` | index.api.17833206362003.js | api | @/api/sysThumbsUp `listForWebsite2`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/xfJobUserTutorExpand/listForWebsite",method:"get",params:e})` |
+| `Ml` | index.api.17833206362003.js | api | @/api/sysThumbsUp `queryMoreClassicQandA`（reserved） | `e=>s.request({url:"/xf-job/communal/licenseFree/xfSysConsult/queryMoreClassicQandA",method:"get",params:e})` |
+| `Ul` | index.api.17833206362003.js | api | @/api/sysThumbsUp `add`（reserved） | `e=>s.request({url:"/xf-job/communal/xfSysThumbsUp/add",method:"get",params:e})` |
+| `Rl` | index.api.17833206362003.js | api | @/api/sysThumbsUp `add2`（reserved） | `e=>s.request({url:"/xf-job/communal/licenseFree/xfSysThumbsUp/add",method:"get",params:e})` |
 | `N` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
-| `ql` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `queryOrganizationByAreaId` | `e=>s.request({url:"/xf-job/job/licenseFree/queryOrganizationByAreaId",method:"post",params:e})` |
+| `ql` | index.api.17833206362004.js | api | @/api/jobUserTutorExpand `queryOrganizationByAreaId`（reserved） | `e=>s.request({url:"/xf-job/job/licenseFree/queryOrganizationByAreaId",method:"post",params:e})` |
 | `Hl` | ellipsisText.1783320636200.js | shared | @/shared/ellipsisText.vue `default`（reserved） | `E(s,[["render",p],["__scopeId","data-v-10b81f42"]])` |
 | `Yl` | Gigmarketgetjobpost.1783320636200.js | shared | @/shared/Gigmarketgetjobpost.vue `default` | `K(m,[["__scopeId","data-v-f188f3bf"]])` |

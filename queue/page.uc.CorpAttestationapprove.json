@@ -1,7 +1,7 @@
 {
  "id": "page.uc.CorpAttestationapprove",
  "type": "page",
- "status": "segmented",
+ "status": "regression",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -87,9 +87,8 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "segments": [
-  "seg.uc.CorpAttestationapprove.1",
-  "seg.uc.CorpAttestationapprove.2",
-  "seg.uc.CorpAttestationapprove.3"
- ]
+ "accepted": {
+  "route": "/CorpAttestationapprove",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
 }

@@ -79,21 +79,21 @@
  "api": {
   "_e": {
    "original": "index.api.178332063620024.js#a",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "getChildArticleTypeList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/getChildArticleTypeList"
   },
   "de": {
    "original": "index.api.178332063620024.js#b",
-   "path": "@/api/oddJob",
+   "path": "@/api/api-24",
    "export": "getArticleList",
    "status": "restored",
    "url": "/xf-job/school/licenseFree/getArticleList"
   },
   "be": {
    "original": "index.api.17833206362008.js#a",
-   "path": "@/api/sysArticle",
+   "path": "@/api/api-08",
    "export": "getHotArticleList",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/getHotArticleList"

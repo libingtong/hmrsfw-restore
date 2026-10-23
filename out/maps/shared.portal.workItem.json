@@ -29,7 +29,8 @@
    "original": "aq",
    "path": "@/legacy/store",
    "export": "useStoreGetters",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E4"
   },
   "_a": {
    "original": "u",
@@ -65,7 +66,8 @@
    "original": "as",
    "path": "@/legacy/utils",
    "export": "getUserInfo",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.E6"
   },
   "O": {
    "original": "A",
@@ -101,7 +103,8 @@
    "original": "m",
    "path": "@/legacy",
    "export": "LoginModal",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.portal.c03"
   },
   "$": {
    "original": "M",
@@ -123,21 +126,21 @@
  "api": {
   "E": {
    "original": "index.api.17833206362002.js#e",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "add",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/add"
   },
   "Oa": {
    "original": "index.api.17833206362002.js#h",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "cancel",
    "status": "restored",
    "url": "/xf-job/job/xfJobUserCare/cancel"
   },
   "G": {
    "original": "index.api.17833206362002.js#q",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-17833206362002",
    "export": "queryIzCanDeliver",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeliver"

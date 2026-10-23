@@ -23,7 +23,8 @@
  "target": "apps/uc/src/shared/ZgIframe.vue",
  "exports": {
   "Z": {
-   "export": "default"
+   "export": "default",
+   "original": "ZgIframe.1751615607545.js#Z"
   }
  },
  "registryKey": "ZgIframe.1751615607545.js",

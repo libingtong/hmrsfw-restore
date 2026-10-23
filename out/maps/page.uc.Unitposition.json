@@ -37,13 +37,15 @@
    "original": "bo",
    "path": "@/legacy/api",
    "export": "getCompanyForMyCare",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "ge": {
    "original": "bp",
    "path": "@/legacy/api",
    "export": "getCompanyPositionForMyCare",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "F": {
    "original": "B",
@@ -67,7 +69,8 @@
    "original": "b5",
    "path": "@/legacy/api",
    "export": "cancel",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Z": {
    "original": "m",

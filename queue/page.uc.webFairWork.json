@@ -1,7 +1,7 @@
 {
  "id": "page.uc.webFairWork",
  "type": "page",
- "status": "todo",
+ "status": "regression",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -68,5 +68,9 @@
   "views": [],
   "orders": []
  },
- "stylesProvidedByScript": true
+ "stylesProvidedByScript": true,
+ "accepted": {
+  "route": "/webFairWork/:zphId",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ }
 }

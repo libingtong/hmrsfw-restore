@@ -1,7 +1,7 @@
 {
  "id": "page.uc.doneList",
  "type": "page",
- "status": "segmented",
+ "status": "regression",
  "site": "usercenter",
  "app": "uc",
  "vueVersion": "3.3.4",
@@ -101,9 +101,9 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "notes": "裁定（uc-role-decisions.json）。局限：单位类事项（bmgjjl、lsajbt、zctsjl、szftsjt）的申报按钮要求 corpInfo.checkStatus==10（单位已认证），否则只弹提示；测试账号没有申报记录时列表为空",
- "segments": [
-  "seg.uc.doneList.1",
-  "seg.uc.doneList.2"
- ]
+ "accepted": {
+  "route": "/doneList",
+  "in": "hmrsfw-vue router.ts（已验收，只做回归）"
+ },
+ "notes": "裁定（uc-role-decisions.json）。局限：单位类事项（bmgjjl、lsajbt、zctsjl、szftsjt）的申报按钮要求 corpInfo.checkStatus==10（单位已认证），否则只弹提示；测试账号没有申报记录时列表为空"
 }

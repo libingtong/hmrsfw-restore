@@ -73,7 +73,8 @@
    "original": "W",
    "path": "@/legacy/api",
    "export": "setCompanyTags",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "G": {
    "original": "m",
@@ -103,7 +104,8 @@
    "original": "X",
    "path": "@/legacy/api",
    "export": "freeCompanyDetailById",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Xe": {
    "original": "a",
@@ -121,85 +123,98 @@
    "original": "Y",
    "path": "@/legacy/utils",
    "export": "closeTag",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "tt": {
    "original": "Z",
    "path": "@/legacy/api",
    "export": "remind",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "st": {
    "original": "$",
    "path": "@/legacy/api",
    "export": "noMoreRemindersToday",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "ot": {
    "original": "a0",
    "path": "@/legacy/api",
    "export": "getCompanyStatistic",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "Z": {
    "original": "q",
    "path": "@/legacy/api",
    "export": "queryByCompanyId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "nt": {
    "original": "a1",
    "path": "@/legacy/api",
    "export": "getCompanyUserList",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "at": {
    "original": "a2",
    "path": "@/legacy/api",
    "export": "queryPageListByCompanyId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "lt": {
    "original": "a3",
    "path": "@/legacy/api",
    "export": "queryPageInterviewListByCompanyId",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "it": {
    "original": "a4",
    "path": "@/legacy/api",
    "export": "getCount",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "ct": {
    "original": "a5",
    "path": "@/legacy/api",
    "export": "queryCountOfUnFile",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "rt": {
    "original": "a6",
    "path": "@/legacy/api",
    "export": "unBindCompany",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "dt": {
    "original": "a7",
    "path": "@/legacy/api",
    "export": "isPublishingPosition",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   },
   "ut": {
    "original": "a8",
    "path": "@/legacy/api",
    "export": "addTalent",
-   "status": "restored"
+   "status": "reserved",
+   "owner": "entry.uc.E6"
   }
  },
  "api": {
   "Q": {
    "original": "index.api.17516156075456.js#b",
-   "path": "@/api/jobCurriculumVitae",
+   "path": "@/api/api-56",
    "export": "getSettingValueByCode",
    "status": "restored",
    "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"
@@ -208,14 +223,14 @@
    "original": "index.api.1751615607545.js#e",
    "path": "@/api/jobSupermarketMerchants",
    "export": "getRecommendTalentList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/xfJobCompany/getRecommendTalentList"
   },
   "bt": {
    "original": "index.api.1751615607545.js#f",
    "path": "@/api/jobSupermarketMerchants",
    "export": "recommendJobList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList"
   }
  },
@@ -230,7 +245,7 @@
   "Ke": {
    "original": "mymsg.1751615607545.js#_",
    "path": "@/shared/mymsg.ts",
-   "export": "_",
+   "export": "emptyListImg",
    "status": "reserved",
    "owner": "shared.uc.mymsg"
   },

@@ -51,7 +51,9 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.uc.E6"
+  ]
  },
  "stylesProvidedByScript": true,
  "notes": "裁定（uc-role-decisions.json）。局限：按普通用户录，录出来可能是空状态或没有权限的状态；需造数（D7）：在校生身份（同 /collage/studentInfo）下有非就业签约数据"

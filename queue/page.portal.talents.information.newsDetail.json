@@ -46,7 +46,9 @@
   ],
   "modules": [],
   "views": [],
-  "orders": []
+  "orders": [
+   "entry.portal.c05"
+  ]
  },
  "stylesProvidedByScript": true
 }

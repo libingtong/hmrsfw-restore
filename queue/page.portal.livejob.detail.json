@@ -62,6 +62,7 @@
    "page.portal.livejob.components.commentItem"
   ],
   "orders": [
+   "entry.portal.E6",
    "page.portal.livejob.components.commentItem",
    "shared.portal.likeBtn",
    "shared.portal.workItem"

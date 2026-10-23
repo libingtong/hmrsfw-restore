@@ -68,6 +68,7 @@
    "page.portal.eMap.list"
   ],
   "orders": [
+   "entry.portal.E6",
    "page.portal.eMap.list",
    "shared.portal.gaode2",
    "shared.portal.modules"

@@ -34,7 +34,7 @@
    "original": "index.api.175161560754520.js#g",
    "path": "@/api/oddShareLackJobInfo",
    "export": "list",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-oddjob/oddjob/xfOddShareLackJobInfo/list"
   }
  },

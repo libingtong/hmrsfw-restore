@@ -45,7 +45,7 @@
    "original": "index.api.178332063620041.js#b",
    "path": "@/api/jobOverseasRecruitNotice",
    "export": "queryList",
-   "status": "restored",
+   "status": "reserved",
    "url": "/xf-job/job/licenseFree/xfJobOverseasRecruitNotice/queryList"
   }
  },
