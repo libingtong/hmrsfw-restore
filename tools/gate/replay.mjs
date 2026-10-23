@@ -17,12 +17,19 @@ const TOAST_SEL = ".ant-message-notice, .ant-notification-notice";
 // Init script (page context): toast recorder + window.__gateBusy() = number of running UI animations (50 ms – 2 s):
 // per-frame JS motion (marquees set ~1 ms transitions every frame) and long or infinite animations (spinners, slow
 // scrollers) never end, so they do not count.
+// The 50 ms read uses the browser's own setTimeout, not the page's (HM-1278): runPage installs Playwright's clock
+// (setSystemTime), which replaces the page's timers with a queue it works off one timer per real macrotask; a form page
+// with dozens of due timers (one per input) keeps the fake time standing for seconds, so the read came after the toast
+// had closed, or after the capture, and the toast was missing on that side only. This script is added before the clock
+// (captured below as the native function); __pwClock.builtins is the clock's own copy of it, for the other order.
 function toastRecorder(sel) {
   window.__gateBusy = () => document.getAnimations().filter((a) => { if (a.playState !== "running") return false; const t = a.effect?.getComputedTiming?.(); const total = (t?.duration ?? 0) * (t?.iterations ?? Infinity); return total >= 50 && total <= 2000; }).length;
   window.__gateToasts = [];
   window.__gatePhase = "load";
+  const nativeTimeout = window.setTimeout.bind(window);
+  const realTimeout = (f, ms) => (window.__pwClock?.builtins?.setTimeout ?? nativeTimeout)(f, ms);
   const seen = new WeakSet();
-  const grab = (el) => { if (seen.has(el)) return; seen.add(el); const phase = window.__gatePhase; setTimeout(() => { const t = el.innerText.trim(); if (t) window.__gateToasts.push({ phase, t }); }, 50); };
+  const grab = (el) => { if (seen.has(el)) return; seen.add(el); const phase = window.__gatePhase; realTimeout(() => { const t = el.innerText.trim(); if (t) window.__gateToasts.push({ phase, t }); }, 50); };
   new MutationObserver((muts) => { for (const m of muts) for (const n of m.addedNodes) if (n.nodeType === 1) { if (n.matches(sel)) grab(n); n.querySelectorAll?.(sel).forEach(grab); } }).observe(document, { childList: true, subtree: true });
 }
 // Carousel autoplay (HM-273). ant-design-vue's a-carousel (vc-slick) advances every autoplaySpeed + 50 ms
