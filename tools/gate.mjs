@@ -40,7 +40,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { appDir as resolveAppDir } from "./app-dir.mjs";
 import { gitExclude } from "./lib/git-exclude.mjs";
-import { INTERACT_BRANCH, REST_SEL, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, origSelOf, scopeRootSel, stateDir } from "./gate/common.mjs";
+import { INTERACT_BRANCH, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, origSelOf, restSelOf, scopeRootSel, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256 } from "./gate/har.mjs";
 import { VIEWPORT, runPage } from "./gate/replay.mjs";
 import { compareRuns } from "./gate/compare.mjs";
@@ -353,7 +353,7 @@ export async function gate(argv) {
       const har = loadHar(base.har.path);
       const restSid = wo.recordVia ? scopeIds.get(realpathOr(path.join(appDir, wo.target))) : null;
       if (wo.recordVia && !restSid) { out.pages.push({ wo: wo.id, pass: false, stage: "browser", failed: [{ check: "root", where: "load", hint: `restored ${wo.target} has no scope id (no <style scoped>): it cannot be found inside the parent page ${wo.recordVia}` }] }); continue; }
-      const restSel = restSid ? scopeRootSel(restSid) : REST_SEL;
+      const restSel = restSid ? scopeRootSel(restSid) : restSelOf(wo);
       const once = async (tag) => {
         const rest = await runPage(browser, { origin: servers[wo.app].origin, url: wo.recordPath, storage: restStorage(wo, assets, base.storagePatch, har), har, sel: restSel, steps, shotDir: dir, tag, componentScope: restSid });
         return { rest, cmp: compareRuns(base, rest, { rules, site: wo.site, known: known.list, shotOut: path.join(dir, `${tag}.diff.png`), restSel, inParent: !!restSid }) };

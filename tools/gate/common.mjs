@@ -20,6 +20,15 @@ export const SITES = {
   usercenter: { app: "uc", host: "https://hamiusercentertest.rencaidanao.com", origSel: "main.ant-layout-content .overscoll > div > *", bareRoutes: ["/previewresume", "/login", "/403", "/autoLogin"], bareSel: "#app > *" },
 };
 export const REST_SEL = "#poc-main > *";
+// The restored side mirrors origSelOf for bareRoutes: the restored uc router lists the same top-level routes next to
+// the layout route (apps/uc/src/router.ts, after the "/" children) and App.vue renders a-config-provider > RouterView,
+// so those pages are mounted straight under #app; #poc-main is only in the layout (legacy/components/Home.vue), and
+// the gate's fallback route is not added for a path the app router already resolves (appserver.mjs gateRouteCode).
+// recordVia pages keep their scope root (gate.mjs). Everything else: REST_SEL (HM-1162).
+export function restSelOf(wo) {
+  const site = SITES[wo.site];
+  return site.bareRoutes?.includes(new URL(wo.recordPath ?? "/", "http://x").pathname) ? site.bareSel : REST_SEL;
+}
 export const siteOfApp = (app) => Object.keys(SITES).find((s) => SITES[s].app === app);
 
 // Pages that only exist as a component of another page (`recordVia`, docs/work-orders.md) are recorded on the parent's
