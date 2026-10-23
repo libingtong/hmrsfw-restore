@@ -194,8 +194,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "newUserCardImg",
-   "status": "reserved",
-   "owner": "shared.uc.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [

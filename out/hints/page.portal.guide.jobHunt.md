@@ -4,11 +4,11 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `Xa` | auth.1783320636200.js | shared | @/shared/auth/OneContent.vue `default`（reserved） | `R(N,[["__scopeId","data-v-08282971"]])` |
-| `Fe` | auth.1783320636200.js | shared | @/shared/auth/BackGround.vue `default`（reserved） | `R(i,[["__scopeId","data-v-b477bb74"]])` |
-| `Ka` | auth.1783320636200.js | shared | @/shared/auth/ColumnContent.vue `default`（reserved） | `R(Z,[["__scopeId","data-v-edf344e0"]])` |
-| `$a` | auth.1783320636200.js | shared | @/shared/auth.ts `_`（reserved） | `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAATCAYAAAB7u5a2AAABtElEQVQ4ja2Vy0tVURSHP70pkuggFRzUoNB0HAU1ECfZ0EGDDMJJOoio/oEQonlQNJX+AUMnvRwIQqTQoJlwJz4G6SW81CSInl9sWAcOl/s4XlywOK+9vt/irLXX7lBpY` |
-| `Za` | auth.1783320636200.js | shared | @/shared/auth.ts `a`（reserved） | `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWCAYAAADNX8xBAAABhElEQVQ4jaXUPWhVQRCG4UcxYgQTldQSESVgtFELwSKViuksxEqw0kpSBNFCBBsJQopooZVFUMFGsFBMiGCiCDYWWgiCWEgKsTCijf8MzJWb5dxzTPLBKXZ39j0zu9/sq` |
+| `Xa` | auth.1783320636200.js | shared | @/shared/auth/OneContent.vue `default` | `R(N,[["__scopeId","data-v-08282971"]])` |
+| `Fe` | auth.1783320636200.js | shared | @/shared/auth/BackGround.vue `default` | `R(i,[["__scopeId","data-v-b477bb74"]])` |
+| `Ka` | auth.1783320636200.js | shared | @/shared/auth/ColumnContent.vue `default` | `R(Z,[["__scopeId","data-v-edf344e0"]])` |
+| `$a` | auth.1783320636200.js | shared | @/shared/auth.ts `nextPageIconImg` | `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAATCAYAAAB7u5a2AAABtElEQVQ4ja2Vy0tVURSHP70pkuggFRzUoNB0HAU1ECfZ0EGDDMJJOoio/oEQonlQNJX+AUMnvRwIQqTQoJlwJz4G6SW81CSInl9sWAcOl/s4XlywOK+9vt/irLXX7lBpY` |
+| `Za` | auth.1783320636200.js | shared | @/shared/auth.ts `realNameAuthImg` | `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWCAYAAADNX8xBAAABhElEQVQ4jaXUPWhVQRCG4UcxYgQTldQSESVgtFELwSKViuksxEqw0kpSBNFCBBsJQopooZVFUMFGsFBMiGCiCDYWWgiCWEgKsTCijf8MzJWb5dxzTPLBKXZ39j0zu9/sq` |
 | `Se` | index.1783320636200.js | entry | ant-design-vue `Form` | `Lxe` |
 | `M` | index.1783320636200.js | entry | @/legacy `userStorage` | `{keys:!0,setUser(e){this.keys?localStorage.setItem(jn.USER_INFO,e):localStorage.setItem(jn.USER_INFO,JSON.stringify(e))},getUser(){const e=localStorage.getItem(jn.USER_INFO);if(e&&e!="undefined"&&e!="` |
 | `De` | index.1783320636200.js | entry | dayjs `default` | `Rk(Owe)` |

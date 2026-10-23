@@ -201,8 +201,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "jqqdImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "et": {
    "original": "navigation.1783320636200.js#N",

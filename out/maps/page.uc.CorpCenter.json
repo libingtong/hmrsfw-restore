@@ -239,15 +239,13 @@
    "original": "mymsg.1751615607545.js#m",
    "path": "@/shared/mymsg/Mymsg.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "shared.uc.mymsg"
+   "status": "restored"
   },
   "Ke": {
    "original": "mymsg.1751615607545.js#_",
    "path": "@/shared/mymsg.ts",
    "export": "emptyListImg",
-   "status": "reserved",
-   "owner": "shared.uc.mymsg"
+   "status": "restored"
   },
   "Ze": {
    "original": "recommendZp.1751615607545.js#s",
@@ -325,8 +323,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "stateCardImg",
-   "status": "reserved",
-   "owner": "shared.uc.modules"
+   "status": "restored"
   },
   "vt": {
    "original": "default.1751615607545.js#_",
@@ -334,8 +331,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "defaultImg",
-   "status": "reserved",
-   "owner": "shared.uc.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [

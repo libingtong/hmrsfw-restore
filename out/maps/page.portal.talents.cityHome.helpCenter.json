@@ -66,8 +66,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "moreInfoImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "J": {
    "original": "yjfk.1783320636200.js#_",
@@ -75,8 +74,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "yjfkImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "K": {
    "original": "yjfk.1783320636200.js#a",
@@ -84,8 +82,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "yjfkImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

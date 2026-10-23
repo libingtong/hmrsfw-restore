@@ -61,8 +61,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "newsImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Oa": {
    "original": "jobfair_arrow.1783320636200.js#_",
@@ -70,8 +69,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "jobfairArrowImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "B": {
    "original": "type.1783320636200.js#_",
@@ -79,8 +77,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "typeImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

@@ -96,8 +96,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "cardImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "oe": {
    "original": "card.1783320636200.js#a",
@@ -105,8 +104,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "cardImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

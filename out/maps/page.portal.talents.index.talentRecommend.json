@@ -122,8 +122,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "robotImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "j": {
    "original": "woman.1783320636200.js#m",
@@ -131,8 +130,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "womanImgM",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "A": {
    "original": "woman.1783320636200.js#w",
@@ -140,8 +138,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "womanImgW",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

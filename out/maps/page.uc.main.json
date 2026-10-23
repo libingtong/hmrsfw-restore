@@ -245,8 +245,7 @@
    "original": "mymsg.1751615607545.js#m",
    "path": "@/shared/mymsg/Mymsg.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "shared.uc.mymsg"
+   "status": "restored"
   },
   "et": {
    "original": "market.vue_vue_type_script_setup_true_lang.1751615607545.js#_",

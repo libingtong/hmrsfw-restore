@@ -94,15 +94,13 @@
    "original": "hotProject.1783320636200.js#a",
    "path": "@/shared/hotProject.ts",
    "export": "getPxCourseListForWebsite",
-   "status": "reserved",
-   "owner": "shared.portal.hotProject"
+   "status": "restored"
   },
   "Ae": {
    "original": "hotProject.1783320636200.js#h",
    "path": "@/shared/hotProject/HotProject.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "shared.portal.hotProject"
+   "status": "restored"
   },
   "Fe": {
    "original": "tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js#_",
@@ -134,8 +132,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "cardImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Ze": {
    "original": "card.1783320636200.js#a",
@@ -143,8 +140,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "cardImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [

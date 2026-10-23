@@ -249,8 +249,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "jqqdImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

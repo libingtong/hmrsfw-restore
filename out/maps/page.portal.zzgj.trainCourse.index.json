@@ -147,8 +147,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "videoNullImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "dt": {
    "original": "btn.1783320636200.js#_",
@@ -156,8 +155,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "btnImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

@@ -107,8 +107,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "cardImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Be": {
    "original": "card.1783320636200.js#a",
@@ -116,8 +115,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "cardImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Ie": {
    "original": "three.1783320636200.js#_",
@@ -125,8 +123,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "threeImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "je": {
    "original": "three.1783320636200.js#a",
@@ -134,8 +131,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "threeImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Se": {
    "original": "three.1783320636200.js#b",
@@ -143,8 +139,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "threeImgB",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

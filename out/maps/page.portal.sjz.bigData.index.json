@@ -35,8 +35,7 @@
    "original": "index.1783320636200120.js#g",
    "path": "@/shared/index120.ts",
    "export": "getElementStyle",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "views": {},

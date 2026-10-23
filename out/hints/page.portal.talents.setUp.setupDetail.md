@@ -19,9 +19,9 @@
 | `Oe` | index.1783320636200.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `Pe` | index.1783320636200.js | entry | @/legacy/utils `openLink`（reserved） | `(e,t,n)=>{let r=window.location.host;if(e.linkAddress)String(e.linkAddress).includes(r)?window.open(e.linkAddress):e.linkAddress.includes("www")\|\|e.linkAddress.includes("http")?window.open("/outLink?l` |
 | `Se` | index.1783320636200.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略；它只是给组件挂 `__scopeId`） | `(e,t)=>{const n=e.__vccOpts\|\|e;for(const[r,a]of t)n[r]=a;return n}` |
-| `Ze` | hotProject.1783320636200.js | api | @/shared/hotProject.ts `g`（reserved） | `u=>q.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/queryByIdNew",method:"get",params:u})` |
-| `Fe` | hotProject.1783320636200.js | api | @/shared/hotProject.ts `a`（reserved） | `u=>q.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:u})` |
-| `Ye` | hotProject.1783320636200.js | shared | @/shared/hotProject/HotProject.vue `default`（reserved） | `U(P,[["__scopeId","data-v-e9d68059"]])` |
+| `Ze` | hotProject.1783320636200.js | api | @/shared/hotProject.ts `getPxCourseDetailById` | `u=>q.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/queryByIdNew",method:"get",params:u})` |
+| `Fe` | hotProject.1783320636200.js | api | @/shared/hotProject.ts `getPxCourseListForWebsite` | `u=>q.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:u})` |
+| `Ye` | hotProject.1783320636200.js | shared | @/shared/hotProject/HotProject.vue `default` | `U(P,[["__scopeId","data-v-e9d68059"]])` |
 | `Je` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
 | `Qe` | signSetup.1783320636200.js | shared | @/shared/signSetup.vue `default`（reserved） | `Y(u,[["__scopeId","data-v-9600d46b"]])` |
 | `$e` | complaint.1783320636200.js | shared | @/shared/complaint.vue `default`（reserved） | `$(_,[["__scopeId","data-v-78e7da48"]])` |

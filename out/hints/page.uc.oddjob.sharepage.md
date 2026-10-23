@@ -4,12 +4,12 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `Ze` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | api | @/shared/Content.ts `c`（reserved） | `e=>a.request({url:"/xf-job/communal/xfSysUser/checkIzPerfect?xfSysUserId="+e,method:"get"})` |
-| `Ge` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | api | @/shared/Content.ts `g`（reserved） | `e=>a.request({url:"/xf-job/communal/xfSysUser/queryByIdJM",method:"get",params:e})` |
-| `Qe` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | api | @/shared/Content.ts `d`（reserved） | `e=>a.request({url:"/xf-job/job/xfJobCompanyPosition/detailById",method:"get",params:e})` |
-| `We` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | shared | @/shared/Content/Content.vue `default`（reserved） | `y({__name:"Content",props:{show:Boolean},emits:["update:show"],setup(e,{emit:i}){const t=e,u=p({info:""}),d=()=>{i("update:show")};return b({}),x(()=>{h({dictCode:window.businessDict}).then(r=>{r.succ` |
-| `je` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | api | @/shared/Content.ts `a`（reserved） | `e=>a.request({url:"/xf-oddjob/oddjob/xfOddUser/queryById",method:"get",params:e})` |
-| `es` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | api | @/shared/Content.ts `e`（reserved） | `e=>a.request({url:"/xf-oddjob/oddjob/xfOddUser/edit",method:"post",data:e})` |
+| `Ze` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | api | @/shared/Content.ts `checkIzPerfect` | `e=>a.request({url:"/xf-job/communal/xfSysUser/checkIzPerfect?xfSysUserId="+e,method:"get"})` |
+| `Ge` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | api | @/shared/Content.ts `querySysUserByIdJM` | `e=>a.request({url:"/xf-job/communal/xfSysUser/queryByIdJM",method:"get",params:e})` |
+| `Qe` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | api | @/shared/Content.ts `getCompanyPositionDetailById` | `e=>a.request({url:"/xf-job/job/xfJobCompanyPosition/detailById",method:"get",params:e})` |
+| `We` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | shared | @/shared/Content/Content.vue `default` | `y({__name:"Content",props:{show:Boolean},emits:["update:show"],setup(e,{emit:i}){const t=e,u=p({info:""}),d=()=>{i("update:show")};return b({}),x(()=>{h({dictCode:window.businessDict}).then(r=>{r.succ` |
+| `je` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | api | @/shared/Content.ts `queryOddUserById` | `e=>a.request({url:"/xf-oddjob/oddjob/xfOddUser/queryById",method:"get",params:e})` |
+| `es` | Content.vue_vue_type_script_setup_true_lang.1751615607545.js | api | @/shared/Content.ts `editOddUser` | `e=>a.request({url:"/xf-oddjob/oddjob/xfOddUser/edit",method:"post",data:e})` |
 | `F` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `R` | index.1751615607545.js | entry | ant-design-vue `Modal` | `re({compatConfig:{MODE:3},name:"AModal",inheritAttrs:!1,props:xt(Cdt(),{width:520,transitionName:"zoom",maskTransitionName:"fade",confirmLoading:!1,visible:!1,okType:"primary"}),setup:function(e,n){va` |
 | `ss` | index.1751615607545.js | entry | @/legacy `decryptText` | `t=>{if(t&&typeof t=="string")try{return Df.sm4.decrypt(t,yC)}catch(e){return console.error("解密失败:",e),null}else return null}` |
