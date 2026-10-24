@@ -1,7 +1,7 @@
 [
   {"wait":800},
-  {"clickSel":".font-24.pointer.marR20:nth-child(7)","optional":true,"root":true},
-  {"wait":1500},
+  {"clickSel":".font-24.pointer.marR20:nth-child(7)","root":true},
+  {"wait":2000},
   {"clickSel":".specNext2","optional":true},
   {"wait":600},
   {"clickSel":".specPrev2","optional":true},
