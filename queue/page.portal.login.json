@@ -40,6 +40,8 @@
  ],
  "recordPath": "/login",
  "role": "general",
+ "authMode": "anonymous",
+ "authModeNote": "HM-1381/HM-244: 门户登录页本身只在未登录时可见；record-page.mjs 改为不带任何 .auth 登录态打开，直接访问登录页。不输入账号密码，不调用登录接口。",
  "maps": "out/maps/page.portal.login.json",
  "hints": "out/hints/page.portal.login.md",
  "deps": {

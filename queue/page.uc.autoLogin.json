@@ -25,6 +25,8 @@
  ],
  "recordPath": "/autoLogin",
  "role": "general",
+ "authMode": "portal-handoff",
+ "authModeNote": "HM-1381/HM-388: 原页只在门户已登录、经门户「进入用户中心」跳转（带门户 token）时才做事（见原 chunk autoLogin.1751615607545.js：无 query.token 时 setup 直接返回，什么都不做）；无法像其它用户中心页一样先切身份再录，record-page.mjs 改为用门户 .auth 的有效 token 拼 ?toPath=&token= 跳转，用户中心本身不带登录态。不输入账号密码，不调用登录接口。",
  "maps": "out/maps/page.uc.autoLogin.json",
  "hints": "out/hints/page.uc.autoLogin.md",
  "deps": {
