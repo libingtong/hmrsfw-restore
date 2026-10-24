@@ -1,0 +1,9 @@
+[
+  {"fill":["可输入招聘会名称进行搜索","测试-录制用-"]},
+  {"click":"搜索"},
+  {"wait":2500},
+  {"clickSel":".zphItem:has-text(\"测试-录制用-\") .hoverNone"},
+  {"wait":2000},
+  {"click":"报名参会"},
+  {"wait":2000}
+]
