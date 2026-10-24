@@ -1,0 +1,7 @@
+{
+ "id": "upload-progress-delay",
+ "kind": "tree",
+ "enabled": true,
+ "since": "HM-1363",
+ "why": "ant-design-vue 的上传列表项（ListItem.js，两边同一份逻辑）只在组件挂载 300ms 后（onMounted 里的 setTimeout）才开始渲染进度条外层 <div class=\"...-list-item-progress\">，渲染出来之后再用 v-show 按 file.status===\"uploading\" 决定显不显示；对一个已经上传完成（done）的文件，这 300ms 过后它就稳定存在、永久 display:none，300ms 之前整个元素都不存在。300ms 有没有过取决于两边各自挂载的那一刻，不取决于页面代码或文件状态（两边 minified 逻辑逐字对应：legacy-dist/usercenter/assets/index.1751615607545.js:2188891 的 `i.value&&u(_r,s.value,{default:...hn(u(\"div\",{class:\"${p}-list-item-progress\"},[...]),[[qn,m.status===\"uploading\"]])...})` 与 node_modules/ant-design-vue/es/upload/UploadList/ListItem.js:60-68、220-227 的 `showProgress`/`setTimeout(…,300)`/`v-show` 一致）。gate 234272be99429e2c：page.uc.CorpAttestation、page.uc.zcyzCorpAttestationapprove 的原版两次独立回放都没有这个元素，还原版两次都有（display:none），与 rule/hm-251-record-via-root 无关。只去掉这一个 display:none 的进度条外层元素（级联去掉它本来就没有的子节点）；一个正在上传、真的显示进度条的元素不碰，其余元素照常比较"
+}

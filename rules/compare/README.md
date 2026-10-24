@@ -11,4 +11,3 @@
   - `html` / `text` / `overlay`：按 `subs`（`[正则, 标志, 替换]`）依次替换规范化后的字符串；
   - `param`：参数（`pixel`：像素差上限 `maxRatio`、pixelmatch 颜色阈值 `threshold`）；
   - `shell-requests`：原站外壳的请求（站点级），加载请求集合和交互请求序列都不比较。
-  - `now`：回放时钟读数（`windowMinutes`）：精确到秒、落在时钟起点后 `windowMinutes` 分钟内的日期时间只比较格式，实现见 `tools/gate/rules.mjs` `normNow`。

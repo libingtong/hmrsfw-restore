@@ -1,0 +1,7 @@
+{
+ "id": "tabs-ink-bar-offset",
+ "kind": "tree",
+ "enabled": true,
+ "since": "HM-1363",
+ "why": "ant-design-vue 的 Tabs 下划线（rc-tabs useIndicator，两边同一份逻辑）靠 ResizeObserver 测一次激活 tab 的位置，再经一次 flush:post 的 watch 和一次 requestAnimationFrame 才把 left/width（纵向是 top/height）写进行内 style；这条链跑完之前下划线没有任何行内 style。跑没跑完取决于两边各自那一刻的任务调度顺序，不取决于页面代码——激活的是哪个 tab 由各自的 -tab-active 类照常比较，不受影响。证据（legacy-dist/usercenter/assets/index.1751615607545.js:1591600 起）：`ve=tn(),Me=Fe(ve,2),ke=Me[0]` 是下划线的 style ref；`we([de,...],function(){...He(),me.value=vt(function(){Ae(Je)})})` 只在这个 raf 回调里才把算好的 Je（left/width 或 top/height）写进 ke（即下划线的 style）。gate 234272be99429e2c：page.uc.CorpAttestation 的两次原版独立回放（load.html）都没有这行内 style，还原版两次都有，稳定可重现，与 rule/hm-251-record-via-root 无关（该页不是 recordVia 页面）。只去掉带 <前缀>-ink-bar 类的元素行内 style 里的 left/top/right/width/height 五条声明，其余声明、激活 tab 的类、其他元素照常比较"
+}
