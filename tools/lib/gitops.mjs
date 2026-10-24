@@ -50,6 +50,7 @@ export class Git {
     return new Set([...log.matchAll(/This reverts commit ([0-9a-f]{40})/g)].map((m) => m[1]));
   }
   revParse(ref) { return this.raw(["rev-parse", "--verify", "--quiet", `${ref}^{commit}`], { allowFail: true }).out || null; }
+  commitTime(ref) { const t = Number(this.raw(["log", "-1", "--format=%ct", ref], { allowFail: true }).out); return t ? t * 1000 : null; }
   isAncestor(a, b) { return this.raw(["merge-base", "--is-ancestor", a, b], { allowFail: true }).ok; }
   changedFiles(base, head) { return this.out(["diff", "--name-only", `${base}...${head}`]).split("\n").filter(Boolean); }
   // First-parent merge commits in (from, to], oldest first.
