@@ -1,0 +1,23 @@
+{
+  "id": "page.portal.sjz.bigData.components.Dashboard1",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/sjz/bigData/components/Dashboard1.vue"
+  ],
+  "selfCheck": {
+    "pass": true,
+    "failed": [],
+    "commit": "415fb8c0972ef81761b01b2de57d1e9c51591696"
+  },
+  "build": "not-run",
+  "todos": [],
+  "unresolved": [],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：轮播底部 palTel 的 a-tooltip 默认插槽原包是 createTextVNode(\" \" + toDisplayString(footRemark))，还原写成 {{ \" \" + item.footRemark }}，footRemark 为 null 时渲染出 \" null\"（门槛 load/final html、text 差异均来自此处 9 个 slide）；改为 </template> {{ item.footRemark }} 隐式默认插槽，编译结果与原包逐字一致",
+    "renderEquiv 仍为 DIFF，token 数 2431/2431 与修正前相同，本轮未引入新差异",
+    "self-check pass（commit 415fb8c）；npm run build:portal 本机负载高 20 分钟未结束被中止，构建交由门槛"
+  ]
+}
