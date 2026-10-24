@@ -267,6 +267,7 @@ export function openedTarget(url, origin) {
 }
 
 // opts: { origin, url, storage: {localStorage, sessionStorage}, har, sel, steps, shotDir, tag, stubChunk, coverage }
+// steps: the interaction script; its step marked "root": true, if any, runs before the root capture (HM-1294, below).
 // coverage = names of the scripts to measure (basenames under /assets/): V8 precise coverage over the whole run, load and
 // steps, returned as res.coverage = [{url, source, functions}] for those scripts only (tools/gate/coverage.mjs).
 // stubChunk = basename of the page chunk: replaced by an empty component that snapshots localStorage at mount (shell
@@ -329,15 +330,27 @@ export async function runPage(browser, opts) {
   if (opts.pageScopes?.length) PAGE_SCOPES.set(page, opts.pageScopes); // shellLayoutCss
   if (opts.componentScope) COMPONENT_SCOPE.set(page, opts.componentScope); // markOffscope
   const base = path.join(opts.shotDir, opts.tag);
-  res.load = { ...(await captureRoot(page, opts.sel, base, true, /^load$/)), requests: log.map((x) => ({ ...x })), opened: opened.map((x) => ({ ...x })) };
-  if (opts.steps?.length) {
-    res.steps = [];
-    for (const [i, s] of opts.steps.entries()) {
+  const runSteps = async (from, to) => {
+    for (let i = from; i < to; i++) {
+      const s = opts.steps[i];
       phase = "step" + i;
       await page.evaluate((p) => { window.__gatePhase = p; }, phase).catch(() => {});
       const { err, note } = await runStep(page, s);
       res.steps.push({ i, step: s.fill ? { fill: [s.fill[0], "<test value>"] } : s, err, note });
     }
+  };
+  if (opts.steps?.length) res.steps = [];
+  // Root step (HM-1294): a component that only mounts after an interaction (a modal opened by a click, the content of a
+  // tab that is not the first one) has no root at load. The script's step marked "root": true is run, with the steps
+  // before it, ahead of the root capture, and the page settles again; what is captured then (DOM, text, overlay, shots)
+  // is the run's "load" root, compared exactly as a load root. Requests keep their phases: load.requests / load.opened
+  // stay the page load's, the steps' requests are in the step sequence as before. Same on both sides (baseline.mjs and
+  // gate.mjs run the same script through runPage). No root step: the root is taken right after load, as before.
+  const rootAt = opts.steps?.findIndex((s) => s.root === true) ?? -1;
+  if (rootAt >= 0) { await runSteps(0, rootAt + 1); await waitStable(page, () => lastRequestAt); }
+  res.load = { ...(await captureRoot(page, opts.sel, base, true, /^load$/)), requests: log.filter((x) => x.phase === "load").map((x) => ({ ...x })), opened: opened.filter((x) => x.phase === "load").map((x) => ({ ...x })), ...(rootAt >= 0 ? { afterStep: rootAt } : {}) };
+  if (opts.steps?.length) {
+    await runSteps(rootAt + 1, opts.steps.length);
     await waitQuiet(page, opts.sel);
     res.final = await captureRoot(page, opts.sel, base + ".final", false, /^step/);
     res.stepLog = log.filter((x) => x.phase !== "load");

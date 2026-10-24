@@ -207,6 +207,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
    按 docs/pipeline.md 第十二节的交互脚本格式写 tests/interact/<工单id>.json。
    - 优先覆盖会发请求的操作，每页 3–8 步。
    - 填写值用明显的测试值（如“测试”“Tst-0001”），不要用真实姓名、手机号、身份证号。
+   - 组件在页面加载完时还没挂载（点开才出现的弹窗、不是第一个的 tab 内容；常见于 recordVia 工单）：在打开它的那一步加 `"root": true`，原版基线和门槛都在这一步之后取根。弹窗是 v-if 的，取根前不要关掉它（HM-1294）。
 3. 运行 node tools/record-page.mjs <工单id>。它会：
    - 在测试环境真实执行一遍，录 HAR 到 $RESTORE_ASSETS/har/pages/<工单id>.har；
    - 用 HAR 回放原版并缓存原版基线到 $RESTORE_STATE/baseline/<工单id>/；
@@ -341,7 +342,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 | --- | --- | --- |
 | `queue/<工单id>.json` | 工单，字段见 `batch-plan.md` 第 3 节，另加 `type`（entry/shared/page/segment）、`kb`、`deps`（依赖的共享组件和入口导出）、`recordPath`、`site`；page/segment 另有 `role`（录制身份，取值同 `record-page.mjs` 的 `IDENTITIES`：`general` / `jobseeker` / `corp` / `mentor`；门户写 `general`；用户中心按路由和原 chunk 判定，判不出写 `null` 并在 `notes` 写原因，`record-page.mjs` 遇到 `null` 输出 `blocked: need-role-decision`，不猜；自动规则判不出的页面由裁定员按原 chunk 判定，写在 `tools/uc-role-decisions.json`（`decided` 写入 `role`，其 `limit`（这个身份录不到的部分）和 `dataNeed`（造数需求，D7）写进 `notes`，`dataNeed` 另汇总到 `queue/data-needs.json`，全部页面录完后统一交人造数；`pending` 仍为 `null`、`notes` 写建议和需要人确认的事）；判定依据见 `queue/roles.json`） | C |
 | `registry/<app>.json` | 公共库清单，见第十三节 | C 生成，之后只由入口包、共享组件工单更新 |
-| `tests/interact/<工单id>.json` | 交互脚本：`[{"fill":[placeholder,value]} \| {"click":text} \| {"clickSel":css,"optional":bool} \| {"wait":ms}]`，与 POC 的 `interact-scripts.mjs` 同义 | 录制员 |
+| `tests/interact/<工单id>.json` | 交互脚本：`[{"fill":[placeholder,value]} \| {"click":text} \| {"clickSel":css,"optional":bool} \| {"wait":ms}]`，与 POC 的 `interact-scripts.mjs` 同义。任一个动作或等待步骤可带 `"root": true`（至多一步）：页面根在这一步之后取，而不是加载完时取，这时取到的 DOM、文本、浮层、截图按加载根的判据比对，请求仍按原阶段归入加载集合或步骤序列（HM-1294，`tools/gate/replay.mjs` runPage，两侧相同） | 录制员 |
 | `receipts/<工单id>.json` | 回执 | 还原员、修正员 |
 | `$RESTORE_ASSETS/har/pages/<工单id>.har` | 页面 HAR | `record-page.mjs` |
 | `$RESTORE_STATE/baseline/<工单id>/` | 原版基线：`dom.html`、`text.txt`、`shot.png`、`seq.json`（请求序列，请求体只存 SHA-256） | `baseline.mjs`（A），由 `record-page.mjs`（D）调用 |
