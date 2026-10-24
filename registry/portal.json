@@ -18,8 +18,8 @@
    "reserved": 83
   },
   "shared": {
-   "reserved": 42,
-   "restored": 10,
+   "reserved": 41,
+   "restored": 11,
    "npm": 2
   },
   "api": {
@@ -1936,15 +1936,21 @@
     },
     "_": {
      "export": "nextPageIconImg",
+     "aliases": [
+      "_"
+     ],
      "original": "auth.1783320636200.js#_"
     },
     "a": {
      "export": "realNameAuthImg",
+     "aliases": [
+      "a"
+     ],
      "original": "auth.1783320636200.js#a"
     }
    },
    "path": "@/shared/auth.ts",
-   "status": "reserved",
+   "status": "restored",
    "owner": "shared.portal.auth",
    "usedBy": 2
   },
