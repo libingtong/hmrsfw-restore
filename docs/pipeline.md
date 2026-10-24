@@ -236,11 +236,13 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 ## 步骤
 1. 读元数据 workOrders、branch、attempt。
 2. multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkout <branch>，运行 node tools/setup-workdir.mjs。
-3. 运行 node tools/gate.mjs --task <任务id> --branch <branch> --mode page；公共库升级单（kind=upgrade，元数据 gateMode=upgrade）用 --mode upgrade（gate.mjs 读到 kind=upgrade 也会自动切换）。
+3. 页面单、公共库升级单：运行 node tools/gate.mjs --task <任务id> --branch <branch> --mode page；公共库升级单（kind=upgrade，元数据 gateMode=upgrade）用 --mode upgrade（gate.mjs 读到 kind=upgrade 也会自动切换）。
+   **集成单（kind=integration）**：前台运行 node tools/gate.mjs --task <任务id> --mode integration --app "$HMRSFW_APP_DIR"（Bash 超时 600000 ms）。输出 {"partial":…}（退出码 3）就**原样再跑同一条命令**，直到输出结论、{"pending":…} 或 {"error":…}，才进第 4 步；**不要转后台、不要 nohup、不要在命令还没出结论时结束运行**——266 页全量回归要 1.5–2 小时，一次性跑完必定超过前台/后台时限被杀掉、无输出（HM-1176、HM-1072 的教训，分段续跑的设计见 docs/gate.md「集成模式分段续跑」）。
 4. 运行 node tools/tick.mjs advance <任务id>。gate.mjs 已经写好元数据和 [GATE] 评论，不需要你再写。
 
 ## 异常
 - gate.mjs 输出 {"error":...}（构建环境、端口、浏览器启动等门槛自身的问题），或检出、setup-workdir 等前置步骤失败：评论 [GATE] ERROR <一行原因>（写原始报错，如 `page.screenshot: Timeout 30000ms exceeded`），不调用 advance，结束。环境类错误由调度器退避后自动重送门槛，其余交裁定员（docs/scheduler.md「门槛没有结论」）。
+- 集成单跑到一半被杀、或你自己结束了运行：没有结论，也不要调用 advance；下次重跑同一条命令会从已判的页接着跑（24 小时内）。
 - 不要为了让门槛通过而修改门槛脚本、归一化规则或 HAR。
 - 不要 @ 任何智能体，不要改为 done。
 ```
