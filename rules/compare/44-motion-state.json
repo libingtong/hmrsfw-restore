@@ -1,7 +1,7 @@
 {
  "id": "motion-state",
  "kind": "tree",
- "enabled": false,
+ "enabled": true,
  "since": "HM-4",
- "why": "过渡中的元素带 Vue / rc-motion 的状态类（x-enter-from、x-leave-active、x-appear-prepare 等）、动画基类 x 和那一刻的行内高度、透明度，动画结束后只留下空的 style=\"\"；去掉这些状态类、基类和该元素的行内 style，空 style 视同没有。c03 交互后、c04 加载后两边仅此不同"
+ "why": "过渡中的元素带 Vue / rc-motion 的状态类（x-enter-from、x-leave-active、x-appear-prepare 等）、动画基类 x 和那一刻的行内高度、透明度，动画结束后只留下空的 style=\"\"；去掉这些状态类、基类和该元素的行内 style，空 style 视同没有。c03 交互后、c04 加载后两边仅此不同。HM-1363 全量回归复核：page.uc.CorpAttestation、page.uc.zcyzCorpAttestationapprove 的 load.html 差异里，ant-upload-list-picture-card-container 两次原版回放（gate 234272be99429e2c）都稳定带 ant-upload-animate-inline-appear/-enter/-appear-prepare/-enter-prepare 状态类和行内 height/opacity，还原版两次都已经是动画结束后的样子（类和 style 一个都没有）；与 rule/hm-251-record-via-root 无关——这两页不是 recordVia 页面，该规则不改它们的比对路径"
 }
