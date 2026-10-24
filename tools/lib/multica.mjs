@@ -93,6 +93,8 @@ export class Multica {
 
   getIssue(id) { const i = this.exec(["issue", "get", id, "--output", "json"]); return i ? { ...i, metadata: decodeAll(i.metadata) } : i; }
   metadata(id) { return decodeAll(this.exec(["issue", "metadata", "list", id, "--output", "json"]) || {}); }
+  // top-level comments only: never folded, and tool comments ([GATE], [REDO] …) are all top-level
+  comments(id) { const r = this.exec(["issue", "comment", "list", id, "--roots-only", "--output", "json"]); return Array.isArray(r) ? r : r?.comments ?? []; }
   runs(id) { const r = this.exec(["issue", "runs", id, "--output", "json"]); return Array.isArray(r) ? r : r?.runs ?? []; }
   usage(id) { return this.exec(["issue", "usage", id, "--output", "json"]) || {}; }
   runtimes() { const r = this.exec(["runtime", "list", "--output", "json"]); return Array.isArray(r) ? r : r?.runtimes ?? []; }

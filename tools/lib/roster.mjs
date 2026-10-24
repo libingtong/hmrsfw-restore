@@ -55,6 +55,10 @@ export const DEFAULT_CONFIG = {
   lockStaleMin: 10,
   regressionEvery: 20,          // integration merges between full regressions
   recordPendingLimit: 2,        // same pending:record reason this many times in a row → arbiter, no more re-sends (HM-1131)
+  // A gate round that ended in the gate's own environment error (screenshot / goto timeout, network, disk, checkout) is
+  // re-gated delayMin × backoff^n after the error, at most `max` times per task, at most `perTick` per round; then an
+  // incident (HM-1306, Pipeline.gateStalls).
+  gateErrorRetry: { delayMin: 30, backoff: 2, max: 3, perTick: 3 },
   // Manual readability sample after a passed integration regression (HM-19, tools/readability-sample.mjs): rate of the
   // batch's pages (at least `min`), posted to the 「调度日志」 task (logIssueId). `enabled: false` switches it off.
   readabilitySample: { enabled: true, rate: 0.05, min: 1 },

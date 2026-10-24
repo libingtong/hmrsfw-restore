@@ -240,7 +240,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 4. 运行 node tools/tick.mjs advance <任务id>。gate.mjs 已经写好元数据和 [GATE] 评论，不需要你再写。
 
 ## 异常
-- gate.mjs 输出 {"error":...}（构建环境、端口、浏览器启动等门槛自身的问题）：评论 [GATE] ERROR <一行原因>，不调用 advance，结束。
+- gate.mjs 输出 {"error":...}（构建环境、端口、浏览器启动等门槛自身的问题），或检出、setup-workdir 等前置步骤失败：评论 [GATE] ERROR <一行原因>（写原始报错，如 `page.screenshot: Timeout 30000ms exceeded`），不调用 advance，结束。环境类错误由调度器退避后自动重送门槛，其余交裁定员（docs/scheduler.md「门槛没有结论」）。
 - 不要为了让门槛通过而修改门槛脚本、归一化规则或 HAR。
 - 不要 @ 任何智能体，不要改为 done。
 ```
@@ -276,6 +276,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 1. **同步**：任务列表、账本、智能体状态（冷却、降级）。
 2. **处理失败的运行**：限流或额度不足 → 冷却 30 分钟并改派同家族另一台机器的智能体，没有就改派下一个候选。环境类失败 → 同一智能体重跑一次，再失败换候选。
 3. **兜底送门槛**：`in_review` 但负责人仍是还原员或修正员的任务（说明 `handoff.mjs` 没跑成）→ 交给门槛员。
+   **门槛没有结论**：负责人是门槛员、本轮运行已结束却没有 `gate.<attempt>` 的任务（门槛自身出错，或门槛员没跑门槛）→ 环境类错误退避后自动重送门槛（30 / 60 / 120 分钟，最多 3 次），其余或超过次数 → 排障单交裁定员（HM-1306，见 `docs/scheduler.md`）。
 4. **等录制的任务**：门槛要求重录之后完成了录制的 → 重新交给门槛员（旧录制不算；同一原因连续两次 `pending:record` 交裁定员，见 `docs/scheduler.md`「等录制」）。
 5. **处理审计结果**：ok → `done`。有 high 或 medium → 从 `integration` 回退该页提交，按失败规则处理，计一次漏检。只有 low → `done`，low 级发现记进每日摘要。
 6. **派录制单**：给录制员保持「正在跑的 + 1 张排队」，按页面派单顺序录制，保证录制领先于还原。
