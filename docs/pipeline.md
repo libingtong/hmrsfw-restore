@@ -67,7 +67,7 @@ flowchart LR
 4. **通过**：自动合入 `integration`。没抽中审计 → 直接 `done`；抽中 → 负责人改为审计员，状态保持 `in_review`，审计 ok 后 `done`。审计不阻塞其他工单。
 5. **失败**：按第九节的失败规则处理。
 6. **审计发现问题**：从 `integration` 回退该页的提交，按失败处理。已经 `done` 的页面在之后的回归里失败，同样重开处理。
-7. **合入 main**：`integration` 每新合入 20 单（或空闲时），调度员跑一次整体构建 + 已通过页面全量回归（全局说明第三节），通过就自动把 `integration` 快进合入 `main`；不通过就定位并回退引起问题的提交，再重跑。
+7. **合入 main**：`integration` 每新合入 20 单（或空闲时，或最早一个还没进 `main` 的合并已等满 24 小时），调度员跑一次整体构建 + 已通过页面全量回归（全局说明第三节），通过就自动把 `integration` 快进合入 `main`；不通过就定位并回退引起问题的提交，再重跑。
 8. **集成门槛**：入口包、共享组件全部合入 `integration` 后，对所有页面以集成模式重跑一遍（零引用全开、不再顶替）。失败的页按共享组件或入口包的问题追溯，而不是重做页面。
 
 ## 四、智能体清单
@@ -236,11 +236,13 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
 ## 步骤
 1. 读元数据 workOrders、branch、attempt。
 2. multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkout <branch>，运行 node tools/setup-workdir.mjs。
-3. 运行 node tools/gate.mjs --task <任务id> --branch <branch> --mode page；公共库升级单（kind=upgrade，元数据 gateMode=upgrade）用 --mode upgrade（gate.mjs 读到 kind=upgrade 也会自动切换）。
+3. 页面单、公共库升级单：运行 node tools/gate.mjs --task <任务id> --branch <branch> --mode page；公共库升级单（kind=upgrade，元数据 gateMode=upgrade）用 --mode upgrade（gate.mjs 读到 kind=upgrade 也会自动切换）。
+   **集成单（kind=integration）**：前台运行 node tools/gate.mjs --task <任务id> --mode integration --app "$HMRSFW_APP_DIR"（Bash 超时 600000 ms）。输出 {"partial":…}（退出码 3）就**原样再跑同一条命令**，直到输出结论、{"pending":…} 或 {"error":…}，才进第 4 步；**不要转后台、不要 nohup、不要在命令还没出结论时结束运行**——266 页全量回归要 1.5–2 小时，一次性跑完必定超过前台/后台时限被杀掉、无输出（HM-1176、HM-1072 的教训，分段续跑的设计见 docs/gate.md「集成模式分段续跑」）。
 4. 运行 node tools/tick.mjs advance <任务id>。gate.mjs 已经写好元数据和 [GATE] 评论，不需要你再写。
 
 ## 异常
 - gate.mjs 输出 {"error":...}（构建环境、端口、浏览器启动等门槛自身的问题），或检出、setup-workdir 等前置步骤失败：评论 [GATE] ERROR <一行原因>（写原始报错，如 `page.screenshot: Timeout 30000ms exceeded`），不调用 advance，结束。环境类错误由调度器退避后自动重送门槛，其余交裁定员（docs/scheduler.md「门槛没有结论」）。
+- 集成单跑到一半被杀、或你自己结束了运行：没有结论，也不要调用 advance；下次重跑同一条命令会从已判的页接着跑（24 小时内）。
 - 不要为了让门槛通过而修改门槛脚本、归一化规则或 HAR。
 - 不要 @ 任何智能体，不要改为 done。
 ```
@@ -254,6 +256,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
    2. 构建：只构建本页（单页入口或 Vite 按需编译），不构建整站；
    3. 浏览器：HAR 回放、交互比对，同一进程内复用一个浏览器实例。
 4. **写请求匹配**：先按「方法 + 路径 + 解密并归一化后的请求体」找 HAR 记录；找不到时退回按「方法 + 路径」取第一条；都找不到返回统一的「not in HAR」。
+   **WebSocket**（HM-1346）：`record-page.mjs` 把页面连测试站的 WebSocket 记进 HAR 的 `log._webSockets`（地址、双向消息按顺序带 `_phase`、关闭；token 类地址参数和 JSON 键打码；连其他主机的直接关掉）。回放（`baseline.mjs` 和门槛共用 `tools/gate/har.mjs`，`tools/gate/ws.mjs`）不连测试环境：地址先按「路径 + 查询」精确匹配，不中时只允许最后一段是位数相同的纯数字（页面随机生成的客户端 id，如直播详情的 6 位 userId）；服务端消息按录制顺序发出，录在页面第 k 次发送之后的等页面第 k 次发送（只计次数，不比内容），录在后面阶段的等回放到该阶段。HAR 里没有的连接不接管，和以前一样连不上。WebSocket 不进比对的请求序列，只在回放结果 `webSockets` 里留诊断。
 5. **共享组件顶替（page 模式）**：本页依赖的共享组件或入口导出在 `integration` 上还没有还原版时，用原编译 chunk 的薄包装顶替。零引用检查只对本页自己的文件生效。输出里列出本次顶替了哪些模块。
 6. **集成模式（`--mode integration`）**：不顶替，零引用检查全开，可以一次跑多页。
    **升级单模式（`--mode upgrade`）**：静态阶段按公共库改动的范围判（与调度器合并时同一个判定函数），再对改动文件做编译、零引用、个人信息扫描；整站构建；对依赖改动文件的已通过页面跑 integration 模式回归。要解挂的页面不在这里判（HM-990，见 `docs/gate.md`）。

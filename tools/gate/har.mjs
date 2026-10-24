@@ -8,9 +8,11 @@
 // replay the guard's fixed response, the same on both sides; the request log marks them tier "intercepted" (the tier is
 // not compared), so a submit the recording never sent is not a difference.
 // Request bodies are decrypted in memory only (SM2 private key from the environment, never logged or written).
+// WebSockets (log._webSockets, HM-1346) are answered from the HAR too, see ws.mjs; they are not part of the request log.
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { canonical, decryptBody } from "../sm2-body.mjs";
+import { routeWebSockets, webSocketsOf } from "./ws.mjs";
 
 export const NOT_IN_HAR = '{"success":false,"code":404,"result":null,"message":"not in HAR"}';
 export const sha256 = (s) => createHash("sha256").update(s).digest("hex");
@@ -55,7 +57,8 @@ export function loadHar(file) {
     if (!byKey.has(key)) byKey.set(key, []);
     byKey.get(key).push(entry);
   }
-  return { file, byKey, recordedAt, record: har.log._record ?? null }; // record: what record-page.mjs noted (identity storage)
+  // record: what record-page.mjs noted (identity storage); webSockets: the page's recorded sockets (ws.mjs)
+  return { file, byKey, recordedAt, record: har.log._record ?? null, webSockets: webSocketsOf(har) };
 }
 
 // → { entry, tier: "body" | "path" | null }
@@ -75,7 +78,11 @@ export function matchHar(har, method, url, reqBody) {
 // Installs the /xf-api/ router on a browser context. log(rec, request) receives every request except static resources,
 // from every page of the context (the Playwright request is passed so the caller can tell which page made it).
 // Requests to the real test or production hosts are aborted (and logged): the replay never leaves the machine.
-export async function routeApi(ctx, har, { log, phase }) {
+// WebSockets the HAR recorded are answered from it, sockets to those hosts closed (ws.mjs routeWebSockets); ws(event)
+// receives their connections and frames (diagnostics, not compared); wsPhase() is the phase their messages wait for
+// ("after" once the caller's steps are done; default phase()).
+export async function routeApi(ctx, har, { log, phase, ws = () => {}, wsPhase = phase }) {
+  await routeWebSockets(ctx, har.webSockets ?? webSocketsOf(null), { phase: wsPhase, onEvent: (e) => ws({ ...e, phase: phase() }) });
   await ctx.route((u) => /(^|\.)rencaidanao\.com$/.test(u.hostname), (r) => { log({ phase: phase(), method: r.request().method(), path: "EXTERNAL " + new URL(r.request().url()).host, query: "", bodyKind: "none", body: "", tier: "aborted" }, r.request()); return r.abort(); });
   await ctx.route(/\/xf-api\//, (r) => {
     const q = r.request();

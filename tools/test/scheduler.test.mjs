@@ -560,6 +560,65 @@ test("integration regression: a culprit merge no task owns (a PR merge) is not r
   assert.ok(issuesOf(fx).some((i) => i.title.startsWith("[incident]") && i.title.includes("不自动回退")), "incident for the arbiter");
 });
 
+test("integration regression: first merge blamed while main never passed a regression → failing pages tested on main first; fail there = incident, no revert (HM-1341)", () => {
+  for (const onMain of ["fail", "pass"]) {
+    const fx = makeFixture({ orders: [page("P7", 10, { accepted: true }), page("P8", 10)], config: { audit: { coldRate: 0 }, regressionEvery: 1 } });
+    recorded(fx, "P7", "P8");
+    node(fx, "tick.mjs", ["tick"]);
+    const t8 = restoreTasks(fx).find((t) => meta(fx, t.id).workOrders[0] === "P8");
+    deliver(fx, t8.id, { "apps/portal/src/views/P8/index.vue": vue("P8") }); gate(fx, t8.id, { pass: true });
+    const mainSha = lsRemote(fx, "app", "main"), integ = lsRemote(fx, "app", "integration");
+    node(fx, "tick.mjs", ["tick"]);
+    const reg = issuesOf(fx).find((i) => i.title.startsWith("[integration] regression"));
+    assert.ok(reg, "regression opened");
+    setMeta(fx, reg.id, "gate.1", { pass: false, failed: [{ wo: "P7", check: "html" }], pages: [{ wo: "P7", pass: false }] });
+    node(fx, "tick.mjs", ["advance", reg.id]);
+    const base = issuesOf(fx).find((i) => i.title.startsWith("[integration] bisect"));
+    assert.ok(base, "base step on main");
+    assert.equal(meta(fx, base.id).sha, mainSha);
+    assert.deepEqual(meta(fx, base.id).workOrders, ["P7"]);
+    assert.equal(lsRemote(fx, "app", "integration"), integ, "nothing reverted before the base step");
+    setMeta(fx, base.id, "gate.1", { pass: onMain === "pass", ...(onMain === "fail" ? { failed: ["P7"] } : {}) });
+    node(fx, "tick.mjs", ["advance", base.id]);
+    if (onMain === "fail") {
+      assert.equal(lsRemote(fx, "app", "integration"), integ, "integration untouched");
+      assert.ok(issuesOf(fx).some((i) => i.title.startsWith("[incident]") && i.title.includes("main")), "incident for the arbiter");
+    } else {
+      assert.equal(showRemote(fx, "app", "integration", "apps/portal/src/views/P8/index.vue"), null, "main good → the P8 merge is the culprit, reverted");
+      assert.equal(issue(fx, t8.id).status, "todo", "P8 reopened");
+    }
+    assert.equal(lsRemote(fx, "app", "main"), mainSha, "main untouched");
+  }
+});
+
+test("integration regression opens after regressionMaxWaitH even while tasks are open; not while main has commits integration lacks (HM-1341)", () => {
+  const fx = makeFixture({ orders: [page("P5", 20), page("P6", 10)], config: { audit: { coldRate: 0 }, regressionEvery: 100, regressionMaxWaitH: 1000 } });
+  recorded(fx, "P5", "P6");
+  node(fx, "tick.mjs", ["tick"]);
+  const t5 = restoreTasks(fx).find((t) => meta(fx, t.id).workOrders[0] === "P5");
+  deliver(fx, t5.id, { "apps/portal/src/views/P5/index.vue": vue("P5") }); gate(fx, t5.id, { pass: true });
+  const regs = () => issuesOf(fx).filter((i) => i.title.startsWith("[integration] regression"));
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(regs().length, 0, "1 merge, P6 still open, merge younger than the wait → no regression");
+  // a commit straight on main: integration can't be fast-forwarded onto, so no regression, one anomaly
+  const wt = path.join(fx.root, "wt-main");
+  execFileSync("git", ["clone", "-q", fx.appOrigin, wt]);
+  const g = (...a) => execFileSync("git", ["-C", wt, "-c", "user.name=t", "-c", "user.email=t@t", ...a], { encoding: "utf8" }).trim();
+  g("checkout", "-q", "main"); writeFileSync(path.join(wt, "README.md"), "hotfix\n"); g("add", "README.md"); g("commit", "-q", "-m", "hotfix on main"); g("push", "-q", "origin", "main");
+  const cfgFile = path.join(fx.state, "scheduler.config.json"); writeFileSync(cfgFile, JSON.stringify({ ...readJson(cfgFile), regressionMaxWaitH: 0 }));
+  let r = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(regs().length, 0, "main diverged → no regression");
+  assert.equal(r.anomalies.filter((a) => /not an ancestor of integration/.test(a.what)).length, 1, JSON.stringify(r.anomalies));
+  r = node(fx, "tick.mjs", ["tick"]);
+  assert.equal(r.anomalies.filter((a) => /not an ancestor of integration/.test(a.what)).length, 0, "reported once per main head");
+  g("checkout", "-q", "integration"); g("pull", "-q", "origin", "integration"); g("merge", "-q", "--no-ff", "-m", "Merge main into integration", "origin/main"); g("push", "-q", "origin", "integration");
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(regs().length, 1, "main merged back, oldest merge waited ≥ 0 h → regression although P6 is open");
+  setMeta(fx, regs()[0].id, "gate.1", { pass: true });
+  node(fx, "tick.mjs", ["advance", regs()[0].id]);
+  assert.equal(lsRemote(fx, "app", "main"), lsRemote(fx, "app", "integration"), "main fast-forwarded");
+});
+
 test("readability sample: a passed integration regression posts 5 % of the batch (at least one page) to the log task; the switch turns it off", () => {
   for (const enabled of [true, false]) {
     const fx = makeFixture({ orders: [page("Q1", 20), page("Q2", 10)], config: { audit: { coldRate: 0 }, regressionEvery: 2, readabilitySample: { enabled } } });

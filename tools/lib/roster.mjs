@@ -54,6 +54,9 @@ export const DEFAULT_CONFIG = {
   cooldownMin: 30,
   lockStaleMin: 10,
   regressionEvery: 20,          // integration merges between full regressions
+  // ...or this many hours after the oldest merge not yet in main, whatever the count and however busy (HM-1341: a bulk
+  // PR merge counts as one, and fast-lane tasks parked in in_review meant `idle` never held, so none ran after 10-15)
+  regressionMaxWaitH: 24,
   recordPendingLimit: 2,        // same pending:record reason this many times in a row → arbiter, no more re-sends (HM-1131)
   // A gate round that ended in the gate's own environment error (screenshot / goto timeout, network, disk, checkout) is
   // re-gated delayMin × backoff^n after the error, at most `max` times per task, at most `perTick` per round; then an

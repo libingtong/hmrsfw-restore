@@ -287,7 +287,12 @@ export async function runPage(browser, opts) {
   let phase = "load", lastRequestAt = 0, outdated = 0, page = null;
   // A request without a frame (service worker) cannot be attributed: it stays with the page under test, as before.
   const fromOther = (q) => { try { return !!page && q.frame().page() !== page; } catch { return false; } };
-  await routeApi(ctx, opts.har, { log: (r, q) => { if (q && fromOther(q)) { otherRequests.push(r); return; } lastRequestAt = Date.now(); log.push(r); }, phase: () => phase });
+  // WebSocket traffic answered from the HAR (HM-1346) counts as network activity for settling; what it was goes to
+  // res.webSockets (diagnostics, not compared). Messages recorded after the steps ("after") wait for the steps here
+  // (wsAfter), without a phase of their own for the requests.
+  const webSockets = [];
+  let wsAfter = !opts.steps?.length;
+  await routeApi(ctx, opts.har, { log: (r, q) => { if (q && fromOther(q)) { otherRequests.push(r); return; } lastRequestAt = Date.now(); log.push(r); }, phase: () => phase, wsPhase: () => (wsAfter ? "after" : phase), ws: (e) => { lastRequestAt = Date.now(); webSockets.push(e); } });
   if (opts.stubChunk) await ctx.route((u) => u.pathname === "/assets/" + opts.stubChunk, (r) => r.fulfill({ status: 200, contentType: "text/javascript", body: "const c={name:'ShellProbe',setup(){window.__shellMountStorage=Object.fromEntries(Object.keys(localStorage).map((k)=>[k,localStorage.getItem(k)]));return()=>null}};export default c;export const __tla=Promise.resolve();" }));
   page = await ctx.newPage();
   // A new page's first navigation request comes before the page exists (Playwright has no frame for it yet) and carries
@@ -351,12 +356,14 @@ export async function runPage(browser, opts) {
   res.load = { ...(await captureRoot(page, opts.sel, base, true, /^load$/)), requests: log.filter((x) => x.phase === "load").map((x) => ({ ...x })), opened: opened.filter((x) => x.phase === "load").map((x) => ({ ...x })), ...(rootAt >= 0 ? { afterStep: rootAt } : {}) };
   if (opts.steps?.length) {
     await runSteps(rootAt + 1, opts.steps.length);
+    wsAfter = true;
     await waitQuiet(page, opts.sel);
     res.final = await captureRoot(page, opts.sel, base + ".final", false, /^step/);
     res.stepLog = log.filter((x) => x.phase !== "load");
     res.opened = opened.filter((x) => x.phase !== "load");
   }
   res.otherRequests = otherRequests.map((x) => ({ phase: x.phase, method: x.method, path: x.path }));
+  if (webSockets.length) res.webSockets = webSockets;
   res.totalMs = Date.now() - t0;
   if (opts.coverage?.length) res.coverage = pickScripts(await page.coverage.stopJSCoverage(), opts.coverage);
   await ctx.close();
