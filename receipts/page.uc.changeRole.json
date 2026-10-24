@@ -1,0 +1,28 @@
+{
+  "id": "page.uc.changeRole",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/uc/src/views/changeRole.vue"
+  ],
+  "selfCheck": {
+    "pass": false,
+    "failed": [
+      "imports apps/portal/src/views/answer/passwordModal.vue（非本单改动，见 notes 疑似比对器问题）"
+    ],
+    "gitBase": "origin/integration"
+  },
+  "todos": [],
+  "unresolved": [
+    "static:imports 把 apps/portal/src/views/answer/passwordModal.vue 记在本单头上：该文件只被 restore/fast-lane 的 0d843f8（page.portal.answer.passwordModal，HM-355 修正第 1 轮）改动，不属于本单，页面侧无可改之处"
+  ],
+  "needsFromSkeleton": [
+    "疑似比对器问题：tools/check-imports.mjs otherPagesOnly 在 mb..HEAD 含合并提交时直接返回空表（第 127 行）。restore/fast-lane 的 7958d12（HM-1068 把 integration 合入快速通道）使 rev-list --merges merge-base(HEAD,origin/integration)..HEAD 非空，于是共享分支上其他页的修正（0d843f8 只改 passwordModal.vue，owner=page.portal.answer.passwordModal）全部算作本单越界。需裁定员处理：等 HM-355 合入 integration 后重跑，或走规则变更单让 otherPagesOnly 只看 first-parent / 非合并提交"
+  ],
+  "notes": [
+    "fix 1：未改代码。origin/integration...restore/fast-lane 只差 passwordModal.vue 两行（0d843f8），changeRole.vue 与 integration 一致；撤销它会回退 HM-355 的修正，所以不撤",
+    "self-check 本单唯一硬失败即上述 imports；其余为 readability warn（不阻断）",
+    "疑似比对器问题：依据见 needsFromSkeleton（check-imports.mjs:127 遇合并即放弃归属判定）"
+  ]
+}
