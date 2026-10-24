@@ -22,16 +22,27 @@ const stripTransition = (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.map(([k, 
 const hasClass = (n, c) => n.a.some(([k, v]) => k === "class" && v.split(/\s+/).includes(c));
 const slickTrackTransition = (tree) => mapTree(tree, (n) => (hasClass(n, "slick-track") ? { ...n, a: n.a.map(([k, v]) => (k === "style" ? [k, dropTransition(v)] : [k, v])) } : n));
 // Elements caught mid-transition carry Vue/rc-motion state classes (x-enter-from, x-leave-active, x-appear-prepare …),
-// the motion's base class x, and the inline height/opacity of that moment; when the motion ends the classes go and an
-// empty style="" is left behind. Drop the state classes with their base class and the inline style on such elements,
-// and treat style="" as no style everywhere.
+// the motion's base class x, and the inline height/opacity of that moment. An appear/enter settles with the classes
+// and inline style both gone (an empty style="" is what's left behind, treated as no style everywhere). A leave settles
+// differently when the element is v-show-toggled inside that transition (ant-design-vue's upload trigger button in
+// picture-card mode, Upload.js renderUploadButton via UploadList's HackSlot+v-show inside its <TransitionGroup>, same
+// logic both apps): node_modules/@vue/runtime-dom's vShow.updated (3.3.4, both apps' pinned Vue version) only calls
+// `transition.leave(el, () => setDisplay(el, false))` on such a toggle — it runs the leave transition, then in its
+// completion callback sets `el.style.display = "none"`; it never removes the node. So an element caught only in the
+// leave phase (no appear/enter tokens alongside) always settles at style="display: none;", never at no style at all
+// (HM-1385, HM-929 regression: page.uc.CorpAttestation, page.uc.zcyzCorpAttestationapprove — predicted in HM-1363 §2).
+// Drop the state classes with their base class on such elements, and either kind's inline style — to the leave's
+// settled display:none for a leave-only element, dropped entirely (as before) otherwise.
 const MOTION = /^([\w-]+)-(appear|enter|leave)(-(from|to|active|prepare|start))?$/;
 const stripMotion = (tree) => mapTree(tree, (n) => {
   const cls = n.a.find(([k]) => k === "class");
   const tokens = cls ? cls[1].split(/\s+/).filter(Boolean) : [];
-  const bases = new Set(tokens.map((t) => MOTION.exec(t)?.[1]).filter(Boolean));
-  if (!bases.size) return { ...n, a: n.a.filter(([k, v]) => !(k === "style" && v.trim() === "")) };
-  return { ...n, a: n.a.filter(([k]) => k !== "style").map(([k, v]) => (k === "class" ? [k, tokens.filter((t) => !MOTION.test(t) && !bases.has(t)).join(" ")] : [k, v])) };
+  const matches = tokens.map((t) => MOTION.exec(t)).filter(Boolean);
+  if (!matches.length) return { ...n, a: n.a.filter(([k, v]) => !(k === "style" && v.trim() === "")) };
+  const bases = new Set(matches.map((m) => m[1]));
+  const onlyLeave = matches.every((m) => m[2] === "leave");
+  const a = n.a.flatMap(([k, v]) => (k === "class" ? [[k, tokens.filter((t) => !MOTION.test(t) && !bases.has(t)).join(" ")]] : k === "style" ? (onlyLeave ? [[k, "display: none;"]] : []) : [[k, v]]));
+  return { ...n, a: onlyLeave && !a.some(([k]) => k === "style") ? [...a, ["style", "display: none;"]] : a };
 });
 // style="" is an empty declaration block: it renders exactly like no style attribute (no selector in either app tells the
 // two apart: the original's stylesheets have no [style], the restored app only TinyMCE's [style*="border-width: 0px"]). It is left on an element once something wrote and cleared (or wrote an empty value into) its inline
@@ -66,7 +77,45 @@ const hiddenPopupOffset = (tree) => mapTree(tree, (n) => {
   if (!cls.split(/\s+/).some((t) => PLACED.test(t)) || !decls(st).some((d) => prop(d) === "display" && /^none$/i.test(d.slice(d.indexOf(":") + 1).trim()))) return n;
   return { ...n, a: n.a.map(([k, v]) => (k === "style" ? [k, decls(v).filter((d) => prop(d) !== "left" && prop(d) !== "top").map((d) => d + ";").join(" ")] : [k, v])) };
 });
-const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle, "baidu-tile-order": baiduTileOrder, "hidden-popup-offset": hiddenPopupOffset };
+// The gate's own locating hook (HM-1162): id="poc-main" on the restored uc layout's page container (Home.vue) and the
+// portal shell's <main> (App.vue) is not in the original (legacy-dist/usercenter/assets/index.1751615607545.js 123:379706,
+// the layout's `st("div",null,[…KeepAlive…])`, no props). It is inside a compared root only when the root is the whole
+// layout: a usercenter bare-route page (#app > *) whose interaction lands on a layout page. Only that one attribute with
+// that one value goes; any other id, and every other attribute of that element, is compared as before.
+const pocMainHook = (tree) => mapTree(tree, (n) => (n.a.some(([k, v]) => k === "id" && v === "poc-main") ? { ...n, a: n.a.filter(([k, v]) => !(k === "id" && v === "poc-main")) } : n));
+// ant-design-vue's Tabs ink bar (rc-tabs useIndicator, same logic both apps): a ResizeObserver measures the active tab,
+// then one flush:post watch and one requestAnimationFrame later its left/width (or top/height for vertical tabs) land in
+// the bar's inline style; before that chain settles the bar has no inline style at all. Whether it has settled by capture
+// time is a scheduling race, not page code — the active tab's own -tab-active class is unaffected and compared as before
+// (HM-1363, gate 234272be99429e2c: page.uc.CorpAttestation's two independent original replays both lack the style, the
+// restored side has it both times). Drop left/top/right/width/height on an element with an `-ink-bar` class; its other
+// declarations and every other element are compared as before.
+const INK_BAR = /-ink-bar$/;
+const POSITION_PROPS = new Set(["left", "top", "right", "width", "height"]);
+const inkBarOffset = (tree) => mapTree(tree, (n) => {
+  const cls = n.a.find(([k]) => k === "class")?.[1] ?? "";
+  if (!cls.split(/\s+/).some((t) => INK_BAR.test(t))) return n;
+  const st = n.a.find(([k]) => k === "style")?.[1] ?? "";
+  if (!decls(st).length) return n;
+  const kept = decls(st).filter((d) => !POSITION_PROPS.has(prop(d)));
+  return { ...n, a: kept.length ? n.a.map(([k, v]) => (k === "style" ? [k, kept.map((d) => `${d};`).join(" ")] : [k, v])) : n.a.filter(([k]) => k !== "style") };
+});
+// ant-design-vue's upload list item (ListItem.js, same logic both apps): the progress-bar wrapper only starts rendering
+// 300ms after the item mounts (onMounted → setTimeout(…, 300) → showProgress.value = true), then stays v-shown to
+// file.status === "uploading"; for a file that is not uploading (already done), it is a permanent display:none element
+// once those 300ms have passed and does not exist before. Whether 300ms have passed by capture time is a mount-time
+// race, not page code (HM-1363, gate 234272be99429e2c: page.uc.CorpAttestation's two independent original replays both
+// lack the element, the restored side has it, hidden, both times). Drop the element itself when it is this wrapper and
+// is v-show-hidden; one that is actually showing progress (a file mid-upload) is left alone.
+const isHiddenUploadProgress = (n) => {
+  if (n == null || typeof n !== "object" || "m" in n) return false;
+  const cls = n.a.find(([k]) => k === "class")?.[1] ?? "";
+  if (!cls.split(/\s+/).includes("ant-upload-list-item-progress")) return false;
+  const st = n.a.find(([k]) => k === "style")?.[1] ?? "";
+  return decls(st).some((d) => prop(d) === "display" && /^none$/i.test(d.slice(d.indexOf(":") + 1).trim()));
+};
+const uploadProgressDelay = (tree) => mapTree(tree, (n) => ({ ...n, c: n.c.filter((c) => !isHiddenUploadProgress(c)) }));
+const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle, "baidu-tile-order": baiduTileOrder, "hidden-popup-offset": hiddenPopupOffset, "poc-main-hook": pocMainHook, "tabs-ink-bar-offset": inkBarOffset, "upload-progress-delay": uploadProgressDelay };
 const dropAttrs = (names) => (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k]) => !names.has(k)) }));
 
 export function loadRules(dir = path.join(ROOT, "rules/compare")) {
