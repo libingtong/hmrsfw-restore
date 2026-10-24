@@ -25,9 +25,19 @@
 //   saved state is missing, unreadable or expired.
 //   --from-portal (usercenter only): start from the saved .auth/pw-portal.json (portal origin only, as record-page does) and
 //     enter the user center through the same entry, no second login.
+//   --chrome: contrast run in the locally installed Google Chrome (channel "chrome") instead of Playwright's Chromium, to
+//     tell a browser-specific refusal from anything else (HM-1308). Allow-list and logging stay the same.
+// Login-flow diagnostics (HM-1308): next to the request, every login-flow response goes to out/blocked-requests.jsonl as
+// "login-flow-response" with HTTP status, the reply's code / success / message and the names of the headers actually sent
+// (pw-login-log.mjs; never the token or a request body); a login-flow request that fails is "login-flow-failed"; every
+// toast the page shows is "page-toast"; the browser and navigator.webdriver go in once as "browser-info". The login
+// reply and the toast are also printed and shown in the banner. The banner sits at the BOTTOM of the window: at the top
+// it covered the antd message toast (top 8px, z-index 1010) in which the login page reports a wrong captcha or password,
+// so a refused login looked like nothing happened.
 import { chromium } from "playwright";
 import { readFileSync, appendFileSync, mkdirSync, renameSync } from "node:fs";
 import { tokenExp as expIn, checkSaved } from "./pw-login-check.mjs";
+import { summarizeReply, sentHeaders, replyLine, clean } from "./pw-login-log.mjs";
 const SITES = {
   portal: { url: "https://hamiwebportaltest.rencaidanao.com/login", home: "https://hamiwebportaltest.rencaidanao.com/", name: "门户" },
   // user center: wait for the identity list too, record-page needs it to switch identities
@@ -35,10 +45,10 @@ const SITES = {
     hint: "脚本没能自动点到入口：请在门户标签页右上角点「用户中心」（会新开标签页自动进入）；也可以直接在用户中心登录页登录" },
 };
 const ENTRY = "用户中心"; // text of the portal header entry (legacy portal headers: span.pointer → Dt("main", ""))
-const args = process.argv.slice(2), fromPortal = args.includes("--from-portal");
+const args = process.argv.slice(2), fromPortal = args.includes("--from-portal"), useChrome = args.includes("--chrome");
 const [which = "all", minutes = "20"] = args.filter((a) => !a.startsWith("--"));
 const sites = which === "all" ? ["portal", "usercenter"] : [which];
-if (!sites.every((s) => SITES[s])) { console.error("usage: node tools/pw-login.mjs <portal|usercenter|all> [timeoutMinutes]"); process.exit(1); }
+if (!sites.every((s) => SITES[s])) { console.error("usage: node tools/pw-login.mjs <portal|usercenter|all> [timeoutMinutes] [--from-portal] [--chrome]"); process.exit(1); }
 const WL = JSON.parse(readFileSync("out/whitelist-confirmed.json", "utf8"));
 const allow = new Set(WL.allow.map((a) => a.method + " " + a.url));
 const prefixes = WL.allowPrefix ?? [];
@@ -53,26 +63,51 @@ if (fromPortal) {
   if (left <= 2) { console.error(`--from-portal: 门户登录态已过期或只剩 ${left} 分钟，请重新登录门户`); process.exit(1); }
   console.log(`门户登录态还剩约 ${left} 分钟`);
 }
-const browser = await chromium.launch({ headless: false });
+const browserName = useChrome ? "chrome" : "chromium";
+const browser = await chromium.launch({ headless: false, ...(useChrome ? { channel: "chrome" } : {}) });
 const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, locale: "zh-CN", ...(fromPortal ? { storageState: ".auth/pw-portal.json" } : {}) });
 let label = "";
+const log = (rec) => appendFileSync("out/blocked-requests.jsonl", JSON.stringify({ t: new Date().toISOString(), phase: "login:" + label, ...rec }) + "\n");
+const allowed = (method, u) => { const p = u.pathname.replace(/^\/xf-api/, ""); return allow.has(method + " " + p) || prefixes.some((x) => method === x.method && p.startsWith(x.prefix)); };
+// path of a request the route below lets through as login flow, else null
+const loginFlowPath = (req) => { try { const u = new URL(req.url()); return /\/xf-api\//.test(u.pathname) && !allowed(req.method(), u) && LOGIN_FLOW.test(u.pathname) ? u.pathname : null; } catch { return null; } };
 await context.route(/\/xf-api\//, (route) => {
-  const req = route.request(); const u = new URL(req.url()); const key = req.method() + " " + u.pathname.replace(/^\/xf-api/, "");
-  if (allow.has(key) || prefixes.some((x) => req.method() === x.method && u.pathname.replace(/^\/xf-api/, "").startsWith(x.prefix))) return route.continue();
-  if (LOGIN_FLOW.test(u.pathname)) { appendFileSync("out/blocked-requests.jsonl", JSON.stringify({ t: new Date().toISOString(), phase: "login:" + label, action: "allowed-login-flow", method: req.method(), path: u.pathname }) + "\n"); return route.continue(); }
-  appendFileSync("out/blocked-requests.jsonl", JSON.stringify({ t: new Date().toISOString(), phase: "login:" + label, action: "aborted", method: req.method(), path: u.pathname }) + "\n");
+  const req = route.request(); const u = new URL(req.url());
+  if (allowed(req.method(), u)) return route.continue();
+  if (LOGIN_FLOW.test(u.pathname)) { log({ action: "allowed-login-flow", browser: browserName, method: req.method(), path: u.pathname }); return route.continue(); }
+  log({ action: "aborted", method: req.method(), path: u.pathname });
   return route.abort();
+});
+// login-flow replies: status + code / success / message only (pw-login-log.mjs); the body stays in memory
+let lastReply = "";
+context.on("response", async (res) => {
+  const req = res.request(), path = loginFlowPath(req); if (!path) return;
+  let text = null; try { text = await res.text(); } catch {}
+  const reply = summarizeReply({ status: res.status(), headers: res.headers(), text });
+  let sent = {}; try { sent = sentHeaders(await req.allHeaders()); } catch {}
+  log({ action: "login-flow-response", browser: browserName, method: req.method(), path, ...reply, sent });
+  if (/\/(login|phoneLogin)$/i.test(path)) { lastReply = replyLine(reply); console.log(`[${label}] ${lastReply}`); }
+});
+context.on("requestfailed", (req) => {
+  const path = loginFlowPath(req); if (!path) return;
+  log({ action: "login-flow-failed", browser: browserName, method: req.method(), path, failure: clean(req.failure()?.errorText) });
 });
 // status banner, re-added after every navigation; text comes from window.__pwLoginStatus
 await context.addInitScript(() => {
   setInterval(() => {
     if (!document.body) return;
     let b = document.getElementById("__pw_login_banner");
-    if (!b) { b = document.createElement("div"); b.id = "__pw_login_banner"; b.style.cssText = "position:fixed;left:0;right:0;top:0;z-index:2147483647;padding:8px 16px;white-space:pre-line;background:#e6552e;color:#fff;font:14px/1.5 sans-serif;text-align:center;pointer-events:none"; document.body.appendChild(b); }
+    if (!b) { b = document.createElement("div"); b.id = "__pw_login_banner"; b.style.cssText = "position:fixed;left:0;right:0;bottom:0;z-index:2147483647;padding:8px 16px;white-space:pre-line;background:#e6552e;color:#fff;font:14px/1.5 sans-serif;text-align:center;pointer-events:none"; document.body.appendChild(b); }
     b.textContent = window.__pwLoginStatus ?? "";
   }, 500);
 });
 const page = await context.newPage();
+try {
+  await page.goto("about:blank");
+  const info = await page.evaluate(() => ({ webdriver: navigator.webdriver, userAgent: navigator.userAgent }));
+  log({ action: "browser-info", browser: browserName, version: browser.version(), ...info });
+  console.log(`浏览器：${browserName} ${browser.version()}，navigator.webdriver=${info.webdriver}`);
+} catch {}
 // banner on every tab: the user center opens in a new one
 const say = (text) => Promise.all(context.pages().map((p) => p.evaluate((t) => { window.__pwLoginStatus = t; }, text).catch(() => {})));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); // not page.waitForTimeout: the first tab may be closed
@@ -86,7 +121,8 @@ async function tabStates() {
     let origin = "", path = "";
     try { const u = new URL(p.url()); origin = u.origin; path = u.pathname; } catch {}
     const has = await Promise.race([
-      p.evaluate(() => ({ token: !!localStorage.getItem("token"), userroledata: !!localStorage.getItem("userroledata") })),
+      p.evaluate(() => ({ token: !!localStorage.getItem("token"), userroledata: !!localStorage.getItem("userroledata"),
+        toast: [...document.querySelectorAll(".ant-message-notice")].map((n) => n.innerText.trim()).filter(Boolean).join(" / ") })),
       sleep(3000).then(() => null),
     ]).catch(() => null);
     return { n: n + 1, site: ORIGINS[origin] ?? null, origin, path, has };
@@ -144,10 +180,14 @@ for (const [i, site] of sites.entries()) {
   const deadline = Date.now() + Number(minutes) * 60000;
   // portalSince: since when the portal tab is logged in but no user-center tab has the token; noRoleSince: since when a
   // user-center tab has the token but not the identity list. Both drive the hints below (HM-951).
-  let ok = false, lastLine = "", portalSince = 0, noRoleSince = 0, autoClicked = clicked;
+  let ok = false, lastLine = "", lastToast = "", portalSince = 0, noRoleSince = 0, autoClicked = clicked;
   while (Date.now() < deadline && context.pages().length) {
     const tabs = await tabStates();
     ok = loggedIn(s, tabs);
+    // the page's own toast (wrong captcha / password …): recorded and printed, the person may have missed it
+    const toast = clean(tabs.map((t) => t.has?.toast).filter(Boolean).join(" / ")) ?? "";
+    if (toast && toast !== lastToast) { log({ action: "page-toast", browser: browserName, text: toast }); console.log(`[${site}] 页面提示：${toast}`); }
+    lastToast = toast;
     if (ok) break;
     const line = describe(tabs);
     if (line !== lastLine) { console.log(`[${site}] ${line}`); lastLine = line; }
@@ -177,7 +217,7 @@ for (const [i, site] of sites.entries()) {
     const left = Math.ceil((deadline - Date.now()) / 60000);
     await say((viaPortal && !tip
       ? `${step}正在等待用户中心自动登录（还剩约 ${left} 分钟），请勿操作。`
-      : `${step}请在本窗口登录${s.name}测试站（还剩约 ${left} 分钟）。${tip ? tip + "。" : ""}只需登录，不用切身份；登录后会自动保存并继续。`) + `\n当前：${line}`);
+      : `${step}请在本窗口登录${s.name}测试站（还剩约 ${left} 分钟）。${tip ? tip + "。" : ""}只需登录，不用切身份；登录后会自动保存并继续。`) + `\n当前：${line}` + (lastReply ? `\n上次${lastReply}` : ""));
     await sleep(2000);
   }
   if (ok) {
