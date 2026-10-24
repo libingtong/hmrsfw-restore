@@ -241,7 +241,9 @@ async function record({ order, steps, assets, state, harFile, staged }) {
     phase = "after";
     await tracker.idle(page, { maxMs: 10000 });
     await Promise.all(jobs);
-    if (loginSignals.length || LOGIN_PATH.test(new URL(page.url()).pathname)) return { blocked: "login-expired", hint: loginHint(order.site), evidence: [...loginSignals, new URL(page.url()).pathname].slice(0, 5) };
+    // same authMode carve-out as the pre-steps check above (line ~226): anonymous/portal-handoff pages are recorded
+    // logged out by design, so landing back on /login or /autoLogin after the steps is expected, not a blocker.
+    if (loginSignals.length || (!authMode && LOGIN_PATH.test(new URL(page.url()).pathname))) return { blocked: "login-expired", hint: loginHint(order.site), evidence: [...loginSignals, new URL(page.url()).pathname].slice(0, 5) };
     const failedAt = new URL(page.url()).pathname;
     ws.stop();
     await context.close();
