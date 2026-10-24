@@ -5,7 +5,6 @@
 // probe, step runner); the whitelist is gone (v3: every /xf-api/ request is answered locally).
 import path from "node:path";
 import { routeApi } from "./har.mjs";
-import { FIXED_CITY, fixedLocalCity } from "./thirdparty.mjs";
 import { domTreeInPage } from "./dom.mjs";
 import { pickScripts } from "./coverage.mjs";
 
@@ -297,7 +296,6 @@ export async function runPage(browser, opts) {
   await ctx.addInitScript(toastRecorder, TOAST_SEL);
   await ctx.addInitScript(pauseCarousels, CAROUSEL_PAUSE_MS);
   await ctx.addInitScript((s) => { for (const [k, v] of Object.entries(s.localStorage)) localStorage.setItem(k, v); for (const [k, v] of Object.entries(s.sessionStorage ?? {})) sessionStorage.setItem(k, v); }, opts.storage);
-  await ctx.addInitScript(fixedLocalCity, FIXED_CITY); // Baidu IP location: same city on both sides (thirdparty.mjs)
   const log = [], errors = [], opened = [], otherRequests = [];
   let phase = "load", lastRequestAt = 0, outdated = 0, page = null;
   // A request without a frame (service worker) cannot be attributed: it stays with the page under test, as before.
