@@ -27,5 +27,5 @@
 | `Te` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |
 | `Xe` | positionmodal.1751615607545.js | shared | @/shared/positionmodal.vue `default` | `B(X,[["__scopeId","data-v-0ff88674"]])` |
 | `Ve` | beonmodal.1751615607545.js | shared | @/shared/beonmodal.vue `default` | `h(A,[["__scopeId","data-v-1e6b66f8"]])` |
-| `Ze` | index.api.175161560754511.js | api | @/api/api-175161560754511 `myJobFairList` | `o=>t.request({url:"/xf-job/job/xfJobFair/myJobFairList",method:"post",data:o})` |
-| `Qe` | index.api.175161560754511.js | api | @/api/api-175161560754511 `myBoothList` | `o=>t.request({url:"/xf-job/job/xfJobFair/myBoothList",method:"post",data:o})` |
+| `Ze` | index.api.175161560754511.js | api | @/api/jobCompany `myJobFairList` | `o=>t.request({url:"/xf-job/job/xfJobFair/myJobFairList",method:"post",data:o})` |
+| `Qe` | index.api.175161560754511.js | api | @/api/jobCompany `myBoothList` | `o=>t.request({url:"/xf-job/job/xfJobFair/myBoothList",method:"post",data:o})` |

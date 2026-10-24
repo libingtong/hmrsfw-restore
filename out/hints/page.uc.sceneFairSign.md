@@ -16,8 +16,8 @@
 | `_e` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `me` | index.1751615607545.js | entry | @/router `router` | `fQ({history:dQ("/"),routes:Fht})` |
 | `V` | index.1751615607545.js | entry | dayjs `default` | `Oa(Trt)` |
-| `Ie` | index.api.175161560754512.js | api | @/api/api-175161560754512 `checkIzShowApplySameNetworkFair` | `t=>o.request({url:"/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair",method:"post",params:t})` |
-| `ke` | index.api.175161560754512.js | api | @/api/api-175161560754512 `queryBoothPlaceInfo` | `t=>o.request({url:"/xf-job/job/xfJobFair/queryBoothPlaceInfo",method:"post",data:t})` |
-| `xe` | index.api.175161560754512.js | api | @/api/api-175161560754512 `queryBoothView` | `t=>o.request({url:"/xf-job/job/xfJobFair/queryBoothView",method:"post",data:t})` |
-| `Ce` | index.api.175161560754512.js | api | @/api/api-175161560754512 `getCompanyAttachmentList` | `t=>o.request({url:"/xf-job/communal/xfSysAttachment/getCompanyAttachmentList",method:"get",params:t})` |
-| `ze` | index.api.175161560754512.js | api | @/api/api-175161560754512 `companyPositionAdd` | `t=>o.request({url:"/xf-job/job/xfJobFairApplyInfo/companyPositionAdd",method:"post",data:t})` |
+| `Ie` | index.api.175161560754512.js | api | @/api/jobFair `checkIzShowApplySameNetworkFair` | `t=>o.request({url:"/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair",method:"post",params:t})` |
+| `ke` | index.api.175161560754512.js | api | @/api/jobFair `queryBoothPlaceInfo` | `t=>o.request({url:"/xf-job/job/xfJobFair/queryBoothPlaceInfo",method:"post",data:t})` |
+| `xe` | index.api.175161560754512.js | api | @/api/jobFair `queryBoothView` | `t=>o.request({url:"/xf-job/job/xfJobFair/queryBoothView",method:"post",data:t})` |
+| `Ce` | index.api.175161560754512.js | api | @/api/jobFair `getCompanyAttachmentList` | `t=>o.request({url:"/xf-job/communal/xfSysAttachment/getCompanyAttachmentList",method:"get",params:t})` |
+| `ze` | index.api.175161560754512.js | api | @/api/jobFair `companyPositionAdd` | `t=>o.request({url:"/xf-job/job/xfJobFairApplyInfo/companyPositionAdd",method:"post",data:t})` |

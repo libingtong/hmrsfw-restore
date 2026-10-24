@@ -63,112 +63,112 @@
  "api": {
   "Ce": {
    "original": "index.api.17516156075456.js#i",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "getVitaeNumByXfSysUserId",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/getVitaeNumByXfSysUserId"
   },
   "be": {
    "original": "index.api.17516156075456.js#j",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "isRefreshed",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/isRefreshed"
   },
   "we": {
    "original": "index.api.17516156075456.js#k",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "refreshByXfUserId",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/refreshByXfUserId"
   },
   "xe": {
    "original": "index.api.17516156075456.js#f",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listNoPage",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/listNoPage"
   },
   "Ie": {
    "original": "index.api.17516156075456.js#b",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "getSettingValueByCode",
    "status": "restored",
    "url": "/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode"
   },
   "Se": {
    "original": "index.api.17516156075456.js#l",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "list",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/list"
   },
   "Te": {
    "original": "index.api.17516156075456.js#m",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryIzCanCreatVitae",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanCreatVitae"
   },
   "Ue": {
    "original": "index.api.17516156075456.js#n",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "saveName",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/saveName"
   },
   "ze": {
    "original": "index.api.17516156075456.js#o",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "izPublic",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/izPublic"
   },
   "Oe": {
    "original": "index.api.17516156075456.js#q",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "showElegant",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/showElegant"
   },
   "$e": {
    "original": "index.api.17516156075456.js#r",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "refresh",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/refresh"
   },
   "P": {
    "original": "index.api.17516156075456.js#s",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "entrust",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/entrust"
   },
   "Le": {
    "original": "index.api.17516156075456.js#t",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "downPdf",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/downPdf"
   },
   "Ne": {
    "original": "index.api.17516156075456.js#u",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "queryIzCanDeleteViares",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/queryIzCanDeleteViares"
   },
   "Ve": {
    "original": "index.api.17516156075456.js#v",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "deleteItem",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/delete"
   },
   "De": {
    "original": "index.api.17516156075456.js#w",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "showDefault",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/showDefault"

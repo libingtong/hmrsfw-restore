@@ -17,11 +17,11 @@
 | `ue` | index.1751615607545.js | api | @/legacy/api `getPolicyDetail`（reserved） | `t=>Ee.request({url:"/xf-job/job/licenseFree/getPolicyDetail",method:"post",data:t})` |
 | `fe` | index.1751615607545.js | entry | @/legacy `SettingCodes` | `(t=>(t.WEBPORTAL_DOMAIN="webportal_domain",t.USER_CENTE_RDEFAULT_NAME="userCenterDefaultName",t.IS_SHOW_CHANGEPWD="is_show_changepwd",t.JOB_FAIR_PASSED_IZ_EDIT_POSITION="job_fair_passed_iz_edit_positi` |
 | `E` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
-| `me` | index.api.17516156075456.js | api | @/api/api-56 `statics` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/statics",method:"get",params:e})` |
-| `ve` | index.api.17516156075456.js | api | @/api/api-56 `listNew` | `e=>t.request({url:"/xf-job/job/xfJobInterviewInvitation/listNew",method:"get",params:e})` |
-| `ye` | index.api.17516156075456.js | api | @/api/api-56 `listWithSort` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort",method:"get",params:e})` |
-| `he` | index.api.17516156075456.js | api | @/api/api-56 `getSettingValueByCode` | `e=>t.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:e})` |
-| `F` | index.api.17516156075456.js | api | @/api/api-56 `acceptOrRefuse` | `e=>t.request({url:"/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse",method:"get",params:e})` |
+| `me` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `statics` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/statics",method:"get",params:e})` |
+| `ve` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `listNew` | `e=>t.request({url:"/xf-job/job/xfJobInterviewInvitation/listNew",method:"get",params:e})` |
+| `ye` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `listWithSort` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort",method:"get",params:e})` |
+| `he` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `getSettingValueByCode` | `e=>t.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:e})` |
+| `F` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `acceptOrRefuse` | `e=>t.request({url:"/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse",method:"get",params:e})` |
 | `xe` | recommendZp.17516156075452.js | shared | @/shared/recommendZp2/BusinessCard.vue `default`（reserved） | `S(Fe,[["__scopeId","data-v-b69a6d94"]])` |
 | `ge` | recommendZp.17516156075452.js | shared | @/shared/recommendZp2/MsgAndTip.vue `default`（reserved） | `S(Ds,[["__scopeId","data-v-2b6fd5d4"]])` |
 | `ke` | recommendZp.17516156075452.js | shared | @/shared/recommendZp2/RecommendZp.vue `default`（reserved） | `S(it,[["__scopeId","data-v-7ff1e0fe"]])` |

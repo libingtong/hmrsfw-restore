@@ -15,7 +15,7 @@
 | `H` | index.1751615607545.js | entry | ant-design-vue `Modal` | `re({compatConfig:{MODE:3},name:"AModal",inheritAttrs:!1,props:xt(Cdt(),{width:520,transitionName:"zoom",maskTransitionName:"fade",confirmLoading:!1,visible:!1,okType:"primary"}),setup:function(e,n){va` |
 | `Be` | index.1751615607545.js | api | @/legacy/api `isPublishingPosition`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobCompany/isPublishingPosition",method:"get",params:t})` |
 | `we` | authCompany.1751615607545.js | shared | @/shared/authCompany.vue `default`（reserved） | `ee(Be,[["__scopeId","data-v-09e59f45"]])` |
-| `Te` | index.api.17516156075456.js | api | @/api/api-56 `getSettingValueByCode` | `e=>t.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:e})` |
+| `Te` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `getSettingValueByCode` | `e=>t.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:e})` |
 | `Ne` | right.vue_vue_type_script_setup_true_lang.1751615607545.js | shared | @/shared/right.vue `default`（reserved） | `w({__name:"right",props:{},emits:[],setup(I,{emit:R}){y();const d=m(),t=v({organizationId:void 0,swiperList:[],list:[]});C(()=>{}),P(()=>{c()});const c=()=>{f({dictCode:window.businessDict}).then(e=>{` |
 | `Le` | setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js | shared | @/shared/setStatus.vue `default`（reserved） | `A(ee,[["__scopeId","data-v-adee5d08"]])` |
 | `Pe` | addKeynote.1751615607545.js | shared | @/shared/addKeynote/AddBeOnProbation.vue `default`（reserved） | `N(L,[["__scopeId","data-v-de576056"]])` |

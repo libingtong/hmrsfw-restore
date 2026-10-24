@@ -48,7 +48,7 @@
  "api": {
   "B": {
    "original": "index.api.17516156075456.js#X",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "add7",
    "status": "restored",
    "url": "/xf-job/job/xfJobComplaintRecord/add"

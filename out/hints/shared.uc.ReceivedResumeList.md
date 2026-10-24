@@ -14,7 +14,7 @@
 | `Re` | index.1751615607545.js | entry | @/utils/request `STATIC_BASE` | `"/jeecg-system/sys/common/static"` |
 | `Ve` | index.1751615607545.js | entry | @/legacy `downloadFile` | `(t,e)=>Wn(void 0,null,function*(){const n=document.createElement("a");if(e){const a=yield(yield fetch(t)).blob(),i=window.URL.createObjectURL(a);n.href=i,n.download=e}else n.href=t;n.click(),n.remove(` |
 | `Le` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `qe` | index.api.175161560754511.js | api | @/api/api-175161560754511 `queryCompanyPersonInfoRegister` | `o=>t.request({url:"/xf-job/job/licenseFree/queryCompanyPersonInfoRegister",method:"post",data:o})` |
+| `qe` | index.api.175161560754511.js | api | @/api/jobCompany `queryCompanyPersonInfoRegister` | `o=>t.request({url:"/xf-job/job/licenseFree/queryCompanyPersonInfoRegister",method:"post",data:o})` |
 | `O` | dictCode.1751615607545.js | shared | @/shared/dictCode.vue `default` | `c(v,[["render",S]])` |
 | `Pe` | setStatusinterview.1751615607545.js | shared | @/shared/setStatusinterview.vue `default` | `B(A,[["__scopeId","data-v-99a2d30a"]])` |
 | `$e` | InterviewInvitation.17516156075452.js | shared | @/shared/InterviewInvitation.vue `default` | `E(ae,[["__scopeId","data-v-85ce95bb"]])` |
