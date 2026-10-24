@@ -29,6 +29,9 @@ export const GATE_ENV_PATTERNS = [
   /ENOSPC|no space left|disk (is )?full|磁盘(已)?满|空间不足/i,
   /EMFILE|ENFILE/,
   /repo\/checkout|checkout.{0,12}(failed|timed? ?out|超时|失败)|检出.{0,6}(超时|失败|残缺|不完整)|index\.lock|context deadline exceeded|daemon.{0,40}(timed? ?out|超时|deadline|offline|unreachable|not reachable)/i,
+  // interactRef / fetchBranches (gate.mjs): three retries of a bare `git fetch`, then this wording — the same GitHub
+  // flakiness as the SSL_ERROR_SYSCALL/443 case above, just without those words (HM-1352).
+  /git fetch of .+ failed \d+ times/i,
 ];
 
 export function classifyGateError(text) {

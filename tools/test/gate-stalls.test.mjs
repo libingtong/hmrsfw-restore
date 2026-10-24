@@ -58,7 +58,8 @@ test("classifyGateError: the 10-22/10-23 environment errors vs the gate's real p
     "page.goto: Timeout 60000ms exceeded.", "fatal: unable to access 'https://github.com/libingtong/hmrsfw-vue/': LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443",
     "ENOSPC: no space left on device, write", "磁盘已满，npm 无法写入", "daemon repo/checkout 超时，检出残缺", "gate ended without a result (a pending step never settled)",
     "2 page(s) not judged within 10 min (--page-timeout; the gate's own error, not a verdict): a, b", "browserType.launch: Target page, context or browser has been closed",
-    "repo checkout 超时", "Post \"http://127.0.0.1:8080/repo/checkout\": context deadline exceeded"])
+    "repo checkout 超时", "Post \"http://127.0.0.1:8080/repo/checkout\": context deadline exceeded",
+    "git fetch of the tool repo's integration branch (interaction scripts) failed 3 times", "git fetch of main, integration failed 3 times"])
     assert.equal(classifyGateError(s), "environment", s);
   for (const s of ["crypto keys missing for the restored app: VITE_HMRSFW_SM2_PUBLIC_KEY", "Invalid regular expression: /(?<x/: Invalid capture group name",
     "Invalid request: metadata exceeds the 8KB size limit", "TypeError: Cannot read properties of undefined (reading 'wo') at gate (tools/gate.mjs:443:12)",
