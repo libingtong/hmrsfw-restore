@@ -1,28 +1,27 @@
 {
+  "ticket": "page.uc.changeRole",
   "id": "page.uc.changeRole",
-  "branch": "restore/fast-lane",
-  "result": "pass",
-  "fixRound": 1,
-  "outputs": [
-    "apps/uc/src/views/changeRole.vue"
+  "group": "还原-Opus@Mac",
+  "branch": "restore/upg-27-a1",
+  "kind": "upgrade",
+  "upgradeTask": "01a16c78-fc37-7289-a727-399cde9226b9",
+  "forTask": "01a164de-5a62-7717-a320-5514f44f85f1",
+  "result": "fail",
+  "outputs": [],
+  "todos": [
+    "升级单无公共库可改：原因是门槛脚本 tools/check-imports.mjs otherPagesOnly 第 127 行遇 mb..HEAD 有合并提交即返回空表，不是 registry 里的公共库缺口。已核实 merge-base(restore/fast-lane, origin/integration)..restore/fast-lane 含 3 个合并提交（434c7d2、47b4f8f、7958d12，HM-1068 同步升级到快速通道），0d843f8（只改 passwordModal.vue，owner=page.portal.answer.passwordModal）因此被算成 page.uc.changeRole 越界",
+    "需裁定员按第十五节第 3 条走规则变更单（如 otherPagesOnly 只看 first-parent / 跳过 integration 同步合并），或等 HM-355 合入 integration 后重跑 changeRole；按硬规则本单不改门槛脚本",
+    "restore/upg-27-a1 与 origin/integration 相同（空升级），合并后挂起页会按调度器规则重派，但在快速通道上仍会因同一原因失败"
   ],
+  "needsFromSkeleton": [],
   "selfCheck": {
-    "pass": false,
-    "failed": [
-      "imports apps/portal/src/views/answer/passwordModal.vue（非本单改动，见 notes 疑似比对器问题）"
-    ],
-    "gitBase": "origin/integration"
-  },
-  "todos": [],
-  "unresolved": [
-    "static:imports 把 apps/portal/src/views/answer/passwordModal.vue 记在本单头上：该文件只被 restore/fast-lane 的 0d843f8（page.portal.answer.passwordModal，HM-355 修正第 1 轮）改动，不属于本单，页面侧无可改之处"
-  ],
-  "needsFromSkeleton": [
-    "疑似比对器问题：tools/check-imports.mjs otherPagesOnly 在 mb..HEAD 含合并提交时直接返回空表（第 127 行）。restore/fast-lane 的 7958d12（HM-1068 把 integration 合入快速通道）使 rev-list --merges merge-base(HEAD,origin/integration)..HEAD 非空，于是共享分支上其他页的修正（0d843f8 只改 passwordModal.vue，owner=page.portal.answer.passwordModal）全部算作本单越界。需裁定员处理：等 HM-355 合入 integration 后重跑，或走规则变更单让 otherPagesOnly 只看 first-parent / 非合并提交"
-  ],
-  "notes": [
-    "fix 1：未改代码。origin/integration...restore/fast-lane 只差 passwordModal.vue 两行（0d843f8），changeRole.vue 与 integration 一致；撤销它会回退 HM-355 的修正，所以不撤",
-    "self-check 本单唯一硬失败即上述 imports；其余为 readability warn（不阻断）",
-    "疑似比对器问题：依据见 needsFromSkeleton（check-imports.mjs:127 遇合并即放弃归属判定）"
-  ]
+    "pass": true,
+    "failed": [],
+    "warn": ["readability x4"],
+    "note": "在 restore/upg-27-a1（=origin/integration，mb..HEAD 无提交）上跑 page.uc.changeRole 自检通过，印证 imports 失败只在含合并提交的 restore/fast-lane 上出现",
+    "components": null,
+    "scopedSlots": null,
+    "directives": null,
+    "textNodesChecked": false
+  }
 }
