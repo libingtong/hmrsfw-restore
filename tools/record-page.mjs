@@ -1,4 +1,10 @@
 // Records one page work order against the TEST environment (docs/pipeline.md §6 录制员, §12):
+//   0. a work order whose queue entry sets authMode (HM-1381, login/autoLogin-style pages that are themselves viewed
+//      logged out) skips steps 1-3 below: authMode "anonymous" opens order.site with no storageState at all and goes
+//      straight to recordPath; "portal-handoff" (autoLogin) opens usercenter with no storageState either, but appends
+//      the human's own PORTAL token (pw-portal.json) and authToPath to recordPath, exactly reproducing the app's own
+//      cross-site link (openUserCenter in the legacy chunk) — neither mode logs in, types a password, or calls the
+//      login API; both only reuse a login state a human already created with pw-login.mjs;
 //   1. loads the human-prepared login state of the site, $RESTORE_ASSETS/.auth/pw-<portal|usercenter>.json (never logs in,
 //      never types a password; no login state → blocked need-login:<site>, token gone or redirected to login → blocked
 //      login-expired);
@@ -92,16 +98,27 @@ function emit(o, code) {
 }
 
 async function record({ order, steps, assets, state, harFile, staged }) {
-  const auth = authState(assets, order.site);
-  if (auth.missing) return { blocked: `need-login:${order.site}`, hint: loginHint(order.site) };
-  if (!auth.hasToken) return { blocked: "login-expired", hint: loginHint(order.site) };
-  const { exp } = tokenInfo(auth.localStorage);
-  if (!OFFLINE && exp && exp * 1000 < Date.now() + 60e3) return { blocked: "login-expired", hint: loginHint(order.site), evidence: [`token expired at ${new Date(exp * 1000).toISOString()}`] };
+  // order.authMode (queue field, HM-1381): pages that are themselves viewed logged out. "anonymous" opens order.site
+  // with no storageState at all (login/autoLogin-style pages: never submits credentials, never calls the login API,
+  // just loads the page the way a logged-out visitor would). "portal-handoff" is autoLogin specifically: it only ever
+  // does anything when reached from an already-logged-in portal session via the app's own cross-site link (legacy
+  // chunk's openUserCenter), so it needs a valid PORTAL token (not usercenter's) appended to the URL, with usercenter
+  // itself still logged out. Neither mode logs in; both reuse login state a human already created (pw-login.mjs).
+  const authMode = order.authMode ?? null;
+  const authSite = authMode === "portal-handoff" ? "portal" : order.site;
+  const auth = authMode === "anonymous" ? { file: null, localStorage: {}, hasToken: false } : authState(assets, authSite);
+  if (authMode !== "anonymous") {
+    if (auth.missing) return { blocked: `need-login:${authSite}`, hint: loginHint(authSite) };
+    if (!auth.hasToken) return { blocked: "login-expired", hint: loginHint(authSite) };
+    const { exp } = tokenInfo(auth.localStorage);
+    if (!OFFLINE && exp && exp * 1000 < Date.now() + 60e3) return { blocked: "login-expired", hint: loginHint(authSite), evidence: [`token expired at ${new Date(exp * 1000).toISOString()}`] };
+  }
   const uc = order.site === "usercenter" && !OFFLINE;
+  const ucIdentitySwitch = uc && !authMode; // anonymous/portal-handoff pages have no existing usercenter session to switch identity on
 
   const browser = await chromium.launch({ headless: !flag("--headed") });
   try {
-    const context = await browser.newContext({ storageState: auth.file, viewport: { width: 1920, height: 1080 }, locale: "zh-CN" });
+    const context = await browser.newContext({ ...(authMode ? {} : { storageState: auth.file }), viewport: { width: 1920, height: 1080 }, locale: "zh-CN" });
     if (OFFLINE && order.site === "usercenter") {
       // no switch offline: take the identity from the given HAR when it was recorded by record-page
       const rec = JSON.parse(readFileSync(path.resolve(OFFLINE), "utf8")).log?._record;
@@ -121,7 +138,7 @@ async function record({ order, steps, assets, state, harFile, staged }) {
       if (/\/xf-api\//.test(q.url())) return r.fulfill(fulfillOptions(offline.lookup(q.method(), q.url(), q.postData()).entry));
       return r.fulfill(legacyFile(order.site, u.pathname));
     });
-    let phase = uc ? null : "load", seq = 0; // null: identity switch, not part of the page recording
+    let phase = ucIdentitySwitch ? null : "load", seq = 0; // null: identity switch, not part of the page recording (anonymous/portal-handoff pages have none)
     // context.route does not see WebSockets: they get their own pass-through (offline: answered from the given HAR)
     const ws = await wsRecorder(context, { phase: () => phase, allow: (u) => TEST_HOSTS.has(u.host), replay: offline ? webSocketsOf(offlineHar) : null });
     const loginSignals = [];
@@ -175,7 +192,7 @@ async function record({ order, steps, assets, state, harFile, staged }) {
     page.on("dialog", (d) => d.dismiss().catch(() => {}));
 
     let switched = null;
-    if (uc) {
+    if (ucIdentitySwitch) {
       // start from the identity home the saved session is on: the header dropdown only exists on identity pages
       const from = identityOf(auth.localStorage);
       await page.goto(ORIGIN.usercenter + (from ? IDENTITIES[from].home : IDENTITIES.jobseeker.home), { waitUntil: "load", timeout: 60000 });
@@ -190,18 +207,25 @@ async function record({ order, steps, assets, state, harFile, staged }) {
       if (!p.ok) return { blocked: `role-changed:${order.role}`, hint: `测试账号或「${IDENTITIES[order.role].label}」身份与第一次录制时固定的不同（换了账号或身份被重建）。确认要换时，删掉 $RESTORE_STATE/record/identities.json 里的 ${pinKey(order.site, order.role)} 项并重录该身份的全部页面。` };
       await settle(page, tracker, { maxMs: 15000 });
       phase = "load";
-    } else if (!OFFLINE) {
+    } else if (!OFFLINE && !authMode) {
       const p = checkPin(state, pinKey(order.site, order.role), identityFingerprint(order.site, auth.localStorage));
       if (!p.ok) return { blocked: `role-changed:${order.role}`, hint: "门户登录态的账号与第一次录制时固定的不同。确认要换时，删掉 $RESTORE_STATE/record/identities.json 里的 portal 项并重录门户的全部页面。" };
     }
-    await page.goto(ORIGIN[order.site] + order.recordPath, { waitUntil: "load", timeout: 60000 });
+    // portal-handoff (autoLogin): usercenter itself is logged out, the page only does anything given the portal
+    // token in the URL, exactly as the legacy chunk's own cross-site link constructs it (never typed, never a login call)
+    const target = authMode === "portal-handoff"
+      ? `${ORIGIN[order.site]}${order.recordPath}?toPath=${encodeURIComponent(order.authToPath ?? IDENTITIES[order.role]?.home.slice(1) ?? "main")}&token=${encodeURIComponent(auth.localStorage.token ?? "")}`
+      : ORIGIN[order.site] + order.recordPath;
+    await page.goto(target, { waitUntil: "load", timeout: 60000 });
     const textLength = await settle(page, tracker);
     const finalPath = new URL(page.url()).pathname;
     const live = await page.evaluate(() => ({ ...localStorage })).catch(() => ({}));
     await Promise.all(jobs);
-    const why = [...(LOGIN_PATH.test(finalPath) ? [`redirected to ${finalPath}`] : []), ...(live.token ? [] : ["token cleared from localStorage"]), ...loginSignals];
-    if (why.length) return { blocked: "login-expired", hint: loginHint(order.site), evidence: why.slice(0, 5) };
-    if (uc && identityOf(live) !== order.role) return { blocked: `role-drift:${order.role}`, evidence: [`identity after load: ${identityOf(live) ?? "unknown"}`], hint: `切到「${IDENTITIES[order.role].label}」后，页面加载完身份又变了（页面自己改了身份，或该页面不属于这个身份）。请核对工单的 role。` };
+    // anonymous/portal-handoff pages are recorded logged out by design (or only just handed a usercenter session by
+    // the page itself): the "still logged in" signals below assume the opposite and only apply to the default mode.
+    const why = authMode ? loginSignals.slice() : [...(LOGIN_PATH.test(finalPath) ? [`redirected to ${finalPath}`] : []), ...(live.token ? [] : ["token cleared from localStorage"]), ...loginSignals];
+    if (why.length) return { blocked: "login-expired", hint: loginHint(authSite), evidence: why.slice(0, 5) };
+    if (ucIdentitySwitch && identityOf(live) !== order.role) return { blocked: `role-drift:${order.role}`, evidence: [`identity after load: ${identityOf(live) ?? "unknown"}`], hint: `切到「${IDENTITIES[order.role].label}」后，页面加载完身份又变了（页面自己改了身份，或该页面不属于这个身份）。请核对工单的 role。` };
     if (finalPath !== new URL(ORIGIN[order.site] + order.recordPath).pathname) warnings.push(`landed on ${finalPath} instead of the record path`);
 
     const stepResults = [];
@@ -233,7 +257,7 @@ async function record({ order, steps, assets, state, harFile, staged }) {
     for (const k of [...guard.unlisted].sort()) warnings.push(`unlisted write? ${k} was sent: not on tools/record-write-denylist.json, not query-shaped; add it to deny or allow (with why)`);
 
     const har = { log: { version: "1.2", creator: { name: "record-page", version: "1" }, pages: [], entries, ...(ws.sockets.length ? { _webSockets: ws.sockets } : {}), _record: { id: order.id, site: order.site, role: order.role, ...(uc ? { identity: IDENTITIES[order.role].label, localStorage: Object.fromEntries(Object.entries(live).filter(([k]) => !/token/i.test(k))) } : {}), recordPath: order.recordPath, finalPath, textLength, steps: stepResults, recordedAt: new Date().toISOString() } } };
-    if (!offline && pin(state, pinKey(order.site, order.role), identityFingerprint(order.site, uc ? switched : auth.localStorage))) warnings.push(`${pinKey(order.site, order.role)} pinned by this recording`);
+    if (!offline && !authMode && pin(state, pinKey(order.site, order.role), identityFingerprint(order.site, uc ? switched : auth.localStorage))) warnings.push(`${pinKey(order.site, order.role)} pinned by this recording`);
     mkdirSync(path.dirname(harFile), { recursive: true });
     writeFileSync(staged, JSON.stringify(har)); // published with the baseline (HM-1246), not here
 
