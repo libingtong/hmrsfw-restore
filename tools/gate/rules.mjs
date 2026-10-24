@@ -22,16 +22,27 @@ const stripTransition = (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.map(([k, 
 const hasClass = (n, c) => n.a.some(([k, v]) => k === "class" && v.split(/\s+/).includes(c));
 const slickTrackTransition = (tree) => mapTree(tree, (n) => (hasClass(n, "slick-track") ? { ...n, a: n.a.map(([k, v]) => (k === "style" ? [k, dropTransition(v)] : [k, v])) } : n));
 // Elements caught mid-transition carry Vue/rc-motion state classes (x-enter-from, x-leave-active, x-appear-prepare …),
-// the motion's base class x, and the inline height/opacity of that moment; when the motion ends the classes go and an
-// empty style="" is left behind. Drop the state classes with their base class and the inline style on such elements,
-// and treat style="" as no style everywhere.
+// the motion's base class x, and the inline height/opacity of that moment. An appear/enter settles with the classes
+// and inline style both gone (an empty style="" is what's left behind, treated as no style everywhere). A leave settles
+// differently when the element is v-show-toggled inside that transition (ant-design-vue's upload trigger button in
+// picture-card mode, Upload.js renderUploadButton via UploadList's HackSlot+v-show inside its <TransitionGroup>, same
+// logic both apps): node_modules/@vue/runtime-dom's vShow.updated (3.3.4, both apps' pinned Vue version) only calls
+// `transition.leave(el, () => setDisplay(el, false))` on such a toggle — it runs the leave transition, then in its
+// completion callback sets `el.style.display = "none"`; it never removes the node. So an element caught only in the
+// leave phase (no appear/enter tokens alongside) always settles at style="display: none;", never at no style at all
+// (HM-1385, HM-929 regression: page.uc.CorpAttestation, page.uc.zcyzCorpAttestationapprove — predicted in HM-1363 §2).
+// Drop the state classes with their base class on such elements, and either kind's inline style — to the leave's
+// settled display:none for a leave-only element, dropped entirely (as before) otherwise.
 const MOTION = /^([\w-]+)-(appear|enter|leave)(-(from|to|active|prepare|start))?$/;
 const stripMotion = (tree) => mapTree(tree, (n) => {
   const cls = n.a.find(([k]) => k === "class");
   const tokens = cls ? cls[1].split(/\s+/).filter(Boolean) : [];
-  const bases = new Set(tokens.map((t) => MOTION.exec(t)?.[1]).filter(Boolean));
-  if (!bases.size) return { ...n, a: n.a.filter(([k, v]) => !(k === "style" && v.trim() === "")) };
-  return { ...n, a: n.a.filter(([k]) => k !== "style").map(([k, v]) => (k === "class" ? [k, tokens.filter((t) => !MOTION.test(t) && !bases.has(t)).join(" ")] : [k, v])) };
+  const matches = tokens.map((t) => MOTION.exec(t)).filter(Boolean);
+  if (!matches.length) return { ...n, a: n.a.filter(([k, v]) => !(k === "style" && v.trim() === "")) };
+  const bases = new Set(matches.map((m) => m[1]));
+  const onlyLeave = matches.every((m) => m[2] === "leave");
+  const a = n.a.flatMap(([k, v]) => (k === "class" ? [[k, tokens.filter((t) => !MOTION.test(t) && !bases.has(t)).join(" ")]] : k === "style" ? (onlyLeave ? [[k, "display: none;"]] : []) : [[k, v]]));
+  return { ...n, a: onlyLeave && !a.some(([k]) => k === "style") ? [...a, ["style", "display: none;"]] : a };
 });
 // style="" is an empty declaration block: it renders exactly like no style attribute (no selector in either app tells the
 // two apart: the original's stylesheets have no [style], the restored app only TinyMCE's [style*="border-width: 0px"]). It is left on an element once something wrote and cleared (or wrote an empty value into) its inline
