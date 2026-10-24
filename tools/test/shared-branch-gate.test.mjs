@@ -1,6 +1,7 @@
 // node --test tools/test/shared-branch-gate.test.mjs
 // Rule 4 of check-imports on a branch several page orders share (HM-526, fast lane `restore/fast-lane`): a file another
 // page owns is not this order's change when every commit touching it is only that page's; anything else stays this order's.
+// Merges in the range (HM-1310) touch what they changed on their own and are never another page's.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -63,7 +64,9 @@ test("one non-attributable commit on a file keeps it this order's; so does the w
   } finally { r.done(); }
 });
 
-test("a merge in the range turns attribution off", () => {
+// HM-1310: the fast lane takes integration by merging it (HM-1068), so mb..HEAD always holds merges; a merge counts as
+// touching only what it changed on its own (differs from every parent), and that is never another page's change.
+test("a merge in the range: the commits it brings are attributed one by one", () => {
   const r = repo();
   try {
     r.git("checkout", "-q", "-b", "side");
@@ -71,7 +74,47 @@ test("a merge in the range turns attribution off", () => {
     r.git("checkout", "-q", "main");
     r.commit([B], "fix(page): page.b");
     r.git("merge", "-q", "--no-ff", "-m", "merge", "side");
-    assert.deepEqual([...run(r, [B, C])], []);
+    assert.deepEqual([...run(r, [B, C])], [[B, "page.b"], [C, "page.c"]]);
+    // a commit of this order on another page's file stays this order's, whichever side of the merge it came from
+    r.git("checkout", "-q", "-b", "side2", r.base);
+    r.commit([B], "fix(page): page.a 顺手改了 page.b");
+    r.git("checkout", "-q", "main");
+    r.git("merge", "-q", "--no-ff", "-X", "theirs", "-m", "merge side2", "side2");
+    assert.deepEqual([...run(r, [B, C])], [[C, "page.c"]]);
+  } finally { r.done(); }
+});
+
+test("a file a merge changed on its own (differs from every parent) stays this order's", () => {
+  const r = repo();
+  try {
+    r.git("checkout", "-q", "-b", "side");
+    r.commit([C], "fix(page): page.c");
+    r.git("checkout", "-q", "main");
+    r.commit([B], "fix(page): page.b");
+    r.git("merge", "-q", "--no-ff", "--no-commit", "side");
+    r.write(B, "edited in the merge\n"); r.git("add", "-A"); r.git("commit", "-q", "-m", "merge side");
+    assert.deepEqual([...run(r, [B, C])], [[C, "page.c"]]);
+  } finally { r.done(); }
+});
+
+test("changedFiles + otherPagesOnly: integration merged into the shared branch, then another page's fix (HM-1310)", () => {
+  const r = repo();
+  try {
+    r.git("checkout", "-q", "-b", "integration");
+    r.git("checkout", "-q", "-b", "fast");
+    r.commit([B], "fix(page): page.b 修正第 1 轮");
+    r.git("checkout", "-q", "integration");
+    r.git("merge", "-q", "--no-ff", "-m", "Merge fast into integration", "fast");
+    r.commit([SHARED], "upgrade(shared)");
+    r.git("checkout", "-q", "fast");
+    r.git("merge", "-q", "--no-ff", "-m", "Merge integration into fast", "integration");
+    r.commit([C], "fix(page): page.c 修正第 1 轮");
+    const ch = changedFiles(r.dir);
+    assert.equal(ch.mb, r.git("rev-parse", "integration"));
+    assert.deepEqual(ch.files, [C]);
+    assert.deepEqual([...otherPagesOnly(r.dir, { mb: ch.mb, files: ch.files, work: ch.work, me: ["page.a"], mine: mineA, owner })], [[C, "page.c"]]);
+    // the page that owns the fix is charged with it
+    assert.deepEqual([...otherPagesOnly(r.dir, { mb: ch.mb, files: ch.files, work: ch.work, me: ["page.c"], mine: (p) => p === C, owner })], []);
   } finally { r.done(); }
 });
 
