@@ -150,12 +150,36 @@ function fetchBranches(baseApp, branches) {
   }
 }
 
-// --branch: a private worktree of the hmrsfw-vue checkout at origin/<branch>, inside the gate dir.
+// Integration tasks opened at a commit (regression, bisect, lib / rule regression: pipeline.mjs openIntegration) carry the
+// full commit SHA as their `branch` (HM-1330); a bisect candidate is usually not integration's tip, so it is checked out
+// as that commit, not as a branch. Only a full 40-hex name counts: branch names in this pipeline never look like that.
+export const isCommitSha = (ref) => /^[0-9a-f]{40}$/i.test(String(ref ?? ""));
+const hasCommit = (baseApp, sha) => { try { execFileSync("git", ["-C", baseApp, "cat-file", "-e", `${sha}^{commit}`], { stdio: "ignore" }); return true; } catch { return false; } };
+
+// What to check out for --branch: `origin/<branch>` after fetching it, or the commit itself for a SHA. A SHA not in the
+// local object store comes with integration (every commit an integration task names was on it), else is fetched by
+// itself (GitHub serves any reachable commit by full SHA); both with the same three tries as fetchBranches.
+export function fetchRef(baseApp, branch) {
+  if (!isCommitSha(branch)) { fetchBranches(baseApp, [branch]); return `origin/${branch}`; }
+  const sha = branch.toLowerCase();
+  if (hasCommit(baseApp, sha)) return sha;
+  fetchBranches(baseApp, ["integration"]);
+  if (hasCommit(baseApp, sha)) return sha;
+  for (let i = 1; ; i++) {
+    try { execFileSync("git", ["-C", baseApp, "fetch", "-q", "--no-write-fetch-head", "origin", sha], { stdio: "ignore", timeout: 120000 }); } catch {}
+    if (hasCommit(baseApp, sha)) return sha;
+    if (i >= 3) throw new Error(`commit ${sha} not found: not on origin/integration and git fetch of it failed 3 times`);
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5000 * i);
+  }
+}
+
+// --branch: a private worktree of the hmrsfw-vue checkout at origin/<branch> (or at the commit, see fetchRef), inside
+// the gate dir.
 function checkoutBranch(baseApp, branch, gateDir) {
   const wt = path.join(gateDir, "app");
-  fetchBranches(baseApp, [branch]);
+  const ref = fetchRef(baseApp, branch);
   rmSync(wt, { recursive: true, force: true });
-  execFileSync("git", ["-C", baseApp, "worktree", "add", "-q", "--detach", wt, `origin/${branch}`], { stdio: "ignore" });
+  execFileSync("git", ["-C", baseApp, "worktree", "add", "-q", "--detach", wt, ref], { stdio: "ignore" });
   symlinkSync(realpathSync(path.join(baseApp, "node_modules")), path.join(wt, "node_modules"));
   // the link is not ignored by `node_modules/` (directories only): rule 4 of check-imports would see an untracked
   // `node_modules` that is no order's change (HM-526)
@@ -413,7 +437,7 @@ function ensureRunApp(baseApp, run, appDir) {
   try { execFileSync("git", ["-C", baseApp, "worktree", "remove", "--force", appDir], { stdio: "ignore" }); } catch {}
   rmSync(appDir, { recursive: true, force: true });
   try { execFileSync("git", ["-C", baseApp, "worktree", "prune"], { stdio: "ignore" }); } catch {}
-  try { execFileSync("git", ["-C", baseApp, "cat-file", "-e", `${run.commit}^{commit}`], { stdio: "ignore" }); } catch { fetchBranches(baseApp, [run.branch]); }
+  try { execFileSync("git", ["-C", baseApp, "cat-file", "-e", `${run.commit}^{commit}`], { stdio: "ignore" }); } catch { fetchRef(baseApp, run.branch); }
   execFileSync("git", ["-C", baseApp, "worktree", "add", "-q", "--detach", appDir, run.commit], { stdio: "ignore" });
   symlinkSync(realpathSync(path.join(baseApp, "node_modules")), path.join(appDir, "node_modules"));
   gitExclude(appDir, "node_modules", "tools/gate.mjs: the --branch worktree links node_modules");
@@ -438,10 +462,9 @@ async function slicedRun({ argv, task, meta, createdAt, attempt, branch, wos, ju
   mkdirSync(root, { recursive: true });
   for (const d of staleRuns(state)) { try { execFileSync("git", ["-C", baseApp, "worktree", "remove", "--force", path.join(d, "app")], { stdio: "ignore" }); } catch {} rmSync(d, { recursive: true, force: true }); }
   const picked = await withLock(path.join(root, ".pick.lock"), () => {
-    const r = pickRun({ state, tools, rules: rules.version, set, pin, notBefore });
+    const r = pickRun({ state, tools, rules: rules.version, set, pin, commit: isCommitSha(branch) ? branch.toLowerCase() : null, notBefore });
     if (r) return r;
-    fetchBranches(baseApp, [branch]);
-    const commit = execFileSync("git", ["-C", baseApp, "rev-parse", `origin/${branch}^{commit}`], { encoding: "utf8" }).trim();
+    const commit = execFileSync("git", ["-C", baseApp, "rev-parse", `${fetchRef(baseApp, branch)}^{commit}`], { encoding: "utf8" }).trim();
     return createRun({ state, tools, rules: rules.version, set, commit, branch });
   }, { deadline: Date.now() + 10 * 60000 });
   if (!picked) throw new Error(`${path.join(root, ".pick.lock")} held for 10 minutes`);

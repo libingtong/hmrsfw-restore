@@ -91,9 +91,11 @@ export const pinFile = (state, name) => path.join(runsDir(state), "pins", `${Str
 
 // The run this call works in: the one pinned for this gate round, if tools, rules and page set are still the same; else
 // the newest run with the same tools, rules and page set that started at or after notBefore (ms) and within shareHours.
-export function pickRun({ state, tools, rules, set, pin, notBefore = 0, now = Date.now(), shareHours = SHARE_HOURS }) {
+// commit: only a run at that commit (a task pinned to a commit — bisect, lib / rule regression — must not take the
+// verdicts of the same pages on another commit, HM-1330).
+export function pickRun({ state, tools, rules, set, pin, commit = null, notBefore = 0, now = Date.now(), shareHours = SHARE_HOURS }) {
   const dir = runsDir(state);
-  const same = (r) => r && r.tools === tools && r.rules === rules && r.set === set;
+  const same = (r) => r && r.tools === tools && r.rules === rules && r.set === set && (!commit || r.commit === commit);
   const pinned = pin && readJson(pinFile(state, pin));
   if (pinned) { const r = readJson(path.join(dir, pinned.key, "run.json")); if (same(r)) return r; }
   const runs = (existsSync(dir) ? readdirSync(dir) : []).filter((k) => k !== "pins").map((k) => readJson(path.join(dir, k, "run.json")));
