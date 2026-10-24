@@ -4,7 +4,7 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `Le` | mymsg.1751615607545.js | shared | @/shared/mymsg/Mymsg.vue `default`（reserved） | `T(Y,[["__scopeId","data-v-dfa9af6a"]])` |
+| `Le` | mymsg.1751615607545.js | shared | @/shared/mymsg/Mymsg.vue `default` | `T(Y,[["__scopeId","data-v-dfa9af6a"]])` |
 | `Ne` | index.1751615607545.js | entry | @/legacy/store `useCommonStore`（reserved） | `d0("common",{state:()=>({isShowAuthJYBF:!0}),getters:{getIsShowAuthJYBF:t=>t.isShowAuthJYBF},actions:{queryIsShowAuthJYBF(){return Wn(this,null,function*(){yield wX({code:Xo.AUTH_MENU_JYBF}).then(t=>{` |
 | `pe` | index.1751615607545.js | entry | @/legacy `useTagsStore` | `d0("tags",{state:()=>({list:[]}),getters:{show:t=>t.list.length>0,nameList:t=>t.list.map(e=>e.name)},actions:{delTagsItem(t){this.list.splice(t,1)},setTagsItem(t){this.list.push(t)},clearTags(){this.l` |
 | `fe` | index.1751615607545.js | entry | vuex `useStore` | `function xc(t){return t===void 0&&(t=null),Ot(t!==null?t:TR)}` |

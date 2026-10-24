@@ -177,8 +177,7 @@
    "original": "mymsg.1751615607545.js#m",
    "path": "@/shared/mymsg/Mymsg.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "shared.uc.mymsg"
+   "status": "restored"
   },
   "Se": {
    "original": "resumemodal.1751615607545.js#r",
@@ -202,8 +201,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "newUserCardImg",
-   "status": "reserved",
-   "owner": "shared.uc.modules"
+   "status": "restored"
   },
   "ke": {
    "original": "default.1751615607545.js#_",
@@ -211,8 +209,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "defaultImg",
-   "status": "reserved",
-   "owner": "shared.uc.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [

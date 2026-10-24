@@ -104,8 +104,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "typeImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "pe": {
    "original": "liveNull.1783320636200.js#_",
@@ -113,8 +112,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "liveNullImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "be": {
    "original": "btn.1783320636200.js#_",
@@ -122,8 +120,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "btnImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

@@ -85,8 +85,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "threeImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "$": {
    "original": "three.1783320636200.js#a",
@@ -94,8 +93,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "threeImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "aa": {
    "original": "three.1783320636200.js#b",
@@ -103,8 +101,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "threeImgB",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

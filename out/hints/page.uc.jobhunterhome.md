@@ -27,5 +27,5 @@
 | `ke` | default.1751615607545.js | shared | @/shared/images `defaultImg` | `"/assets/default.1751615607545.jpg"` |
 | `we` | index.api.1751615607545.js | api | @/api/jobSupermarketMerchants `getRecommendTalentList`（reserved） | `e=>t.request({url:"/xf-job/job/xfJobCompany/getRecommendTalentList",method:"post",params:e})` |
 | `xe` | index.api.1751615607545.js | api | @/api/jobSupermarketMerchants `recommendJobList`（reserved） | `e=>t.request({url:"/xf-job/job/licenseFree/xfJobCompanyPosition/recommendJobList",method:"post",params:e})` |
-| `Ie` | mymsg.1751615607545.js | shared | @/shared/mymsg/Mymsg.vue `default`（reserved） | `T(Y,[["__scopeId","data-v-dfa9af6a"]])` |
+| `Ie` | mymsg.1751615607545.js | shared | @/shared/mymsg/Mymsg.vue `default` | `T(Y,[["__scopeId","data-v-dfa9af6a"]])` |
 | `Se` | resumemodal.1751615607545.js | shared | @/shared/resumemodal.vue `default` | `F(le,[["__scopeId","data-v-3db338bf"]])` |

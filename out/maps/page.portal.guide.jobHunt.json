@@ -282,36 +282,31 @@
    "original": "auth.1783320636200.js#O",
    "path": "@/shared/auth/OneContent.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "shared.portal.auth"
+   "status": "restored"
   },
   "Fe": {
    "original": "auth.1783320636200.js#B",
    "path": "@/shared/auth/BackGround.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "shared.portal.auth"
+   "status": "restored"
   },
   "Ka": {
    "original": "auth.1783320636200.js#C",
    "path": "@/shared/auth/ColumnContent.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "shared.portal.auth"
+   "status": "restored"
   },
   "$a": {
    "original": "auth.1783320636200.js#_",
    "path": "@/shared/auth.ts",
    "export": "nextPageIconImg",
-   "status": "reserved",
-   "owner": "shared.portal.auth"
+   "status": "restored"
   },
   "Za": {
    "original": "auth.1783320636200.js#a",
    "path": "@/shared/auth.ts",
    "export": "realNameAuthImg",
-   "status": "reserved",
-   "owner": "shared.portal.auth"
+   "status": "restored"
   },
   "Tt": {
    "original": "empty.1783320636200.js#e",

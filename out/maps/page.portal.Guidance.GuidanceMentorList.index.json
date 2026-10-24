@@ -174,8 +174,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "dianzanImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

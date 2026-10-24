@@ -4,8 +4,8 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `je` | mymsg.1751615607545.js | shared | @/shared/mymsg/Mymsg.vue `default`（reserved） | `T(Y,[["__scopeId","data-v-dfa9af6a"]])` |
-| `Ke` | mymsg.1751615607545.js | shared | @/shared/mymsg.ts `_`（reserved） | `"/assets/null.1751615607545.jpg"` |
+| `je` | mymsg.1751615607545.js | shared | @/shared/mymsg/Mymsg.vue `default` | `T(Y,[["__scopeId","data-v-dfa9af6a"]])` |
+| `Ke` | mymsg.1751615607545.js | shared | @/shared/mymsg.ts `emptyListImg` | `"/assets/null.1751615607545.jpg"` |
 | `Ze` | recommendZp.1751615607545.js | shared | @/shared/recommendZp/StateCard.vue `default`（reserved） | `F(V,[["__scopeId","data-v-53902b4a"]])` |
 | `Ge` | recommendZp.1751615607545.js | shared | @/shared/recommendZp/RecommendZp.vue `default`（reserved） | `F(pe,[["__scopeId","data-v-063eb494"]])` |
 | `We` | index.1751615607545.js | api | @/legacy `getSettingValueByCode` | `t=>Ee.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:t})` |

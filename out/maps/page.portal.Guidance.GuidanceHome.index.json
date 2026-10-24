@@ -216,8 +216,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "dianzanImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "G": {
    "original": "courseNull.1783320636200.js#_",
@@ -225,8 +224,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "courseNullImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "vl": {
    "original": "ask.1783320636200.js#_",
@@ -234,8 +232,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "askImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "fl": {
    "original": "da.1783320636200.js#_",
@@ -243,8 +240,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "daImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "hl": {
    "original": "da.1783320636200.js#a",
@@ -252,8 +248,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "daImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Pl": {
    "original": "navigation.1783320636200.js#N",

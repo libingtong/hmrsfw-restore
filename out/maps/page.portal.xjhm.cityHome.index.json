@@ -163,8 +163,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "zphImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Te": {
    "original": "zph.1783320636200.js#a",
@@ -172,8 +171,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "zphImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "je": {
    "original": "zph.1783320636200.js#b",
@@ -181,8 +179,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "zphImgB",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Ae": {
    "original": "zph.1783320636200.js#c",
@@ -190,8 +187,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "zphImgC",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [

@@ -106,8 +106,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "rightdisabImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "fa": {
    "original": "rightdisab.1783320636200.js#a",
@@ -115,8 +114,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "rightdisabImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "va": {
    "original": "rightdisab.1783320636200.js#b",
@@ -124,8 +122,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "rightdisabImgB",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "ka": {
    "original": "rightdisab.1783320636200.js#c",
@@ -133,8 +130,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "rightdisabImgC",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "ha": {
    "original": "index.1783320636200118.js#i",

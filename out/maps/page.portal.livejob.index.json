@@ -84,8 +84,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "liveNullImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

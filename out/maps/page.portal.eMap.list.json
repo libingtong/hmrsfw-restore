@@ -46,8 +46,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "adrImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "U": {
    "original": "adr.1783320636200.js#a",
@@ -55,8 +54,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "adrImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

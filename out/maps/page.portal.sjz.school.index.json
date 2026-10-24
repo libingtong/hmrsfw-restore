@@ -202,8 +202,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "videoNullImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Ca": {
    "original": "navigation.1783320636200.js#N",

@@ -69,8 +69,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "mapImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],
