@@ -104,6 +104,13 @@ export function volatileCanvases(origs, rest, { threshold, inkRange }) {
 // (`main > *` also matches homeView's header), so the comparison silently compared a different element (HM-779).
 export const pickCandidate = (cands, cls) => (cls === undefined ? cands?.[0] : cands?.find((c) => c.cls === cls)) ?? null;
 
+// A recordVia component its parent page mounts only after the interaction (HM-1293: page.portal.fair.signModal, which
+// the web fair list renders under `v-if="signShow"`, set by the 报名参会 click) has no root at load on either side:
+// captureRoot then leaves its single `empty` placeholder, a viewport shot of the parent page, not of the component.
+// rootlessLoad: no real load candidate. rootAfterSteps: every run is rootless at load and has a root after the steps.
+export const rootlessLoad = (run) => !(run?.load?.candidates ?? []).some((c) => !c.empty);
+export const rootAfterSteps = (runs) => runs.length > 0 && runs.every((r) => rootlessLoad(r) && (r.final?.candidates ?? []).some((c) => !c.empty));
+
 // Overlay → one string: open modals, then the toasts shown in the phase minus the app shell's own toasts (the shell
 // probe's: the original app shell's own failing requests). Older baselines stored the overlay as a plain string.
 export function overlayText(ov, shellToasts = []) {
@@ -241,8 +248,14 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, 
   // original candidates by class only (element paths, no page text)
   const rootHint = (ph) => `no original root candidate with class ${JSON.stringify(restCls[ph])} (restored ${ph} root); original candidates: ${[...new Set(baseline.runs.flatMap((r) => (r[ph]?.candidates ?? []).map((c) => JSON.stringify(c.cls))))].join(", ")}`;
   for (const ph of ["load", "final"]) if (noRoot(ph)) failed.push({ check: "root", where: ph, hint: rootHint(ph) });
-  if (!noRoot("load") && O.every((o) => o.empty)) failed.push({ check: "baseline", where: "load", hint: "original page root not found in the baseline" });
-  if (R.empty) failed.push({ check: "render", where: "load", hint: `restored page root (${restSel}) is empty` });
+  // A recordVia component without a root at load in the restored run and in every original run, whose original root
+  // appears after the steps in every run, is in the same state at load: not opened yet (HM-1293). No `baseline` /
+  // `render` failure and no shot compared at load (the placeholders' shots are the parent page); its root is compared
+  // after the steps, and the restored run must have one there. A root at load on either side is compared as before.
+  const afterSteps = inParent && rootlessLoad(rest) && rootAfterSteps(baseline.runs);
+  if (!afterSteps && !noRoot("load") && O.every((o) => o.empty)) failed.push({ check: "baseline", where: "load", hint: "original page root not found in the baseline" });
+  if (!afterSteps && R.empty) failed.push({ check: "render", where: "load", hint: `restored page root (${restSel}) is empty` });
+  if (afterSteps && !(rest.final?.candidates ?? []).some((c) => !c.empty)) failed.push({ check: "render", where: "final", hint: `restored component root (${restSel}) not found after the steps (the original's appears only after them)` });
   const keys = Object.keys(R).filter((k) => k.includes(".") && k !== "steps.errors");
   for (const where of keys) {
     if (!(where in O[0])) { failed.push({ check: where.split(".")[1], where: where.split(".")[0], hint: "baseline has no interaction run" }); continue; }
@@ -255,7 +268,7 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, 
   }
   if (R["steps.errors"]?.length) failed.push({ check: "step-error", where: "steps", hint: R["steps.errors"].slice(0, 3).join("; ") });
   let pixel = null, vc = { masks: [], failed: [] };
-  if (R.shot || R.blank) {
+  if ((R.shot || R.blank) && !afterSteps) {
     if (rules.volatileCanvas && O.length > 1 && R.shot) vc = volatileCanvases(O, R, { threshold: rules.pixel.threshold, inkRange: rules.volatileCanvas.inkRange });
     failed.push(...vc.failed);
     for (const [i, o] of O.entries()) {
@@ -270,7 +283,8 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, 
 }
 
 // Which comparison keys differ between two original runs (→ baseline "unstable").
-export function unstableKeys(runA, runB, { rules, site, shell, shellToasts }) {
+// inParent: a recordVia component; two runs without its root at load (rootAfterSteps) have no load shot to compare.
+export function unstableKeys(runA, runB, { rules, site, shell, shellToasts, inParent = false }) {
   const exclude = rules.shellRequests(site);
   const cls = { load: runA.load?.candidates?.[0]?.cls ?? null, final: runA.final?.candidates?.[0]?.cls ?? null };
   const clock = runA.clock ?? null;
@@ -278,6 +292,6 @@ export function unstableKeys(runA, runB, { rules, site, shell, shellToasts }) {
   const b = project(runB, { rules, shell, exclude, cls, shellToasts, clock });
   const out = Object.keys(a).filter((k) => k.includes(".") && !same(a[k], b[k]));
   const masks = rules.volatileCanvas ? volatileCanvases([a, b], null, { threshold: rules.pixel.threshold, inkRange: rules.volatileCanvas.inkRange }).masks : [];
-  if ((a.shot || a.blank) && (b.shot || b.blank)) { const d = shotDiff(a, b, null, rules.pixel.threshold, masks); if (d.ratio > rules.pixel.maxRatio) out.push("load.pixel"); }
+  if ((a.shot || a.blank) && (b.shot || b.blank) && !(inParent && rootAfterSteps([runA, runB]))) { const d = shotDiff(a, b, null, rules.pixel.threshold, masks); if (d.ratio > rules.pixel.maxRatio) out.push("load.pixel"); }
   return out;
 }
