@@ -63,14 +63,28 @@ export const describeStep = (s) => (s.fill ? { ...s, fill: [s.fill[0], "<test va
 
 const looseText = (t) => new RegExp("^\\s*" + [...t].map((c) => c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("\\s*") + "\\s*$");
 
-// Runs one step on a Playwright page. → null, or "absent" for a missing optional target. Throws when a required target is missing.
+// Finds the last visible match of `locator`, waiting up to `timeoutMs` for one to appear (HM-1371: an element that
+// mounts a moment after the step starts — e.g. an <img> whose src only resolves after a request — was checked with a
+// single instant isVisible() and, finding none yet, treated as genuinely absent).
+async function waitVisible(page, locator, timeoutMs) {
+  const t0 = Date.now();
+  for (;;) {
+    let target = null;
+    for (const h of await locator.all()) if (await h.isVisible()) target = h; // last visible match = innermost element
+    if (target || Date.now() - t0 >= timeoutMs) return target;
+    await page.waitForTimeout(100);
+  }
+}
+
+// Runs one step on a Playwright page. → null, or "absent" for a missing optional target. Throws when a required
+// target is missing, and always when the step is the script's root step (HM-1371: the root capture depends on it
+// having run; silently skipping it as "optional" would capture the load root instead of the step's root).
 export async function runStep(page, s) {
   if (s.fill) await page.getByPlaceholder(s.fill[0], { exact: true }).first().fill(s.fill[1], { timeout: 5000 });
   else if (s.click || s.clickSel) {
     const all = s.click ? page.locator("button, a, .ant-tabs-tab, li, span, div").filter({ hasText: looseText(s.click) }) : page.locator(s.clickSel);
-    let target = null;
-    for (const h of await all.all()) if (await h.isVisible()) target = h; // last visible match = innermost element
-    if (!target) { if (s.optional) return "absent"; throw new Error("no visible target for " + (s.click ?? s.clickSel)); }
+    const target = await waitVisible(page, all, 5000);
+    if (!target) { if (s.optional && !s.root) return "absent"; throw new Error("no visible target for " + (s.click ?? s.clickSel)); }
     await target.click({ timeout: 5000 });
   } else if (s.press) await page.keyboard.press(s.press);
   await page.waitForTimeout(s.wait ?? 1200);
