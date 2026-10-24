@@ -1,0 +1,13 @@
+[
+  {"wait":2500},
+  {"clickSel":".loginInformation .close","optional":true,"wait":800},
+  {"click":"先跳过","optional":true,"wait":800},
+  {"click":"登录","wait":800},
+  {"fill":["请输入账号/手机号/身份证号","Tst-0001"]},
+  {"click":"登录","wait":800},
+  {"click":"短信登录","wait":800},
+  {"click":"获取验证码","wait":800},
+  {"fill":["请输入手机号","测试"]},
+  {"click":"获取验证码","wait":800},
+  {"click":"密码登录","wait":800}
+]
