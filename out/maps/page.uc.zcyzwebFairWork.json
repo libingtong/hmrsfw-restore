@@ -104,42 +104,42 @@
  "api": {
   "He": {
    "original": "index.api.175161560754512.js#q",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "queryById",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/queryById"
   },
   "Je": {
    "original": "index.api.175161560754512.js#J",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "list2",
    "status": "restored",
    "url": "/xf-job/job/xfJobFairPositionRelation/list"
   },
   "Oe": {
    "original": "index.api.175161560754512.js#d",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "companyPositionAdd",
    "status": "restored",
    "url": "/xf-job/job/xfJobFairApplyInfo/companyPositionAdd"
   },
   "Ee": {
    "original": "index.api.175161560754512.js#e",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "addPosition",
    "status": "restored",
    "url": "/xf-job/job/xfJobFairPositionRelation/addPosition"
   },
   "$e": {
    "original": "index.api.175161560754512.js#h",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "editPosition",
    "status": "restored",
    "url": "/xf-job/job/xfJobFairPositionRelation/editPosition"
   },
   "Xe": {
    "original": "index.api.175161560754512.js#i",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "detailById",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompanyPosition/detailById"

@@ -90,7 +90,7 @@
  "api": {
   "qe": {
    "original": "index.api.175161560754511.js#q",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "queryCompanyPersonInfoRegister",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/queryCompanyPersonInfoRegister"

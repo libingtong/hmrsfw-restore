@@ -71,21 +71,21 @@
  "api": {
   "Ae": {
    "original": "index.api.175161560754511.js#h",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "addOrUpdate",
    "status": "restored",
    "url": "/xf-job/job/xfJobFairApplyUnsubscribe/addOrUpdate"
   },
   "He": {
    "original": "index.api.175161560754511.js#m",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "myJobFairList",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/myJobFairList"
   },
   "Je": {
    "original": "index.api.175161560754511.js#k",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "fairParticipationToHtml",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/xfJobFairApplyInfo/fairParticipationToHtml?xfJobFairId="

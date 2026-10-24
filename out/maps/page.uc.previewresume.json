@@ -145,21 +145,21 @@
  "api": {
   "ke": {
    "original": "index.api.17516156075456.js#a9",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "viewVoByIdFromPerson",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/viewVoByIdFromPerson"
   },
   "we": {
    "original": "index.api.17516156075456.js#aa",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "downPdf2",
    "status": "restored",
    "url": "/xf-job/job/xfJobCompanyCurriculumDownload/downPdf"
   },
   "Qe": {
    "original": "index.api.17516156075456.js#t",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "downPdf",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/downPdf"

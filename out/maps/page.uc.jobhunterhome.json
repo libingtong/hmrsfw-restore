@@ -110,28 +110,28 @@
  "api": {
   "me": {
    "original": "index.api.17516156075456.js#c",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "statics",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitae/statics"
   },
   "fe": {
    "original": "index.api.17516156075456.js#d",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listNew",
    "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/listNew"
   },
   "he": {
    "original": "index.api.17516156075456.js#e",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "listWithSort",
    "status": "restored",
    "url": "/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort"
   },
   "J": {
    "original": "index.api.17516156075456.js#p",
-   "path": "@/api/api-56",
+   "path": "@/api/jobCurriculumVitae",
    "export": "acceptOrRefuse",
    "status": "restored",
    "url": "/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse"

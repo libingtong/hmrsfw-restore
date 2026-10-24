@@ -83,35 +83,35 @@
  "api": {
   "ve": {
    "original": "index.api.175161560754512.js#g",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "checkIzShowApplySameNetworkFair",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/checkIzShowApplySameNetworkFair"
   },
   "ye": {
    "original": "index.api.175161560754512.js#a",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "queryFairRegions",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/queryFairRegions"
   },
   "we": {
    "original": "index.api.175161560754512.js#s",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "updateCompIntroduc",
    "status": "restored",
    "url": "/xf-job/job/licenseFree/updateCompIntroduc"
   },
   "Te": {
    "original": "index.api.175161560754512.js#f",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "list",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/list"
   },
   "ke": {
    "original": "index.api.175161560754512.js#c",
-   "path": "@/api/api-175161560754512",
+   "path": "@/api/jobFair",
    "export": "checkIzDishonesty",
    "status": "restored",
    "url": "/xf-job/job/xfJobFairApplyInfo/checkIzDishonesty"
