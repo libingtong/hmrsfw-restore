@@ -72,7 +72,39 @@ const hiddenPopupOffset = (tree) => mapTree(tree, (n) => {
 // layout: a usercenter bare-route page (#app > *) whose interaction lands on a layout page. Only that one attribute with
 // that one value goes; any other id, and every other attribute of that element, is compared as before.
 const pocMainHook = (tree) => mapTree(tree, (n) => (n.a.some(([k, v]) => k === "id" && v === "poc-main") ? { ...n, a: n.a.filter(([k, v]) => !(k === "id" && v === "poc-main")) } : n));
-const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle, "baidu-tile-order": baiduTileOrder, "hidden-popup-offset": hiddenPopupOffset, "poc-main-hook": pocMainHook };
+// ant-design-vue's Tabs ink bar (rc-tabs useIndicator, same logic both apps): a ResizeObserver measures the active tab,
+// then one flush:post watch and one requestAnimationFrame later its left/width (or top/height for vertical tabs) land in
+// the bar's inline style; before that chain settles the bar has no inline style at all. Whether it has settled by capture
+// time is a scheduling race, not page code — the active tab's own -tab-active class is unaffected and compared as before
+// (HM-1363, gate 234272be99429e2c: page.uc.CorpAttestation's two independent original replays both lack the style, the
+// restored side has it both times). Drop left/top/right/width/height on an element with an `-ink-bar` class; its other
+// declarations and every other element are compared as before.
+const INK_BAR = /-ink-bar$/;
+const POSITION_PROPS = new Set(["left", "top", "right", "width", "height"]);
+const inkBarOffset = (tree) => mapTree(tree, (n) => {
+  const cls = n.a.find(([k]) => k === "class")?.[1] ?? "";
+  if (!cls.split(/\s+/).some((t) => INK_BAR.test(t))) return n;
+  const st = n.a.find(([k]) => k === "style")?.[1] ?? "";
+  if (!decls(st).length) return n;
+  const kept = decls(st).filter((d) => !POSITION_PROPS.has(prop(d)));
+  return { ...n, a: kept.length ? n.a.map(([k, v]) => (k === "style" ? [k, kept.map((d) => `${d};`).join(" ")] : [k, v])) : n.a.filter(([k]) => k !== "style") };
+});
+// ant-design-vue's upload list item (ListItem.js, same logic both apps): the progress-bar wrapper only starts rendering
+// 300ms after the item mounts (onMounted → setTimeout(…, 300) → showProgress.value = true), then stays v-shown to
+// file.status === "uploading"; for a file that is not uploading (already done), it is a permanent display:none element
+// once those 300ms have passed and does not exist before. Whether 300ms have passed by capture time is a mount-time
+// race, not page code (HM-1363, gate 234272be99429e2c: page.uc.CorpAttestation's two independent original replays both
+// lack the element, the restored side has it, hidden, both times). Drop the element itself when it is this wrapper and
+// is v-show-hidden; one that is actually showing progress (a file mid-upload) is left alone.
+const isHiddenUploadProgress = (n) => {
+  if (n == null || typeof n !== "object" || "m" in n) return false;
+  const cls = n.a.find(([k]) => k === "class")?.[1] ?? "";
+  if (!cls.split(/\s+/).includes("ant-upload-list-item-progress")) return false;
+  const st = n.a.find(([k]) => k === "style")?.[1] ?? "";
+  return decls(st).some((d) => prop(d) === "display" && /^none$/i.test(d.slice(d.indexOf(":") + 1).trim()));
+};
+const uploadProgressDelay = (tree) => mapTree(tree, (n) => ({ ...n, c: n.c.filter((c) => !isHiddenUploadProgress(c)) }));
+const TREE = { "attr-order": sortAttrs, "empty-comment": dropEmptyComments, "style-transition": stripTransition, "motion-state": stripMotion, "slick-track-transition": slickTrackTransition, "empty-style": dropEmptyStyle, "baidu-tile-order": baiduTileOrder, "hidden-popup-offset": hiddenPopupOffset, "poc-main-hook": pocMainHook, "tabs-ink-bar-offset": inkBarOffset, "upload-progress-delay": uploadProgressDelay };
 const dropAttrs = (names) => (tree) => mapTree(tree, (n) => ({ ...n, a: n.a.filter(([k]) => !names.has(k)) }));
 
 export function loadRules(dir = path.join(ROOT, "rules/compare")) {
