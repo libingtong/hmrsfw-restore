@@ -15,13 +15,16 @@
     "directives": 0,
     "textNodesChecked": true
   },
-  "fixRound": 1,
+  "fixRound": 2,
   "notes": [
     "修正第 1 轮（a1）：没有改代码。restore/fast-lane 仍停在 0d843f8，本页文件与门槛跑的那次相同。",
     "疑似比对器问题：gate.1 只有一项 load.html 失败，位置在上传卡片列表下。还原侧 load 快照里有 4 个 picture-card 卡片还在 rc-motion 过渡中：列表项带 ant-upload-animate-inline-(appear|enter)(-prepare) 和行内 height/opacity，选择按钮带 *-leave-from/leave 类，进度占位 div 也还没出现。去掉这些过渡态后，结构和内容与原版一致。final.html 两边逐字相同（46977 字节），pixel 0。",
     "依据 1（页面逻辑与原代码一致）：sourceChunk 里 Ma(()=>{ae&&(e.outputdisablededit=!0,be()),aa()})，be() 调 Ga(getCompanyInfo)，then 回调里给 X/K/J/E/W/Y/ee.value 赋 [{url:F+G+\"/\"+filePath}]。对应 zcyzCorpAttestation.vue:1651 onMounted → loadCompanyInfo，以及 :1702-1756 的 7 处 *FileList.value = list，赋值时机和顺序都一样。模板中 a-upload 的属性、list-type=picture-card、max-count=1 与原版逐项对应。",
     "依据 2（库代码相同）：legacy-dist/usercenter/assets/index.1751615607545.js 的 UploadList 与 hmrsfw-vue 依赖 ant-design-vue@3.2.20 的 es/upload/UploadList/index.js 相同：都是 onMounted 里 motionAppear.value==true（比较不是赋值），transitionGroupProps 都用 collapseMotion + getTransitionGroupProps(animate-inline)。所以过渡的差别不来自共享层。",
     "依据 3（门槛没等到稳定）：report.json 里 settleMs=-1，说明还原侧 waitStable 在 30s 上限内一直没判定稳定，最后在过渡中途截了 load 快照。tools/gate/replay.mjs:132-139 的注释（HM-1278）描述的正是这种情况（antd upload list 停在 appear-prepare）。rules/compare/44-motion-state.json 规则能去掉这类过渡态，但 HM-4 起 enabled:false，还在等审计复核。",
-    "建议：交给裁定员处理。要么走规则变更单，复核后启用 motion-state；要么查还原侧为什么 30s 内一直有 lag/busy。修正员在页面范围内没有正当的改法：关掉动画或推迟赋值都会偏离原代码。本轮没改门槛、规则、公共库，也没改 HAR。"
+    "建议：交给裁定员处理。要么走规则变更单，复核后启用 motion-state；要么查还原侧为什么 30s 内一直有 lag/busy。修正员在页面范围内没有正当的改法：关掉动画或推迟赋值都会偏离原代码。本轮没改门槛、规则、公共库，也没改 HAR。",
+    "修正第 2 轮（a1）：没有改代码。门槛这次跑的是 763a88c（integration 合入 fast-lane），但本页文件与 0d843f8 相同，self-check 仍 pass。",
+    "疑似比对器问题（与第 1 轮同因）：失败位置还是上传卡片列表的 load.html。还原侧 load 快照里 4 个卡片仍带 ant-upload-animate-inline-*-prepare 和 *-leave-from 过渡态，final.html 两边逐字相同。这次 settleMs=9678，说明 waitStable 已判定稳定、页面也没有在跑动画，但 Vue 过渡停在 enter-from/prepare，没有进到下一帧。原版两次运行都没有这些过渡态，可见卡在过渡态出在回放环境（还原侧的帧和时钟推进），不出在页面代码。",
+    "建议：转裁定员处理。工具仓库 origin/main 上 rules/compare/44-motion-state.json 仍是 enabled:false，需要走规则变更单启用它，或者由门槛侧查还原侧过渡为什么停在 prepare。页面范围内没有不偏离原代码的改法。"
   ]
 }
