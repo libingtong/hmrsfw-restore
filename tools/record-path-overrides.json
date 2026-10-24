@@ -116,5 +116,11 @@
   "recordPath": "/fairList?type=100",
   "evidence": "legacy-dist/portal/assets/fairList.1783320636200.js:1:1616 iz_scene_outdoor_add==1 时 /fairList 渲染 fairsList（测试环境即此分支：原版基线 page.portal.sjz.fair.fairsList 的 dom.html 有 data-v-32f8b57d 和「直播带岗」页签）；legacy-dist/portal/assets/fairsList.1783320636200.js:1:1830 query.type 不是 web/20/scene/10 时 jobFairType=\"100\"，:1:2952 jobFairType 为 100 时渲染 index.178332063620040.js（livejob 列表，data-v-6e6c85a0）；不带 type 时为 10（现场招聘会），livejob 不渲染",
   "by": "HM-1124"
+ },
+ "page.portal.fair.webFair.NumVideo": {
+  "recordPath": "/webFairDetail/2112300000000000101",
+  "recordNotes": "/webFairDetail/2112300000000000101（测试-录制用-网络招聘会）：视频浮层只在点右侧入口图后挂载。交互脚本只有一步 {\"clickSel\": \"img.defaultImg\", \"root\": true}（HM-1294），浮层开着时取根；不点「关闭」（关了 show=false，组件根节点就没了），不报名、不提交。",
+  "evidence": "legacy-dist/portal/assets/detail.17833206362004.js（/src/views/fair/webFair/detail.vue）：zphInfo.videoList 非空时渲染入口图 img.defaultImg（src 为 img2，来自业务字典 web_fair_detail_num_ad 指向的资讯分类封面）和 NumVideo；点入口图 ft() 设 videoShow=!0；NumVideo.1783320636200.js 只在 props.show 为真时渲染根节点（data-v-3f3c6a40）。后端 JobLicenseFreeController.queryById 的 videoList 来自该招聘会的数字人脚本（xf_job_digital_human_script）下 attachment_type=900、check_status=10 的附件。字面 :zphId 时招聘会查不到，入口图和浮层都不出现。测试数据由 HM-1340 造（李炳通授权，10-24）",
+  "by": "HM-1340"
  }
 }
