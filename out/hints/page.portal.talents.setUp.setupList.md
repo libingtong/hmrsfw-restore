@@ -16,7 +16,7 @@
 | `Y` | empty.1783320636200.js | shared | @/shared/empty.vue `default` | `x(i,[["render",s],["__scopeId","data-v-810a04d0"]])` |
 | `Oe` | hotProject.1783320636200.js | api | @/shared/hotProject.ts `getPxCourseListForWebsite` | `u=>q.request({url:"/xf-job/job/licenseFree/xfJobPxCourse/listForWebsite",method:"get",params:u})` |
 | `Ae` | hotProject.1783320636200.js | shared | @/shared/hotProject/HotProject.vue `default` | `U(P,[["__scopeId","data-v-e9d68059"]])` |
-| `Fe` | tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js | shared | @/shared/tagcanvas.vue `default`（reserved） | `ui({__name:"tagcanvas",props:{wordArr:{type:Array,default:[]}},emits:["changeName"],setup(R,{emit:Z}){const L=R,E=[];ci(()=>{L.wordArr.map((x,F)=>{E.push({value:F+1,name:x,light:!1})}),M(!1),gi(()=>{V` |
+| `Fe` | tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js | shared | @/shared/tagcanvas.vue `default` | `ui({__name:"tagcanvas",props:{wordArr:{type:Array,default:[]}},emits:["changeName"],setup(R,{emit:Z}){const L=R,E=[];ci(()=>{L.wordArr.map((x,F)=>{E.push({value:F+1,name:x,light:!1})}),M(!1),gi(()=>{V` |
 | `We` | card.1783320636200.js | shared | @/shared/images `cardImg_` | `"/sjz/setup/good.png"` |
 | `Ze` | card.1783320636200.js | shared | @/shared/images `cardImgA` | `"/sjz/setup/card.png"` |
 | `He` | adsCenter.1783320636200.js | shared | @/shared/adsCenter.vue `default`（reserved） | `W(m,[["__scopeId","data-v-25c7a495"]])` |
