@@ -22,7 +22,7 @@
  "target": "apps/portal/src/views/fair/webFair/NumVideo.vue",
  "subComponentDir": "apps/portal/src/views/fair/webFair/NumVideo/",
  "routes": [],
- "recordPath": "/webFairDetail/:zphId",
+ "recordPath": "/webFairDetail/2112300000000000101",
  "role": "general",
  "maps": "out/maps/page.portal.fair.webFair.NumVideo.json",
  "hints": "out/hints/page.portal.fair.webFair.NumVideo.md",
@@ -38,5 +38,6 @@
   "orders": []
  },
  "stylesProvidedByScript": true,
- "recordVia": "page.portal.fair.webFair.detail"
+ "recordVia": "page.portal.fair.webFair.detail",
+ "recordNotes": "/webFairDetail/2112300000000000101（测试-录制用-网络招聘会）：视频浮层只在点右侧入口图后挂载。交互脚本只有一步 {\"clickSel\": \"img.defaultImg\", \"root\": true}（HM-1294），浮层开着时取根；不点「关闭」（关了 show=false，组件根节点就没了），不报名、不提交。"
 }

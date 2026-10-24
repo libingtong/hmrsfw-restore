@@ -24,3 +24,17 @@
 - 本次没有新增或修改数据。这份问卷是 HM-1070 改成普通问卷、进行中的那份（回滚 SQL 在本机）。10-24 用门户 `quenaire/List` 匿名查询（只读）确认它在列表里，`izNeedPassword=1`；`quenaire/izLogin` 返回 `false`。
 - 弹窗不要求登录：`izLogin` 为假时，前端在未登录状态下直接按 `izNeedPassword==1` 打开密码框（`legacy-dist/portal/assets/index.178332063620016.js` 中 `Oe({id:s.id})` 的 else 分支）。
 - 问卷密码不写在这里。录制只需要弹出密码框，不输入密码。
+
+### HM-1340（2026-10-24）
+
+| 页面 | 类型 | 名称 / 内容 | 主键 | 在哪能看到 |
+|---|---|---|---|---|
+| `page.portal.fair.webFair.NumVideo` | 数字人脚本（`xf_job_hami.xf_job_digital_human_script`） | 测试-录制用-招聘会视频，挂在招聘会 `2112300000000000101`（测试-录制用-网络招聘会（请勿报名）） | `2112300000000000301` | 门户 `/webFairDetail/2112300000000000101`：`queryById` 返回的 `videoList` 不再为空，右侧出现视频入口图 |
+| 同上 | 附件（`xf_job_hami.xf_sys_attachment`，`attachment_type=900` AI数字人关联脚本视频，`check_status=10`） | 测试-录制用-招聘会视频.mp4（文件复用测试库已有的设备视频 `hardware/2026/10/9/6be2…21db.mp4`） | `2112300000000000311` | 同上；点入口图后视频浮层（`data-v-3f3c6a40`）播放这个文件 |
+| 同上 | 字典项（`xf_job_jeecg_boot_hami.sys_dict_item`，字典 `job_pc_common_xjhm`） | `web_fair_detail_num_ad` → `1889490210314567681`（现有资讯分类「右侧广告位」） | `2112300000000000321` | 同上；入口图 `img.defaultImg` 用这个分类第一篇资讯的封面。之前测试库没有这一项，入口图 src 为空、尺寸为 0，点不到 |
+
+说明：
+- 只新增，没有修改或删除已有数据；回滚 SQL 在本机。字典项是新加的，没有清 Redis，门户接口立即返回了新值。
+- 10-24 用无头浏览器匿名打开上述页面（不登录、不提交）核对：入口图可见，点击后出现 `[data-v-3f3c6a40]`，`video` 的 src 指向上面的文件。
+- 入口图只在招聘会有 `videoList` 时渲染，测试库里只有这一场招聘会挂了视频，所以其他招聘会详情页不受影响。
+- `page.portal.livejob.components.commentItem` 本次没有造数：评论只通过 WebSocket（`/xf-api/liveTelecastWebsocket/<直播id>/<随机数>`）推送，录制的 HAR 和回放都不处理 WebSocket，造了评论原版基线里也不会出现。另外测试库里 `iz_live_common=0`（不显示评论区），`xf_job_comment` 为空。可用的直播是 `2199000000000011001`（【造数】哈密直播带岗，有效期到 2026-11-21）。
