@@ -586,10 +586,16 @@
  "chunks": {
   "auth.1783320636200.js": {
    "_": {
-    "export": "nextPageIconImg"
+    "export": "nextPageIconImg",
+    "aliases": [
+     "_"
+    ]
    },
    "a": {
-    "export": "realNameAuthImg"
+    "export": "realNameAuthImg",
+    "aliases": [
+     "a"
+    ]
    }
   },
   "hotProject.1783320636200.js": {
