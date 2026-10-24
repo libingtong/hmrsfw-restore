@@ -10,7 +10,8 @@
 //      files, other pages) — judged from git in the hmrsfw-vue checkout against origin/integration (or origin/main).
 //      On a branch several page orders share (HMRSFW_SHARED_BRANCH=1, set by the gate for fast-lane tasks: every fix lands
 //      on `restore/fast-lane` itself), a file another page owns is that page's change, not this order's, when every commit
-//      since the base that touches it touches only files other pages own and does not name this order (otherPagesOnly).
+//      since the base that touches it touches only files other pages own and does not name this order (otherPagesOnly); a
+//      merge counts as touching the files it changed on its own (combined diff), and that is never another page's (HM-1310).
 //      A file a cherry-pick of a commit already in the base touched, and that HEAD holds exactly as that commit does (an
 //      upgrade synced to the fast lane, HM-990), is the base's content, not a change of the branch (pickedFromBase).
 // Items that only differ in form from the registry (a barrel re-exporting the same symbol, a duplicate API file, a POC
@@ -117,18 +118,20 @@ export function pageOwners(queueDir = path.join(ROOT, "queue")) {
 // Rule 4 on a shared branch: of the changed files outside this order, those that are another page's own change → Map(file →
 // owning page). A file qualifies only if it is not in the working tree, at least one commit in mb..HEAD touches it, and every
 // such commit is attributable to other pages: every file it touches (renames as delete + add) is owned by a
-// page other than this one, and its message does not name this order or its page; with any merge in mb..HEAD nothing
-// qualifies. Everything else stays this order's.
+// page other than this one, and its message does not name this order or its page. A merge in mb..HEAD (the fast lane
+// takes integration by merging it, HM-1068) touches the files it changed on its own — those that differ from every parent
+// (`-c`, combined diff); what it took unchanged from one side is listed by that side's commits. A merge is never
+// attributable to another page, so a file a merge changed on its own stays this order's (HM-1310). Everything else stays this order's.
 export function otherPagesOnly(APP, { mb, files, work, me, mine, owner = pageOwners() }) {
   const git = (...a) => execFileSync("git", ["-C", APP, ...a], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], maxBuffer: 64 << 20 });
   const ids = [...new Set(me)].filter(Boolean);
   const names = (msg) => { const t = new Set(msg.split(/[^\w.-]+/).map((w) => w.replace(/\.+$/, ""))); return ids.some((id) => t.has(id)); };
   const commits = [];
-  if (git("rev-list", "--merges", "-n", "1", `${mb}..HEAD`).trim()) return new Map(); // a merge's own changes are not listed per commit
-  for (const rec of git("log", "--no-renames", "--name-only", "--format=%x00%H%x01%B%x01", `${mb}..HEAD`).split("\0").slice(1)) {
-    const [, msg, rest = ""] = rec.split("\x01");
+  for (const rec of git("log", "-c", "--no-renames", "--name-only", "--format=%x00%H%x01%P%x01%B%x01", `${mb}..HEAD`).split("\0").slice(1)) {
+    const [, parents, msg, rest = ""] = rec.split("\x01");
     const touched = rest.split("\n").filter(Boolean);
-    const others = touched.length > 0 && !names(msg) && touched.every((p) => !mine(p) && owner(p) && !ids.includes(owner(p)));
+    const merge = parents.trim().split(/\s+/).length > 1;
+    const others = !merge && touched.length > 0 && !names(msg) && touched.every((p) => !mine(p) && owner(p) && !ids.includes(owner(p)));
     commits.push({ touched: new Set(touched), others });
   }
   const out = new Map();
