@@ -31,7 +31,7 @@ function parse(argv) {
     const a = argv[i];
     if (!a.startsWith("--")) { pos.push(a); continue; }
     const k = a.slice(2);
-    if (["no-start", "description-stdin", "content-stdin", "full-id", "active", "unassign", "allow-duplicate"].includes(k)) { flags[k] = true; continue; }
+    if (["no-start", "description-stdin", "content-stdin", "full-id", "active", "unassign", "allow-duplicate", "roots-only"].includes(k)) { flags[k] = true; continue; }
     const v = argv[++i];
     if (k === "metadata") (flags.metadata ||= []).push(v); else flags[k] = v;
   }

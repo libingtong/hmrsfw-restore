@@ -63,6 +63,7 @@
  "lockStaleMin": 10,
  "regressionEvery": 20,
  "recordPendingLimit": 2,
+ "gateErrorRetry": { "delayMin": 30, "backoff": 2, "max": 3, "perTick": 3 },
  "readabilitySample": { "enabled": true, "rate": 0.05, "min": 1 },
  "receiptsBranch": "integration",
  "priceFactor": { "claude-opus-5-5": 5, "claude-sonnet-5-5": 1, "deepseek-official/deepseek-flash": 0.1, "zhipuai-coding-plan/glm-5.3-flash": 0.1 },
@@ -74,6 +75,7 @@
 ```
 
 - `recordPendingLimit`：同一张任务连续这么多次 `{"pending":"record"}`、原因相同（门槛 `byReason` 的原因，第一个冒号后的细节不算），就不再等录制、不再自动重送门槛，改交裁定员并报异常（HM-1131）。见下文「等录制」。
+- `gateErrorRetry`：门槛自身出错（环境类）后自动重送门槛的退避：第 n 次重送在出错后 `delayMin × backoff^(n-1)` 分钟（默认 30、60、120），每张任务最多 `max` 次，每轮 tick 最多送 `perTick` 张（机器过载时不一次全压上去）。见下文「门槛没有结论」（HM-1306）。
 - `readabilitySample`：每次集成回归通过后，从本批合入的页面里抽 `rate`（至少 `min` 页）发到 `logIssueId` 任务，供人工打分；`enabled: false` 关闭。见 `docs/readability.md`。
 - `cheapTier.enabled` 就是便宜档的开关。G（小样本重测）通过后由裁定员或李炳通改成 `true`。
 - 便宜档的路由（`route.mjs`）：只看 `cheapTier.families` 里、名册中有已启用（`enabled` 不是 `false`）还原员的家族；判断冷启动单派还是双派时，只数本次可用的家族（`tick` 只为本机还原员派单，本机没有某家族的还原员就不算这个家族）。
@@ -93,7 +95,11 @@
 | `fixer`、`fixers` | tick | 当前修正员、本次尝试参与过的修正员（复核员按它们排除家族） |
 | `receipt.<attempt>` | handoff | 每张工单的回执摘要：`result`、`todos` 条数、`needsFromSkeleton`、`selfCheck` |
 | `merge.<attempt>` | advance | `{sha, at, pages}` |
-| `gateSeq` | handoff / tick | 第几次送门槛。每次送门槛（交付、`--regate`、录制完成后重送）加 1，并删掉旧的 `gate.<attempt>`，所以过期的门槛结果不会被推进 |
+| `gateSeq` | handoff / tick | 第几次送门槛。每次送门槛（交付、`--regate`、录制完成后重送、门槛出错后的自动重送）加 1，并删掉旧的 `gate.<attempt>`，所以过期的门槛结果不会被推进 |
+| `gateSentAt` | handoff / tick | 这一轮门槛开始的时间（送门槛时写），「门槛没有结论」据此只看本轮的运行和评论。送门槛时一并删掉上一轮的 `gateError` |
+| `gateError` | gate.mjs | 门槛输出 `{error}` 时写：`{round, class, error, at}`。`round` 是 `<attempt>.g<gateSeq>`，`class` 是 `environment` 或 `other`（`classifyGateError`）。不写 `gate.<attempt>`、不评论（`[GATE] ERROR` 仍由门槛员评论） |
+| `gateErrorRetry` | tick | `{n, at, round, error}`：门槛自身出错后已自动重送几次。门槛给出结果（通过、失败或 `pending:record`）后删除 |
+| `gateStall` | tick | 已为哪一轮门槛（`<attempt>.g<gateSeq>`）开过排障单，同一轮不再开。门槛给出结果后删除 |
 | `advanced` | advance | 已处理的 `<attempt>.g<gateSeq>`，同一次门槛结果只处理一遍（并发的 `advance` 在工单锁内重读元数据后跳过） |
 | `rebranch` | tick | 合并被回退后改用的新分支序号，分支名后缀 `-r<n>` |
 | `arbiter` | advance | 交给过的裁定员；复核员按它排除家族 |
@@ -231,6 +237,7 @@ node tools/tick.mjs fast-lane retire --app "$HMRSFW_APP_DIR"
 - `advance` 在不拥有该工单的机器上调用（门槛员可能在任一台）：只写 `advanceRequested`，返回 `{"ok":true,"deferred":true}`；所属机器下一轮立即推进，不等 10 分钟的兜底。`--regate` 同理。
 - 主控回退了别的机器的合并：写 `reopenRequest`，由所属机器重开。
 - 等录制（HM-1131）：门槛返回 `pending:record` 时，`advance` 只等门槛点名的工单（`missing`；列表被截断时等全部），并记下 `waitRecordFrom`。工单还没有录制：照旧由主控开录制单。工单已有录制但门槛用不了（交互脚本或 HAR 在基线之后变了、基线刷新失败等）：像 `rerecord` 一样在本机开一次新的录制尝试，已有打开的录制单就不再开。为它开的录制尝试被取消（快速通道 `login-ok`、手动取消）时，等录制的任务在下一轮自己开下一次尝试（`dispatchRecords` 会跳过已有录制的页）；被挡住（`blocked`）或仍打开的不动。录制完成判据只认 `waitRecordFrom` 之后的录制，所以旧录制不会让任务每轮都被送回门槛。门槛点名的工单里有共享库或 npm 工单（`isRecordable` 为假，HM-1124）时，等不到录制：不开录制单、不进 `waitRecord`、不计入 `recordPending`，报 HM-1124 的异常并直接交裁定员；此前已经在等这类工单的任务，下一轮 tick 同样交裁定员。同一原因连续 `recordPendingLimit` 次（默认 2）：交裁定员（`kind=arbitrate`，`arbitrateReason: record-loop: <原因>`）并报异常；裁定员判断是录制问题（`rerecord`）还是原站不稳定（按 10-21 / 10-22 的决定登记已知差异）。
+- 门槛没有结论（HM-1306，`tick` 第 3b 步 `gateStalls`）：任务 `in_review`、负责人是门槛员、门槛员本轮的运行已结束（失败的运行先归第 2 步处理），却没有 `gate.<attempt>`。以前没有任何一步会动它，任务一直停在 `in_review`（10-22 起 12 张，最长近两天）。原因按顺序取：本轮的 `gateError`（gate.mjs 写）；本轮的 `[GATE] ERROR` 评论（门槛员在 gate.mjs 之前就失败时，如检出、磁盘）；第 2 步处理过、但没有人可改派的失败运行；都没有就是「没有结论」（门槛员没跑门槛就结束，如 HM-480）。「本轮」从 `gateSentAt` 起算；HM-1306 之前送的任务没有这个键，从调度器送门槛时的评论（`[RECEIPT]`、`[FIX] 第 N 轮 … → 门槛员`、`[REDO]`、`[GATE] 录制已完成`）起算。处理：`classifyGateError` 判为环境类（截图或页面打开超时、单页超时、浏览器启动、网络和 GitHub 443、磁盘满、检出失败）的，按 `gateErrorRetry` 退避自动重送（评论 `[REDO] 门槛自身出错（环境类：…），第 n/3 次自动重送门槛`，`gateSeq` 加 1）；非环境类（缺密钥、工具报错等）、「没有结论」、或重送 `max` 次后仍出错的，每轮门槛开一张排障单给裁定员（不暂停派单），任务评论 `[GATE] … → 排障单` 并留在门槛员名下，裁定员修好后 `--regate`。门槛判据和 `pass` / `fail` / `pending:record` 的处理都不变。集成任务同样处理（只在主控上）。
 - 集成任务等录制（HM-1181）：集成门槛（`regression` / `bisect` / `lib-regression` / `rule-regression` / `integration-gate`）返回 `pending:record` 时，以前 `advance` 只报异常、不开录制单（`dispatchRecords` 跳过账本 `record` 已有值的页），每轮兜底 advance 同一个结论，回归永远跑不起来。现在 `waitIntegrationRecord`：完整的缺基线清单和结论时间取门槛详情文件（`gate.<attempt>.detail`，元数据里的 `missing` 可能只是样本）；清单里属于回归例外（见下）的页从任务的 `workOrders` 删掉；基线在结论之后才写的页不用再录；其余页像 `reopenRecord` 一样开新的录制尝试（已有打开的录制单，包括 `blocked` 的，就不再开），任务记 `waitRecord` / `waitRecordFrom`（只记这些页）并写 `advanced`，`syncRecords` 等这些页都有了新录制（或期间被登记为回归例外）再送门槛，送之前删掉例外页。详情文件不在本机：不按样本开录制，先重跑一次门槛拿新结论。涉及不录制的共享库/npm 工单、或同一原因连续 `recordPendingLimit` 次：不再等也不再重跑，给裁定员开排障单（任务仍是 `kind=integration`）。门槛给出真正的结论后删 `recordPending`。
 - 回归例外（HM-1181，`tools/regression-exceptions.json` 的 `pages`，每条 `{kind, why, evidence, unblock, by}`）：现在拿不到可用基线的页（要人造数、要人用有界面浏览器复查、现有工具录不了），由裁定员按原 chunk 证据登记、走 PR。例外页不进 `passedPages`（新建的回归不带它们），已在跑的集成任务按上一条去掉它们；不算通过、不计完成，不改门槛判据。拿到基线后删掉该条，下次回归自动纳入。
 - `resplit`、`rerecord`、`open-upgrade` 会改动工单的任务，所以只在工单所属机器上执行。在另一台机器上调用时（裁定员或被改派的还原员可能在另一台），只在 `claims` 分支写一条 `req/*.json`，返回 `deferred`；所属机器下一轮执行后删掉这条请求。

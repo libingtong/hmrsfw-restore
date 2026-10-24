@@ -28,7 +28,7 @@ stdout 一行 JSON：
  "stages":{"static":575,"build":1764,"browser":13799},"pages":[{"wo":"c01","pass":false,"stage":"browser","pixel":0}],"mode":"page","attempt":1}
 ```
 
-另外两种输出：`{"pending":"record","missing":[{wo, why}]}`（没有基线，或 HAR、交互脚本在基线之后变了）；`{"error":"…"}`（门槛自身的问题）。
+另外两种输出：`{"pending":"record","missing":[{wo, why}]}`（没有基线，或 HAR、交互脚本在基线之后变了）；`{"error":"…"}`（门槛自身的问题；带 `--task` 时只写元数据 `gateError` = `{round, class, error, at}`，不写 `gate.<attempt>`、不评论，调度器据此对环境类错误退避重送，HM-1306）。
 `--task` 且不带 `--dry-run` 时，同一份结果写元数据 `gate.<attempt>`（截短的 hint），并评论一条 `[GATE] PASS|FAIL …`。
 平台的 8 KB 上限算的是**一张单全部元数据的总和**（HM-876 实测：Σ(键名 + 存储的值 + 8) + 8 ≤ 8192，转义不计，对象按 JSON 文本计），不是单个值。大集成单的 `workOrders` 一项就占 4–5 KB（HM-1086 起超过 2 KB 的 JSON 值由 tick 压缩写入，254 页约 2.3 KB；之前建的单仍是原文），所以 `gate.<attempt>` 的预算 = 8192 − 1 KB 余量（留给 tick 之后写的 `advanced`、`waitRecord`、`gateSeq`、`merge.<n>` 等）− 写入前读到的其他键，最多 7 KB（HM-839）；写入仍被拒（`metadata exceeds`）时预算减半重试，减到 256 字节后再用最小形态试一次，不报错。
 完整结果写到 `$RESTORE_STATE/gate/<run>/result.json`（pending 写 `$RESTORE_STATE/gate/pending-<任务>-a<attempt>.json`），元数据用 `detail` 记路径。
@@ -150,7 +150,7 @@ HM-9 实测（`hmrsfw-vue` `main` 6e95728，20 张确认页）：整站 516 处�
 - 两个应用的构建各在一次调用里做完；一次调用里已经构建过一个应用、剩余时间不够再构建一个时，先返回 `partial`。
 - 超过 24 小时且没人在判的 run 在下次分段调用时删掉（含 worktree）。
 - `--no-resume` 保留原来一次跑完的方式；`--dry-run`、`--regress`、`--from build` 不分段。
-- **单页时间上限**（`--page-timeout <分钟>`，默认 10；HM-1275）：每页的 self-check、回放和比对合起来超过上限，就把该页记成门槛自身出错（`stage: "error"`，不算通过也不算失败），关掉它所在的浏览器（卡住的渲染进程随之结束），接着判下一页，`--budget` 照常生效。分段时这一结论和其他页一样落盘，后面的分段不再认领它；全部页都有结论后，有出错页就输出 `{"error":"N page(s) not judged within …","errorPages":[…]}`（退出码 2，不写元数据、不评论，门槛员按 `{error}` 处理），其余页的结论留在 run 里。解除：修好门槛后工具提交变了，自然换新 run；或 re-gate。一次跑完的模式（page 模式、`--no-resume`、`--regress`）同样处理，`--regress` 不拿出错页去比上次结果。10 分钟取自 10-23 各 run 里最慢的一页（负载高时 6.5 分钟，含一次重跑）。
+- **单页时间上限**（`--page-timeout <分钟>`，默认 10；HM-1275）：每页的 self-check、回放和比对合起来超过上限，就把该页记成门槛自身出错（`stage: "error"`，不算通过也不算失败），关掉它所在的浏览器（卡住的渲染进程随之结束），接着判下一页，`--budget` 照常生效。分段时这一结论和其他页一样落盘，后面的分段不再认领它；全部页都有结论后，有出错页就输出 `{"error":"N page(s) not judged within …","errorPages":[…]}`（退出码 2，不写 `gate.<attempt>`、不评论，只写 `gateError`，门槛员按 `{error}` 处理），其余页的结论留在 run 里。解除：修好门槛后工具提交变了，自然换新 run；或 re-gate。一次跑完的模式（page 模式、`--no-resume`、`--regress`）同样处理，`--regress` 不拿出错页去比上次结果。10 分钟取自 10-23 各 run 里最慢的一页（负载高时 6.5 分钟，含一次重跑）。
 
 **门槛员**：`kind=integration` 的任务，前台运行 `node tools/gate.mjs --task <任务id> --mode integration --app "$HMRSFW_APP_DIR"`（Bash 超时 600000 ms），输出 `partial` 就再运行同一条命令，直到输出结论、`pending` 或 `error`，再按原来的流程 `advance`。不要转后台、不要 nohup。
 
