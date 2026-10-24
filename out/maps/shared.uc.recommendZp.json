@@ -65,8 +65,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "stateCardImg",
-   "status": "reserved",
-   "owner": "shared.uc.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

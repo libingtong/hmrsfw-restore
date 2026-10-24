@@ -177,8 +177,7 @@
    "original": "tagcanvas.vue_vue_type_style_index_0_lang.1783320636200.js#_",
    "path": "@/shared/tagcanvas.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "shared.portal.tagcanvas"
+   "status": "restored"
   },
   "q": {
    "original": "empty.1783320636200.js#e",
@@ -202,8 +201,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "videoNullImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Ca": {
    "original": "navigation.1783320636200.js#N",

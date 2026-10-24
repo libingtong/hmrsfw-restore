@@ -112,8 +112,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "defaultImg",
-   "status": "reserved",
-   "owner": "shared.uc.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [],

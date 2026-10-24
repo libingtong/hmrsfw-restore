@@ -91,8 +91,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "robotImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "za": {
    "original": "navigation.1783320636200.js#N",

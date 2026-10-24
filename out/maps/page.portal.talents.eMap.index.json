@@ -120,8 +120,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "adrImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Gt": {
    "original": "adr.1783320636200.js#a",
@@ -129,8 +128,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "adrImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Ht": {
    "original": "work.1783320636200.js#_",
@@ -138,8 +136,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "workImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [

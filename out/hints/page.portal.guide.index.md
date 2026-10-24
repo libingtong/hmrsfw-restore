@@ -4,11 +4,11 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `zt` | auth.1783320636200.js | shared | @/shared/auth.ts `a`（reserved） | `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWCAYAAADNX8xBAAABhElEQVQ4jaXUPWhVQRCG4UcxYgQTldQSESVgtFELwSKViuksxEqw0kpSBNFCBBsJQopooZVFUMFGsFBMiGCiCDYWWgiCWEgKsTCijf8MzJWb5dxzTPLBKXZ39j0zu9/sq` |
-| `Ht` | auth.1783320636200.js | shared | @/shared/auth/OneContent.vue `default`（reserved） | `R(N,[["__scopeId","data-v-08282971"]])` |
-| `Ue` | auth.1783320636200.js | shared | @/shared/auth/BackGround.vue `default`（reserved） | `R(i,[["__scopeId","data-v-b477bb74"]])` |
-| `Yt` | auth.1783320636200.js | shared | @/shared/auth/ColumnContent.vue `default`（reserved） | `R(Z,[["__scopeId","data-v-edf344e0"]])` |
-| `$t` | auth.1783320636200.js | shared | @/shared/auth.ts `_`（reserved） | `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAATCAYAAAB7u5a2AAABtElEQVQ4ja2Vy0tVURSHP70pkuggFRzUoNB0HAU1ECfZ0EGDDMJJOoio/oEQonlQNJX+AUMnvRwIQqTQoJlwJz4G6SW81CSInl9sWAcOl/s4XlywOK+9vt/irLXX7lBpY` |
+| `zt` | auth.1783320636200.js | shared | @/shared/auth.ts `realNameAuthImg` | `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWCAYAAADNX8xBAAABhElEQVQ4jaXUPWhVQRCG4UcxYgQTldQSESVgtFELwSKViuksxEqw0kpSBNFCBBsJQopooZVFUMFGsFBMiGCiCDYWWgiCWEgKsTCijf8MzJWb5dxzTPLBKXZ39j0zu9/sq` |
+| `Ht` | auth.1783320636200.js | shared | @/shared/auth/OneContent.vue `default` | `R(N,[["__scopeId","data-v-08282971"]])` |
+| `Ue` | auth.1783320636200.js | shared | @/shared/auth/BackGround.vue `default` | `R(i,[["__scopeId","data-v-b477bb74"]])` |
+| `Yt` | auth.1783320636200.js | shared | @/shared/auth/ColumnContent.vue `default` | `R(Z,[["__scopeId","data-v-edf344e0"]])` |
+| `$t` | auth.1783320636200.js | shared | @/shared/auth.ts `nextPageIconImg` | `"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAATCAYAAAB7u5a2AAABtElEQVQ4ja2Vy0tVURSHP70pkuggFRzUoNB0HAU1ECfZ0EGDDMJJOoio/oEQonlQNJX+AUMnvRwIQqTQoJlwJz4G6SW81CSInl9sWAcOl/s4XlywOK+9vt/irLXX7lBpY` |
 | `Kt` | index.1783320636200.js | entry | lodash-es `isObject` | `function(e){var t=typeof e;return e!=null&&(t=="object"\|\|t=="function")}` |
 | `Qt` | index.1783320636200.js | entry | lodash-es `debounce` | `function(e,t,n){var r,a,o,i,l,c,s=0,f=!1,d=!1,v=!0;if(typeof e!="function")throw new TypeError(Kpe);t=M3(t)\|\|0,ha(n)&&(f=!!n.leading,d="maxWait"in n,o=d?qpe(M3(n.maxWait)\|\|0,t):o,v="trailing"in n?!!n.` |
 | `qe` | index.1783320636200.js | entry | ant-design-vue `Form` | `Lxe` |
@@ -34,7 +34,7 @@
 | `aa` | index.1783320636200.js | entry | @/legacy `useStore` | `function(e){return e===void 0&&(e=null),Ft(e!==null?e:Ru)}` |
 | `ia` | index.1783320636200117.js | api | @/api/api-117 `checkIdCard` | `e=>o.request({url:"/xf-job/communal/xfSysUser/checkIdCard",method:"post",data:e})` |
 | `we` | index.1783320636200117.js | api | @/api/api-117 `saveForUserCenter` | `e=>o.request({url:"/xf-job/communal/xfSysUser/saveForUserCenter",method:"post",data:e})` |
-| `de` | index.1783320636200117.js | entry | @/api/api-117 `o`（reserved） | `p({},b)` |
+| `de` | index.1783320636200117.js | entry | @/api/api-117 `jobCompanyApi`（reserved） | `p({},b)` |
 | `sa` | index.1783320636200117.js | api | @/api/api-117 `isPublishingPosition` | `e=>o.request({url:"/xf-job/job/xfJobCompany/isPublishingPosition",method:"get",params:e})` |
 | `na` | index.1783320636200117.js | api | @/api/api-117 `addTalent` | `e=>o.request({url:"/xf-job/job/xfJobCompanyTalents/addTalent",method:"post",data:e})` |
 | `oa` | index.1783320636200117.js | api | @/api/api-117 `cancelTalent` | `e=>o.request({url:"/xf-job/job/xfJobCompanyTalents/cancelTalent",method:"post",params:e})` |

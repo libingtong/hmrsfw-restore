@@ -112,22 +112,19 @@
    "original": "hotProject.1783320636200.js#g",
    "path": "@/shared/hotProject.ts",
    "export": "getPxCourseDetailById",
-   "status": "reserved",
-   "owner": "shared.portal.hotProject"
+   "status": "restored"
   },
   "Fe": {
    "original": "hotProject.1783320636200.js#a",
    "path": "@/shared/hotProject.ts",
    "export": "getPxCourseListForWebsite",
-   "status": "reserved",
-   "owner": "shared.portal.hotProject"
+   "status": "restored"
   },
   "Ye": {
    "original": "hotProject.1783320636200.js#h",
    "path": "@/shared/hotProject/HotProject.vue",
    "export": "default",
-   "status": "reserved",
-   "owner": "shared.portal.hotProject"
+   "status": "restored"
   },
   "Je": {
    "original": "empty.1783320636200.js#e",
@@ -158,8 +155,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "cardImg_",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "Ce": {
    "original": "card.1783320636200.js#a",
@@ -167,8 +163,7 @@
    "inline": false,
    "path": "@/shared/images",
    "export": "cardImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "sideEffects": [
