@@ -254,6 +254,7 @@ multica repo checkout https://github.com/libingtong/hmrsfw-restore，git checkou
    2. 构建：只构建本页（单页入口或 Vite 按需编译），不构建整站；
    3. 浏览器：HAR 回放、交互比对，同一进程内复用一个浏览器实例。
 4. **写请求匹配**：先按「方法 + 路径 + 解密并归一化后的请求体」找 HAR 记录；找不到时退回按「方法 + 路径」取第一条；都找不到返回统一的「not in HAR」。
+   **WebSocket**（HM-1346）：`record-page.mjs` 把页面连测试站的 WebSocket 记进 HAR 的 `log._webSockets`（地址、双向消息按顺序带 `_phase`、关闭；token 类地址参数和 JSON 键打码；连其他主机的直接关掉）。回放（`baseline.mjs` 和门槛共用 `tools/gate/har.mjs`，`tools/gate/ws.mjs`）不连测试环境：地址先按「路径 + 查询」精确匹配，不中时只允许最后一段是位数相同的纯数字（页面随机生成的客户端 id，如直播详情的 6 位 userId）；服务端消息按录制顺序发出，录在页面第 k 次发送之后的等页面第 k 次发送（只计次数，不比内容），录在后面阶段的等回放到该阶段。HAR 里没有的连接不接管，和以前一样连不上。WebSocket 不进比对的请求序列，只在回放结果 `webSockets` 里留诊断。
 5. **共享组件顶替（page 模式）**：本页依赖的共享组件或入口导出在 `integration` 上还没有还原版时，用原编译 chunk 的薄包装顶替。零引用检查只对本页自己的文件生效。输出里列出本次顶替了哪些模块。
 6. **集成模式（`--mode integration`）**：不顶替，零引用检查全开，可以一次跑多页。
    **升级单模式（`--mode upgrade`）**：静态阶段按公共库改动的范围判（与调度器合并时同一个判定函数），再对改动文件做编译、零引用、个人信息扫描；整站构建；对依赖改动文件的已通过页面跑 integration 模式回归。要解挂的页面不在这里判（HM-990，见 `docs/gate.md`）。

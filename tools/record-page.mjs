@@ -20,6 +20,9 @@
 //      parameters redacted. Extra per-entry fields: _seq (request order), _phase
 //      ("load" | "step<i>" | "after"), _crypto, _intercepted + _interceptRule (answered by the write guard); log._record carries the identity and the page's localStorage after the switch
 //      with the token removed (replay needs the identity keys, e.g. radiotype, routermenu);
+//      the page's WebSockets to the test hosts (HM-1346: livejob detail's comments come only over one) go to
+//      log._webSockets: URL, every message either way in order with its phase, the close; token-named URL parameters
+//      and JSON keys redacted (tools/gate/ws.mjs, which also answers them on replay); sockets to other hosts are closed;
 //   6. runs the original baseline: tools/baseline.mjs <id> --har <staged har> --publish-har <har> (A); until A is merged,
 //      tools/record-baseline-placeholder.mjs with the same command line. The new HAR is staged next to the page HAR and
 //      only replaces it together with the baseline (HM-1246): a recording whose baseline fails, or that is killed before
@@ -40,7 +43,7 @@
 //        --offline <old.har> --out <new.har>: self-test without network. The test hosts are answered from legacy-dist and
 //        <old.har>; the HAR goes to <new.har>, its baseline to <new.har>.baseline/ (never $RESTORE_STATE/baseline/<id>/,
 //        which the gates read; HM-1265); no commit, no role pin, no notes in $RESTORE_STATE.
-// Output (one JSON line): {ok, id, steps, unstable:[...], blocked?, hint?, evidence?, error?, scriptParked?, har, entries, writes:[{method,
+// Output (one JSON line): {ok, id, steps, unstable:[...], blocked?, hint?, evidence?, error?, scriptParked?, har, entries, webSockets?:{connections, sent, received}, writes:[{method,
 //        path, count, phases, statuses}] (sent), intercepted:[{… , rules}] (not sent), sm2:{bodies, decrypted, undecryptable}, baseline, committed, warnings, durationMs}
 // Exit: 0 ok · 1 error or unstable · 2 blocked (needs a human: login, identity). {"locked":true} when the order is
 //       already being recorded, {"locked":true, identityBusy} when another identity kept the account past --wait-identity.
@@ -55,6 +58,7 @@ import { entryKey, fulfillOptions, harResponder, requestBody } from "./har-body.
 import { splitWrites, writeGuard } from "./record-write-guard.mjs";
 import { IDENTITIES, ORIGIN, ROOT, TEST_HOSTS, authState, checkPin, commitToIntegration, coverage, envDirs, fail, identityFingerprint, identityOf, legacyFile, lockIdentity, lockOrder, lockRecordSlot, parkScript, pin, pinKey, resolveOrder, restoreScript, switchIdentity, tokenInfo, validId } from "./record-lib.mjs";
 import { ensureLegacyDist } from "./lib/shared-deps.mjs";
+import { webSocketsOf, wsRecorder } from "./gate/ws.mjs";
 
 const t0 = Date.now();
 const argv = process.argv.slice(2);
@@ -105,7 +109,8 @@ async function record({ order, steps, assets, state, harFile, staged }) {
       else warnings.push(`offline: ${path.basename(OFFLINE)} has no recorded identity, the page runs as the identity saved in pw-usercenter.json`);
     }
     const external = new Set();
-    const offline = OFFLINE ? harResponder(JSON.parse(readFileSync(path.resolve(OFFLINE), "utf8"))) : null;
+    const offlineHar = OFFLINE ? JSON.parse(readFileSync(path.resolve(OFFLINE), "utf8")) : null;
+    const offline = OFFLINE ? harResponder(offlineHar) : null;
     const guard = writeGuard(); // the identity switch too: its own requests are on the allow list
     await context.route("**/*", (r) => {
       const q = r.request(), u = new URL(q.url());
@@ -117,6 +122,8 @@ async function record({ order, steps, assets, state, harFile, staged }) {
       return r.fulfill(legacyFile(order.site, u.pathname));
     });
     let phase = uc ? null : "load", seq = 0; // null: identity switch, not part of the page recording
+    // context.route does not see WebSockets: they get their own pass-through (offline: answered from the given HAR)
+    const ws = await wsRecorder(context, { phase: () => phase, allow: (u) => TEST_HOSTS.has(u.host), replay: offline ? webSocketsOf(offlineHar) : null });
     const loginSignals = [];
     const recs = new Map(), jobs = [], entries = [];
     context.on("request", (req) => { if (phase && isApi(req.url())) recs.set(req, { seq: seq++, phase, t: Date.now() }); });
@@ -212,18 +219,20 @@ async function record({ order, steps, assets, state, harFile, staged }) {
     await Promise.all(jobs);
     if (loginSignals.length || LOGIN_PATH.test(new URL(page.url()).pathname)) return { blocked: "login-expired", hint: loginHint(order.site), evidence: [...loginSignals, new URL(page.url()).pathname].slice(0, 5) };
     const failedAt = new URL(page.url()).pathname;
+    ws.stop();
     await context.close();
 
     entries.sort((a, b) => a._seq - b._seq);
     const failedStep = stepResults.find((s) => s.err);
     if (failedStep) return { error: `step ${failedStep.i} failed on ${failedAt}: ${failedStep.err}`, stepResults };
     if (!entries.length) warnings.push("no /xf-api/ request recorded");
+    for (const h of ws.blocked) external.add(h);
     if (external.size) warnings.push(`aborted non-test hosts: ${[...external].sort().join(", ")}`);
     if (pageErrors.length) warnings.push(`${pageErrors.length} page error(s) on the original, first: ${pageErrors[0]}`);
     for (const f of guard.failed) warnings.push(`write guard could not answer ${f} (not sent; the request failed)`);
     for (const k of [...guard.unlisted].sort()) warnings.push(`unlisted write? ${k} was sent: not on tools/record-write-denylist.json, not query-shaped; add it to deny or allow (with why)`);
 
-    const har = { log: { version: "1.2", creator: { name: "record-page", version: "1" }, pages: [], entries, _record: { id: order.id, site: order.site, role: order.role, ...(uc ? { identity: IDENTITIES[order.role].label, localStorage: Object.fromEntries(Object.entries(live).filter(([k]) => !/token/i.test(k))) } : {}), recordPath: order.recordPath, finalPath, textLength, steps: stepResults, recordedAt: new Date().toISOString() } } };
+    const har = { log: { version: "1.2", creator: { name: "record-page", version: "1" }, pages: [], entries, ...(ws.sockets.length ? { _webSockets: ws.sockets } : {}), _record: { id: order.id, site: order.site, role: order.role, ...(uc ? { identity: IDENTITIES[order.role].label, localStorage: Object.fromEntries(Object.entries(live).filter(([k]) => !/token/i.test(k))) } : {}), recordPath: order.recordPath, finalPath, textLength, steps: stepResults, recordedAt: new Date().toISOString() } } };
     if (!offline && pin(state, pinKey(order.site, order.role), identityFingerprint(order.site, uc ? switched : auth.localStorage))) warnings.push(`${pinKey(order.site, order.role)} pinned by this recording`);
     mkdirSync(path.dirname(harFile), { recursive: true });
     writeFileSync(staged, JSON.stringify(har)); // published with the baseline (HM-1246), not here
@@ -240,7 +249,7 @@ async function record({ order, steps, assets, state, harFile, staged }) {
     // Non-GET requests that went out, grouped by endpoint (this backend also POSTs reads), and the requests the write guard
     // answered instead; no bodies, no response data.
     const { writes, intercepted } = splitWrites(entries);
-    return { entries: entries.length, writes, intercepted, sm2, finalPath, stepResults };
+    return { entries: entries.length, ...(ws.sockets.length ? { webSockets: ws.stats() } : {}), writes, intercepted, sm2, finalPath, stepResults };
   } finally { await browser.close().catch(() => {}); }
 }
 
@@ -339,7 +348,7 @@ try {
   // `node tools/coverage.mjs report <id>` and adds interactions or hands the data gaps to the D7 request.
   const cov = base?.coverage ?? null;
   const verdict = cov && thresholds() ? evaluate({ page: cov.page && { loaded: true, function: { pct: cov.page.function }, block: { pct: cov.page.block } }, stable: cov.stable }, thresholds()) : null;
-  const out = { ok, id, steps: steps.length, unstable, ...(cov ? { coverage: cov, belowThreshold: verdict?.below ?? null, ...(verdict?.below ? { coverageReasons: verdict.reasons } : {}) } : {}), har: harFile.startsWith(assets + path.sep) ? "$RESTORE_ASSETS/" + path.relative(assets, harFile) : harFile, entries: rec.entries, writes: rec.writes, intercepted: rec.intercepted, sm2: rec.sm2, baseline: base && { tool: base.tool, placeholder: base.placeholder, ...(base.placeholder ? { replay: base.result.replay } : {}) }, committed };
+  const out = { ok, id, steps: steps.length, unstable, ...(cov ? { coverage: cov, belowThreshold: verdict?.below ?? null, ...(verdict?.below ? { coverageReasons: verdict.reasons } : {}) } : {}), har: harFile.startsWith(assets + path.sep) ? "$RESTORE_ASSETS/" + path.relative(assets, harFile) : harFile, entries: rec.entries, ...(rec.webSockets ? { webSockets: rec.webSockets } : {}), writes: rec.writes, intercepted: rec.intercepted, sm2: rec.sm2, baseline: base && { tool: base.tool, placeholder: base.placeholder, ...(base.placeholder ? { replay: base.result.replay } : {}) }, committed };
   if (!OFFLINE) { mkdirSync(noteDir, { recursive: true }); writeFileSync(path.join(noteDir, "result.json"), JSON.stringify({ ...out, warnings, at: new Date().toISOString() }, null, 1)); }
   emit(out, ok ? 0 : 1);
 } catch (e) {
