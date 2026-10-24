@@ -25,6 +25,7 @@ import { ROOT, loadWorkOrder, positionals } from "./gate/common.mjs";
 import { loadScript, scriptPath } from "./interact.mjs";
 
 const STEP_KEYS = ["fill", "click", "clickSel", "press", "wait", "optional"];
+// "root" (HM-1294) only says where the gate takes the page root; the E2E runs the step without it.
 const CASE_KEYS = ["schemaVersion", "id", "app", "route", "testOrigin", "auth", "har", "target", "subComponentDir", "steps"];
 const readJson = (f) => JSON.parse(readFileSync(f, "utf8"));
 const ordered = (o, keys) => Object.fromEntries(keys.filter((k) => o[k] !== undefined).map((k) => [k, o[k]]));

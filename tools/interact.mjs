@@ -7,6 +7,9 @@
 //   {"press": key}                       keyboard press (POC extension, e.g. "Enter")
 //   {"wait": ms}                         alone: just wait; with an action: wait after it (default 1200 ms)
 //   "optional": true                     a missing target is noted as "absent" instead of failing the step
+//   "root": true                         on one action or wait step: the page root is taken after this step, not after
+//                                        load (HM-1294; a component that only mounts once the step opened it: a modal, a
+//                                        tab that is not the first one). tools/gate/replay.mjs runPage, both sides
 // Fill values must be obvious test values ("测试", "Tst-0001"); validate() rejects anything that looks like a phone
 // number, ID number or e-mail address.
 // Library:  import { loadScript, validate, runStep, runStepRetry, actionSent, describeStep, apiTracker, settle } from "./interact.mjs";
@@ -18,7 +21,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const scriptPath = (id) => path.join(ROOT, "tests/interact", `${id}.json`);
 const ACTIONS = ["fill", "click", "clickSel", "press"];
-const KEYS = new Set([...ACTIONS, "wait", "optional"]);
+const KEYS = new Set([...ACTIONS, "wait", "optional", "root"]);
 const PERSONAL = [["mainland-mobile", /(?<!\d)1[3-9]\d{9}(?!\d)/], ["id-card", /(?<!\d)\d{17}[\dXx](?!\d)/], ["email", /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/]];
 
 // → list of error strings (empty = valid)
@@ -39,7 +42,10 @@ export function validate(steps) {
     for (const k of ["click", "clickSel", "press"]) if (k in s && (typeof s[k] !== "string" || !s[k])) errors.push(`step ${i}: ${k} must be a non-empty string`);
     if ("wait" in s && !(Number.isInteger(s.wait) && s.wait >= 0 && s.wait <= 60000)) errors.push(`step ${i}: wait must be an integer 0..60000`);
     if ("optional" in s && typeof s.optional !== "boolean") errors.push(`step ${i}: optional must be true/false`);
+    if ("root" in s && s.root !== true) errors.push(`step ${i}: root must be true (omit it on the other steps)`);
   });
+  const roots = steps.flatMap((s, i) => (s?.root === true ? [i] : []));
+  if (roots.length > 1) errors.push(`steps ${roots.join(",")}: more than one root step (the root is taken once, after the first)`);
   return errors;
 }
 
