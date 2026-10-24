@@ -1,0 +1,127 @@
+{
+ "id": "page.uc.sceneFairSign",
+ "ticket": "page.uc.sceneFairSign",
+ "group": "还原-Opus@Mac",
+ "branch": "restore/upg-28-a1",
+ "result": "ok",
+ "outputs": [
+  "hmrsfw-restore@restore/upg-28-a1-registry（da5bba9，PR #85）: registry/uc.json, out/maps(36), out/hints(36)"
+ ],
+ "todos": [
+  "升级单 #28：registry/uc.json 中 5 个已在 hmrsfw-vue 改名的接口模块 path 对齐 renameTo——api-56 → jobCurriculumVitae（本单点名，65 条接口 + 1 个模块 = 66 条）以及同因的 api-175161560754511 → jobCompany、api-175161560754512 → jobFair、api-17516156075453 → user、api-17516156075455 → talentStayUniversity（去掉已合并的 duplicates api-55）；共 123 条接口 + 5 个模块，只改 path，导出名、status、stats 不动",
+  "没有按单面整份重跑 registry.mjs：HM-37 去掉了接口文件头里的原 chunk 名，生成器现在把 uc 238 条接口全部判成 reserved、入口条目大面积重排（portal 同样），与现状不符；因此按生成器对已改名模块的结果（path=目标名、无 renameTo）做定点修改。生成器失效本身需另行处理",
+  "maps 用 tools/slice-maps.mjs 重新生成 36 张使用方工单（只有 path 变化，missing 均为 0），hints 的「导入自」列同步替换",
+  "核对：新清单下 restored 接口条目全部有对应文件；uc 源码 289 处 @/api 具名导入全部能在清单里解析（旧清单：128 条 restored 条目指向不存在的文件，154 处解析不到）。门槛替身生成（tools/gate/shim.mjs）需要 RESTORE_ASSETS，本机还原员环境里没有，未能实跑 complaint 替身",
+  "hmrsfw-vue 侧无需改动：restore/upg-28-a1 与 integration 8a21e76 相同。门槛 --mode upgrade 只判产物仓库分支相对 integration 的改动，空分支会报 scope「the upgrade branch changes nothing against integration」——这是门槛对「只改清单」类升级单的空白（文档与脚本均未覆盖），不是还原错误；本单的实际交付是工具仓库 PR #85，合入 main 后挂起的 page.uc.sceneFairSign 重新送门槛即可"
+ ],
+ "needsFromSkeleton": [
+  "工具仓库 PR #85（restore/upg-28-a1-registry）合入 main，门槛替身才会按新路径导入",
+  "registry/portal.json 有同类 8 个已改名接口模块未对齐（api-117 → jobCompany、api-1783320636200 → company、api-15 → archive、api-17 → jobFair、api-17833206362002 → jobCurriculumVitae、api-24 → oddJob、api-178332063620033 → jobCompanyPosition、api-08 → sysArticle），hmrsfw-vue 里旧文件均已不存在，不在本单范围",
+  "之前升级单的清单分支 restore/upg-26-a1-registry（PR 未建）、upg-23/upg-4/upg-1 的 registry PR（#58/#28/#23）仍未合入 main；与本 PR 同改 registry/uc.json，合并时需按顺序处理"
+ ],
+ "selfCheck": {
+  "pass": true,
+  "failed": [
+   {
+    "check": "readability",
+    "where": "apps/uc/src/views/sceneFairSign.vue:55",
+    "severity": "warn",
+    "hint": "eslint vue/attributes-order ×11：Attribute \":key\" should go before \":label\".（第 55、74、82、82、101、104 行等）。规则说明：https://eslint.vuejs.org/rules/attributes-order.html；在 hmrsfw-vue 目录运行 `npx eslint apps/uc/src/views/sceneFairSign.vue` 看全部"
+   },
+   {
+    "check": "readability",
+    "where": "apps/uc/src/views/sceneFairSign.vue:65",
+    "severity": "warn",
+    "hint": "eslint vue/no-deprecated-slot-attribute：`slot` attributes are deprecated.。规则说明：https://eslint.vuejs.org/rules/no-deprecated-slot-attribute.html；在 hmrsfw-vue 目录运行 `npx eslint apps/uc/src/views/sceneFairSign.vue` 看全部"
+   },
+   {
+    "check": "readability",
+    "where": "apps/uc/src/views/sceneFairSign.vue:82",
+    "severity": "warn",
+    "hint": "eslint vue/v-on-event-hyphenation：v-on event '@backClick' must be hyphenated.。规则说明：https://eslint.vuejs.org/rules/v-on-event-hyphenation.html；在 hmrsfw-vue 目录运行 `npx eslint apps/uc/src/views/sceneFairSign.vue` 看全部"
+   },
+   {
+    "check": "readability",
+    "where": "apps/uc/src/views/sceneFairSign/GuideAlert.vue:4",
+    "severity": "warn",
+    "hint": "eslint vue/attributes-order ×2：Attribute \"ref\" should go before \"autoplayspeed\".（第 4、5 行）。规则说明：https://eslint.vuejs.org/rules/attributes-order.html；在 hmrsfw-vue 目录运行 `npx eslint apps/uc/src/views/sceneFairSign/GuideAlert.vue` 看全部"
+   },
+   {
+    "check": "readability",
+    "where": "apps/uc/src/views/sceneFairSign/GuideAlert.vue:27",
+    "severity": "warn",
+    "hint": "eslint vue/require-prop-type-constructor：The \"isOpenConfirm\" property should be a constructor.。规则说明：https://eslint.vuejs.org/rules/require-prop-type-constructor.html；在 hmrsfw-vue 目录运行 `npx eslint apps/uc/src/views/sceneFairSign/GuideAlert.vue` 看全部"
+   },
+   {
+    "check": "readability",
+    "where": "apps/uc/src/views/sceneFairSign.vue:20",
+    "severity": "warn",
+    "hint": "prettier 格式不一致：从第 20 行起有差异（约 622 行）。在 hmrsfw-vue 目录运行 `npx prettier --write apps/uc/src/views/sceneFairSign.vue`，然后重跑 self-check 确认 text-nodes、directives 仍然通过（配置 .prettierrc.json 用 htmlWhitespaceSensitivity: strict，不改模板空白）"
+   },
+   {
+    "check": "readability",
+    "where": "apps/uc/src/views/sceneFairSign/GuideAlert.vue:4",
+    "severity": "warn",
+    "hint": "prettier 格式不一致：从第 4 行起有差异（约 123 行）。在 hmrsfw-vue 目录运行 `npx prettier --write apps/uc/src/views/sceneFairSign/GuideAlert.vue`，然后重跑 self-check 确认 text-nodes、directives 仍然通过（配置 .prettierrc.json 用 htmlWhitespaceSensitivity: strict，不改模板空白）"
+   }
+  ],
+  "id": "page.uc.sceneFairSign",
+  "type": "page",
+  "stats": {
+   "files": [
+    "apps/uc/src/views/sceneFairSign.vue",
+    "apps/uc/src/views/sceneFairSign/GuideAlert.vue"
+   ],
+   "components": {
+    "expected": 2,
+    "delivered": 2
+   },
+   "textNodes": {
+    "original": 30,
+    "restored": 30
+   },
+   "directives": {
+    "original": 0,
+    "restored": 0,
+    "branches": [
+     12,
+     12
+    ]
+   },
+   "imports": {
+    "files": 2,
+    "imports": 16,
+    "gitBase": "origin/integration"
+   },
+   "copiedArchive": 14,
+   "readability": {
+    "files": 2,
+    "items": 7,
+    "mode": "report"
+   }
+  },
+  "reports": {
+   "renderEquiv": {
+    "allEqual": false,
+    "components": [
+     {
+      "component": "GuideAlert",
+      "result": "EQUAL",
+      "tokens": [
+       411,
+       411
+      ]
+     },
+     {
+      "component": "sceneFairSign",
+      "result": "DIFF",
+      "tokens": [
+       4329,
+       3689
+      ]
+     }
+    ]
+   }
+  }
+ }
+}
