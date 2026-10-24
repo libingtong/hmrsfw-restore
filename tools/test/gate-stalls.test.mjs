@@ -57,11 +57,13 @@ test("classifyGateError: the 10-22/10-23 environment errors vs the gate's real p
   for (const s of ["page.screenshot: Timeout 30000ms exceeded.", "门槛运行出错：page.screenshot 超时 30000ms（浏览器截图，环境问题），未调用 advance",
     "page.goto: Timeout 60000ms exceeded.", "fatal: unable to access 'https://github.com/libingtong/hmrsfw-vue/': LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443",
     "ENOSPC: no space left on device, write", "磁盘已满，npm 无法写入", "daemon repo/checkout 超时，检出残缺", "gate ended without a result (a pending step never settled)",
-    "2 page(s) not judged within 10 min (--page-timeout; the gate's own error, not a verdict): a, b", "browserType.launch: Target page, context or browser has been closed"])
+    "2 page(s) not judged within 10 min (--page-timeout; the gate's own error, not a verdict): a, b", "browserType.launch: Target page, context or browser has been closed",
+    "repo checkout 超时", "Post \"http://127.0.0.1:8080/repo/checkout\": context deadline exceeded"])
     assert.equal(classifyGateError(s), "environment", s);
   for (const s of ["crypto keys missing for the restored app: VITE_HMRSFW_SM2_PUBLIC_KEY", "Invalid regular expression: /(?<x/: Invalid capture group name",
     "Invalid request: metadata exceeds the 8KB size limit", "TypeError: Cannot read properties of undefined (reading 'wo') at gate (tools/gate.mjs:443:12)",
-    "[GATE] 本次未重跑：restore/fast-lane 仍在 523022d，与 a2 相同"])
+    "[GATE] 本次未重跑：restore/fast-lane 仍在 523022d，与 a2 相同", "browserType.launch: Executable doesn't exist at /ms-playwright/chromium-1200/chrome",
+    "connect ECONNREFUSED 127.0.0.1:51234", "Unknown network mode \"x\" in restore.config.json"])
     assert.equal(classifyGateError(s), "other", s);
 });
 
@@ -137,8 +139,11 @@ test("environment error from gate.mjs: re-gated after 30 / 60 / 120 min, then on
   assert.equal(issue(fx, t.id).status, "in_review");
   assert.equal(issue(fx, t.id).assignee_id, fx.id("gate"), "still the gate's; the arbiter re-gates it after the fix");
 
-  // the arbiter's --regate and then a real verdict: the count starts again
+  // the arbiter's --regate (after fixing the cause) starts the count again, and so does a real verdict
   assert.equal(node(fx, "tick.mjs", ["advance", t.id, "--regate"]).ok, true);
+  assert.equal(meta(fx, t.id).gateErrorRetry, undefined);
+  assert.equal(meta(fx, t.id).gateStall, undefined);
+  setMeta(fx, t.id, "gateErrorRetry", { n: 2, round: "old" });
   setMeta(fx, t.id, "gate.1", { pass: false, stage: "browser", failed: [{ check: "pixel", where: "load", hint: "1% of pixels differ", wo: "G1" }], pages: [{ wo: "G1", pass: false, stage: "browser" }] });
   r = node(fx, "tick.mjs", ["advance", t.id]);
   assert.equal(r.ok, true, JSON.stringify(r));
@@ -227,4 +232,20 @@ test("perTick caps the re-gates of one round", () => {
   assert.equal(seqs().filter((n) => n === 1).length, 2, "two this round");
   node(fx, "tick.mjs", ["tick"]);
   assert.equal(seqs().filter((n) => n === 1).length, 3, "the third next round");
+});
+
+test("cancelled gate run (daemon restart) is an environment matter; a later hand-written [RECEIPT] or in_progress does not hide the round", () => {
+  const { fx, t } = onGate("G8");
+  const seq0 = meta(fx, t.id).gateSeq;
+  edit(fx, (s) => { s.issues[t.id].status = "in_progress"; });
+  gateRunEnds(fx, t.id, { status: "cancelled" });
+  edit(fx, (s) => { s.issues[t.id].comments.push({ id: "late", content: "[RECEIPT] 还原员补充说明：本页 todos 2 条", created_at: new Date(Date.now() + 5 * MIN).toISOString() }); });
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(incidents(fx).length, 0, "not an incident");
+  assert.equal(meta(fx, t.id).gateSeq, seq0, "30 min first");
+  age(fx, t.id, 40 * MIN);
+  node(fx, "tick.mjs", ["tick"]);
+  assert.equal(meta(fx, t.id).gateSeq, seq0 + 1, "re-gated");
+  assert.match(heads(fx, t.id).find((h) => h.startsWith("[REDO] 门槛自身出错")), /gate run cancelled/);
+  assert.equal(issue(fx, t.id).status, "in_review");
 });

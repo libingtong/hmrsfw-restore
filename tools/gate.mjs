@@ -734,10 +734,12 @@ export function report(task, attempt, out, ids) {
 // "gate stalls", docs/scheduler.md). round names the gate round as the scheduler does, "<attempt>.g<gateSeq>": a key left
 // from an older round is ignored there. A failed write is only logged (the scheduler then goes by the comment).
 export function reportError(task, attempt, error) {
+  // bounded: the error may be the network itself, and the gate agent waits for this process
+  const call = (args) => execFileSync(MULTICA, args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 30_000 });
   try {
-    const m = decodeAll(JSON.parse(multica(["issue", "get", task, "--output", "json"])).metadata || {});
+    const m = decodeAll(JSON.parse(call(["issue", "get", task, "--output", "json"])).metadata || {});
     const v = { round: `${attempt ?? m.attempt ?? 1}.g${m.gateSeq || 0}`, class: classifyGateError(error), error: clip(error, 300), at: new Date().toISOString() };
-    multica(["issue", "metadata", "set", task, "--key", "gateError", "--value", JSON.stringify(v)]);
+    call(["issue", "metadata", "set", task, "--key", "gateError", "--value", JSON.stringify(v)]);
     return v;
   } catch (e) { process.stderr.write("gateError write failed: " + String(e.stderr || e.message).trim().split("\n").pop() + "\n"); return null; }
 }

@@ -43,7 +43,9 @@ const short = (sha) => (sha || "").slice(0, 7);
 const baseKind = (meta) => (meta.kind === "audit" || meta.kind === "arbitrate" ? meta.restoreKind || "restore" : meta.kind);
 const hashUnit = (s) => parseInt(createHash("sha256").update(s).digest("hex").slice(0, 8), 16) / 0x100000000;
 const OPEN = (i) => !["done", "cancelled"].includes(i.status);
-const DONE_RUN_STATUSES = new Set(["completed", "succeeded", "success", "done", "cancelled", "canceled"]);
+const DONE_RUN_STATUSES = new Set(["completed", "succeeded", "success", "done"]);
+const CANCELLED_RUN_STATUSES = new Set(["cancelled", "canceled"]); // daemon restart, runtime gone: an environment matter
+const GATE_SIDE = ["todo", "in_progress", "in_review"]; // an integration task is created todo; a gate agent may set in_progress
 // What the scheduler comments when it sends a task to the gate (handoff, regate, record ready, fallback): marks the start
 // of a gate round on tasks sent before gateSentAt existed (HM-1306).
 const SEND_LINE = /^\[(REDO|RECEIPT)\]|^\[FIX\] 第 \d+ 轮 .*→ 门槛员|^\[GATE\] 录制已完成/;
@@ -544,7 +546,7 @@ export class Pipeline {
   }
 
   regate(taskId, meta) {
-    this.mc.setMetaMany(taskId, { kind: baseKind(meta), waitRecord: false, waitRecordFrom: meta.waitRecordFrom ? null : undefined, recordPending: meta.recordPending ? null : undefined, regateAt: this.iso() }); // a manual regate starts the pending:record count again
+    this.mc.setMetaMany(taskId, { kind: baseKind(meta), waitRecord: false, waitRecordFrom: meta.waitRecordFrom ? null : undefined, recordPending: meta.recordPending ? null : undefined, gateErrorRetry: meta.gateErrorRetry ? null : undefined, gateStall: meta.gateStall ? null : undefined, regateAt: this.iso() }); // a manual regate starts the pending:record count and the gate-error re-gates (gateStalls) again
     this.comment(taskId, `[REDO] 重跑门槛（--regate）`);
     this.sendToGate(taskId, meta);
     return { ok: true, summary: `regate ${taskId}`, anomalies: [] };
@@ -1799,11 +1801,14 @@ export class Pipeline {
     let sent = 0;
     for (const i of this.pipelineIssues()) {
       const m = i.metadata;
-      if (!["restore", "upgrade", "integration"].includes(m.kind) || i.status !== "in_review" || m.waitRecord === true || m.suspendedBy) continue;
+      if (!["restore", "upgrade", "integration"].includes(m.kind) || !GATE_SIDE.includes(i.status) || m.waitRecord === true || m.suspendedBy) continue;
       if (m.kind === "integration" ? !this.isLeader : !this.ownsTask(m)) continue;
       if (!this.roster.isRole(i.assignee_id, "gate") || this.gateResult(m) || m.gateStall === this.advKey(m)) continue;
       const ev = this.safe(i.id, () => this.stallEvidence(i, m));
       if (!ev) continue;
+      // an integration run keeps the verdicts of its pages, the page-timeout ones too (gate/runs.mjs): re-gating the same
+      // commit gives the same {error}, so that one goes to the arbiter at once
+      if (m.kind === "integration" && /not judged within/.test(ev.text)) ev.class = "other";
       const tries = m.gateErrorRetry?.n || 0;
       if (ev.class === "environment" && tries < R.max) {
         if (sent >= R.perTick || this.now() < Date.parse(ev.at) + R.delayMin * 60_000 * R.backoff ** tries) continue;
@@ -1820,22 +1825,28 @@ export class Pipeline {
     const SKEW = 120_000; // gateSentAt is this machine's clock, run and comment times the server's
     const last = this.mc.runs(i.id)[0];
     if (!last || last.agent_id !== i.assignee_id) return null;
-    const failed = FAILED_RUN_STATUSES.has(last.status);
-    if (!failed && !DONE_RUN_STATUSES.has(last.status)) return null;
-    if (failed && !this.ledger.read().tick.handledRuns?.[last.id]) return null;
+    const failed = FAILED_RUN_STATUSES.has(last.status), cancelled = CANCELLED_RUN_STATUSES.has(last.status);
+    if (!failed && !cancelled && !DONE_RUN_STATUSES.has(last.status)) return null;
+    // a failed run is step 2's first (rerun once, or hand it to another gate agent); only one it handled at least a lock
+    // period ago and that is still the last run is left over (no one to hand it to)
+    const handled = this.ledger.read().tick.handledRuns?.[last.id];
+    if (failed && !(handled && this.now() - Date.parse(handled) >= this.cfg.lockStaleMs)) return null;
     const m = this.meta(i.id); // the list this round started with may predate a result the gate wrote since
     if (this.gateResult(m) || this.advKey(m) !== this.advKey(m0)) return null;
     const comments = this.mc.comments(i.id).slice().sort((a, b) => t(a.created_at) - t(b.created_at));
     const head = (c) => String(c.content || "").split("\n")[0];
-    const sentLine = Math.max(0, ...comments.filter((c) => SEND_LINE.test(head(c))).map((c) => t(c.created_at)));
-    const sentAt = Math.max(sentLine, t(m.gateSentAt));
-    if (t(last.created_at) < sentAt - SKEW) return null; // this round's run has not shown up yet
-    const inRound = (c) => t(c.created_at) > sentLine && t(c.created_at) >= t(m.gateSentAt) - SKEW;
+    // with gateSentAt only that counts (a later hand-written [REDO] / [RECEIPT] must not hide the round); the send
+    // comments only for tasks sent before it existed
+    const sentLine = m.gateSentAt ? 0 : Math.max(0, ...comments.filter((c) => SEND_LINE.test(head(c))).map((c) => t(c.created_at)));
+    const sentAt = m.gateSentAt ? t(m.gateSentAt) - SKEW : sentLine;
+    if (t(last.created_at) < sentAt - (m.gateSentAt ? 0 : SKEW)) return null; // this round's run has not shown up yet
+    const inRound = (c) => (m.gateSentAt ? t(c.created_at) >= sentAt : t(c.created_at) > sentLine);
     const round = this.advKey(m);
     const ended = last.completed_at || last.updated_at || last.created_at;
     if (m.gateError?.round === round) return { round, class: m.gateError.class || classifyGateError(m.gateError.error), text: String(m.gateError.error || ""), at: m.gateError.at || ended, source: "gate.mjs" };
     const err = comments.filter((c) => inRound(c) && /^\[GATE\] ERROR/.test(head(c))).pop();
     if (err) { const text = head(err).replace(/^\[GATE\] ERROR\s*/, ""); return { round, class: classifyGateError(text), text, at: err.created_at, source: "[GATE] ERROR" }; }
+    if (cancelled) return { round, class: "environment", text: `gate run ${last.status}${last.error ? `: ${last.error}` : ""}`, at: ended, source: "run cancelled" };
     if (failed) { const c = classifyRunError(last); return { round, class: c.action === "report" ? "other" : "environment", text: String(last.error || last.status_reason || last.status), at: ended, source: `run ${c.category}` }; }
     const said = comments.filter((c) => inRound(c) && /^\[GATE\]/.test(head(c))).pop();
     return { round, class: "other", text: said ? head(said) : "门槛员运行结束，没有结论也没有 [GATE] ERROR", at: ended, source: "no verdict" };
@@ -1846,7 +1857,7 @@ export class Pipeline {
     return this.withWo(wos.length ? wos : [`task-${taskId}`], () => { // advance()'s locks
       const m = this.meta(taskId);
       const cur = this.mc.getIssue(taskId);
-      if (cur.status !== "in_review" || !this.roster.isRole(cur.assignee_id, "gate") || this.gateResult(m) || this.advKey(m) !== ev.round) return false;
+      if (!GATE_SIDE.includes(cur.status) || !this.roster.isRole(cur.assignee_id, "gate") || this.gateResult(m) || this.advKey(m) !== ev.round) return false;
       const why = ev.text.replace(/\s+/g, " ").slice(0, 120);
       this.mc.setMeta(taskId, "gateErrorRetry", { n, at: this.iso(), round: ev.round, error: why });
       this.comment(taskId, `[REDO] 门槛自身出错（环境类：${why}），第 ${n}/${this.cfg.gateErrorRetry.max} 次自动重送门槛`);
@@ -1858,8 +1869,14 @@ export class Pipeline {
   }
 
   stallIncident(i, ev, tries) {
+    const wos = i.metadata.workOrders || [];
+    return this.withWo(wos.length ? wos : [`task-${i.id}`], () => this.stallIncidentLocked(i, ev, tries), 60_000);
+  }
+
+  stallIncidentLocked(i, ev, tries) {
     const m = this.meta(i.id);
-    if (this.gateResult(m) || this.advKey(m) !== ev.round || m.gateStall === ev.round) return;
+    const cur = this.mc.getIssue(i.id);
+    if (!GATE_SIDE.includes(cur.status) || !this.roster.isRole(cur.assignee_id, "gate") || this.gateResult(m) || this.advKey(m) !== ev.round || m.gateStall === ev.round) return;
     const name = i.identifier || i.id;
     const reason = ev.class === "environment" ? `门槛自身出错，自动重送 ${tries} 次仍失败：${name}` : `门槛没有结论（${ev.source}）：${name}`;
     const r = this.openIncident(reason, { task: i.id, round: ev.round, class: ev.class, source: ev.source, error: ev.text.slice(0, 300), retries: tries, at: ev.at }, false, `:${i.id}:${ev.round}`);

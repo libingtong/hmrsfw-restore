@@ -24,11 +24,11 @@ export const FAILED_RUN_STATUSES = new Set(["failed", "error", "errored", "timeo
 // texts seen on HM-264/290/349/369 (10-22/10-23) plus the usual Playwright / git / Node wordings.
 export const GATE_ENV_PATTERNS = [
   /\bTimeout \d+ ?ms exceeded/i, /\b(screenshot|goto|waitFor\w*|evaluate|launch)\b.{0,40}(timed? ?out|超时)/i, /超时 ?\d+ ?ms/, /not judged within .*--page-timeout/,
-  /gate ended without a result/, /Target (page, context or browser )?(has been )?closed/i, /browser has been closed|browserType\.launch|Failed to launch/i,
-  /SSL_ERROR_SYSCALL|github\.com\S{0,20}:443\b|port 443\b|Could not resolve host|unable to access 'https?:|Connection (reset|timed out|refused)|ECONNRESET|ECONNREFUSED|ETIMEDOUT|EAI_AGAIN|ENOTFOUND|EPIPE|network|网络/i,
+  /gate ended without a result/, /Target (page, context or browser )?(has been )?closed/i, /browser has been closed/i,
+  /SSL_ERROR_SYSCALL|github\.com\S{0,20}:443\b|port 443\b|Could not resolve host|unable to access 'https?:|Connection (reset|timed out)|ECONNRESET|ETIMEDOUT|EAI_AGAIN|ENOTFOUND|network (error|is unreachable)|网络(错误|异常|不可用|超时|中断)/i,
   /ENOSPC|no space left|disk (is )?full|磁盘(已)?满|空间不足/i,
-  /EADDRINUSE|EMFILE|ENFILE/,
-  /repo\/checkout|checkout (failed|timed? ?out)|检出(超时|失败|残缺|不完整)|index\.lock|daemon/i,
+  /EMFILE|ENFILE/,
+  /repo\/checkout|checkout.{0,12}(failed|timed? ?out|超时|失败)|检出.{0,6}(超时|失败|残缺|不完整)|index\.lock|context deadline exceeded|daemon.{0,40}(timed? ?out|超时|deadline|offline|unreachable|not reachable)/i,
 ];
 
 export function classifyGateError(text) {
