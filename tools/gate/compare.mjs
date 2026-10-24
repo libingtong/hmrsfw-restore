@@ -240,7 +240,15 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, 
   // is its first candidate, so with none it used to count as found (class null) and the original's missing one failed
   // final.root. No final candidate at all in the restored run and in every original run is the same state: no root
   // failure, final html / text not compared. Any candidate on either side keeps the comparison as before.
-  const bothRootless = (ph) => ph === "final" && !rest.final?.candidates?.length && baseline.runs.every((r) => !r.final?.candidates?.length);
+  // A page whose original genuinely renders nothing at load on every run (HM-1432/HM-1433: setup() only makes
+  // requests and navigates away, or does nothing at all — baseline.mjs emptyRenderLoad, only set when the original
+  // chunk's own source confirms it) is in the same "no root, not a bug" state load-side that HM-1278 already accepts
+  // final-side: no root failure, no baseline/render failure, as long as the restored side is equally empty.
+  // load always has one candidate even with nothing on the page (the withShots placeholder, replay.mjs captureRoot),
+  // so unlike final this checks the raw candidates' own empty flag, not O/R's class-matched empty (a class mismatch
+  // alone would otherwise look the same as a genuinely empty page and could mask a real difference).
+  const bothRootless = (ph) => (ph === "final" && !rest.final?.candidates?.length && baseline.runs.every((r) => !r.final?.candidates?.length))
+    || (ph === "load" && !!baseline.emptyRenderLoad && (rest.load?.candidates ?? []).every((c) => c.empty) && baseline.runs.every((r) => (r.load?.candidates ?? []).every((c) => c.empty)));
   const noRoot = (ph) => ph in R.root && O.every((o) => o.root[ph] === false) && !bothRootless(ph);
   // original candidates by class only (element paths, no page text)
   const rootHint = (ph) => `no original root candidate with class ${JSON.stringify(restCls[ph])} (restored ${ph} root); original candidates: ${[...new Set(baseline.runs.flatMap((r) => (r[ph]?.candidates ?? []).map((c) => JSON.stringify(c.cls))))].join(", ")}`;
@@ -250,8 +258,8 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, 
   // `render` failure and no shot compared at load (the placeholders' shots are the parent page); its root is compared
   // after the steps, and the restored run must have one there. A root at load on either side is compared as before.
   const afterSteps = inParent && rootlessLoad(rest) && rootAfterSteps(baseline.runs);
-  if (!afterSteps && !noRoot("load") && O.every((o) => o.empty)) failed.push({ check: "baseline", where: "load", hint: "original page root not found in the baseline" });
-  if (!afterSteps && R.empty) failed.push({ check: "render", where: "load", hint: `restored page root (${restSel}) is empty` });
+  if (!afterSteps && !noRoot("load") && !bothRootless("load") && O.every((o) => o.empty)) failed.push({ check: "baseline", where: "load", hint: "original page root not found in the baseline" });
+  if (!afterSteps && !bothRootless("load") && R.empty) failed.push({ check: "render", where: "load", hint: `restored page root (${restSel}) is empty` });
   if (afterSteps && !(rest.final?.candidates ?? []).some((c) => !c.empty)) failed.push({ check: "render", where: "final", hint: `restored component root (${restSel}) not found after the steps (the original's appears only after them)` });
   const keys = Object.keys(R).filter((k) => k.includes(".") && k !== "steps.errors");
   for (const where of keys) {
