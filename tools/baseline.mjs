@@ -8,7 +8,8 @@
 // --interact-ref: take tests/interact/<id>.json from that tool-repo commit, not the working tree (gate.mjs passes the
 // one its integration run reads when it refreshes a baseline; HM-914).
 // Writes $RESTORE_STATE/baseline/<id>/ (or --out), replacing it atomically:
-//   dom.html       page root outerHTML (run 1, first root candidate)      text.txt   its innerText
+//   dom.html       page root outerHTML (run 1, first root candidate; after the steps for a recordVia component mounted
+//                  only then, HM-1293)                                       text.txt   its innerText
 //   shot.png       its screenshot (shot.<n>.png: other root candidates, *.r2.png: run 2)
 //   seq.json       /xf-api/ requests: load-time set, app-shell set, post-load step sequence (bodies as SHA-256 only),
 //                  pages the steps opened (target="_blank", window.open)
@@ -28,7 +29,7 @@ import { loadHar, sha256 } from "./gate/har.mjs";
 import { runPage } from "./gate/replay.mjs";
 import { serveStatic } from "./gate/serve.mjs";
 import { loadRules } from "./gate/rules.mjs";
-import { redact, unstableKeys } from "./gate/compare.mjs";
+import { redact, rootAfterSteps, unstableKeys } from "./gate/compare.mjs";
 import { buildCoverage, summaryOf } from "./gate/coverage.mjs";
 import { ensureLegacyDist } from "./lib/shared-deps.mjs";
 
@@ -60,7 +61,7 @@ export async function recordOriginal({ browser, wo, harFile, assets, shotDir, ru
     const cov = coverage ? buildCoverage({ pageChunk, sharedChunks, runs: runs.map((r) => r.coverage ?? []) }) : null;
     for (const r of runs) delete r.coverage;
     const shellSet = new Set(shell.requests);
-    const unstable = unstableKeys(runs[0], runs[1], { rules, site: wo.site, shell: shellSet, shellToasts: shell.toasts });
+    const unstable = unstableKeys(runs[0], runs[1], { rules, site: wo.site, shell: shellSet, shellToasts: shell.toasts, inParent: !!wo.recordVia });
     const before = storage.localStorage, after = shell.storageAtMount ?? before;
     const patch = { set: Object.fromEntries(Object.entries(after).filter(([k, v]) => before[k] !== v)), remove: Object.keys(before).filter((k) => !(k in after)) };
     return { sel, shell: { requests: [...shellSet].sort(), toasts: shell.toasts ?? [], storageCaptured: !!shell.storageAtMount }, runs, unstable, steps: steps?.length ?? 0, script: steps ? sha256(JSON.stringify(steps)) : null, storagePatch: patch, coverage: cov };
@@ -103,15 +104,18 @@ async function main() {
   const browser = await chromium.launch();
   try {
     const rec = await recordOriginal({ browser, wo, harFile, assets, shotDir: tmp, rules, coverage: !flag(argv, "--no-coverage"), interactRef: opt(argv, "--interact-ref") ?? null });
-    const r1 = rec.runs[0], c0 = r1.load.candidates[0];
-    if (!c0 || c0.empty) throw new Error(`original page root (${rec.sel}) not found at ${wo.recordPath}`);
+    // A recordVia component its parent mounts only after the interaction has its root after the steps in every run
+    // (compare.mjs rootAfterSteps, HM-1293): dom.html / text.txt are that root; any other page needs its root at load.
+    const r1 = rec.runs[0], afterSteps = !!wo.recordVia && rootAfterSteps(rec.runs);
+    const c0 = afterSteps ? r1.final.candidates.find((c) => !c.empty) : r1.load.candidates[0];
+    if (!c0 || c0.empty) throw new Error(`original page root (${rec.sel}) not found at ${wo.recordPath}${wo.recordVia && rec.steps ? " (nor after the steps in every run)" : ""}`);
     const runs = rec.runs.map((r) => slimRun(r, tmp));
     writeFileSync(path.join(tmp, "dom.html"), c0.html);
     writeFileSync(path.join(tmp, "text.txt"), c0.text);
     writeFileSync(path.join(tmp, "seq.json"), JSON.stringify({ load: runs[0].load.requests, shell: rec.shell.requests, steps: runs[0].stepLog ?? [], opened: runs[0].opened ?? [] }, null, 1));
     writeFileSync(path.join(tmp, "baseline.json"), JSON.stringify({
       version: BASELINE_VERSION, wo: id, site: wo.site, app: wo.app, recordPath: wo.recordPath, role: wo.role, sourceChunk: wo.sourceChunk,
-      har: { path: publish ?? harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version, sel: rec.sel, ...(wo.recordVia ? { offscopeFixed: true, offscopeAll: true } : {}), paintedBox: true, carouselPaused: true, canvasBoxes: true,
+      har: { path: publish ?? harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version, sel: rec.sel, ...(wo.recordVia ? { offscopeFixed: true, offscopeAll: true } : {}), ...(afterSteps ? { rootAfterSteps: true } : {}), paintedBox: true, carouselPaused: true, canvasBoxes: true,
       ...(rec.coverage ? { coverage: summaryOf(rec.coverage) } : {}),
       shell: rec.shell, steps: rec.steps, script: rec.script, unstable: rec.unstable, runs,
     }));
