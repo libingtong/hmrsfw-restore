@@ -90,7 +90,6 @@ export function loadRules(dir = path.join(ROOT, "rules/compare")) {
     pixel: { maxRatio: pixel.maxRatio, threshold: pixel.threshold },
     volatileCanvas: vc ? { inkRange: vc.inkRange } : null,
     shellRequests: (site) => new Set(on.filter((r) => r.kind === "shell-requests" && r.site === site).flatMap((r) => r.requests)),
-    now: on.filter((r) => r.kind === "now").map((r) => ({ windowMs: r.windowMinutes * 60000 }))[0] ?? null,
   };
 }
 
@@ -103,22 +102,6 @@ export function normHtml(capture, rules) {
 }
 export const normText = (s, rules) => applySubs(s ?? "", rules.text);
 export const normOverlay = (s, rules) => applySubs(s ?? "", rules.overlay);
-// "Now" printed to the second (HM-1021). Both sides' page clocks start at the HAR's recording minute and run normally
-// (replay.mjs), so a page that prints new Date() as YYYY-MM-DD HH:mm:ss shows the seconds that passed until it got
-// there, which differ between any two runs. A date-time to the second (separators - or /, space or T) whose instant lies
-// in [clock start, clock start + windowMinutes) is the replay clock's reading: its digits are replaced by #, the
-// separators and the place where it stands stay compared. clock = the run's {start, tzOffset} (the page's
-// getTimezoneOffset: the printed wall time is local); compareRuns uses the baseline's for both sides, so a baseline
-// recorded before this rule has none and nothing is replaced on either side. Other date-times (data from the HAR, now
-// minus a day, …) are compared as before.
-const DATE_TIME = /\b(\d{4})([-/])(\d{2})\2(\d{2})[ T](\d{2}):(\d{2}):(\d{2})\b/g;
-export function normNow(s, rules, clock) {
-  if (!s || !rules.now || !Number.isFinite(clock?.start) || !Number.isFinite(clock?.tzOffset)) return s;
-  return s.replace(DATE_TIME, (m, y, _sep, mo, d, h, mi, se) => {
-    const at = Date.UTC(+y, +mo - 1, +d, +h, +mi, +se) + clock.tzOffset * 60000;
-    return at >= clock.start && at < clock.start + rules.now.windowMs ? `⟦now ${m.replace(/\d/g, "#")}⟧` : m;
-  });
-}
 
 // Known differences (docs/pipeline.md §15.2 第 3 条): the register kept by tools/known-diff.mjs (HM-5) — the arbiter
 // is the only writer — in $RESTORE_STATE/known-diffs/<slug(work order)>.json, an array of

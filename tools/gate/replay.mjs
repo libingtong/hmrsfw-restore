@@ -308,10 +308,8 @@ export async function runPage(browser, opts) {
   });
   if (opts.coverage?.length) await page.coverage.startJSCoverage({ resetOnNavigation: false, reportAnonymousScripts: false });
   // The page's clock starts at the beginning of the HAR's recording minute and runs normally (no fake timers), so pages
-  // that print "now" show the same minute in the baseline and in later gate runs. The start and the page's time-zone
-  // offset go into the run (res.clock): rules.mjs normNow (HM-1021) recognises "now" printed to the second by them.
-  const clockStart = Math.floor(opts.har.recordedAt / 60000) * 60000;
-  await page.clock.setSystemTime(new Date(clockStart));
+  // that print "now" show the same minute in the baseline and in later gate runs.
+  await page.clock.setSystemTime(new Date(Math.floor(opts.har.recordedAt / 60000) * 60000));
   page.on("pageerror", (e) => errors.push(String(e.message).slice(0, 160)));
   page.on("console", (m) => { if (m.type() === "error") errors.push("console: " + m.text().slice(0, 200)); });
   page.on("dialog", (d) => d.dismiss().catch(() => {}));
@@ -322,8 +320,7 @@ export async function runPage(browser, opts) {
   await go();
   let settle = await waitStable(page, () => lastRequestAt);
   if (outdated) { errors.push(`reloaded after ${outdated} outdated dependency responses`); outdated = 0; log.length = 0; opened.length = 0; otherRequests.length = 0; await go(); settle = await waitStable(page, () => lastRequestAt); }
-  const tzOffset = await page.evaluate((t) => new Date(t).getTimezoneOffset(), clockStart).catch(() => null);
-  const res = { settleMs: settle, loadMs: Date.now() - t0, errors, clock: { start: clockStart, tzOffset } };
+  const res = { settleMs: settle, loadMs: Date.now() - t0, errors };
   if (opts.stubChunk) {
     await page.waitForTimeout(Math.max(0, 6000 - (Date.now() - t0)));
     res.storageAtMount = await page.evaluate(() => window.__shellMountStorage ?? null).catch(() => null);
