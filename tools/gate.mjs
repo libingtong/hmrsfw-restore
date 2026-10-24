@@ -61,6 +61,7 @@ import { isPage, loadWorkOrders, reverseDeps } from "./lib/workorders.mjs";
 import { changedFiles } from "./check-imports.mjs";
 import { selfCheckFiles } from "./self-check.mjs";
 import { ensureLegacyDist } from "./lib/shared-deps.mjs";
+import { classifyGateError } from "./lib/error-classes.mjs";
 import { DEFAULT_BUDGET_MIN, DEFAULT_PAGE_TIMEOUT_MIN, withinTime, createRun, hash, pageFp, pageResult, pickRun, pinRun, readJson, release, runsDir, savePageResult, setKey, staleRuns, tryClaim, claimHolder, withLock, writeJson } from "./gate/runs.mjs";
 
 const MULTICA = process.env.MULTICA_BIN || "multica";
@@ -728,8 +729,24 @@ export function report(task, attempt, out, ids) {
   return { slim, file, detail };
 }
 
+// {error} (HM-1306): no verdict and no comment (the gate agent comments "[GATE] ERROR …"), only the metadata key
+// gateError = {round, class, error, at} the scheduler reads to re-gate an environment error with backoff (tick step
+// "gate stalls", docs/scheduler.md). round names the gate round as the scheduler does, "<attempt>.g<gateSeq>": a key left
+// from an older round is ignored there. A failed write is only logged (the scheduler then goes by the comment).
+export function reportError(task, attempt, error) {
+  // bounded: the error may be the network itself, and the gate agent waits for this process
+  const call = (args) => execFileSync(MULTICA, args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 30_000 });
+  try {
+    const m = decodeAll(JSON.parse(call(["issue", "get", task, "--output", "json"])).metadata || {});
+    const v = { round: `${attempt ?? m.attempt ?? 1}.g${m.gateSeq || 0}`, class: classifyGateError(error), error: clip(error, 300), at: new Date().toISOString() };
+    call(["issue", "metadata", "set", task, "--key", "gateError", "--value", JSON.stringify(v)]);
+    return v;
+  } catch (e) { process.stderr.write("gateError write failed: " + String(e.stderr || e.message).trim().split("\n").pop() + "\n"); return null; }
+}
+
 // CLI. Results and {pending} go to metadata + one [GATE] comment when --task is given without --dry-run; {error} is
-// only printed: the gate agent comments "[GATE] ERROR …" itself (docs/pipeline.md §7), so it is never posted twice.
+// only printed and noted in gateError (reportError): the gate agent comments "[GATE] ERROR …" itself
+// (docs/pipeline.md §7), so it is never posted twice.
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const argv = process.argv.slice(2);
   let printed = false;
@@ -750,12 +767,15 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     // {partial:true}: a slice of an integration run (HM-1270), no verdict yet; exit 3, nothing written to the task
     if (r.partial) { process.exitCode = 3; return; }
     // {error} with the pages past the page limit (HM-1275): only printed, as a thrown error is
-    if (r.error) { process.exitCode = 2; return; }
+    if (r.error) { if (task && !flag(argv, "--dry-run")) reportError(task, r.attempt ?? opt(argv, "--attempt"), r.error); process.exitCode = 2; return; }
     if (task && !flag(argv, "--dry-run")) report(task, r.attempt ?? Number(opt(argv, "--attempt", 1)), r, r.mode === "upgrade" ? [`upgrade ${r.branch ?? task}`] : r.pages?.map((p) => p.wo) ?? r.missing?.map((m) => m.wo) ?? []);
     process.exitCode = r.pending ? 0 : r.pass ? 0 : 1;
   }, (e) => {
     printed = true;
-    console.log(JSON.stringify({ error: String(e.message).split("\n")[0].slice(0, 300) }));
+    const error = String(e.message).split("\n")[0].slice(0, 300);
+    console.log(JSON.stringify({ error }));
+    const task = opt(argv, "--task");
+    if (task && !flag(argv, "--dry-run")) reportError(task, opt(argv, "--attempt"), error);
     process.exitCode = 2;
   }).finally(() => setTimeout(() => process.exit(), 3000).unref()); // left-over Vite / esbuild handles must not keep it alive
 }
