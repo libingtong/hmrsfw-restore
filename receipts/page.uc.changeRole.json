@@ -17,11 +17,19 @@
   "selfCheck": {
     "pass": true,
     "failed": [],
-    "warn": ["readability x4"],
+    "warn": [
+      "readability x4"
+    ],
     "note": "在 restore/upg-27-a1（=origin/integration，mb..HEAD 无提交）上跑 page.uc.changeRole 自检通过，印证 imports 失败只在含合并提交的 restore/fast-lane 上出现",
     "components": null,
     "scopedSlots": null,
     "directives": null,
     "textNodesChecked": false
-  }
+  },
+  "fixRound": 1,
+  "notes": [
+    "修正第 1 轮：未改任何文件。门槛 static:scope 失败（升级分支相对 integration 无改动）是本单的必然结果：原因不在 registry 公共库，restore/upg-27-a1 本就等于 origin/integration（0ee1427）",
+    "疑似比对器问题：tools/check-imports.mjs otherPagesOnly 遇 mb..HEAD 含合并提交即返回空表；已复核 merge-base(origin/restore/fast-lane, origin/integration)..fast-lane 含合并 434c7d2、47b4f8f、7958d12（HM-1068 同步），故 0d843f8（只改 apps/portal/src/views/answer/passwordModal.vue，HM-355 修正）被算作 page.uc.changeRole 越界",
+    "按硬规则修正员不改门槛脚本、不提规则变更单：需裁定员按 pipeline.md 第十五节第 2/3 条处理（规则变更单让 otherPagesOnly 只看 first-parent 或跳过 integration 同步合并），或等 HM-355 合入 integration 后重跑 changeRole；本升级单宜由裁定员作废"
+  ]
 }
