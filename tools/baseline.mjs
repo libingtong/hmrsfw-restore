@@ -8,8 +8,9 @@
 // --interact-ref: take tests/interact/<id>.json from that tool-repo commit, not the working tree (gate.mjs passes the
 // one its integration run reads when it refreshes a baseline; HM-914).
 // Writes $RESTORE_STATE/baseline/<id>/ (or --out), replacing it atomically:
-//   dom.html       page root outerHTML (run 1, first root candidate; after the steps for a recordVia component mounted
-//                  only then, HM-1293)                                       text.txt   its innerText
+//   dom.html       page root outerHTML (run 1, first root candidate; after the script's root step if it has one,
+//                  HM-1294; after the steps for a recordVia component mounted only then, HM-1293)
+//                  text.txt   its innerText
 //   shot.png       its screenshot (shot.<n>.png: other root candidates, *.r2.png: run 2)
 //   seq.json       /xf-api/ requests: load-time set, app-shell set, post-load step sequence (bodies as SHA-256 only),
 //                  pages the steps opened (target="_blank", window.open)
@@ -106,9 +107,10 @@ async function main() {
     const rec = await recordOriginal({ browser, wo, harFile, assets, shotDir: tmp, rules, coverage: !flag(argv, "--no-coverage"), interactRef: opt(argv, "--interact-ref") ?? null });
     // A recordVia component its parent mounts only after the interaction has its root after the steps in every run
     // (compare.mjs rootAfterSteps, HM-1293): dom.html / text.txt are that root; any other page needs its root at load.
+    // With the script's root step (HM-1294) the load root is taken after the step that opens the component instead.
     const r1 = rec.runs[0], afterSteps = !!wo.recordVia && rootAfterSteps(rec.runs);
     const c0 = afterSteps ? r1.final.candidates.find((c) => !c.empty) : r1.load.candidates[0];
-    if (!c0 || c0.empty) throw new Error(`original page root (${rec.sel}) not found at ${wo.recordPath}${wo.recordVia && rec.steps ? " (nor after the steps in every run)" : ""}`);
+    if (!c0 || c0.empty) throw new Error(`original page root (${rec.sel}) not found at ${wo.recordPath}${r1.load.afterStep !== undefined ? ` after step ${r1.load.afterStep} (the root step)` : wo.recordVia && rec.steps ? " (nor after the steps in every run)" : wo.recordVia ? `; if the component only mounts after an interaction (a modal, a later tab), mark the step that opens it with "root": true in tests/interact/${id}.json` : ""}`);
     const runs = rec.runs.map((r) => slimRun(r, tmp));
     writeFileSync(path.join(tmp, "dom.html"), c0.html);
     writeFileSync(path.join(tmp, "text.txt"), c0.text);

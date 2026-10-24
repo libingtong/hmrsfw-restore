@@ -50,5 +50,6 @@
   "route": null,
   "in": "hmrsfw-vue @/shared/signModal.vue（POC 放在共享层；registry-cleanup 方案里迁回 views/fair/signModal.vue）"
  },
- "recordVia": "page.portal.sjz.fair.fairList"
+ "recordVia": "page.portal.sjz.fair.fairList",
+ "recordNotes": "signModal 只在点「报名参会」后挂载（signShow，v-if）：交互脚本里点「报名参会」那一步加 \"root\": true（HM-1294），弹窗开着时取根；不点关闭、不提交报名。"
 }

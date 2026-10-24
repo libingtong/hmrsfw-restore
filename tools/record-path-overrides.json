@@ -18,6 +18,7 @@
  "page.portal.fair.signModal": {
   "recordVia": "page.portal.sjz.fair.fairList",
   "recordPath": "/fairList?type=web",
+  "recordNotes": "signModal 只在点「报名参会」后挂载（signShow，v-if）：交互脚本里点「报名参会」那一步加 \"root\": true（HM-1294），弹窗开着时取根；不点关闭、不提交报名。",
   "evidence": "legacy-dist/portal/assets/fairs.1783320636200.js:1439 query.type=web → jobFairType=\"20\"，:2454 渲染网络招聘会栏 list.17833206362008.js；list.17833206362008.js:8083 卡片 izEnrollStatus===\"1\"&&signStatus!==\"1\" 时出「报名参会」，:3290 ca() 通过单位校验后 signShow=true，:10813 signShow 时渲染 signModal（data-v-484c8df1）。推出来的 /cityHome/:cityCode（index.178332063620024.js:21507 同条件）在测试环境没有可报名的招聘会（HM-937）；/fairList 原版基线（page.portal.sjz.fair.fairs，2026-10-19）里网络招聘会栏渲染出 2 个「报名参会」",
   "by": "HM-953"
  },
@@ -92,17 +93,17 @@
  },
  "page.portal.sjz.newHome.resource": {
   "evidence": "/archivesSearch 第 7 个 tab（keywords=2）数据；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
-  "recordNotes": "/archivesSearch 第 7 个 tab（keywords=2）：交互脚本先点第 7 个 tab 再取根。",
+  "recordNotes": "/archivesSearch 第 7 个 tab（keywords=2）：交互脚本先点第 7 个 tab 再取根：点 tab 的那一步加 \"root\": true（HM-1294；内容区按 activeObj.type==\"2\" v-if 渲染，加载时不在）。",
   "by": "HM-48"
  },
  "page.portal.special.page1.jobNews": {
   "evidence": "/archivesSearch 第 8 个 tab（keywords=3）数据；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）",
-  "recordNotes": "/archivesSearch 第 8 个 tab（keywords=3）：交互脚本先点第 8 个 tab 再取根。",
+  "recordNotes": "/archivesSearch 第 8 个 tab（keywords=3）：交互脚本先点第 8 个 tab 再取根：点 tab 的那一步加 \"root\": true（HM-1294；内容区按 activeObj.type==\"3\" v-if 渲染，加载时不在）。",
   "by": "HM-48"
  },
  "page.portal.answer.passwordModal": {
   "evidence": "/answer 下名为 test 的问卷设了密码；测试数据由 HM-1069/HM-1070 造（李炳通授权，10-22）。legacy-dist/portal/assets/index.178332063620016.js:1:3807 izEnter 为真且 izNeedPassword==1 时 ispassword=!0，:1:8714 v-if 渲染密码框（passwordModal，data-v-98de9e0d），:1:6382 关闭即 ispassword=!1（HM-1170）",
-  "recordNotes": "/answer：点名为 test 的问卷（click \"test\"，不设 optional）会弹出密码框；只录弹窗本身，弹窗开着时取根。不点「关闭」（v-if，关了组件卸载、根节点就没了），不输入密码、不提交、不点「立即进入」。",
+  "recordNotes": "/answer：点名为 test 的问卷（click \"test\"，不设 optional）会弹出密码框；只录弹窗本身，弹窗开着时取根：点 test 的那一步加 \"root\": true（HM-1294）。不点「关闭」（v-if，关了组件卸载、根节点就没了），不输入密码、不提交、不点「立即进入」。",
   "by": "HM-48"
  },
  "page.uc.formDone": {

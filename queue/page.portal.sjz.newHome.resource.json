@@ -49,5 +49,5 @@
   "in": "hmrsfw-vue @/shared/resource.vue（POC 放在共享层；registry-cleanup 方案里迁回 views/sjz/newHome/resource.vue）"
  },
  "recordVia": "page.portal.sjz.archivesSearch.index",
- "recordNotes": "/archivesSearch 第 7 个 tab（keywords=2）：交互脚本先点第 7 个 tab 再取根。"
+ "recordNotes": "/archivesSearch 第 7 个 tab（keywords=2）：交互脚本先点第 7 个 tab 再取根：点 tab 的那一步加 \"root\": true（HM-1294；内容区按 activeObj.type==\"2\" v-if 渲染，加载时不在）。"
 }
