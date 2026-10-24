@@ -82,8 +82,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s04ImgS",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "p": {
    "original": "s04.1783320636200.js#a",
@@ -91,8 +90,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s04ImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "u": {
    "original": "s04.1783320636200.js#b",
@@ -100,8 +98,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s04ImgB",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "w": {
    "original": "s04.1783320636200.js#c",
@@ -109,8 +106,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s04ImgC",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "y": {
    "original": "s04.1783320636200.js#a",
@@ -118,8 +114,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s04ImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "C": {
    "original": "s04.1783320636200.js#b",
@@ -127,8 +122,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s04ImgB",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "A": {
    "original": "s10.1783320636200.js#a",
@@ -136,8 +130,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s10ImgA",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "v": {
    "original": "s10.1783320636200.js#b",
@@ -145,8 +138,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s10ImgB",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "L": {
    "original": "s10.1783320636200.js#c",
@@ -154,8 +146,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s10ImgC",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "G": {
    "original": "s10.1783320636200.js#d",
@@ -163,8 +154,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s10ImgD",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "c": {
    "original": "s04.1783320636200.js#s",
@@ -172,8 +162,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s04ImgS",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "O": {
    "original": "s04.1783320636200.js#c",
@@ -181,8 +170,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s04ImgC",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   },
   "f": {
    "original": "s05b.1783320636200.js#s",
@@ -190,8 +178,7 @@
    "inline": true,
    "path": "@/shared/images",
    "export": "s05bImg",
-   "status": "reserved",
-   "owner": "shared.portal.modules"
+   "status": "restored"
   }
  },
  "views": {},
