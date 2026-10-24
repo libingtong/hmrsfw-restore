@@ -172,7 +172,12 @@ function maskRegex(where, a, b) {
   }
   if (holes > 50) return null;
   parts.push(...A.slice(A.length - q).map(esc));
-  return new RegExp("^" + parts.join("") + "$");
+  // Every literal run is esc()-escaped, so the joined pattern is syntactically valid JS regex source; a large map/canvas
+  // widget (HM-1392: page.portal.eMap.index's jyEmap, 9 holes, ~17KB pattern) can still make the *compiled* pattern too
+  // large for a given V8 build to accept ("Invalid regular expression: …: Compiled regular expression too large" or
+  // similar) — not reproducible on every Node build, so this guard is defensive, same as the two size guards above: no
+  // mask for this page, fall through to a literal compare (reported as a diff, not silently passed).
+  try { return new RegExp("^" + parts.join("") + "$"); } catch { return null; }
 }
 const esc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 function volatileMatch(where, a, b, r) {
