@@ -1124,15 +1124,27 @@ export class Pipeline {
     const sha = this.appGit.revParse(this.appGit.remoteRef("integration"));
     const mainSha = this.appGit.revParse(this.appGit.remoteRef("main"));
     if (!sha || sha === mainSha) return null;
+    // main has commits integration lacks (a PR merged straight into main): a passed regression could not fast-forward it,
+    // so none is run. Reported once per main head (HM-1341: main stood still from 10-15 for this, among other things).
+    if (mainSha && !this.appGit.isAncestor(mainSha, sha)) {
+      if (L.tick.mainDiverged !== mainSha) {
+        this.ledger.tx((L2) => { L2.tick.mainDiverged = mainSha; });
+        this.anomaly(null, `hmrsfw-vue main ${short(mainSha)} is not an ancestor of integration ${short(sha)}: a passed regression could not fast-forward main, none is opened`, "建排障单交给裁定员：把 main 普通 merge 回 integration（不 force），之后回归照常");
+      }
+      return null;
+    }
     if (reg.some((i) => i.metadata.purpose === "regression" && i.metadata.sha === sha)) return null; // this commit was tested
-    const merges = this.appGit.mergesBetween(mainSha, sha).length;
+    const mergeShas = this.appGit.mergesBetween(mainSha, sha);
+    const merges = mergeShas.length;
     const idle = !this.pipelineIssues().some((i) => ["restore", "upgrade", "audit", "arbitrate"].includes(i.metadata.kind) && ["todo", "in_progress", "in_review"].includes(i.status));
+    const since = merges ? this.appGit.commitTime(mergeShas[0]) : null;
+    const overdue = since !== null && this.now() - since >= (this.cfg.regressionMaxWaitH ?? 24) * 3600_000;
     const lastReg = reg.filter((i) => i.metadata.purpose === "regression").sort((a, b) => (a.created_at < b.created_at ? 1 : -1))[0];
     const lastFailed = !!lastReg && this.gateResult(lastReg.metadata)?.pass === false;
-    if (!(merges >= this.cfg.regressionEvery || (merges > 0 && idle) || lastFailed || L.tick.regressionDue)) return null;
+    if (!(merges >= this.cfg.regressionEvery || (merges > 0 && idle) || overdue || lastFailed || L.tick.regressionDue)) return null;
     const pages = this.passedPages(L);
     const c = this.openIntegration({ purpose: "regression", workOrders: pages, sha, key: `integration:regression:${sha}`, extra: { mainSha } });
-    if (c.id) this.ledger.tx((L2) => { L2.tick.regression = { state: "active", task: c.id, sha, mainSha, phase: "full" }; L2.tick.mergesSinceRegression = 0; L2.tick.regressionDue = false; });
+    if (c.id) this.ledger.tx((L2) => { L2.tick.regression = { state: "active", task: c.id, sha, mainSha, phase: "full" }; L2.tick.mergesSinceRegression = 0; L2.tick.regressionDue = false; delete L2.tick.mainDiverged; });
     return c.id;
   }
 
@@ -1339,6 +1351,12 @@ export class Pipeline {
 
   onBisect(taskId, meta, pass) {
     const b = meta.bisect;
+    if (b.base) {
+      this.closeIntegration(taskId, `[GATE] 二分基线：main ${short(b.mainSha)} ${pass ? "通过" : "失败"}`);
+      if (pass) return this.culprit(b.candidates[0], { ...b, base: false, baseChecked: true, step: b.step + 1 });
+      this.ledger.tx((L2) => { L2.tick.regression = { ...b, state: "failed", culprit: null, notReverted: "fails on main" }; L2.tick.regressionEpoch = (L2.tick.regressionEpoch || 0) + 1; });
+      return this.openIncident(`集成回归在 ${short(b.sha)} 失败的页在 main ${short(b.mainSha)} 上也失败：不是 main..integration 之间的合并引入的，不自动回退`, { sha: b.sha, mainSha: b.mainSha, failed: (b.failed || []).slice(0, 50) });
+    }
     this.closeIntegration(taskId, `[GATE] 二分第 ${b.step} 步：${short(b.candidates[b.mid])} ${pass ? "通过" : "失败"}`);
     const next = pass ? { ...b, lo: b.mid + 1 } : { ...b, hi: b.mid };
     return this.bisectStep({ ...next, step: b.step + 1 });
@@ -1354,6 +1372,15 @@ export class Pipeline {
     if (!m) {
       this.ledger.tx((L2) => { L2.tick.regression = { ...b, state: "failed", culprit: sha, notReverted: "no task" }; L2.tick.regressionEpoch = (L2.tick.regressionEpoch || 0) + 1; });
       return this.openIncident(`集成回归二分定位到 ${short(sha)}，但账本和提交说明里都没有这次合并的任务：不自动回退`, { sha, failed: (b.failed || []).slice(0, 50) });
+    }
+    // Bisect takes main as good. That holds when main is the last passed regression; a main set by hand (PR #11, HM-1307)
+    // may already fail these pages, and then every step fails and the first merge would be reverted for nothing. So when
+    // the first merge is blamed and main is not that commit, the failing pages are tested on main first (HM-1341).
+    const pagesOnMain = b.lo === 0 && !b.baseChecked && b.mainSha && b.mainSha !== L.tick.lastGoodSha ? this.pagesAt(b.mainSha, b.failed) : [];
+    if (pagesOnMain.length) {
+      const c = this.openIntegration({ purpose: "bisect", workOrders: pagesOnMain, sha: b.mainSha, key: `integration:bisect:${b.sha}:base`, extra: { bisect: { ...b, base: true } } });
+      this.ledger.tx((L2) => { L2.tick.regression = { state: "active", phase: "bisect-base", task: c.id, ...b }; });
+      return { ok: true, summary: `bisect: first merge ${short(sha)} blamed, main ${short(b.mainSha)} never passed a regression → test it first (${pagesOnMain.length} 页)`, anomalies: [] };
     }
     const rv = this.revertMerge(sha, `Revert ${short(sha)}: integration regression bisected to this merge`);
     this.ledger.tx((L2) => { L2.tick.regression = { ...b, state: "reverted", culprit: sha }; L2.tick.regressionEpoch = (L2.tick.regressionEpoch || 0) + 1; L2.tick.regressionDue = true; L2.newEvents.push({ type: "revert", sha, task: m.task, why: "regression" }); });
@@ -1966,7 +1993,9 @@ export class Pipeline {
     const neu = step("dispatch", () => this.dispatchNew());
     if (this.isLeader) step("fast-lane adopt", () => FL.adoptPages(this)); // after the records: recording is the time-critical part (login lifetime)
     if (this.isLeader && this.confirmLeader()) {
-      if (this.appDir) { try { this.maybeIntegrationGate(); this.maybeRegression(); } catch (e) { this.anomaly(null, `integration step failed: ${e.message}`, "检查 hmrsfw-vue 检出"); } }
+      // separate steps: an integration-gate error no longer skips the regression; without the checkout say so, not nothing
+      if (!this.appDir) this.anomaly(null, "integration gate / regression skipped: tick ran without the hmrsfw-vue checkout", "同一条命令里传 --app <hmrsfw-vue 检出目录>（HMRSFW_APP_DIR 不跨命令保留）重跑 tick");
+      else { step("integration gate", () => this.maybeIntegrationGate()); step("regression", () => this.maybeRegression()); }
       step("stop conditions", () => this.checkStopConditions());
       this.issues(true);
       step("double dispatch", () => this.detectDoubleDispatch());
