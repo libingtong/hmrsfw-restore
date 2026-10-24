@@ -170,13 +170,28 @@ export async function waitQuiet(page, sel, { quietMs = 600, maxMs = 3000 } = {})
 
 // Text with optional whitespace between characters (antd inserts a space into two-character button labels).
 const looseText = (t) => new RegExp("^\\s*" + [...t].map((c) => c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("\\s*") + "\\s*$");
+
+// Finds the last visible match of `locator`, waiting up to `timeoutMs` for one to appear (HM-1371: an element that
+// mounts a moment after the step starts was checked with a single instant isVisible() and, finding none yet, treated
+// as genuinely absent — same fix as tools/interact.mjs, which record-page.mjs runs instead of this file).
+async function waitVisible(page, locator, timeoutMs) {
+  const t0 = Date.now();
+  for (;;) {
+    let target = null;
+    for (const h of await locator.all()) if (await h.isVisible()) target = h; // last visible match = innermost element
+    if (target || Date.now() - t0 >= timeoutMs) return target;
+    await page.waitForTimeout(100);
+  }
+}
+
+// A step marked "root": true must run before the root capture (below): throw rather than return "absent" when its
+// target never appears, so runPage cannot silently take the load root instead of the step's root.
 export async function step(page, s) {
   if (s.fill) await page.getByPlaceholder(s.fill[0], { exact: true }).first().fill(s.fill[1]);
   else if (s.click || s.clickSel) {
     const all = s.click ? page.locator("button, a, .ant-tabs-tab, li, span, div").filter({ hasText: looseText(s.click) }) : page.locator(s.clickSel);
-    let target = null;
-    for (const h of await all.all()) if (await h.isVisible()) target = h; // last visible match = innermost element
-    if (!target) { if (s.optional) return "absent"; throw new Error("no visible target for " + (s.click ?? s.clickSel)); }
+    const target = await waitVisible(page, all, 5000);
+    if (!target) { if (s.optional && !s.root) return "absent"; throw new Error("no visible target for " + (s.click ?? s.clickSel)); }
     await target.click({ timeout: 5000 });
   } else if (s.press) await page.keyboard.press(s.press);
   await page.waitForTimeout(s.wait ?? 1200);
