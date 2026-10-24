@@ -2600,7 +2600,7 @@
     }
    },
    "npm": "vue-countup-v3",
-   "note": "依赖不在 hmrsfw-vue/package.json 里，版本由 E7 按指纹核对后加入",
+   "note": "按原包指纹锁到 1.4.0（与 1.3.0 产物相同；1.4.1 起 finished 侦听调用 onCompleteCallback、改原生展开，与原包不符；HM-1166）",
    "status": "npm",
    "owner": null,
    "usedBy": 5
