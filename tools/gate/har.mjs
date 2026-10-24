@@ -3,7 +3,7 @@
 // Matching, first hit wins:
 //   1. method + path (incl. query string, as Playwright's routeFromHAR did in the POC) + decrypted, canonical body;
 //   2. method + path → the first entry;
-//   3. none → NOT_IN_HAR.
+//   3. none → NOT_IN_HAR, except a static-image path (STATIC_IMAGE_PREFIX, HM-1417), which gets a blank image instead.
 // Entries record-page's write guard answered instead of sending (_intercepted, HM-992) are matched like any other and
 // replay the guard's fixed response, the same on both sides; the request log marks them tier "intercepted" (the tier is
 // not compared), so a submit the recording never sent is not a difference.
@@ -17,6 +17,21 @@ import { routeWebSockets, webSocketsOf } from "./ws.mjs";
 export const NOT_IN_HAR = '{"success":false,"code":404,"result":null,"message":"not in HAR"}';
 export const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 const SM2_HEX = /^(04)?[0-9a-f]{192,}$/i;
+
+// record-page.mjs's HAR capture never stores these as binary (HM-1417): a 1×1 transparent GIF fallback (STATIC_IMAGE_
+// PREFIX) is what a static-image request absent from the HAR gets instead of NOT_IN_HAR's JSON body. Otherwise an
+// <img> whose src points there fails to decode, collapsing its box to 0×0 — unclickable on both sides alike, since
+// routeApi (below) is the only thing either baseline.mjs or gate.mjs asks for this request.
+export const STATIC_IMAGE_PREFIX = "/jeecg-system/sys/common/static/";
+const BLANK_GIF = Buffer.from("R0lGODlhAQABAAAAACwAAAAAAQABAAACAkQBADs=", "base64");
+
+// Response for an /xf-api/ request absent from the HAR: a blank image for static-asset paths so <img> geometry and
+// clickability survive; the uniform JSON stub (unchanged) for everything else.
+export function notInHarResponse(path) {
+  return path.startsWith(STATIC_IMAGE_PREFIX)
+    ? { status: 200, headers: { "content-type": "image/gif" }, body: BLANK_GIF }
+    : { status: 200, headers: { "content-type": "application/json" }, body: Buffer.from(NOT_IN_HAR) };
+}
 
 // Body text → { kind, canon }: SM2 ciphertext (bare, or the {data:"<hex>"} envelope of encrypted POSTs) is decrypted
 // first; JSON is canonicalised (sorted keys); anything else is compared as text.
@@ -89,8 +104,8 @@ export async function routeApi(ctx, har, { log, phase, ws = () => {}, wsPhase = 
     const p = new URL(q.url()).pathname.replace(/^\/xf-api/, "");
     const b = bodyOf(q.postData());
     const m = matchHar(har, q.method(), q.url(), b);
-    if (!p.startsWith("/jeecg-system/sys/common/static/")) log({ phase: phase(), method: q.method(), path: p, query: queryOf(q.url()), bodyKind: b.kind, body: b.canon, tier: m.entry?.intercepted ? "intercepted" : m.tier ?? "not-in-har" }, q);
-    if (!m.entry) return r.fulfill({ status: 200, contentType: "application/json", body: NOT_IN_HAR });
+    if (!p.startsWith(STATIC_IMAGE_PREFIX)) log({ phase: phase(), method: q.method(), path: p, query: queryOf(q.url()), bodyKind: b.kind, body: b.canon, tier: m.entry?.intercepted ? "intercepted" : m.tier ?? "not-in-har" }, q);
+    if (!m.entry) return r.fulfill(notInHarResponse(p));
     return r.fulfill({ status: m.entry.status, headers: m.entry.headers, body: m.entry.body });
   });
 }
@@ -121,6 +136,8 @@ if (process.argv[1] && import.meta.url === (await import("node:url")).pathToFile
     t("encrypted body not recorded → first entry by path", m("/xf-api/save", JSON.stringify({ data: enc({ name: "zzz" }) })), "path:A"),
     t("plain JSON body, keys reordered → by body", m("/xf-api/plain", JSON.stringify({ x: 1, y: 2 })), "body:P"),
     t("unknown path → not in HAR", m("/xf-api/none", "{}"), "not-in-har"),
+    t("static image not in HAR → blank image, not JSON", notInHarResponse("/jeecg-system/sys/common/static/temp/2025/2/12/x.jpg").headers["content-type"], "image/gif"),
+    t("API path not in HAR → unchanged JSON stub", notInHarResponse("/job/licenseFree/xfJobFair/queryById").headers["content-type"], "application/json"),
   ];
   delete process.env.SM2_PRIVATE_KEY;
   results.push(t("no private key → falls back to path", m("/xf-api/save", JSON.stringify({ data: enc({ name: "b", n: 2 }) })), "path:A"));
