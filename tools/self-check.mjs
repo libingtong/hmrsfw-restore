@@ -26,7 +26,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { parse } from "@babel/parser";
 import { ROOT, SITES, chunkPath, importsOf } from "./scope.mjs";
-import { compilerSfc, compileSfc, loadJson, loadOrder, orderFiles, subDirFiles } from "./sfc-util.mjs";
+import { compilerSfc, compileSfc, loadJson, loadOrder, orderFiles } from "./sfc-util.mjs";
 import { checkComponents } from "./check-components.mjs";
 import { checkTextNodes } from "./check-text-nodes.mjs";
 import { checkDirectives } from "./check-directives.mjs";
@@ -109,7 +109,7 @@ export function selfCheck(order, APP, { renderEquivReport = true, readability = 
     stats.copiedArchive = archive.length;
   }
   // the order's files plus whatever else sits in its subComponentDir (assets): the files gate.mjs scans in page mode
-  const own = order.type === "entry" || partial || !order.subComponentDir ? files : [...new Set([...files, ...subDirFiles(order, APP)])];
+  const own = order.type === "entry" || partial || !order.subComponentDir ? files : [...new Set([...files, ...walk(path.join(APP, order.subComponentDir))])];
   for (const h of scanNoLegacy({ root: APP, files: own }).hits) failed.push({ check: "no-legacy", where: h.file, hint: `${h.rule} ×${h.count}：源码、注释和资源文件名里不能出现原包路径（legacy-dist）、带构建哈希的文件名或编译产物；还原来源写进回执，不写进注释` });
   for (const h of scanSecretFiles(files, rel)) failed.push({ check: "secrets", where: `${h.file}:${h.line}`, hint: `命中规则 ${h.rule}：代码、注释、回执里不能出现密钥、token、手机号、证件号、邮箱等；密钥只从环境变量读取（import.meta.env），测试数据换成明显的假值` });
 
