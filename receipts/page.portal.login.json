@@ -1,0 +1,23 @@
+{
+  "id": "page.portal.login",
+  "branch": "restore/fast-lane",
+  "result": "pass",
+  "fixRound": 1,
+  "outputs": [
+    "apps/portal/src/views/login.vue",
+    "apps/portal/src/views/login/IdentityModal.vue",
+    "apps/portal/src/views/login/loginInformation.vue"
+  ],
+  "selfCheck": { "pass": true, "failed": [], "gitBase": "763a88c51f6c8984f0fb946dc37fdb0a2ac5c542" },
+  "todos": [],
+  "unresolved": [
+    "load requests：randomImage 地址末尾的时间戳两侧不同（原 …200000，还原 …203000，首轮 …209000）。该时间戳是入口模块加载时刻（Date.parse 取整到秒），页面侧无可改之处，见 notes 疑似比对器问题"
+  ],
+  "needsFromSkeleton": [],
+  "notes": [
+    "fix 1：未改代码。原包 randomImage（入口 Fa）地址为 \"/jeecg-system/sys/randomImage/\"+Ga，Ga=Date.parse(new Date) 在入口模块求值；还原 @/legacy/api 的 randomImage 用 @/legacy/utils 的 PAGE_LOAD_TIMESTAMP，同为模块级常量，且 main.ts→@/legacy→@/legacy/utils 在入口依赖图里，求值时机与原包一致；页面 refreshCaptcha 与原包 X 逐句一致",
+    "疑似比对器问题：replay.mjs 两侧时钟都从录制分钟起点正常走（setSystemTime），原包是预构建产物，1 秒内求值得 …200000；还原侧 page 模式用 Vite 按需编译（build ondemand），入口模块链加载耗时 3–9 秒，时间戳随之偏移，首轮与 retry 的值不同（+9s/+3s）也说明是加载时序而非代码差异",
+    "建议：门槛员可用 --build full 重跑确认；若仍不一致，请裁定员评估对 randomImage/<13 位时间戳> 路径段的规范化（规则变更单，修正员不提出）",
+    "self-check pass（仅 warn），未改动产物仓库，无新提交"
+  ]
+}
