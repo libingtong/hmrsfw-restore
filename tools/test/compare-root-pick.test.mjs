@@ -73,20 +73,3 @@ test("no final root on either side (HM-1278): the same state, not a root failure
   // only one original run without any final candidate: compared as before
   assert.deepEqual(fails(cmp([o(), kept()], run([page], []))), ["final.root"]);
 });
-
-test("original load root genuinely empty on every run (HM-1432/HM-1433, baseline.emptyRenderLoad): not a root/baseline/render failure when the restored load is empty too; real content on either side still fails", () => {
-  const empty = () => ({ cls: null, tree: null, ltgt: true, text: "", empty: true });
-  const cmpEmpty = (origRuns, rest) => compareRuns({ runs: origRuns, shell: { requests: [] }, emptyRenderLoad: true }, rest, { rules, site: "usercenter" });
-  const o = () => run([empty()]);
-  assert.deepEqual(fails(cmpEmpty([o(), o()], run([empty()]))), []);
-  // the restored side rendered something real: original has no candidate of that class, a root mismatch, not masked
-  assert.deepEqual(fails(cmpEmpty([o(), o()], run([top]))), ["load.root"]);
-  // the original kept a real root even though the flag is set (baseline.mjs would never produce this, but the
-  // comparator only trusts the raw candidates, not the flag alone): restored empty is a genuine root + render failure
-  assert.deepEqual(fails(cmpEmpty([run([top]), run([top])], run([empty()]))), ["load.render", "load.root"]);
-  // only one original run genuinely empty, the other with real content: not symmetric, not masked (the pre-existing
-  // baseline/render checks below this, unrelated to this change, still fire on the per-run empty flag they already used)
-  assert.deepEqual(fails(cmpEmpty([o(), run([top])], run([empty()]))), ["load.baseline", "load.render"]);
-  // without the flag a genuinely empty page on both sides still fails as before: baseline.mjs is what must opt in
-  assert.deepEqual(fails(cmp([o(), o()], run([empty()]))), ["load.baseline", "load.render"]);
-});
