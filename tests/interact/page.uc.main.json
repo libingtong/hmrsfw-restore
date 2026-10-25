@@ -1,5 +1,7 @@
 [
   {"wait":800},
+  {"clickSel":".ant-modal-close","optional":true},
+  {"wait":500},
   {"click":"编辑"},
   {"wait":800}
 ]
