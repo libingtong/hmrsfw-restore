@@ -85,12 +85,14 @@ function taskInfo(task) {
 export function interactRef(argv, { root = ROOT, remote = "origin" } = {}) {
   const want = opt(argv, "--interact-ref", `${remote}/${INTERACT_BRANCH}`);
   if (want === "worktree") return null;
-  const git = (args) => execFileSync("git", ["-C", root, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], timeout: 120000 }).trim();
+  const git = (args) => execFileSync("git", ["-C", root, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 120000 }).trim();
   if (want !== `${remote}/${INTERACT_BRANCH}`) { try { return git(["rev-parse", "--verify", "--quiet", `${want}^{commit}`]); } catch { throw new Error(`--interact-ref ${want}: no such commit in the tool repo`); } }
   const tmp = `refs/gate-interact/${process.pid}-${Date.now()}`; // a private ref: concurrent gates never share one
   for (let i = 1; ; i++) { // same retries as checkoutBranch, then it is the gate's own error
     try { git(["fetch", "-q", "--no-write-fetch-head", remote, `+refs/heads/${INTERACT_BRANCH}:${tmp}`]); break; } catch (e) {
-      if (i >= 3) throw new Error(`git fetch of the tool repo's ${INTERACT_BRANCH} branch (interaction scripts) failed 3 times`);
+      // the raw git stderr (not just this summary) carries the SSL_ERROR_SYSCALL / port 443 wording classifyGateError
+      // matches as "environment" — dropping it here made every transient GitHub blip misclassify as "other" (HM-1451).
+      if (i >= 3) throw new Error(`git fetch of the tool repo's ${INTERACT_BRANCH} branch (interaction scripts) failed 3 times: ${String(e.stderr || e.message).trim()}`);
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5000 * i);
     }
   }
@@ -140,8 +142,9 @@ function refreshBaseline(wo, har, state, dry, interact) {
 // GitHub connections occasionally drop: three tries, then it is the gate's own error.
 function fetchBranches(baseApp, branches) {
   for (let i = 1; ; i++) {
-    try { execFileSync("git", ["-C", baseApp, "fetch", "-q", "origin", ...branches.map((b) => `+refs/heads/${b}:refs/remotes/origin/${b}`)], { stdio: "ignore", timeout: 120000 }); return; } catch (e) {
-      if (i >= 3) throw new Error(`git fetch of ${branches.join(", ")} failed 3 times`);
+    try { execFileSync("git", ["-C", baseApp, "fetch", "-q", "origin", ...branches.map((b) => `+refs/heads/${b}:refs/remotes/origin/${b}`)], { encoding: "utf8", stdio: ["ignore", "ignore", "pipe"], timeout: 120000 }); return; } catch (e) {
+      // see interactRef: keep the git stderr so classifyGateError can still tell a transient network error from a real one.
+      if (i >= 3) throw new Error(`git fetch of ${branches.join(", ")} failed 3 times: ${String(e.stderr || e.message).trim()}`);
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5000 * i);
     }
   }
@@ -162,10 +165,12 @@ export function fetchRef(baseApp, branch) {
   if (hasCommit(baseApp, sha)) return sha;
   fetchBranches(baseApp, ["integration"]);
   if (hasCommit(baseApp, sha)) return sha;
+  let lastErr;
   for (let i = 1; ; i++) {
-    try { execFileSync("git", ["-C", baseApp, "fetch", "-q", "--no-write-fetch-head", "origin", sha], { stdio: "ignore", timeout: 120000 }); } catch {}
+    try { execFileSync("git", ["-C", baseApp, "fetch", "-q", "--no-write-fetch-head", "origin", sha], { encoding: "utf8", stdio: ["ignore", "ignore", "pipe"], timeout: 120000 }); } catch (e) { lastErr = e; }
     if (hasCommit(baseApp, sha)) return sha;
-    if (i >= 3) throw new Error(`commit ${sha} not found: not on origin/integration and git fetch of it failed 3 times`);
+    // see interactRef: keep the git stderr so classifyGateError can still tell a transient network error from a real one.
+    if (i >= 3) throw new Error(`commit ${sha} not found: not on origin/integration and git fetch of it failed 3 times: ${String(lastErr?.stderr || lastErr?.message).trim()}`);
     Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5000 * i);
   }
 }
