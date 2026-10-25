@@ -1,21 +1,20 @@
 {
   "id": "page.portal.region.innovation.index",
   "ticket": "page.portal.region.innovation.index",
-  "task": "HM-1011",
-  "group": "还原-Opus@Mac",
-  "branch": "restore/upg-17-a1",
-  "result": "fail",
+  "task": "HM-295",
+  "group": "修正员",
+  "branch": "restore/fast-lane",
+  "result": "no-page-fix",
   "outputs": [],
-  "todos": [
-    "升级单无公共库改动可做：restore/upg-17-a1 与 origin/integration（afed44f）相同，门槛 --mode upgrade 静态阶段会报 scope「changes nothing」，需裁定员处理",
-    "剩余差异是 swiper 自动播放时序，不是公共库问题：gate.1（commit bf4d726）load/final 两侧 swiper-pagination 结构、类名、bullet 数（3 个）、slide 内联样式完全一致，只有激活下标不同（原版 load=0/final=2，还原版 load=1/final=1），对应 swiper-wrapper translate3d 与各 slide coverflow transform 随之不同；像素 3.706% 同源",
-    "建议规则变更单（裁定员提出）：把 HM-273 的回放暂停自动播放扩到 swiper——tools/gate/replay.mjs pauseCarousels 目前只对 .slick-track 发 mouseover，swiper 自动播放（autoplay delay 5000，页面 onMouseenter→autoplay.stop 与原 chunk 一致）没有被暂停，快照落在哪一张取决于 settle 时长（还原版 settleMs 12802）"
+  "todos": [],
+  "needsFromSkeleton": [
+    "疑似比对器问题（基线过期）：gate.2 剩下的差异全是 a-image 是否走 fallback。原版基线里 cyxmList/cydsList/活动轮播的 a-image 都是 ant-image-error + fallback（/default/cyxm.jpg、teacher.jpg、fc.jpg），还原版是成功加载的 /xf-api/jeecg-system/sys/common/static/... 原地址。差异来自工具仓库 1099821（rule(gate): static-image requests not in HAR get a blank image，HM-1379/HM-1417，10-25 合入）：HAR 里没有的静态图从 JSON 桩改为 1×1 空白 GIF。还原侧按新规则回放，图片解码成功，不触发 onError；原版基线是在此规则之前回放生成的（JSON 桩 → 解码失败 → fallback），没有重新生成。HM-1379.md 说的「两侧同一处理」只对重新回放的基线成立。页高 1917 vs 2050、像素 18.365% 同源：fallback 图和 1×1 GIF 撑出的盒子高度不同。需要用当前 har.mjs 重新生成本页基线（baseline.mjs，录制员/门槛员），或者由裁定员处理基线与规则版本不一致的问题。凡是依赖 static 图 fallback、基线早于 1099821 的页面都会有同样问题"
   ],
-  "needsFromSkeleton": [],
   "notes": [
-    "needsFromSkeleton 第 1 条（本机 origin）：规则 rules/compare/47-local-origin.json 已合入 main（c92cf76）并进快速通道，gate.1 重跑已无端口差异",
-    "needsFromSkeleton 第 2 条（swiper 版本）：HM-800（upg-6）已合入 integration（d1c8903）并同步 restore/fast-lane（cf7b014），门户 swiper 别名到 swiper-portal=npm:swiper@8.0.1；核对 legacy-dist/portal/assets/pagination.1783320636200.js 与 swiper-portal/modules/pagination/pagination.js 逻辑一致，gate.1 中 pagination 已在 wrapper 之前、无 swiper-watch-progress，结构差异已消除",
-    "self-check.mjs 未跑：本单无改动文件，页面目标只在 restore/fast-lane 上，不在本分支"
+    "无页面改动：index.vue 的模板（a-image 的 src/fallback/preview）和原 chunk legacy-dist/portal/assets/index.178332063620066.js 逐项一致；bf4d726→763a88c 之间 apps/portal/src/views/region/innovation 没有改动",
+    "对照：gate.1（commit bf4d726，规则 f540abd，在 1099821 之前）的还原侧 load.html 有 6 处 ant-image-error，和原版一致；gate.2（规则 215e49a，含 1099821）还原侧为 0 处，原版仍为 6 处",
+    "swiper 差异已不在 gate.2 的失败项里（HM-800 swiper@8.0.1 生效）",
+    "self-check.mjs 在 restore/fast-lane（763a88c）上 pass:true"
   ],
-  "selfCheck": { "pass": null, "skipped": "no changed files", "components": 0, "scopedSlots": 0, "directives": 0, "textNodesChecked": false }
+  "selfCheck": { "pass": true }
 }
