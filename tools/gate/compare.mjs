@@ -42,15 +42,6 @@ export function pixelDiff(a, b, out, threshold, masks = []) {
   if (out) writeFileSync(out, PNG.sync.write(D));
   return { ratio: w * h > masked ? n / (w * h - masked) : 0, sizeA: [A.width, A.height], sizeB: [B.width, B.height], masked };
 }
-// A root that paints nothing (zero-area box, no painted content: replay.mjs paintedBoxInPage, HM-380) has no shot, only
-// `blank`. Two blank roots are equal; a blank root against a shot differs in every pixel the other side paints.
-const pngSize = (f) => { const P = PNG.sync.read(readFileSync(f)); return [P.width, P.height]; };
-export function shotDiff(a, b, out, threshold, masks = []) {
-  if (a.blank && b.blank) return { ratio: 0, sizeA: [0, 0], sizeB: [0, 0] };
-  if (a.blank || b.blank) return { ratio: 1, sizeA: a.blank ? [0, 0] : pngSize(a.shot), sizeB: b.blank ? [0, 0] : pngSize(b.shot) };
-  return pixelDiff(a.shot, b.shot, out, threshold, masks);
-}
-
 // Volatile canvases (HM-302; rule volatile-canvas). Like the volatile mask for HTML and text below: where the original
 // itself is unstable, the differing positions are not compared. A canvas's content is not in the DOM tree, so the unit is
 // the canvas's box: a <canvas> at the same box (±1 px) in both original shots and in the restored one (replay.mjs
@@ -131,7 +122,7 @@ export function project(run, { rules, shell, exclude, cls = {}, known, side, use
     "load.text": lFound ? k("load.text", normText(lc?.text, rules)) : null,
     "load.overlay": k("load.overlay", normOverlay(overlayText(run.load?.overlay, shellToasts), rules)),
     "load.requests": k("load.requests", loadSet(run.load?.requests ?? [], new Set([...shell, ...exclude]))),
-    shot: lc?.shot ?? null, canvases: lc?.canvases ?? null, blank: !!lc?.blank, cls: lc?.cls ?? null, empty: !lc || lc.empty || !lc.tree, root: { load: lFound },
+    shot: lc?.shot ?? null, canvases: lc?.canvases ?? null, cls: lc?.cls ?? null, empty: !lc || lc.empty || !lc.tree, root: { load: lFound },
   };
   // pages opened by the page under test, in order; a run recorded before HM-797 has none stored and counts as having
   // opened none (re-record its baseline if the original does open a page)
@@ -265,12 +256,12 @@ export function compareRuns(baseline, rest, { rules, site, known = [], shotOut, 
   }
   if (R["steps.errors"]?.length) failed.push({ check: "step-error", where: "steps", hint: R["steps.errors"].slice(0, 3).join("; ") });
   let pixel = null, vc = { masks: [], failed: [] };
-  if ((R.shot || R.blank) && !afterSteps) {
+  if (R.shot && !afterSteps) {
     if (rules.volatileCanvas && O.length > 1 && R.shot) vc = volatileCanvases(O, R, { threshold: rules.pixel.threshold, inkRange: rules.volatileCanvas.inkRange });
     failed.push(...vc.failed);
     for (const [i, o] of O.entries()) {
-      if (!o.shot && !o.blank) continue;
-      const d = shotDiff(o, R, i === 0 ? shotOut : null, rules.pixel.threshold, vc.masks);
+      if (!o.shot) continue;
+      const d = pixelDiff(o.shot, R.shot, i === 0 ? shotOut : null, rules.pixel.threshold, vc.masks);
       if (!pixel || d.ratio < pixel.ratio) pixel = d;
     }
     if (pixel && pixel.ratio > rules.pixel.maxRatio) failed.push({ check: "pixel", where: "load", hint: `${(pixel.ratio * 100).toFixed(3)}% of pixels differ (max ${(rules.pixel.maxRatio * 100).toFixed(1)}%), size ${pixel.sizeA.join("x")} vs ${pixel.sizeB.join("x")}` });
@@ -288,6 +279,6 @@ export function unstableKeys(runA, runB, { rules, site, shell, shellToasts, inPa
   const b = project(runB, { rules, shell, exclude, cls, shellToasts });
   const out = Object.keys(a).filter((k) => k.includes(".") && !same(a[k], b[k]));
   const masks = rules.volatileCanvas ? volatileCanvases([a, b], null, { threshold: rules.pixel.threshold, inkRange: rules.volatileCanvas.inkRange }).masks : [];
-  if ((a.shot || a.blank) && (b.shot || b.blank) && !(inParent && rootAfterSteps([runA, runB]))) { const d = shotDiff(a, b, null, rules.pixel.threshold, masks); if (d.ratio > rules.pixel.maxRatio) out.push("load.pixel"); }
+  if (a.shot && b.shot && !(inParent && rootAfterSteps([runA, runB]))) { const d = pixelDiff(a.shot, b.shot, null, rules.pixel.threshold, masks); if (d.ratio > rules.pixel.maxRatio) out.push("load.pixel"); }
   return out;
 }
