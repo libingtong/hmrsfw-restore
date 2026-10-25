@@ -1,0 +1,37 @@
+{
+  "id": "page.portal.xjhm.bigData.newBigdata",
+  "ticket": "page.portal.xjhm.bigData.newBigdata",
+  "group": "还原-DeepSeek@Mac",
+  "branch": "restore/page.portal.xjhm.bigData.newBigdata-a1",
+  "result": "ok",
+  "outputs": [
+    "apps/portal/src/views/xjhm/bigData/newBigdata.vue",
+    "apps/portal/src/views/xjhm/bigData/newBigdata/manaLoginModal.vue"
+  ],
+  "todos": [
+    "自检剩 1 项 warn：manaLoginModal.vue:107 eslint vue/attributes-order（验证码输入框 v-model:value 写在 placeholder 之后）。这样编译出的 props 顺序与原 render 完全一致（render-equiv 为 EQUAL），只影响写法不影响行为，故按等价优先保留。",
+    "指标卡图标（/xjhm/bigdata/yrdws.png 等 7 个）和 /default/noDataBig.png 在 public/ 与原包里都没有：静态 src 会被 Vite 当作 import 导致构建失败，按本仓库其他页面的先例改成字符串常量 + :src 绑定，渲染出的 src 不变。",
+    "样式由 node tools/css-by-scope.mjs <工单> --write 写入，之后按仓库 .prettierrc.json 格式化（只改了十六进制大小写与 linear-gradient 参数后的空格），CSS 规则内容未改。",
+    "主组件原 chunk 里没有 __name（名字来自 defineComponent({name})），render-equiv 无法配对比较该组件，只报告了子组件的 EQUAL；主组件的模板结构、静态节点、补丁标记已逐段对照原 render 核对。"
+  ],
+  "needsFromSkeleton": [],
+  "selfCheck": {
+    "pass": true,
+    "components": 2,
+    "scopedSlots": 0,
+    "directives": 1,
+    "textNodesChecked": true,
+    "failed": [
+      "readability(warn) manaLoginModal.vue:107 eslint vue/attributes-order"
+    ],
+    "stats": {
+      "textNodes": { "original": 9, "restored": 9 },
+      "directives": { "original": 1, "restored": 1 },
+      "branches": { "original": 10, "restored": 10 },
+      "imports": { "files": 2, "imports": 15 },
+      "readability": { "mode": "report", "items": 1 }
+    },
+    "renderEquiv": { "allEqual": true, "compared": "manaLoginModal" },
+    "build": "vite build -c vite.portal.config.ts 通过（newBigdata chunk 16.14 kB）"
+  }
+}
