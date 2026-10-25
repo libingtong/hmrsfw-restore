@@ -11,10 +11,13 @@
     "疑似比对器问题（基线过期）：gate.2 剩下的差异全是 a-image 是否走 fallback。原版基线里 cyxmList/cydsList/活动轮播的 a-image 都是 ant-image-error + fallback（/default/cyxm.jpg、teacher.jpg、fc.jpg），还原版是成功加载的 /xf-api/jeecg-system/sys/common/static/... 原地址。差异来自工具仓库 1099821（rule(gate): static-image requests not in HAR get a blank image，HM-1379/HM-1417，10-25 合入）：HAR 里没有的静态图从 JSON 桩改为 1×1 空白 GIF。还原侧按新规则回放，图片解码成功，不触发 onError；原版基线是在此规则之前回放生成的（JSON 桩 → 解码失败 → fallback），没有重新生成。HM-1379.md 说的「两侧同一处理」只对重新回放的基线成立。页高 1917 vs 2050、像素 18.365% 同源：fallback 图和 1×1 GIF 撑出的盒子高度不同。需要用当前 har.mjs 重新生成本页基线（baseline.mjs，录制员/门槛员），或者由裁定员处理基线与规则版本不一致的问题。凡是依赖 static 图 fallback、基线早于 1099821 的页面都会有同样问题"
   ],
   "notes": [
+    "第 2 轮（gateSeq 7 重跑，commit 763a88c 不变）：重跑报告里原版 load/final 各 6 处 ant-image-error，还原版各 0 处，和上一轮相同；仍然没有页面可改的地方。页面层已经穷尽，需要裁定员安排用当前 har.mjs 重新生成本页基线（或者处理基线与规则版本不一致）",
     "无页面改动：index.vue 的模板（a-image 的 src/fallback/preview）和原 chunk legacy-dist/portal/assets/index.178332063620066.js 逐项一致；bf4d726→763a88c 之间 apps/portal/src/views/region/innovation 没有改动",
     "对照：gate.1（commit bf4d726，规则 f540abd，在 1099821 之前）的还原侧 load.html 有 6 处 ant-image-error，和原版一致；gate.2（规则 215e49a，含 1099821）还原侧为 0 处，原版仍为 6 处",
     "swiper 差异已不在 gate.2 的失败项里（HM-800 swiper@8.0.1 生效）",
     "self-check.mjs 在 restore/fast-lane（763a88c）上 pass:true"
   ],
-  "selfCheck": { "pass": true }
+  "selfCheck": {
+    "pass": true
+  }
 }
