@@ -47,7 +47,7 @@ import { appDir as resolveAppDir } from "./app-dir.mjs";
 import { gitExclude } from "./lib/git-exclude.mjs";
 import { INTERACT_BRANCH, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, origSelOf, restSelOf, scopeRootSel, stateDir } from "./gate/common.mjs";
 import { loadHar, sha256, STATIC_IMAGE_PREFIX } from "./gate/har.mjs";
-import { VIEWPORT, runPage } from "./gate/replay.mjs";
+import { runPage } from "./gate/replay.mjs";
 import { compareRuns } from "./gate/compare.mjs";
 import { loadKnownDiffs, loadRules } from "./gate/rules.mjs";
 import { pageFiles, selfCheck, staticStage } from "./gate/static.mjs";
@@ -116,10 +116,6 @@ export async function baselineFor(wo, state, { interact = null } = {}) {
   // markOffscope). `offscopeAll` implies `offscopeFixed`.
   if (wo.recordVia && !b.offscopeFixed) return { missing: "component shots taken with off-scope fixed elements (before HM-253)", refresh: b.har.path };
   if (wo.recordVia && !b.offscopeAll) return { missing: "component shots taken with off-scope elements around the component (before HM-342)", refresh: b.har.path };
-  // Same again for baselines that may hold a zero-area root shot as the whole viewport (taken before HM-380, replay.mjs
-  // paintedBoxInPage): any load shot of exactly the viewport's size. A root that really is that size is shot the same way
-  // again, so recomputing it changes nothing.
-  if (!b.paintedBox && b.runs.some((r) => r.load.candidates.some((c) => c.shot && existsSync(c.shot) && sameSize(c.shot, VIEWPORT)))) return { missing: "zero-area root shot as the whole viewport (before HM-380)", refresh: b.har.path };
   // Same again for baselines whose shots hold a <canvas> but not its box (before HM-302, replay.mjs canvasBoxesInPage):
   // without it compareRuns cannot tell a canvas that differs between the original's two runs (volatileCanvases).
   // Recomputed from the same HAR; the shots, DOM and requests are taken as before.
@@ -132,9 +128,6 @@ export async function baselineFor(wo, state, { interact = null } = {}) {
   if (!b.staticImageOk && b.runs.some((r) => staticImageGap(r, b.har.path))) return { missing: "static-image fallback changed since the baseline (HM-1417/HM-1460)", refresh: b.har.path };
   return { baseline: b, dir };
 }
-
-// PNG header: width and height at bytes 16–23.
-const sameSize = (file, { width, height }) => { const h = readFileSync(file).subarray(16, 24); return h.length === 8 && h.readUInt32BE(0) === width && h.readUInt32BE(4) === height; };
 
 // Does this run's load shot reference a STATIC_IMAGE_PREFIX <img> whose request this baseline's own HAR never
 // recorded? That image was painted via har.mjs's notInHarResponse fallback at record time (tree src attributes are
