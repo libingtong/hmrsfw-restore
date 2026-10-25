@@ -24,26 +24,8 @@ export function compilerSfc(APP) {
   return sfcCache.get(APP);
 }
 
-// Every other order's own `target`, relative to the tool repo's queue (HM-1382). A nested-route order's target can sit
-// inside a sibling order's subComponentDir (page.uc.personLoan.detailInfo's apps/uc/src/views/personLoan/detailInfo.vue
-// is under page.uc.personLoan's subComponentDir apps/uc/src/views/personLoan/, because /personLoan/detailInfo is a
-// sub-route): that file is detailInfo's own component, not one of personLoan's, even though it lives in personLoan's
-// directory. Cached for the process: the queue does not change mid-run (matches sfcCache/compileCache below).
-let targetOwners = null;
-function targetOwnerOf(rel) {
-  if (!targetOwners) {
-    targetOwners = new Map();
-    const dir = path.join(ROOT, "queue");
-    for (const f of readdirSync(dir)) {
-      if (!f.endsWith(".json")) continue;
-      try { const o = JSON.parse(readFileSync(path.join(dir, f), "utf8")); if (o.target) targetOwners.set(o.target, o.id); } catch { /* not a work order */ }
-    }
-  }
-  return targetOwners.get(rel);
-}
-
 // The .vue files a page/segment/shared order delivers: its target, the relative .vue imports reachable from it, and the
-// files under subComponentDir (excluding segment fragments and another order's own target).
+// files under subComponentDir (excluding segment fragments).
 export function orderFiles(order, APP) {
   const abs = (rel) => path.resolve(APP, rel);
   const files = new Set();
@@ -55,13 +37,7 @@ export function orderFiles(order, APP) {
     if (!/\.(vue|ts)$/.test(f)) continue;
     for (const m of readFileSync(f, "utf8").matchAll(/from\s+["'](\.{1,2}\/[^"']+\.vue)["']/g)) { const p = path.resolve(path.dirname(f), m[1]); if (existsSync(p)) q.push(p); }
   }
-  if (order.subComponentDir) {
-    for (const f of walk(abs(order.subComponentDir))) {
-      const owner = targetOwnerOf(path.relative(APP, f).split(path.sep).join("/"));
-      if (owner && owner !== order.id) continue;
-      files.add(f);
-    }
-  }
+  if (order.subComponentDir) for (const f of walk(abs(order.subComponentDir))) files.add(f);
   return [...files];
 }
 
