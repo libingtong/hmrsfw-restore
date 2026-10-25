@@ -110,14 +110,20 @@ async function main() {
     // With the script's root step (HM-1294) the load root is taken after the step that opens the component instead.
     const r1 = rec.runs[0], afterSteps = !!wo.recordVia && rootAfterSteps(rec.runs);
     const c0 = afterSteps ? r1.final.candidates.find((c) => !c.empty) : r1.load.candidates[0];
-    if (!c0 || c0.empty) throw new Error(`original page root (${rec.sel}) not found at ${wo.recordPath}${r1.load.afterStep !== undefined ? ` after step ${r1.load.afterStep} (the root step)` : wo.recordVia && rec.steps ? " (nor after the steps in every run)" : wo.recordVia ? `; if the component only mounts after an interaction (a modal, a later tab), mark the step that opens it with "root": true in tests/interact/${id}.json` : ""}`);
+    // wo.emptyRender (rule change HM-1432/HM-1433): the original chunk's setup() genuinely renders nothing at load on
+    // every run (confirmed from source, not a recording fluke) — compare.mjs's bothRootless treats this the same way
+    // it already treats a recordVia component with no root at any phase: no root failure as long as the restored side
+    // is equally empty. Only a page marked this way skips the throw; every other page still fails loudly on an
+    // unexpectedly empty root (a real recording/replay bug).
+    const genuinelyEmpty = !!wo.emptyRender && !afterSteps && rec.runs.every((r) => (r.load?.candidates ?? []).every((c) => c.empty));
+    if (!c0 || (c0.empty && !genuinelyEmpty)) throw new Error(`original page root (${rec.sel}) not found at ${wo.recordPath}${r1.load.afterStep !== undefined ? ` after step ${r1.load.afterStep} (the root step)` : wo.recordVia && rec.steps ? " (nor after the steps in every run)" : wo.recordVia ? `; if the component only mounts after an interaction (a modal, a later tab), mark the step that opens it with "root": true in tests/interact/${id}.json` : ""}`);
     const runs = rec.runs.map((r) => slimRun(r, tmp));
     writeFileSync(path.join(tmp, "dom.html"), c0.html);
     writeFileSync(path.join(tmp, "text.txt"), c0.text);
     writeFileSync(path.join(tmp, "seq.json"), JSON.stringify({ load: runs[0].load.requests, shell: rec.shell.requests, steps: runs[0].stepLog ?? [], opened: runs[0].opened ?? [] }, null, 1));
     writeFileSync(path.join(tmp, "baseline.json"), JSON.stringify({
       version: BASELINE_VERSION, wo: id, site: wo.site, app: wo.app, recordPath: wo.recordPath, role: wo.role, sourceChunk: wo.sourceChunk,
-      har: { path: publish ?? harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version, sel: rec.sel, ...(wo.recordVia ? { offscopeFixed: true, offscopeAll: true } : {}), ...(afterSteps ? { rootAfterSteps: true } : {}), paintedBox: true, canvasBoxes: true,
+      har: { path: publish ?? harFile, sha256: sha256(readFileSync(harFile)) }, createdAt: new Date().toISOString(), rulesAtRecord: rules.version, sel: rec.sel, ...(wo.recordVia ? { offscopeFixed: true, offscopeAll: true } : {}), ...(afterSteps ? { rootAfterSteps: true } : {}), ...(genuinelyEmpty ? { emptyRenderLoad: true } : {}), paintedBox: true, canvasBoxes: true,
       ...(rec.coverage ? { coverage: summaryOf(rec.coverage) } : {}),
       shell: rec.shell, steps: rec.steps, script: rec.script, unstable: rec.unstable, runs,
     }));
