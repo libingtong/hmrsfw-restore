@@ -46,7 +46,7 @@ import { pathToFileURL } from "node:url";
 import { appDir as resolveAppDir } from "./app-dir.mjs";
 import { gitExclude } from "./lib/git-exclude.mjs";
 import { INTERACT_BRANCH, ROOT, SITES, assetsDir, authStorage, flag, interactScript, loadWorkOrder, missingCryptoEnv, opt, origSelOf, restSelOf, scopeRootSel, stateDir } from "./gate/common.mjs";
-import { loadHar, sha256 } from "./gate/har.mjs";
+import { loadHar, sha256, STATIC_IMAGE_PREFIX } from "./gate/har.mjs";
 import { VIEWPORT, runPage } from "./gate/replay.mjs";
 import { compareRuns } from "./gate/compare.mjs";
 import { loadKnownDiffs, loadRules } from "./gate/rules.mjs";
@@ -124,11 +124,32 @@ export async function baselineFor(wo, state, { interact = null } = {}) {
   // without it compareRuns cannot tell a canvas that differs between the original's two runs (volatileCanvases).
   // Recomputed from the same HAR; the shots, DOM and requests are taken as before.
   if (!b.canvasBoxes && b.runs.some((r) => r.load?.candidates?.some((c) => c.shot && JSON.stringify(c.tree ?? null).includes('"t":"canvas"')))) return { missing: "canvas boxes not recorded (before HM-302)", refresh: b.har.path };
+  // Same again for baselines recorded before the static-image fallback painted a real box: HM-1417 shipped
+  // notInHarResponse but its GIF decoded to an opaque black pixel (HM-1460 fixed it to transparent). A load shot
+  // whose DOM has a /common/static/ <img> this baseline's own HAR never recorded painted that image's box as 0×0
+  // (decode failure) at record time — a fresh replay today gives it real, non-zero geometry either way. Recomputed
+  // from the same HAR.
+  if (!b.staticImageOk && b.runs.some((r) => staticImageGap(r, b.har.path))) return { missing: "static-image fallback changed since the baseline (HM-1417/HM-1460)", refresh: b.har.path };
   return { baseline: b, dir };
 }
 
 // PNG header: width and height at bytes 16–23.
 const sameSize = (file, { width, height }) => { const h = readFileSync(file).subarray(16, 24); return h.length === 8 && h.readUInt32BE(0) === width && h.readUInt32BE(4) === height; };
+
+// Does this run's load shot reference a STATIC_IMAGE_PREFIX <img> whose request this baseline's own HAR never
+// recorded? That image was painted via har.mjs's notInHarResponse fallback at record time (tree src attributes are
+// recorded verbatim, "/xf-api" prefix included, same as the live request har.mjs matches against).
+function staticImageGap(r, harFile) {
+  const candidates = r.load?.candidates ?? [];
+  if (!candidates.some((c) => JSON.stringify(c.tree ?? null).includes(STATIC_IMAGE_PREFIX))) return false;
+  const har = loadHar(harFile);
+  const present = new Set([...har.byKey.keys()].map((k) => k.slice(k.indexOf(" ") + 1).split("?")[0]));
+  for (const c of candidates) for (const m of JSON.stringify(c.tree ?? null).matchAll(/\["src","([^"]*)"\]/g)) {
+    const p = m[1].split("?")[0];
+    if (p.includes(STATIC_IMAGE_PREFIX) && !present.has(p)) return true;
+  }
+  return false;
+}
 
 // Re-runs baseline.mjs for one order with the HAR its baseline was recorded with (legacy-dist replayed under that HAR,
 // nothing goes to the test environment). Dry runs write into their own directory, never over the shared baseline.
