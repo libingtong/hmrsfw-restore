@@ -3,7 +3,7 @@
 // Matching, first hit wins:
 //   1. method + path (incl. query string, as Playwright's routeFromHAR did in the POC) + decrypted, canonical body;
 //   2. method + path → the first entry;
-//   3. none → NOT_IN_HAR, except a static-image path (STATIC_IMAGE_PREFIX, HM-1417), which gets a blank image instead.
+//   3. none → NOT_IN_HAR.
 // Entries record-page's write guard answered instead of sending (_intercepted, HM-992) are matched like any other and
 // replay the guard's fixed response, the same on both sides; the request log marks them tier "intercepted" (the tier is
 // not compared), so a submit the recording never sent is not a difference.
@@ -17,27 +17,6 @@ import { routeWebSockets, webSocketsOf } from "./ws.mjs";
 export const NOT_IN_HAR = '{"success":false,"code":404,"result":null,"message":"not in HAR"}';
 export const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 const SM2_HEX = /^(04)?[0-9a-f]{192,}$/i;
-
-// record-page.mjs's HAR capture never stores these as binary (HM-1417): a 1×1 transparent GIF fallback (STATIC_IMAGE_
-// PREFIX) is what a static-image request absent from the HAR gets instead of NOT_IN_HAR's JSON body. Otherwise an
-// <img> whose src points there fails to decode, collapsing its box to 0×0 — unclickable on both sides alike, since
-// routeApi (below) is the only thing either baseline.mjs or gate.mjs asks for this request.
-export const STATIC_IMAGE_PREFIX = "/jeecg-system/sys/common/static/";
-// HM-1417's first attempt (rule/hm-1379-static-img-not-in-har) shipped a GIF with no global color table and no
-// transparency extension, so Chrome painted the single pixel black instead of leaving it transparent; a width:100%
-// <img> stretched that into a full opaque block and broke pixel comparison broadly enough that the full regression
-// reverted the rule (HM-1460). This is the classic "spacer.gif" 1x1 transparent GIF: a 2-entry global color table
-// plus a Graphic Control Extension marking index 0 transparent — verified byte-by-byte in --selftest below, not just
-// by content-type, which is what let the first attempt's bug through.
-const TRANSPARENT_GIF = Buffer.from("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7", "base64");
-
-// Response for an /xf-api/ request absent from the HAR: a blank image for static-asset paths so <img> geometry and
-// clickability survive; the uniform JSON stub (unchanged) for everything else.
-export function notInHarResponse(path) {
-  return path.startsWith(STATIC_IMAGE_PREFIX)
-    ? { status: 200, headers: { "content-type": "image/gif" }, body: TRANSPARENT_GIF }
-    : { status: 200, headers: { "content-type": "application/json" }, body: Buffer.from(NOT_IN_HAR) };
-}
 
 // Body text → { kind, canon }: SM2 ciphertext (bare, or the {data:"<hex>"} envelope of encrypted POSTs) is decrypted
 // first; JSON is canonicalised (sorted keys); anything else is compared as text.
@@ -110,8 +89,8 @@ export async function routeApi(ctx, har, { log, phase, ws = () => {}, wsPhase = 
     const p = new URL(q.url()).pathname.replace(/^\/xf-api/, "");
     const b = bodyOf(q.postData());
     const m = matchHar(har, q.method(), q.url(), b);
-    if (!p.startsWith(STATIC_IMAGE_PREFIX)) log({ phase: phase(), method: q.method(), path: p, query: queryOf(q.url()), bodyKind: b.kind, body: b.canon, tier: m.entry?.intercepted ? "intercepted" : m.tier ?? "not-in-har" }, q);
-    if (!m.entry) return r.fulfill(notInHarResponse(p));
+    if (!p.startsWith("/jeecg-system/sys/common/static/")) log({ phase: phase(), method: q.method(), path: p, query: queryOf(q.url()), bodyKind: b.kind, body: b.canon, tier: m.entry?.intercepted ? "intercepted" : m.tier ?? "not-in-har" }, q);
+    if (!m.entry) return r.fulfill({ status: 200, contentType: "application/json", body: NOT_IN_HAR });
     return r.fulfill({ status: m.entry.status, headers: m.entry.headers, body: m.entry.body });
   });
 }
@@ -137,22 +116,11 @@ if (process.argv[1] && import.meta.url === (await import("node:url")).pathToFile
   rmSync(dir, { recursive: true, force: true });
   const t = (label, got, want) => { const ok = got === want; console.log(`${ok ? "ok  " : "FAIL"} ${label}: ${got}`); return ok; };
   const m = (url, body) => { const r = matchHar(har, "POST", "http://127.0.0.1:1" + url, bodyOf(body)); return r.entry ? r.tier + ":" + r.entry.body.toString() : "not-in-har"; };
-  // HM-1460: content-type alone didn't catch the black-pixel regression — decode the GIF's logical screen descriptor
-  // and Graphic Control Extension to confirm it actually renders as transparent, not just that it IS a GIF.
-  const gifIsTransparent = (buf) => {
-    const packed = buf[10], gctFlag = (packed >> 7) & 1, gctSize = gctFlag ? 2 ** ((packed & 7) + 1) : 0;
-    if (!gctFlag) return false;
-    const gce = buf.indexOf(Buffer.from([0x21, 0xf9]), 13 + gctSize * 3);
-    return gce !== -1 && (buf[gce + 3] & 1) === 1;
-  };
   const results = [
     t("encrypted body, keys reordered, fresh ciphertext → 2nd entry by body", m("/xf-api/save", JSON.stringify({ data: enc({ name: "b", n: 2 }) })), "body:B"),
     t("encrypted body not recorded → first entry by path", m("/xf-api/save", JSON.stringify({ data: enc({ name: "zzz" }) })), "path:A"),
     t("plain JSON body, keys reordered → by body", m("/xf-api/plain", JSON.stringify({ x: 1, y: 2 })), "body:P"),
     t("unknown path → not in HAR", m("/xf-api/none", "{}"), "not-in-har"),
-    t("static image not in HAR → blank image, not JSON", notInHarResponse("/jeecg-system/sys/common/static/temp/2025/2/12/x.jpg").headers["content-type"], "image/gif"),
-    t("static image not in HAR → GIF bytes actually transparent, not opaque black", gifIsTransparent(notInHarResponse("/jeecg-system/sys/common/static/temp/2025/2/12/x.jpg").body), true),
-    t("API path not in HAR → unchanged JSON stub", notInHarResponse("/job/licenseFree/xfJobFair/queryById").headers["content-type"], "application/json"),
   ];
   delete process.env.SM2_PRIVATE_KEY;
   results.push(t("no private key → falls back to path", m("/xf-api/save", JSON.stringify({ data: enc({ name: "b", n: 2 }) })), "path:A"));
