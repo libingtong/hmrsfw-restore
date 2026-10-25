@@ -1307,7 +1307,7 @@ export class Pipeline {
   onRegression(taskId, meta, pass, failed = []) {
     if (pass) {
       const r = this.locks.with("integration", () => this.appGit.fastForward({ sha: meta.sha, to: "main" }), 5 * 60_000);
-      this.ledger.tx((L) => { L.tick.regression = { ...(L.tick.regression || {}), state: "passed" }; L.tick.regressionEpoch = (L.tick.regressionEpoch || 0) + 1; L.tick.lastGoodSha = meta.sha; L.newEvents.push({ type: "main-ff", sha: meta.sha, ok: !!r.ok }); this.recordKnownFailed(L, []); });
+      this.ledger.tx((L) => { L.tick.regression = { ...(L.tick.regression || {}), state: "passed", failed: [] }; L.tick.regressionEpoch = (L.tick.regressionEpoch || 0) + 1; L.tick.lastGoodSha = meta.sha; L.newEvents.push({ type: "main-ff", sha: meta.sha, ok: !!r.ok }); this.recordKnownFailed(L, []); });
       if (!r.ok) this.anomaly(taskId, `fast-forward main → ${short(meta.sha)} failed: ${JSON.stringify(r).slice(0, 200)}`, "裁定员检查 main 是否被手动改动");
       this.closeIntegration(taskId, `[GATE] 集成回归通过，main 快进到 ${short(meta.sha)}`);
       try { this.readabilitySample(taskId, meta); } catch (e) { this.anomaly(taskId, `readability sample failed: ${String(e.message).slice(0, 200)}`, "不影响回归结果；检查 tools/readability-sample.mjs 或把 readabilitySample.enabled 设为 false"); }
@@ -1319,7 +1319,7 @@ export class Pipeline {
     const cands = this.appGit.mergesBetween(meta.mainSha, meta.sha).filter((sha) => !L.tick.merges?.[sha]?.reverted && !reverted.has(sha));
     this.closeIntegration(taskId, `[GATE] 集成回归失败（${failed.length || "?"} 页），开始二分（${cands.length} 个合并）`);
     if (!cands.length) {
-      this.ledger.tx((L2) => { L2.tick.regression = { ...(L2.tick.regression || {}), state: "failed" }; L2.tick.regressionEpoch = (L2.tick.regressionEpoch || 0) + 1; this.recordKnownFailed(L2, failed); });
+      this.ledger.tx((L2) => { L2.tick.regression = { ...(L2.tick.regression || {}), state: "failed", failed }; L2.tick.regressionEpoch = (L2.tick.regressionEpoch || 0) + 1; this.recordKnownFailed(L2, failed); });
       return this.openIncident(`集成回归在 ${short(meta.sha)} 失败，但 main..integration 之间没有可回退的合并提交`, { sha: meta.sha, failed });
     }
     this.ledger.tx((L2) => this.recordKnownFailed(L2, failed));
@@ -1579,11 +1579,23 @@ export class Pipeline {
     this.openIncident(`规则变更 ${branch} 第 ${rc.round} 轮被否决，请修改后重新运行 open-rule-review`, { branch, why }, false);
   }
 
-  // The failed-page set the most recent full-page conclusion (regression / rule-regression / integration-gate; not
-  // lib-regression, which only tests the pages depending on the changed library) actually observed, kept so the next
-  // rule regression can tell a page that was already broken from one this rule broke (onRuleRegression, HM-1471).
+  // The failed-page set the most recent full-page conclusion (regression / rule-regression; not lib-regression, which
+  // only tests the pages depending on the changed library) actually observed, kept so the next rule regression can
+  // tell a page that was already broken from one this rule broke (onRuleRegression, HM-1471).
   recordKnownFailed(L, failed) {
     L.tick.knownFailed = { at: this.iso(), failed: [...new Set(failed)].sort() };
+  }
+
+  // knownFailed itself, or — cold start: a fresh ledger, or one from before this field existed — the other full-page
+  // conclusions that already carry a failed set (a plain regression's own `failed`, or integration-gate's, which both
+  // test every currently-accepted page same as a rule regression does). null only when none of those exist yet: the
+  // caller must not treat "we have simply never looked" as "nothing was ever failing" (HM-1471 round 1 did exactly
+  // that — an empty baseline made every pre-existing failure read as newly introduced, reverting the next rule anyway).
+  knownFailedBaseline(L) {
+    if (L.tick.knownFailed) return L.tick.knownFailed.failed;
+    if (Array.isArray(L.tick.regression?.failed)) return L.tick.regression.failed;
+    if (Array.isArray(L.tick.integrationGate?.failed)) return L.tick.integrationGate.failed;
+    return null;
   }
 
   onRuleRegression(taskId, meta, pass, failed) {
@@ -1609,7 +1621,19 @@ export class Pipeline {
     // reverted in a row for the same ~73 pre-existing pages). Compare against the failed set the last full
     // conclusion actually observed: only pages newly failing since then count against this rule.
     const L0 = this.ledger.read();
-    const priorFailed = new Set(L0.tick.knownFailed?.failed || []);
+    const baseline = this.knownFailedBaseline(L0);
+    // Cold start (a fresh ledger, or one from before knownFailed existed): there is nothing to diff against yet. An
+    // empty baseline is not the same as "no baseline" — treating it as one made every pre-existing failure read as
+    // newly introduced and reverted the rule anyway, the exact bug this function exists to fix (HM-1471 round 1:
+    // merged with this gap still open, it reverted hm-1394-r2/hm-1385-r3/hm-1382-r3 a further time on an empty
+    // ledger). Leave the rule in place and ask the arbiter for a baseline (run a plain regression, or seed
+    // knownFailed from a recent real result) rather than guess.
+    if (baseline === null) {
+      this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（${failed.length} 页），账本里还没有可比较的基线，不回退 → 裁定员`);
+      const inc = this.openIncident(`规则变更 ${meta.ruleChange} 全量回归失败 ${failed.length} 页，账本里没有 knownFailed/regression/integrationGate 任何一个基线，无法判断是不是新增失败，未回退：先跑一轮全量 regression 或用最近一次真实结果给 knownFailed 播种`, { task: taskId, ruleChange: meta.ruleChange, ruleSha: meta.ruleSha, failed: failed.slice(0, 50) }, false);
+      return { ok: true, summary: `rule ${meta.ruleChange} not reverted (no baseline yet)`, anomalies: inc.anomalies };
+    }
+    const priorFailed = new Set(baseline);
     const newlyFailed = failed.filter((w) => !priorFailed.has(w));
     if (!newlyFailed.length) {
       this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 全量回归通过（失败 ${failed.length} 页在规则合入前已失败，与本规则无关，不回退）`);
@@ -1619,7 +1643,12 @@ export class Pipeline {
     }
     const r = this.locks.with("tool-main", () => this.toolGit.revert({ sha: meta.ruleSha, into: "main", message: `Revert rule change ${meta.ruleChange}: full regression failed on ${newlyFailed.length} new page(s) (${failed.length} total, ${failed.length - newlyFailed.length} pre-existing)` }), 5 * 60_000);
     if (r.reverted) {
-      this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "reverted"; L.newEvents.push({ type: "rule-reverted", branch: meta.ruleChange, pages: newlyFailed.length, ok: true }); this.recordKnownFailed(L, failed.filter((w) => priorFailed.has(w))); });
+      // The baseline stays as it was: this task's own failed[] mixes pages the revert will fix (the newly-broken
+      // ones) with pages that will still be broken after it (the pre-existing ones), and there is no fresh post-
+      // revert verdict here to tell which is which. Recording it — even just the pre-existing-looking subset, as
+      // HM-1471 round 1 did — either wipes the baseline to [] when priorFailed was empty (the cold-start bug above),
+      // or risks baking in pages the revert might actually clear. Let the next full conclusion refresh it for real.
+      this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "reverted"; L.newEvents.push({ type: "rule-reverted", branch: meta.ruleChange, pages: newlyFailed.length, ok: true }); });
       this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（新增 ${newlyFailed.length} 页，共 ${failed.length} 页失败），已回退`);
       return { ok: true, summary: `rule ${meta.ruleChange} reverted`, anomalies: [] };
     }

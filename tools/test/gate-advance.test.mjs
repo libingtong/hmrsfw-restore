@@ -182,6 +182,7 @@ test("rule regression: a failing page still reverts the rule", () => {
   const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
   const g = (...a) => execFileSync("git", ["-C", fx.tool, ...a], { encoding: "utf8" }).trim();
   writeFileSync(path.join(fx.tool, "rule-x.json"), "{}"); g("add", "-A"); g("-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "rule x"); g("push", "-q", "origin", "main");
+  seedKnownFailed(fx, []); // a baseline already exists (an earlier clean regression); P2 is a genuinely new failure
   const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (2 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
   for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: g("rev-parse", "HEAD") })) setMeta(fx, t.id, k, v);
   gate(fx, t.id, { pass: false, stage: "browser", mode: "integration", attempt: 1, failed: [{ wo: "P2", check: "html", where: "load", hint: "x" }], global: { total: 3, byLayer: { shell: 3 }, byOwner: {} }, pages: [{ wo: "P1", pass: true }, { wo: "P2", pass: false, stage: "browser" }] });
@@ -198,6 +199,7 @@ test("rule regression: a revert that does not happen is not reported as one — 
   const rule = commit('{"a":1}\n', "rule y");
   commit('{"a":2}\n', "later rule on the same lines"); // reverting `rule` now conflicts
   g("push", "-q", "origin", "main");
+  seedKnownFailed(fx, []); // a baseline already exists; P2 is a genuinely new failure
   const task = (sha) => {
     const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (2 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
     for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/y", ruleSha: sha })) setMeta(fx, t.id, k, v);
@@ -320,6 +322,7 @@ test("rule regression: a budget-truncated verdict recovers the real failed set f
   const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
   const g = (...a) => execFileSync("git", ["-C", fx.tool, ...a], { encoding: "utf8" }).trim();
   writeFileSync(path.join(fx.tool, "rule-x.json"), "{}"); g("add", "-A"); g("-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "rule x"); g("push", "-q", "origin", "main");
+  seedKnownFailed(fx, []); // a baseline already exists; P2 is a genuinely new failure
   const detail = path.join(fx.state, "gate", "runs-full-result.json");
   writeFileSync(detail, JSON.stringify({ pages: [{ wo: "P1", pass: true }, { wo: "P2", pass: false }, { wo: "P3", pass: true }] }));
   const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (3 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
@@ -330,4 +333,51 @@ test("rule regression: a budget-truncated verdict recovers the real failed set f
   assert.match(issue(fx, t.id).comments.at(-1).content, /回归失败（新增 1 页，共 1 页失败），已回退/, "only P2 — not all 3 — counts as failed");
   g("fetch", "-q", "origin");
   assert.equal(showRemote(fx, "tool", "main", "rule-x.json"), null);
+});
+
+test("rule regression: cold start — no knownFailed, no regression, no integration-gate yet — does not guess, does not revert (HM-1471)", () => {
+  const ids = ["P1", "P2", "P3"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
+  const g = (...a) => execFileSync("git", ["-C", fx.tool, ...a], { encoding: "utf8" }).trim();
+  writeFileSync(path.join(fx.tool, "rule-x.json"), "{}"); g("add", "-A"); g("-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "rule x"); g("push", "-q", "origin", "main");
+  // no seedKnownFailed call: a brand-new ledger, exactly the state PR #93's first version shipped into (HM-1471)
+  const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (3 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
+  for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: g("rev-parse", "HEAD") })) setMeta(fx, t.id, k, v);
+  const r = gate(fx, t.id, { pass: false, stage: "browser", mode: "integration", attempt: 1, failed: [{ wo: "P2", check: "html", where: "load", hint: "x" }, { wo: "P3", check: "html", where: "load", hint: "y" }], pages: [{ wo: "P1", pass: true }, { wo: "P2", pass: false, stage: "browser" }, { wo: "P3", pass: false, stage: "browser" }] });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.match(issue(fx, t.id).comments.at(-1).content, /没有可比较的基线，不回退/);
+  assert.doesNotMatch(issue(fx, t.id).comments.at(-1).content, /已回退/);
+  assert.ok(issuesOf(fx).some((i) => i.title.startsWith("[incident]")), "an incident for the arbiter");
+  g("fetch", "-q", "origin");
+  assert.equal(showRemote(fx, "tool", "main", "rule-x.json"), "{}", "the rule stays on main — there is nothing to compare its failures against yet");
+});
+
+test("rule regression: knownFailed missing falls back to the last plain regression's failed set, then integration-gate's (HM-1471)", () => {
+  const ids = ["P1", "P2"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
+  const g = (...a) => execFileSync("git", ["-C", fx.tool, ...a], { encoding: "utf8" }).trim();
+  writeFileSync(path.join(fx.tool, "rule-x.json"), "{}"); g("add", "-A"); g("-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "rule x"); g("push", "-q", "origin", "main");
+  // no knownFailed, but an older `regression` conclusion already recorded P2 as failing
+  const p = path.join(fx.state, "ledger", "tick-state.json");
+  writeFileSync(p, JSON.stringify({ regression: { state: "failed", failed: ["P2"] } }));
+  const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (2 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
+  for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: g("rev-parse", "HEAD") })) setMeta(fx, t.id, k, v);
+  const r = gate(fx, t.id, { pass: false, stage: "browser", mode: "integration", attempt: 1, failed: [{ wo: "P2", check: "html", where: "load", hint: "x" }], pages: [{ wo: "P1", pass: true }, { wo: "P2", pass: false, stage: "browser" }] });
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.match(issue(fx, t.id).comments.at(-1).content, /全量回归通过（失败 1 页在规则合入前已失败，与本规则无关，不回退）/);
+  g("fetch", "-q", "origin");
+  assert.equal(showRemote(fx, "tool", "main", "rule-x.json"), "{}", "the rule stays on main — P2 was already known failing");
+});
+
+test("rule regression: a revert does not wipe the known-failed baseline to empty (HM-1471)", () => {
+  const ids = ["P1", "P2", "P3"];
+  const fx = makeFixture({ orders: ids.map((id) => page(id, 5)) });
+  const g = (...a) => execFileSync("git", ["-C", fx.tool, ...a], { encoding: "utf8" }).trim();
+  writeFileSync(path.join(fx.tool, "rule-x.json"), "{}"); g("add", "-A"); g("-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "rule x"); g("push", "-q", "origin", "main");
+  seedKnownFailed(fx, ["P2"]); // P2 already known failing; P3 is this rule's own new failure
+  const t = mc(fx, "issue", "create", "--title", "[integration] rule-regression (3 页)", "--status", "in_review", "--assignee-id", fx.id("gate"), "--project", "proj-1");
+  for (const [k, v] of Object.entries({ kind: "integration", purpose: "rule-regression", workOrders: ids, branch: "integration", attempt: 1, fixRound: 0, ruleChange: "rule/x", ruleSha: g("rev-parse", "HEAD") })) setMeta(fx, t.id, k, v);
+  gate(fx, t.id, { pass: false, stage: "browser", mode: "integration", attempt: 1, failed: [{ wo: "P2", check: "html", where: "load", hint: "x" }, { wo: "P3", check: "html", where: "load", hint: "y" }], pages: [{ wo: "P1", pass: true }, { wo: "P2", pass: false, stage: "browser" }, { wo: "P3", pass: false, stage: "browser" }] });
+  const p = path.join(fx.state, "ledger", "tick-state.json");
+  assert.deepEqual(JSON.parse(readFileSync(p, "utf8")).knownFailed.failed, ["P2"], "untouched — not wiped to []");
 });
