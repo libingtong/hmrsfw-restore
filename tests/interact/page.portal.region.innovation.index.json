@@ -1,6 +1,6 @@
 [
-  {"clickSel":"h3.no"},
+  {"clickSel":".innovationContent .flex h3:nth-child(2)"},
   {"wait":800},
-  {"clickSel":"h3:not(.no)"},
+  {"clickSel":".innovationContent .flex h3:nth-child(1)"},
   {"wait":800}
 ]
