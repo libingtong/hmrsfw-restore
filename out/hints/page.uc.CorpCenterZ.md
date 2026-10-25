@@ -29,7 +29,7 @@
 | `ze` | addKeynote.1751615607545.js | shared | @/shared/addKeynote/AddBeOnProbation.vue `default`（reserved） | `N(L,[["__scopeId","data-v-de576056"]])` |
 | `Oe` | addKeynote.1751615607545.js | shared | @/shared/addKeynote/AddKeynote.vue `default`（reserved） | `N(X,[["__scopeId","data-v-a5cea3e0"]])` |
 | `Ae` | setStatus.vue_vue_type_style_index_0_scoped_ed0660df_lang.1751615607545.js | shared | @/shared/setStatus.vue `default`（reserved） | `A(ee,[["__scopeId","data-v-adee5d08"]])` |
-| `q` | index.api.17516156075456.js | api | @/api/api-56 `getSettingValueByCode` | `e=>t.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:e})` |
+| `q` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `getSettingValueByCode` | `e=>t.request({url:"/xf-job/communal/xfSysBusinessSetting/getSettingValueByCode",method:"get",params:e})` |
 | `De` | setStatusinterview.1751615607545.js | shared | @/shared/setStatusinterview.vue `default` | `B(A,[["__scopeId","data-v-99a2d30a"]])` |
 | `Ee` | InterviewInvitation.17516156075452.js | shared | @/shared/InterviewInvitation.vue `default` | `E(ae,[["__scopeId","data-v-85ce95bb"]])` |
 | `He` | default.1751615607545.js | shared | @/shared/images `defaultImg` | `"/assets/default.1751615607545.jpg"` |

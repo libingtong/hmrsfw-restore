@@ -17,10 +17,10 @@
 | `ue` | index.1751615607545.js | entry | @/legacy/utils `closeTag`（reserved） | `(t,e,n,r)=>{t.list.find((a,i)=>{if(a.name==n.name){const o=t.list[i];t.delTagsItem(i);const l=t.list[i]?t.list[i]:t.list[i-1];l?o.path===n.fullPath&&e.push(l.path):e.push(r)}e.push(r)})}` |
 | `pe` | index.1751615607545.js | api | @/legacy/api `queryAnnouncementList`（reserved） | `t=>Ee.request({url:"/xf-common/common/xfAnnouncementSendRedcord/queryAnnouncementList",method:"post",params:t})` |
 | `H` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
-| `me` | index.api.17516156075456.js | api | @/api/api-56 `statics` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/statics",method:"get",params:e})` |
-| `fe` | index.api.17516156075456.js | api | @/api/api-56 `listNew` | `e=>t.request({url:"/xf-job/job/xfJobInterviewInvitation/listNew",method:"get",params:e})` |
-| `he` | index.api.17516156075456.js | api | @/api/api-56 `listWithSort` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort",method:"get",params:e})` |
-| `J` | index.api.17516156075456.js | api | @/api/api-56 `acceptOrRefuse` | `e=>t.request({url:"/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse",method:"get",params:e})` |
+| `me` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `statics` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitae/statics",method:"get",params:e})` |
+| `fe` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `listNew` | `e=>t.request({url:"/xf-job/job/xfJobInterviewInvitation/listNew",method:"get",params:e})` |
+| `he` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `listWithSort` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeLookoverRecord/listWithSort",method:"get",params:e})` |
+| `J` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `acceptOrRefuse` | `e=>t.request({url:"/xf-job/job/xfJobInterviewInvitation/acceptOrRefuse",method:"get",params:e})` |
 | `ye` | right.vue_vue_type_script_setup_true_lang.1751615607545.js | shared | @/shared/right.vue `default`（reserved） | `w({__name:"right",props:{},emits:[],setup(I,{emit:R}){y();const d=m(),t=v({organizationId:void 0,swiperList:[],list:[]});C(()=>{}),P(()=>{c()});const c=()=>{f({dictCode:window.businessDict}).then(e=>{` |
 | `ve` | recommendZp.1751615607545.js | shared | @/shared/recommendZp/StateCard.vue `default`（reserved） | `F(V,[["__scopeId","data-v-53902b4a"]])` |
 | `ge` | recommendZp.1751615607545.js | shared | @/shared/recommendZp/RecommendZp.vue `default`（reserved） | `F(pe,[["__scopeId","data-v-063eb494"]])` |

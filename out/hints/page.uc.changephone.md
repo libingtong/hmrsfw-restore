@@ -5,9 +5,9 @@
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
 | `M` | phone.1751615607545.js | shared | @/shared/phone.vue `default` | `u(d,[["render",m]])` |
-| `E` | index.api.17516156075453.js | api | @/api/api-17516156075453 `check` | `e=>s.request({url:"/jeecg-system/sys/duplicate/check",method:"get",params:e})` |
-| `G` | index.api.17516156075453.js | api | @/api/api-17516156075453 `phoneVerification` | `e=>s.request({url:"/jeecg-system/sys/user/phoneVerification",method:"post",data:e})` |
-| `H` | index.api.17516156075453.js | api | @/api/api-17516156075453 `changePhone` | `e=>s.request({url:"/xf-job/communal/xfSysUser/changePhone",method:"post",data:e})` |
+| `E` | index.api.17516156075453.js | api | @/api/user `check` | `e=>s.request({url:"/jeecg-system/sys/duplicate/check",method:"get",params:e})` |
+| `G` | index.api.17516156075453.js | api | @/api/user `phoneVerification` | `e=>s.request({url:"/jeecg-system/sys/user/phoneVerification",method:"post",data:e})` |
+| `H` | index.api.17516156075453.js | api | @/api/user `changePhone` | `e=>s.request({url:"/xf-job/communal/xfSysUser/changePhone",method:"post",data:e})` |
 | `W` | SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js | shared | @/shared/SlideCaptcha.vue `default` | `Nr({__name:"SlideCaptcha",props:{type:{type:String,default:"0"},phone:{type:String,default:""},smsmode:{type:String,default:"1"}},emits:["timerCount"],setup(Z,{expose:lt,emit:je}){const dt=Z,S=Pr({sho` |
 | `ee` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `$` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |

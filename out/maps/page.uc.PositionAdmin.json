@@ -158,14 +158,14 @@
   },
   "Ze": {
    "original": "index.api.175161560754511.js#m",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "myJobFairList",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/myJobFairList"
   },
   "Qe": {
    "original": "index.api.175161560754511.js#a",
-   "path": "@/api/api-175161560754511",
+   "path": "@/api/jobCompany",
    "export": "myBoothList",
    "status": "restored",
    "url": "/xf-job/job/xfJobFair/myBoothList"

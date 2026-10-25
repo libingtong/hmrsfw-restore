@@ -4,9 +4,9 @@
 
 | 本地名 | 来源 chunk | 类型 | 导入自 | 定义片段 |
 |---|---|---|---|---|
-| `A` | index.api.17516156075456.js | api | @/api/api-56 `listForUserContent` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeDeliver/listForUserContent",method:"get",params:e})` |
-| `L` | index.api.17516156075456.js | api | @/api/api-56 `add6` | `e=>t.request({url:"/xf-job/job/xfJobUserCare/add",method:"get",params:e})` |
-| `Q` | index.api.17516156075456.js | api | @/api/api-56 `undoAllComplaintByType` | `e=>t.request({url:"/xf-job/job/xfJobComplaintRecord/undoAllComplaintByType",method:"post",params:e})` |
+| `A` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `listForUserContent` | `e=>t.request({url:"/xf-job/job/xfJobCurriculumVitaeDeliver/listForUserContent",method:"get",params:e})` |
+| `L` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `add6` | `e=>t.request({url:"/xf-job/job/xfJobUserCare/add",method:"get",params:e})` |
+| `Q` | index.api.17516156075456.js | api | @/api/jobCurriculumVitae `undoAllComplaintByType` | `e=>t.request({url:"/xf-job/job/xfJobComplaintRecord/undoAllComplaintByType",method:"post",params:e})` |
 | `J` | index.1751615607545.js | entry | @/legacy `decryptStorage` | `(t,e)=>{if(t&&typeof t=="string")try{return JSON.parse(Df.sm4.decrypt(t,yC))}catch(n){return console.error("解密失败:",n),localStorage.removeItem(e),null}else return null}` |
 | `k` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `W` | index.1751615607545.js | api | @/legacy/api `cancel`（reserved） | `t=>Ee.request({url:"/xf-job/job/xfJobUserCare/cancel",method:"get",params:t})` |

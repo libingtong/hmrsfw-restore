@@ -10,6 +10,6 @@
 | `q` | index.1751615607545.js | entry | ant-design-vue `Modal` | `re({compatConfig:{MODE:3},name:"AModal",inheritAttrs:!1,props:xt(Cdt(),{width:520,transitionName:"zoom",maskTransitionName:"fade",confirmLoading:!1,visible:!1,okType:"primary"}),setup:function(e,n){va` |
 | `$` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `X` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `H` | index.api.17516156075453.js | api | @/api/api-17516156075453 `changePwdWithSmsCode` | `e=>s.request({url:"/xf-job/extend/user/changePwdWithSmsCode",method:"post",data:e})` |
-| `J` | index.api.17516156075453.js | api | @/api/api-17516156075453 `updatePassword` | `e=>s.request({url:"/xf-job/extend/user/updatePassword",method:"put",data:e})` |
+| `H` | index.api.17516156075453.js | api | @/api/user `changePwdWithSmsCode` | `e=>s.request({url:"/xf-job/extend/user/changePwdWithSmsCode",method:"post",data:e})` |
+| `J` | index.api.17516156075453.js | api | @/api/user `updatePassword` | `e=>s.request({url:"/xf-job/extend/user/updatePassword",method:"put",data:e})` |
 | `Q` | SlideCaptcha.vue_vue_type_style_index_0_lang.1751615607545.js | shared | @/shared/SlideCaptcha.vue `default` | `Nr({__name:"SlideCaptcha",props:{type:{type:String,default:"0"},phone:{type:String,default:""},smsmode:{type:String,default:"1"}},emits:["timerCount"],setup(Z,{expose:lt,emit:je}){const dt=Z,S=Pr({sho` |

@@ -8,5 +8,5 @@
 | `w` | index.1751615607545.js | api | @/legacy `getDictItemsByCode` | `t=>Ee.request({url:"/jeecg-system/sys/dict/getDictItemsByCode",method:"get",params:t})` |
 | `z` | index.1751615607545.js | entry | ant-design-vue `message` | `ks` |
 | `g` | index.1751615607545.js | entry | （不需要：_export_sfc：SFC 里不需要，忽略） | `(t,e)=>{const n=t.__vccOpts\|\|t;for(const[r,a]of e)n[r]=a;return n}` |
-| `k` | index.api.17516156075453.js | api | @/api/api-17516156075453 `userBindInfo` | `e=>s.request({url:"/xf-job/communal/xfSysUserThirdAssociation/userBindInfo",method:"post",params:e})` |
-| `m` | index.api.17516156075453.js | api | @/api/api-17516156075453 `deleteItem` | `e=>s.request({url:"/xf-job/communal/xfSysUserThirdAssociation/delete",method:"post",params:e})` |
+| `k` | index.api.17516156075453.js | api | @/api/user `userBindInfo` | `e=>s.request({url:"/xf-job/communal/xfSysUserThirdAssociation/userBindInfo",method:"post",params:e})` |
+| `m` | index.api.17516156075453.js | api | @/api/user `deleteItem` | `e=>s.request({url:"/xf-job/communal/xfSysUserThirdAssociation/delete",method:"post",params:e})` |
