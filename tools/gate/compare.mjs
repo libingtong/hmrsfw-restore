@@ -185,7 +185,11 @@ function volatileMatch(where, a, b, r) {
   if (where === "load.requests") { const both = a.filter((x) => b.includes(x)), any = new Set([...a, ...b]); return both.every((x) => r.includes(x)) && r.every((x) => any.has(x)); }
   if (Array.isArray(a)) return false;
   const re = maskRegex(where, a, b);
-  return !!re && re.test(r);
+  if (!re) return false;
+  // Same HM-1392 guard, extended: V8 can accept an oversized pattern at construction and only reject it ("Compiled
+  // regular expression too large") lazily on first exec — the jyEmap mask hit that on HM-1443's run (gate incident,
+  // this guard). Treat a throw here the same as maskRegex returning null: no mask, literal compare reports the diff.
+  try { return re.test(r); } catch { return false; }
 }
 function hint(where, a, b) {
   if (where.endsWith(".html")) { const d = firstDiff(a, b); return `HTML differs under ${d.path} (offset ${d.offset}; lengths ${d.lengths.join("/")})`; }
