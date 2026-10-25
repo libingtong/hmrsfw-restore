@@ -1,7 +1,7 @@
 [
+  {"wait":800},
+  {"click":"保存","optional":true},
   {"wait":500},
-  {"click":"保存"},
-  {"wait":500},
-  {"clickSel":".ant-btn-primary","optional":true},
+  {"click":"保存","optional":true},
   {"wait":500}
 ]
