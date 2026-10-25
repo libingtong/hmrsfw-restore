@@ -37,8 +37,6 @@
  "role": "general",
  "authMode": "anonymous",
  "authModeNote": "HM-1381/HM-390: 用户中心登录页本身只在未登录时可见；record-page.mjs 改为不带任何 .auth 登录态打开（不切身份，不读 token），直接访问登录页。不输入账号密码，不调用登录接口。",
- "emptyRender": true,
- "emptyRenderNote": "HM-1433（规则变更 rule/hm-1432-empty-render-load）：原 chunk 两层组件 render 都固定返回 null（legacy-dist/usercenter/assets/index.175161560754526.js，`(t,n)=>null` 两处），load 阶段原版本来就没有根节点、没有请求，不是录制或回放问题。",
  "maps": "out/maps/page.uc.login.json",
  "hints": "out/hints/page.uc.login.md",
  "deps": {
