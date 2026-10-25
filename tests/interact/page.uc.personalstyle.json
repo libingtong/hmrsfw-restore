@@ -1,11 +1,15 @@
 [
-  {"wait":1000},
-  {"click":"风采视频"},
-  {"wait":1000},
-  {"clickSel":".ant-pagination-next","optional":true},
   {"wait":800},
+  {"click":"风采视频"},
+  {"wait":800},
+  {"clickSel":".ant-table-pagination .ant-pagination-item-2","optional":true},
+  {"wait":500},
+  {"click":"上传风采视频","optional":true},
+  {"wait":500},
+  {"click":"取 消","optional":true},
   {"click":"风采照片"},
-  {"wait":1000},
-  {"clickSel":".ant-pagination-next","optional":true},
-  {"wait":800}
+  {"wait":800},
+  {"click":"上传风采照片","optional":true},
+  {"wait":500},
+  {"click":"取 消","optional":true}
 ]
