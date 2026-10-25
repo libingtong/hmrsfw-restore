@@ -1162,8 +1162,33 @@ export class Pipeline {
 
   failedWos(gate, wos) {
     const pages = this.pagesOf(gate);
-    if (pages) return wos.filter((w) => (pages[w] ? !pages[w].pass : !gate.passedOmitted));
+    if (pages) {
+      // slimResult (tools/gate.mjs) truncates the failing-pages list under a tight metadata budget, and drops
+      // passedOmitted when even the failing-only list does not fit (docs/gate.md): every wo then missing from `pages`
+      // reads as failed, "never a page wrongly passed". A 274-page regression's own `workOrders` metadata already
+      // leaves near-zero budget for the verdict, so this is not an edge case for it — every one of its rule
+      // regressions truncated this way, and the real ~73 failures were read back as all 274 (HM-1471). The gate
+      // always writes the untruncated verdict to `detail` before slimming; recover the real set from there first.
+      if (!gate.passedOmitted && wos.some((w) => !pages[w])) {
+        const full = this.fullGateResult(gate);
+        if (full) return wos.filter((w) => full[w] !== true);
+      }
+      return wos.filter((w) => (pages[w] ? !pages[w].pass : !gate.passedOmitted));
+    }
     return (gate?.failed || []).map((f) => (typeof f === "string" ? f : f.wo || f.id || f.workOrder)).filter((w) => wos.includes(w));
+  }
+
+  // The full, untruncated per-page pass map from the on-disk result gate.mjs names in `detail` (tools/gate.mjs
+  // report()): {wo: pass}. null when there is no detail file, it is unreadable, or it is missing pages — the
+  // caller then keeps the metadata's (possibly truncated) verdict rather than guessing.
+  fullGateResult(gate) {
+    const detail = gate?.detail;
+    if (typeof detail !== "string") return null;
+    try {
+      const full = JSON.parse(readFileSync(detail, "utf8"));
+      if (!Array.isArray(full.pages) || !full.pages.length) return null;
+      return Object.fromEntries(full.pages.filter((p) => p?.wo).map((p) => [p.wo, !!p.pass]));
+    } catch { return null; }
   }
 
   advanceIntegration(taskId, meta) {
@@ -1282,7 +1307,7 @@ export class Pipeline {
   onRegression(taskId, meta, pass, failed = []) {
     if (pass) {
       const r = this.locks.with("integration", () => this.appGit.fastForward({ sha: meta.sha, to: "main" }), 5 * 60_000);
-      this.ledger.tx((L) => { L.tick.regression = { ...(L.tick.regression || {}), state: "passed" }; L.tick.regressionEpoch = (L.tick.regressionEpoch || 0) + 1; L.tick.lastGoodSha = meta.sha; L.newEvents.push({ type: "main-ff", sha: meta.sha, ok: !!r.ok }); });
+      this.ledger.tx((L) => { L.tick.regression = { ...(L.tick.regression || {}), state: "passed" }; L.tick.regressionEpoch = (L.tick.regressionEpoch || 0) + 1; L.tick.lastGoodSha = meta.sha; L.newEvents.push({ type: "main-ff", sha: meta.sha, ok: !!r.ok }); this.recordKnownFailed(L, []); });
       if (!r.ok) this.anomaly(taskId, `fast-forward main → ${short(meta.sha)} failed: ${JSON.stringify(r).slice(0, 200)}`, "裁定员检查 main 是否被手动改动");
       this.closeIntegration(taskId, `[GATE] 集成回归通过，main 快进到 ${short(meta.sha)}`);
       try { this.readabilitySample(taskId, meta); } catch (e) { this.anomaly(taskId, `readability sample failed: ${String(e.message).slice(0, 200)}`, "不影响回归结果；检查 tools/readability-sample.mjs 或把 readabilitySample.enabled 设为 false"); }
@@ -1294,9 +1319,10 @@ export class Pipeline {
     const cands = this.appGit.mergesBetween(meta.mainSha, meta.sha).filter((sha) => !L.tick.merges?.[sha]?.reverted && !reverted.has(sha));
     this.closeIntegration(taskId, `[GATE] 集成回归失败（${failed.length || "?"} 页），开始二分（${cands.length} 个合并）`);
     if (!cands.length) {
-      this.ledger.tx((L2) => { L2.tick.regression = { ...(L2.tick.regression || {}), state: "failed" }; L2.tick.regressionEpoch = (L2.tick.regressionEpoch || 0) + 1; });
+      this.ledger.tx((L2) => { L2.tick.regression = { ...(L2.tick.regression || {}), state: "failed" }; L2.tick.regressionEpoch = (L2.tick.regressionEpoch || 0) + 1; this.recordKnownFailed(L2, failed); });
       return this.openIncident(`集成回归在 ${short(meta.sha)} 失败，但 main..integration 之间没有可回退的合并提交`, { sha: meta.sha, failed });
     }
+    this.ledger.tx((L2) => this.recordKnownFailed(L2, failed));
     return this.bisectStep({ candidates: cands, lo: 0, hi: cands.length - 1, sha: meta.sha, mainSha: meta.mainSha, failed, step: 1 });
   }
 
@@ -1553,6 +1579,13 @@ export class Pipeline {
     this.openIncident(`规则变更 ${branch} 第 ${rc.round} 轮被否决，请修改后重新运行 open-rule-review`, { branch, why }, false);
   }
 
+  // The failed-page set the most recent full-page conclusion (regression / rule-regression / integration-gate; not
+  // lib-regression, which only tests the pages depending on the changed library) actually observed, kept so the next
+  // rule regression can tell a page that was already broken from one this rule broke (onRuleRegression, HM-1471).
+  recordKnownFailed(L, failed) {
+    L.tick.knownFailed = { at: this.iso(), failed: [...new Set(failed)].sort() };
+  }
+
   onRuleRegression(taskId, meta, pass, failed) {
     // Every page passed and the verdict fails on app-wide hits only (zero-reference in shell, entry or shared files,
     // gate.global): those belong to their owners (docs/gate.md, failure attribution), a compare-rule change does not
@@ -1563,23 +1596,40 @@ export class Pipeline {
     const onlyGlobal = !pass && !failed.length && !gate?.pagesTruncated && judged > 0 && judged >= (meta.workOrders || []).length && pages.every((p) => p.pass) && (gate?.global?.total ?? 0) > 0;
     if (pass || onlyGlobal) {
       this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 全量回归通过${onlyGlobal ? `（页面全部通过；整站零引用 ${gate.global.total} 条与规则无关，不回退）` : ""}`);
-      this.ledger.tx((L) => L.newEvents.push({ type: "rule-regression", branch: meta.ruleChange, pass: true, ...(onlyGlobal ? { globalOnly: gate.global.total } : {}) }));
+      this.ledger.tx((L) => { L.newEvents.push({ type: "rule-regression", branch: meta.ruleChange, pass: true, ...(onlyGlobal ? { globalOnly: gate.global.total } : {}) }); this.recordKnownFailed(L, failed); });
       const covered = this.coverRuleRegressions(taskId, meta, gate);
       return { ok: true, summary: `rule regression passed${covered.length ? `; covers ${covered.length} more` : ""}`, anomalies: [] };
     }
-    const r = this.locks.with("tool-main", () => this.toolGit.revert({ sha: meta.ruleSha, into: "main", message: `Revert rule change ${meta.ruleChange}: full regression failed on ${failed.length} pages` }), 5 * 60_000);
+    // A rule regression only answers for the rule it is testing when it fails on pages the rule could plausibly have
+    // broken — not on pages that were already failing before it merged. Before HM-1471 any failure reverted the rule
+    // regardless of cause, so a page broken by something unrelated (test-environment flakiness, a crash in a
+    // different comparator, another rule's revert undoing a normalization this run still depended on) got blamed on
+    // whichever rule regression happened to run next; each revert then removed one more normalization, growing the
+    // next run's failure count and reverting the next rule in turn (hm-1394 → hm-1385 → hm-1382: three good rules
+    // reverted in a row for the same ~73 pre-existing pages). Compare against the failed set the last full
+    // conclusion actually observed: only pages newly failing since then count against this rule.
+    const L0 = this.ledger.read();
+    const priorFailed = new Set(L0.tick.knownFailed?.failed || []);
+    const newlyFailed = failed.filter((w) => !priorFailed.has(w));
+    if (!newlyFailed.length) {
+      this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 全量回归通过（失败 ${failed.length} 页在规则合入前已失败，与本规则无关，不回退）`);
+      this.ledger.tx((L) => { L.newEvents.push({ type: "rule-regression", branch: meta.ruleChange, pass: true, preexisting: failed.length }); this.recordKnownFailed(L, failed); });
+      const covered = this.coverRuleRegressions(taskId, meta, gate);
+      return { ok: true, summary: `rule regression passed (${failed.length} pre-existing failures, not this rule's)${covered.length ? `; covers ${covered.length} more` : ""}`, anomalies: [] };
+    }
+    const r = this.locks.with("tool-main", () => this.toolGit.revert({ sha: meta.ruleSha, into: "main", message: `Revert rule change ${meta.ruleChange}: full regression failed on ${newlyFailed.length} new page(s) (${failed.length} total, ${failed.length - newlyFailed.length} pre-existing)` }), 5 * 60_000);
     if (r.reverted) {
-      this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "reverted"; L.newEvents.push({ type: "rule-reverted", branch: meta.ruleChange, pages: failed.length, ok: true }); });
-      this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（${failed.length} 页），已回退`);
+      this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "reverted"; L.newEvents.push({ type: "rule-reverted", branch: meta.ruleChange, pages: newlyFailed.length, ok: true }); this.recordKnownFailed(L, failed.filter((w) => priorFailed.has(w))); });
+      this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（新增 ${newlyFailed.length} 页，共 ${failed.length} 页失败），已回退`);
       return { ok: true, summary: `rule ${meta.ruleChange} reverted`, anomalies: [] };
     }
     // The revert did not happen (a later commit touches the same lines, the rule is not on main, the lock or the push
     // failed): the rule is still in effect. Before HM-1276 this still recorded the rule as reverted and commented
     // 「已回退」 (hm-1225/uc-bare-route-root, 10-23: the git revert conflicted with hm-1162 and the rule stayed on main).
     const why = r.locked ? "lock busy" : r.conflict ? "conflict" : r.notOnBranch ? "not on main" : r.pushRejected ? "push rejected" : "failed";
-    this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "revert-failed"; L.newEvents.push({ type: "rule-revert-failed", branch: meta.ruleChange, pages: failed.length, why }); });
-    this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（${failed.length} 页），自动回退未执行（${why}），规则仍在 main → 裁定员`);
-    const inc = this.openIncident(`规则变更 ${meta.ruleChange} 全量回归失败 ${failed.length} 页，自动回退未执行（${why}），规则仍在 main`, { task: taskId, ruleChange: meta.ruleChange, ruleSha: meta.ruleSha, why, failed: failed.slice(0, 50) }, false);
+    this.ledger.tx((L) => { if (L.tick.ruleChanges?.[meta.ruleChange]) L.tick.ruleChanges[meta.ruleChange].state = "revert-failed"; L.newEvents.push({ type: "rule-revert-failed", branch: meta.ruleChange, pages: newlyFailed.length, why }); });
+    this.closeIntegration(taskId, `[GATE] 规则变更 ${meta.ruleChange} 回归失败（新增 ${newlyFailed.length} 页，共 ${failed.length} 页失败），自动回退未执行（${why}），规则仍在 main → 裁定员`);
+    const inc = this.openIncident(`规则变更 ${meta.ruleChange} 全量回归失败，新增 ${newlyFailed.length} 页（共 ${failed.length} 页），自动回退未执行（${why}），规则仍在 main`, { task: taskId, ruleChange: meta.ruleChange, ruleSha: meta.ruleSha, why, failed: failed.slice(0, 50), newlyFailed: newlyFailed.slice(0, 50) }, false);
     return { ok: true, summary: `rule ${meta.ruleChange} not reverted (${why})`, anomalies: inc.anomalies };
   }
 
