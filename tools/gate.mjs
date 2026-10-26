@@ -116,6 +116,9 @@ export async function baselineFor(wo, state, { interact = null } = {}) {
   // markOffscope). `offscopeAll` implies `offscopeFixed`.
   if (wo.recordVia && !b.offscopeFixed) return { missing: "component shots taken with off-scope fixed elements (before HM-253)", refresh: b.har.path };
   if (wo.recordVia && !b.offscopeAll) return { missing: "component shots taken with off-scope elements around the component (before HM-342)", refresh: b.har.path };
+  // Same again for baselines with an a-carousel captured while it autoplayed (before HM-273, replay.mjs pauseCarousels):
+  // the active slide depended on when the original side settled. Recomputed from the same HAR with the slider paused.
+  if (!b.carouselPaused && b.runs.some((r) => [r.load, r.final].some((p) => p?.candidates?.some((c) => JSON.stringify(c.tree ?? null).includes("slick-track"))))) return { missing: "carousel captured while autoplaying (before HM-273)", refresh: b.har.path };
   // Same again for baselines whose shots hold a <canvas> but not its box (before HM-302, replay.mjs canvasBoxesInPage):
   // without it compareRuns cannot tell a canvas that differs between the original's two runs (volatileCanvases).
   // Recomputed from the same HAR; the shots, DOM and requests are taken as before.
